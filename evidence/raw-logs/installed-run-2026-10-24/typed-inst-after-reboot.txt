@@ -1,0 +1,14 @@
+inst-after-reboot plain: azerty é | AltGr 2 e: @€ | CtrlAlt 2 e: @€ | Caps ² 1 2 3 ) - ù , ; a: ²123°_%?.A | numpad 1 dec 5: [F[3~[E | after NumLock toggle: 1.5
+=== kbstate 12:32:39Z inst-after-reboot ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['caps:be_windows'] session=wayland
+cinnamon: 
+accounts: 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   14:25 /boot/initrd.img-7.0.0-38-generic vs /etc/default/keyboard 14:25
+WARNING: Running setxkbmap against an Xwayland server
+['caps:be_windows']

@@ -1,0 +1,19 @@
+key     ²    1    2    3    4    5    6    7    8    9    0    )    -    a    z    ^    $    m    ù    µ    <    ,    ;    :    =  KP1  KP.
+Windows caps      :    ²    1    2    3    4    5    6    7    8    9    0    °    _    A    Z    ·    *    M    %    £    <    ?    .    /    +    1    .
+  none                        :    ²   *&   *É   *"   *'   *(   *§   *È   *!   *Ç   *À   *)   *-    A    Z    ·   *$    M   *Ù   *·    <   *,   *;   *:   *=    1    .   mismatches=19
+  caps:shift                  :    ²   *&   *É   *"   *'   *(   *§   *È   *!   *Ç   *À   *)   *-    A    Z    ·   *$    M   *Ù   *·    <   *,   *;   *:   *=    1    .   mismatches=19
+  caps:shift_nocancel         :    ²   *&   *É   *"   *'   *(   *§   *È   *!   *Ç   *À   *)   *-    A    Z    ·   *$    M   *Ù   *·    <   *,   *;   *:   *=    1    .   mismatches=19
+  caps:shiftlock              :   *³    1    2    3    4    5    6    7    8    9    0    °    _    A    Z    ·    *    M    %    £   *>    ?    .    /    +   *·   *·   mismatches=4
+  caps:be_windows             :    ²    1    2    3    4    5    6    7    8    9    0    °    _    A    Z    ·    *    M    %    £    <    ?    .    /    +    1    .   mismatches=0
+Windows caps+shift:    ³    &    é    "    '    (    §    è    !    ç    à    )    -    a    z    ·    $    m    ù    µ    >    ,    ;    :    =    ·    ·
+  none                        :    ³   *1   *2   *3   *4   *5   *6   *7   *8   *9   *0   *°   *_    a    z    ·   **    m   *%   *£    >   *?   *.   */   *+    ·    ·   mismatches=19
+  caps:shift                  :    ³   *1   *2   *3   *4   *5   *6   *7   *8   *9   *0   *°   *_    a    z    ·   **    m   *%   *£    >   *?   *.   */   *+    ·    ·   mismatches=19
+  caps:shift_nocancel         :    ³   *1   *2   *3   *4   *5   *6   *7   *8   *9   *0   *°   *_   *A   *Z    ·   **   *M   *%   *£    >   *?   *.   */   *+    ·    ·   mismatches=22
+  caps:shiftlock              :    ³   *1   *2   *3   *4   *5   *6   *7   *8   *9   *0   *°   *_   *A   *Z    ·   **   *M   *%   *£    >   *?   *.   */   *+    ·    ·   mismatches=22
+  caps:be_windows             :    ³    &    é    "    '    (    §    è    !    ç    à    )    -    a    z    ·    $    m    ù    µ    >    ,    ;    :    =    ·    ·   mismatches=0
+Windows caps+altgr:    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @    ſ    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .
+  none                        :    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @   *S    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .   mismatches=1
+  caps:shift                  :    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @   *S    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .   mismatches=1
+  caps:shift_nocancel         :    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @   *S    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .   mismatches=1
+  caps:shiftlock              :    ¬   *¡   *⅛   *£   *$   *⅜   *⅝   *⅞   *™   *±   *°   *¿    ·   *Ω   *§   *·   *·    ·    ·    ·    \   *º   *×   *÷    ·   *·   *·   mismatches=20
+  caps:be_windows             :    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @   *S    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .   mismatches=1

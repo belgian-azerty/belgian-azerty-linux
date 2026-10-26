@@ -1,0 +1,23 @@
+Score lines as reported by the laptop run (Remote Control session on <laptop>, ~20:15Z 25 Oct 2026), copied
+from its report. Raw files: laptop only, ibus-auto-test\results-vscode\ (scores.txt has the blockscore output),
+local commit 773f114. Typing: 10 slow Ctrl+Alt lines (150 ms), 30 fast Ctrl+Alt + 30 fast AltGr (30 ms, overlapping),
+3 dead-key lines = 73 lines, 560 "@" and 560 "€" expected.
+
+MINT 22.3 live, X11, VS Code 1.143.1 (commit e646868)
+  ibus: 15 of 73 lines right. blockscore: slow Ctrl+Alt 0/10, fast Ctrl+Alt 0/30, fast AltGr 8 right/1 swapped/3 other
+        of 12, dead keys 2/3 (block counts wrong because lines merged). Characters: @ 560/560, € 616/560: 56 Enter
+        presses became a second € (lines end "€€").
+  skip: slow Ctrl+Alt 10/10, fast Ctrl+Alt 30/30, fast AltGr 30/30, dead keys 3/3: all 73 lines exact.
+  env ibus: Exec=/usr/share/code/code %F; main process "GTK_IM_MODULE unset, im-ibus loaded: 5"
+  env skip: Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F; main process "GTK_IM_MODULE unset,
+        im-ibus loaded: 0"
+
+ZORIN 18.1 live, X11, same VS Code
+  ibus: 20 of 73 lines right. blockscore: slow Ctrl+Alt 0/10, fast Ctrl+Alt 7/7, fast AltGr 15 right/2 other of 17,
+        dead keys 2/3 (same miscounting). Characters: @ 560/560, € 612/560. First 15 lines fine, then Enters turn into €.
+  skip: 10/10, 30/30, 30/30, 3/3: all 73 lines exact.
+  env lines: as Mint (ibus: im-ibus loaded 5; skip: 0).
+
+Not explained: /proc/PID/environ of the main process shows GTK_IM_MODULE unset in all four runs (the Mint session
+has GTK_IM_MODULE=ibus). The module count (5 vs 0) and the menu Exec line show the skip took effect. Guess, not
+verified: Electron's main process does not keep the launch variable visible in /proc/PID/environ.

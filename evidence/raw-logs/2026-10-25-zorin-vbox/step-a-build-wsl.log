@@ -1,0 +1,30 @@
+== diff tools tools-wsl
+diff -ru tools/stick/build-layer.sh tools-wsl/stick/build-layer.sh
+--- tools/stick/build-layer.sh	2026-10-25 12:44:07.000000000 +0100
++++ tools-wsl/stick/build-layer.sh	2026-10-25 12:56:19.030236169 +0100
+@@ -11,8 +11,8 @@
+ cleanup() { for m in dev/pts dev proc sys; do umount "$W/root/$m" 2>/dev/null || true; done
+             umount "$W/root" 2>/dev/null || true; umount "$W/lower" 2>/dev/null || true; rm -rf "$W"; }
+ trap cleanup EXIT
+-mkdir -p "$W/lower" "$W/upper" "$W/work" "$W/root"
+-mount -o loop,ro "$SQ" "$W/lower"
++mkdir -p "$W/upper" "$W/work" "$W/root"
++unsquashfs -q -d "$W/lower" "$SQ"   # WSL: kernel has no zstd squashfs (was: mount -o loop,ro "$SQ" "$W/lower")
+ mount -t overlay -o "lowerdir=$W/lower,upperdir=$W/upper,workdir=$W/work" overlay "$W/root"
+ for m in dev dev/pts proc sys; do mount --bind "/$m" "$W/root/$m"; done
+ mkdir -p "$W/root/tmp/belgian"
+== build Sun Oct 25 11:56:19 UTC 2026
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /boot/grub/loopback.cfg (12 boot entries)
+patched /isolinux/menuentries.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (6.1M layer)
+updated /md5sum.txt (8 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote /root/be-rig/zvb/zorin-belgian-stick.iso
+== build exit 0 Sun Oct 25 11:58:20 UTC 2026
+-rw-r--r-- 1 root root 3915448320 Oct 25 12:58 zorin-belgian-stick.iso
+8c0e89c5e4bda5968f6491ab6c49e96d3f3e2229d7452be6c341ba9567f22fac  zorin-belgian-stick.iso
+== leftovers check
+/tmp/tmp.FgGjM6voWi
+0

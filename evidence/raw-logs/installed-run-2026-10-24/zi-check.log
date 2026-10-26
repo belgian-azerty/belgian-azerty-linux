@@ -1,0 +1,29 @@
+Packages:
+  [32m✔[0m belgian-azerty-windows 0.9.1
+  [32m✔[0m keyd-belgian-windows 0.9.1
+  [32m✔[0m keyd 2.5.0-5~ubuntu24.04.1
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  [32m✔[0m XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: comma (Windows "Belgian (Comma)"), XKBOPTIONS=kpdl:comma,caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  [32m✔[0m Caps Lock option files present
+  · choices saved by the last "system" run: DECIMAL=comma CAPS=windows 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  · no X11 session (Wayland or console); see the desktop setting below
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: kpdl:comma,caps:be_windows
+AccountsService record for test:
+  xkb=be
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  [32m✔[0m keyd installed with the Belgian Ctrl+Alt rules
+  [32m✔[0m keyd service running
+Boot image:
+  [32m✔[0m initramfs newer than /etc/default/keyboard

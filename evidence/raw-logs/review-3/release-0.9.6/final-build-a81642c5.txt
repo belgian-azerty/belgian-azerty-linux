@@ -1,0 +1,12 @@
+### final build a81642c5: lintian
+lintian: no tags (the "rc=1" was grep finding no lines)
+shellcheck-clean
+### ibus-skip offline on final script
+passed 42, failed 0
+### install final 0.9.6
+rc=0
+ii  belgian-azerty-windows               0.9.6                                all          Belgian AZERTY keyboard that behaves like on Windows
+ii  keyd                                 2.5.0-5~ubuntu24.04.2                amd64        keyboard key remapping daemon
+ii  keyd-belgian-windows                 0.9.6                                all          Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards
+purge rc=0
+0

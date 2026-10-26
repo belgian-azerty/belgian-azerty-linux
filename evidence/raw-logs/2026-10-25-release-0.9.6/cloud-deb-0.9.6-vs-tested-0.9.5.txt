@@ -1,0 +1,55 @@
+Final belgian-azerty-windows_0.9.6_all.deb a81642c5... vs the laptop-tested 0.9.5 (dist-0.9.5, 099fca7c...): files that differ
+Files t095/usr/bin/be-azerty-settings and fin/usr/bin/be-azerty-settings differ
+Files t095/usr/sbin/be-azerty-fix and fin/usr/sbin/be-azerty-fix differ
+Files t095/usr/share/doc/belgian-azerty-windows/README.md.gz and fin/usr/share/doc/belgian-azerty-windows/README.md.gz differ
+Files t095/usr/share/doc/belgian-azerty-windows/changelog.gz and fin/usr/share/doc/belgian-azerty-windows/changelog.gz differ
+Files t095/usr/share/man/man1/be-azerty-settings.1.gz and fin/usr/share/man/man1/be-azerty-settings.1.gz differ
+Files t095/usr/share/man/man8/be-azerty-fix.8.gz and fin/usr/share/man/man8/be-azerty-fix.8.gz differ
+
+== be-azerty-fix diff
+47c47,49
+< #                                     "system" run, else the profile.
+---
+> #                                     "system" run, else the profile; on GNOME (Zorin) the profile alone gives linux,
+> #                                     because of a GNOME problem with Caps Lock in password fields on Wayland (see
+> #                                     README, "Caps Lock on Zorin"); CAPS=windows still switches it on there.
+62c64
+< # Status: see NOTES.md for what was run where. Version 0.9.5 (2026-10-25, not released): automatic ibus skip.
+---
+> # Status: see NOTES.md for what was run where. Version 0.9.6 (2026-10-25, not published yet): 0.9.5 automatic ibus skip + Windows Caps Lock opt-in on GNOME.
+148a151,159
+> # Caps Lock on GNOME (Zorin): there the Windows profile leaves Caps Lock as on Linux unless CAPS=windows is given.
+> # On GNOME's Wayland session (Zorin's default) a short Caps Lock tap in a GNOME Shell password field (lock screen,
+> # password dialogs) puts apps and GNOME Shell out of step until the next login; with caps:be_windows the keys
+> # 2 6 7 9 0 and % then give é § è ç à ù with and without Shift (GNOME problem; research/CAPS-DIALOG-DESYNC.md).
+> # Choices given on the command line or saved by an earlier run are kept as they are.
+> if [ "$CAPS" = windows ] && [ "$CAPS_FROM" = "from the profile" ] && [ "$(desktop)" = gnome ]; then
+>   CAPS=linux; CAPS_FROM="Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows"
+> fi
+> 
+236c247,251
+<     windows) info "Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system" ;;
+---
+>     windows) if [ "$(saved_choice CAPS)" = linux ]; then
+>                info "Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on); switch: sudo PROFILE=linux be-azerty-fix system"
+>              else
+>                info "Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system"
+>              fi ;;
+249c264,265
+<     case ",$o," in *,caps:be_windows,*) info "Caps Lock: Windows behaviour (caps:be_windows)" ;;
+---
+>     case ",$o," in *,caps:be_windows,*) info "Caps Lock: Windows behaviour (caps:be_windows)"
+>                      [ "$(desktop)" = gnome ] && info "GNOME: after a Caps Lock tap in a password field (lock screen, password dialog) 2 6 7 9 0 % can stop working until you log out and in (README, \"Caps Lock on Zorin\")" ;;
+== be-azerty-settings diff
+66a67,77
+> # On GNOME (Zorin) the Windows profile keeps the Linux Caps Lock (be-azerty-fix: Windows Caps Lock is opt-in there).
+> case "${XDG_CURRENT_DESKTOP:-}" in
+>   *GNOME*|*Zorin*)
+>     case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
+>       nl*) WIN="Windows (Ctrl+Alt werkt als AltGr; Caps Lock blijft Linux, zie README)" ;;
+>       fr*) WIN="Windows (Ctrl+Alt fait AltGr ; Verr. Maj reste Linux, voir README)" ;;
+>       de*) WIN="Windows (Strg+Alt wie AltGr; Feststelltaste bleibt Linux, siehe README)" ;;
+>       *)   WIN="Windows (Ctrl+Alt works as AltGr; Caps Lock stays Linux, see README)" ;;
+>     esac ;;
+> esac
+> 

@@ -1,0 +1,360 @@
+== 01:30:37.634Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:38.043Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:38.384Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:38.733Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:39.059Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:39.384Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:39.709Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:40.045Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:40.370Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:40.711Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:41.037Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:41.383Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:41.726Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:42.052Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:42.382Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:42.711Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:43.040Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:43.368Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:43.687Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:44.004Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:44.326Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:44.644Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:44.962Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:45.284Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:45.605Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:45.929Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:46.253Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x03600798  0 mint mint@mint: ~
+== 01:30:46.614Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:46.938Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:47.264Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:47.592Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:47.925Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:48.251Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:48.569Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:48.913Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:49.242Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:49.567Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:49.889Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:50.219Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:50.542Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:50.865Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:51.191Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:51.508Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:51.834Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:52.159Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:52.509Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:52.833Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:53.162Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:53.489Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:53.810Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:54.135Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:54.456Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:54.776Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:55.099Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:55.421Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:55.740Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:56.197Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:56.532Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:56.861Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:57.203Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:57.551Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:57.890Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+0x036007e2  0 mint mint@mint: ~
+== 01:30:58.219Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:58.574Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:58.931Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:59.308Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:59.637Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:30:59.966Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:00.311Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:00.637Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:00.965Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:01.281Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:01.599Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:01.916Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:02.240Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:02.562Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:02.883Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:03.208Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:03.529Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:03.851Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:04.225Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:04.552Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:04.873Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:05.207Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:05.530Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:05.854Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:06.180Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:06.502Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:06.826Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:07.149Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:07.475Z desktop  | 1  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 2
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:07.810Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:08.159Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:08.491Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:08.811Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:09.134Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:09.461Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:09.783Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:10.106Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:10.433Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:10.765Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:11.098Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:11.425Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:11.747Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:12.070Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:12.393Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:12.713Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~
+== 01:31:13.034Z desktop  | 0  * DG: 1280x800  VP: 0,0  WA: 0,0 1280x760  Workspace 1
+0x02e00003  0 mint Desktop
+0x03600006  0 mint mint@mint: ~

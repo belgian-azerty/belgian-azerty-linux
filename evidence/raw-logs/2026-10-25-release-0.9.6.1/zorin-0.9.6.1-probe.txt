@@ -1,0 +1,159 @@
+== cmdline
+BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period ---
+== belgian-stick.log
+== 2026-10-25T20:12:06Z live-boot keyboard=be decimal=period formats=none
+Choices: profile windows (default), numpad decimal period (given), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  [32m✔[0m GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== services
+inactive
+active
+enabled
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch"
+
+BACKSPACE="guess"
+== /etc/default/locale
+LANG="nl_BE.UTF-8"
+== session locale
+LANG=nl_BE.UTF-8
+LANGUAGE=
+LC_CTYPE="nl_BE.UTF-8"
+LC_NUMERIC="nl_BE.UTF-8"
+LC_TIME="nl_BE.UTF-8"
+LC_COLLATE="nl_BE.UTF-8"
+LC_MONETARY="nl_BE.UTF-8"
+LC_MESSAGES="nl_BE.UTF-8"
+LC_PAPER="nl_BE.UTF-8"
+LC_NAME="nl_BE.UTF-8"
+LC_ADDRESS="nl_BE.UTF-8"
+LC_TELEPHONE="nl_BE.UTF-8"
+LC_MEASUREMENT="nl_BE.UTF-8"
+LC_IDENTIFICATION="nl_BE.UTF-8"
+LC_ALL=
+zo 25 okt 2026 20:26:25 | 25-10-26 | 20:26:25
+== gsettings
+[('xkb', 'be')]
+['lv3:ralt_switch']
+No such schema “org.cinnamon.desktop.input-sources”
+@as []
+== setxkbmap
+rules:      evdev
+model:      pc105+inet
+layout:     be,us
+variant:    ,
+options:    lv3:ralt_switch
+== choices
+PROFILE=windows
+DECIMAL=period
+CAPS=linux
+== packages
+belgian-azerty-windows	0.9.6.1
+keyd	2.5.0-5~ubuntu24.04.3
+keyd-belgian-windows	0.9.6.1
+== layers
+/dev/loop0 on /rofs type squashfs (ro,noatime,errors=continue,threads=single)
+/cow on / type overlay (rw,relatime,lowerdir=/zz-belgian-azerty.squashfs:/filesystem.squashfs,upperdir=/cow/upper,workdir=/cow/work,uuid=on,xino=off,nouserxattr)
+== check
+Packages:
+  ✔ belgian-azerty-windows 0.9.6.1
+  ✔ keyd-belgian-windows 0.9.6.1
+  ✔ keyd 2.5.0-5~ubuntu24.04.3
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on); switch: sudo PROFILE=linux be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=lv3:ralt_switch
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=linux 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105+inet
+  layout:     be,us
+  variant:    ,
+  options:    lv3:ralt_switch
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: lv3:ralt_switch
+AccountsService record for zorin:
+  · not readable (needs sudo) or absent
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Fast typing: apps that skip ibus, for zorin:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  ✔ org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  ✔ org.gnome.TextEditor (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check
+== session
+XDG_SESSION_TYPE=x11 XDG_CURRENT_DESKTOP=zorin:GNOME
+== caps in xkb
+options:    lv3:ralt_switch
+0
+== ibus skip list
+ibus skip for zorin:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  ✔ org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  ✔ org.gnome.TextEditor (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+== ibus skip files
+total 4
+drwxrwxr-x 2 zorin zorin  60 okt 25 20:16 .
+drwxrwxr-x 3 zorin zorin  60 okt 25 20:16 ..
+-rw-rw-r-- 1 zorin zorin 183 okt 25 20:16 zz-belgian-azerty-ibus-skip.conf
+# Written by be-azerty-fix ibus-skip (X-BelgianAzerty-IbusSkip). Remove with: be-azerty-fix ibus-skip off org.gnome.Terminal
+[Service]
+Environment=GTK_IM_MODULE=gtk-im-context-simple
+total 4
+drwx------  2 zorin zorin   60 okt 25 20:16 .
+drwx------ 14 zorin zorin  300 okt 25 20:18 ..
+-rw-rw-r--  1 zorin zorin 1042 okt 25 20:16 org.gnome.TextEditor.desktop
+/home/zorin/.local/share/applications/org.gnome.TextEditor.desktop
+== autostart
+-rw-r--r-- 1 root root 305 okt 25 19:00 /etc/xdg/autostart/be-azerty-ibus-skip.desktop
+[Desktop Entry]
+Type=Application
+Name=Belgian keyboard: per-app ibus skip
+Comment=Re-applies the apps chosen with "be-azerty-fix ibus-skip on"; does nothing when no app was chosen
+TryExec=/usr/sbin/be-azerty-fix
+Exec=/usr/sbin/be-azerty-fix ibus-skip refresh
+NoDisplay=true
+X-GNOME-Autostart-enabled=true
+== running terminal env
+pid 4085
+GTK_IM_MODULE=gtk-im-context-simple
+== this shell GTK_IM_MODULE=unset
+== end

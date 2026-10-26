@@ -1,0 +1,6 @@
+Maintainer: Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+Version: 0.9.1
+Maintainer: Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+Version: 0.9.1
+Maintainer: Richard Hansen <rhansen@rhansen.org>
+Version: 2.5.0-5~ubuntu24.04.1

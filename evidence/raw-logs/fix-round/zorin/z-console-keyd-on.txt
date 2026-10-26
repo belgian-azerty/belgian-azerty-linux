@@ -1,0 +1,7 @@
+tty3 keyd on plain: azerty é | AltGr 2 e: @€ | CtrlAlt 2 e 9 0: @€{}
+0000000   t   t   y   3       k   e   y   d       o   n       p   l   a
+0000020   i   n   :       a   z   e   r   t   y     303 251       |    
+0000040   A   l   t   G   r       2       e   :       @ 342 202 254    
+0000060   |       C   t   r   l   A   l   t       2       e       9    
+0000100   0   :       @ 342 202 254   {   }  \n
+0000112

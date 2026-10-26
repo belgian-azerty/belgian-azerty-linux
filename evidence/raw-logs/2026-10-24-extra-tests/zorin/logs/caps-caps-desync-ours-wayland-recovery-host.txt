@@ -1,0 +1,11 @@
+2026-10-25T04:29:00Z recovery run start
+2026-10-25T04:29:13Z ra  | guest 05:29:12 LED=00
+2026-10-25T04:29:46Z seq.txt + ret ctrl-d into the dialog
+2026-10-25T04:30:08Z rb  | guest 05:30:07 LED=00
+2026-10-25T04:30:18Z Shift+Caps Lock
+2026-10-25T04:30:21Z rc-shiftcaps  | guest 05:30:20 LED=11
+2026-10-25T04:30:32Z Shift+Caps Lock
+2026-10-25T04:30:35Z rd-shiftcaps2  | guest 05:30:34 LED=00
+2026-10-25T04:30:51Z logout via gnome-session-quit
+2026-10-25T04:32:04Z new session: terminal
+2026-10-25T04:33:01Z recovery run end

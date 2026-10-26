@@ -1,0 +1,4 @@
+Zorin 18.1 text console tty3, Belgian console keymap, keyd ON. LCtrl+LAlt+ 1 2 3 4 5 6 9 0 e ^$ ù µ = < : |@#{[^{}€[]'`~\
+AltGr+ same keys : |@#{[^{}€[]'`~\
+CapsLock ON, LCtrl+LAlt+ same keys : |@#{[^{}€[]'`~\
+plain: azerty AZERTY 1234567890 é è ç à

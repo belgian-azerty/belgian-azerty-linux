@@ -1,0 +1,3 @@
+start app=box3 env=[start] 18:49:54.966Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=0.08 0.39 0.63
+end app=box3 env=[end] 18:52:09.381Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=0.40 0.38 0.59
+lagging-behind messages during block: 0

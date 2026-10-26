@@ -1,0 +1,44 @@
+=== kbstate 03:12:54Z base ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be,be variant: , options: terminate:ctrl_alt_bksp 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch'] session=x11
+cinnamon: [('xkb', 'be')]
+accounts: 
+greeter:   gdm=(default)
+keyd:     inactive not-found conf=
+initrd:   18:32 /boot/initrd.img-6.14.0-37-generic vs /etc/default/keyboard 03:01
+Packages:
+  · belgian-azerty-windows not installed
+  · keyd-belgian-windows not installed
+  · keyd not installed
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=lv3:ralt_switch
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  · Caps Lock option files not installed
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     be,be
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp
+Desktop setting (cinnamon):
+  @as []
+  [('xkb', 'be')]
+  · xkb-options: terminate:ctrl_alt_bksp
+  · new users and reset settings start with the distribution default: ['terminate:ctrl_alt_bksp']
+AccountsService record for mint:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  · keyd not installed: Ctrl+Alt+2 will not type @ in graphical apps (only AltGr does)
+Boot image:
+  · live session (root is an overlay): no boot image to check

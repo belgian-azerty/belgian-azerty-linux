@@ -1,0 +1,20 @@
+== sha256 stick ISO
+3132aba54f8dd0c2d47f38b88d44de417329b9c5c87135a8cc92553287409b73  zorin-belgian-stick.iso
+-rw-r--r-- 1 root root 3915448320 Oct 25 02:50 zorin-belgian-stick.iso
+-rw-r--r-- 1 root root 3909091328 Oct 25 02:44 zorin.iso
+== on-stick belgian dir
+total 264
+drwxr-xr-x 2 root root   4096 Oct 25 02:49 .
+drwxr-xr-x 3 root root   4096 Oct 25 02:51 ..
+-rw-r--r-- 1 root root    280 Oct 25 02:49 README.txt
+-rw-r--r-- 1 root root  24796 Oct 25 02:49 belgian-azerty-windows_0.9.3_all.deb
+-rw-r--r-- 1 root root   4598 Oct 25 02:49 keyd-belgian-windows_0.9.3_all.deb
+-rw-r--r-- 1 root root 218692 Oct 25 02:49 keyd_2.5.0-5~ubuntu24.04.1_amd64.deb
+56c7189ab4b8e13f90af8d1c3caf2c047678b36f0b8485102c474e45be8295f0  README.txt
+62ddfe6a602bcc67f452cf6edb5c404f35b9d86fa6e8dfb156a04ea1c19716be  belgian-azerty-windows_0.9.3_all.deb
+7f3c70248a95612a572d13ccd018827d9afda4df34620ad0e4f214f3354fc369  keyd-belgian-windows_0.9.3_all.deb
+4067e4cd92cb0693fb0bfa17dc592b1d4c255cda4288af8d1cdf65b86b3c3e67  keyd_2.5.0-5~ubuntu24.04.1_amd64.deb
+== kit/dist
+62ddfe6a602bcc67f452cf6edb5c404f35b9d86fa6e8dfb156a04ea1c19716be  kit/dist/belgian-azerty-windows_0.9.3_all.deb
+7f3c70248a95612a572d13ccd018827d9afda4df34620ad0e4f214f3354fc369  kit/dist/keyd-belgian-windows_0.9.3_all.deb
+4067e4cd92cb0693fb0bfa17dc592b1d4c255cda4288af8d1cdf65b86b3c3e67  kit/dist/keyd_2.5.0-5~ubuntu24.04.1_amd64.deb

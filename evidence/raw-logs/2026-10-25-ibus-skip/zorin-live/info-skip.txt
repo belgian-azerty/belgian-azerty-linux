@@ -1,0 +1,44 @@
+== skip 02:36:07
+shell in this terminal: GTK_IM_MODULE=(unset)
+pid 4430 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE=gtk-im-context-simple
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  [32m✔[0m org.gnome.Terminal: skips ibus (running now without ibus)
+  [32m✔[0m be-typebox: skips ibus (menu entry /home/zorin/.local/share/applications/be-typebox.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo: be-azerty-fix ibus-skip off --all
+-- files
+/home/zorin/.config/belgian-azerty/:
+total 4
+drwxrwxr-x  2 zorin zorin  60 Oct 25 02:17 .
+drwxr-xr-x 17 zorin zorin 500 Oct 25 02:17 ..
+-rw-rw-r--  1 zorin zorin  30 Oct 25 02:17 ibus-skip
+
+/home/zorin/.config/systemd/user/gnome-terminal-server.service.d/:
+total 4
+drwxrwxr-x 2 zorin zorin  60 Oct 25 02:17 .
+drwxrwxr-x 3 zorin zorin  60 Oct 25 02:17 ..
+-rw-rw-r-- 1 zorin zorin 183 Oct 25 02:17 zz-belgian-azerty-ibus-skip.conf
+
+/home/zorin/.local/share/applications/:
+total 4
+drwx------  2 zorin zorin  60 Oct 25 02:17 .
+drwx------ 15 zorin zorin 340 Oct 25 02:25 ..
+-rw-rw-r--  1 zorin zorin 439 Oct 25 02:17 be-typebox.desktop
+-- systemctl --user cat gnome-terminal-server
+# /usr/lib/systemd/user/gnome-terminal-server.service
+[Unit]
+Description=GNOME Terminal Server
+PartOf=graphical-session.target
+[Service]
+Slice=app-org.gnome.Terminal.slice
+Type=dbus
+BusName=org.gnome.Terminal
+ExecStart=/usr/libexec/gnome-terminal-server
+TimeoutStopSec=5s
+KillMode=process
+# /home/zorin/.config/systemd/user/gnome-terminal-server.service.d/zz-belgian-azerty-ibus-skip.conf
+# Written by be-azerty-fix ibus-skip (X-BelgianAzerty-IbusSkip). Remove with: be-azerty-fix ibus-skip off org.gnome.Terminal
+[Service]
+Environment=GTK_IM_MODULE=gtk-im-context-simple
+-- typebox info
+pid=4560 gtk=4 GTK_IM_MODULE=gtk-im-context-simple context=gtk-im-context-simple ibus_module_loaded=True session=x11

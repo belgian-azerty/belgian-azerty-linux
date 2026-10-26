@@ -1,0 +1,37 @@
+T14s test dry run, fix round 2, 2026-10-24 08:08-08:45Z (cloud QEMU, TCG; text copied from the screen, no screenshots kept)
+
+Stick: 8 GB raw image made like Rufus "ISO image mode": MBR, one FAT32 partition (label ZORIN_OS_18), all files of
+zorin-belgian.iso (Belgian Zorin OS 18.1 Core, built by tools/make_belgian_iso.sh from the official ISO, sha256 44649b97...
+verified) copied on it with mtools, plus the folder t14s-test (8 files) next to them. Booted with rig/qemu_rig.py
+--usb stick.img --secboot (UEFI, Secure Boot on, Microsoft keys), first boot entry, no key pressed.
+
+1. Boot: initramfs disc check "Checking md5sums" ran and passed, Belgian French desktop (Xorg) after ~12 min (emulator).
+2. Terminal: findmnt /cdrom -> "/cdrom /dev/sda1 vfat ro,noatime,fmask=0022,dmask=0022,..." (the stick is /cdrom,
+   read-only, owned by root).
+3. bash /cdrom/t14s-test/setup.sh printed:
+     ✔ files checked (SHA256SUMS)
+     ✔ packages installed
+     Choices: numpad decimal period (default), Caps Lock windows (default). ...
+     ✔ no files of an older be-azerty-fix.sh / ✔ /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+     ✔ console keymap applied and cached / ✔ setxkbmap be (options lv3:ralt_switch,caps:be_windows)
+     ✔ GNOME input source set / ✔ GNOME numpad decimal: period, Caps Lock: windows
+     ✔ GDM follows /etc/default/keyboard (no override) / ✔ keyd with the Belgian rules is installed and running
+     Session type: x11   keyd: active   ibus: running
+4. typing-order-check.sh, interrupted on purpose in block C (keyd stopped) with Ctrl+C after 2 lines:
+     "3> ^C (interrupted) (keyd started again)"; then systemctl is-active keyd -> active. Each block asked 1> .. 5>.
+5. Full run (host typed 5 lines per block, 0.15 s between keys): all 4 blocks 5/5 on Xorg. NEW BUG FOUND: the end of
+   the script said "The USB stick could not be written" and the results were only in /home/zorin. Cause: casper
+   mounts the stick read-only AND owned by root (fmask/dmask 0022, uid 0); the remount to rw worked (rc=0, checked by
+   hand) but the user still could not write. The previous dry run used a second stick mounted by udisks for the user,
+   so it could not see this. Fixed: out() now writes with sudo tee after the remount, and the script syncs at the end.
+   File: results-xorg-first-run-written-to-home.txt.
+6. Fixed script put on the stick, stick back to read-only, full run again: results written to
+   /cdrom/t14s-test/belgian-typing-results.txt ("Done. All results so far, from /cdrom/t14s-test/...").
+7. bash /cdrom/t14s-test/setup.sh wayland: session restarted on Wayland by itself (~4 min in the emulator), Ctrl+Alt+T
+   opened a terminal, full run again, appended to the same file. keyd shows "inactive" (not "failed") in block C.
+8. After power-off the file was read from the stick image on the host: belgian-typing-results-from-stick.txt (both runs).
+
+Emulator data points (synthetic keys 0.15 s apart, not human speed): Xorg A/B/C/D all 5/5; Wayland A 0/5, B 2/5,
+C (stock Linux, keyd off) 4/5, D (ibus off) 5/5. Same picture as the second review: only the real laptop can say
+whether this happens at human speed.
+Seen on the desktop: the web browser on Zorin 18.1 is Brave (the plan now says "web browser", not Firefox).

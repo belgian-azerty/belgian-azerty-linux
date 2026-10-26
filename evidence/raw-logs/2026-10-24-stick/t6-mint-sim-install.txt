@@ -1,0 +1,96 @@
++ mkdir -p /tmp/t-up /tmp/t-wk /target
++ mount -t overlay -o lowerdir=/rofs,upperdir=/tmp/t-up,workdir=/tmp/t-wk none /target
++ for m in dev dev/pts proc sys
++ mount --bind /dev /target/dev
++ for m in dev dev/pts proc sys
++ mount --bind /dev/pts /target/dev/pts
++ for m in dev dev/pts proc sys
++ mount --bind /proc /target/proc
++ for m in dev dev/pts proc sys
++ mount --bind /sys /target/sys
++ mkdir -p /target/cdrom
++ mount --bind /cdrom /target/cdrom
++ sed -e 's/^XKBOPTIONS=.*/XKBOPTIONS=""/' /etc/default/keyboard
++ grep '^LANG=' /etc/default/locale
++ set +x
+== before: packages in target
+dpkg-query: no packages found matching keyd
+dpkg-query: no packages found matching keyd-belgian-windows
+dpkg-query: no packages found matching belgian-azerty-windows
+== hook
+-rwxr-xr-x 1 root root 174 Oct 24 17:44 /usr/lib/ubiquity/target-config/90belgian_azerty
+hook rc=0
+== after: packages in target
+belgian-azerty-windows	0.9.3
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.3
+== target choices
+PROFILE=windows
+DECIMAL=comma
+CAPS=windows
+== target first-boot unit
+-rw-r--r-- 1 root root 306 Oct 24 18:45 /target/etc/systemd/system/belgian-azerty-firstboot.service
+total 0
+lrwxrwxrwx 1 root root 52 Oct 24 18:45 belgian-azerty-firstboot.service -> /etc/systemd/system/belgian-azerty-firstboot.service
+lrwxrwxrwx 1 root root 36 Oct 24 18:44 keyd.service -> /usr/lib/systemd/system/keyd.service
+total 8
+-rwxr-xr-x 1 root root 4385 Oct 24 18:45 belgian-stick
+== target keyd enabled?
+lrwxrwxrwx 1 root root 36 Oct 24 18:44 /target/etc/systemd/system/multi-user.target.wants/keyd.service -> /usr/lib/systemd/system/keyd.service
+== target /etc/default/locale
+LANG="en_US.UTF-8"
+LC_TIME="en_IE.UTF-8"
+LC_PAPER="en_IE.UTF-8"
+LC_MEASUREMENT="en_IE.UTF-8"
+LC_NUMERIC="nl_BE.UTF-8"
+LC_MONETARY="nl_BE.UTF-8"
+== target locale.gen (active)
+en_IE.UTF-8 UTF-8
+nl_BE.UTF-8 UTF-8
+C.utf8
+locale-archive
+== target /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS=""
+
+BACKSPACE="guess"
+== target log
+Reading state information...
+The following NEW packages will be installed:
+  belgian-azerty-windows keyd keyd-belgian-windows
+0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
+Need to get 0 B/247 kB of archives.
+After this operation, 1.575 kB of additional disk space will be used.
+Get:1 /tmp/belgian/belgian-azerty-windows_0.9.3_all.deb belgian-azerty-windows all 0.9.3 [23,9 kB]
+Get:2 /tmp/belgian/keyd_2.5.0-5~ubuntu24.04.1_amd64.deb keyd amd64 2.5.0-5~ubuntu24.04.1 [219 kB]
+Get:3 /tmp/belgian/keyd-belgian-windows_0.9.3_all.deb keyd-belgian-windows all 0.9.3 [4.598 B]
+Selecting previously unselected package belgian-azerty-windows.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 498468 files and directories currently installed.)
+Preparing to unpack .../belgian-azerty-windows_0.9.3_all.deb ...
+Unpacking belgian-azerty-windows (0.9.3) ...
+Selecting previously unselected package keyd.
+Preparing to unpack .../keyd_2.5.0-5~ubuntu24.04.1_amd64.deb ...
+Unpacking keyd (2.5.0-5~ubuntu24.04.1) ...
+Selecting previously unselected package keyd-belgian-windows.
+Preparing to unpack .../keyd-belgian-windows_0.9.3_all.deb ...
+Unpacking keyd-belgian-windows (0.9.3) ...
+Setting up keyd (2.5.0-5~ubuntu24.04.1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Setting up keyd-belgian-windows (0.9.3) ...
+Setting up belgian-azerty-windows (0.9.3) ...
+Adding 'diversion of /usr/share/X11/xkb/rules/evdev to /usr/share/X11/xkb/rules/evdev.distrib by belgian-azerty-windows'
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+Processing triggers for gnome-menus (3.36.0-1.1ubuntu3) ...
+Processing triggers for mate-menus (1.26.1+mint1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
+apt rc=0
+== live-only files must NOT be in target
+ls: cannot access '/target/etc/systemd/system/belgian-stick-live.service': No such file or directory
+ls: cannot access '/target/usr/lib/ubiquity/target-config/90belgian_azerty': No such file or directory

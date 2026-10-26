@@ -1,0 +1,52 @@
+oct 23 20:33:04 test-Standard-PC-Q35-ICH9-2009 systemd-timesyncd[574]: Timed out waiting for reply from 91.189.91.157:123 (ntp.ubuntu.com).
+oct 23 20:33:15 test-Standard-PC-Q35-ICH9-2009 systemd-timesyncd[574]: Timed out waiting for reply from 185.125.190.57:123 (ntp.ubuntu.com).
+oct 23 20:33:24 test-Standard-PC-Q35-ICH9-2009 gdm3[1009]: GLib: Source ID 107 was not found when attempting to remove it
+oct 23 20:33:24 test-Standard-PC-Q35-ICH9-2009 kernel: rfkill: input handler disabled
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 systemd-timesyncd[574]: Timed out waiting for reply from 185.125.190.56:123 (ntp.ubuntu.com).
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 rtkit-daemon[1060]: Successfully made thread 1840 of process 1813 owned by '1000' high priority at nice level 0.
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 rtkit-daemon[1060]: Supervising 16 threads of 10 processes of 2 users.
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 rtkit-daemon[1060]: Supervising 15 threads of 9 processes of 2 users.
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 rtkit-daemon[1060]: Supervising 15 threads of 9 processes of 2 users.
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 systemd[1]: rtkit-daemon.service: Main process exited, code=killed, status=9/KILL
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 gnome-shell[1813]: Failed to make thread 'KMS thread' realtime scheduled: Message recipient disconnected from message bus without replying
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 systemd[1]: rtkit-daemon.service: Failed with result 'signal'.
+oct 23 20:33:25 test-Standard-PC-Q35-ICH9-2009 systemd[1]: rtkit-daemon.service: Consumed 3.092s CPU time, 1.6M memory peak, 0B memory swap peak.
+oct 23 20:33:29 test-Standard-PC-Q35-ICH9-2009 gnome-shell[1813]: libinput error: event4  - keyd virtual keyboard: client bug: event processing lagging behind by 989ms, your system is too slow
+oct 23 20:33:34 test-Standard-PC-Q35-ICH9-2009 systemd[10245]: launchpadlib-cache-clean.service - Clean up old files in the Launchpadlib cache was skipped because of an unmet condition check (ConditionPathExists=/var/lib/gdm3/.launchpadlib/api.launchpad.net/cache).
+oct 23 20:33:35 test-Standard-PC-Q35-ICH9-2009 systemd-timesyncd[574]: Timed out waiting for reply from 185.125.190.58:123 (ntp.ubuntu.com).
+oct 23 20:33:37 test-Standard-PC-Q35-ICH9-2009 gnome-shell[1813]: Failed to make thread 'KMS thread' realtime scheduled: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Name "org.freedesktop.RealtimeKit1" does not exist
+oct 23 20:33:41 test-Standard-PC-Q35-ICH9-2009 dbus-daemon[700]: [system] Activating via systemd: service name='net.reactivated.Fprint' unit='fprintd.service' requested by ':1.79' (uid=1000 pid=1813 comm="/usr/bin/gnome-shell" label="unconfined")
+oct 23 20:33:41 test-Standard-PC-Q35-ICH9-2009 systemd[1]: Started anacron.service - Run anacron jobs.
+oct 23 20:33:41 test-Standard-PC-Q35-ICH9-2009 systemd[1]: Starting fprintd.service - Fingerprint Authentication Daemon...
+oct 23 20:33:41 test-Standard-PC-Q35-ICH9-2009 anacron[11444]: Anacron 2.3 started on 2026-10-23
+oct 23 20:33:41 test-Standard-PC-Q35-ICH9-2009 anacron[11444]: Normal exit (0 jobs run)
+oct 23 20:33:42 test-Standard-PC-Q35-ICH9-2009 systemd[1]: anacron.service: Deactivated successfully.
+oct 23 20:33:43 test-Standard-PC-Q35-ICH9-2009 gnome-shell[1813]: clutter_input_focus_set_cursor_location: assertion 'clutter_input_focus_is_focused (focus)' failed
+oct 23 20:33:43 test-Standard-PC-Q35-ICH9-2009 gnome-shell[1813]: clutter_input_focus_set_surrounding: assertion 'clutter_input_focus_is_focused (focus)' failed
+oct 23 20:33:44 test-Standard-PC-Q35-ICH9-2009 dbus-daemon[700]: [system] Successfully activated service 'net.reactivated.Fprint'
+oct 23 20:33:44 test-Standard-PC-Q35-ICH9-2009 systemd[1]: Started fprintd.service - Fingerprint Authentication Daemon.
+oct 23 20:34:02 test-Standard-PC-Q35-ICH9-2009 kernel: rfkill: input handler enabled
+oct 23 20:34:02 test-Standard-PC-Q35-ICH9-2009 wireplumber[10310]: BlueZ system service is not available
+oct 23 20:34:14 test-Standard-PC-Q35-ICH9-2009 systemd[1]: fprintd.service: Deactivated successfully.
+oct 23 20:34:14 test-Standard-PC-Q35-ICH9-2009 systemd[1]: fprintd.service: Consumed 2.275s CPU time.
+oct 23 20:35:01 test-Standard-PC-Q35-ICH9-2009 CRON[11527]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+oct 23 20:35:01 test-Standard-PC-Q35-ICH9-2009 CRON[11528]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+oct 23 20:35:02 test-Standard-PC-Q35-ICH9-2009 CRON[11527]: pam_unix(cron:session): session closed for user root
+oct 23 20:36:29 test-Standard-PC-Q35-ICH9-2009 PackageKit[10664]: daemon quit
+oct 23 20:36:29 test-Standard-PC-Q35-ICH9-2009 systemd[1]: packagekit.service: Deactivated successfully.
+oct 23 20:36:29 test-Standard-PC-Q35-ICH9-2009 systemd[1]: packagekit.service: Consumed 2min 12.735s CPU time.
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: usb 1-2: new high-speed USB device number 3 using ehci-pci
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: usb 1-2: New USB device found, idVendor=0627, idProduct=0001, bcdDevice= 0.00
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: usb 1-2: New USB device strings: Mfr=1, Product=4, SerialNumber=11
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: usb 1-2: Product: QEMU USB Keyboard
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: usb 1-2: Manufacturer: QEMU
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: usb 1-2: SerialNumber: 68284-0000:00:1d.7-2
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: input: QEMU QEMU USB Keyboard as /devices/pci0000:00/0000:00:1d.7/usb1/1-2/1-2:1.0/0003:0627:0001.0002/input/input9
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 keyd[10773]: DEVICE: match    0627:0001:bc5e01cd  /etc/keyd/be-winaltgr.conf        (QEMU QEMU USB Keyboard)
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 kernel: hid-generic 0003:0627:0001.0002: input,hidraw1: USB HID v1.11 Keyboard [QEMU QEMU USB Keyboard] on usb-0000:00:1d.7-2/input0
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 mtp-probe[11536]: checking bus 1, device 3: "/sys/devices/pci0000:00/0000:00:1d.7/usb1/1-2"
+oct 23 20:37:03 test-Standard-PC-Q35-ICH9-2009 mtp-probe[11536]: bus: 1, device: 3 was not an MTP device
+oct 23 20:37:04 test-Standard-PC-Q35-ICH9-2009 systemd-logind[730]: Watching system buttons on /dev/input/event6 (QEMU QEMU USB Keyboard)
+oct 23 20:37:05 test-Standard-PC-Q35-ICH9-2009 mtp-probe[11551]: checking bus 1, device 3: "/sys/devices/pci0000:00/0000:00:1d.7/usb1/1-2"
+oct 23 20:37:05 test-Standard-PC-Q35-ICH9-2009 mtp-probe[11551]: bus: 1, device: 3 was not an MTP device
+oct 23 20:37:31 test-Standard-PC-Q35-ICH9-2009 kernel: sysrq: Emergency Sync

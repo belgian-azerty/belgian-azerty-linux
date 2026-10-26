@@ -1,0 +1,96 @@
+== cmdline
+BOOT_IMAGE=/casper/vmlinuz boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=de locale=de_BE.UTF-8 belgian.keyboard=de --
+== belgian-stick.log
+== 2026-10-24T19:52:48Z live-boot keyboard=de decimal=period formats=none
+Removed "/etc/systemd/system/multi-user.target.wants/keyd.service".
+== services
+inactive
+inactive
+disabled
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="de"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch"
+
+BACKSPACE="guess"
+== /etc/default/locale
+LANG="de_BE.UTF-8"
+== session locale
+LANG=de_BE.UTF-8
+LANGUAGE=
+LC_CTYPE="de_BE.UTF-8"
+LC_NUMERIC="de_BE.UTF-8"
+LC_TIME="de_BE.UTF-8"
+LC_COLLATE="de_BE.UTF-8"
+LC_MONETARY="de_BE.UTF-8"
+LC_MESSAGES="de_BE.UTF-8"
+LC_PAPER="de_BE.UTF-8"
+LC_NAME="de_BE.UTF-8"
+LC_ADDRESS="de_BE.UTF-8"
+LC_TELEPHONE="de_BE.UTF-8"
+LC_MEASUREMENT="de_BE.UTF-8"
+LC_IDENTIFICATION="de_BE.UTF-8"
+LC_ALL=
+Sa 24 Okt 2026 20:03:43 | 2026-10-24 | 20:03:43
+== gsettings
+[('xkb', 'de')]
+['lv3:ralt_switch']
+['terminate:ctrl_alt_bksp']
+@as []
+== setxkbmap
+rules:      evdev
+model:      pc105
+layout:     de,us
+variant:    ,
+options:    terminate:ctrl_alt_bksp
+== choices
+cat: /var/lib/belgian-azerty-windows/choices: Datei oder Verzeichnis nicht gefunden
+== packages
+belgian-azerty-windows	0.9.3
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.3
+== layers
+/dev/loop0 on /rofs type squashfs (ro,noatime,errors=continue,threads=single)
+/cow on / type overlay (rw,relatime,lowerdir=/zz-belgian-azerty.squashfs:/filesystem.squashfs,upperdir=/cow/upper,workdir=/cow/work,uuid=on,xino=off,nouserxattr)
+== check
+Packages:
+  ✔ belgian-azerty-windows 0.9.3
+  ✔ keyd-belgian-windows 0.9.3
+  ✔ keyd 2.5.0-5~ubuntu24.04.1
+Profile:
+  · no profile saved yet ("sudo be-azerty-fix system" saves one; the default is windows)
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✘ XKBLAYOUT=de XKBVARIANT= (want be)
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=lv3:ralt_switch
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  ✔ Caps Lock option files present
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: de
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     de,us
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp
+Desktop setting (cinnamon):
+  @as []
+  [('xkb', 'de')]
+  · xkb-options: terminate:ctrl_alt_bksp
+  · new users and reset settings start with the distribution default: ['terminate:ctrl_alt_bksp']
+AccountsService record for mint:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✘ keyd service not running
+Boot image:
+  · live session (root is an overlay): no boot image to check

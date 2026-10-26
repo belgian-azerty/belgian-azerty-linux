@@ -1,0 +1,108 @@
+== session
+XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=zorin:GNOME
+Failed to get path for session '': Caller does not belong to any known session.
+== packages
+belgian-azerty-windows	0.9.6
+keyd	2.5.0-5~ubuntu24.04.2
+keyd-belgian-windows	0.9.6
+== choices
+PROFILE=windows
+DECIMAL=period
+CAPS=linux
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS=""
+
+BACKSPACE="guess"
+caps:be_windows count: 0
+== gsettings
+[('xkb', 'be')]
+@as []
+== belgian-stick.log
+your invocation environment to mount /proc/ and /sys/ properly. Proceeding anyway.
+Your mileage may vary.
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Instellen van keyd-belgian-windows (0.9.6) ...
+Instellen van belgian-azerty-windows (0.9.6) ...
+'omleiding van /usr/share/X11/xkb/rules/evdev naar /usr/share/X11/xkb/rules/evdev.distrib door belgian-azerty-windows' wordt toegevoegd
+Bezig met afhandelen van triggers voor gnome-menus (3.36.0-1.1ubuntu3) ...
+Bezig met afhandelen van triggers voor man-db (2.12.0-4build2) ...
+Bezig met afhandelen van triggers voor desktop-file-utils (0.27-2build1) ...
+apt rc=0
+== 2026-10-25T14:36:49Z first-boot
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock linux (kept from the last run).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: none)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  [32m✔[0m initramfs rebuilt
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  [32m✔[0m GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== check
+Packages:
+  ✔ belgian-azerty-windows 0.9.6
+  ✔ keyd-belgian-windows 0.9.6
+  ✔ keyd 2.5.0-5~ubuntu24.04.2
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on); switch: sudo PROFILE=linux be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=linux 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  · no X11 session (Wayland or console); see the desktop setting below
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: 
+AccountsService record for be:
+  · not readable (needs sudo) or absent
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Fast typing: apps that skip ibus, for be:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  ✔ org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  ✔ org.gnome.TextEditor (automatic): skips ibus (menu entry /home/be/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  ✔ initramfs newer than /etc/default/keyboard
+== ibus skip list
+ibus skip for be:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  ✔ org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  ✔ org.gnome.TextEditor (automatic): skips ibus (menu entry /home/be/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+== drop-in
+# Written by be-azerty-fix ibus-skip (X-BelgianAzerty-IbusSkip). Remove with: be-azerty-fix ibus-skip off org.gnome.Terminal
+[Service]
+Environment=GTK_IM_MODULE=gtk-im-context-simple
+== marked menu copies
+/home/be/.local/share/applications/org.gnome.TextEditor.desktop
+== running gnome-terminal-server
+pid 13189: GTK_IM_MODULE=gtk-im-context-simple

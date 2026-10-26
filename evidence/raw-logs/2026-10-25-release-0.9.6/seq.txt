@@ -1,0 +1,1 @@
+ctrl-alt-1 ctrl-alt-2 ctrl-alt-3 ctrl-alt-4 ctrl-alt-5 ctrl-alt-6 ctrl-alt-9 ctrl-alt-0 ctrl-alt-e ctrl-alt-bracket_left ctrl-alt-bracket_right ctrl-alt-less spc alt_r-1 alt_r-2 alt_r-3 alt_r-4 alt_r-5 alt_r-6 alt_r-9 alt_r-0 alt_r-e alt_r-bracket_left alt_r-bracket_right alt_r-less spc caps_lock 1 2 caps_lock spc 1 2

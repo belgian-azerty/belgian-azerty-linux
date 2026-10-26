@@ -1,0 +1,123 @@
+== cmdline
+BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=en_US.UTF-8 belgian.keyboard=be belgian.decimal=comma belgian.formats=be ---
+== belgian-stick.log
+== 2026-10-24T17:59:10Z live-boot keyboard=be decimal=comma formats=be
+Generating locales (this might take a while)...
+  nl_BE.UTF-8... done
+Generation complete.
+Choices: profile windows (default), numpad decimal comma (given), Caps Lock windows (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  ✔ no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  ✔ /etc/default/keyboard written (options: lv3:ralt_switch,kpdl:comma,caps:be_windows)
+  ✔ console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  ✔ GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  ✔ keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== services
+inactive
+active
+enabled
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows"
+
+BACKSPACE="guess"
+== /etc/default/locale
+LANG="en_US.UTF-8"
+LC_TIME="en_IE.UTF-8"
+LC_PAPER="en_IE.UTF-8"
+LC_MEASUREMENT="en_IE.UTF-8"
+LC_NUMERIC="nl_BE.UTF-8"
+LC_MONETARY="nl_BE.UTF-8"
+== session locale
+LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC=nl_BE.UTF-8
+LC_TIME=en_IE.UTF-8
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY=nl_BE.UTF-8
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER=en_IE.UTF-8
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT=en_IE.UTF-8
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=
+Sat 24 Oct 2026 18:06:25 | 24/10/26 | 18:06:25
+== gsettings
+[('xkb', 'be')]
+['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']
+No such schema “org.cinnamon.desktop.input-sources”
+@as []
+== setxkbmap
+rules:      evdev
+model:      pc105+inet
+layout:     be,us
+variant:    ,
+options:    lv3:ralt_switch,kpdl:comma,caps:be_windows
+== choices
+PROFILE=windows
+DECIMAL=comma
+CAPS=windows
+== packages
+belgian-azerty-windows	0.9.3
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.3
+== layers
+/dev/loop0 on /rofs type squashfs (ro,noatime,errors=continue,threads=single)
+/cow on / type overlay (rw,relatime,lowerdir=/zz-belgian-azerty.squashfs:/filesystem.squashfs,upperdir=/cow/upper,workdir=/cow/work,uuid=on,xino=off,nouserxattr)
+== check
+Packages:
+  ✔ belgian-azerty-windows 0.9.3
+  ✔ keyd-belgian-windows 0.9.3
+  ✔ keyd 2.5.0-5~ubuntu24.04.1
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: comma (Windows "Belgian (Comma)"), XKBOPTIONS=lv3:ralt_switch,kpdl:comma,caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=comma CAPS=windows 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105+inet
+  layout:     be,us
+  variant:    ,
+  options:    lv3:ralt_switch,kpdl:comma,caps:be_windows
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: lv3:ralt_switch,kpdl:comma,caps:be_windows
+AccountsService record for zorin:
+  · not readable (needs sudo) or absent
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check

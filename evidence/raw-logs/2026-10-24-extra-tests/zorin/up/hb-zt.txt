@@ -1,0 +1,6 @@
+03:29:06
+ 04:29:06 up 11 min,  1 user,  load average: 0,24, 0,22, 0,14
+LED=11
+okt 25 04:22:50 be-Standard-PC-Q35-ICH9-2009 kernel: PM: suspend entry (deep)
+okt 25 04:23:36 be-Standard-PC-Q35-ICH9-2009 kernel: ACPI: PM: Waking up from system sleep state S3
+okt 25 04:23:36 be-Standard-PC-Q35-ICH9-2009 kernel: PM: suspend exit

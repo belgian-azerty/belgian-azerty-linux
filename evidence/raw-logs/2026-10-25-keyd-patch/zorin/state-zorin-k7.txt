@@ -1,0 +1,11 @@
+restart 1 done 02:00:28.092Z active=active pid=7042
+line 1 ready 02:00:30.271Z active=active
+restart 2 done 02:00:34.176Z active=active pid=7103
+line 2 ready 02:00:36.316Z active=active
+restart 3 done 02:00:39.979Z active=active pid=7162
+line 3 ready 02:00:42.144Z active=active
+restart 4 done 02:00:45.816Z active=active pid=7219
+line 4 ready 02:00:47.945Z active=active
+restart 5 done 02:00:51.715Z active=active pid=7279
+line 5 ready 02:00:53.869Z active=active
+== final 02:00:57Z is-active: active

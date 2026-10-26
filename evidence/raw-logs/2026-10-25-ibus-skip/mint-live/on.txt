@@ -1,0 +1,6 @@
+$ be-azerty-fix ibus-skip on terminal be-typebox
+  [32m✔[0m org.gnome.Terminal: skips ibus (drop-in for gnome-terminal-server.service)
+  · gnome-terminal-server.service is running with ibus now: close every window of the app; the next one skips ibus
+  [32m✔[0m be-typebox: skips ibus (menu entry /home/mint/.local/share/applications/be-typebox.desktop)
+  · takes effect the next time be-typebox starts from the menu or the dock; close it completely first
+exit 0

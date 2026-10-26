@@ -1,0 +1,9 @@
+Maintainer: Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+Souhait=inconnU/Installé/suppRimé/Purgé/H=à garder
+| État=Non/Installé/fichier-Config/dépaqUeté/échec-conFig/H=semi-installé/W=attend-traitement-déclenchements
+|/ Err?=(aucune)/besoin Réinstallation (État,Err: majuscule=mauvais)
+||/ Nom                    Version               Architecture Description
++++-======================-=====================-============-===========================================================
+ii  belgian-azerty-windows 0.9.1                 all          Belgian AZERTY keyboard that behaves like on Windows
+ii  keyd                   2.5.0-5~ubuntu24.04.1 amd64        keyboard key remapping daemon
+ii  keyd-belgian-windows   0.9.1                 all          Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards

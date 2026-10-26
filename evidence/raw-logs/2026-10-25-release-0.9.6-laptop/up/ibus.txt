@@ -1,0 +1,14 @@
+== ibus skip list
+ibus skip for be:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  ✔ org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  ✔ org.gnome.TextEditor (automatic): skips ibus (menu entry /home/be/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+== drop-in
+# Written by be-azerty-fix ibus-skip (X-BelgianAzerty-IbusSkip). Remove with: be-azerty-fix ibus-skip off org.gnome.Terminal
+[Service]
+Environment=GTK_IM_MODULE=gtk-im-context-simple
+== marked menu copies
+/home/be/.local/share/applications/org.gnome.TextEditor.desktop
+== running gnome-terminal-server
+pid 14049: GTK_IM_MODULE=gtk-im-context-simple

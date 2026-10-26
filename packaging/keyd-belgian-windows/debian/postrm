@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+#DEBHELPER#
+
+case "$1" in
+    remove|purge)
+        if [ -d /run/systemd/system ]; then
+            systemctl daemon-reload >/dev/null 2>&1 || true
+            # keyd reads /etc/keyd when it starts. After a purge be-winaltgr.conf is gone, so the restart turns
+            # Ctrl+Alt = AltGr off at once. After a plain remove dpkg keeps the configuration file (it is a
+            # conffile) and keyd keeps using it: "apt purge keyd-belgian-windows" removes it.
+            deb-systemd-invoke try-restart keyd.service >/dev/null 2>&1 || true
+        fi
+        ;;
+esac

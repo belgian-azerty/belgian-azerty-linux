@@ -1,0 +1,24 @@
+== 2026-10-25T01:32:49Z sudo PROFILE=linux bash /tmp/k/be-azerty-fix.sh system
+Choices: profile linux (given), numpad decimal period (default), Caps Lock linux (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  ✔ no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  ✔ /etc/default/keyboard written (options: none)
+  ✔ console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  ✔ Cinnamon default options already match (terminate:ctrl_alt_bksp); no override needed
+3. Your desktop (cinnamon) for user mint
+  ✔ setxkbmap be  (options terminate:ctrl_alt_bksp)
+  ✔ Cinnamon libgnomekbd layouts set
+  ✔ Cinnamon input-sources set
+  ✔ Cinnamon numpad decimal: period, Caps Lock: linux
+4. Login screen
+  ✔ LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  ✔ Linux-standard profile: keyd switched off, Ctrl+Alt stays Ctrl+Alt (AltGr types @ and €)
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+exit 0

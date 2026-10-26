@@ -1,0 +1,40 @@
+$ sh -c dpkg -L code | grep -iE "desktop|bin/"; ls /usr/share/applications | grep -i code; for f in $(dpkg -L code | grep "\.desktop$"); do echo "== $f"; grep -E "Exec|Name=|StartupWMClass" $f; done; be-azerty-fix ibus-skip apps 2>&1 | head -30
+/usr/share/applications/com.microsoft.VSCode.UrlHandler.desktop
+/usr/share/applications/com.microsoft.VSCode.desktop
+/usr/share/code/bin/code
+/usr/share/code/bin/code-tunnel
+/usr/share/code/bin/copilot-shim
+/usr/share/code/bin/copilot-shim/copilot
+/usr/share/code/resources/app/extensions/copilot/node_modules/@github/copilot/sdk/ripgrep/bin/linux-x64
+/usr/share/code/resources/app/extensions/copilot/node_modules/@github/copilot/sdk/ripgrep/bin/linux-x64/rg
+/usr/share/code/resources/app/extensions/copilot/node_modules/@github/copilot/sdk/tgrep/bin/linux-x64
+/usr/share/code/resources/app/extensions/copilot/node_modules/@github/copilot/sdk/tgrep/bin/linux-x64/tgrep
+/usr/share/code/resources/app/extensions/copilot/node_modules/@github/copilot/tgrep/bin/linux-x64
+/usr/share/code/resources/app/extensions/copilot/node_modules/@github/copilot/tgrep/bin/linux-x64/tgrep
+/usr/share/code/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-linux-x64/ripgrep/bin/linux-x64
+/usr/share/code/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-linux-x64/ripgrep/bin/linux-x64/rg
+/usr/share/code/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-linux-x64/tgrep/bin/linux-x64
+/usr/share/code/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-linux-x64/tgrep/bin/linux-x64/tgrep
+/usr/share/code/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/linux-x64
+/usr/share/code/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/linux-x64/rg
+/usr/share/code/resources/app/node_modules.asar.unpacked/@vscode/vsce-sign/bin/vsce-sign
+/usr/share/code/resources/app/out/vs/sessions/sessions.desktop.main.css
+/usr/share/code/resources/app/out/vs/sessions/sessions.desktop.main.js
+/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.css
+/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js
+com.microsoft.VSCode.desktop
+com.microsoft.VSCode.UrlHandler.desktop
+mint-meta-codecs.desktop
+== /usr/share/applications/com.microsoft.VSCode.UrlHandler.desktop
+Name=Visual Studio Code - URL Handler
+GenericName=Text Editor
+Exec=/usr/share/code/code --open-url %U
+== /usr/share/applications/com.microsoft.VSCode.desktop
+Name=Visual Studio Code
+GenericName=Text Editor
+Exec=/usr/share/code/code %F
+StartupWMClass=com.microsoft.VSCode
+Name=New Empty Window
+Exec=/usr/share/code/code --new-window %F
+usage: be-azerty-fix ibus-skip [list | auto [on|off|default] | on APP... | off APP... | off --all | refresh]
+exit 0

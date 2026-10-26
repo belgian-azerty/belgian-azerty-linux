@@ -1,0 +1,142 @@
+zo 25 okt 2026 02:40:49 UTC
+== session
+XDG_SESSION_TYPE=wayland
+== caps leds
+/sys/class/leds/input1::capslock/brightness:1
+/sys/class/leds/input6::capslock/brightness:1
+/sys/class/leds/input1::numlock/brightness:0
+/sys/class/leds/input6::numlock/brightness:0
+== input devices
+N: Name="Power Button"
+H: Handlers=kbd event0 
+N: Name="AT Translated Set 2 keyboard"
+H: Handlers=sysrq kbd event1 leds 
+N: Name="VirtualPS/2 VMware VMMouse"
+H: Handlers=mouse0 event2 
+N: Name="VirtualPS/2 VMware VMMouse"
+H: Handlers=mouse1 event3 
+N: Name="QEMU QEMU USB Tablet"
+H: Handlers=mouse2 event4 
+N: Name="keyd virtual keyboard"
+H: Handlers=sysrq rfkill kbd event5 leds 
+N: Name="keyd virtual pointer"
+H: Handlers=mouse3 event6 js0 
+== gsettings
+[('xkb', 'be')]
+['caps:be_windows']
+@a(ss) []
+false
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="caps:be_windows"
+
+BACKSPACE="guess"
+== localectl
+System Locale: LANG=nl_BE.UTF-8
+               LANGUAGE=nl_BE:nl
+    VC Keymap: (unset)
+   X11 Layout: be
+    X11 Model: pc105
+  X11 Options: caps:be_windows
+== be_capslock symbols
+// Caps Lock as on Windows "Belgian (Period)" / "Belgian (Comma)" (KBDBE / KBDBENE): every key of the main block
+// that has CAPLOK on Windows gives its Shift level with Caps Lock, and Shift+Caps Lock gives the base level again.
+// Letters already behave like this; this changes the digits row and the punctuation keys. ² and < stay as they are,
+// as on Windows. AltGr symbols are not affected by Caps Lock (Lock+LevelThree = Level3).
+// Same mechanism as xkeyboard-config's capslock(digits_row) (2.42+), extended to the punctuation keys.
+hidden partial alphanumeric_keys
+xkb_symbols "windows" {
+    key.type[group1] = "FOUR_LEVEL_SEMIALPHABETIC";
+    key <AE01> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE02> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE03> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE04> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE05> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE06> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE07> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE08> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE09> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE10> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE11> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE12> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AD11> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AD12> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AC11> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <BKSL> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB07> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB08> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB09> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB10> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+};
+== keyd
+● keyd.service - key remapping daemon
+     Loaded: loaded (/usr/lib/systemd/system/keyd.service; enabled; preset: enabled)
+    Drop-In: /usr/lib/systemd/system/keyd.service.d
+             └─belgian-windows-restart.conf
+     Active: active (running) since Sun 2026-10-25 03:28:23 CET; 12min ago
+       Docs: man:keyd.rvaiya(1)
+   Main PID: 566 (keyd.rvaiya)
+      Tasks: 1 (limit: 5696)
+     Memory: 1.2M (peak: 1.8M)
+        CPU: 1.091s
+     CGroup: /system.slice/keyd.service
+             └─566 /usr/bin/keyd.rvaiya
+be-winaltgr.conf
+sudo: keyd: opdracht niet gevonden
+== journal keyd
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 systemd[1]: Started keyd.service - key remapping daemon.
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: Starting keyd v2.5.0 ()
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: match    0001:0001:09b4e68d  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+== journal keyboard/ibus/mutter
+okt 25 03:28:20 be-Standard-PC-Q35-ICH9-2009 systemd[1]: systemd 255.4-1ubuntu8.18 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+okt 25 03:28:21 be-Standard-PC-Q35-ICH9-2009 systemd[1]: Starting console-setup.service - Set console font and keymap...
+okt 25 03:28:21 be-Standard-PC-Q35-ICH9-2009 systemd[1]: Finished console-setup.service - Set console font and keymap.
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 systemd[1]: Started keyd.service - key remapping daemon.
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 kernel: input: keyd virtual keyboard as /devices/virtual/input/input6
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 kernel: input: keyd virtual pointer as /devices/virtual/input/input7
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+okt 25 03:28:23 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: Starting keyd v2.5.0 ()
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 keyd.rvaiya[566]: DEVICE: match    0001:0001:09b4e68d  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+okt 25 03:28:24 be-Standard-PC-Q35-ICH9-2009 systemd-logind[626]: Watching system buttons on /dev/input/event5 (keyd virtual keyboard)
+okt 25 03:28:53 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[9547]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 03:28:53 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[9547]: Errors from xkbcomp are not fatal to the X server
+okt 25 03:28:54 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[9678]: /usr/share/ibus-table/engine/main.py:232: DeprecationWarning: Testing an element's truth value will raise an exception in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+okt 25 03:28:55 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[9462]: dbus-daemon[9462]: [session uid=121 pid=9462] Activating service name='org.freedesktop.portal.IBus' requested by ':1.26' (uid=121 pid=9648 comm="ibus-daemon --panel disable" label="unconfined")
+okt 25 03:28:55 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[9462]: dbus-daemon[9462]: [session uid=121 pid=9462] Successfully activated service 'org.freedesktop.portal.IBus'
+okt 25 03:28:55 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[9778]: /usr/share/ibus-table/engine/main.py:232: DeprecationWarning: Testing an element's truth value will raise an exception in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+okt 25 03:28:55 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[9827]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 03:28:55 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[9827]: Errors from xkbcomp are not fatal to the X server
+okt 25 03:28:55 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[9462]: dbus-daemon[9462]: [session uid=121 pid=9462] Activating service name='org.freedesktop.portal.IBus' requested by ':1.33' (uid=121 pid=9772 comm="ibus-daemon --panel disable -r --xim" label="unconfined")
+okt 25 03:28:55 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[9462]: dbus-daemon[9462]: [session uid=121 pid=9462] Successfully activated service 'org.freedesktop.portal.IBus'
+okt 25 03:29:42 be-Standard-PC-Q35-ICH9-2009 systemd[9926]: Starting org.freedesktop.IBus.session.GNOME.service - IBus Daemon for GNOME...
+okt 25 03:29:42 be-Standard-PC-Q35-ICH9-2009 sh[10253]: /usr/share/ibus-table/engine/main.py:232: DeprecationWarning: Testing an element's truth value will raise an exception in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+okt 25 03:29:42 be-Standard-PC-Q35-ICH9-2009 dbus-daemon[9963]: [session uid=1000 pid=9963] Activating service name='org.freedesktop.portal.IBus' requested by ':1.62' (uid=1000 pid=10234 comm="/usr/bin/ibus-daemon --panel disable" label="unconfined")
+okt 25 03:29:42 be-Standard-PC-Q35-ICH9-2009 systemd[9926]: Started org.freedesktop.IBus.session.GNOME.service - IBus Daemon for GNOME.
+okt 25 03:29:42 be-Standard-PC-Q35-ICH9-2009 dbus-daemon[9963]: [session uid=1000 pid=9963] Successfully activated service 'org.freedesktop.portal.IBus'
+okt 25 03:29:43 be-Standard-PC-Q35-ICH9-2009 gnome-shell[10611]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 03:29:43 be-Standard-PC-Q35-ICH9-2009 gnome-shell[10611]: Errors from xkbcomp are not fatal to the X server
+okt 25 03:29:44 be-Standard-PC-Q35-ICH9-2009 gnome-shell[10669]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 03:29:44 be-Standard-PC-Q35-ICH9-2009 gnome-shell[10669]: Errors from xkbcomp are not fatal to the X server
+== ibus
+xkb:us::eng
+10234 /usr/bin/ibus-daemon --panel disable
+10496 /usr/libexec/ibus-memconf
+10497 /usr/libexec/ibus-extension-gtk3
+10501 /usr/libexec/ibus-portal
+10586 /usr/libexec/ibus-engine-simple
+10700 /usr/libexec/ibus-x11

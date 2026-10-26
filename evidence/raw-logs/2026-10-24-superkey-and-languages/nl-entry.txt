@@ -1,0 +1,35 @@
+BOOT_IMAGE=/casper/vmlinuz initrd=/casper/initrd.zstd quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 ---
+LANG=nl_BE.UTF-8
+LANGUAGE=
+LC_CTYPE="nl_BE.UTF-8"
+LC_NUMERIC="nl_BE.UTF-8"
+LC_TIME="nl_BE.UTF-8"
+LC_COLLATE="nl_BE.UTF-8"
+LC_MONETARY="nl_BE.UTF-8"
+LC_MESSAGES="nl_BE.UTF-8"
+LC_PAPER="nl_BE.UTF-8"
+LC_NAME="nl_BE.UTF-8"
+LC_ADDRESS="nl_BE.UTF-8"
+LC_TELEPHONE="nl_BE.UTF-8"
+LC_MEASUREMENT="nl_BE.UTF-8"
+LC_IDENTIFICATION="nl_BE.UTF-8"
+LC_ALL=
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch"
+
+BACKSPACE="guess"
+[('xkb', 'be')]
+['lv3:ralt_switch']
+false
+'Super_L'
+System Locale: LANG=nl_BE.UTF-8
+    VC Keymap: (unset)
+   X11 Layout: be
+    X11 Model: pc105
+  X11 Options: lv3:ralt_switch

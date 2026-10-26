@@ -1,0 +1,26 @@
+rules:      evdev
+model:      pc105
+layout:     be,be
+variant:    ,
+options:    terminate:ctrl_alt_bksp
+['terminate:ctrl_alt_bksp']
+[('xkb', 'be')]
+['grp\tgrp:win_space_toggle', 'terminate\tterminate:ctrl_alt_bksp']
+@as []
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows"
+
+BACKSPACE="guess"
+E: XKBMODEL=pc105
+E: XKBLAYOUT=be
+E: XKBOPTIONS=lv3:ralt_switch,kpdl:comma,caps:be_windows
+E: XKBMODEL=pc105
+E: XKBLAYOUT=be
+E: XKBOPTIONS=lv3:ralt_switch,kpdl:comma,caps:be_windows
+ven oct 23 23:28:49 2026

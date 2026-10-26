@@ -1,0 +1,15 @@
+z5-dead-box4simple [dead] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 150 ms min 147 ms
+start app=box4 env=[start GTK_IM_MODULE=simple] 18:03:11.972Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.23 0.25 0.28
+end app=box4 env=[end GTK_IM_MODULE=simple] 18:03:51.100Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.17 0.24 0.27
+lagging-behind messages during block: 0
+expected: êêêêêêêê
+  1 ok    êêêêêêêê   [keys in order]
+  2 ok    êêêêêêêê   [keys in order]
+  3 ok    êêêêêêêê   [keys in order]
+  4 ok    êêêêêêêê   [keys in order]
+  5 ok    êêêêêêêê   [keys in order]
+  6 ok    êêêêêêêê   [keys in order]
+  7 ok    êêêêêêêê   [keys in order]
+  8 ok    êêêêêêêê   [keys in order]
+  9 ok    êêêêêêêê   [keys in order]
+ 10 ok    êêêêêêêê   [keys in order]

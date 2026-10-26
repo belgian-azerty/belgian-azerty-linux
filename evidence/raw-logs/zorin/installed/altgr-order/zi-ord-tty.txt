@@ -1,0 +1,3 @@
+tty-keydON-AltGr015: @€@€@€@€@€@€@€@€
+tty-keydON-CtrlAlt015: @€@€@€@€@€@€@€@€
+tty-keydON-AltGr90: {}{}{}{}{}{}{}{}

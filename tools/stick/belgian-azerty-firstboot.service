@@ -1,0 +1,11 @@
+[Unit]
+Description=Belgian stick: finish the Belgian keyboard setup on the first start (runs once)
+After=local-fs.target
+Before=display-manager.service gdm.service lightdm.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/belgian-stick/belgian-stick first-boot
+
+[Install]
+WantedBy=multi-user.target

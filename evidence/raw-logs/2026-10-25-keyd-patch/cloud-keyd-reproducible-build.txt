@@ -1,0 +1,9 @@
+# Reproducibility: dist/ build (packaging/build-all.sh) vs a second packaging/keyd-backport/build.sh run, 2026-10-24T23:46:19Z
+906aa32aae7bf80dc2b9cebc0b721cfb6ebe719cb366c3832fbbc5346f9d2e90  ./keyd-application-mapper_2.5.0-5~ubuntu24.04.2_all.deb
+f9de04365e1c601a82101f3e29e3f624d9dfeedb629a564ed4222405dd33589c  ./keyd-belgian-windows_0.9.4_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  ./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+c63a1257cf8bf5d68816b0a4eb8339c50f9c663d426dbb7b6e0e468574af8ea5  ./keyd_2.5.0-5~ubuntu24.04.2.debian.tar.xz
+# second build:
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+906aa32aae7bf80dc2b9cebc0b721cfb6ebe719cb366c3832fbbc5346f9d2e90  keyd-application-mapper_2.5.0-5~ubuntu24.04.2_all.deb
+# keyboard.c in the built source vs keyd 2.5.0-5 + research/keyd-hold-altgr-test.patch: identical (cmp)

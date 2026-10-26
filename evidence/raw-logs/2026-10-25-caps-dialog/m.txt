@@ -1,0 +1,8 @@
+ii  chrome-gnome-shell                                  42.1-4                                           all          GNOME Shell integration for browsers - transitional package
+ii  gir1.2-mutter-14:amd64                              46.2-1ubuntu0.24.04.14+zorin2                    amd64        GObject introspection data for Mutter
+ii  gnome-shell                                         46.0-0ubuntu6~24.04.13+zorin2                    amd64        graphical shell for the GNOME desktop
+ii  ibus                                                1.5.29-2                                         amd64        Intelligent Input Bus - core
+ii  ibus-mozc                                           2.28.4715.102+dfsg-2.2build7                     amd64        Mozc engine for IBus - Client of the Mozc input method
+ii  libmutter-14-0:amd64                                46.2-1ubuntu0.24.04.14+zorin2                    amd64        window manager library from the Mutter window manager
+ii  mutter-common                                       46.2-1ubuntu0.24.04.14+zorin2                    all          shared files for the Mutter window manager
+ii  mutter-common-bin                                   46.2-1ubuntu0.24.04.14+zorin2                    amd64        shared programs for the Mutter window manager

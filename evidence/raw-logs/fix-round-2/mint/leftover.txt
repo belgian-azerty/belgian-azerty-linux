@@ -1,0 +1,7 @@
+=== leftover option check 2026-10-24T11:04:23Z session=x11
+setxkbmap rc=0
+rules:      evdev
+model:      pc105
+layout:     be
+options:    terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows
+keys in keymap: 212

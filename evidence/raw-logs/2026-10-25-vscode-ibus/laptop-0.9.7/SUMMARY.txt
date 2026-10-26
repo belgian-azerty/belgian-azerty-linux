@@ -1,0 +1,37 @@
+Laptop check of VS Code in the AUTOMATIC ibus skip (0.9.7 logic), 2026-10-25 20:37-21:13Z, approved by Younes 20:29Z.
+Rig: QEMU+KVM in WSL on the T14s, live sessions, X11. Packages 0.9.6 with the two functional 0.9.7 lines patched into
+/usr/sbin/be-azerty-fix inside the VM (sha256 54eda415... -> d4a4988f..., messages still 0.9.6 wording). Guest script
+next-0.9.7-vscode/laptop/v3.sh (sha256 dea3eb89... on the laptop, checked). VS Code 1.143.1-1792691907, installed
+AFTER "be-azerty-fix live", so its copy could only come from the login refresh.
+Raw files: laptop only, ibus-auto-test\results-vscode-097\ (mint\ and zorin\), local commits 0f5023e,
+6f8bf77 (v3.sh), 0d32145. Rig cleaned 21:17Z: ba-zor stopped, 8010/8011 servers and the keep-alive stopped, no qemu left.
+Lines below quoted from the laptop session's report.
+
+MINT 22.3 (20:37-20:52Z) - ALL STEPS MET
+setup: 54eda415561b203ab3c92eb190f962e5c757ad2108f5b9776e52c3c5c7e94470  /usr/sbin/be-azerty-fix
+       d4a4988f1396101e13564ac0805a67432c685b505ac78a2742b51707667bcd81  /usr/sbin/be-azerty-fix
+       XDG_SESSION_TYPE=x11 GTK_IM_MODULE=ibus; com.microsoft.VSCode.desktop listed; no copy yet ("ls: cannot access").
+info-login (20:39:27, after a real log out and in):
+  ✔ com.microsoft.VSCode (automatic): skips ibus (menu entry /home/mint/.local/share/applications/com.microsoft.VSCode.desktop)
+  -rw-rw-r-- 1 mint mint 1097 Oct 25 20:38 .../com.microsoft.VSCode.desktop
+  X-BelgianAzerty-IbusSkip=true
+  Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F
+  Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code --new-window %F
+typing (VS Code started from the copy): ctrlalt-slow 10/10, ctrlalt-o30 30/30, altgr-o30 30/30, dead 3/3, 0 swapped,
+  0 other; lines 73/73; @ 560/560, € 560/560, '€€' 0.
+vterm.txt (shell in VS Code's built-in terminal): vscode-terminal shell GTK_IM_MODULE=gtk-im-context-simple
+env-auto: pid 3931 /usr/share/code/code /tmp/vsc-auto.txt : im-ibus loaded: 0
+env-action ("New Empty Window" action of the copy): pid 4317 /usr/share/code/code --new-window : im-ibus loaded: 0
+info-paused (20:49:38, anthy added + real log out and in):
+  · automatic: paused, because an input method is set up in the keyboard settings: anthy (...)
+  ls: cannot access '/home/mint/.local/share/applications/com.microsoft.VSCode.desktop': No such file or directory
+env-paused: no copy to launch (expected); VS Code from the stock entry: pid 5501 ... im-ibus loaded: 5 (back on ibus).
+
+ZORIN 18.1 (20:53-21:13Z): snapshot, same results as Mint so far (setup shas, code 1.143.1, x11; info-login copy with
+marker and both Exec lines; vterm gtk-im-context-simple; env-auto/env-action im-ibus 0; info-paused paused anthy, no
+copy; stock launch pid 8309 im-ibus 5). ALL STEPS MET.
+typing: ctrlalt-slow 10/10, ctrlalt-o30 30/30, altgr-o30 30/30, dead 3/3, 0 swapped, 0 other; lines 73/73;
+  @ 560/560, € 560/560, '€€' 0, '@@' 0; dead-key strings 3/3.
+
+Process note: the first laptop session was NOT stalled at 21:09Z; it was silently running Zorin. It was stopped from
+the thread at 21:09Z on a wrong "stalled" reading; the second session found and kept its files.

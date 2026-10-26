@@ -1,0 +1,16 @@
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (numpad decimal: comma)
+  [32m✔[0m console keymap applied and cached
+2. Boot image (so the disk-encryption prompt is Belgian)
+  [32m✔[0m initramfs rebuilt
+3. Your desktop (gnome) for user test
+WARNING: Running setxkbmap against an Xwayland server
+  [32m✔[0m setxkbmap be  (options kpdl:comma)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: comma
+  · Live sessions forget this at reboot. For a USB that boots Belgian, add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+4. Login screen
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is already installed
+
+Done. Reboot, then run:  be-azerty-fix.sh check

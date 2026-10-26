@@ -1,0 +1,38 @@
+typed 40 lines of altgr gap 120.0 ms hold 72 ms, last line 2.05 s
+z1-on-ag120 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 120 ms min 94 ms
+typed 40 lines of altgr gap 60.0 ms hold 36 ms, last line 1.11 s
+z1-on-ag60 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 52 ms
+typed 40 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z1-on-ag30r [altgr] typed lines 40: ok 36, order 4, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 16 ms
+typed 40 lines of ctrlalt gap 120.0 ms hold 72 ms, last line 2.09 s
+z1-on-ca120 [ctrlalt] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 120 ms min 105 ms
+typed 40 lines of ctrlalt gap 60.0 ms hold 36 ms, last line 1.15 s
+z1-on-ca60 [ctrlalt] typed lines 40: ok 38, order 2, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 36 ms
+typed 40 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+z1-on-ca30r [ctrlalt] typed lines 40: ok 37, order 3, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 11 ms
+typed 40 lines of altgr1 gap 60.0 ms hold 36 ms, last line 1.32 s
+z1-on-ag1-60 [altgr1] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 75 ms min 68 ms
+typed 40 lines of ctrlalt1 gap 60.0 ms hold 36 ms, last line 1.57 s
+z1-on-ca1-60 [ctrlalt1] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 90 ms min 87 ms
+typed 40 lines of plain gap 30.0 ms hold 45 ms roll, last line 0.63 s
+z1-on-pl30r [plain] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 28 ms
+typed 40 lines of mixed gap 60.0 ms hold 36 ms, last line 1.20 s
+z1-on-mx60 [mixed] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 74 ms min 58 ms
+typed 40 lines of altgr gap 120.0 ms hold 72 ms, last line 2.04 s
+z1-off-ag120 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 120 ms min 117 ms
+typed 40 lines of altgr gap 60.0 ms hold 36 ms, last line 1.11 s
+z1-off-ag60 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 60 ms min 58 ms
+typed 40 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z1-off-ag30r [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 30 ms min 26 ms
+typed 40 lines of altgr1 gap 60.0 ms hold 36 ms, last line 1.32 s
+z1-off-ag1-60 [altgr1] typed lines 40: ok 39, order 1, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 75 ms min 68 ms
+typed 40 lines of plain gap 30.0 ms hold 45 ms roll, last line 0.63 s
+z1-off-pl30r [plain] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 30 ms min 28 ms
+typed 40 lines of mixed gap 60.0 ms hold 36 ms, last line 1.20 s
+z1-off-mx60 [mixed] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 74 ms min 0 ms
+typed 40 lines of ctrlalt gap 60.0 ms hold 36 ms, last line 1.15 s
+z1-noibus-ca60 [ctrlalt] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 16 ms
+typed 40 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z1-noibus-ag30r [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 28 ms
+typed 40 lines of altgr gap 60.0 ms hold 36 ms, last line 1.11 s
+z1-noibus-ag60 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 57 ms

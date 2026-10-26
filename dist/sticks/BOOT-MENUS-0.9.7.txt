@@ -1,0 +1,66 @@
+== mint-grub.cfg
+submenu "Start Linux Mint 22.3 Cinnamon 64-bit - Nederlands (België)" --class linuxmint {
+menuentry "Belgisch AZERTY, punt op het numeriek klavier" --class linuxmint {
+menuentry "Belgisch AZERTY, komma op het numeriek klavier" --class linuxmint {
+submenu "Start Linux Mint 22.3 Cinnamon 64-bit - Français (Belgique)" --class linuxmint {
+menuentry "AZERTY belge, point sur le pavé numérique" --class linuxmint {
+menuentry "AZERTY belge, virgule sur le pavé numérique" --class linuxmint {
+submenu "Start Linux Mint 22.3 Cinnamon 64-bit - Deutsch (Belgien)" --class linuxmint {
+menuentry "Belgisch AZERTY, Punkt auf dem Ziffernblock" --class linuxmint {
+menuentry "Belgisch AZERTY, Komma auf dem Ziffernblock" --class linuxmint {
+menuentry "Deutsch QWERTZ" --class linuxmint {
+submenu "Start Linux Mint 22.3 Cinnamon 64-bit - English" --class linuxmint {
+menuentry "Belgian AZERTY, period on the numpad" --class linuxmint {
+menuentry "Belgian AZERTY, comma on the numpad" --class linuxmint {
+menuentry "German QWERTZ" --class linuxmint {
+menuentry "Start Linux Mint 22.3 Cinnamon 64-bit (compatibility mode)" {
+menuentry "OEM install (for manufacturers)" {
+menuentry 'Boot from next volume' {
+menuentry 'UEFI Firmware Settings' {
+menuentry 'Memory test' {
+== mint-live.cfg
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=comma --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 belgian.keyboard=be belgian.decimal=period --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 belgian.keyboard=be belgian.decimal=comma --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=de_BE.UTF-8 belgian.keyboard=be belgian.decimal=period --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=de_BE.UTF-8 belgian.keyboard=be belgian.decimal=comma --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=de locale=de_BE.UTF-8 belgian.keyboard=de --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=en_US.UTF-8 belgian.keyboard=be belgian.decimal=period belgian.formats=be --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=en_US.UTF-8 belgian.keyboard=be belgian.decimal=comma belgian.formats=be --
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=de locale=en_US.UTF-8 belgian.keyboard=de belgian.formats=be --
+label compat
+menu label Start Linux Mint in compatibility mode
+linux /casper/vmlinuz
+append boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint noapic noacpi nosplash irqpoll nomodeset keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period --
+label oem
+menu label OEM install (for manufacturers)
+linux /casper/vmlinuz
+append oem-config/enable=true only-ubiquity boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period --
+label hdt
+menu label Hardware Detection
+label local
+menu label Boot from local drive
+label memtest
+menu label Memory test
+linux /boot/memtest.bin
+== zorin-grub.cfg
+submenu "Try or Install Zorin OS - Nederlands (België)" --class zorin {
+menuentry "Belgisch AZERTY, punt op het numeriek klavier" --class zorin {
+menuentry "Belgisch AZERTY, komma op het numeriek klavier" --class zorin {
+submenu "Try or Install Zorin OS - Français (Belgique)" --class zorin {
+menuentry "AZERTY belge, point sur le pavé numérique" --class zorin {
+menuentry "AZERTY belge, virgule sur le pavé numérique" --class zorin {
+submenu "Try or Install Zorin OS - Deutsch (Belgien)" --class zorin {
+menuentry "Belgisch AZERTY, Punkt auf dem Ziffernblock" --class zorin {
+menuentry "Belgisch AZERTY, Komma auf dem Ziffernblock" --class zorin {
+menuentry "Deutsch QWERTZ" --class zorin {
+submenu "Try or Install Zorin OS - English" --class zorin {
+menuentry "Belgian AZERTY, period on the numpad" --class zorin {
+menuentry "Belgian AZERTY, comma on the numpad" --class zorin {
+menuentry "German QWERTZ" --class zorin {
+menuentry "Try or Install Zorin OS (safe graphics)" --class display {
+menuentry "Try or Install Zorin OS (modern NVIDIA drivers)" --class nvidia {
+menuentry 'UEFI Firmware Settings' --class settings{
+menuentry "Power Off" --class poweroff {
+== zorin-menuentries.cfg

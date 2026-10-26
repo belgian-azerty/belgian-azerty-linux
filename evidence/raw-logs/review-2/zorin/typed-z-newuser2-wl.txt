@@ -1,0 +1,14 @@
+z-newuser2-wl plain: azerty é | AltGr 2 e:€ @ | CtrlAlt 2 e: @€ | Caps ² 1 2 3 ) - ù , ; a:² 123°_%?.A | numpad 1 dec 5: [F[3~[E | after NumLock toggle: 1,5
+=== kbstate 07:02:21Z z-newuser2-wl ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:48
+WARNING: Running setxkbmap against an Xwayland server
+['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']

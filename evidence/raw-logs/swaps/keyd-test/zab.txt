@@ -1,0 +1,44 @@
+keyd binary: patched 854b1e2eabdc7096 pkg=9b1cea38cb916816 active=active
+??5??????   /usr/bin/keyd.rvaiya
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r1-p-ca30r [ctrlalt] typed lines 50: ok 37, order 13, count 0, other 0 | key log (keyd virtual keyboard): 49/50 lines in sent order, key gap median 30 ms min 0 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r1-p-ag30r [altgr] typed lines 50: ok 43, order 7, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 0 ms
+keyd binary: orig 9b1cea38cb916816 pkg=9b1cea38cb916816 active=active
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r1-o-ca30r [ctrlalt] typed lines 50: ok 41, order 9, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 31 ms min 0 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r1-o-ag30r [altgr] typed lines 50: ok 44, order 6, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 4 ms
+keyd binary: patched 854b1e2eabdc7096 pkg=9b1cea38cb916816 active=active
+??5??????   /usr/bin/keyd.rvaiya
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r2-p-ca30r [ctrlalt] typed lines 50: ok 45, order 5, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 0 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r2-p-ag30r [altgr] typed lines 50: ok 46, order 4, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 0 ms
+keyd binary: orig 9b1cea38cb916816 pkg=9b1cea38cb916816 active=active
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r2-o-ca30r [ctrlalt] typed lines 50: ok 44, order 6, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 31 ms min 3 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r2-o-ag30r [altgr] typed lines 50: ok 43, order 7, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 31 ms min 0 ms
+keyd binary: patched 854b1e2eabdc7096 pkg=9b1cea38cb916816 active=active
+??5??????   /usr/bin/keyd.rvaiya
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r3-p-ca30r [ctrlalt] typed lines 50: ok 49, order 1, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 31 ms min 13 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r3-p-ag30r [altgr] typed lines 50: ok 45, order 5, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 31 ms min 1 ms
+keyd binary: orig 9b1cea38cb916816 pkg=9b1cea38cb916816 active=active
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r3-o-ca30r [ctrlalt] typed lines 50: ok 38, order 12, count 0, other 0 | key log (keyd virtual keyboard): 49/50 lines in sent order, key gap median 30 ms min 0 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r3-o-ag30r [altgr] typed lines 50: ok 47, order 3, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 2 ms
+keyd binary: patched 854b1e2eabdc7096 pkg=9b1cea38cb916816 active=active
+??5??????   /usr/bin/keyd.rvaiya
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r4-p-ca30r [ctrlalt] typed lines 50: ok 46, order 4, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 4 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r4-p-ag30r [altgr] typed lines 50: ok 46, order 4, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 3 ms
+keyd binary: orig 9b1cea38cb916816 pkg=9b1cea38cb916816 active=active
+typed 50 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+zab-r4-o-ca30r [ctrlalt] typed lines 50: ok 40, order 10, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 1 ms
+typed 50 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+zab-r4-o-ag30r [altgr] typed lines 50: ok 48, order 2, count 0, other 0 | key log (keyd virtual keyboard): 50/50 lines in sent order, key gap median 30 ms min 0 ms

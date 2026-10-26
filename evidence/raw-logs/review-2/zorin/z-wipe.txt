@@ -1,0 +1,7 @@
+before:
+[/]
+sources=[('xkb', 'be')]
+xkb-options=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']
+reset rc=1
+after:
+(empty above = wiped)

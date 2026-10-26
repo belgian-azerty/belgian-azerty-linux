@@ -1,0 +1,43 @@
+zo 25 okt 2026 01:18:46 UTC
+== lsblk
+NAME    SIZE TYPE FSTYPE   LABEL                    PARTLABEL MOUNTPOINTS
+loop0   2,8G loop squashfs                                    /rofs
+loop1   6,1M loop squashfs                                    
+sda      16G disk iso9660  Zorin OS 18.1 Core 64bit           
+├─sda1  3,6G part iso9660  Zorin OS 18.1 Core 64bit           /cdrom
+├─sda2    5M part vfat                                        
+└─sda3 12,4G part ext4     writable                           /var/crash
+                                                              /var/log
+sr0    1024M rom                                              
+== fdisk /dev/sda
+Disk /dev/sda: 16 GiB, 17179869184 bytes, 33554432 sectors
+Disk model: QEMU HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x5c513784
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *          0  7646731  7646732  3,6G  0 Empty
+/dev/sda2           532    10771    10240    5M ef EFI (FAT-12/16/32)
+/dev/sda3       7647232 33554431 25907200 12,4G 83 Linux
+== mounts
+/dev/sda1 on /cdrom type iso9660 (ro,noatime,nojoliet,check=s,map=n,blocksize=2048,iocharset=utf8)
+/cow on / type overlay (rw,relatime,lowerdir=/zz-belgian-azerty.squashfs:/filesystem.squashfs,upperdir=/cow/upper,workdir=/cow/work,uuid=on,xino=off,nouserxattr)
+/dev/sda3 on /var/log type ext4 (rw,relatime)
+/dev/sda3 on /var/crash type ext4 (rw,relatime)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+gvfsd-fuse on /run/user/1000/gvfs type fuse.gvfsd-fuse (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
+== casper log
+== journal partition
+okt 25 01:12:38 zorin kernel: Command line: BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period ---
+okt 25 01:12:38 zorin kernel: Kernel command line: BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period ---
+okt 25 01:12:38 zorin kernel:  sda: sda1 sda2
+okt 25 01:12:38 zorin kernel:  sda: sda1 sda2 sda3
+okt 25 01:12:38 zorin kernel: EXT4-fs (sda3): mounted filesystem 9731aa14-cf48-4825-99ca-368481d6ad94 r/w with ordered data mode. Quota mode: none.
+okt 25 01:12:38 zorin systemd[1]: systemd-repart.service - Repartition Root Disk was skipped because no trigger condition checks were met.
+okt 25 01:12:40 zorin systemd[1]: systemd-repart.service - Repartition Root Disk was skipped because no trigger condition checks were met.
+okt 25 01:12:43 zorin systemd[1]: systemd-repart.service - Repartition Root Disk was skipped because no trigger condition checks were met.
+okt 25 01:13:30 zorin /usr/libexec/gdm-x-session[2675]: Kernel command line: BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period ---
+okt 25 01:18:46 zorin sudo[3967]:    zorin : TTY=pts/1 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/grep -i -E persist|writable|partition|cow /var/log/casper.log

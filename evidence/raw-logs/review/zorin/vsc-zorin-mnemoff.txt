@@ -1,0 +1,17 @@
+vsc-zorin-keydon plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+vsc-zorin-keydon LCtrl+LAlt: |@#{[^{}€[]'`~\
+vsc-zorin-keydon AltGr: |@#{[^{}€[]'`~\
+vsc-zorin-keydon Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+vsc-zorin-keydon RCtrl+LAlt 2 e: @€
+vsc-zorin-keydon Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+vsc-zorin-keydon Caps+Shift same keys: ³&é"'(§è!çà)-^$ùµ,;:=>az
+vsc-zorin-keydon Caps+AltGr: |@#{[^{}€[]'`~\
+vsc-zorin-keydon order Ctrl+Alt 2 e x8: @@@@€@@€@@
+vsc-zorin-keydon numpad 1 dec 5 (NumLock on): 1.5
+slow LCtrl+LAlt+E x8 (0.6 s): €€€€€€€€
+slow LCtrl+LAlt+2 x8 (0.6 s): @@@@@@@@
+Mnemonics off #1 order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€
+Mnemonics off #2 order Ctrl+Alt 2 e x8€: @€@@€@€@€@€@€@€
+Mnemonics off #3 order Ctrl+Alt 2 e x8: @€@€@€@@€@@€@€
+Mnemonics off slow LCtrl+LAlt+E x8 (0.6 s):€ €€€€€
+Mnemonics off AltGr 2 e order x8: @€@€@€@€@€@€@€@€

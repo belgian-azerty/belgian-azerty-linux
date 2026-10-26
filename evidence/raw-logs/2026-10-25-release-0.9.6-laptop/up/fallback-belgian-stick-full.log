@@ -1,0 +1,79 @@
+== 2026-10-25T15:04:26Z live-boot keyboard=be decimal=period formats=none
+Choices: profile windows (default), numpad decimal period (given), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  [32m✔[0m GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== 2026-10-25T15:17:50Z install-target keyboard=be decimal=period formats=none
+Pakketlijsten worden ingelezen...
+Boom van vereisten wordt opgebouwd...
+De statusinformatie wordt gelezen...
+De volgende NIEUWE pakketten zullen geïnstalleerd worden:
+  belgian-azerty-windows keyd keyd-belgian-windows
+0 opgewaardeerd, 3 nieuw geïnstalleerd, 0 te verwijderen en 562 niet opgewaardeerd.
+Er moeten 0 B/256 kB aan archieven opgehaald worden.
+Na deze bewerking zal er 1620 kB extra schijfruimte gebruikt worden.
+Ophalen:1 /tmp/belgian/belgian-azerty-windows_0.9.6_all.deb belgian-azerty-windows all 0.9.6 [43.7 kB]
+Ophalen:2 /tmp/belgian/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb keyd amd64 2.5.0-5~ubuntu24.04.2 [207 kB]
+Ophalen:3 /tmp/belgian/keyd-belgian-windows_0.9.6_all.deb keyd-belgian-windows all 0.9.6 [4806 B]
+E: Kan log (Is /dev/pts aangekoppeld?) niet opschrijven - posix_openpt (19: No such device)
+Voorheen niet geselecteerd pakket belgian-azerty-windows wordt geselecteerd.
+(Database wordt ingelezen ... 300429 bestanden en mappen momenteel geïnstalleerd.)
+Uitpakken van .../belgian-azerty-windows_0.9.6_all.deb wordt voorbereid...
+Bezig met uitpakken van belgian-azerty-windows (0.9.6) ...
+Voorheen niet geselecteerd pakket keyd wordt geselecteerd.
+Uitpakken van .../keyd_2.5.0-5~ubuntu24.04.2_amd64.deb wordt voorbereid...
+Bezig met uitpakken van keyd (2.5.0-5~ubuntu24.04.2) ...
+Voorheen niet geselecteerd pakket keyd-belgian-windows wordt geselecteerd.
+Uitpakken van .../keyd-belgian-windows_0.9.6_all.deb wordt voorbereid...
+Bezig met uitpakken van keyd-belgian-windows (0.9.6) ...
+Instellen van keyd (2.5.0-5~ubuntu24.04.2) ...
+⚠️ /proc/ is not mounted. This is not a supported mode of operation. Please fix
+your invocation environment to mount /proc/ and /sys/ properly. Proceeding anyway.
+Your mileage may vary.
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Instellen van keyd-belgian-windows (0.9.6) ...
+Instellen van belgian-azerty-windows (0.9.6) ...
+'omleiding van /usr/share/X11/xkb/rules/evdev naar /usr/share/X11/xkb/rules/evdev.distrib door belgian-azerty-windows' wordt toegevoegd
+Bezig met afhandelen van triggers voor gnome-menus (3.36.0-1.1ubuntu3) ...
+Bezig met afhandelen van triggers voor man-db (2.12.0-4build2) ...
+Bezig met afhandelen van triggers voor desktop-file-utils (0.27-2build1) ...
+apt rc=0
+== 2026-10-25T15:34:52Z first-boot
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: none)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  [32m✔[0m initramfs rebuilt
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  [32m✔[0m GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+totaal 12
+drwxr-xr-x  2 root root 4096 2026-10-25 16:18:07.197914110 +0100 .
+drwxr-xr-x 70 root root 4096 2026-10-25 16:36:36.185070446 +0100 ..
+-rw-r--r--  1 root root   42 2026-10-25 16:35:23.366259594 +0100 choices

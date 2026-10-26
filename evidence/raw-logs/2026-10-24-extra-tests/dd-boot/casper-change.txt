@@ -1,0 +1,12 @@
+== dd stick after the UEFI live session (casper changed it)
+Disk mint-stick.img: 16 GiB, 17179869184 bytes, 33554432 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x24a1e612
+
+Device          Boot   Start      End  Sectors  Size Id Type
+mint-stick.img1 *         64  6044319  6044256  2.9G  0 Empty
+mint-stick.img2         4608    14847    10240    5M ef EFI (FAT-12/16/32)
+mint-stick.img3      6045696 33554431 27508736 13.1G 83 Linux

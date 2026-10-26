@@ -1,0 +1,13 @@
+sam 24 oct 2026 03:12:53 UTC
+BOOT_IMAGE=/casper/vmlinuz boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 --
+● casper-md5check.service - casper-md5check Verify Live ISO checksums
+     Loaded: loaded (/usr/lib/systemd/system/casper-md5check.service; enabled; preset: enabled)
+     Active: active (exited) since Sat 2026-10-24 03:05:46 UTC; 7min ago
+    Process: 1569 ExecStart=/usr/lib/casper/casper-md5check /cdrom /cdrom/md5sum.txt (code=exited, status=0/SUCCESS)
+   Main PID: 1569 (code=exited, status=0/SUCCESS)
+        CPU: 1min 8.226s
+{
+  "checksum_missmatch": [
+],
+  "result": "pass"
+}

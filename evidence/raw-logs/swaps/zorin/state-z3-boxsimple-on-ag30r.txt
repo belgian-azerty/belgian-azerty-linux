@@ -1,0 +1,3 @@
+start app=box4 env=[start GTK_IM_MODULE=simple] 17:07:07.795Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.32 0.41 0.59
+end app=box4 env=[end GTK_IM_MODULE=simple] 17:09:22.859Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.18 0.32 0.53
+lagging-behind messages during block: 0

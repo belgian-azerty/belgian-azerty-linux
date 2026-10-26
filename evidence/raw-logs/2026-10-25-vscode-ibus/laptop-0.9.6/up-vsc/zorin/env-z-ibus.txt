@@ -1,0 +1,5 @@
+== z-ibus (ibus) 20:13:02, launched with: /usr/share/applications/com.microsoft.VSCode.desktop
+Exec=/usr/share/code/code %F
+pid 3726 /usr/share/code/code /tmp/vsc-z-ibus.txt : GTK_IM_MODULE unset, im-ibus loaded: 5
+pid 3731 /usr/share/code/code --type=zygote --no-zygote-sandbox : GTK_IM_MODULE unset, im-ibus loaded: 0
+pid 3732 /usr/share/code/code --type=zygote : GTK_IM_MODULE unset, im-ibus loaded: 0

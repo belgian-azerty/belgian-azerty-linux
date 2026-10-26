@@ -1,0 +1,8 @@
+LCtrl+LAlt+ 1 2 3 4 5 6 9 0 e ^$ ù µ = < : |@#{[^{}€[]'`~\
+AltGr+ 1 2 3 4 5 6 9 0 e ^$ ù µ = < : |@#{[^{}€[]'`~\
+CapsLock ON, LCtrl+LAlt+ same keys : |@#{[^{}€[]'`~\
+Shift+LCtrl+LAlt+ 1 2 3 4 5 6 9 0 e : ¡⅛£±˚⅝±°¢
+Shift+AltGr+ 1 2 3 4 5 6 9 0 e : ¡⅛£±˚⅝±°¢
+RCtrl+LAlt+ 2 e : @€
+plain: azerty AZERTY 1234567890é  è ç à ù µ , ; : = (letters, Shift and Caps untouched)
+CAPS: AZERTY 1234567890 

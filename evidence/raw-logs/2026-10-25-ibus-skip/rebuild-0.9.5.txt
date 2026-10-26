@@ -1,0 +1,18 @@
+Rebuild of belgian-azerty-windows 0.9.5 after the README/changelog rebase on 0.9.4.1, 2026-10-25T04:25:39Z
+Tested in the live runs: e9152758e6f563b47a2aa8b451adcee9a13e6dfe48abc598dafdf94ced2c585f
+New build (built twice, same hash = reproducible): 993a9ddd7be8df2cdee4d729d3e61d590ae55956922352dfdad15b299635aadb (after a one-sentence README reorder at 04:30Z; the README-only diff below was made against the 04:2xZ build ac12f100..., same program files)
+lintian: no tags
+diff -rq of the unpacked packages (tested vs new):
+Files cmpA/DEBIAN/control and cmpB/DEBIAN/control differ
+Files cmpA/DEBIAN/md5sums and cmpB/DEBIAN/md5sums differ
+Files cmpA/usr/share/doc/belgian-azerty-windows/README.md.gz and cmpB/usr/share/doc/belgian-azerty-windows/README.md.gz differ
+Files cmpA/usr/share/doc/belgian-azerty-windows/changelog.gz and cmpB/usr/share/doc/belgian-azerty-windows/changelog.gz differ
+Files cmpA/usr/share/man/man1/be-azerty-settings.1.gz and cmpB/usr/share/man/man1/be-azerty-settings.1.gz differ
+5c5
+< Installed-Size: 98
+---
+> Installed-Size: 104
+=> every program file, the autostart file, postrm and be-azerty-fix.8 are byte-identical; only README, changelog, be-azerty-settings.1 (taken from 0.9.4.1) and Installed-Size differ.
+dist-0.9.5 now pairs it with keyd-belgian-windows 0.9.4.1 (dist/; the live runs used 0.9.4, byte-identical program files per the 0.9.4.1 README).
+Offline tests on the new build's be-azerty-fix:
+passed 23, failed 0

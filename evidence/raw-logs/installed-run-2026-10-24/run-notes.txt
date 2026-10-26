@@ -1,0 +1,76 @@
+Installed-system run, Zorin OS 18.1 + LVM/encryption, final 0.9.1 packages (rig/INSTALLED-RUN.md), laptop rig: KVM in WSL 2 Ubuntu-24.04
+Step 1  2026-10-24 wsl-setup.sh zorin: started 11:12Z, 8 min 17 s (installed xorriso + imagemagick in WSL; Zorin ISO download), "Zorin-OS-18.1-Core-64-bit.iso: OK"
+        Zorin-OS-18.1-Core-64-bit.iso sha256 44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5
+Step 2  11:20:56Z make_belgian_iso.sh: patched grub.cfg, loopback.cfg, isolinux/menuentries.cfg (3 entries each), md5sum.txt updated (3), self-check OK, ~1 min
+        zorin-belgian.iso sha256 1bc39ccffc178dbcb46cc4856f60ff1b3cca35af8d8c8680a767a919939adba7 (3908829184 bytes)
+Step 3  serve/ filled (sha256 of the .debs match dist/SHA256SUMS), http.server :8000 + upload_server.py :8001 -> /root/be-rig/up, self-test OK
+Step 5  11:26Z installer keyboard page (Disposition du clavier) PRESELECTED: Belgian / Belgian (left list Belgian highlighted, right list Belgian highlighted). Welcome page preselected Français (no Welcome screen before the live desktop: maybe-ubiquity dropped). Test field typed as a BE typist "azerty é@€" -> showed "azerty é@€". Live boot to settled desktop ~112 s.
+        Installer pages (French UI): Welcome Français -> Disposition du clavier (Belgian/Belgian preselected) -> Mises à jour: I UNCHECKED
+        "download updates" and "third-party software" (faster, repeatable install; no network-dependent packages) and ticked "Ne participe pas
+        au recensement" -> Type d installation: Effacer le disque + Fonctions avancées: LVM + Chiffrer -> security key typed with type --as be
+        "azerty@é", revealed with the eye icon: field shows azerty@é, confirm matches (warning "Mot de passe trop faible", not blocking; no
+        recovery key) -> disks: vgzorin root ext4 + swap_1 + ESP on vda -> Brussels preselected -> user test / azerty, "Demander mon mot de passe".
+        Copy started 11:32:34Z.
+Desktop copy ~11:35Z (during the install): C:\Users\<you>\Desktop\<test folder>\zorin-belgian.iso ([Environment]::GetFolderPath('Desktop')
+        = C:\Users\<you>\Bureaublad, not OneDrive), sha256 1bc39ccffc178dbcb46cc4856f60ff1b3cca35af8d8c8680a767a919939adba7 (matches the WSL ISO)
+Files:  zi-fix-system.log = my step-7 run; zi-fix-sys/-comma/-comma2/-period/-rerun.log, zi-reinst.log, zi-zdur.txt, dur-step-* = durability
+        script; boot1-*/boot2-journal.txt = full guest journals of boot 1 (greeter issue) and boot 2. typed-commands.log starts at the
+        package download; earlier lines (unlock passphrase, logins, tty3 commands) are described in the steps above.
+Step 6  first boot (disk only) started 12:03:18Z. Unlock prompt (plymouth) showed "Please unlock disk vda4_crypt" with keyboard indicator "be" (present by 12:07:36; settle.py could not time it: the screen is >98% black). Typed azerty@é + Enter with type --as be at 12:07:46Z -> UNLOCKED FIRST TRY, GDM login screen (user test) at ~12:08:10Z.
+        GDM GREETER KEYBOARD DEAD on first boot (stock Zorin, nothing of ours installed yet): mouse worked, typed text never appeared in the password field (checked by revealing it), Ctrl+Alt+F3 worked. journal (up/boot1-journal.txt): gnome-shell[1254] "Error processing key on IM: ... /org/freedesktop/IBus/InputContext_2 n existe pas" on every key press; two greeter ibus-daemons started by gnome-shell at 14:08:00 local ("--panel disable" pid 1447 and "--panel disable -r --xim" pid 1541), up/boot1-greeter-ps.txt. Back arrow + reselect user did not help. Workaround: tty3 login test/azerty (Belgian typing fine), sudo systemctl restart gdm3 at 12:15:48Z -> new greeter takes keys (azerty shown in the revealed field).
+Step 7  12:23:34Z-12:25:50Z apt-get install (3 new packages, 0 errors; I added -o DPkg::Lock::Timeout=600 in case an updater held the lock) + sudo be-azerty-fix system: all ✔ (initramfs rebuilt, keyd active). Maintainer check OK. Before that (12:19Z) a polkit dialog for a background installer ("Installation des m...", probably language packs) popped up, took my typed command as its password and failed; I cancelled it.
+Step 8  12:27:22Z sudo reboot -> unlock prompt (be) by 12:27:44Z (22 s; so the first boot was probably as fast, my first wait tool could not see it). Typed azerty@é + Enter 12:27:54Z -> UNLOCKED FIRST TRY (rebuilt initramfs), GDM 12:28:3xZ. GDM greeter typing WORKED this boot (revealed field showed azerty). Logged in 12:29:18Z, terminal 12:30Z. /tmp was cleared by the reboot, so I re-fetched kbstate.sh + durability-guest.sh.
+Step 9  12:31:08-12:32:47Z short-probe inst-after-reboot: plain azerty é | AltGr @€ | CtrlAlt @€ | Caps ²123°_%?.A | numpad: NumLock was OFF after login (cursor keys) -> after toggle 1.5. PASS.
+Step 10 12:33:07-12:40:52Z durability-host.py zi azerty (7 min 45 s): 13 steps, all lines azerty é | @€ | @€ except C1 (keyd stopped: Ctrl+Alt 2 e -> é, expected) and A2a (US planted first: US typing, expected). keyd restarted after kill -9 and SIGTERM (new pids), stop -> inactive (not failed), broken extra config ignored. Final state left by the script: DECIMAL=comma (kpdl:comma,caps:be_windows). PASS.
+Step 11 12:44:39Z logout (system menu > Éteindre > Fermer la session > Fermer la session), GDM again: typing works (revealed field showed
+        azerty), login 12:45:54Z, terminal, short-probe inst-relogin 12:46:59-12:48:32Z: plain azerty é | AltGr @€ | CtrlAlt @€ |
+        Caps ²123°_%?.A | numpad after NumLock on: 1,5 (comma, as left by the durability script's last step A5). PASS.
+Step 12 12:48:44Z sudo be-azerty-fix check: all ✔ (packages 0.9.1 / 0.9.1 / keyd 2.5.0-5~ubuntu24.04.1, XKBLAYOUT=be,
+        kpdl:comma,caps:be_windows, Caps option files present, keyd installed + running, initramfs newer than /etc/default/keyboard). PASS.
+End     VM powered off from the guest (sudo poweroff). zi.qcow2 kept in WSL: /root/be-rig/zi.qcow2 (not copied to Windows).
+
+SUMMARY (pass/fail per step)
+  1 setup + Zorin ISO download/check ........ PASS (8 min 17 s, installed xorriso + imagemagick inside WSL only)
+  2 Belgian ISO build + self-check .......... PASS (sha256 1bc39ccffc178dbcb46cc4856f60ff1b3cca35af8d8c8680a767a919939adba7)
+  3 serve + upload servers .................. PASS
+  4 disk + VM start (KVM) ................... PASS (live desktop in ~112 s, French, no Welcome screen)
+  5 install, LVM + encryption ............... PASS (keyboard page preselected Belgian / Belgian; copy+install ~25 min, 11:32-11:57Z)
+  6 first boot unlock + login ............... unlock PASS first try; login PASS only after a workaround: GDM greeter ignored all
+                                               typing (IBus InputContext error, stock Zorin, before our packages), fixed by
+                                               restarting gdm3 from tty3. Did NOT recur on boot 2 or after logout.
+  7 packages + be-azerty-fix system ......... PASS (Maintainer line correct)
+  8 reboot, unlock with rebuilt initramfs .... PASS first try (prompt 22 s after reboot)
+  9 typing probe after reboot ............... PASS
+ 10 durability (13 steps) ................... PASS (7 min 45 s)
+ 11 logout/login + probe .................... PASS
+ 12 be-azerty-fix check ..................... PASS
+
+UNEXPECTED / WORTH KNOWING
+- Boot 1 GDM greeter: keyboard dead in the password field (mouse fine, Ctrl+Alt+F3 fine). boot1-journal.txt: 51 x
+  "gnome-shell: Error processing key on IM: ... /org/freedesktop/IBus/InputContext_2 n'existe pas"; boot1-greeter-ps.txt: two
+  greeter ibus-daemons started by gnome-shell in the same second ("--panel disable" pid 1447 without engines, "--panel disable -r
+  --xim" pid 1541 with ibus-engine-simple). Nothing of this project was installed yet, so it is a stock Zorin 18.1 / GNOME / IBus
+  race on the first boot after install, not caused by our packages. Boot 2: 0 such errors (boot2-journal.txt). A real user would
+  see a login screen that ignores the keyboard; workaround: Ctrl+Alt+F3, log in, sudo systemctl restart gdm3 (or just reboot).
+  Worth a line in the README known issues / T14s test plan; I did not change any repo file for it.
+- After the first login, a background installer ("Installation des m...", probably missing language packs) raised a polkit
+  password dialog that stole the focus; my typed command went into it and failed authentication; I cancelled it.
+- NumLock is off after every login in this VM (GNOME default), so the probe's first numpad try types cursor keys; the second
+  (after NumLock on) is the real result.
+- kbstate "accounts:" is empty when sudo has no cached password (it uses sudo -n); not a fault.
+- Installer choices I made that the run sheet did not specify: unchecked "download updates" and "third-party software", ticked
+  "do not take part in the census" (privacy).
+- Rig: typing commands with $ through PowerShell -> wsl -> bash -c loses the $ (the guest got "wget .../8000/"); I switched to
+  typing guest commands from files (typed-commands.log lists every line typed). Two of my upload names were wrong (.txt instead of
+  .log); re-uploaded, no data lost.
+
+EXACT COMMANDS (host = WSL Ubuntu-24.04 as root, cwd /root/be-rig unless noted)
+  wsl -d Ubuntu-24.04 -u root -- bash "/mnt/c/Users/<you>/zorin and Mint keyboard driver resolution/rig/wsl-setup.sh" zorin
+  bash "/mnt/c/Users/<you>/zorin and Mint keyboard driver resolution/tools/make_belgian_iso.sh" iso/Zorin-OS-18.1-Core-64-bit.iso iso/zorin-belgian.iso
+  serve/: cp dist/*.deb be-azerty-fix.sh rig/kbstate.sh rig/durability-guest.sh; keyd_2.5.0-5~ubuntu24.04.1_amd64.deb also as keyd_backport_amd64.deb
+  python3 -m http.server 8000 --bind 127.0.0.1 --directory /root/be-rig/serve ; python3 rig/upload_server.py /root/be-rig/up
+  qemu-img create -f qcow2 zi.qcow2 40G
+  python3 rig/qemu_rig.py start zi --iso iso/zorin-belgian.iso --disk zi.qcow2 --mem 6144 --smp 4 --cpu host --vga virtio
+  (after install) python3 rig/qemu_rig.py stop zi ; python3 rig/qemu_rig.py start zi --disk zi.qcow2 --mem 6144 --smp 4 --cpu host --vga virtio
+  guest: see typed-commands.log (download, apt-get install, be-azerty-fix system, reboot, check, uploads)
+  bash rig/short-probe.sh zi inst-after-reboot ; python3 rig/durability-host.py zi azerty ; bash rig/short-probe.sh zi inst-relogin

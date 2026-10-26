@@ -1,0 +1,55 @@
+#!/bin/sh
+set -e
+
+RULES=/usr/share/X11/xkb/rules/evdev
+OVERRIDE=/usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override
+
+case "$1" in
+    remove|purge|abort-install|disappear)
+        # Give xkb-data its own rules file back (one rename, so it never goes missing), then drop the diversion.
+        if dpkg-divert --list "$RULES" | grep -q belgian-azerty-windows; then
+            if [ -f "$RULES.distrib" ]; then
+                mv -f "$RULES.distrib" "$RULES"
+            fi
+            dpkg-divert --package belgian-azerty-windows --no-rename --remove "$RULES"
+        fi
+        # Without the rule, caps:be_windows is an unknown option (ignored, Linux Caps Lock); take it out of the system
+        # default too, so nothing refers to a removed package. keyboard-configuration reads this file as its truth.
+        if [ -f /etc/default/keyboard ] && grep -q '^XKBOPTIONS=.*caps:be_windows' /etc/default/keyboard; then
+            sed -i -E '/^XKBOPTIONS=/{s/caps:be_windows,?//; s/,("?)$/\1/}' /etc/default/keyboard
+        fi
+        # Cinnamon defaults written by "be-azerty-fix system".
+        if [ -f "$OVERRIDE" ]; then
+            rm -f "$OVERRIDE"
+            if command -v glib-compile-schemas >/dev/null; then
+                glib-compile-schemas /usr/share/glib-2.0/schemas || true
+            fi
+        fi
+        # ibus skip (automatic for the Terminal and the text editor, or "be-azerty-fix ibus-skip on ..."): remove each
+        # user's marked menu-file copies and systemd drop-ins, as that user (so nothing outside their own files can be
+        # hit). Purge also forgets the list and the automatic on/off choice.
+        if [ "$1" = remove ] || [ "$1" = purge ]; then
+            getent passwd | while IFS=: read -r u _ uid _ _ home _; do
+                { [ "$uid" -ge 1000 ] && [ "$uid" -lt 60000 ]; } || [ "$uid" = 0 ] || continue
+                [ -d "$home" ] || continue
+                runuser -u "$u" -- sh -c '
+                    for f in "$1"/.local/share/applications/*.desktop; do
+                        [ -f "$f" ] && grep -q "^X-BelgianAzerty-IbusSkip=" "$f" && rm -f "$f"
+                    done
+                    for f in "$1"/.config/systemd/user/*.d/zz-belgian-azerty-ibus-skip.conf; do
+                        [ -f "$f" ] && rm -f "$f" && rmdir "${f%/*}" 2>/dev/null
+                    done
+                    if [ "$2" = purge ]; then
+                        rm -f "$1/.config/belgian-azerty/ibus-skip" "$1/.config/belgian-azerty/ibus-skip-auto"
+                        rmdir "$1/.config/belgian-azerty" 2>/dev/null
+                    fi
+                    true' sh "$home" "$1" || true
+            done
+        fi
+        if [ "$1" = purge ]; then
+            rm -rf /var/lib/belgian-azerty-windows   # choices saved by "be-azerty-fix system"
+        fi
+        ;;
+esac
+
+#DEBHELPER#

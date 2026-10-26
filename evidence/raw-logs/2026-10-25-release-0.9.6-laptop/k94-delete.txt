@@ -1,0 +1,8 @@
+k94 snapshot deletion, 2026-10-25 ~14:41 local (Younes approved 11:19Z, re-approved via prompt in this session)
+BEFORE: pgrep -a qemu -> (none); "no-k94-qemu"
+-rw-r--r-- 1 root root 4042653696 Oct 25 02:35 k94-mint-state.qcow2
+-rw-r--r-- 1 root root 4066181120 Oct 25 03:04 k94-zorin-state.qcow2
+df -h /: /dev/sdd 1007G size, 71G used, 886G avail, 8%
+COMMAND: wsl -d Ubuntu-24.04 -u root -- (delete) /root/be-rig/k94/k94-mint-state.qcow2 /root/be-rig/k94/k94-zorin-state.qcow2
+AFTER: both files gone; rest of /root/be-rig/k94 unchanged (hrun.sh kit94 krun.sh logs rig serve sh.sh shots stamp ty.sh uploads)
+df -h /: /dev/sdd 1007G size, 64G used, 893G avail, 7%

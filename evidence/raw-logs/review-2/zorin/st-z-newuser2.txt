@@ -1,0 +1,26 @@
+uid=1002(newbe2) gid=1002(newbe2) groupes=1002(newbe2)
+dconf user db: drwx------  2 newbe2 newbe2   60 oct 24 07:00 .
+drwxr-xr-x 14 newbe2 newbe2  400 oct 24 06:59 ..
+-rw-rw-r--  1 newbe2 newbe2 5098 oct 24 07:00 user
+dconf dump cinnamon input-sources: []
+dconf dump gnome input-sources: [[/]
+sources=[('xkb', 'be')]
+xkb-options=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']]
+dconf libgnomekbd: []
+=== kbstate 07:00:34Z z-newuser2 ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:48
+WARNING: Running setxkbmap against an Xwayland server
+rules:      evdev
+model:      pc105
+layout:     us
+Le schéma « org.cinnamon.desktop.input-sources » n’existe pas
+['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']

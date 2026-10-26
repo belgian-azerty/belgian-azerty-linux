@@ -1,0 +1,2 @@
+# Re-add the caps:be_windows rule whenever xkb-data (or anything else) installs files in the rules directory.
+interest-noawait /usr/share/X11/xkb/rules

@@ -1,0 +1,5 @@
+$ be-azerty-fix ibus-skip on vscode text-editor
+  [31m✘[0m code: no menu file code.desktop found (is the app installed? see: ls /usr/share/applications)
+  [32m✔[0m org.gnome.TextEditor: skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  · takes effect the next time org.gnome.TextEditor starts from the menu or the dock; close it completely first
+exit 1

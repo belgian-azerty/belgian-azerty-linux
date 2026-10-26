@@ -1,0 +1,8 @@
+sam 24 oct 2026 04:02:29 UTC
+BOOT_IMAGE=/casper/vmlinuz initrd=/casper/initrd.zstd quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 ---
+Unit casper-md5check.service could not be found.
+{
+  "checksum_missmatch": [
+],
+  "result": "pass"
+}

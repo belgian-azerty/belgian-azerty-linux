@@ -1,0 +1,15 @@
+z-wiped plain: azerty é | AltGr 2 e: @€ | CtrlAlt 2 e: @€ | Caps ² 1 2 3 ) - ù , ; a: ²&É")-Ù,;A | numpad 1 dec 5: 1.5
+=== kbstate 02:36:44Z z-wiped ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 02:08
+WARNING: Running setxkbmap against an Xwayland server
+['lv3:ralt_switch']
+session=wayland

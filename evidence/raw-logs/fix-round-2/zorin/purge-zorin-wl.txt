@@ -1,0 +1,23 @@
+=== plain purge zorin-wl 2026-10-24T09:04:14Z Zorin OS 18.1 session=wayland
+before: XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" | user: ['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']
+Suppression de keyd (2.5.0-5~ubuntu24.04.1) ...
+Traitement des actions différées (« triggers ») pour man-db (2.12.0-4build2) ...
+(Lecture de la base de données... (Lecture de la base de données... 5%(Lecture de la base de données... 10%(Lecture de la base de données... 15%(Lecture de la base de données... 20%(Lecture de la base de données... 25%(Lecture de la base de données... 30%(Lecture de la base de données... 35%(Lecture de la base de données... 40%(Lecture de la base de données... 45%(Lecture de la base de données... 50%(Lecture de la base de données... 55%(Lecture de la base de données... 60%(Lecture de la base de données... 65%(Lecture de la base de données... 70%(Lecture de la base de données... 75%(Lecture de la base de données... 80%(Lecture de la base de données... 85%(Lecture de la base de données... 90%(Lecture de la base de données... 95%(Lecture de la base de données... 100%(Lecture de la base de données... 300436 fichiers et répertoires déjà installés.)
+Purge des fichiers de configuration de keyd (2.5.0-5~ubuntu24.04.1) ...
+Purge des fichiers de configuration de keyd-belgian-windows (0.9.1) ...
+Purge des fichiers de configuration de belgian-azerty-windows (0.9.1) ...
+purge rc=0
+after: XKBOPTIONS="lv3:ralt_switch,kpdl:comma"
+debconf optionscode: 0 lv3:ralt_switch,kpdl:comma,caps:be_windows
+user settings: ['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']
+keyd unit: not-found failed 
+rules: 0 caps lines; diversion: 
+ls: impossible d'accéder à '/var/lib/belgian-azerty-windows': Aucun fichier ou dossier de ce nom
+ls: impossible d'accéder à '/etc/keyd': Aucun fichier ou dossier de ce nom
+xkbcli with the leftover option: /tmp/purge.sh: ligne 14: xkbcli : commande introuvable
+rc=0
+Your console font configuration will be updated the next time your system
+boots. If you want to update it now, run 'setupcon' from a virtual console.
+update-initramfs is disabled since running on read-only media
+after dpkg-reconfigure: XKBOPTIONS="lv3:ralt_switch,kpdl:comma"
+after apt reinstall: XKBOPTIONS="lv3:ralt_switch,kpdl:comma"

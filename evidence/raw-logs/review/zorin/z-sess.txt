@@ -1,0 +1,37 @@
+# GDM configuration storage
+#
+# See /usr/share/gdm/gdm.schemas for a list of available options.
+
+[daemon]
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=false
+
+# Enabling automatic login
+AutomaticLoginEnable=true
+AutomaticLogin=zorin
+
+# Enabling timed login
+TimedLoginEnable=false
+#  TimedLogin = user1
+#  TimedLoginDelay = 10
+
+[security]
+
+[xdmcp]
+
+[chooser]
+
+[debug]
+# Uncomment the line below to turn on debugging
+# More verbose logs
+# Additionally lets the X server dump core if it crashes
+#Enable=true
+
+/usr/share/wayland-sessions:
+zorin.desktop
+zorin-wayland.desktop
+
+/usr/share/xsessions:
+zorin.desktop
+zorin-xorg.desktop
+2026-10-24T00:46:27.798751+00:00 zorin systemd[2021]: org.gnome.Shell@wayland.service - GNOME Shell on Wayland was skipped because of an unmet condition check (ConditionEnvironment=XDG_SESSION_TYPE=wayland).

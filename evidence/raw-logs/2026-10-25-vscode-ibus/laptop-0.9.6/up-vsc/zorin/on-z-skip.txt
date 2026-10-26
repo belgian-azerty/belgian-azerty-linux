@@ -1,0 +1,2 @@
+  [32m✔[0m com.microsoft.VSCode: skips ibus (menu entry /home/zorin/.local/share/applications/com.microsoft.VSCode.desktop)
+  · takes effect the next time com.microsoft.VSCode starts from the menu or the dock; close it completely first

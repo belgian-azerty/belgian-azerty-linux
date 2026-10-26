@@ -1,0 +1,30 @@
+== editor 11:26:25
+shell in this terminal: GTK_IM_MODULE=ibus
+pid 2813 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE=gtk-im-context-simple, im-ibus loaded: 0
+pid 2976 xed : GTK_IM_MODULE=gtk-im-context-simple, im-ibus loaded: 0
+-- be-azerty-fix ibus-skip
+ibus skip for mint:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  [32m✔[0m org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  [32m✔[0m org.x.editor (automatic): skips ibus (menu entry /home/mint/.local/share/applications/org.x.editor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+-- keyboard settings (org.cinnamon.desktop.input-sources)
+[('xkb', 'be')]
+['xkb:be::deu']
+-- files
+ls: cannot access '/home/mint/.config/belgian-azerty/': No such file or directory
+/home/mint/.config/systemd/user/gnome-terminal-server.service.d/:
+total 4
+drwxrwxr-x 2 mint mint  60 Oct 25 11:19 .
+drwxrwxr-x 3 mint mint  60 Oct 25 11:19 ..
+-rw-rw-r-- 1 mint mint 183 Oct 25 11:19 zz-belgian-azerty-ibus-skip.conf
+
+/home/mint/.local/share/applications/:
+total 12
+drwxr-xr-x  2 mint mint   80 Oct 25 11:19 .
+drwxr-xr-x 11 mint mint  240 Oct 25 11:18 ..
+-rw-rw-r--  1 mint mint 7056 Oct 25 11:19 org.x.editor.desktop
+-rw-r--r--  1 mint mint  508 Oct 25 11:17 webapp-OnlineChat4519.desktop
+-- login refresh in the journal
+-- typebox info
+cat: /tmp/tb.txt.info: No such file or directory

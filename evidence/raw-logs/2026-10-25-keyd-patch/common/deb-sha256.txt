@@ -1,0 +1,7 @@
+6e50c62f8e6414cd94f1496652e2f642e25c786005d1cceec49e42b3f7b880da  dist/belgian-azerty-windows_0.9.4_all.deb
+f9de04365e1c601a82101f3e29e3f624d9dfeedb629a564ed4222405dd33589c  dist/keyd-belgian-windows_0.9.4_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  dist/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+62ddfe6a602bcc67f452cf6edb5c404f35b9d86fa6e8dfb156a04ea1c19716be  dist-0.9.3/belgian-azerty-windows_0.9.3_all.deb
+7f3c70248a95612a572d13ccd018827d9afda4df34620ad0e4f214f3354fc369  dist-0.9.3/keyd-belgian-windows_0.9.3_all.deb
+4067e4cd92cb0693fb0bfa17dc592b1d4c255cda4288af8d1cdf65b86b3c3e67  dist-0.9.3/keyd_2.5.0-5~ubuntu24.04.1_amd64.deb
+6d6b3d923b5b903366a71dc1420c421a68cd56a4c6c58dd714476457fbaae941  be-azerty-fix.sh

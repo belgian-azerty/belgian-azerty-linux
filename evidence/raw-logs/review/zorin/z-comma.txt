@@ -1,0 +1,5 @@
+  [32m✔[0m setxkbmap be  (options lv3:ralt_switch,kpdl:comma,caps:be_windows)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: comma, Caps Lock: windows
+  · Live sessions forget this at reboot. For a USB that boots Belgian, add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+failed

@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = configure ] && [ -d /run/systemd/system ]; then
+    systemctl daemon-reload >/dev/null 2>&1 || true
+    # keyd's own package enables the service; on first install make sure it is enabled, then let it read the rules.
+    if [ -z "$2" ]; then
+        deb-systemd-helper enable keyd.service >/dev/null 2>&1 || true
+    fi
+    deb-systemd-invoke restart keyd.service >/dev/null 2>&1 || true
+fi
+
+#DEBHELPER#

@@ -1,0 +1,6 @@
+wayland
+sync=1
+active
+4062 /usr/bin/ibus-daemon --panel disable
+IBUS_ENABLE_SYNC_MODE=1
+['lv3:ralt_switch', 'caps:be_windows']

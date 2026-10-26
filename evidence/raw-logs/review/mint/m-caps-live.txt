@@ -1,0 +1,17 @@
+  [32m✔[0m Caps Lock option caps:be_windows installed (rule kept across xkb-data upgrades by an apt hook)
+  [32m✔[0m setxkbmap be  (options terminate:ctrl_alt_bksp,caps:be_windows)
+  [32m✔[0m Cinnamon libgnomekbd layouts set
+  [32m✔[0m Cinnamon input-sources set
+  [32m✔[0m Cinnamon numpad decimal: period, Caps Lock: windows
+  · Live sessions forget this at reboot. For a USB that boots Belgian, add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+=== kbstate 22:38:10Z after-caps-live ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be,be variant: , options: terminate:ctrl_alt_bksp,caps:be_windows 
+gkbd:     ['be\t']
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch'] session=x11
+cinnamon: [('xkb', 'be')]
+accounts: 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:32 /boot/initrd.img-6.14.0-37-generic vs /etc/default/keyboard 21:59

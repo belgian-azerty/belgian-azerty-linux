@@ -1,0 +1,4 @@
+== paused-stock 20:51:56 launched with /usr/share/applications/com.microsoft.VSCode.desktop, shell GTK_IM_MODULE=ibus
+pid 5501 /usr/share/code/code /tmp/vsc-paused-stock.txt : im-ibus loaded: 5
+pid 5509 /usr/share/code/code --type=zygote --no-zygote-sandbox : im-ibus loaded: 0
+pid 5510 /usr/share/code/code --type=zygote : im-ibus loaded: 0

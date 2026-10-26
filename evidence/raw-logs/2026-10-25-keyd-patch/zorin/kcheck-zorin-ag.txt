@@ -1,0 +1,12 @@
+# /root/be-rig/k94/uploads/keylog-zorin-ag.txt: devices ['keyd virtual keyboard']
+  line 1: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 96 ms
+  line 2: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 82 ms
+  line 3: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 79 ms
+  line 4: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 77 ms
+  line 5: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 90 ms
+  line 6: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 86 ms
+  line 7: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 95 ms
+  line 8: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 116 ms
+  line 9: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 77 ms
+  line 10: RIGHTALT down x1, before 1st symbol [RIGHTALT:d], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 79 ms
+lines flagged: 0

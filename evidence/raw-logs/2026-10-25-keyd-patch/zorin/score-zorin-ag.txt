@@ -1,0 +1,14 @@
+zorin-ag [altgr] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 120 ms min 61 ms
+start 01:57:52.626Z keyd=active keyd_pid=6517 ibus=on session=x11 desktop=zorin:GNOME load=1.18 0.68 0.42
+end 01:58:24.420Z keyd=active keyd_pid=6517 ibus=on session=x11 desktop=zorin:GNOME load=1.62 0.85 0.49
+expected: @€@€@€@€@€@€@€@€
+  1 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  2 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  3 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  4 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  5 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  6 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  7 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  8 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  9 ok    @€@€@€@€@€@€@€@€   [keys in order]
+ 10 ok    @€@€@€@€@€@€@€@€   [keys in order]

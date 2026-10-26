@@ -1,0 +1,98 @@
+=== durability 2026-10-24T07:36:03Z Zorin OS 18.1 gnome live=overlay ===
+=== kbstate 07:36:04Z start ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:48
+A0 baseline | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+  keyd after stop: failed
+C1 keyd stopped (expected: plain and AltGr fine, Ctrl+Alt not @E) | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: é
+  keyd after start: active
+C2 keyd started again | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+  keyd 4 s after kill -9 of pid 22336: active, new pid 22441
+C3 4 s after kill -9 keyd | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+  reload rc=0 
+  keyd with a broken extra config: active
+C4 broken extra config + keyd reload | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+C5 broken config removed + reload | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+=== kbstate 07:38:50Z after-apps ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:48
+B1 after opening an editor, keyboard settings, files (closed again) and toggling an unrelated setting | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+  apt reinstall rc=0
+=== kbstate 07:39:33Z after-reinstall ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:48
+A3 after apt reinstall of keyboard-configuration + console-setup | plain: azertéy  | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+=== kbstate 07:40:01Z planted-us ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'us'), ('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=us xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:48
+Q@q US plqnted first in the desktop sources 5expected. US typing-  plqin. qwerty 2  QltGr?@ e. e  LCtrl?LQlt?@ e. e
+  fix system rc=0
+=== kbstate 07:41:57Z after-fix ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be options: caps:be_windows 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 07:41
+A2b after sudo be-azerty-fix system | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+  fix comma rc=0
+=== kbstate 07:43:32Z comma ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be options: kpdl:comma,caps:be_windows 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 07:43
+  fix period rc=0
+=== kbstate 07:44:51Z period-again ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be options: caps:be_windows 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 07:44
+A4 after Comma then back to Period | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€

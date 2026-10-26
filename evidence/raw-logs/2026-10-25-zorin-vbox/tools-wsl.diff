@@ -1,0 +1,14 @@
+diff -ru tools/stick/build-layer.sh tools-wsl/stick/build-layer.sh
+--- tools/stick/build-layer.sh	2026-10-25 12:44:07.000000000 +0100
++++ tools-wsl/stick/build-layer.sh	2026-10-25 12:56:19.030236169 +0100
+@@ -11,8 +11,8 @@
+ cleanup() { for m in dev/pts dev proc sys; do umount "$W/root/$m" 2>/dev/null || true; done
+             umount "$W/root" 2>/dev/null || true; umount "$W/lower" 2>/dev/null || true; rm -rf "$W"; }
+ trap cleanup EXIT
+-mkdir -p "$W/lower" "$W/upper" "$W/work" "$W/root"
+-mount -o loop,ro "$SQ" "$W/lower"
++mkdir -p "$W/upper" "$W/work" "$W/root"
++unsquashfs -q -d "$W/lower" "$SQ"   # WSL: kernel has no zstd squashfs (was: mount -o loop,ro "$SQ" "$W/lower")
+ mount -t overlay -o "lowerdir=$W/lower,upperdir=$W/upper,workdir=$W/work" overlay "$W/root"
+ for m in dev dev/pts proc sys; do mount --bind "/$m" "$W/root/$m"; done
+ mkdir -p "$W/root/tmp/belgian"

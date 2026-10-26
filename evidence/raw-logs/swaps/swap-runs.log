@@ -1,0 +1,66 @@
+15:58:01 t1 on on altgr n=10 gap=120 
+16:00:34 z1-on-ag120 on on altgr n=40 gap=120 
+16:02:00 z1-on-ag60 on on altgr n=40 gap=60 
+16:03:09 z1-on-ag30r on on altgr n=40 gap=30 --roll
+16:05:16 z1-on-ca120 on on ctrlalt n=40 gap=120 
+16:06:45 z1-on-ca60 on on ctrlalt n=40 gap=60 
+16:07:55 z1-on-ca30r on on ctrlalt n=40 gap=30 --roll
+16:09:30 z1-on-ag1-60 on on altgr1 n=40 gap=60 
+16:11:14 z1-on-ca1-60 on on ctrlalt1 n=40 gap=60 
+16:12:20 z1-on-pl30r on on plain n=40 gap=30 --roll
+16:13:48 z1-on-mx60 on on mixed n=40 gap=60 
+16:15:52 z1-off-ag120 off on altgr n=40 gap=120 
+16:17:19 z1-off-ag60 off on altgr n=40 gap=60 
+16:18:28 z1-off-ag30r off on altgr n=40 gap=30 --roll
+16:20:02 z1-off-ag1-60 off on altgr1 n=40 gap=60 
+16:21:09 z1-off-pl30r off on plain n=40 gap=30 --roll
+16:22:40 z1-off-mx60 off on mixed n=40 gap=60 
+16:24:13 z1-noibus-ca60 on off ctrlalt n=40 gap=60 
+16:25:24 z1-noibus-ag30r on off altgr n=40 gap=30 --roll
+16:26:53 z1-noibus-ag60 on off altgr n=40 gap=60 
+16:27:16 z1-restore on on altgr n=1 gap=120 
+16:29:19 bt1 on on ctrlalt n=5 gap=120  app=[box4]
+16:34:28 z2-on-ag30r on on altgr n=200 gap=30 --roll app=[terminal]
+16:39:02 z2-off-ag30r off on altgr n=200 gap=30 --roll app=[terminal]
+16:45:11 z2-on-ca60 on on ctrlalt n=200 gap=60  app=[terminal]
+16:51:12 z2-on-ag60 on on altgr n=200 gap=60  app=[terminal]
+16:57:13 z2-off-ag60 off on altgr n=200 gap=60  app=[terminal]
+16:57:35 z2-restore on on altgr n=1 gap=120  app=[terminal]
+17:00:52 z3-box-on-ca60 on on ctrlalt n=100 gap=60  app=[box4]
+17:04:16 z3-boxsimple-on-ca60 on on ctrlalt n=100 gap=60  app=[box4 GTK_IM_MODULE=simple]
+17:06:46 z3-box-on-ag30r on on altgr n=100 gap=30 --roll app=[box4]
+17:09:23 z3-boxsimple-on-ag30r on on altgr n=100 gap=30 --roll app=[box4 GTK_IM_MODULE=simple]
+17:11:55 z3-box-off-ag30r off on altgr n=100 gap=30 --roll app=[box4]
+17:12:15 z3-restore on on altgr n=1 gap=120  app=[terminal]
+17:32:43 z4-on-ca120 on on ctrlalt n=150 gap=120  app=[terminal]
+17:38:34 z4-on-ca90 on on ctrlalt n=150 gap=90  app=[terminal]
+17:44:18 z4-on-ag90 on on altgr n=150 gap=90  app=[terminal]
+17:50:03 z4-on-ca1-60 on on ctrlalt1 n=150 gap=60  app=[terminal]
+17:55:10 z4-on-ag1-60 on on altgr1 n=150 gap=60  app=[terminal]
+18:00:18 z4-off-ag1-60 off on altgr1 n=150 gap=60  app=[terminal]
+18:00:39 z4-restore on on altgr n=1 gap=120  app=[terminal]
+18:01:57 z5-dead-term on on dead n=10 gap=150  app=[terminal]
+18:02:51 z5-dead-box4 on on dead n=10 gap=150  app=[box4]
+18:03:51 z5-dead-box4simple on on dead n=10 gap=150  app=[box4 GTK_IM_MODULE=simple]
+18:04:50 z5-dead-box3simple on on dead n=10 gap=150  app=[box3 GTK_IM_MODULE=simple]
+18:05:11 z5-restore on on altgr n=1 gap=120  app=[terminal]
+18:24:47 m1-on-ag30r on on altgr n=150 gap=30 --roll app=[terminal]
+18:28:17 m1-off-ag30r off on altgr n=150 gap=30 --roll app=[terminal]
+18:32:59 m1-on-ca60 on on ctrlalt n=150 gap=60  app=[terminal]
+18:36:33 m1-on-ca30r on on ctrlalt n=150 gap=30 --roll app=[terminal]
+18:41:08 m1-on-ag60 on on altgr n=150 gap=60  app=[terminal]
+18:45:44 m1-off-ag60 off on altgr n=150 gap=60  app=[terminal]
+18:49:17 m1-noibus-ag30r on off altgr n=150 gap=30 --roll app=[terminal]
+18:49:41 m1-restore on on altgr n=1 gap=120  app=[terminal]
+18:52:09 m2-box3-on-ag30r on on altgr n=100 gap=30 --roll app=[box3]
+18:54:46 m2-box3sync1-on-ag30r on on altgr n=100 gap=30 --roll app=[box3 IBUS_ENABLE_SYNC_MODE=1]
+18:57:22 m2-box3sync2-on-ag30r on on altgr n=100 gap=30 --roll app=[box3 IBUS_ENABLE_SYNC_MODE=2]
+18:59:59 m2-box3simple-on-ag30r on on altgr n=100 gap=30 --roll app=[box3 GTK_IM_MODULE=simple]
+19:03:17 m2-box3-on-ca60 on on ctrlalt n=100 gap=60  app=[box3]
+19:03:38 m2-restore on on altgr n=1 gap=120  app=[terminal]
+19:07:42 m3-noibus-ca30r on off ctrlalt n=150 gap=30 --roll app=[terminal]
+19:08:06 m3-restore on on altgr n=1 gap=120  app=[terminal]
+19:10:38 m4-box3-on-ca30r on on ctrlalt n=100 gap=30 --roll app=[box3]
+19:13:19 m4-box3sync1-on-ca30r on on ctrlalt n=100 gap=30 --roll app=[box3 IBUS_ENABLE_SYNC_MODE=1]
+19:15:59 m4-box3simple-on-ca30r on on ctrlalt n=100 gap=30 --roll app=[box3 GTK_IM_MODULE=simple]
+19:16:20 m4-restore on on altgr n=1 gap=120  app=[terminal]

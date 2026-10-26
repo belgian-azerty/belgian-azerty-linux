@@ -1,0 +1,10 @@
+SAME     ctl/conffiles  old ee14eddcd83efc7d  new ee14eddcd83efc7d
+DIFF     ctl/control  old 98bb19443e6ef734  new 72a0600912b709ab
+DIFF     ctl/md5sums  old 3a85c7f2aca87c05  new a171bb7b9fdea4fa
+SAME     ctl/postinst  old 31471a244cb6e1f1  new 31471a244cb6e1f1
+SAME     ctl/postrm  old 593f7555122eb36c  new 593f7555122eb36c
+SAME     data/etc/keyd/be-winaltgr.conf  old faff7765a175639b  new faff7765a175639b
+SAME     data/usr/lib/systemd/system/keyd.service.d/belgian-windows-restart.conf  old 8cea9dfda3c8782c  new 8cea9dfda3c8782c
+DIFF     data/usr/share/doc/keyd-belgian-windows/changelog.gz  old fb09838540f8202b  new 5136cd7025ea12e5
+DIFF     data/usr/share/doc/keyd-belgian-windows/copyright  old ff47adffa2e29768  new 5c394f1f162e56e9
+modes/owners/paths: SAME

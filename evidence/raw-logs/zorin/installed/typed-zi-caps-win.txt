@@ -1,0 +1,9 @@
+zi-caps-win plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+zi-caps-win LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-caps-win AltGr: |@#{[^{}€[]'`~\
+zi-caps-win Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-caps-win RCtrl+LAlt 2 e: @€
+zi-caps-win Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+zi-caps-win Caps+Shift same keys: ³&é"'(§è!çà)-^$ùµ,;:=>az
+zi-caps-win Caps+AltGr: |@#{[^{}€[]'`~\
+zi-caps-win order Ctrl+Alt 2 e x8: €€@@@€@€€@@€@€@€

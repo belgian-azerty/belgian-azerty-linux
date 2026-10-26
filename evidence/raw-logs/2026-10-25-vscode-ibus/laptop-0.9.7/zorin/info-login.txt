@@ -1,0 +1,16 @@
+== login 20:59:22
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  [32m✔[0m org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  [32m✔[0m org.gnome.TextEditor (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  [32m✔[0m com.microsoft.VSCode (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/com.microsoft.VSCode.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+-- VS Code copy
+-rw-rw-r-- 1 zorin zorin 1098 Oct 25 20:58 /home/zorin/.local/share/applications/com.microsoft.VSCode.desktop
+/home/zorin/.local/share/applications/com.microsoft.VSCode.desktop:X-BelgianAzerty-IbusSkip=true
+/home/zorin/.local/share/applications/com.microsoft.VSCode.desktop:Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F
+/home/zorin/.local/share/applications/com.microsoft.VSCode.desktop:Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code --new-window %F
+-- keyboard settings (org.gnome.desktop.input-sources)
+[('xkb', 'be')]
+-- VS Code processes

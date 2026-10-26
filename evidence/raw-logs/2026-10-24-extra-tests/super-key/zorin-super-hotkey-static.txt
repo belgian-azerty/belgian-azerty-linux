@@ -1,0 +1,29 @@
+Static check of Zorin 18.1 Core (filesystem.squashfs inside our stick, identical to stock: our layer zz-belgian-azerty.squashfs adds no gsettings schema or override)
+== zorin-menu schema default
+16:    <key name="super-hotkey" type='b'>
+17-      <default>false</default>
+18-      <summary>Super hotkey</summary>
+19-      <description>Binds the Super key to toggling the Zorin Menu.</description>
+== overrides mentioning zorin-menu
+r/usr/share/glib-2.0/schemas/50_zorin-desktop-session.gschema.override:7:enabled-extensions = ['drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'x11gestures@joseexposito.github.io', 'zorin-appindicator@zorinos.com', 'zorin-desktop-icons@zorinos.com', 'zorin-menu@zorinos.com', 'zorin-printers@zorinos.com', 'zorin-taskbar@zorinos.com', 'zorin-tiling-shell@zorinos.com']
+r/usr/share/glib-2.0/schemas/50_zorin-desktop-session.gschema.override-8-
+r/usr/share/glib-2.0/schemas/50_zorin-desktop-session.gschema.override-9-[org.gnome.desktop.interface:zorin]
+--
+r/usr/share/glib-2.0/schemas/50_zorin-desktop-session.gschema.override:95:[org.gnome.shell.extensions.zorin-menu:zorin]
+r/usr/share/glib-2.0/schemas/50_zorin-desktop-session.gschema.override-96-layout = 'ALL'
+r/usr/share/glib-2.0/schemas/50_zorin-desktop-session.gschema.override-97-
+== every file in the extracted dirs that mentions super-hotkey
+r/usr/share/gnome-shell/extensions/zorin-menu@zorinos.com/extension.js
+r/usr/share/glib-2.0/schemas/org.gnome.shell.extensions.zorin-menu.gschema.xml
+r/usr/lib/python3/dist-packages/zorin_appearance/interface.py
+== Zorin Appearance > Interface: user choice 'Left Super Key: Zorin Menu / Activities Overview'
+
+        if ZORIN_TASKBAR_EXTENSION in installed_extensions:
+            self.zorin_menu_shortcut = widgets.BooleanComboExtension(_('Left Super Key'),
+                                                                     MENU_SCHEMA,
+                                                                     'super-hotkey',
+                                                                     'Zorin ' + _('Menu'),
+                                                                     _('Activities Overview'),
+                                                                     ZORIN_MENU_EXTENSION)
+== our layer
+0

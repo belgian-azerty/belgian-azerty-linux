@@ -1,0 +1,10 @@
+--- sam 24 oct 2026 08:33:15 UTC T14s, session x11, kernel 6.17.0-20-generic
+08:33:57Z x11 keyd=active ibus=on A keyd-on Ctrl+Alt: order right in 5/5 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)
+08:34:19Z x11 keyd=active ibus=on B keyd-on AltGr: order right in 5/5 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)
+08:34:47Z x11 keyd=inactive ibus=on C keyd-off AltGr (stock Linux): order right in 5/5 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)
+08:35:20Z x11 keyd=active ibus=off D keyd-on ibus-off Ctrl+Alt: order right in 5/5 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)
+--- sam 24 oct 2026 08:41:13 UTC T14s, session wayland, kernel 6.17.0-20-generic
+08:41:55Z wayland keyd=active ibus=on A keyd-on Ctrl+Alt: order right in 0/5 lines (wrong: [@€@€@€@€@€€@@€@€] [@€@€@€€@€@@€@€@€] [@€@€€@@€@€@€€@@€] [@€€@@€@€€@@€@€€@] [€@@€€@@€@€€@€@@€]); 0 lines not 16 characters (dropped/extra key, or miscounted)
+08:42:18Z wayland keyd=active ibus=on B keyd-on AltGr: order right in 2/5 lines (wrong: [@€@€€€@@@€@€@€@€] [@€€€@@€@@€@€@€@€] [@€@€@€@€@€€@@€@€]); 0 lines not 16 characters (dropped/extra key, or miscounted)
+08:42:47Z wayland keyd=inactive ibus=on C keyd-off AltGr (stock Linux): order right in 4/5 lines (wrong: [@€@€@€@€€@@€@€@€]); 0 lines not 16 characters (dropped/extra key, or miscounted)
+08:43:20Z wayland keyd=active ibus=off D keyd-on ibus-off Ctrl+Alt: order right in 5/5 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)

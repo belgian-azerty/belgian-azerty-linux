@@ -1,0 +1,39 @@
+Packages:
+  ✔ belgian-azerty-windows 0.9.0
+  ✔ keyd-belgian-windows 0.9.0
+  ✔ keyd 2.5.0-5~ubuntu24.04.1
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: comma (Windows "Belgian (Comma)"), XKBOPTIONS=lv3:ralt_switch,kpdl:comma,caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  ✔ Caps Lock option files present
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     be,be
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows
+Desktop setting (cinnamon):
+  ['be\t']
+  [('xkb', 'be')]
+  · xkb-options: terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows
+  ✔ new users and reset settings start with: ['terminate:ctrl_alt_bksp', 'kpdl:comma', 'caps:be_windows']
+AccountsService record for mint:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check
+--- override:
+# Written by be-azerty-fix system; removed by be-azerty-fix uninstall and by removing belgian-azerty-windows.
+# Default keyboard options for Cinnamon users without a setting of their own (new users, reset settings).
+[org.cinnamon.desktop.input-sources]
+xkb-options=['terminate:ctrl_alt_bksp', 'kpdl:comma', 'caps:be_windows']

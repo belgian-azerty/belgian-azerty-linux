@@ -1,0 +1,85 @@
+=== r2 mint-x11 2026-10-24T10:38:31Z Linux Mint 22.3 session=x11
+belgian-azerty-windows	0.9.1
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.1
+--- sudo be-azerty-fix system (no DECIMAL/CAPS)
+Choices: numpad decimal period (default), Caps Lock windows (default). Change with DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  [32m✔[0m Cinnamon default for new users and reset settings: terminate:ctrl_alt_bksp,caps:be_windows
+3. Your desktop (cinnamon) for user mint
+  [32m✔[0m setxkbmap be  (options terminate:ctrl_alt_bksp,caps:be_windows)
+  [32m✔[0m Cinnamon libgnomekbd layouts set
+  [32m✔[0m Cinnamon input-sources set
+  [32m✔[0m Cinnamon numpad decimal: period, Caps Lock: windows
+4. Login screen
+  [32m✔[0m LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+rc=0 decimal=period
+--- under sudo, logind says: x11, sudo env XDG_SESSION_TYPE=unset
+--- sudo DECIMAL=comma be-azerty-fix system
+Choices: numpad decimal comma (given), Caps Lock windows (kept from the last run). Change with DECIMAL=period|comma CAPS=windows|linux
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch,kpdl:comma,caps:be_windows)
+  [32m✔[0m setxkbmap be  (options terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows)
+  [32m✔[0m Cinnamon numpad decimal: comma, Caps Lock: windows
+decimal=comma
+--- rerun without DECIMAL (must keep comma)
+Choices: numpad decimal comma (kept from the last run), Caps Lock windows (kept from the last run). Change with DECIMAL=period|comma CAPS=windows|linux
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch,kpdl:comma,caps:be_windows)
+  [32m✔[0m setxkbmap be  (options terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows)
+  [32m✔[0m Cinnamon numpad decimal: comma, Caps Lock: windows
+decimal=comma
+--- saved choices: DECIMAL=comma CAPS=windows 
+--- systemctl stop keyd
+after stop: inactive result=success
+after start: active
+after plain kill (SIGTERM) of 5093: active, new pid 5124
+[Service]
+Restart=always
+RestartSec=1
+SuccessExitStatus=2 15
+--- be-azerty-fix check
+Packages:
+  [32m✔[0m belgian-azerty-windows 0.9.1
+  [32m✔[0m keyd-belgian-windows 0.9.1
+  [32m✔[0m keyd 2.5.0-5~ubuntu24.04.1
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  [32m✔[0m XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: comma (Windows "Belgian (Comma)"), XKBOPTIONS=lv3:ralt_switch,kpdl:comma,caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  [32m✔[0m Caps Lock option files present
+  · choices saved by the last "system" run: DECIMAL=comma CAPS=windows 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     be,be
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows
+Desktop setting (cinnamon):
+  ['be\t']
+  [('xkb', 'be')]
+  · xkb-options: terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows
+  [32m✔[0m new users and reset settings start with: ['terminate:ctrl_alt_bksp', 'kpdl:comma', 'caps:be_windows']
+AccountsService record for mint:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  [32m✔[0m keyd installed with the Belgian Ctrl+Alt rules
+  [32m✔[0m keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check

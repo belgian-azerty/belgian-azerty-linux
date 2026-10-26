@@ -1,0 +1,39 @@
+Caps Lock desync: recovery checks on OUR installed Zorin 18.1 (0.9.3 packages, updated), Wayland session, 2026-10-25 04:29-04:56Z.
+Row = keys a, Shift+a, 2, Shift+2, ù, Shift+ù, then the digit row 1..0 (as QEMU raw keys). Literal output, copied from the
+screenshots named in [brackets] (shots/) or from the recorder files named in (up/).
+Correct row with Caps off:  aA é2 ù%  &é"'(§è!çà
+Correct row with Caps on (caps:be_windows): Aa 2é %ù 1234567890
+
+0. Producing the desync was NOT deterministic this time.
+   - tries 1-4 (04:29-04:41Z): no desync. Afterwards found the reason: the session was "Zorin Desktop on Xorg"
+     (GDM had kept the X11 choice from the X11 test; [sess-now]: session=x11). So these are 4 more X11 runs without desync
+     (with the earlier X11 run: X11 0 of 5).  (up/caps-desync-ours-wayland-recovery-part1.txt, caps-desync-recovery-produce*.txt)
+     Side note from try 1: Shift+Caps Lock on X11 toggles Caps (row RC_SHIFTCAPS = Aa 2é %ù ..., LED 11), as designed.
+   - try 5 = first try after switching back to the Wayland session "Zorin Desktop" (04:44Z): desync again.
+     before: aA é2 ù% &é"'(§è!çà 1234567890       LED 00
+     after:  Aa éé ùù 1é345§è8çà &é"'(§è!çà       LED 00     (up/caps-desync-recovery-wayland.txt)
+     So far on Wayland with our packages: 6 of 6 tries desynced (dialog x4 incl. keyd stopped, lock screen x1, this one).
+
+In that desync state (LED off), one check after the other, no reboot:
+a. GNOME Shell's own entry (Activities search, Super then type):  aA é2 ù%   -> CORRECT  [caps-desync-recovery-wayland-activities-search]
+   The Alt+F2 run dialog (also GNOME Shell) typed "env GDK_BACKEND=x11 gnome-text-editor" correctly too [x11app-run].
+b. Wayland app (GNOME Terminal), same moment:                     Aa éé ùù 1é345§è8çà   -> WRONG  [caps-desync-recovery-wayland-terminal-after-activities]
+c. X11 app (GDK_BACKEND=x11 gnome-text-editor via Xwayland):       Aa 2é %ù 1234567890   -> consistent "Caps ON" (wrong vs the LED,
+   but internally consistent: letters and digit row agree)          [caps-desync-recovery-x11-editor]
+d. `ibus engine`: xkb:us::eng (same as on a clean boot, up/zt-boot1-kbdiag.txt)   [caps-desync-recovery-ibus-engine]
+1. `ibus restart`: terminal row still  Aa éé ùù 1é345§è8çà  -> NOT cured   [caps-desync-recovery-ibus-restart]
+2. `ibus exit` (ibus-daemon gone: pgrep ibus empty, `ibus engine` -> IBUS-CRITICAL, it did NOT restart by itself within
+   ~1 min): terminal row  Aa 2é %ù 1234567890  -> consistent "Caps ON" while the LED was still 00   [caps-desync-recovery-ibus-exit]
+   then one Caps Lock press: row  aA é2 ù% &é"'(§è!çà  (correct Caps-off row), LED now 11 (inverted)
+                                                                                [caps-desync-recovery-ibus-exit-then-caps, -after-exit-led]
+   => with ibus out of the way the text is consistent again, only the LED is the wrong way round.
+3. xkbcli interactive-wayland: NOT done. libxkbcommon-tools is not installed (dpkg-query: no package) and installing it
+   would change the system under test.  [caps-desync-recovery-after-exit-led]
+4. Super+Space to another input source and back: NOT done (not applicable): the only input source is [('xkb','be')],
+   there is nothing to switch to; adding one would change the user's settings.
+5. Log out + log in (no reboot), Wayland: LED 0, row  aA é2 ù% &é"'(§è!çà  -> CURED   [caps-desync-recovery-after-logout]
+   (ibus was not running at logout because of step 2; a logout straight from the desync state was not separately tested.)
+
+Reading (inference, not proven): GNOME Shell's own text entries get the right Caps state, the IBus path into Wayland apps
+does not. On stock Zorin the same desync exists (case of letters inverted, caps-desync-stock-*.txt); our caps:be_windows
+makes it worse because in the desync state é § è ç à ù give the same base symbol with and without Shift.

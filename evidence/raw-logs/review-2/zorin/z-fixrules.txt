@@ -1,0 +1,9 @@
+! option	=	symbols
+  caps:be_windows	=	+be_capslock(windows)
+# stale
+regen rc=0
+
+// belgian-azerty-windows: Caps Lock as on Windows Belgian (symbols/be_capslock)
+! option	=	symbols
+  caps:be_windows	=	+be_capslock(windows)
+0

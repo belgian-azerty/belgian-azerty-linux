@@ -1,0 +1,7 @@
+be_capslock usr/share/X11/xkb/symbols/
+update-xkb-rules usr/lib/belgian-azerty-windows/
+be-azerty-fix usr/sbin/
+be-azerty-settings usr/bin/
+be-azerty-settings.desktop usr/share/applications/
+org.belgianazerty.fix.policy usr/share/polkit-1/actions/
+be-azerty-ibus-skip.desktop etc/xdg/autostart/

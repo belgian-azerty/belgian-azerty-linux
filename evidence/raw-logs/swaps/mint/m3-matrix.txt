@@ -1,0 +1,8 @@
+typed 150 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+m3-noibus-ca30r [ctrlalt] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 30 ms min 25 ms
+typed 100 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+m4-box3-on-ca30r [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 11 ms
+typed 100 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+m4-box3sync1-on-ca30r [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 24 ms
+typed 100 lines of ctrlalt gap 30.0 ms hold 45 ms roll, last line 0.71 s
+m4-box3simple-on-ca30r [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 16 ms

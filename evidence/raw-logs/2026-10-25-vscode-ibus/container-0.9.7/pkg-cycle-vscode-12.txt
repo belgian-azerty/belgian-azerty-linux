@@ -1,0 +1,17 @@
+PASS install
+PASS installed, before any login: no user files
+PASS first login refresh: Terminal and text editor skip ibus without any command, nothing listed
+PASS first login refresh: VS Code (com.microsoft.VSCode) skips ibus too
+PASS auto off as the user: automatic files gone
+PASS on as the user: drop-in + copy
+PASS on through sudo: files owned by the user
+PASS apt remove: marked files gone, own file and list kept
+PASS apt remove: autostart entry kept as conffile, skipped by TryExec
+PASS reinstall + login refresh: back from the list
+PASS apt purge: marked files, lists and the automatic choice gone, own file kept
+PASS be-azerty-fix uninstall: every user's files gone, own file kept, package purged
+4. ibus skip per app (files in the users' home folders)
+  [32m✔[0m ibus skip removed for skiptest1
+  [32m✔[0m ibus skip removed for skiptest2
+5. Packages
+passed 12, failed 0

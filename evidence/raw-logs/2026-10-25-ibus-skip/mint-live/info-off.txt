@@ -1,0 +1,28 @@
+== off 04:18:18
+shell in this terminal: GTK_IM_MODULE=ibus
+pid 3222 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE=ibus
+-- be-azerty-fix ibus-skip
+ibus skip for mint:
+  · no app skips ibus (the default). Turn it on per app: be-azerty-fix ibus-skip on terminal
+-- files
+ls: cannot access '/home/mint/.config/systemd/user/*.d/': No such file or directory
+ls: cannot access '/home/mint/.config/belgian-azerty/': No such file or directory
+/home/mint/.local/share/applications/:
+total 4
+drwxr-xr-x  2 mint mint  60 Oct 25 04:16 .
+drwxr-xr-x 11 mint mint 240 Oct 25 03:32 ..
+-rw-r--r--  1 mint mint 508 Oct 25 03:16 webapp-OnlineChat4519.desktop
+-- systemctl --user cat gnome-terminal-server
+# /usr/lib/systemd/user/gnome-terminal-server.service
+[Unit]
+Description=GNOME Terminal Server
+PartOf=graphical-session.target
+[Service]
+Slice=app-org.gnome.Terminal.slice
+Type=dbus
+BusName=org.gnome.Terminal
+ExecStart=/usr/libexec/gnome-terminal-server
+TimeoutStopSec=5s
+KillMode=process
+-- typebox info
+cat: /tmp/tb.txt.info: No such file or directory

@@ -1,0 +1,8 @@
+keyd on. LCtrl+LAlt+ 1 2 3 4 5 6 9 0 e ^$ ù µ = < : |@#{[^{}€[]'`~\
+keyd on. AltGr+ 1 2 3 4 5 6 9 0 e ^$ ù µ = < : |@#{[^{}€[]'`~\
+keyd on. CapsLock ON, LCtrl+LAlt+ same keys : |@#{[^{}€[]'`~\
+keyd on. Shift+LCtrl+LAlt+ 1 2 3 4 5 6 9 0 e : ¡⅛£±˚⅝±°¢
+keyd on. Shift+AltGr+ 1 2 3 4 5 6 9 0 e : ¡⅛£±˚⅝±°¢
+keyd on. RCtrl+LAlt+ 2 e : @€
+keyd on. plain: azerty AZERTY 1234567890 é è ç à ù µ , ; : = ( )
+KEYD ON. CAPS: AZERTY 1234567890 

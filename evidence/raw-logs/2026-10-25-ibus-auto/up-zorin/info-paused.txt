@@ -1,0 +1,21 @@
+== paused 12:01:16
+shell in this terminal: GTK_IM_MODULE=(unset)
+pid 6078 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE unset, im-ibus loaded: 5
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  · automatic: paused, because an input method is set up in the keyboard settings: anthy (the Terminal and the text editor keep ibus; it resumes at the next login after that is removed)
+  · no app skips ibus. Per app by hand: be-azerty-fix ibus-skip on terminal
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+-- keyboard settings (org.gnome.desktop.input-sources)
+[('xkb', 'be'), ('ibus', 'anthy')]
+@as []
+-- files
+ls: cannot access '/home/zorin/.config/systemd/user/*.d/': No such file or directory
+ls: cannot access '/home/zorin/.config/belgian-azerty/': No such file or directory
+/home/zorin/.local/share/applications/:
+total 0
+drwx------  2 zorin zorin  40 Oct 25 11:54 .
+drwx------ 16 zorin zorin 360 Oct 25 11:50 ..
+-- login refresh in the journal
+-- typebox info
+cat: /tmp/tb.txt.info: No such file or directory

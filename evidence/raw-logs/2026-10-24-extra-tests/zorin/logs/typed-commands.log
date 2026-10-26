@@ -1,0 +1,151 @@
+2026-10-25T01:16:31Z zu type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh; do wget -q http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T01:18:21Z zu type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh; do wget -q http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T01:18:33Z zu type: bash p.sh zu-uefi-probe; bash lb.sh zu-uefi-lsblk
+2026-10-25T01:19:25Z zu type: clear
+2026-10-25T01:19:31Z zu capture zu-uefi-typing delay 0.3
+2026-10-25T01:22:46Z zu type: http://10.0.2.2:8000/ff.html?n=zorin-brave
+2026-10-25T01:23:16Z zu seq into field at 500,230 delay 0.8 -> zorin-brave.txt
+brave address bar: ctrl-alt-2 ctrl-alt-e ctrl-alt-9 ctrl-alt-0
+2026-10-25T01:24:30Z zu type: cd /tmp && wget -q http://10.0.2.2:8000/firefox.tar.xz && tar xJf firefox.tar.xz && ./firefox/firefox --version && (./firefox/firefox http://10.0.2.2:8000/ff.html?n=zorin-firefox &)
+2026-10-25T01:26:12Z zu type: pkill -f /tmp/firefox/; clear; wget -q http://10.0.2.2:8000/code.deb && sudo apt-get install -y ./code.deb 2>&1 | tee /tmp/vscode-install.log | tail -5
+2026-10-25T01:27:47Z zu type: pkill -f firefox/firefox; sleep 2; clear; ls -l /tmp/code.deb; tail -3 /tmp/vscode-install.log; which code
+2026-10-25T01:30:33Z zu type: clear; ps -ef | grep -E "apt|dpkg|debconf|code" | grep -v grep | cut -c1-150; tail /tmp/vscode-install.log
+
+2026-10-25T01:31:35Z zu type: pkill -9 -f firefox/firefox; clear; ps -ef | grep -E "apt|dpkg|debconf|code|wget" | grep -v grep | cut -c1-150; tail -4 /tmp/vscode-install.log; ls -l /tmp/code.deb
+
+2026-10-25T01:32:50Z zu type: clear; cd /tmp; wget -q -O vsfix.sh http://10.0.2.2:8000/vsfix.sh; bash vsfix.sh; clear; cat /tmp/vscode-fix.log | tail -25
+2026-10-25T01:33:52Z zu type: clear; mkdir -p /tmp/vsc/User && wget -q -O /tmp/vsc/User/settings.json http://10.0.2.2:8000/settings.json && touch /tmp/vs.txt && (code --disable-gpu --disable-extensions --user-data-dir /tmp/vsc /tmp/vs.txt > /tmp/code-run.log 2>&1 &)
+2026-10-25T01:35:50Z zu seq into field at 600,300 delay 0.8 -> 
+2026-10-25T01:37:10Z zu type: od -c /tmp/vs.txt > /tmp/zorin-vscode-od.txt; bash /tmp/up.sh /tmp/vs.txt zorin-vscode.txt; bash /tmp/up.sh /tmp/zorin-vscode-od.txt
+vscode shortcut: type abc, keys ctrl-q x ctrl-s
+2026-10-25T01:38:11Z zu type: od -c /tmp/vs.txt; bash /tmp/up.sh /tmp/vs.txt zorin-vscode-shortcut.txt
+2026-10-25T01:41:47Z zb type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh; do wget -q http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T01:41:58Z zb type: bash p.sh zb-bios-probe; bash lb.sh zb-bios-lsblk; clear
+2026-10-25T01:42:22Z zb capture zb-bios-typing delay 0.3
+2026-10-25T02:28:15Z zt OVMF shell: fs0: / cd EFI / cd BOOT / BOOTX64.EFI
+2026-10-25T02:31:18Z zt type: sudo -v
+2026-10-25T02:31:23Z zt type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T02:31:36Z zt type: bash p.sh zt-boot1-probe; bash ex.sh zt-boot1-extra; clear
+2026-10-25T02:32:05Z zt capture zt-boot1-typing delay 0.3
+2026-10-25T02:33:15Z zt type: sudo -v
+2026-10-25T02:33:21Z zt type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T02:34:03Z zt type: clear; echo caps-off-check azerty
+2026-10-25T02:34:21Z zt type: sudo -v
+2026-10-25T02:34:26Z zt type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T02:35:16Z zt type: clear; uptime; echo fast 10.0.2.2:8000 1234567890
+2026-10-25T02:35:21Z zt type: echo slow 10.0.2.2:8000 1234567890
+2026-10-25T02:35:32Z zt type: ps -eo pcpu,comm --sort=-pcpu | head -6
+2026-10-25T02:36:12Z zt type: clear; echo $XDG_SESSION_TYPE; grep -H . /sys/class/leds/*capslock*/brightness; xset q 2>/dev/null | grep -i caps
+
+2026-10-25T02:36:56Z zt type: clear; echo "session=$XDG_SESSION_TYPE"; grep -H . /sys/class/leds/*capslock*/brightness; echo "typed: qwerty azerty QA"
+
+2026-10-25T02:37:53Z zt type: clear
+2026-10-25T02:37:53Z zt capstep s0 
+2026-10-25T02:38:11Z zt capstep s1 toggle
+2026-10-25T02:38:30Z zt capstep s2 toggle
+2026-10-25T02:38:48Z zt capstep s3 toggle
+2026-10-25T02:39:06Z zt capstep s4 toggle
+2026-10-25T02:40:31Z zt type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh; do wget -q -N http://_gateway:8888/$f; done; ls *.sh
+
+2026-10-25T02:40:46Z zt type: bash kd.sh zt-boot1-kbdiag
+2026-10-25T02:41:36Z zt type: sudo reboot
+2026-10-25T02:45:02Z zt capstep c0 
+2026-10-25T02:45:42Z zt type: clear; sudo -v
+2026-10-25T02:45:48Z zt type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T02:46:00Z zt type: bash p.sh zt-preupd-probe; bash ex.sh zt-preupd-extra; bash kd.sh zt-preupd-kbdiag; clear
+2026-10-25T02:46:37Z zt capture zt-preupd-typing delay 0.3
+2026-10-25T02:47:13Z zt type: clear; wget -q http://10.0.2.2:8000/kd.sh && bash kd.sh zt-preupd-kbdiag
+2026-10-25T02:47:46Z zt type: clear; pkexec true; echo pkexec-exit
+repro: seq.txt into pkexec dialog
+2026-10-25T02:48:13Z zt seq.txt + 'ret' delay 0.3 (seqkeys)
+2026-10-25T02:49:13Z zt type: clear
+2026-10-25T02:49:14Z zt capstep r1 
+2026-10-25T02:49:30Z zt type: grep -H . /sys/class/leds/input?::capslock/brightness
+2026-10-25T02:50:17Z zt capstep r2-now 
+2026-10-25T02:50:38Z zt capstep r3-1press toggle
+2026-10-25T02:50:59Z zt capstep r4-2press toggle
+2026-10-25T02:51:20Z zt capstep r5-3press toggle
+2026-10-25T02:52:58Z zt type: sudo reboot
+2026-10-25T02:55:35Z zt type: sudo -v
+2026-10-25T02:55:41Z zt type: cd /tmp && wget -q http://10.0.2.2:8000/upd.sh && bash upd.sh zt-upgrade
+2026-10-25T03:05:21Z zt type: clear; sudo reboot
+2026-10-25T03:08:30Z zt type: clear; sudo reboot
+2026-10-25T03:11:20Z zt type: sudo -v
+2026-10-25T03:11:25Z zt type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T03:11:38Z zt type: wget -q -N http://10.0.2.2:8000/kd.sh; bash p.sh zt-postupd-probe; bash ex.sh zt-postupd-extra; bash kd.sh zt-postupd-kbdiag; clear
+2026-10-25T03:12:18Z zt capture zt-postupd-typing delay 0.3
+2026-10-25T03:12:40Z zt type: clear; cat /sys/power/mem_sleep; systemctl suspend
+2026-10-25T03:15:22Z zt type: echo "alive $(date)" > /tmp/al.txt; cat /sys/power/mem_sleep >> /tmp/al.txt; journalctl -b --no-pager | grep -i -E "PM: suspend|suspend exit|Waking|virtio_gpu|drm|keyd" | tail -25 >> /tmp/al.txt; wget -q --post-file=/tmp/al.txt http://10.0.2.2:8001/zt-alive.txt -O /dev/null
+
+2026-10-25T03:17:06Z zt type: echo "alive $(date)" > /tmp/al.txt; cat /sys/power/mem_sleep >> /tmp/al.txt; journalctl -b --no-pager | grep -i -E "PM: suspend|suspend exit|Waking|virtio_gpu|drm|keyd" | tail -25 >> /tmp/al.txt; wget -q --post-file=/tmp/al.txt http://10.0.2.2:8001/zt-alive.txt -O /dev/null
+
+2026-10-25T03:20:31Z zt type: cd /tmp && wget -q -N http://10.0.2.2:8000/hb.sh && (setsid nohup bash hb.sh zt > /dev/null 2>&1 &) ; clear
+2026-10-25T03:21:04Z zt capture zt-presusp-typing delay 0.3
+2026-10-25T03:21:18Z zt type: clear; systemctl suspend
+2026-10-25T03:22:09Z zt type: cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls
+
+2026-10-25T03:22:26Z zt capture zt-presusp-typing delay 0.3
+2026-10-25T03:22:48Z zt type: clear; systemctl suspend
+2026-10-25T03:24:31Z zt type: sudo -v
+2026-10-25T03:24:36Z zt type: bash p.sh zt-resume-probe; bash kd.sh zt-resume-kbdiag; clear
+2026-10-25T03:25:06Z zt capture zt-resume-typing delay 0.3
+super key: meta_l alone
+2026-10-25T03:26:29Z zt type: clear; wget -q -N http://10.0.2.2:8000/caprec.sh; ls caprec.sh
+2026-10-25T03:29:09Z zt type: sudo reboot
+2026-10-25T03:31:27Z zt type: cd /tmp; for f in p.sh t.sh stick-probe.sh up.sh kd.sh caprec.sh hb.sh; do wget -q http://10.0.2.2:8000/\; done; ls
+2026-10-25T03:31:55Z zt type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T03:32:10Z zt type: sudo systemctl stop keyd; systemctl is-active keyd
+2026-10-25T03:34:48Z zt type: clear; sudo systemctl start keyd; systemctl is-active keyd
+2026-10-25T03:34:58Z zt type: sudo reboot
+2026-10-25T03:37:16Z zt type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T03:40:05Z zt type: sudo reboot
+2026-10-25T03:42:55Z zt type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T03:43:10Z zt type: clear; echo session=\
+2026-10-25T03:43:45Z zt type: clear; echo "session=$XDG_SESSION_TYPE"; setxkbmap -query | grep -E "layout|options"
+
+2026-10-25T04:16:15Z zs type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T04:16:30Z zs type: clear; bash ex.sh zs-stock-extra; bash kd.sh zs-stock-kbdiag; dpkg-query -W keyd belgian-azerty-windows; echo session=\
+2026-10-25T04:17:06Z zs type: clear; bash ex.sh zs-stock-extra; bash kd.sh zs-stock-kbdiag; dpkg-query -W keyd belgian-azerty-windows; echo "session=$XDG_SESSION_TYPE"
+
+2026-10-25T04:20:33Z zs type: sudo reboot
+2026-10-25T04:23:11Z zs type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T04:28:33Z zt type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T04:35:30Z zt type: sudo reboot
+2026-10-25T04:37:48Z zt type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T04:41:41Z zt type: clear; echo "session=$XDG_SESSION_TYPE"; setxkbmap -query | grep -E "layout|options"
+
+2026-10-25T04:42:08Z zt type: gnome-session-quit --logout --no-prompt
+2026-10-25T04:43:29Z zt type: clear; cd /tmp && for f in p.sh t.sh stick-probe.sh up.sh lb.sh ex.sh kd.sh caprec.sh hb.sh; do wget -q -N http://10.0.2.2:8000/$f; done; ls *.sh
+
+2026-10-25T04:43:44Z zt type: clear; echo "session=$XDG_SESSION_TYPE"; setxkbmap -query | grep -E "layout|options"
+
+2026-10-25T04:46:59Z zt rawrow t e r m
+IBUS ENGINE (case-inverted typing)
+IBUS RESTART (case-inverted)
+2026-10-25T04:49:42Z zt rawrow r e s t a r t
+IBUS EXIT (case-inverted)
+2026-10-25T04:50:37Z zt rawrow e x i t
+2026-10-25T04:51:13Z zt rawrow c a p s
+2026-10-25T04:51:48Z zt type: clear; grep -H . /sys/class/leds/input*::capslock/brightness; which xkbcli; dpkg -l libxkbcommon-tools 2>&1 | tail -1; gsettings get org.gnome.desktop.input-sources sources
+
+2026-10-25T04:52:33Z zt type: gnome-session-quit --logout --no-prompt
+2026-10-25T04:53:48Z zt type: clear; echo "session=$XDG_SESSION_TYPE"; setxkbmap -query | grep -E "layout|options"
+
+2026-10-25T04:56:05Z zt type: clear; grep -H . /sys/class/leds/input*::capslock/brightness; which xkbcli; dpkg -l libxkbcommon-tools 2>&1 | tail -1; gsettings get org.gnome.desktop.input-sources sources
+
+2026-10-25T04:56:20Z zt rawrow f r e s h

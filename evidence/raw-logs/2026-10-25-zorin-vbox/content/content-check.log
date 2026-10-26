@@ -1,0 +1,103 @@
+== stick hashes
+laptop: 8c0e89c5e4bda5968f6491ab6c49e96d3f3e2229d7452be6c341ba9567f22fac
+cloud : 6553975b7b6601cc98199d7b4536e0e779f89453bbf7cf91b2aca1d164dc4549
+Extracted from ISO image: file '/md5sum.txt'='/root/be-rig/zvb/content/md5sum.txt'
+xorriso : UPDATE :       1 files restored (6212.0k) in 1 seconds = 4.6xD
+Extracted from ISO image: file '/casper/zz-belgian-azerty.squashfs'='/root/be-rig/zvb/content/x/zz.squashfs'
+== /belgian/ debs
+total 248
+-rw-r--r-- 1 root root    280 Oct 25 12:57 README.txt
+-rw-r--r-- 1 root root  28730 Oct 25 12:57 belgian-azerty-windows_0.9.4.1_all.deb
+-rw-r--r-- 1 root root   4790 Oct 25 12:57 keyd-belgian-windows_0.9.4.1_all.deb
+-rw-r--r-- 1 root root 207208 Oct 25 12:57 keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+56c7189ab4b8e13f90af8d1c3caf2c047678b36f0b8485102c474e45be8295f0  README.txt
+33321c6344a2ecce48b188c85a0bf1b0798fe0853710edd5d3ab69c3ccdb8f95  belgian-azerty-windows_0.9.4.1_all.deb
+7343a82c3b29b9eda77773655d14647f74a2fd8284c73569f2f377eb291468d6  keyd-belgian-windows_0.9.4.1_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+belgian-azerty-windows_0.9.4.1_all.deb: OK
+keyd-belgian-windows_0.9.4.1_all.deb: OK
+keyd_2.5.0-5~ubuntu24.04.2_amd64.deb: OK
+== layer
+fdb622fdafdeab1b1bb2096d94dcd51e8a8f76943a14359e1568279ff73674c5  content/x/zz.squashfs
+Found a valid SQUASHFS 4:0 superblock on content/x/zz.squashfs.
+Creation or last append time Sun Oct 25 12:57:43 2026
+Filesystem size 6360864 bytes (6211.78 Kbytes / 6.07 Mbytes)
+Compression xz
+Block size 131072
+Filesystem is exportable via NFS
+Inodes are compressed
+Data is compressed
+Uids/Gids (Id table) are compressed
+Fragments are compressed
+Always-use-fragments option is not specified
+Xattrs are not stored
+344 content/zz-belgian-azerty.lls.txt
+drwxr-xr-x root/root                39 2026-10-25 12:57 squashfs-root/etc/keyd
+-rw-r--r-- root/root              1579 2026-10-25 03:30 squashfs-root/etc/keyd/be-winaltgr.conf
+-rw-r--r-- root/root               306 2026-10-25 12:57 squashfs-root/etc/systemd/system/belgian-azerty-firstboot.service
+-rw-r--r-- root/root               338 2026-10-25 12:57 squashfs-root/etc/systemd/system/belgian-stick-live.service
+lrwxrwxrwx root/root                46 2026-10-25 12:57 squashfs-root/etc/systemd/system/multi-user.target.wants/belgian-stick-live.service -> /etc/systemd/system/belgian-stick-live.service
+lrwxrwxrwx root/root                36 2026-10-25 12:57 squashfs-root/etc/systemd/system/multi-user.target.wants/keyd.service -> /usr/lib/systemd/system/keyd.service
+-rwxr-xr-x root/root            239872 2026-10-25 01:00 squashfs-root/usr/bin/keyd.rvaiya
+drwxr-xr-x root/root                39 2026-10-25 12:57 squashfs-root/usr/lib/belgian-azerty-windows
+-rwxr-xr-x root/root              1530 2026-10-25 03:30 squashfs-root/usr/lib/belgian-azerty-windows/update-xkb-rules
+-rw-r--r-- root/root               165 2026-10-25 01:00 squashfs-root/usr/lib/systemd/system/keyd.service
+drwxr-xr-x root/root                51 2026-10-25 12:57 squashfs-root/usr/lib/systemd/system/keyd.service.d
+-rw-r--r-- root/root               563 2026-10-25 03:30 squashfs-root/usr/lib/systemd/system/keyd.service.d/belgian-windows-restart.conf
+-rwxr-xr-x root/root               174 2026-10-25 12:57 squashfs-root/usr/lib/ubiquity/target-config/90belgian_azerty
+drwxr-xr-x root/root                36 2026-10-25 12:57 squashfs-root/usr/local/lib/belgian-stick
+-rwxr-xr-x root/root              4385 2026-10-25 12:57 squashfs-root/usr/local/lib/belgian-stick/belgian-stick
+drwxr-xr-x root/root               111 2026-10-25 12:57 squashfs-root/usr/share/keyd
+drwxr-xr-x root/root                56 2026-10-25 12:57 squashfs-root/usr/share/keyd/gnome-extension
+-rw-r--r-- root/root              1461 2026-10-25 01:00 squashfs-root/usr/share/keyd/gnome-extension/extension.js
+-rw-r--r-- root/root               147 2026-10-25 01:00 squashfs-root/usr/share/keyd/gnome-extension/metadata.json
+drwxr-xr-x root/root                56 2026-10-25 12:57 squashfs-root/usr/share/keyd/gnome-extension-45
+-rw-r--r-- root/root              1562 2026-10-25 01:00 squashfs-root/usr/share/keyd/gnome-extension-45/extension.js
+-rw-r--r-- root/root               141 2026-10-25 01:00 squashfs-root/usr/share/keyd/gnome-extension-45/metadata.json
+-rw-r--r-- root/root           1016170 2026-10-25 01:00 squashfs-root/usr/share/keyd/keyd.compose
+drwxr-xr-x root/root              1049 2026-10-25 12:57 squashfs-root/usr/share/keyd/layouts
+-rw-r--r-- root/root               921 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/af
+-rw-r--r-- root/root              1128 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/al
+-rw-r--r-- root/root               679 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/am
+-rw-r--r-- root/root              1037 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/ara
+-rw-r--r-- root/root              1215 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/at
+-rw-r--r-- root/root               591 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/au
+-rw-r--r-- root/root               606 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/az
+-rw-r--r-- root/root              1152 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/ba
+-rw-r--r-- root/root              1052 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/bd
+-rw-r--r-- root/root              1174 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/be
+-rw-r--r-- root/root               988 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/bg
+-rw-r--r-- root/root              1197 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/br
+-rw-r--r-- root/root                69 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/brai
+-rw-r--r-- root/root              1424 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/bt
+-rw-r--r-- root/root               720 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/bw
+-rw-r--r-- root/root               722 2026-10-25 01:00 squashfs-root/usr/share/keyd/layouts/by
+== md5sum.txt self-check of every file in the stick listed in it (sample: boot + added)
+b83d47a92ecc426f4ede1b6a201260d8  ./boot/grub/grub.cfg
+64d757c2c29a69b72d0797f61ee3ea13  ./boot/grub/i386-efi/loopback.mod
+12bd5c7f1fbb94ffda07b065db53e9b8  ./boot/grub/loopback.cfg
+a9e77f20c991d1d5a078b95eb6c373d9  ./boot/grub/x86_64-efi/loopback.mod
+455ab0fa4fc9cf730604443a5e4f9c51  ./isolinux/menuentries.cfg
+8bd023b4c1ee039adf414a122d3974c7  ./casper/zz-belgian-azerty.squashfs
+d51258e52b5b2e8e212f52fbf96e207c  ./belgian/README.txt
+620f225b12981dc35809862ac35e3247  ./belgian/belgian-azerty-windows_0.9.4.1_all.deb
+97734a801743cead5cf7903252624eca  ./belgian/keyd-belgian-windows_0.9.4.1_all.deb
+c8342738abdf81308b9a3d3a4d9bb68f  ./belgian/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+== grub.cfg entries
+set timeout=10
+set timeout_style=menu
+set default="0>0"
+	menuentry "Belgisch AZERTY, punt op het numeriek klavier" --class zorin {
+	menuentry "Belgisch AZERTY, komma op het numeriek klavier" --class zorin {
+	menuentry "AZERTY belge, point sur le pavé numérique" --class zorin {
+	menuentry "AZERTY belge, virgule sur le pavé numérique" --class zorin {
+	menuentry "Belgisch AZERTY, Punkt auf dem Ziffernblock" --class zorin {
+	menuentry "Belgisch AZERTY, Komma auf dem Ziffernblock" --class zorin {
+	menuentry "Deutsch QWERTZ" --class zorin {
+	menuentry "Belgian AZERTY, period on the numpad" --class zorin {
+	menuentry "Belgian AZERTY, comma on the numpad" --class zorin {
+	menuentry "German QWERTZ" --class zorin {
+menuentry "Try or Install Zorin OS (safe graphics)" --class display {
+menuentry "Try or Install Zorin OS (modern NVIDIA drivers)" --class nvidia {
+menuentry 'UEFI Firmware Settings' --class settings{
+menuentry "Power Off" --class poweroff {

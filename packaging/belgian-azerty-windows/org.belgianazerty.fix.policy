@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<!-- Lets the "Belgian keyboard" window (be-azerty-settings) run be-azerty-fix as root through pkexec, with a clear
+     message in the password dialog. -->
+<policyconfig>
+  <action id="org.belgianazerty.fix">
+    <description>Change the Belgian keyboard settings</description>
+    <description xml:lang="nl">De instellingen van het Belgische toetsenbord wijzigen</description>
+    <description xml:lang="fr">Modifier les réglages du clavier belge</description>
+    <description xml:lang="de">Die Einstellungen der belgischen Tastatur ändern</description>
+    <message>Authentication is required to change the Belgian keyboard settings for the whole computer</message>
+    <message xml:lang="nl">Authenticatie is vereist om de instellingen van het Belgische toetsenbord voor de hele computer te wijzigen</message>
+    <message xml:lang="fr">Une authentification est nécessaire pour modifier les réglages du clavier belge pour tout l'ordinateur</message>
+    <message xml:lang="de">Zum Ändern der Einstellungen der belgischen Tastatur für den ganzen Computer ist eine Authentifizierung nötig</message>
+    <icon_name>input-keyboard</icon_name>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/sbin/be-azerty-fix</annotate>
+  </action>
+</policyconfig>

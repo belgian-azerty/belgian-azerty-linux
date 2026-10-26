@@ -1,0 +1,3 @@
+WaylandEnable=true
+AutomaticLoginEnable=true
+AutomaticLogin=newbe

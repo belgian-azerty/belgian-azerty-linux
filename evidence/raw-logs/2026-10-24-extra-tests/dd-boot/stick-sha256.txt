@@ -1,0 +1,2 @@
+47e9cff5deed82eeb115c2491e73089cdf54fb932c101724db686ebce0afd39b  mint-belgian-stick.iso
+b593aacbbe1d1b29bb625c0f6db3ebd264d863325b15a07a952e0d8d32293d3f  zorin-belgian-stick.iso

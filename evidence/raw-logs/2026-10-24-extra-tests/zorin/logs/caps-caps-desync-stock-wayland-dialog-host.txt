@@ -1,0 +1,8 @@
+2026-10-25T04:18:10Z capsrun caps-desync-stock-wayland-dialog dialog start
+2026-10-25T04:18:22Z sa  | guest 05:18:22 LED=0
+2026-10-25T04:18:55Z seq.txt + ret ctrl-d into the dialog
+2026-10-25T04:19:18Z sb  | guest 05:19:17 LED=0
+2026-10-25T04:19:31Z sc toggle | guest 05:19:30 LED=1
+2026-10-25T04:19:43Z sd toggle | guest 05:19:43 LED=0
+2026-10-25T04:19:56Z se toggle | guest 05:19:56 LED=1
+2026-10-25T04:20:11Z capsrun caps-desync-stock-wayland-dialog end

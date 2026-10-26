@@ -1,0 +1,118 @@
+== zorin-linux 2026-10-25T02:01:43Z
+== dpkg -l | grep -E 'keyd|belgian'
+ii  belgian-azerty-windows                              0.9.4                                            all          Belgian AZERTY keyboard that behaves like on Windows
+ii  keyd                                                2.5.0-5~ubuntu24.04.2                            amd64        keyboard key remapping daemon
+ii  keyd-belgian-windows                                0.9.4                                            all          Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards
+(grep exit 0)
+== dpkg-query
+belgian-azerty-windows	0.9.4
+keyd	2.5.0-5~ubuntu24.04.2
+keyd-belgian-windows	0.9.4
+== keyd exe (sudo)
+ls: cannot access '/proc//exe': No such file or directory
+== systemctl is-active keyd
+inactive
+== is-enabled
+disabled
+== systemctl --failed
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+== /etc/keyd
+total 4
+drwxr-xr-x 2 root root   60 Oct 25 01:55 .
+drwxr-xr-x 1 root root  780 Oct 25 01:55 ..
+-rw-r--r-- 1 root root 1579 Oct 24 23:30 be-winaltgr.conf
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS=""
+
+BACKSPACE="guess"
+== choices
+PROFILE=linux
+DECIMAL=period
+CAPS=linux
+== setxkbmap
+rules:      evdev
+model:      pc105+inet
+layout:     be,us
+variant:    ,
+== gsettings
+@as []
+No such schema “org.cinnamon.desktop.input-sources”
+== check (kit script)
+Packages:
+  ✔ belgian-azerty-windows 0.9.4
+  ✔ keyd-belgian-windows 0.9.4
+  ✔ keyd 2.5.0-5~ubuntu24.04.2
+Profile:
+  · Linux-standard profile (Linux conventions); switch: sudo PROFILE=windows be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=linux DECIMAL=period CAPS=linux 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105+inet
+  layout:     be,us
+  variant:    ,
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: 
+AccountsService record for zorin:
+  · not readable (needs sudo) or absent
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ Linux-standard profile: keyd off, Ctrl+Alt stays Ctrl+Alt
+Boot image:
+  · live session (root is an overlay): no boot image to check
+== check (installed)
+Packages:
+  ✔ belgian-azerty-windows 0.9.4
+  ✔ keyd-belgian-windows 0.9.4
+  ✔ keyd 2.5.0-5~ubuntu24.04.2
+Profile:
+  · Linux-standard profile (Linux conventions); switch: sudo PROFILE=windows be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=linux DECIMAL=period CAPS=linux 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105+inet
+  layout:     be,us
+  variant:    ,
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: 
+AccountsService record for zorin:
+  · not readable (needs sudo) or absent
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ Linux-standard profile: keyd off, Ctrl+Alt stays Ctrl+Alt
+Boot image:
+  · live session (root is an overlay): no boot image to check

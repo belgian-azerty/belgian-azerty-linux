@@ -1,0 +1,9 @@
+keyd backport reproducibility, 2026-10-24 (cloud container)
+tested final build (pin 12:00, in the future, so no effect): 4067e4cd92cb0693fb0bfa17dc592b1d4c255cda4288af8d1cdf65b86b3c3e67
+rebuild 11:13 with the same pin: 0b55265934113ad6ce893f802fc237c519c12c19f6b7b31e429ba94bcf99011d
+  -> every file inside identical to the tested build (diff -r of dpkg-deb -R trees empty); only tar member times differ (10:59 vs 11:13)
+pin moved to 09:00 (in the past), two builds about a minute apart:
+aff57290e42110daff0b41375cc964f717f3b059ab2e5126c186574b3f5432b8  repro1/keyd-application-mapper_2.5.0-5~ubuntu24.04.1_all.deb
+d7c61d497590e036392cc1f8dad284516ef53d64114d0355b5c1d42e32bf4d64  repro1/keyd_2.5.0-5~ubuntu24.04.1_amd64.deb
+aff57290e42110daff0b41375cc964f717f3b059ab2e5126c186574b3f5432b8  repro2/keyd-application-mapper_2.5.0-5~ubuntu24.04.1_all.deb
+d7c61d497590e036392cc1f8dad284516ef53d64114d0355b5c1d42e32bf4d64  repro2/keyd_2.5.0-5~ubuntu24.04.1_amd64.deb

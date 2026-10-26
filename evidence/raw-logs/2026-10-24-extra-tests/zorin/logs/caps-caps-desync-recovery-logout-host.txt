@@ -1,0 +1,4 @@
+2026-10-25T04:53:56Z produce try 5
+2026-10-25T04:54:08Z p5-before  | guest 
+2026-10-25T04:54:42Z seq.txt + ret ctrl-d into the dialog
+2026-10-25T04:55:05Z p5-after  | guest 

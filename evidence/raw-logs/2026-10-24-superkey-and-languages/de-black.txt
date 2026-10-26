@@ -1,0 +1,45 @@
+Type=x11
+Active=no
+State=online
+(false,)
+uint32 300
+[  463.832279] zorin /usr/libexec/gdm-x-session[2050]: (II) Platform probe for /sys/devices/pci0000:00/0000:00:01.0/drm/card0
+[  472.613871] zorin /usr/libexec/gdm-x-session[2050]: (II) modeset(0): h_active: 1280  h_sync: 1600  h_sync_end 1638 h_blank_end 1728 h_border: 0
+[  472.613871] zorin /usr/libexec/gdm-x-session[2050]: (II) modeset(0): v_active: 800  v_sync: 804  v_sync_end 808 v_blanking: 828 v_border: 0
+[  508.660734] zorin gnome-shell[2297]: Running GNOME Shell (using mutter 46.2) as a X11 window and compositing manager
+[  516.549258] zorin gnome-shell[2330]: libEGL warning: DRI3 error: Could not get DRI3 device
+[  516.557374] zorin gnome-shell[2330]: libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+[  517.142452] zorin at-spi-bus-launcher[2218]: dbus-daemon[2218]: Activating service name='org.a11y.atspi.Registry' requested by ':1.2' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  517.214783] zorin dbus-daemon[1652]: [system] Activating via systemd: service name='org.freedesktop.ColorManager' unit='colord.service' requested by ':1.43' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  531.001452] zorin login[2367]: pam_unix(login:auth): user [zorin] has blank password; authenticated without it
+[  533.722836] zorin gnome-shell[2297]: Unset XDG_SESSION_ID, getCurrentSessionProxy() called outside a user session. Asking logind directly.
+[  533.731254] zorin gnome-shell[2297]: Will monitor session 1
+[  534.923160] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating service name='org.gnome.Shell.Screencast' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  535.884905] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.freedesktop.impl.portal.PermissionStore' unit='xdg-permission-store.service' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  536.008444] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating service name='org.gnome.Shell.CalendarServer' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  537.106731] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.gnome.evolution.dataserver.Sources5' unit='evolution-source-registry.service' requested by ':1.45' (uid=1000 pid=2430 comm="/usr/libexec/gnome-shell-calendar-server" label="unconfined")
+[  539.942773] zorin dbus-daemon[1652]: [system] Activating via systemd: service name='org.freedesktop.PackageKit' unit='packagekit.service' requested by ':1.43' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  539.992588] zorin dbus-daemon[1652]: [system] Activating via systemd: service name='org.freedesktop.UPower' unit='upower.service' requested by ':1.43' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  540.281836] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating service name='org.gnome.Shell.Notifications' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  552.672518] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.gnome.evolution.dataserver.Calendar8' unit='evolution-calendar-factory.service' requested by ':1.45' (uid=1000 pid=2430 comm="/usr/libexec/gnome-shell-calendar-server" label="unconfined")
+[  571.715550] zorin gnome-shell[2297]: Error connecting to the screencast service
+[  573.727506] zorin gnome-shell[2297]: Error looking up permission: GDBus.Error:org.freedesktop.portal.Error.NotFound: No entry for geolocation
+[  576.674638] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.gtk.vfs.UDisks2VolumeMonitor' unit='gvfs-udisks2-volume-monitor.service' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  579.201716] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.gtk.vfs.MTPVolumeMonitor' unit='gvfs-mtp-volume-monitor.service' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  581.008030] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.gtk.vfs.GPhoto2VolumeMonitor' unit='gvfs-gphoto2-volume-monitor.service' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  584.218328] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.gtk.vfs.GoaVolumeMonitor' unit='gvfs-goa-volume-monitor.service' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")
+[  587.766534] zorin polkitd[1660]: Registered Authentication Agent for unix-session:1 (system bus name :1.43 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale de_BE.UTF-8)
+[  595.397659] zorin gnome-shell[2297]: loading user theme: /usr/share/themes/ZorinBlue-Light/gnome-shell/gnome-shell.css
+[  599.687498] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Extension enabled
+[  599.710274] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Building entry point for GNOME Shell 46.0
+[  599.729522] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Connecting to Touchégg daemon
+[  599.760380] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Hooking global switch desktop gestures
+[  599.846467] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Creating a new SwipeTracker40
+[  599.860677] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Connecting Touchégg client signals
+[  599.871418] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Hooking global activities/overview gestures
+[  599.930513] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Creating a new SwipeTracker40
+[  599.995736] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Connecting Touchégg client signals
+[  600.000578] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Hooking activities view switch desktop gestures
+[  600.021383] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Creating a new SwipeTracker40
+[  600.035280] zorin gnome-shell[2297]: [x11gestures@joseexposito.github.io] Connecting Touchégg client signals
+[  600.296491] zorin dbus-daemon[2028]: [session uid=1000 pid=2028] Activating via systemd: service name='org.gtk.vfs.Metadata' unit='gvfs-metadata.service' requested by ':1.39' (uid=1000 pid=2297 comm="/usr/bin/gnome-shell" label="unconfined")

@@ -1,0 +1,11 @@
+# Independent rebuild of keyd from dist/ source (dpkg-source -x + dpkg-buildpackage -b, SOURCE_DATE_EPOCH from changelog), Ubuntu 24.04 container, 2026-10-25 ~02:40Z
+906aa32aae7bf80dc2b9cebc0b721cfb6ebe719cb366c3832fbbc5346f9d2e90  rebuild/keyd-application-mapper_2.5.0-5~ubuntu24.04.2_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  rebuild/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+# dist/SHA256SUMS says:
+906aa32aae7bf80dc2b9cebc0b721cfb6ebe719cb366c3832fbbc5346f9d2e90  ./keyd-application-mapper_2.5.0-5~ubuntu24.04.2_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  ./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+# keyd test-io during the build:
+PASSED: 86
+FAILED: 0
+# Also: Debian 2.5.0-5 code + its own tests: 86/86 PASSED. Patched code (0012) against the ORIGINAL tests: see next lines.
+patched code vs original tests, run one by one: 80 pass, 6 fail: composite swap swap2 swap3 swap4 swap8 (matches the patch header and HANDOVER)

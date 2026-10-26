@@ -1,0 +1,3 @@
+NumLock on, period default, numpad 1 dot 5: 1.5
+NumLock on, DECIMAL=comma, numpad 1 dot 5: 1,5
+NumLock on, back to period, numpad 1 dot 5: 1.5

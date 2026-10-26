@@ -1,0 +1,133 @@
+#!/bin/bash
+# be-azerty-settings: a small window ("Belgian keyboard" in the app menu) to choose the profile (Windows or
+# Linux-standard) and the numpad decimal key (Period or Comma) without typing commands. It runs
+# "be-azerty-fix system PROFILE=... DECIMAL=..." through pkexec, so the change is the same as the command-line one.
+# The "Fast typing" button opens a tick box for the automatic ibus skip of the Terminal, the text editor and VS Code;
+# that one
+# is per user and runs "be-azerty-fix ibus-skip auto on|off" without pkexec.
+# Needs zenity (shipped by Linux Mint and Zorin OS).
+set -u
+FIX=/usr/sbin/be-azerty-fix
+CHOICES=/var/lib/belgian-azerty-windows/choices
+saved() { sed -n "s/^$1=\([a-z]*\)\$/\1/p" "$CHOICES" 2>/dev/null | tail -1; }
+PROFILE=$(saved PROFILE); PROFILE=${PROFILE:-windows}
+DECIMAL=$(saved DECIMAL)
+if [ -z "$DECIMAL" ]; then grep -qE '^XKBOPTIONS=.*kpdl:comma' /etc/default/keyboard 2>/dev/null && DECIMAL=comma || DECIMAL=period; fi
+
+case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
+  nl*) T="Belgisch toetsenbord"
+       Q="Kies hoe het toetsenbord werkt. Dit geldt voor de hele computer."
+       C_PROF="Profiel"; C_DEC="Decimaaltoets op het numeriek klavier"
+       WIN="Windows (Ctrl+Alt werkt als AltGr, Caps Lock zoals op Windows)"; LIN="Linux-standaard (Caps Lock alleen voor letters)"
+       PER="punt ."; COM="komma ,"
+       OK="Klaar. Meld je af en weer aan om alles toe te passen."; ERR="Er ging iets mis. Details:"
+       NOZ="Dit venster heeft zenity nodig. Typ in een terminal:"
+       WAIT="Bezig met toepassen. Eerst kan om je wachtwoord gevraagd worden."
+       B_FAST="Snel typen…"; C_FAST="Snel typen"; F_ROW="Terminal, teksteditor en VS Code: typen zonder ibus (automatisch)"
+       F_Q="Heel snel typen kan twee tekens omwisselen (@€ wordt €@) in de Terminal, de teksteditor en VS Code. Met dit vinkje typen deze apps zonder ibus. Het pauzeert vanzelf als je Chinese, Japanse of gelijkaardige invoer toevoegt. Dit geldt alleen voor jouw gebruiker."
+       F_DONE="Klaar. Sluit de Terminal, de teksteditor en VS Code helemaal en open ze opnieuw."
+       F_PAUSED="Let op: nu gepauzeerd, omdat er een invoermethode is ingesteld." ;;
+  fr*) T="Clavier belge"
+       Q="Choisissez le fonctionnement du clavier. Le réglage vaut pour tout l'ordinateur."
+       C_PROF="Profil"; C_DEC="Touche décimale du pavé numérique"
+       WIN="Windows (Ctrl+Alt fait AltGr, Verr. Maj comme sous Windows)"; LIN="Linux standard (Verr. Maj seulement pour les lettres)"
+       PER="point ."; COM="virgule ,"
+       OK="Terminé. Fermez la session et reconnectez-vous pour tout appliquer."; ERR="Un problème est survenu. Détails :"
+       NOZ="Cette fenêtre a besoin de zenity. Dans un terminal, tapez :"
+       WAIT="Application en cours. Votre mot de passe peut d'abord être demandé."
+       B_FAST="Frappe rapide…"; C_FAST="Frappe rapide"; F_ROW="Terminal, éditeur de texte et VS Code : saisie sans ibus (automatique)"
+       F_Q="Une frappe très rapide peut inverser deux caractères (@€ devient €@) dans le Terminal, l'éditeur de texte et VS Code. Case cochée, ces applications fonctionnent sans ibus. Elle se met en pause d'elle-même si vous ajoutez une saisie chinoise, japonaise ou semblable. Ce réglage ne vaut que pour votre utilisateur."
+       F_DONE="Terminé. Fermez complètement le Terminal, l'éditeur de texte et VS Code, puis rouvrez-les."
+       F_PAUSED="Remarque : en pause pour l'instant, car une méthode de saisie est configurée." ;;
+  de*) T="Belgische Tastatur"
+       Q="Wählen Sie, wie die Tastatur funktioniert. Das gilt für den ganzen Computer."
+       C_PROF="Profil"; C_DEC="Dezimaltaste auf dem Ziffernblock"
+       WIN="Windows (Strg+Alt wie AltGr, Feststelltaste wie unter Windows)"; LIN="Linux-Standard (Feststelltaste nur für Buchstaben)"
+       PER="Punkt ."; COM="Komma ,"
+       OK="Fertig. Ab- und wieder anmelden, damit alles übernommen wird."; ERR="Etwas ist schiefgelaufen. Details:"
+       NOZ="Dieses Fenster braucht zenity. Im Terminal eingeben:"
+       WAIT="Wird übernommen. Zuerst wird eventuell Ihr Passwort abgefragt."
+       B_FAST="Schnelles Tippen…"; C_FAST="Schnelles Tippen"; F_ROW="Terminal, Texteditor und VS Code: ohne ibus tippen (automatisch)"
+       F_Q="Sehr schnelles Tippen kann im Terminal, im Texteditor und in VS Code zwei Zeichen vertauschen (aus @€ wird €@). Mit diesem Haken tippen diese Apps ohne ibus. Es pausiert von selbst, wenn Sie eine chinesische, japanische oder ähnliche Eingabe hinzufügen. Gilt nur für Ihren Benutzer."
+       F_DONE="Fertig. Terminal, Texteditor und VS Code ganz schließen und neu öffnen."
+       F_PAUSED="Hinweis: gerade pausiert, weil eine Eingabemethode eingerichtet ist." ;;
+  *)   T="Belgian keyboard"
+       Q="Choose how the keyboard works. This applies to the whole computer."
+       C_PROF="Profile"; C_DEC="Numpad decimal key"
+       WIN="Windows (Ctrl+Alt works as AltGr, Caps Lock as on Windows)"; LIN="Linux standard (Caps Lock for letters only)"
+       PER="period ."; COM="comma ,"
+       OK="Done. Log out and back in to apply everything."; ERR="Something went wrong. Details:"
+       NOZ="This window needs zenity. In a terminal, type:"
+       WAIT="Applying. You may be asked for your password first."
+       B_FAST="Fast typing…"; C_FAST="Fast typing"; F_ROW="Terminal, text editor and VS Code: type without ibus (automatic)"
+       F_Q="Very fast typing can swap two characters (@€ becomes €@) in the Terminal, the text editor and VS Code. With this ticked, these apps type without ibus. It pauses by itself if you add a Chinese, Japanese or similar input. This applies to your user only."
+       F_DONE="Done. Close the Terminal, the text editor and VS Code completely and open them again."
+       F_PAUSED="Note: paused right now, because an input method is set up." ;;
+esac
+
+# On GNOME (Zorin) the Windows profile keeps the Linux Caps Lock (be-azerty-fix: Windows Caps Lock is opt-in there).
+case "${XDG_CURRENT_DESKTOP:-}" in
+  *GNOME*|*Zorin*)
+    case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
+      nl*) WIN="Windows (Ctrl+Alt werkt als AltGr; Caps Lock blijft Linux, zie README)" ;;
+      fr*) WIN="Windows (Ctrl+Alt fait AltGr ; Verr. Maj reste Linux, voir README)" ;;
+      de*) WIN="Windows (Strg+Alt wie AltGr; Feststelltaste bleibt Linux, siehe README)" ;;
+      *)   WIN="Windows (Ctrl+Alt works as AltGr; Caps Lock stays Linux, see README)" ;;
+    esac ;;
+esac
+
+if ! command -v zenity >/dev/null; then
+  echo "$NOZ  sudo PROFILE=windows|linux DECIMAL=period|comma be-azerty-fix system" >&2; exit 1
+fi
+
+fast_typing() {   # the tick box for the automatic ibus skip (per user, no pkexec)
+  local f cur sel new out rc text
+  # zenity does not wrap a list's text: without line breaks the window grows wider than the screen (2000 px in
+  # French) and the OK button ends up off-screen.
+  text=$(printf '%s\n' "$F_Q" | fold -s -w 70)
+  f="${XDG_CONFIG_HOME:-$HOME/.config}/belgian-azerty/ibus-skip-auto"
+  cur=$(head -1 "$f" 2>/dev/null)
+  case "$cur" in on|off) ;; *) [ "$PROFILE" = linux ] && cur=off || cur=on ;; esac
+  "$FIX" ibus-skip auto 2>/dev/null | grep -q "automatic: paused" && text="$text
+
+$(printf '%s\n' "$F_PAUSED" | fold -s -w 70)"
+  sel=$( printf '%s\n%s\n' "$([ "$cur" = on ] && echo TRUE || echo FALSE)" "$F_ROW" |
+    zenity --list --checklist --title="$T" --text="$text" --width=640 --height=420 \
+      --column="" --column="$C_FAST" 2>/dev/null ) || return 0
+  new=off; [ -n "$sel" ] && new=on
+  [ "$new" = "$cur" ] && return 0   # unchanged: a profile default stays a default
+  out=$("$FIX" ibus-skip auto "$new" 2>&1); rc=$?
+  out=$(printf '%s\n' "$out" | sed 's/\x1b\[[0-9;]*m//g')
+  if [ "$rc" = 0 ]; then zenity --info --title="$T" --text="$F_DONE" --width=420 2>/dev/null
+  else printf '%s\n%s\n' "$ERR" "$out" | zenity --text-info --title="$T" --width=760 --height=480 2>/dev/null; fi
+  return "$rc"
+}
+
+row() {   # PROFILE DECIMAL: one radio row, ticked when it is the current choice
+  local on=FALSE; [ "$1" = "$PROFILE" ] && [ "$2" = "$DECIMAL" ] && on=TRUE
+  local p="$WIN" d="$PER"; [ "$1" = linux ] && p="$LIN"; [ "$2" = comma ] && d="$COM"
+  printf '%s\n%s\n%s\n%s\n' "$on" "$1 $2" "$p" "$d"
+}
+pick=$( { row windows period; row windows comma; row linux period; row linux comma; } |
+  zenity --list --radiolist --title="$T" --text="$Q" --width=720 --height=400 --extra-button="$B_FAST" \
+    --column="" --column=id --column="$C_PROF" --column="$C_DEC" --hide-column=2 --print-column=2 2>/dev/null ); rc=$?
+# The extra button prints its own label (and zenity exits 1).
+if [ "$pick" = "$B_FAST" ]; then fast_typing; exit $?; fi
+[ "$rc" = 0 ] && [ -n "$pick" ] || exit 0
+set -- $pick
+[ "$1" = "$PROFILE" ] && [ "$2" = "$DECIMAL" ] && [ -r "$CHOICES" ] && exit 0   # nothing changed
+
+# Applying takes a while (console keymap, boot image), so a pulsing bar shows it is busy.
+log=$(mktemp); trap 'rm -f "$log" "$log.rc"' EXIT
+( pkexec "$FIX" system "PROFILE=$1" "DECIMAL=$2" >"$log" 2>&1; echo $? >"$log.rc" ) &
+pid=$!
+while kill -0 "$pid" 2>/dev/null; do echo "# $WAIT"; sleep 1; done |
+  zenity --progress --pulsate --auto-close --no-cancel --title="$T" --text="$WAIT" --width=420 2>/dev/null
+wait "$pid"; rc=$(cat "$log.rc" 2>/dev/null || echo 1); out=$(cat "$log")
+case $rc in
+  126|127) exit 0 ;;   # password dialog cancelled, or not allowed
+esac
+out=$(printf '%s\n' "$out" | sed 's/\x1b\[[0-9;]*m//g')
+if [ "$rc" = 0 ]; then zenity --info --title="$T" --text="$OK" --width=420 2>/dev/null
+else printf '%s\n%s\n' "$ERR" "$out" | zenity --text-info --title="$T" --width=760 --height=480 2>/dev/null; fi
+exit $rc

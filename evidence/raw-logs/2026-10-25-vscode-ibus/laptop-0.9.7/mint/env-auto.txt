@@ -1,0 +1,6 @@
+== open auto menu copy 20:40:02
+Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F
+Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code --new-window %F
+pid 3931 /usr/share/code/code /tmp/vsc-auto.txt : im-ibus loaded: 0
+pid 3938 /usr/share/code/code --type=zygote --no-zygote-sandbox : im-ibus loaded: 0
+pid 3939 /usr/share/code/code --type=zygote : im-ibus loaded: 0

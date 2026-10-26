@@ -1,0 +1,27 @@
+uid=1001(newbe) gid=1001(newbe) groupes=1001(newbe)
+dconf user db: drwx------  2 newbe newbe   60 oct 24 06:56 .
+drwxr-xr-x 15 newbe newbe  440 oct 24 06:55 ..
+-rw-rw-r--  1 newbe newbe 5564 oct 24 06:56 user
+dconf dump cinnamon input-sources: []
+dconf dump gnome input-sources: [[/]
+sources=[('ibus', 'mozc-jp'), ('xkb', 'be')]
+xkb-options=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']]
+dconf libgnomekbd: []
+=== kbstate 06:56:21Z z-broken-rules-session ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be,be variant: , options: lv3:ralt_switch,kpdl:comma,caps:be_windows 
+gkbd:     @as []
+gnome:    [('ibus', 'mozc-jp'), ('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=x11
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:48
+rules:      evdev
+model:      pc105+inet
+layout:     be,be
+variant:    ,
+options:    lv3:ralt_switch,kpdl:comma,caps:be_windows
+Le schéma « org.cinnamon.desktop.input-sources » n’existe pas
+['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']

@@ -1,0 +1,79 @@
+name: Test report
+description: Tell us how the Belgian keyboard fix behaved on your computer (no personal data needed)
+title: "Test report: [Mint or Zorin], [installed / virtual machine / live USB]"
+labels: ["test report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for testing. The steps are on the [testing page](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/TESTING.md)
+        (Nederlands: TESTING.nl.md, Français : TESTING.fr.md). You may answer in English, Dutch or French.
+        Please do not write your name, e-mail address or user name here: this page is public.
+  - type: dropdown
+    id: distro
+    attributes:
+      label: Distribution
+      options:
+        - Linux Mint 22.3 (Cinnamon)
+        - Linux Mint 22.3 (other edition)
+        - Zorin OS 18.1 Core
+        - Zorin OS 18.1 (other edition)
+        - Other (please say which below; not tested by the project)
+    validations:
+      required: true
+  - type: dropdown
+    id: how
+    attributes:
+      label: Where did you test?
+      options:
+        - Installed on a real computer
+        - Virtual machine
+        - Live USB on a real computer (test 2)
+        - Installed from the Belgian stick (test 3)
+    validations:
+      required: true
+  - type: dropdown
+    id: session
+    attributes:
+      label: Session type (the last line of belgian-check.txt)
+      options:
+        - x11
+        - wayland
+        - I don't know
+  - type: input
+    id: hardware
+    attributes:
+      label: Computer and keyboard (optional)
+      description: For example "Lenovo ThinkPad T14s, built-in keyboard" or "desktop PC, Logitech K120 by USB".
+  - type: checkboxes
+    id: lines
+    attributes:
+      label: Test lines (tick the ones that gave exactly the expected text)
+      options:
+        - label: "A: left Ctrl + left Alt with 1 2 3 9 0 E gave |@#{}€"
+        - label: "B: AltGr with 1 2 3 9 0 E gave |@#{}€"
+        - label: "C: Caps Lock line gave AZE123 (Mint) or AZE&É\" (Zorin)"
+        - label: "D: the numpad decimal key gave . (or , with the comma)"
+        - label: "E: Ctrl+Alt+T opened a terminal"
+        - label: "After a restart, line A still worked"
+        - label: "After the uninstall, line B still gave |@#{}€"
+  - type: textarea
+    id: differences
+    attributes:
+      label: What was different?
+      description: For every line you did not tick, write exactly what appeared.
+  - type: textarea
+    id: extras
+    attributes:
+      label: Extras (optional)
+      description: Second USB keyboard, keyboard with built-in touchpad (did scrolling and gestures still work?), fast typing (any swapped pairs?), VS Code, Windows Caps Lock on Zorin.
+  - type: textarea
+    id: check
+    attributes:
+      label: Contents of belgian-check.txt
+      description: The testing page makes this file with your user name replaced by USER. Check that it is not in it any more.
+      render: text
+  - type: textarea
+    id: other
+    attributes:
+      label: Anything else?

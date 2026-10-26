@@ -1,0 +1,2 @@
+start 01:29:20.577Z keyd=active keyd_pid=3275 ibus=on session=x11 desktop=X-Cinnamon load=0.12 0.73 0.88
+end 01:29:50.947Z keyd=active keyd_pid=3275 ibus=on session=x11 desktop=X-Cinnamon load=0.16 0.67 0.86

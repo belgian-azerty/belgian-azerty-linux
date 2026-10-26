@@ -1,0 +1,2 @@
+== open paused menu copy 21:11:52
+grep: /home/zorin/.local/share/applications/com.microsoft.VSCode.desktop: No such file or directory

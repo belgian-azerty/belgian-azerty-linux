@@ -1,0 +1,1 @@
+start app=terminal env=[start] 21:47:03.031Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.14 1.18 1.26

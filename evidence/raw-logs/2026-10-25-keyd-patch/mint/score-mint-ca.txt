@@ -1,0 +1,14 @@
+mint-ca [ctrlalt] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 120 ms min 116 ms
+start 01:28:45.423Z keyd=active keyd_pid=3275 ibus=on session=x11 desktop=X-Cinnamon load=0.10 0.80 0.91
+end 01:29:16.134Z keyd=active keyd_pid=3275 ibus=on session=x11 desktop=X-Cinnamon load=0.12 0.73 0.88
+expected: @€@€@€@€@€@€@€@€
+  1 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  2 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  3 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  4 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  5 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  6 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  7 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  8 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  9 ok    @€@€@€@€@€@€@€@€   [keys in order]
+ 10 ok    @€@€@€@€@€@€@€@€   [keys in order]

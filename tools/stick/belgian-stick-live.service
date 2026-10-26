@@ -1,0 +1,12 @@
+[Unit]
+Description=Belgian stick: apply the keyboard and format choice of the boot menu
+ConditionKernelCommandLine=belgian.keyboard
+After=local-fs.target
+Before=display-manager.service gdm.service lightdm.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/belgian-stick/belgian-stick live-boot
+
+[Install]
+WantedBy=multi-user.target

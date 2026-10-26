@@ -1,0 +1,15 @@
+m-wiped plain: azerty é | AltGr 2 e: @€ | CtrlAlt 2 e: @€ | Caps ² 1 2 3 ) - ù , ; a: ²123°_%?.A | numpad 1 dec 5: [F[3~[E | after NumLock toggle: 1,5
+=== kbstate 05:29:15Z m-wiped ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be,be variant: , options: terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows'] session=x11
+cinnamon: [('xkb', 'be')]
+accounts: 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   18:32 /boot/initrd.img-6.14.0-37-generic vs /etc/default/keyboard 05:10
+options:    terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows
+['terminate:ctrl_alt_bksp', 'kpdl:comma', 'caps:be_windows']
+['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']

@@ -1,0 +1,36 @@
+VTNr=2
+Display=
+3
+2297 /usr/bin/gnome-shell
+2430 /usr/libexec/gnome-shell-calendar-server
+2050 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+[  777.317684] zorin gsd-sound[3435]: Error releasing name org.gnome.SettingsDaemon.Sound: Verbindung ist geschlossen
+[  777.361666] zorin gsd-datetime[3424]: Error releasing name org.gnome.SettingsDaemon.Datetime: Verbindung ist geschlossen
+[  777.396527] zorin /usr/libexec/gdm-x-session[3143]: (II) UnloadModule: "libinput"
+[  777.396527] zorin /usr/libexec/gdm-x-session[3143]: (II) systemd-logind: releasing fd for 13:67
+[  777.417797] zorin gsd-print-notif[3414]: Error releasing name org.gnome.SettingsDaemon.PrintNotifications: Verbindung ist geschlossen
+[  777.450715] zorin realmd[3671]: GLib-GIO: Using cross-namespace EXTERNAL authentication (this will deadlock if server is GDBus < 2.73.3)
+[  777.458217] zorin gsd-housekeepin[3442]: Error releasing name org.gnome.SettingsDaemon.Housekeeping: Verbindung ist geschlossen
+[  777.490725] zorin unknown[3432]: Error releasing name org.freedesktop.ScreenSaver: Verbindung ist geschlossen
+[  777.534680] zorin realmd[3671]: connected to bus
+[  777.543749] zorin /usr/libexec/gdm-x-session[3143]: (II) UnloadModule: "libinput"
+[  777.543749] zorin /usr/libexec/gdm-x-session[3143]: (II) systemd-logind: releasing fd for 13:64
+[  777.628259] zorin realmd[3671]: GLib-GIO: _g_io_module_get_default: Found default implementation local (GLocalVfs) for ‘gio-vfs’
+[  777.652551] zorin realmd[3671]: released daemon: startup
+[  777.670707] zorin dbus-daemon[1652]: [system] Successfully activated service 'org.freedesktop.realmd'
+[  777.695991] zorin systemd[1]: Started realmd.service - Realm and Domain Configuration.
+[  777.713811] zorin realmd[3671]: claimed name on bus: org.freedesktop.realmd
+[  777.733861] zorin /usr/libexec/gdm-x-session[3143]: (II) Server terminated successfully (0). Closing log file.
+[  777.939337] zorin gdm-launch-environment][3087]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+[  778.094865] zorin systemd[1]: session-c1.scope: Deactivated successfully.
+[  778.117685] zorin systemd[1]: session-c1.scope: Consumed 2min 20.200s CPU time.
+[  778.187722] zorin systemd-logind[1682]: Session c1 logged out. Waiting for processes to exit.
+[  778.235667] zorin systemd-logind[1682]: Removed session c1.
+[  778.329718] zorin gdm3[1986]: Gdm: Child process -3139 was already dead.
+[  778.357620] zorin polkitd[1660]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.95, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale de_BE.UTF-8) (disconnected from bus)
+[  778.462357] zorin gdm3[1986]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+insgesamt 0
+drwxrwxrwt  2 root  root   60 Okt 24 15:41 .
+drwxrwxrwt 20 root  root  460 Okt 24 15:41 ..
+srwxrwxrwx  1 zorin zorin   0 Okt 24 15:36 X0
+14

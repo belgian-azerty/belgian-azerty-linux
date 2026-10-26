@@ -1,0 +1,1 @@
+start app=box3 env=[start IBUS_ENABLE_SYNC_MODE=2] 18:55:08.064Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=0.72 0.47 0.58

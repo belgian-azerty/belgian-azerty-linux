@@ -1,0 +1,15 @@
+m-after-plain-purge plain: azerty é | AltGr 2 e: @€ | CtrlAlt 2 e: é | Caps ² 1 2 3 ) - ù , ; a: ²&É")-Ù,;A | numpad 1 dec 5: [F[3~[E | after NumLock toggle: 1.5
+=== kbstate 06:10:05Z m-after-plain-purge ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be,be variant: , options: terminate:ctrl_alt_bksp,caps:be_windows 
+gkbd:     ['be\t']
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch', 'kpdl:comma'] session=x11
+cinnamon: [('xkb', 'be')]
+accounts: 
+greeter:   gdm=(default)
+keyd:     failed not-found conf=
+initrd:   18:32 /boot/initrd.img-6.14.0-37-generic vs /etc/default/keyboard 06:02
+options:    terminate:ctrl_alt_bksp,caps:be_windows
+['terminate:ctrl_alt_bksp', 'caps:be_windows']
+['lv3:ralt_switch', 'kpdl:comma']

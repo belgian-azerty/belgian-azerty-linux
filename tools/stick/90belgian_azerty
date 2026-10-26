@@ -1,0 +1,3 @@
+#!/bin/sh
+# Ubiquity target-config hook from the Belgian stick: see /usr/local/lib/belgian-stick/belgian-stick
+exec /usr/local/lib/belgian-stick/belgian-stick install-target

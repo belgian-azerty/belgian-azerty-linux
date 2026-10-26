@@ -1,0 +1,7 @@
+$ be-azerty-fix ibus-skip list
+ibus skip for mint:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  · org.gnome.Terminal (automatic): skips ibus from its next start (still running with ibus: close all its windows)
+  [32m✔[0m org.x.editor (automatic): skips ibus (menu entry /home/mint/.local/share/applications/org.x.editor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+exit 0

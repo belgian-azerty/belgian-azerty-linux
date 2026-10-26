@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Belgian keyboard
+Name[nl]=Belgisch toetsenbord
+Name[fr]=Clavier belge
+Name[de]=Belgische Tastatur
+Comment=Windows or Linux behaviour, period or comma on the numpad
+Comment[nl]=Werking zoals Windows of Linux, punt of komma op het numeriek klavier
+Comment[fr]=Fonctionnement Windows ou Linux, point ou virgule sur le pavé numérique
+Comment[de]=Verhalten wie Windows oder Linux, Punkt oder Komma auf dem Ziffernblock
+Exec=be-azerty-settings
+Icon=input-keyboard
+Terminal=false
+Categories=Settings;HardwareSettings;
+Keywords=keyboard;azerty;belgian;numpad;comma;period;toetsenbord;clavier;Tastatur;

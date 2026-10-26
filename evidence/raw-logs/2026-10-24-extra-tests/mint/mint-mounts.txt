@@ -1,0 +1,4 @@
+/ /cow overlay 4,9G rw,relatime,lowerdir=/zz-belgian-azerty.squashfs:/filesystem.squashfs,upperdir=/cow/upper,workdir=/cow/work,uuid=on,xino=off,nouserxattr
+               total        used        free      shared  buff/cache   available
+Mem:            9939        5055         188        3477        8483        4884
+Swap:              0           0           0

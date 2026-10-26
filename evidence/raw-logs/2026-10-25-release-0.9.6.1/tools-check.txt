@@ -1,0 +1,7 @@
+tools/make_belgian_iso.sh: OK
+tools/belgian_boot_menu.py: OK
+tools/stick/90belgian_azerty: OK
+tools/stick/belgian-azerty-firstboot.service: OK
+tools/stick/belgian-stick: OK
+tools/stick/belgian-stick-live.service: OK
+tools/stick/build-layer.sh: OK

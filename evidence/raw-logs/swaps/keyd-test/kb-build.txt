@@ -1,0 +1,29 @@
+   85 |                                 write(con, layer->name, strlen(layer->name));
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/daemon.c:86:33: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   86 |                                 write(con, "\n", 1);
+      |                                 ^~~~~~~~~~~~~~~~~~~
+make rc=0
+Expected                      Output
+
+leftcontrol down              leftcontrol down
+leftalt down                  leftalt down
+leftalt up                    leftalt up
+leftshift down                leftshift down
+leftcontrol up                leftcontrol up
+h down                        h down
+h up                          h up
+leftalt down                  leftalt down
+leftshift up                  leftshift up
+leftcontrol down              leftcontrol down
+[32;1mleftcontrol up                [0m[31;1mleftalt up[0m
+[32;1mleftalt up                    [0m[31;1mleftcontrol up[0m
+make: *** [Makefile:101: test-io] Error 255
+test-io rc=2
+total 480
+drwxrwxr-x  2 mint mint    100 Oct 24 20:42 .
+drwxr-xr-x 10 mint mint    380 Oct 24 20:42 ..
+-rwxrwxr-x  1 mint mint 250176 Oct 24 20:42 keyd
+-rwxr-xr-x  1 mint mint  14606 Oct 24 20:42 keyd-application-mapper
+-rwxrwxr-x  1 mint mint 217816 Oct 24 20:42 test-io
+854b1e2eabdc7096590d15768695af650e176759010738752dae3520f0008956  bin/keyd

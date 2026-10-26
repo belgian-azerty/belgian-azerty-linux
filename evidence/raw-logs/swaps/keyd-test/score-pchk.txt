@@ -1,0 +1,8 @@
+pchk [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 122 ms min 100 ms
+start app=terminal env=[start] 20:53:56.419Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=0.64 0.61 0.38
+end app=terminal env=[end] 20:54:10.197Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.04 0.69 0.41
+lagging-behind messages during block: 0
+expected: @€@€@€@€@€@€@€@€
+  1 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  2 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  3 ok    @€@€@€@€@€@€@€@€   [keys in order]

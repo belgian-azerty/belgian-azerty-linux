@@ -1,0 +1,3 @@
+noibus-AltGr015: @€@€@€@€@€@€@€@€
+noibus-CtrlAlt015: @€@€@€@€@€@€@€@€
+noibus-AltGr90: {}{}{}{}{}{}{}{}

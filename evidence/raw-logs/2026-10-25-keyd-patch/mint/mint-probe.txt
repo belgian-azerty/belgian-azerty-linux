@@ -1,0 +1,135 @@
+== cmdline
+BOOT_IMAGE=/casper/vmlinuz boot=casper initrd=/casper/initrd.lz uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint quiet splash --
+== belgian-stick.log
+cat: /var/log/belgian-stick.log: No such file or directory
+== services
+inactive
+active
+enabled
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS=""
+
+BACKSPACE="guess"
+== /etc/default/locale
+LANG=C.UTF-8
+== session locale
+LANG=C.UTF-8
+LANGUAGE=
+LC_CTYPE="C.UTF-8"
+LC_NUMERIC="C.UTF-8"
+LC_TIME="C.UTF-8"
+LC_COLLATE="C.UTF-8"
+LC_MONETARY="C.UTF-8"
+LC_MESSAGES="C.UTF-8"
+LC_PAPER="C.UTF-8"
+LC_NAME="C.UTF-8"
+LC_ADDRESS="C.UTF-8"
+LC_TELEPHONE="C.UTF-8"
+LC_MEASUREMENT="C.UTF-8"
+LC_IDENTIFICATION="C.UTF-8"
+LC_ALL=
+Sun Oct 25 01:28:10 2026 | 10/25/26 | 01:28:10
+== gsettings
+[('xkb', 'us')]
+@as []
+['terminate:ctrl_alt_bksp', 'caps:be_windows']
+['be\t']
+== setxkbmap
+rules:      evdev
+model:      pc105
+layout:     be,us
+variant:    ,
+options:    terminate:ctrl_alt_bksp,caps:be_windows
+== choices
+cat: /var/lib/belgian-azerty-windows/choices: No such file or directory
+== packages
+belgian-azerty-windows	0.9.4
+keyd	2.5.0-5~ubuntu24.04.2
+keyd-belgian-windows	0.9.4
+== layers
+/dev/loop0 on /rofs type squashfs (ro,noatime,errors=continue,threads=single)
+/cow on / type overlay (rw,relatime,lowerdir=/filesystem.squashfs,upperdir=/cow/upper,workdir=/cow/work,uuid=on,xino=off,nouserxattr)
+== check
+Packages:
+  ✔ belgian-azerty-windows 0.9.4
+  ✔ keyd-belgian-windows 0.9.4
+  ✔ keyd 2.5.0-5~ubuntu24.04.2
+Profile:
+  · no profile saved yet ("sudo be-azerty-fix system" saves one; the default is windows)
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✘ XKBLAYOUT=us XKBVARIANT= (want be)
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  ✔ Caps Lock option files present
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: us
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     be,us
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp,caps:be_windows
+Desktop setting (cinnamon):
+  ['be\t']
+  [('xkb', 'be')]
+  · xkb-options: terminate:ctrl_alt_bksp,caps:be_windows
+  · new users and reset settings start with the distribution default: ['terminate:ctrl_alt_bksp']
+AccountsService record for mint:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check
+== versions
+cinnamon	6.6.4+zena
+firefox	146.0.1+linuxmint1+zena
+gnome-shell	
+ibus	1.5.29-2
+keyboard-configuration	1.226ubuntu1
+libxkbcommon0:amd64	1.6.0-1build1
+muffin	6.6.1+zena
+systemd	255.4-1ubuntu8.12
+udev	255.4-1ubuntu8.12
+xkb-data	2.41-2ubuntu1.1
+6.14.0-37-generic
+== keyd.service
+● keyd.service - key remapping daemon
+     Loaded: loaded (/usr/lib/systemd/system/keyd.service; enabled; preset: enabled)
+    Drop-In: /usr/lib/systemd/system/keyd.service.d
+             └─belgian-windows-restart.conf
+     Active: active (running) since Sun 2026-10-25 01:27:42 UTC; 28s ago
+== xkb option file
+-rw-r--r-- 1 root root  10702 Feb  5  2024 be
+-rw-r--r-- 1 root root   1913 Oct 24 23:30 be_capslock
+== sleep
+freeze mem disk
+s2idle [deep]
+== journal suspend
+Oct 25 01:27:41 mint keyd.rvaiya[3170]: DEVICE: match    0001:0001:70533846  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+Oct 25 01:27:42 mint systemd[1]: Stopping keyd.service - key remapping daemon...
+Oct 25 01:27:42 mint systemd[1]: keyd.service: Deactivated successfully.
+Oct 25 01:27:42 mint systemd[1]: Stopped keyd.service - key remapping daemon.
+Oct 25 01:27:42 mint systemd[1]: Started keyd.service - key remapping daemon.
+Oct 25 01:27:42 mint kernel: input: keyd virtual keyboard as /devices/virtual/input/input12
+Oct 25 01:27:42 mint systemd-logind[1173]: Watching system buttons on /dev/input/event5 (keyd virtual keyboard)
+Oct 25 01:27:42 mint kernel: input: keyd virtual pointer as /devices/virtual/input/input13
+Oct 25 01:27:42 mint keyd.rvaiya[3275]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+Oct 25 01:27:42 mint keyd.rvaiya[3275]: Starting keyd v2.5.0 ()
+Oct 25 01:27:42 mint keyd.rvaiya[3275]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+Oct 25 01:27:42 mint keyd.rvaiya[3275]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+Oct 25 01:27:42 mint keyd.rvaiya[3275]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:27:42 mint keyd.rvaiya[3275]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:27:42 mint keyd.rvaiya[3275]: DEVICE: match    0001:0001:70533846  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)

@@ -1,0 +1,30 @@
+Oct 25 02:00:39 zorin systemd[1]: Started keyd.service - key remapping daemon.
+Oct 25 02:00:40 zorin keyd.rvaiya[7162]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+Oct 25 02:00:40 zorin keyd.rvaiya[7162]: Starting keyd v2.5.0 ()
+Oct 25 02:00:40 zorin keyd.rvaiya[7162]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+Oct 25 02:00:40 zorin keyd.rvaiya[7162]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+Oct 25 02:00:40 zorin keyd.rvaiya[7162]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+Oct 25 02:00:40 zorin keyd.rvaiya[7162]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+Oct 25 02:00:40 zorin keyd.rvaiya[7162]: DEVICE: match    0001:0001:09b4e68d  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+Oct 25 02:00:45 zorin systemd[1]: Stopping keyd.service - key remapping daemon...
+Oct 25 02:00:45 zorin systemd[1]: keyd.service: Deactivated successfully.
+Oct 25 02:00:45 zorin systemd[1]: Stopped keyd.service - key remapping daemon.
+Oct 25 02:00:45 zorin systemd[1]: Started keyd.service - key remapping daemon.
+Oct 25 02:00:45 zorin keyd.rvaiya[7219]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+Oct 25 02:00:45 zorin keyd.rvaiya[7219]: Starting keyd v2.5.0 ()
+Oct 25 02:00:45 zorin keyd.rvaiya[7219]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+Oct 25 02:00:45 zorin keyd.rvaiya[7219]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+Oct 25 02:00:45 zorin keyd.rvaiya[7219]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+Oct 25 02:00:45 zorin keyd.rvaiya[7219]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+Oct 25 02:00:45 zorin keyd.rvaiya[7219]: DEVICE: match    0001:0001:09b4e68d  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+Oct 25 02:00:51 zorin systemd[1]: Stopping keyd.service - key remapping daemon...
+Oct 25 02:00:51 zorin systemd[1]: keyd.service: Deactivated successfully.
+Oct 25 02:00:51 zorin systemd[1]: Stopped keyd.service - key remapping daemon.
+Oct 25 02:00:51 zorin systemd[1]: Started keyd.service - key remapping daemon.
+Oct 25 02:00:51 zorin keyd.rvaiya[7279]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+Oct 25 02:00:51 zorin keyd.rvaiya[7279]: Starting keyd v2.5.0 ()
+Oct 25 02:00:51 zorin keyd.rvaiya[7279]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+Oct 25 02:00:51 zorin keyd.rvaiya[7279]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+Oct 25 02:00:51 zorin keyd.rvaiya[7279]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+Oct 25 02:00:51 zorin keyd.rvaiya[7279]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+Oct 25 02:00:51 zorin keyd.rvaiya[7279]: DEVICE: match    0001:0001:09b4e68d  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)

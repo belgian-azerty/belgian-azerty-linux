@@ -1,0 +1,2 @@
+be-winaltgr.conf etc/keyd/
+belgian-windows-restart.conf usr/lib/systemd/system/keyd.service.d/

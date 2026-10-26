@@ -1,0 +1,13 @@
+$ ls -la /home/zorin/.local/share/applications /home/zorin/.config/systemd/user /home/zorin/.config/belgian-azerty /etc/xdg/autostart/be-azerty-ibus-skip.desktop
+ls: cannot access '/home/zorin/.config/belgian-azerty': No such file or directory
+ls: cannot access '/etc/xdg/autostart/be-azerty-ibus-skip.desktop': No such file or directory
+/home/zorin/.config/systemd/user:
+total 0
+drwxrwxr-x 2 zorin zorin 40 Oct 25 12:05 .
+drwxrwxr-x 3 zorin zorin 60 Oct 25 11:43 ..
+
+/home/zorin/.local/share/applications:
+total 0
+drwx------  2 zorin zorin  40 Oct 25 12:05 .
+drwx------ 16 zorin zorin 360 Oct 25 11:50 ..
+exit 2

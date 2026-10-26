@@ -1,0 +1,125 @@
+== mint-windows 2026-10-25T01:33:28Z
+== dpkg -l | grep -E 'keyd|belgian'
+ii  belgian-azerty-windows                     0.9.4                                      all          Belgian AZERTY keyboard that behaves like on Windows
+ii  keyd                                       2.5.0-5~ubuntu24.04.2                      amd64        keyboard key remapping daemon
+ii  keyd-belgian-windows                       0.9.4                                      all          Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards
+(grep exit 0)
+== dpkg-query
+belgian-azerty-windows	0.9.4
+keyd	2.5.0-5~ubuntu24.04.2
+keyd-belgian-windows	0.9.4
+== keyd exe (sudo)
+lrwxrwxrwx 1 root root 0 Oct 25 01:33 /proc/6826/exe -> /usr/bin/keyd.rvaiya
+== systemctl is-active keyd
+active
+== is-enabled
+enabled
+== systemctl --failed
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+== /etc/keyd
+total 4
+drwxr-xr-x 2 root root   60 Oct 25 01:27 .
+drwxr-xr-x 1 root root  700 Oct 25 01:27 ..
+-rw-r--r-- 1 root root 1579 Oct 24 17:00 be-winaltgr.conf
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="caps:be_windows"
+
+BACKSPACE="guess"
+== choices
+PROFILE=windows
+DECIMAL=period
+CAPS=windows
+== setxkbmap
+rules:      evdev
+model:      pc105
+layout:     be,us
+variant:    ,
+options:    terminate:ctrl_alt_bksp,caps:be_windows
+== gsettings
+@as []
+['terminate:ctrl_alt_bksp', 'caps:be_windows']
+== check (kit script)
+Packages:
+  ✔ belgian-azerty-windows 0.9.4
+  ✔ keyd-belgian-windows 0.9.4
+  ✔ keyd 2.5.0-5~ubuntu24.04.2
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=windows 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     be,us
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp,caps:be_windows
+Desktop setting (cinnamon):
+  ['be\t']
+  [('xkb', 'be')]
+  · xkb-options: terminate:ctrl_alt_bksp,caps:be_windows
+  ✔ new users and reset settings start with: ['terminate:ctrl_alt_bksp', 'caps:be_windows']
+AccountsService record for mint:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check
+== check (installed)
+Packages:
+  ✔ belgian-azerty-windows 0.9.4
+  ✔ keyd-belgian-windows 0.9.4
+  ✔ keyd 2.5.0-5~ubuntu24.04.2
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=windows 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     be,us
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp,caps:be_windows
+Desktop setting (cinnamon):
+  ['be\t']
+  [('xkb', 'be')]
+  · xkb-options: terminate:ctrl_alt_bksp,caps:be_windows
+  ✔ new users and reset settings start with: ['terminate:ctrl_alt_bksp', 'caps:be_windows']
+AccountsService record for mint:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check

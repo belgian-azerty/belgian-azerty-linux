@@ -1,0 +1,39 @@
+#!/bin/sh
+# Regenerate /usr/share/X11/xkb/rules/evdev = xkb-data's file (diverted to evdev.distrib by belgian-azerty-windows)
+# + the rule for the option caps:be_windows. Run by the package's postinst on install and on every xkb-data upgrade
+# (dpkg trigger). The new file replaces the old one in a single rename, so the rules file never goes missing.
+#   update-xkb-rules              regenerate evdev from evdev.distrib
+#   update-xkb-rules strip IN OUT copy IN to OUT without the block an older be-azerty-fix.sh appended by hand
+set -e
+RULES=/usr/share/X11/xkb/rules/evdev
+SRC=$RULES.distrib
+
+# The hand-written block was: an empty line, the marker comment, "! option = symbols", the caps:be_windows line.
+strip_legacy() {
+    awk '
+        /^$/ { if (held) print ""; held = 1; next }
+        /^\/\/ be-azerty-fix\.sh: Caps Lock as on Windows Belgian$/ { held = 0; skip = 1; next }
+        skip { if (/caps:be_windows/) skip = 0; next }
+        { if (held) { print ""; held = 0 } print }
+        END { if (held) print "" }
+    ' "$1"
+}
+
+if [ "${1:-}" = strip ]; then
+    strip_legacy "$2" > "$3"
+    exit 0
+fi
+
+[ -f "$SRC" ] || exit 0          # not diverted (package not configured, or being removed): nothing to do
+tmp=$(mktemp "$RULES.tmp.XXXXXX")
+trap 'rm -f "$tmp"' EXIT
+strip_legacy "$SRC" > "$tmp"
+cat >> "$tmp" <<'RULE'
+
+// belgian-azerty-windows: Caps Lock as on Windows Belgian (symbols/be_capslock)
+! option	=	symbols
+  caps:be_windows	=	+be_capslock(windows)
+RULE
+chmod 644 "$tmp"
+mv -f "$tmp" "$RULES"
+trap - EXIT

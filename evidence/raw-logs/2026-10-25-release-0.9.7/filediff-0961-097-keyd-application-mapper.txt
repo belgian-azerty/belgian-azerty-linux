@@ -1,0 +1,8 @@
+SAME     ctl/control  old 009b00197eb387c8  new 009b00197eb387c8
+SAME     ctl/md5sums  old efbab7db036fbd61  new efbab7db036fbd61
+SAME     data/usr/bin/keyd-application-mapper  old f7d7a48e05f8d2b2  new f7d7a48e05f8d2b2
+SAME     data/usr/share/doc/keyd-application-mapper/NEWS.Debian.gz  old 8c4af469d3a47d95  new 8c4af469d3a47d95
+SAME     data/usr/share/doc/keyd-application-mapper/changelog.Debian.gz  old e6e3b5e11a93b9c5  new e6e3b5e11a93b9c5
+SAME     data/usr/share/doc/keyd-application-mapper/copyright  old 00daaa09b085d6a1  new 00daaa09b085d6a1
+SAME     data/usr/share/man/man1/keyd-application-mapper.1.gz  old 9d091f29183a414c  new 9d091f29183a414c
+modes/owners/paths: SAME

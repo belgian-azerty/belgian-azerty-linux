@@ -1,0 +1,41 @@
+# keyd edge cases, shipped be-winaltgr.conf, keyd 2.5.0-5 test harness (bin/test-io), 2026-10-25 ~02:30Z, REVIEW-3
+# orig = Debian 2.5.0-5 (patches 0001-0011); 2.5.0 = + 0012 (the shipped 0.9.4 code). Each .t has a dummy expected line, so the harness prints the real output.
+# The first output event (the press of the first key) is hidden by the harness's side-by-side print; it is the same in both builds.
+######## orig
+== A-held-2e2e.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftalt up rightalt down leftcontrol up e down e up leftalt down rightalt up leftcontrol down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftalt up rightalt down leftcontrol up e down e up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+== B-at-then-t.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down t down t up leftalt up leftcontrol up
+== C-at-release-ctrl-first-then-key.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftcontrol up f down f up leftalt up
+== D-at-release-alt-first.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftalt up c down c up leftcontrol up
+== E-at-then-shift.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftshift down leftshift up leftalt up leftcontrol up
+== F-altgr-4.t
+9 down 9 up 2 down 2 up rightalt up
+== G-at-then-delete.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down delete down delete up leftalt up leftcontrol up
+== H-overlap.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down e down 2 up leftalt down rightalt up leftcontrol down e up leftalt up leftcontrol up
+== I-rightctrl.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+######## 2.5.0
+== A-held-2e2e.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up e down e up 2 down 2 up e down e up rightalt up leftcontrol down leftcontrol up
+== B-at-then-t.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down t down t up leftalt up leftcontrol up
+== C-at-release-ctrl-first-then-key.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up f down f up leftalt up
+== D-at-release-alt-first.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up rightalt up leftcontrol down c down c up leftcontrol up
+== E-at-then-shift.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftshift down leftcontrol down leftshift up leftalt up leftcontrol up
+== F-altgr-4.t
+9 down 9 up 2 down 2 up rightalt up
+== G-at-then-delete.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down delete down delete up leftalt up leftcontrol up
+== H-overlap.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down e down 2 up e up rightalt up leftcontrol down leftcontrol up
+== I-rightctrl.t
+leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up rightalt up leftcontrol down leftcontrol up

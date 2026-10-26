@@ -1,0 +1,2 @@
+start 01:57:52.626Z keyd=active keyd_pid=6517 ibus=on session=x11 desktop=zorin:GNOME load=1.18 0.68 0.42
+end 01:58:24.420Z keyd=active keyd_pid=6517 ibus=on session=x11 desktop=zorin:GNOME load=1.62 0.85 0.49

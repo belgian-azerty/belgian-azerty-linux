@@ -1,0 +1,35 @@
+== stock ISOs: Mint a081ab202cfda17f6924128dbd2de8b63518ac0531bcfe3f1a1b88097c459bd4 (official sha256sum.txt), Zorin 44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5
+== 0.9.4.1 sticks built 2026-10-25T02:55:36Z: MENU=b PACKAGES=dist tools/make_belgian_iso.sh IN OUT (cloud container)
+6553975b7b6601cc98199d7b4536e0e779f89453bbf7cf91b2aca1d164dc4549  zorin-belgian-stick.iso
+ae3434bae026a96f970969d2202be77f7461514dc7d77e5a2bb6793f46efa572  mint-belgian-stick.iso
+-rw-r--r-- 1 root root 3095003136 Oct 25 02:55 <build dir>/iso/mint-belgian-stick.iso
+-rw-r--r-- 1 root root 3915448320 Oct 25 02:53 <build dir>/iso/zorin-belgian-stick.iso
+== packages inside the zorin stick's /belgian/
+33321c6344a2ecce48b188c85a0bf1b0798fe0853710edd5d3ab69c3ccdb8f95  belgian-azerty-windows_0.9.4.1_all.deb
+7343a82c3b29b9eda77773655d14647f74a2fd8284c73569f2f377eb291468d6  keyd-belgian-windows_0.9.4.1_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+== packages inside the mint stick's /belgian/
+33321c6344a2ecce48b188c85a0bf1b0798fe0853710edd5d3ab69c3ccdb8f95  belgian-azerty-windows_0.9.4.1_all.deb
+7343a82c3b29b9eda77773655d14647f74a2fd8284c73569f2f377eb291468d6  keyd-belgian-windows_0.9.4.1_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+== build log
+== 0.9.4.1 sticks
+== zorin
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /boot/grub/loopback.cfg (12 boot entries)
+patched /isolinux/menuentries.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (6.1M layer)
+updated /md5sum.txt (8 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/zorin-belgian-stick.iso
+exit 0
+== mint
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /isolinux/live.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (5.4M layer)
+updated /md5sum.txt (7 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/mint-belgian-stick.iso
+exit 0

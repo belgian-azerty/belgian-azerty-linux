@@ -1,0 +1,12 @@
+== paused 20:49:38
+-- be-azerty-fix ibus-skip
+ibus skip for mint:
+  · automatic: paused, because an input method is set up in the keyboard settings: anthy (the Terminal and the text editor keep ibus; it resumes at the next login after that is removed)
+  · no app skips ibus. Per app by hand: be-azerty-fix ibus-skip on terminal
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+-- VS Code copy
+ls: cannot access '/home/mint/.local/share/applications/com.microsoft.VSCode.desktop': No such file or directory
+grep: /home/mint/.local/share/applications/com.microsoft.VSCode.desktop: No such file or directory
+-- keyboard settings (org.cinnamon.desktop.input-sources)
+[('xkb', 'be'), ('ibus', 'anthy')]
+-- VS Code processes

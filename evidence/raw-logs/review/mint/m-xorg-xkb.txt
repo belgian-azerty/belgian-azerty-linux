@@ -1,0 +1,52 @@
+/etc/X11/xorg.conf.d/:
+total 0
+drwxr-xr-x  2 root root   3 avr  8  2024 .
+drwxr-xr-x 11 root root 295 jan  8  2026 ..
+
+/usr/share/X11/xorg.conf.d/:
+total 8
+drwxr-xr-x 2 root root  126 jan  8  2026 .
+drwxr-xr-x 1 root root   60 jan  8  2026 ..
+-rw-r--r-- 1 root root  126 nov 19  2025 10-amdgpu.conf
+-rw-r--r-- 1 root root 1350 oct 23  2025 10-quirks.conf
+-rw-r--r-- 1 root root   92 avr  8  2024 10-radeon.conf
+-rw-r--r-- 1 root root 1429 mar 24  2025 40-libinput.conf
+-rw-r--r-- 1 root root 3458 avr  8  2024 70-wacom.conf
+System Locale: LANG=fr_BE.UTF-8
+    VC Keymap: (unset)
+   X11 Layout: be
+    X11 Model: pc105
+  X11 Options: lv3:ralt_switch,kpdl:comma,caps:be_windows
+[  8225.939] Kernel command line: BOOT_IMAGE=/casper/vmlinuz boot=casper uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint iso-scan/filename= quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 --
+[  8228.678] (II) Initializing extension XKEYBOARD
+[  8231.073] (**) Power Button: Applying InputClass "libinput keyboard catchall"
+[  8231.270] (II) event0  - Power Button: is tagged by udev as: Keyboard
+[  8231.273] (II) event0  - Power Button: device is a keyboard
+[  8231.294] (II) XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 6)
+[  8231.295] (**) Option "xkb_model" "pc105"
+[  8231.296] (**) Option "xkb_layout" "be"
+[  8231.296] (**) Option "xkb_options" "lv3:ralt_switch,kpdl:comma,caps:be_windows"
+[  8231.868] (II) event0  - Power Button: is tagged by udev as: Keyboard
+[  8231.870] (II) event0  - Power Button: device is a keyboard
+[  8232.181] (II) config/udev: Adding input device AT Translated Set 2 keyboard (/dev/input/event1)
+[  8232.182] (**) AT Translated Set 2 keyboard: Applying InputClass "libinput keyboard catchall"
+[  8232.183] (II) Using input driver 'libinput' for 'AT Translated Set 2 keyboard'
+[  8232.183] (**) AT Translated Set 2 keyboard: always reports core events
+[  8232.221] (II) event1  - AT Translated Set 2 keyboard: is tagged by udev as: Keyboard
+[  8232.223] (II) event1  - AT Translated Set 2 keyboard: device is a keyboard
+[  8232.232] (II) event1  - AT Translated Set 2 keyboard: device removed
+[  8232.251] (II) XINPUT: Adding extended input device "AT Translated Set 2 keyboard" (type: KEYBOARD, id 8)
+[  8232.252] (**) Option "xkb_model" "pc105"
+[  8232.252] (**) Option "xkb_layout" "be"
+[  8232.253] (**) Option "xkb_options" "lv3:ralt_switch,kpdl:comma,caps:be_windows"
+[  8232.291] (II) event1  - AT Translated Set 2 keyboard: is tagged by udev as: Keyboard
+[  8232.293] (II) event1  - AT Translated Set 2 keyboard: device is a keyboard
+[  8232.725] (II) config/udev: Adding input device keyd virtual keyboard (/dev/input/event4)
+[  8232.726] (**) keyd virtual keyboard: Applying InputClass "libinput keyboard catchall"
+[  8232.727] (II) Using input driver 'libinput' for 'keyd virtual keyboard'
+[  8232.727] (**) keyd virtual keyboard: always reports core events
+[  8232.748] (II) event4  - keyd virtual keyboard: is tagged by udev as: Keyboard
+[  8232.749] (II) event4  - keyd virtual keyboard: device is a keyboard
+/usr/share/glib-2.0/schemas/gschemas.compiled
+/usr/share/glib-2.0/schemas/mint-artwork.gschema.override
+/etc/X11/Xsession.d/99mint

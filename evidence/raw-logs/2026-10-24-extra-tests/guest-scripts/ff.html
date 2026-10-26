@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><title>keytest</title>
+<style>textarea{width:95%;height:120px;font-size:28px}</style>
+<p>Belgian key test. Type in the box.</p>
+<textarea id="t" autofocus></textarea>
+<pre id="log" style="font-size:12px"></pre>
+<script>
+const n = new URLSearchParams(location.search).get('n') || 'ff';
+const t = document.getElementById('t'), log = [];
+t.addEventListener('keydown', e => {
+  log.push(`keydown key=${JSON.stringify(e.key)} code=${e.code} ctrl=${e.ctrlKey} alt=${e.altKey} shift=${e.shiftKey} altgraph=${e.getModifierState('AltGraph')}`);
+  // keep Ctrl+letter shortcuts from acting on the page during the test (logged only)
+  if (e.ctrlKey && !e.altKey && e.key.length === 1 && !e.getModifierState('AltGraph')) e.preventDefault();
+  document.getElementById('log').textContent = log.slice(-8).join('\n');
+});
+let timer;
+function send() {
+  const body = 'VALUE=' + JSON.stringify(t.value) + '\n' + log.join('\n') + '\n';
+  fetch('http://10.0.2.2:8001/' + n + '.txt', {method: 'POST', body: body, mode: 'no-cors'});
+}
+t.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(send, 1500); });
+t.addEventListener('keyup', () => { clearTimeout(timer); timer = setTimeout(send, 1500); });
+</script>

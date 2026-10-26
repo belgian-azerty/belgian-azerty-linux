@@ -1,0 +1,21 @@
+./belgian-azerty-windows_0.9.5_all.deb: OK
+./keyd-belgian-windows_0.9.4.1_all.deb: OK
+./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb: OK
+Processing triggers for gnome-menus (3.36.0-1.1ubuntu3) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+Choices: profile windows (default), numpad decimal period (default), Caps Lock windows (from the profile)
+  [32m✔[0m setxkbmap be  (options lv3:ralt_switch,caps:be_windows)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: period, Caps Lock: windows
+  · fast typing: ibus skip brought up to date for zorin (see: be-azerty-fix ibus-skip)
+  · This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+XDG_SESSION_TYPE=x11 GTK_IM_MODULE=(unset) QT_IM_MODULE=ibus
+2149 /usr/bin/ibus-daemon --panel disable --xim
+-rw-r--r-- 1 root root 305 Oct 25 11:00 /etc/xdg/autostart/be-azerty-ibus-skip.desktop
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  · org.gnome.Terminal (automatic): skips ibus from its next start (still running with ibus: close all its windows)
+  [32m✔[0m org.gnome.TextEditor (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all

@@ -1,0 +1,31 @@
+#!/bin/sh
+set -e
+
+RULES=/usr/share/X11/xkb/rules/evdev
+
+case "$1" in
+    configure)
+        # Divert xkb-data's rules file, so xkb-data upgrades write to evdev.distrib and our generated evdev stays.
+        # --no-rename and a copy: the rules file is never missing, not even for a moment.
+        if ! dpkg-divert --list "$RULES" | grep -q belgian-azerty-windows; then
+            # The copy leaves out a rule an older be-azerty-fix.sh appended by hand, so evdev.distrib is xkb-data's file.
+            /usr/lib/belgian-azerty-windows/update-xkb-rules strip "$RULES" "$RULES.distrib.tmp"
+            chmod 644 "$RULES.distrib.tmp"
+            mv -f "$RULES.distrib.tmp" "$RULES.distrib"
+            dpkg-divert --package belgian-azerty-windows --no-rename --divert "$RULES.distrib" --add "$RULES"
+        fi
+        /usr/lib/belgian-azerty-windows/update-xkb-rules
+        # Before this package existed, be-azerty-fix.sh kept the rule with an apt hook and a helper script. Remove
+        # them (only if they are ours), or the hook would put the rule back into xkb-data's file after a purge.
+        for f in /etc/apt/apt.conf.d/99be-azerty-xkb /usr/local/sbin/be-azerty-xkb-ensure; do
+            if [ -f "$f" ] && grep -q 'be-azerty' "$f"; then
+                rm -f "$f"
+            fi
+        done
+        ;;
+    triggered)
+        /usr/lib/belgian-azerty-windows/update-xkb-rules
+        ;;
+esac
+
+#DEBHELPER#

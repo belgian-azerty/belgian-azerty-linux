@@ -1,0 +1,15 @@
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /isolinux/live.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (5.4M layer)
+updated /md5sum.txt (7 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/mint-belgian-stick-0.9.7.iso
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /boot/grub/loopback.cfg (12 boot entries)
+patched /isolinux/menuentries.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (6.1M layer)
+updated /md5sum.txt (8 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/zorin-belgian-stick-0.9.7.iso

@@ -1,0 +1,18 @@
+./belgian-azerty-windows_0.9.5_all.deb: OK
+./keyd-belgian-windows_0.9.4_all.deb: OK
+./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb: OK
+Processing triggers for mate-menus (1.26.1+mint1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
+Choices: profile windows (default), numpad decimal period (default), Caps Lock windows (from the profile)
+  [32m✔[0m setxkbmap be  (options terminate:ctrl_alt_bksp,caps:be_windows)
+  [32m✔[0m Cinnamon libgnomekbd layouts set
+  [32m✔[0m Cinnamon input-sources set
+  [32m✔[0m Cinnamon numpad decimal: period, Caps Lock: windows
+  · This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+active
+XDG_SESSION_TYPE=x11 GTK_IM_MODULE=ibus QT_IM_MODULE=ibus
+1762 /usr/bin/ibus-daemon --daemonize --xim
+ibus skip for mint:
+  · no app skips ibus (the default). Turn it on per app: be-azerty-fix ibus-skip on terminal
+/etc/xdg/autostart/be-azerty-ibus-skip.desktop

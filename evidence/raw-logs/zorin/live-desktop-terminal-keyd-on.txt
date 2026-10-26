@@ -1,0 +1,5 @@
+plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+LCtrl+LAlt: |@#{[^{}€[]'`~\
+AltGr: |@#{[^{}€[]'`~\
+Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+RCtrl+LAlt 2 e: @€

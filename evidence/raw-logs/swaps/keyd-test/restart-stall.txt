@@ -1,0 +1,24 @@
+rs1-p [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 30 ms min 27 ms
+rs1-o [ctrlalt] typed lines 3: ok 2, order 1, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 31 ms min 18 ms
+rs2-p [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 31 ms min 25 ms
+rs2-o [ctrlalt] typed lines 3: ok 2, order 1, count 0, other 0 | key log (keyd virtual keyboard): 2/3 lines in sent order, key gap median 30 ms min 12 ms
+rs3-p [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 30 ms min 12 ms
+rs3-o [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 2/3 lines in sent order, key gap median 31 ms min 0 ms
+rs4-p [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 31 ms min 14 ms
+rs4-o [ctrlalt] typed lines 3: ok 2, order 1, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 31 ms min 19 ms
+rs5-p [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 30 ms min 19 ms
+rs5-o [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 30 ms min 11 ms
+rs6-p [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 30 ms min 13 ms
+rs6-o [ctrlalt] typed lines 3: ok 3, order 0, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 30 ms min 18 ms
+rs1-p: lines 3, lines with a stall >300 ms: 0, longest 31 ms
+rs1-o: lines 3, lines with a stall >300 ms: 0, longest 33 ms
+rs2-p: lines 3, lines with a stall >300 ms: 0, longest 31 ms
+rs2-o: lines 3, lines with a stall >300 ms: 0, longest 124 ms
+rs3-p: lines 3, lines with a stall >300 ms: 0, longest 33 ms
+rs3-o: lines 3, lines with a stall >300 ms: 0, longest 167 ms
+rs4-p: lines 3, lines with a stall >300 ms: 0, longest 38 ms
+rs4-o: lines 3, lines with a stall >300 ms: 0, longest 35 ms
+rs5-p: lines 3, lines with a stall >300 ms: 0, longest 32 ms
+rs5-o: lines 3, lines with a stall >300 ms: 0, longest 49 ms
+rs6-p: lines 3, lines with a stall >300 ms: 0, longest 32 ms
+rs6-o: lines 3, lines with a stall >300 ms: 0, longest 39 ms

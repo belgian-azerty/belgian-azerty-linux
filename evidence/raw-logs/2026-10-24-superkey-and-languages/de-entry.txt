@@ -1,0 +1,129 @@
+BOOT_IMAGE=/casper/vmlinuz initrd=/casper/initrd.zstd quiet splash keyboard-configuration/layoutcode=be locale=de_BE.UTF-8 ---
+LANG=de_BE.UTF-8
+LANGUAGE=
+LC_CTYPE="de_BE.UTF-8"
+LC_NUMERIC="de_BE.UTF-8"
+LC_TIME="de_BE.UTF-8"
+LC_COLLATE="de_BE.UTF-8"
+LC_MONETARY="de_BE.UTF-8"
+LC_MESSAGES="de_BE.UTF-8"
+LC_PAPER="de_BE.UTF-8"
+LC_NAME="de_BE.UTF-8"
+LC_ADDRESS="de_BE.UTF-8"
+LC_TELEPHONE="de_BE.UTF-8"
+LC_MEASUREMENT="de_BE.UTF-8"
+LC_IDENTIFICATION="de_BE.UTF-8"
+LC_ALL=
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch"
+
+BACKSPACE="guess"
+ar_AE.utf8
+ar_BH.utf8
+ar_DZ.utf8
+ar_EG.utf8
+ar_IN
+ar_IN.utf8
+ar_IQ.utf8
+ar_JO.utf8
+ar_KW.utf8
+ar_LB.utf8
+ar_LY.utf8
+ar_MA.utf8
+ar_OM.utf8
+ar_QA.utf8
+ar_SA.utf8
+ar_SD.utf8
+ar_SS
+ar_SS.utf8
+ar_SY.utf8
+ar_TN.utf8
+ar_YE.utf8
+C
+C.utf8
+de_AT.utf8
+de_BE.utf8
+de_CH.utf8
+de_DE.utf8
+de_IT.utf8
+de_LI.utf8
+de_LU.utf8
+en_AG
+en_AG.utf8
+en_AU.utf8
+en_BW.utf8
+en_CA.utf8
+en_DK.utf8
+en_GB.utf8
+en_HK.utf8
+en_IE.utf8
+en_IL
+en_IL.utf8
+en_IN
+en_IN.utf8
+en_NG
+en_NG.utf8
+en_NZ.utf8
+en_PH.utf8
+en_SG.utf8
+en_US.utf8
+en_ZA.utf8
+en_ZM
+en_ZM.utf8
+en_ZW.utf8
+es_AR.utf8
+es_BO.utf8
+es_CL.utf8
+es_CO.utf8
+es_CR.utf8
+es_CU
+es_CU.utf8
+es_DO.utf8
+es_EC.utf8
+es_ES.utf8
+es_GT.utf8
+es_HN.utf8
+es_MX.utf8
+es_NI.utf8
+es_PA.utf8
+es_PE.utf8
+es_PR.utf8
+es_PY.utf8
+es_SV.utf8
+es_US.utf8
+es_UY.utf8
+es_VE.utf8
+fr_BE.utf8
+fr_CA.utf8
+fr_CH.utf8
+fr_FR.utf8
+fr_LU.utf8
+it_CH.utf8
+it_IT.utf8
+ja_JP.utf8
+POSIX
+pt_BR.utf8
+pt_PT.utf8
+ru_RU.utf8
+ru_UA.utf8
+zh_CN.utf8
+zh_HK.utf8
+zh_SG.utf8
+zh_TW.utf8
+SESSION  UID USER  SEAT  TTY  STATE  IDLE SINCE
+      1 1000 zorin seat0 tty2 online no   -
+      4 1000 zorin seat0 tty3 active no   -
+
+2 sessions listed.
+active
+Okt 24 15:24:38 zorin gdm-autologin][1951]: gkr-pam: couldn't unlock the login keyring.
+Okt 24 15:24:38 zorin gdm3[1941]: Gdm: on_display_added: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+Okt 24 15:24:38 zorin gdm3[1941]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+Okt 24 15:26:01 zorin systemd[1961]: Failed to start app-gnome-snap\x2duserd\x2dautostart-2449.scope - Application launched by gnome-session-binary.
+Okt 24 15:26:01 zorin systemd[1961]: Failed to start app-gnome-zorin\x2dos\x2dfile\x2dtemplates-2445.scope - Application launched by gnome-session-binary.

@@ -1,0 +1,15 @@
+step 1: A0 baseline
+step 2: C1 keyd stopped (expected: plain and AltGr fine, Ctrl+Alt not @E)
+step 3: C2 keyd started again
+step 4: C3 4 s after kill -9 keyd
+step 5: C3b 4 s after kill (SIGTERM) keyd
+step 6: C4 broken extra config + keyd reload
+step 7: C5 broken config removed + reload
+step 8: B1 after opening an editor, keyboard settings, files (closed again) and toggling an unrelated setting
+step 9: A3 after apt reinstall of keyboard-configuration + console-setup
+step 10: A2a US planted first in the desktop sources (expected: US typing)
+step 11: A2b after sudo be-azerty-fix system
+step 12: A4 after Comma then back to Period
+step 13: A5 rerun without DECIMAL keeps Comma
+guest finished
+rc=0

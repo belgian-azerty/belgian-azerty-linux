@@ -1,0 +1,116 @@
+belgian-azerty-windows (0.9.7) noble; urgency=medium
+
+  * VS Code now skips ibus automatically too (same rules as the Terminal and
+    the text editor), and the short name "vscode" finds current VS Code,
+    whose menu file is com.microsoft.VSCode.desktop (0.9.6 only looked for
+    code.desktop).
+  * Names and text (Younes, 2026-10-25 19:26Z and 20:02Z):
+    Maintainer field "Younes", copyright holder "Younes from Belgium",
+    README status line says the independent review is done; the keyd
+    backport released with it is rebuilt as 2.5.0-5~ubuntu24.04.3 (Maintainer
+    field only).
+
+ -- @MAINTAINER@  Sun, 25 Oct 2026 20:30:00 +0000
+
+belgian-azerty-windows (0.9.6) noble; urgency=medium
+
+  * Release build of 0.9.5 (automatic ibus skip, entry below) with Caps
+    Lock option A: on GNOME (Zorin) the Windows profile leaves Caps Lock
+    as on Linux, because a short Caps Lock tap in a GNOME Shell password
+    field can leave apps and GNOME disagreeing about Caps Lock until the
+    next login (GNOME mutter issue 3441); with the Windows Caps Lock
+    option that makes 2 6 7 9 0 % untypeable. CAPS=windows opts in again.
+    Mint (Cinnamon, X11) keeps Windows Caps Lock. The "Belgian keyboard"
+    window and both man pages say so. "be-azerty-fix check" says
+    "Caps Lock as on Linux" in its profile line when that is the choice.
+    A Zorin system updated from 0.9.4.1 or earlier keeps its saved
+    CAPS=windows; "sudo CAPS=linux be-azerty-fix system" gives the Linux
+    Caps Lock (README, "Caps Lock on Zorin").
+  * README: final text for this version.
+
+ -- @MAINTAINER@  Sun, 25 Oct 2026 12:00:00 +0000
+
+belgian-azerty-windows (0.9.5) noble; urgency=medium
+
+  * Fast typing: the Terminal and the text editor skip the ibus input method
+    automatically (Windows profile), where very fast typing can swap two
+    characters. At every login (autostart entry) be-azerty-fix checks that
+    the user has no input method set up (no ibus engine in the GNOME or
+    Cinnamon keyboard settings or the ibus preferences, no other framework
+    such as fcitx); otherwise the automatic part pauses until it is
+    removed. Off with the Linux-standard profile.
+  * be-azerty-fix ibus-skip auto on|off|default and on|off|list APP...: per
+    user; the "Belgian keyboard" window has a "Fast typing" tick box.
+    A skipped GTK app gets GTK_IM_MODULE=gtk-im-context-simple (GTK 3 does
+    not know the short name "simple"), through a marked copy of its menu
+    file in ~/.local/share/applications, or a systemd user drop-in for apps
+    that a service starts (gnome-terminal-server). "off --all",
+    "be-azerty-fix uninstall" and removing the package take every marked
+    file away again.
+  * be-azerty-fix check shows the apps that skip ibus.
+
+ -- @MAINTAINER@  Sun, 25 Oct 2026 11:00:00 +0000
+
+belgian-azerty-windows (0.9.4.1) noble; urgency=medium
+
+  * README only: corrections from the final review (wording, touchpad
+    line, where each thing was tested). No code change.
+
+ -- @MAINTAINER@  Sun, 25 Oct 2026 02:30:00 +0000
+
+belgian-azerty-windows (0.9.4) noble; urgency=medium
+
+  * No change to be-azerty-fix or the Caps Lock option. The README now has
+    a section on the keyd patch that 0.9.4 adds (keep AltGr held while
+    Ctrl+Alt is held). Version kept equal to keyd-belgian-windows.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 23:30:00 +0000
+
+belgian-azerty-windows (0.9.3) noble; urgency=medium
+
+  * New "Belgian keyboard" entry in the app menu (be-azerty-settings): one
+    window to choose the profile (Windows or Linux standard) and the numpad
+    decimal key (period or comma), in Dutch, French, German or English. It
+    runs be-azerty-fix through pkexec (polkit action org.belgianazerty.fix).
+  * be-azerty-fix: settings may also follow the command
+    (be-azerty-fix system PROFILE=linux DECIMAL=comma), and the user who
+    started pkexec gets the desktop settings.
+  * be-azerty-fix system: without a desktop session (at boot, over ssh)
+    the desktop step is skipped instead of failing.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 17:00:00 +0000
+
+belgian-azerty-windows (0.9.2) noble; urgency=medium
+
+  * be-azerty-fix: PROFILE=windows|linux. The Linux-standard profile keeps
+    the Belgian layout with Linux conventions (Caps Lock for letters only,
+    keyd switched off so Ctrl+Alt stays Ctrl+Alt); the Windows profile stays
+    the default. The profile is saved with the other choices and shown by
+    "be-azerty-fix check".
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 15:00:00 +0000
+
+belgian-azerty-windows (0.9.1) noble; urgency=medium
+
+  * be-azerty-fix system keeps the earlier DECIMAL and CAPS choice when run
+    again without them (saved in /var/lib/belgian-azerty-windows/choices);
+    before, a rerun switched Belgian (Comma) back to Period.
+  * be-azerty-fix: find the session type through logind, so that under sudo
+    a Wayland session is no longer treated as X11 (setxkbmap ran against
+    Xwayland).
+  * postrm: take caps:be_windows out of /etc/default/keyboard when the
+    package is removed, and remove the saved choices on purge.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 09:00:00 +0000
+
+belgian-azerty-windows (0.9.0) noble; urgency=medium
+
+  * First packaged version. The Caps Lock option, written by hand by earlier
+    versions of be-azerty-fix.sh into xkb-data's files, is now owned by this
+    package: the symbols file is a package file and the evdev rule is kept
+    through a dpkg diversion and a file trigger, so it survives xkb-data
+    upgrades however they are installed (apt or plain dpkg).
+  * be-azerty-fix: new "uninstall" command; Cinnamon defaults for new users
+    and reset settings (Mint); reports every failed step.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 03:00:00 +0000

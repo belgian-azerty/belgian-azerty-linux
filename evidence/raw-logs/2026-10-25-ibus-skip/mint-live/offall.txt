@@ -1,0 +1,3 @@
+$ be-azerty-fix ibus-skip off --all
+  [32m✔[0m no app skips ibus any more (stock behaviour)
+exit 0

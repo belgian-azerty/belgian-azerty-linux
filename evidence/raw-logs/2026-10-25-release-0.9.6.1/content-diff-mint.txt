@@ -1,0 +1,16 @@
+2,4c2,4
+< a81642c59819fdc51cf2bd460399ddc00409b4fe341ec9922624a2f80e0cc0d8  belgian/belgian-azerty-windows_0.9.6_all.deb
+< 02dd6b924d6993ff125f210207baec043b1b6a3be9c1342bee2ec95df25b44e3  belgian/keyd-belgian-windows_0.9.6_all.deb
+< 946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  belgian/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+---
+> e7b159d70ec7bb945640a76efbf99165b8ac00859b85432a2516169f58aba013  belgian/belgian-azerty-windows_0.9.6.1_all.deb
+> 32ba9d7511629f33540d8ef3741c336f97f4920b1a5346514c86d65914721ac3  belgian/keyd-belgian-windows_0.9.6.1_all.deb
+> cc58478fe358cf3fec7e673b84cd20b9e3768297a1fe1183054261bcb7d06bb4  belgian/keyd_2.5.0-5~ubuntu24.04.3_amd64.deb
+11c11
+< 3ba243a214d9333e3b7b14f665a30468bd05892ac20e167880b8a7028068dc05  layer/usr/bin/keyd.rvaiya
+---
+> 0e49b4e66238244c4d4655e4bfdd7e214d4e7a384537b3c0f4eb93b197e02abb  layer/usr/bin/keyd.rvaiya
+24c24
+< 873ff959e3f1bf7227dc31a00b60e3b22241c2363401fd1bb996b89e51d83612  md5sum.txt (without the layer line)
+---
+> 8514fdabfec71d7a08fdb56f39bf581febf9b729a88620e052ce90163f3091b3  md5sum.txt (without the layer line)

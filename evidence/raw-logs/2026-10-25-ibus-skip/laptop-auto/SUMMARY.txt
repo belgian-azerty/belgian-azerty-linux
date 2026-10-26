@@ -1,0 +1,42 @@
+Automatic ibus skip (belgian-azerty-windows 0.9.5 "automatic when safe"), laptop rig run 2026-10-25 ~11:20-12:05Z.
+Approved by Younes in the thread ("use the laptop", 11:14Z). Rig: QEMU + KVM in WSL 2 on the T14s (<laptop>),
+--cpu host, 5 GB, 4 vCPU; live Mint 22.3 and Zorin 18.1 (direct kernel boot, layoutcode=be). Both sessions X11.
+Package tested: belgian-azerty-windows_0.9.5_all.deb bfcdc156ca59d35b... with keyd-belgian-windows 0.9.4.1 and
+keyd 2.5.0-5~ubuntu24.04.2 (runbook and kit: next-0.9.5/laptop-bundle/).
+Raw results stay on the laptop: C:\Users\<you>\zorin and Mint keyboard driver resolution\ibus-auto-test\results\
+(up-mint, up-zorin, shots, RUN-NOTES.txt); not yet copied here (pull at the next mirror refresh). This summary is
+the laptop session's report, with its quoted lines.
+
+Steps (Mint / Zorin), all met on both:
+1 setup: 3 sums OK, packages installed, "automatic: on (default of the Windows profile)", org.gnome.Terminal and
+  org.x.editor / org.gnome.TextEditor listed as automatic.
+2 auto typing run: "gnome-terminal-server : GTK_IM_MODULE=gtk-im-context-simple, im-ibus loaded: 0".
+3 text editor from the menu: Mint "xed : GTK_IM_MODULE=gtk-im-context-simple, im-ibus loaded: 0"; Zorin
+  "gnome-text-editor : GTK_IM_MODULE=gtk-im-context-simple" (GTK 4: im-ibus count not meaningful).
+4 Japanese input (anthy) added, REAL log out + log in: "automatic: paused, because an input method is set up in the
+  keyboard settings: anthy", no drop-in, terminal server with ibus.
+5 removed, log out + in: "automatic: on", drop-in back, terminal server gtk-im-context-simple again.
+6 tick box (nl on Mint, fr on Zorin): unticked -> "automatic: off (your choice)", files gone, ibus-skip-auto = off.
+  BUG found: dialog wider than the 1280 px screen (zenity does not wrap the text; ~1400 px nl, ~2000 px fr), OK button
+  off-screen; reached with Alt+F7. Screens m-fast.png, z-fast.png, *-offscreen-ok-moved.png on the laptop.
+7 sudo be-azerty-fix uninstall: "ibus skip removed for mint" / "for zorin", packages purged; no belgian-azerty
+  folder, no autostart file, no marked copies. Left: empty ~/.config/systemd/user (cosmetic).
+
+Fast typing in the Terminal (laptop, near real speed; 100 lines each, keys 30 ms apart overlapping; 60 ms and dead-key
+lines all right in every run):
+  Mint  auto (skips ibus):  Ctrl+Alt 0/100, AltGr 0/100
+  Mint  paused (ibus):      Ctrl+Alt 1/100, AltGr 2/100
+  Zorin auto (skips ibus):  Ctrl+Alt 0/100, AltGr 0/100
+  Zorin paused (ibus):      Ctrl+Alt 38 swapped + 9 other of 100, AltGr 1/100
+Other notes: the "login refresh in the journal" section was empty (the refresh prints nothing; the pause/resume at
+login shows it ran). Ports 8000/8001 were held by another thread's idle servers; this run used 8010/8011 in its
+working copies. On Zorin the first keys after idling were dropped by the live session (Enter sent first).
+
+Fixes after the run (container only, not re-run on the laptop):
+- be-azerty-settings: the dialog text is wrapped at 70 columns (fold) and the window is 420 px high. Reproduced in the
+  container with Ubuntu 24.04's zenity 4.0.1 under Xvfb 1280x800: before 2023x320 px (fr), after 640x420 px in fr, nl,
+  de, en with the "paused" note, OK visible (container-dialog/*.png).
+- be-azerty-fix ibus-skip purge (uninstall) also removes ~/.config/systemd/user and ~/.config/systemd when empty
+  (offline test 43).
+Final package: f260695940796ddc4f9764aabf68a23434ddf6477439011098722f040b735beb (reproducible, lintian clean,
+offline 43/43, package cycle 11/11).

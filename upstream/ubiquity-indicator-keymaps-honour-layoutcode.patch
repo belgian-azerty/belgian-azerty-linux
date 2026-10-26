@@ -1,0 +1,43 @@
+--- a/ubiquity/misc.py	2026-10-23 11:53:59.722319953 +0000
++++ b/ubiquity/misc.py	2026-10-23 11:53:59.741659104 +0000
+@@ -772,9 +772,40 @@
+         else:
+             variants.append(item_str(args[1].name))
+ 
++    def preseeded_layout():
++        """The layout given on the boot line (keyboard-configuration/layoutcode=,
++        applied to /etc/default/keyboard by casper), or None. A user who said
++        which keyboard they have must not get the language's guess instead:
++        fr_BE/nl_BE users boot with layoutcode=be and would otherwise get
++        French (fr_oss) or Dutch (nl) first."""
++        try:
++            with open('/proc/cmdline') as f:
++                if 'layoutcode=' not in f.read():
++                    return None
++            values = {}
++            with open('/etc/default/keyboard') as f:
++                for line in f:
++                    if '=' in line and not line.lstrip().startswith('#'):
++                        key, value = line.strip().split('=', 1)
++                        values[key] = value.strip('"').split(',')[0]
++        except OSError:
++            return None
++        layout = values.get('XKBLAYOUT')
++        if not layout:
++            return None
++        variant = values.get('XKBVARIANT')
++        return '%s\t%s' % (layout, variant) if variant else layout
++
+     def restrict_list(variants):
+         new_variants = []
+ 
++        # A layout preseeded on the boot line wins over the language default
++        preseeded = preseeded_layout()
++        if preseeded:
++            if preseeded in variants:
++                variants.remove(preseeded)
++            new_variants.append(preseeded)
++
+         # Start by looking by an explicit default layout in the keymap
+         if lang in default_keymap:
+             if default_keymap[lang] in variants:

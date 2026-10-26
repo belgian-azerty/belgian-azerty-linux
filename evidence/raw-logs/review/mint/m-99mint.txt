@@ -1,0 +1,32 @@
+# This file is sourced by Xsession(5), not executed.
+
+# Create the user applications directory
+mkdir -p ~/.local/share/applications
+
+if [ "x$DESKTOP_SESSION" = "xmate" ] || [ "x$XDG_SESSION_DESKTOP" = "xmate" ]; then
+    # Workaround clutter issue (LP: #1462445)
+    export CLUTTER_BACKEND=x11
+fi
+
+if [ "x$DESKTOP_SESSION" = "xxfce" ] || [ "x$XDG_SESSION_DESKTOP" = "xxfce" ]; then
+    # Workaround clutter issue (LP: #1462445)
+    export CLUTTER_BACKEND=x11
+
+    # Set Ctrl-Alt-Backspace shortcuts to kill Xorg
+    setxkbmap -option terminate:ctrl_alt_bksp
+fi
+options=['grp\tgrp:win_space_toggle', 'terminate\tterminate:ctrl_alt_bksp']
+
+[org.cinnamon.desktop.interface]
+cursor-theme='Bibata-Modern-Classic'
+--
+xkb-options=['terminate:ctrl_alt_bksp']
+
+[org.nemo.desktop]
+computer-icon-visible=false
+--
+[org.mate.peripherals-keyboard-xkb.kbd]
+options=['grp\tgrp:win_space_toggle', 'terminate\tterminate:ctrl_alt_bksp']
+
+[org.mate.peripherals-mouse]
+cursor-theme="Bibata-Modern-Classic"

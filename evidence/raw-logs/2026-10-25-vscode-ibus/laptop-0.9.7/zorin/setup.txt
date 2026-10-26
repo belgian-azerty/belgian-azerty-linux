@@ -1,0 +1,29 @@
+./belgian-azerty-windows_0.9.6_all.deb: OK
+./keyd-belgian-windows_0.9.6_all.deb: OK
+./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb: OK
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+-- patch (expect 54eda415... before, d4a4988f... after)
+54eda415561b203ab3c92eb190f962e5c757ad2108f5b9776e52c3c5c7e94470  /usr/sbin/be-azerty-fix
+d4a4988f1396101e13564ac0805a67432c685b505ac78a2742b51707667bcd81  /usr/sbin/be-azerty-fix
+Choices: profile windows (default), numpad decimal period (default), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows)
+  [32m✔[0m setxkbmap be  (options lv3:ralt_switch)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: period, Caps Lock: linux
+  · fast typing: ibus skip brought up to date for zorin (see: be-azerty-fix ibus-skip)
+  · This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+XDG_SESSION_TYPE=x11 GTK_IM_MODULE=(unset)
+-- VS Code
+Package: code
+Version: 1.143.1-1792691907
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+com.microsoft.VSCode.desktop
+com.microsoft.VSCode.UrlHandler.desktop
+-- be-azerty-fix ibus-skip (VS Code installed after live: no copy expected yet)
+ibus skip for zorin:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  · org.gnome.Terminal (automatic): skips ibus from its next start (still running with ibus: close all its windows)
+  [32m✔[0m org.gnome.TextEditor (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  · com.microsoft.VSCode (automatic): skips ibus from your next login (or now: be-azerty-fix ibus-skip refresh)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+ls: cannot access '/home/zorin/.local/share/applications/com.microsoft.VSCode.desktop': No such file or directory

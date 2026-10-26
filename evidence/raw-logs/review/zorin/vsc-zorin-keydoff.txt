@@ -1,0 +1,7 @@
+sync #1 order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€
+sync #2 order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€
+sync #3 order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€
+sync #4 order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€
+sync slow LCtrl+LAlt+E x8 (0.6 s): €€€€€€€€
+sync plain fast: azerty é&"'(§è!çà
+keyd OFF LCtrl+LAlt 2 e:  | AltGr 1 2 3 4 5 e: |@#¼½€ | Caps 1 2 3 ù: 123% | Comma numpad 1 dec 5: 1,5

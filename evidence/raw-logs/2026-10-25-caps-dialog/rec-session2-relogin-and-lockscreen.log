@@ -1,0 +1,21 @@
+# Session 2 of the cloud bench: after a clean log out and log in (gnome-session-quit, then GDM password login; no
+# ibus command was run before). Same row and LED reading as session 1.
+# Part 1 (first recorder run; its file was overwritten by part 2, lines copied verbatim from the host-side output):
+session=wayland keyd=inactive engine=xkb:us::eng sources=[('xkb', 'be')] opts=['lv3:ralt_switch', 'caps:be_windows']
+round 1 05:14:44 LED=0  line=[relogin]
+round 2 05:14:58 LED=0  line=[aA é2 è7 à0 ù%]                 # in step after re-login (was out of step before logout)
+round 3 05:15:14 LED=1  line=[Aa 2é 7è 0à %ù]                 # Caps on in the terminal: correct
+round 4 05:15:30 LED=0  line=[aA é2 è7 à0 ù%]                 # Caps off: correct
+# (05:15:55 Caps on in the terminal: Aa 2é 7è 0à %ù, LED 1; Super+L did nothing: the live session disables locking.)
+# Part 2 (recorder file as uploaded): lock screen enabled with gsettings (lockdown disable-lock-screen false,
+# screensaver lock-enabled true); round 2 = Caps on in the terminal; then Super+L, Enter, the lock screen shows
+# "Caps lock staat aan."; ONE Caps tap (100 ms) to switch it off, password typed, Enter; round 3 = row after unlocking.
+# Round 4-5: pkexec dialog, one 100 ms tap, Esc -> back in step.
+session=wayland keyd=inactive engine=xkb:us::eng sources=[('xkb', 'be')] opts=['lv3:ralt_switch', 'caps:be_windows']
+round 1 05:17:03 LED=0  line=[prelock]
+round 2 05:17:17 LED=1  line=[Aa 2é 7è 0à %ù]
+round 3 05:18:30 LED=0  line=[Aéa é èè àà ùù]
+round 4 05:20:03 LED=0  line=[P]
+pkexec rc=126
+round 5 05:20:35 LED=1  line=[Aa 2é 7è 0à %ù]
+round 6 05:20:41 LED=1  line=[Q]

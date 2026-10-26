@@ -1,0 +1,15 @@
+keyd.rvaiya old sha256 3ba243a214d9333e3b7b14f665a30468bd05892ac20e167880b8a7028068dc05
+keyd.rvaiya new sha256 0e49b4e66238244c4d4655e4bfdd7e214d4e7a384537b3c0f4eb93b197e02abb
+differing bytes: 58, at offsets:
+0x378 0x379 0x37a 0x37b 0x37c 0x37d 0x37e 0x37f 0x380 0x381 0x382 0x383 0x384 0x385 0x386 0x387 0x388 0x389 0x38a 0x38b 0x3a028 0x3a029 0x3a02a 0x3a02c 0x3a02d 0x3a02e 0x3a02f 0x3a030 0x3a032 0x3a033 0x3a034 0x3a035 0x3a036 0x3a037 0x3a038 0x3a039 0x3a03a 0x3a03b 0x3a03c 0x3a03e 0x3a03f 0x3a040 0x3a041 0x3a042 0x3a043 0x3a044 0x3a046 0x3a047 0x3a048 0x3a049 0x3a04a 0x3a04b 0x3a04c 0x3a04d 0x3a058 0x3a059 0x3a05a 0x3a05b 
+sections holding them:
+  [ 3] .note.gnu.build-id NOTE            0000000000000368 000368 000024 00   A  0   0  4
+  [28] .gnu_debuglink    PROGBITS        0000000000000000 03a028 000034 00      0   0  4
+with .note.gnu.build-id and .gnu_debuglink removed: BYTE-IDENTICAL (sha256 35357f10ee4ceb86de913c3873a8754e3e32f90b1b64e7ace361c13071576fd0)
+old     Build ID: 1eee17ad529f86b44305324e4a7b6d2eb23a18fc
+new     Build ID: 9cf8e792d0ff5cc212df14be38f0927e5f88767b
+man page diff:
+8c8
+< .TH "keyd.rvaiya" "1" "2026-10-24"
+---
+> .TH "keyd.rvaiya" "1" "2026-10-25"

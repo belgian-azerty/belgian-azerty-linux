@@ -1,0 +1,52 @@
+== start: xkb-data 2.41-2ubuntu1.1, rules md5 8078207278372280124f1c300b442a75
+PASS  dpkg -V xkb-data clean before
+== simulate an older be-azerty-fix.sh install (hand-written rule, apt hook, helper, symbols file)
+== install belgian-azerty-windows
+PASS  installed
+diversion of /usr/share/X11/xkb/rules/evdev to /usr/share/X11/xkb/rules/evdev.distrib by belgian-azerty-windows
+PASS  rules file diverted to evdev.distrib
+PASS  rule present exactly once (legacy block dropped)
+PASS  evdev.distrib has no hand-written block
+PASS  legacy apt hook and helper removed
+PASS  symbols file owned by the package
+PASS  dpkg -V xkb-data clean while installed
+PASS  dpkg -V belgian-azerty-windows clean
+PASS  captest: Caps and Caps+Shift 0 mismatches vs Windows; Caps+AltGr identical to stock Linux
+      key     ²    1    2    3    4    5    6    7    8    9    0    )    -    a    z    ^    $    m    ù    µ    <    ,    ;    :    =  KP1  KP.
+      expect  caps      :    ²    1    2    3    4    5    6    7    8    9    0    °    _    A    Z    ·    *    M    %    £    <    ?    .    /    +    1    .
+        none                        :    ²   *&   *É   *"   *'   *(   *§   *È   *!   *Ç   *À   *)   *-    A    Z    ·   *$    M   *Ù   *·    <   *,   *;   *:   *=    1    .   mismatches=19
+        caps:be_windows             :    ²    1    2    3    4    5    6    7    8    9    0    °    _    A    Z    ·    *    M    %    £    <    ?    .    /    +    1    .   mismatches=0
+      expect  caps+shift:    ³    &    é    "    '    (    §    è    !    ç    à    )    -    a    z    ·    $    m    ù    µ    >    ,    ;    :    =    ·    ·
+        none                        :    ³   *1   *2   *3   *4   *5   *6   *7   *8   *9   *0   *°   *_    a    z    ·   **    m   *%   *£    >   *?   *.   */   *+    ·    ·   mismatches=19
+        caps:be_windows             :    ³    &    é    "    '    (    §    è    !    ç    à    )    -    a    z    ·    $    m    ù    µ    >    ,    ;    :    =    ·    ·   mismatches=0
+      expect  caps+altgr:    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @    ſ    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .
+        none                        :    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @   *S    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .   mismatches=1
+        caps:be_windows             :    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @   *S    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .   mismatches=1
+== xkb-data reinstalled by apt
+PASS  trigger ran and regenerated evdev (stale line gone)
+PASS  rule still present once after apt reinstall
+== xkb-data installed by plain dpkg -i (no apt hooks run)
+PASS  trigger ran under plain dpkg too (stale line gone)
+PASS  rule still present once after dpkg -i
+PASS  dpkg -V xkb-data clean after both
+PASS  captest still 0 mismatches
+== be-azerty-fix uninstall-relevant part: override file removed by package removal
+== purge belgian-azerty-windows
+PASS  diversion gone
+PASS  rules file identical to xkb-data's original
+PASS  no evdev.distrib left
+PASS  symbols file gone
+PASS  Cinnamon override gone
+PASS  dpkg -V xkb-data clean after purge
+PASS  leftover caps:be_windows in a setting is ignored, keymap still compiles
+      xkbcommon: ERROR: Unrecognized RMLVO option "caps:be_windows" was ignored
+== keyd packages
+old bundled package: keyd	2.5.0-0beazerty2
+PASS  keyd + keyd-belgian-windows installed (upgrading the old bundle if present)
+      keyd 2.5.0-5~ubuntu24.04.1; conffile owner: keyd-belgian-windows: /etc/keyd/be-winaltgr.conf
+PASS  be-winaltgr.conf is a conffile of keyd-belgian-windows
+PASS  restart drop-in installed
+PASS  keyd parses the rules (keyd.rvaiya check)
+PASS  after purge: no be-winaltgr.conf, no drop-in, no keyd
+
+ALL PASS

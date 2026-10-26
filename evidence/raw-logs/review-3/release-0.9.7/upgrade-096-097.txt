@@ -1,0 +1,29 @@
+### install 0.9.6 (dist-archive)
+rc=0
+belgian-azerty-windows 0.9.6
+keyd 2.5.0-5~ubuntu24.04.2
+keyd-belgian-windows 0.9.6
+### upgrade to 0.9.7 (dist)
+Unpacking belgian-azerty-windows (0.9.7) over (0.9.6) ...
+Unpacking keyd-belgian-windows (0.9.7) over (0.9.6) ...
+Unpacking keyd (2.5.0-5~ubuntu24.04.3) over (2.5.0-5~ubuntu24.04.2) ...
+Setting up keyd (2.5.0-5~ubuntu24.04.3) ...
+Setting up keyd-belgian-windows (0.9.7) ...
+Setting up belgian-azerty-windows (0.9.7) ...
+rc=0
+belgian-azerty-windows 0.9.7
+keyd 2.5.0-5~ubuntu24.04.3
+keyd-belgian-windows 0.9.7
+diversion of /usr/share/X11/xkb/rules/evdev to /usr/share/X11/xkb/rules/evdev.distrib by belgian-azerty-windows
+Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+Original-Maintainer: Richard Hansen <rhansen@rhansen.org>
+Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Copyright: 2026 Younes from Belgium
+### purge
+rc=0
+no packages
+no diversion
+0
+ls: cannot access '/etc/keyd': No such file or directory
+ls: cannot access '/var/lib/belgian-azerty-windows': No such file or directory

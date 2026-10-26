@@ -1,0 +1,80 @@
+zo 25 okt 2026 04:17:44 UTC
+== session
+XDG_SESSION_TYPE=wayland
+== caps leds
+/sys/class/leds/input1::capslock/brightness:0
+/sys/class/leds/input1::numlock/brightness:0
+== input devices
+N: Name="Power Button"
+H: Handlers=kbd event0 
+N: Name="AT Translated Set 2 keyboard"
+H: Handlers=sysrq kbd event1 leds 
+N: Name="VirtualPS/2 VMware VMMouse"
+H: Handlers=mouse0 event2 
+N: Name="VirtualPS/2 VMware VMMouse"
+H: Handlers=mouse1 event3 
+N: Name="QEMU QEMU USB Tablet"
+H: Handlers=mouse2 event4 
+== gsettings
+[('xkb', 'be')]
+@as []
+@a(ss) []
+false
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS=""
+
+BACKSPACE="guess"
+== localectl
+System Locale: LANG=nl_BE.UTF-8
+               LANGUAGE=nl_BE:nl
+    VC Keymap: (unset)
+   X11 Layout: be
+    X11 Model: pc105
+== be_capslock symbols
+cat: /usr/share/X11/xkb/symbols/be_capslock: Bestand of map bestaat niet
+== keyd
+Unit keyd.service could not be found.
+ls: kan geen toegang krijgen tot '/etc/keyd/': Bestand of map bestaat niet
+sudo: keyd: opdracht niet gevonden
+== journal keyd
+-- No entries --
+== journal keyboard/ibus/mutter
+okt 25 05:12:52 be-Standard-PC-Q35-ICH9-2009 systemd[1]: systemd 255.4-1ubuntu8.18 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+okt 25 05:12:53 be-Standard-PC-Q35-ICH9-2009 systemd[1]: Starting console-setup.service - Set console font and keymap...
+okt 25 05:12:53 be-Standard-PC-Q35-ICH9-2009 systemd[1]: Finished console-setup.service - Set console font and keymap.
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[1196]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[1196]: Errors from xkbcomp are not fatal to the X server
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[1149]: /usr/share/ibus-table/engine/main.py:232: DeprecationWarning: Testing an element's truth value will raise an exception in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[883]: dbus-daemon[883]: [session uid=121 pid=883] Activating service name='org.freedesktop.portal.IBus' requested by ':1.30' (uid=121 pid=1126 comm="ibus-daemon --panel disable" label="unconfined")
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[1276]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[1256]: Not connected to the ibus bus
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 org.gnome.Shell.desktop[1276]: Errors from xkbcomp are not fatal to the X server
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[883]: dbus-daemon[883]: [session uid=121 pid=883] Activated service 'org.freedesktop.portal.IBus' failed: Process org.freedesktop.portal.IBus exited with status 1
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[883]: dbus-daemon[883]: [session uid=121 pid=883] Activating service name='org.freedesktop.portal.IBus' requested by ':1.32' (uid=121 pid=1259 comm="ibus-daemon --panel disable -r --xim" label="unconfined")
+okt 25 05:13:04 be-Standard-PC-Q35-ICH9-2009 /usr/libexec/gdm-wayland-session[883]: dbus-daemon[883]: [session uid=121 pid=883] Successfully activated service 'org.freedesktop.portal.IBus'
+okt 25 05:13:48 be-Standard-PC-Q35-ICH9-2009 systemd[1370]: Starting org.freedesktop.IBus.session.GNOME.service - IBus Daemon for GNOME...
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 sh[1702]: /usr/share/ibus-table/engine/main.py:232: DeprecationWarning: Testing an element's truth value will raise an exception in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 dbus-daemon[1393]: [session uid=1000 pid=1393] Activating service name='org.freedesktop.portal.IBus' requested by ':1.62' (uid=1000 pid=1666 comm="/usr/bin/ibus-daemon --panel disable" label="unconfined")
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 systemd[1370]: Started org.freedesktop.IBus.session.GNOME.service - IBus Daemon for GNOME.
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 dbus-daemon[1393]: [session uid=1000 pid=1393] Successfully activated service 'org.freedesktop.portal.IBus'
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 gnome-shell[2009]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 gnome-shell[2009]: Errors from xkbcomp are not fatal to the X server
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 gnome-shell[2023]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 05:13:49 be-Standard-PC-Q35-ICH9-2009 gnome-shell[2023]: Errors from xkbcomp are not fatal to the X server
+okt 25 05:13:50 be-Standard-PC-Q35-ICH9-2009 gnome-shell[2088]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 05:13:50 be-Standard-PC-Q35-ICH9-2009 gnome-shell[2088]: Errors from xkbcomp are not fatal to the X server
+== ibus
+xkb:us::eng
+1666 /usr/bin/ibus-daemon --panel disable
+1925 /usr/libexec/ibus-memconf
+1926 /usr/libexec/ibus-extension-gtk3
+1931 /usr/libexec/ibus-portal
+1993 /usr/libexec/ibus-engine-simple
+2120 /usr/libexec/ibus-x11

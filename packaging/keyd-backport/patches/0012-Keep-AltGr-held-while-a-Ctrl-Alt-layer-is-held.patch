@@ -1,0 +1,154 @@
+Description: Keep AltGr held while a Ctrl+Alt layer is held (Belgian AZERTY project patch)
+ What: when a key in a layer such as [control+alt] sends a key with other
+ modifiers (for example Ctrl+Alt+2 -> AltGr+2 on a Belgian layout), keyd
+ normally puts the layer's own modifiers (Ctrl and Alt) back down on the
+ key's release, and takes them off again on the next press. With this patch,
+ keyd leaves the sent modifiers (AltGr) down while every layer that produced
+ the key is still held. The next key press, or the layer's release, sets the
+ right modifiers anyway, because update_mods() runs on every press and on
+ every layer change.
+ .
+ Why: Ctrl+Alt+2 E 2 E then reaches the desktop as AltGr down, 2, E, 2, E
+ (2 events per character) instead of about 8 events per character. On Ubuntu
+ 24.04 based desktops the ibus input method can reorder fast key events
+ (see ibus issue #2934); fewer modifier events leave less room for that.
+ .
+ Measured (QEMU/KVM, keys 30 ms apart and overlapping, original and patched
+ keyd alternating, 4 rounds of 50 lines each, lines with swapped characters):
+   Linux Mint 22.3 (Cinnamon, X11):  Ctrl+Alt 88/200 -> 8/200; AltGr 11 and 9
+   Zorin OS 18.1 (GNOME, Wayland):   Ctrl+Alt 37/200 -> 23/200; AltGr 18 and 20
+ Ctrl+Alt+T and Ctrl+Alt+Left/Right still worked right after a symbol
+ (Zorin, measured build): keyd puts Ctrl+Alt back down on that key's press.
+ .
+ Test suite: six t/*.t expectations are updated here, nothing is skipped.
+ swap, swap2, swap3, swap4 and swap8 expected Shift to be released and
+ pressed again between two shifted keys; it now stays down (same text).
+ composite expected Ctrl to be released before Alt when the layer ends; Alt
+ now goes first (no text either way). With these, make test-io passes 86/86.
+ .
+ The code is byte-identical to the build that was measured
+ (research/keyd-hold-altgr-test.patch), which is why its comments still say
+ "test patch".
+ .
+ Not covered: pressing Ctrl+Alt again for every symbol (nothing changes
+ there); a mouse click with Ctrl+Alt right after a symbol sees AltGr until
+ the next key press (untested); real hardware.
+Author: Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+Forwarded: no (a proposal for keyd upstream, https://github.com/rvaiya/keyd, is
+ drafted in research/upstream-drafts/keyd-hold-altgr.md and not sent yet)
+Last-Update: 2026-10-25
+---
+--- a/src/keyboard.c
++++ b/src/keyboard.c
+@@ -240,6 +240,28 @@
+ 	}
+ }
+ 
++/*
++ * Belgian AZERTY test patch: true while every layer that produced dl is still
++ * held (all constituents of a composite layer such as [control+alt]).
++ */
++static int layer_held(struct keyboard *kbd, int dl)
++{
++	struct layer *layer = &kbd->config.layers[dl];
++	size_t j;
++
++	if (dl <= 0)
++		return 0;
++
++	if (layer->type != LT_COMPOSITE)
++		return kbd->layer_state[dl].active > 0;
++
++	for (j = 0; j < layer->nr_constituents; j++)
++		if (!kbd->layer_state[layer->constituents[j]].active)
++			return 0;
++
++	return 1;
++}
++
+ static void deactivate_layer(struct keyboard *kbd, int idx)
+ {
+ 	dbg("Deactivating layer %s", kbd->config.layers[idx].name);
+@@ -523,7 +545,17 @@
+ 			clear_oneshot(kbd);
+ 		} else {
+ 			send_key(kbd, new_code, 0);
+-			update_mods(kbd, -1, 0);
++			/*
++			 * Belgian AZERTY test patch: while the layer that asked for
++			 * these modifiers (e.g. [control+alt] -> G-2) is still held,
++			 * keep them down instead of restoring the layer's own
++			 * modifiers between keys. Ctrl+Alt+2 E 2 E then reaches the
++			 * desktop like AltGr held + 2 E 2 E (2 events per key, not 8).
++			 * The next key press or the layer's release sets the right
++			 * modifiers anyway (update_mods on press and on layer change).
++			 */
++			if (!(mods && layer_held(kbd, dl)))
++				update_mods(kbd, -1, 0);
+ 		}
+ 
+ 		if (!mods)
+--- a/t/composite.t
++++ b/t/composite.t
+@@ -15,5 +15,5 @@
+ alt down
+ shift up
+ control down
+-control up
+ alt up
++control up
+--- a/t/swap.t
++++ b/t/swap.t
+@@ -16,8 +16,6 @@
+ shift down
+ x down
+ x up
+-shift up
+-shift down
+ x down
+ x up
+ shift up
+--- a/t/swap2.t
++++ b/t/swap2.t
+@@ -20,8 +20,6 @@
+ shift down
+ x down
+ x up
+-shift up
+-shift down
+ x down
+ x up
+ shift up
+--- a/t/swap3.t
++++ b/t/swap3.t
+@@ -20,8 +20,6 @@
+ shift down
+ x down
+ x up
+-shift up
+-shift down
+ x down
+ x up
+ shift up
+--- a/t/swap4.t
++++ b/t/swap4.t
+@@ -20,8 +20,6 @@
+ shift down
+ x down
+ x up
+-shift up
+-shift down
+ x down
+ x up
+ shift up
+--- a/t/swap8.t
++++ b/t/swap8.t
+@@ -20,8 +20,6 @@
+ shift down
+ x down
+ x up
+-shift up
+-shift down
+ x down
+ x up
+ shift up

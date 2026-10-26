@@ -1,0 +1,48 @@
+=== kbstate 21:23:12Z after-reboot ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['caps:be_windows'] session=wayland
+cinnamon: 
+accounts: 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   22:50 /boot/initrd.img-7.0.0-38-generic vs /etc/default/keyboard 22:37
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  [32m✔[0m XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  [32m✔[0m Caps Lock option files present
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11/Wayland session:
+  rules:      evdev
+  model:      pc105
+  layout:     us
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: caps:be_windows
+AccountsService record for test:
+  · not readable (needs sudo) or absent
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  [32m✔[0m keyd installed with the Belgian Ctrl+Alt rules
+  [32m✔[0m keyd service running
+Boot image:
+  [32m✔[0m initramfs newer than /etc/default/keyboard
+1
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="caps:be_windows"
+
+BACKSPACE="guess"

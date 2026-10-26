@@ -1,0 +1,40 @@
+# libxkbcommon 1.6.0-1build1 + xkb-data 2.41 + belgian-azerty-windows 0.9.4.1 rules, container, 2026-10-25 ~04:40Z, REVIEW-3
+# Text of keys a (KEY_Q), 2 (KEY_2), u-grave (KEY_APOSTROPHE) for every Shift x Lock(none/depressed/latched/locked) x group, layouts be,us
+== options: lv3:ralt_switch
+group0 Lock=none Shift=0 : a é ù 
+group0 Lock=none Shift=1 : A 2 % 
+group0 Lock=dep  Shift=0 : A É Ù 
+group0 Lock=dep  Shift=1 : a 2 % 
+group0 Lock=lat  Shift=0 : A É Ù 
+group0 Lock=lat  Shift=1 : a 2 % 
+group0 Lock=lock Shift=0 : A É Ù 
+group0 Lock=lock Shift=1 : a 2 % 
+group1 Lock=none Shift=0 : q 2 ' 
+group1 Lock=none Shift=1 : Q @ " 
+group1 Lock=dep  Shift=0 : Q 2 ' 
+group1 Lock=dep  Shift=1 : q @ " 
+group1 Lock=lat  Shift=0 : Q 2 ' 
+group1 Lock=lat  Shift=1 : q @ " 
+group1 Lock=lock Shift=0 : Q 2 ' 
+group1 Lock=lock Shift=1 : q @ " 
+== options: lv3:ralt_switch,caps:be_windows
+group0 Lock=none Shift=0 : a é ù 
+group0 Lock=none Shift=1 : A 2 % 
+group0 Lock=dep  Shift=0 : A 2 % 
+group0 Lock=dep  Shift=1 : a é ù 
+group0 Lock=lat  Shift=0 : A 2 % 
+group0 Lock=lat  Shift=1 : a é ù 
+group0 Lock=lock Shift=0 : A 2 % 
+group0 Lock=lock Shift=1 : a é ù 
+group1 Lock=none Shift=0 : q 2 ' 
+group1 Lock=none Shift=1 : Q @ " 
+group1 Lock=dep  Shift=0 : Q 2 ' 
+group1 Lock=dep  Shift=1 : q @ " 
+group1 Lock=lat  Shift=0 : Q 2 ' 
+group1 Lock=lat  Shift=1 : q @ " 
+group1 Lock=lock Shift=0 : Q 2 ' 
+group1 Lock=lock Shift=1 : q @ " 
+
+# Reading: no single consistent XKB state gives the observed desync patterns.
+# Stock observed 'A a | é 2' (a upper, é not upper): with Lock in ANY form libxkbcommon gives É for é, so the letters-only flip is not an XKB Lock state.
+# Ours observed é with AND without Shift: no state here gives that. So two state holders disagree (compositor/client XKB state vs ibus or the shell's own case handling).

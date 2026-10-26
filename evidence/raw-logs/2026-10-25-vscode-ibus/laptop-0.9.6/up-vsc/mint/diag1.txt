@@ -1,0 +1,10 @@
+$ sh -c cat /tmp/env-m-ibus.txt; pgrep -af code | cut -c1-150; ls -l /usr/share/applications/code.desktop; grep Êxec= /usr/share/applications/code.desktop; timeout 15 gio launch /usr/share/applications/code.desktop /tmp/vsc-m-ibus.txt; echo gio=$?
+== m-ibus (ibus) 19:54:21, launched with: /usr/share/applications/code.desktop
+grep: /usr/share/applications/code.desktop: No such file or directory
+2948 bash /tmp/v.sh do diag1 sh -c cat /tmp/env-m-ibus.txt; pgrep -af code | cut -c1-150; ls -l /usr/share/applications/code.desktop; grep Êxec= /usr
+2949 sh -c cat /tmp/env-m-ibus.txt; pgrep -af code | cut -c1-150; ls -l /usr/share/applications/code.desktop; grep Êxec= /usr/share/applications/code
+ls: cannot access '/usr/share/applications/code.desktop': No such file or directory
+grep: /usr/share/applications/code.desktop: No such file or directory
+gio: Unable to load ‘/usr/share/applications/code.desktop‘: No such file or directory
+gio=1
+exit 0

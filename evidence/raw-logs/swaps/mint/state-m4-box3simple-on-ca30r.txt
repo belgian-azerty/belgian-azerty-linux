@@ -1,0 +1,3 @@
+start app=box3 env=[start GTK_IM_MODULE=simple] 19:13:40.727Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=0.90 0.91 0.80
+end app=box3 env=[end GTK_IM_MODULE=simple] 19:15:59.159Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.23 0.98 0.83
+lagging-behind messages during block: 0

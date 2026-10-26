@@ -1,0 +1,11 @@
+./belgian-azerty-windows_0.9.6.1_all.deb: OK
+./keyd-application-mapper_2.5.0-5~ubuntu24.04.3_all.deb: OK
+./keyd-belgian-windows_0.9.6.1_all.deb: OK
+./keyd_2.5.0-5~ubuntu24.04.3_amd64.deb: OK
+./belgian-azerty-windows_0.9.6.1.dsc: OK
+./keyd-belgian-windows_0.9.6.1.dsc: OK
+./keyd_2.5.0-5~ubuntu24.04.3.dsc: OK
+./belgian-azerty-windows_0.9.6.1.tar.xz: OK
+./keyd-belgian-windows_0.9.6.1.tar.xz: OK
+./keyd_2.5.0-5~ubuntu24.04.3.debian.tar.xz: OK
+./keyd_2.5.0.orig.tar.gz: OK

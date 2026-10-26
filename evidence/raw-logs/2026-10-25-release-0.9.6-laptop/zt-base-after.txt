@@ -1,0 +1,2 @@
+/root/be-rig/extra-tests/zt.qcow2 16423583744 2026-10-25 05:57:04.043287619 +0100
+/root/be-rig/extra-tests/zt-vars.fd 540672 2026-10-25 05:35:38.887266662 +0100

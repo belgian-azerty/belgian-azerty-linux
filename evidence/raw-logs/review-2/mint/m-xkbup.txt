@@ -1,0 +1,10 @@
+before: 1 rule line(s)
+Réception de :1 cdrom://Linux Mint 22.3 _Zena_ - Release amd64 20260108 noble/main amd64 xkb-data all 2.41-2ubuntu1.1 [397 kB]
+Paramétrage de xkb-data (2.41-2ubuntu1.1) ...
+Traitement des actions différées (« triggers ») pour belgian-azerty-windows (0.9.0) ...
+Traitement des actions différées (« triggers ») pour man-db (2.12.0-4build2) ...
+dpkg rc=0
+after: 1 rule line(s), stale line: 0
+dpkg -V xkb-data: []
+compile rc=127 xkbup.sh: ligne 7: xkbcli : commande introuvable
+options:    terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows

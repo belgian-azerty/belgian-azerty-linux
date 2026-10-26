@@ -1,0 +1,16 @@
+++ pgrep -x dpkg
++ P=10077
++ sudo kill -STOP 10077
++ B=/var/cache/apt/archives/big
++ sudo mkdir -p /var/cache/apt/archives/big/fw /var/cache/apt/archives/big/mod
++ sudo cp -a /usr/lib/firmware/. /var/cache/apt/archives/big/fw/
++ sudo mount --bind /var/cache/apt/archives/big/fw /usr/lib/firmware
++ sudo mkdir -p /usr/lib/modules/7.0.0-38-generic
++ sudo mount --bind /var/cache/apt/archives/big/mod /usr/lib/modules/7.0.0-38-generic
++ sudo kill -CONT 10077
++ findmnt /usr/lib/firmware /usr/lib/modules/7.0.0-38-generic
++ df -h / /var/cache/apt/archives/big
+Bestandssysteem Grootte Gebruikt Besch Geb% Aangekoppeld op
+/cow               4,9G     3,8G  1,1G  79% /
+/dev/vda            20G     2,2G   17G  12% /var/cache/apt/archives
++ wget -q --post-file=/tmp/room.log http://10.0.2.2:8001/mint-room.log -O /dev/null

@@ -1,0 +1,15 @@
+$ ls -la /home/mint/.local/share/applications /home/mint/.config/systemd/user /home/mint/.config/belgian-azerty /etc/xdg/autostart/be-azerty-ibus-skip.desktop /usr/sbin/be-azerty-fix
+ls: cannot access '/home/mint/.config/belgian-azerty': No such file or directory
+ls: cannot access '/etc/xdg/autostart/be-azerty-ibus-skip.desktop': No such file or directory
+ls: cannot access '/usr/sbin/be-azerty-fix': No such file or directory
+/home/mint/.config/systemd/user:
+total 0
+drwxrwxr-x 2 mint mint 40 Oct 25 04:19 .
+drwxrwxr-x 3 mint mint 60 Oct 25 03:56 ..
+
+/home/mint/.local/share/applications:
+total 4
+drwxr-xr-x  2 mint mint  60 Oct 25 04:19 .
+drwxr-xr-x 11 mint mint 240 Oct 25 03:32 ..
+-rw-r--r--  1 mint mint 508 Oct 25 03:16 webapp-OnlineChat4519.desktop
+exit 2

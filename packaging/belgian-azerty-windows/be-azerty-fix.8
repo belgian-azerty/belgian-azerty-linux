@@ -1,0 +1,189 @@
+.TH BE-AZERTY-FIX 8 "2026-10-25" "belgian-azerty-windows 0.9.7" "System Administration"
+.SH NAME
+be-azerty-fix \- make a Linux Mint or Zorin OS system type Belgian AZERTY as on Windows
+.SH SYNOPSIS
+.B be-azerty-fix
+.RB [ check ]
+.br
+.B be-azerty-fix live
+.br
+.B sudo be-azerty-fix system
+.br
+.B sudo be-azerty-fix uninstall
+.br
+.B be-azerty-fix ibus-skip
+.RB [ list ]
+.br
+.B be-azerty-fix ibus-skip auto
+.BR on | off | default
+.br
+.B be-azerty-fix ibus-skip on
+.IR APP ...
+.br
+.B be-azerty-fix ibus-skip off
+.IR APP ...\& | \fB\-\-all\fR
+.SH DESCRIPTION
+The keyboard layout of an Ubuntu-based system is stored in several places: the
+system default (/etc/default/keyboard, used by the console, the boot prompt and
+the login screen), the desktop settings of each user, and the defaults new users
+start from. When they disagree the keyboard seems to switch layout by itself.
+.B be-azerty-fix
+makes all of them agree on the Belgian layout and switches on the Windows habits
+Belgians expect.
+.TP
+.B check
+Show what every store says. Changes nothing; needs no root.
+.TP
+.B live
+Fix the running session only (forgotten at reboot).
+.TP
+.B system
+Fix the installed system: system default, console keymap, boot image, the
+defaults for new users and reset settings (Cinnamon), the current user's
+desktop, the GDM login screen. Installs the packages found next to the script
+if they are missing.
+.TP
+.B uninstall
+Remove the Caps Lock option from every setting it can reach, the Cinnamon
+defaults, files of older versions, and purge belgian-azerty-windows,
+keyd-belgian-windows and (unless KEEP_KEYD=1) a keyd built by this project.
+The layout stays Belgian. Also removes every user's ibus skip files (see below).
+.TP
+.B ibus-skip
+Per user; run it as yourself, without sudo. Automatic: with the Windows
+profile, at every login the Terminal, the text editor and VS Code (when
+installed) skip ibus, unless you
+have an input method set up (an ibus engine in the keyboard settings or in the
+ibus preferences, or another input-method framework such as fcitx); then they
+keep ibus, until it is removed again. With the Linux-standard profile it is
+off.
+.B auto on
+and
+.B auto off
+are your own choice (also the "Fast typing" tick box of the "Belgian keyboard"
+window);
+.B auto default
+follows the profile again. It needs the belgian-azerty-windows package (its
+login entry keeps the files right).
+.B on
+.I APP
+lets that app take the keys without the ibus input method, by giving it
+GTK_IM_MODULE=gtk-im-context-simple.
+.I APP
+is the name of the app's menu file in /usr/share/applications without
+.B .desktop
+(for example org.gnome.Terminal, org.gnome.TextEditor, org.x.editor, com.microsoft.VSCode), or one of the
+short names
+.BR terminal ,
+.B text-editor
+and
+.B vscode
+(VS Code: com.microsoft.VSCode, or code, code-oss, codium).
+.B off
+.I APP
+undoes it for one app,
+.B off \-\-all
+for every app, the automatic part included (saved as off). An automatic app
+cannot be taken off on its own: use
+.BR "auto off" .
+.B list
+(the default) shows the apps and whether a running gnome-terminal already
+skips ibus.
+.B refresh
+makes the files match the list and the automatic choice again; the package
+runs it at every login, and
+.B live
+and
+.B system
+run it for the desktop user.
+.IP
+Why: with ibus in the key path, very fast typing can swap two characters
+(@\[eu] arrives as \[eu]@), on stock systems too. In an app that skips ibus,
+GTK handles the keys itself: the layout, dead keys (^ \[ad] \[aa] \` ~) and
+Compose keep working, and the swaps measured with ibus did not happen.
+.IP
+Limits: it is a workaround, not a fix of ibus. It only helps GTK apps; Qt and
+other toolkits ignore GTK_IM_MODULE, and Electron apps (VS Code) were not
+tested. In a skipped app the ibus features are gone: Chinese, Japanese, Korean
+and other ibus input methods, and the ibus emoji picker. It applies when the
+app is started from the menu, the dock or a keyboard shortcut; an app started
+by typing its name in a terminal still uses ibus, except gnome-terminal, which
+skips ibus however it is started. Programs started from inside a skipped app
+inherit the skip. A running app changes only after it is closed completely.
+.IP
+How: for most apps, a copy of the app's menu file in
+~/.local/share/applications with
+.B env GTK_IM_MODULE=gtk-im-context-simple
+in front of each command and the line
+.BR X\-BelgianAzerty\-IbusSkip=true ;
+for an app that a systemd user service opens (gnome-terminal), the drop-in
+~/.config/systemd/user/\fISERVICE\fR.d/zz\-belgian\-azerty\-ibus\-skip.conf.
+Apps added by hand are listed in ~/.config/belgian-azerty/ibus-skip, the
+automatic choice is in ~/.config/belgian-azerty/ibus-skip-auto. Only files with the marker are
+ever changed or removed; if you already have your own copy of an app's menu
+file, it is left alone and the app is not turned on (also not automatically).
+.PP
+The settings below can also follow the command, for example
+.BR "sudo be-azerty-fix system PROFILE=linux DECIMAL=comma" .
+The "Belgian keyboard" entry in the app menu
+.RB ( be-azerty-settings )
+offers the profile and the numpad decimal key in a window and runs
+.B be-azerty-fix system
+through
+.BR pkexec (1);
+choosing a profile there also sets CAPS to that profile.
+.SH ENVIRONMENT
+.TP
+.B PROFILE=windows|linux
+windows (default): Ctrl+Alt works as AltGr (keyd) and Caps Lock as on Windows
+(on GNOME, i.e. Zorin, Caps Lock stays as on Linux unless CAPS=windows is given;
+see CAPS below).
+linux: the Belgian layout with Linux conventions: Caps Lock only changes
+letters and the keyd service is switched off, so Ctrl+Alt stays Ctrl+Alt
+(AltGr still types @ and \[eu]). The packages stay installed; switch back with
+.BR "sudo PROFILE=windows be-azerty-fix system" .
+When not given, the profile of the last
+.B system
+run is kept, else windows.
+.TP
+.B DECIMAL=period|comma
+Numpad decimal key: period (Windows "Belgian (Period)") or comma
+(Windows "Belgian (Comma)", XKB option kpdl:comma). When not given, the choice
+of the last
+.B system
+run is kept (saved in /var/lib/belgian-azerty-windows/choices); on the first
+run, comma if /etc/default/keyboard already has kpdl:comma, else period.
+.TP
+.B CAPS=windows|linux
+windows: Caps Lock gives the Shift level on the whole main block (XKB
+option caps:be_windows). linux: Caps Lock only changes letters. When not given,
+the choice of the last
+.B system
+run is kept, else the profile's choice. A PROFILE given on the command line
+sets CAPS too, unless CAPS is also given.
+On GNOME (Zorin) the Windows profile alone gives linux: on GNOME's Wayland
+session a short Caps Lock tap in a GNOME password field (lock screen, password
+dialog) puts Caps Lock out of step until the next login, and with
+caps:be_windows the keys 2 6 7 9 0 and % then type only \['e] \[sc] \[`e] \[,c] \[`a] \[`u].
+Give CAPS=windows to switch it on there anyway; log out and in if it happens.
+.TP
+.B VARIANT=|oss|nodeadkeys
+Variant of the Belgian layout (default: none).
+.TP
+.B KEEP_KEYD=1
+With uninstall: keep the keyd daemon package.
+.SH FILES
+/etc/default/keyboard, /usr/share/X11/xkb/symbols/be_capslock,
+/usr/share/X11/xkb/rules/evdev (generated; xkb-data's file is diverted to
+evdev.distrib), /usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override,
+/var/lib/belgian-azerty-windows/choices, /usr/bin/be-azerty-settings,
+/usr/share/polkit-1/actions/org.belgianazerty.fix.policy,
+/etc/xdg/autostart/be-azerty-ibus-skip.desktop,
+~/.config/belgian-azerty/ibus-skip, ~/.config/belgian-azerty/ibus-skip-auto,
+~/.local/share/applications/\fIAPP\fR.desktop (marked copies),
+~/.config/systemd/user/\fISERVICE\fR.d/zz-belgian-azerty-ibus-skip.conf
+.SH SEE ALSO
+.BR keyboard (5),
+.BR setxkbmap (1),
+.BR keyd.rvaiya (1),
+.BR ibus (1)

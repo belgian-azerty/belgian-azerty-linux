@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Belgian keyboard: per-app ibus skip
+Comment=Re-applies the apps chosen with "be-azerty-fix ibus-skip on"; does nothing when no app was chosen
+TryExec=/usr/sbin/be-azerty-fix
+Exec=/usr/sbin/be-azerty-fix ibus-skip refresh
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

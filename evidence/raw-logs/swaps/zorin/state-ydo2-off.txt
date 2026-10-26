@@ -1,0 +1,2 @@
+start 17:25:09Z keyd=inactive ydotool=0.1.8-3build1 ydotoold=running N=20 key-delay=12ms session=wayland
+41

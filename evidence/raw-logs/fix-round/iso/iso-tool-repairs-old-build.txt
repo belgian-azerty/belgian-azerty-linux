@@ -1,0 +1,4 @@
+updated /md5sum.txt (2 checksums)
+checked: every boot menu matches /md5sum.txt
+wrote mint-repaired.iso
+(byte compare differs only because xorriso writes a new volume timestamp; the md5sum.txt lines were updated as shown above)

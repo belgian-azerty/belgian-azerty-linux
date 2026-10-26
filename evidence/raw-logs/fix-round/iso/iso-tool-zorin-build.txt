@@ -1,0 +1,6 @@
+patched /boot/grub/grub.cfg (3 boot entries)
+patched /boot/grub/loopback.cfg (3 boot entries)
+patched /isolinux/menuentries.cfg (3 boot entries)
+updated /md5sum.txt (3 checksums)
+checked: every boot menu matches /md5sum.txt
+wrote zorin-be.iso

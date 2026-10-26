@@ -1,0 +1,57 @@
+bt1 [ctrlalt] typed lines 5: ok 5, order 0, count 0, other 0 | key log (keyd virtual keyboard): 5/5 lines in sent order, key gap median 120 ms min 118 ms
+m1-noibus-ag30r [altgr] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 30 ms min 25 ms
+m1-off-ag30r [altgr] typed lines 150: ok 150, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 150/150 lines in sent order, key gap median 30 ms min 22 ms
+m1-off-ag60 [altgr] typed lines 150: ok 150, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 150/150 lines in sent order, key gap median 60 ms min 58 ms
+m1-on-ag30r [altgr] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 30 ms min 0 ms
+m1-on-ag60 [altgr] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 60 ms min 48 ms
+m1-on-ca30r [ctrlalt] typed lines 150: ok 138, order 12, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 30 ms min 0 ms
+m1-on-ca60 [ctrlalt] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 60 ms min 51 ms
+m2-box3-on-ag30r [altgr] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 20 ms
+m2-box3-on-ca60 [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 60 ms min 57 ms
+m2-box3simple-on-ag30r [altgr] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 27 ms
+m2-box3sync1-on-ag30r [altgr] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 25 ms
+m2-box3sync2-on-ag30r [altgr] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 20 ms
+m3-noibus-ca30r [ctrlalt] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 30 ms min 25 ms
+m4-box3-on-ca30r [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 11 ms
+m4-box3simple-on-ca30r [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 16 ms
+m4-box3sync1-on-ca30r [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 24 ms
+t1 [altgr] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 120 ms min 90 ms
+z1-noibus-ag30r [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 28 ms
+z1-noibus-ag60 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 57 ms
+z1-noibus-ca60 [ctrlalt] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 16 ms
+z1-off-ag1-60 [altgr1] typed lines 40: ok 39, order 1, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 75 ms min 68 ms
+z1-off-ag120 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 120 ms min 117 ms
+z1-off-ag30r [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 30 ms min 26 ms
+z1-off-ag60 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 60 ms min 58 ms
+z1-off-mx60 [mixed] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 74 ms min 0 ms
+z1-off-pl30r [plain] typed lines 40: ok 40, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 40/40 lines in sent order, key gap median 30 ms min 28 ms
+z1-on-ag1-60 [altgr1] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 75 ms min 68 ms
+z1-on-ag120 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 120 ms min 94 ms
+z1-on-ag30r [altgr] typed lines 40: ok 36, order 4, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 16 ms
+z1-on-ag60 [altgr] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 52 ms
+z1-on-ca1-60 [ctrlalt1] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 90 ms min 87 ms
+z1-on-ca120 [ctrlalt] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 120 ms min 105 ms
+z1-on-ca30r [ctrlalt] typed lines 40: ok 37, order 3, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 11 ms
+z1-on-ca60 [ctrlalt] typed lines 40: ok 38, order 2, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 60 ms min 36 ms
+z1-on-mx60 [mixed] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 74 ms min 58 ms
+z1-on-pl30r [plain] typed lines 40: ok 40, order 0, count 0, other 0 | key log (keyd virtual keyboard): 40/40 lines in sent order, key gap median 30 ms min 28 ms
+z2-off-ag30r [altgr] typed lines 200: ok 188, order 12, count 0, other 0 | key log (AT Translated Set 2 keyboard): 200/200 lines in sent order, key gap median 30 ms min 17 ms
+z2-off-ag60 [altgr] typed lines 200: ok 200, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 200/200 lines in sent order, key gap median 60 ms min 49 ms
+z2-on-ag30r [altgr] typed lines 200: ok 192, order 8, count 0, other 0 | key log (keyd virtual keyboard): 200/200 lines in sent order, key gap median 30 ms min 13 ms
+z2-on-ag60 [altgr] typed lines 200: ok 200, order 0, count 0, other 0 | key log (keyd virtual keyboard): 200/200 lines in sent order, key gap median 60 ms min 44 ms
+z2-on-ca60 [ctrlalt] typed lines 200: ok 198, order 2, count 0, other 0 | key log (keyd virtual keyboard): 200/200 lines in sent order, key gap median 60 ms min 44 ms
+z3-box-off-ag30r [altgr] typed lines 100: ok 98, order 2, count 0, other 0 | key log (AT Translated Set 2 keyboard): 100/100 lines in sent order, key gap median 30 ms min 23 ms
+z3-box-on-ag30r [altgr] typed lines 100: ok 94, order 6, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 14 ms
+z3-box-on-ca60 [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 60 ms min 47 ms
+z3-boxsimple-on-ag30r [altgr] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 14 ms
+z3-boxsimple-on-ca60 [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 60 ms min 54 ms
+z4-off-ag1-60 [altgr1] typed lines 150: ok 150, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 150/150 lines in sent order, key gap median 75 ms min 66 ms
+z4-on-ag1-60 [altgr1] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 75 ms min 65 ms
+z4-on-ag90 [altgr] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 90 ms min 87 ms
+z4-on-ca1-60 [ctrlalt1] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 90 ms min 80 ms
+z4-on-ca120 [ctrlalt] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 120 ms min 117 ms
+z4-on-ca90 [ctrlalt] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 90 ms min 85 ms
+z5-dead-box3simple [dead] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 150 ms min 148 ms
+z5-dead-box4 [dead] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 150 ms min 146 ms
+z5-dead-box4simple [dead] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 150 ms min 147 ms
+z5-dead-term [dead] typed lines 10: ok 10, order 0, count 0, other 0 | key log (keyd virtual keyboard): 10/10 lines in sent order, key gap median 150 ms min 146 ms

@@ -1,0 +1,36 @@
+Zorin OS 18.1 live (stock ISO 44649b97..., direct kernel boot, layoutcode=be), QEMU TCG 4 vCPU 6 GB, --cpu Nehalem --vga virtio; session X11 (no 3D in the emulator).
+Packages: keyd 2.5.0-5~ubuntu24.04.2, keyd-belgian-windows 0.9.4, belgian-azerty-windows 0.9.5 (e9152758e6f563b4...); be-azerty-fix live (Windows profile).
+Bursts per app, in this order: 100:ctrlalt-o30,100:altgr-o30,10:ctrlalt-60,10:altgr-60,3:dead (o30 = keys 30 ms apart and overlapping; 60 = 60 ms apart; 8 pairs @€ per line).
+== term-ibus
+  ctrlalt-o30   93 right,   7 swapped,   0 other, of 100
+  altgr-o30     92 right,   8 swapped,   0 other, of 100
+  ctrlalt-60    10 right,   0 swapped,   0 other, of 10
+  altgr-60      10 right,   0 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+== tb-ibus
+  ctrlalt-o30  100 right,   0 swapped,   0 other, of 100
+  altgr-o30     99 right,   0 swapped,   1 other, of 100
+  ctrlalt-60     9 right,   0 swapped,   1 other, of 10
+  altgr-60      10 right,   0 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+== term-skip
+  ctrlalt-o30  100 right,   0 swapped,   0 other, of 100
+  altgr-o30    100 right,   0 swapped,   0 other, of 100
+  ctrlalt-60    10 right,   0 swapped,   0 other, of 10
+  altgr-60      10 right,   0 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+== tb-skip
+  ctrlalt-o30  100 right,   0 swapped,   0 other, of 100
+  altgr-o30    100 right,   0 swapped,   0 other, of 100
+  ctrlalt-60    10 right,   0 swapped,   0 other, of 10
+  altgr-60      10 right,   0 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+Typebox = GTK 4 window opened from the desktop menu (Super, type "typebox", Enter), i.e. through the menu entry.
+The "other" lines in tb-ibus lost or doubled one character (lines 140 and 209 of tb-ibus.txt). info-*.txt show what each app
+ran with: ibus run: gnome-terminal-server and Typebox without GTK_IM_MODULE, Typebox context "ibus"; skip run:
+gnome-terminal-server with GTK_IM_MODULE=gtk-im-context-simple (from the drop-in), Typebox context gtk-im-context-simple;
+the shell inside the skipped terminal does NOT inherit the variable (GTK_IM_MODULE unset there).
+Emulator caveat: TCG (software CPU), so the guest is slower than real hardware and key timing inside the guest is not
+the timing that was sent; the swap counts are a comparison between the two runs, not a real-hardware rate.
+Not done on Zorin: VS Code (its 243 MB package did not finish installing in the live session's memory within 35 min;
+the session became too slow and was stopped), "skip off" and uninstall (done on Mint instead, and in the container).

@@ -1,0 +1,3 @@
+               total       utilisé      libre     partagé tamp/cache   disponible
+Mem:            5919        2553         884        1569        4302        3365
+Échange:           0           0           0

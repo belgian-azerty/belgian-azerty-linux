@@ -1,0 +1,227 @@
+== cmdline
+BOOT_IMAGE=/boot/vmlinuz-7.0.0-38-generic root=UUID=f2272411-e415-4d19-9a27-1ff292800150 ro quiet splash
+== belgian-stick.log
+== 2026-10-24T23:54:00Z live-boot keyboard=be decimal=period formats=none
+Choices: profile windows (default), numpad decimal period (given), Caps Lock windows (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  [32m✔[0m Cinnamon default for new users and reset settings: terminate:ctrl_alt_bksp,caps:be_windows
+3. Your desktop (cinnamon) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  [32m✔[0m LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== 2026-10-25T02:53:48Z install-target keyboard=be decimal=period formats=none
+Pakketlijsten worden ingelezen...
+Boom van vereisten wordt opgebouwd...
+De statusinformatie wordt gelezen...
+De volgende NIEUWE pakketten zullen geïnstalleerd worden:
+  belgian-azerty-windows keyd keyd-belgian-windows
+0 opgewaardeerd, 3 nieuw geïnstalleerd, 0 te verwijderen en 588 niet opgewaardeerd.
+Er moeten 0 B/248 kB aan archieven opgehaald worden.
+Na deze bewerking zal er 1576 kB extra schijfruimte gebruikt worden.
+Ophalen:1 /tmp/belgian/belgian-azerty-windows_0.9.3_all.deb belgian-azerty-windows all 0.9.3 [24.8 kB]
+Ophalen:2 /tmp/belgian/keyd_2.5.0-5~ubuntu24.04.1_amd64.deb keyd amd64 2.5.0-5~ubuntu24.04.1 [219 kB]
+Ophalen:3 /tmp/belgian/keyd-belgian-windows_0.9.3_all.deb keyd-belgian-windows all 0.9.3 [4598 B]
+E: Kan log (Is /dev/pts aangekoppeld?) niet opschrijven - posix_openpt (19: Onjuist apparaat)
+Voorheen niet geselecteerd pakket belgian-azerty-windows wordt geselecteerd.
+(Database wordt ingelezen ... 498468 bestanden en mappen momenteel geïnstalleerd.)
+Uitpakken van .../belgian-azerty-windows_0.9.3_all.deb wordt voorbereid...
+Bezig met uitpakken van belgian-azerty-windows (0.9.3) ...
+Voorheen niet geselecteerd pakket keyd wordt geselecteerd.
+Uitpakken van .../keyd_2.5.0-5~ubuntu24.04.1_amd64.deb wordt voorbereid...
+Bezig met uitpakken van keyd (2.5.0-5~ubuntu24.04.1) ...
+Voorheen niet geselecteerd pakket keyd-belgian-windows wordt geselecteerd.
+Uitpakken van .../keyd-belgian-windows_0.9.3_all.deb wordt voorbereid...
+Bezig met uitpakken van keyd-belgian-windows (0.9.3) ...
+Instellen van keyd (2.5.0-5~ubuntu24.04.1) ...
+⚠️ /proc/ is not mounted. This is not a supported mode of operation. Please fix
+your invocation environment to mount /proc/ and /sys/ properly. Proceeding anyway.
+Your mileage may vary.
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Instellen van keyd-belgian-windows (0.9.3) ...
+Instellen van belgian-azerty-windows (0.9.3) ...
+'omleiding van /usr/share/X11/xkb/rules/evdev naar /usr/share/X11/xkb/rules/evdev.distrib door belgian-azerty-windows' wordt toegevoegd
+Bezig met afhandelen van triggers voor desktop-file-utils (0.27-2build1) ...
+Bezig met afhandelen van triggers voor gnome-menus (3.36.0-1.1ubuntu3) ...
+Bezig met afhandelen van triggers voor mate-menus (1.26.1+mint1) ...
+Bezig met afhandelen van triggers voor man-db (2.12.0-4build2) ...
+Bezig met afhandelen van triggers voor mailcap (3.70+nmu1ubuntu1) ...
+apt rc=0
+== 2026-10-25T05:20:20Z first-boot
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock windows (kept from the last run).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: caps:be_windows)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  [32m✔[0m initramfs rebuilt
+2. Defaults for new users and reset settings
+  [32m✔[0m Cinnamon default for new users and reset settings: terminate:ctrl_alt_bksp,caps:be_windows
+3. Your desktop (cinnamon) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  [32m✔[0m LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== services
+inactive
+active
+enabled
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="caps:be_windows"
+
+BACKSPACE="guess"
+== /etc/default/locale
+LANG="nl_BE.UTF-8"
+LANGUAGE="nl_BE:nl"
+== session locale
+LANG=nl_BE.UTF-8
+LANGUAGE=nl_BE:nl
+LC_CTYPE="nl_BE.UTF-8"
+LC_NUMERIC="nl_BE.UTF-8"
+LC_TIME="nl_BE.UTF-8"
+LC_COLLATE="nl_BE.UTF-8"
+LC_MONETARY="nl_BE.UTF-8"
+LC_MESSAGES="nl_BE.UTF-8"
+LC_PAPER="nl_BE.UTF-8"
+LC_NAME="nl_BE.UTF-8"
+LC_ADDRESS="nl_BE.UTF-8"
+LC_TELEPHONE="nl_BE.UTF-8"
+LC_MEASUREMENT="nl_BE.UTF-8"
+LC_IDENTIFICATION="nl_BE.UTF-8"
+LC_ALL=
+zo 25 okt 2026 10:42:36 | 25-10-26 | 10:42:37
+== gsettings
+[('xkb', 'be')]
+['caps:be_windows']
+['terminate:ctrl_alt_bksp', 'caps:be_windows']
+@as []
+== setxkbmap
+rules:      evdev
+model:      pc105
+layout:     be,us
+variant:    ,
+options:    terminate:ctrl_alt_bksp,caps:be_windows
+== choices
+PROFILE=windows
+DECIMAL=period
+CAPS=windows
+== packages
+belgian-azerty-windows	0.9.3
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.3
+== layers
+/dev/vda3 on / type ext4 (rw,relatime,errors=remount-ro)
+== check
+Packages:
+  ✔ belgian-azerty-windows 0.9.3
+  ✔ keyd-belgian-windows 0.9.3
+  ✔ keyd 2.5.0-5~ubuntu24.04.1
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=windows 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105
+  layout:     be,us
+  variant:    ,
+  options:    terminate:ctrl_alt_bksp,caps:be_windows
+Desktop setting (cinnamon):
+  @as []
+  [('xkb', 'be')]
+  · xkb-options: terminate:ctrl_alt_bksp,caps:be_windows
+  ✔ new users and reset settings start with: ['terminate:ctrl_alt_bksp', 'caps:be_windows']
+AccountsService record for be:
+  · not readable (needs sudo) or absent
+Login screen:
+  · LightDM: follows the system default; slick-greeter can show a layout indicator
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  ✔ initramfs newer than /etc/default/keyboard
+== versions
+cinnamon	6.6.9+zena
+firefox	158.0.1+linuxmint1
+gnome-shell	
+ibus	1.5.29-2
+keyboard-configuration	1.226ubuntu1.1
+libxkbcommon0:amd64	1.6.0-1build1
+muffin	6.6.3+zena
+systemd	255.4-1ubuntu8.18
+udev	255.4-1ubuntu8.18
+xkb-data	2.41-2ubuntu1.1
+7.0.0-38-generic
+== keyd.service
+● keyd.service - key remapping daemon
+     Loaded: loaded (/usr/lib/systemd/system/keyd.service; enabled; preset: enabled)
+    Drop-In: /usr/lib/systemd/system/keyd.service.d
+             └─belgian-windows-restart.conf
+     Active: active (running) since Sun 2026-10-25 10:25:09 CET; 17min ago
+== xkb option file
+-rw-r--r--  1 root root  10702 feb  5  2024 be
+-rw-r--r--  1 root root   1913 okt 24 19:00 be_capslock
+== our packages
+belgian-azerty-windows	0.9.3
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.3
+== diversion
+omleiding van /usr/share/X11/xkb/rules/evdev naar /usr/share/X11/xkb/rules/evdev.distrib door belgian-azerty-windows
+-rw-r--r-- 1 root root 35969 okt 25 03:55 /usr/share/X11/xkb/rules/evdev
+-rw-r--r-- 1 root root 35826 okt 25 03:55 /usr/share/X11/xkb/rules/evdev.distrib
+/usr/share/X11/xkb/rules/evdev:1
+/usr/share/X11/xkb/rules/evdev.distrib:0
+== dpkg -V (xkb-data keyboard-configuration; evdev diverted so it may show)
+dpkg -V rc 0
+== keyd active
+active
+enabled
+== sleep
+freeze mem disk
+s2idle [deep]
+== journal suspend
+okt 25 10:25:09 ubuntu systemd[1]: Started keyd.service - key remapping daemon.
+okt 25 10:25:14 ubuntu kernel: input: keyd virtual keyboard as /devices/virtual/input/input5
+okt 25 10:25:14 ubuntu kernel: input: keyd virtual pointer as /devices/virtual/input/input6
+okt 25 10:25:14 ubuntu keyd.rvaiya[687]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+okt 25 10:25:14 ubuntu keyd.rvaiya[687]: Starting keyd v2.5.0 ()
+okt 25 10:25:15 ubuntu keyd.rvaiya[687]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+okt 25 10:25:15 ubuntu keyd.rvaiya[687]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+okt 25 10:25:15 ubuntu keyd.rvaiya[687]: DEVICE: ignoring 0002:0006:e7c70575  (ImExPS/2 Generic Explorer Mouse)
+okt 25 10:25:15 ubuntu keyd.rvaiya[687]: DEVICE: match    0001:0001:09b4e68d  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+okt 25 10:26:08 ubuntu systemd-logind[741]: Watching system buttons on /dev/input/event4 (keyd virtual keyboard)
+okt 25 10:35:13 ubuntu kernel: PM: suspend entry (deep)
+okt 25 10:36:20 ubuntu kernel: ACPI: PM: Waking up from system sleep state S3
+okt 25 10:36:21 ubuntu kernel: PM: suspend exit

@@ -1,0 +1,148 @@
+--- <build dir>/tmp.j0FGQLLgO1/o/usr/sbin/be-azerty-fix	2026-10-25 19:00:00.000000000 +0000
++++ <build dir>/tmp.j0FGQLLgO1/n/usr/sbin/be-azerty-fix	2026-10-25 20:30:00.000000000 +0000
+@@ -10,9 +10,9 @@
+ #   sudo be-azerty-fix uninstall      remove everything this project added and leave a stock system that still
+ #                                     types Belgian (the layout and the Period/Comma choice are standard Linux)
+ #   be-azerty-fix ibus-skip [list]    show which apps skip the ibus input method (no sudo: for your own user)
+-#   be-azerty-fix ibus-skip auto on|off|default   the automatic skip for the Terminal and the text editor
++#   be-azerty-fix ibus-skip auto on|off|default   the automatic skip for the Terminal, the text editor and VS Code
+ #   be-azerty-fix ibus-skip on APP... let more apps skip ibus; APP is the app's menu file name (org.gnome.Terminal,
+-#                                     org.x.editor, code ...) or terminal, text-editor, vscode
++#                                     org.x.editor, com.microsoft.VSCode ...) or terminal, text-editor, vscode
+ #   be-azerty-fix ibus-skip off APP...  |  be-azerty-fix ibus-skip off --all     undo it (--all: the automatic part too)
+ #
+ # ibus skip: very fast typing can swap two characters (@€ arrives as €@) while the ibus input method sits between the
+@@ -61,7 +61,7 @@
+ # Ctrl+Alt+2 = @ and Ctrl+Alt+E = € come from the keyd-belgian-windows package (keyd rules); "system" installs the
+ # packages found next to this script (or in dist/ next to it) if they are not installed yet.
+ #
+-# Status: see NOTES.md for what was run where. Version 0.9.6 (2026-10-25, not published yet): 0.9.5 automatic ibus skip + Windows Caps Lock opt-in on GNOME.
++# Status: see NOTES.md for what was run where. Version 0.9.7 (2026-10-25, not published yet): 0.9.6 + VS Code in the automatic ibus skip (current menu file name).
+ set -u
+ [ "${1:-}" = ibus-skip ] || for a in "${@:2}"; do
+   case "$a" in
+@@ -464,14 +464,14 @@
+ }
+ 
+ # ---------- ibus skip (per app, per user) -----------------------------------------------------------
+-# Automatic (from the profile; Windows profile: on): the Terminal and the text editor skip ibus while the user has no
+-# input method set up (no Chinese/Japanese-style ibus engine, no other input-method framework); it pauses by itself at
++# Automatic (from the profile; Windows profile: on): the Terminal, the text editor and VS Code (when installed) skip
++# ibus while the user has no input method set up (no Chinese/Japanese-style ibus engine, no other input-method framework); it pauses by itself at
+ # the next login once one is added. Users can turn it off (ibus-skip auto off, or the tick box in the "Belgian
+ # keyboard" window) and add or remove apps by hand. Every file written here carries a marker, and only marked files
+ # are ever changed or removed.
+ SKIP_MARK=X-BelgianAzerty-IbusSkip
+ SKIP_DROPIN=zz-belgian-azerty-ibus-skip.conf
+-SKIP_AUTO_APPS="terminal text-editor"
++SKIP_AUTO_APPS="terminal text-editor vscode"
+ skip_paths() {             # per-user locations, from the HOME this runs with
+   SKIP_CONF=${XDG_CONFIG_HOME:-$HOME/.config}
+   SKIP_LIST=$SKIP_CONF/belgian-azerty/ibus-skip
+@@ -501,7 +501,7 @@
+   case "$n" in
+     terminal) set -- org.gnome.Terminal ;;
+     text-editor) set -- org.gnome.TextEditor org.x.editor org.gnome.gedit xed gnome-text-editor ;;   # Zorin, Mint, Ubuntu (older)
+-    vscode) set -- code code-oss codium ;;
++    vscode) set -- com.microsoft.VSCode code code-oss codium ;;   # VS Code 1.143 renamed code.desktop
+     *) set -- "$n" ;;
+   esac
+   for c in "$@"; do skip_source "$c" >/dev/null && { echo "$c"; return 0; }; done
+@@ -664,9 +664,9 @@
+   if [ "$auto" = off ]; then
+     info "automatic: off ($(skip_auto_from)); turn on: be-azerty-fix ibus-skip auto on"
+   elif [ -n "$why" ]; then
+-    info "automatic: paused, because $why (the Terminal and the text editor keep ibus; it resumes at the next login after that is removed)"
++    info "automatic: paused, because $why (the Terminal, the text editor and VS Code keep ibus; it resumes at the next login after that is removed)"
+   else
+-    info "automatic: on ($(skip_auto_from)): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off"
++    info "automatic: on ($(skip_auto_from)): the Terminal, the text editor and VS Code skip ibus; turn off: be-azerty-fix ibus-skip auto off"
+     while read -r id; do [ -n "$id" ] && ! skip_listed "$id" && skip_status_one "$id" " (automatic)"; done <<< "$(skip_auto_ids)"
+   fi
+   if [ -s "$SKIP_LIST" ]; then
+@@ -694,10 +694,10 @@
+           mkdir -p "${SKIP_AUTO%/*}" && echo "$1" > "$SKIP_AUTO" || { bad "could not save the choice in $SKIP_AUTO"; exit 1; }
+           skip_refresh
+           if [ "$1" = off ]; then
+-            ok "automatic ibus skip off: the Terminal and the text editor use ibus again from their next start"
++            ok "automatic ibus skip off: the Terminal, the text editor and VS Code use ibus again from their next start"
+             [ -s "$SKIP_LIST" ] && info "apps you added yourself still skip ibus: $(tr '\n' ' ' < "$SKIP_LIST")"
+           elif [ -n "$(skip_unsafe)" ]; then info "automatic ibus skip on, but paused: $(skip_unsafe)"
+-          else ok "automatic ibus skip on: the Terminal and the text editor skip ibus (close them completely and start them again)"; fi ;;
++          else ok "automatic ibus skip on: the Terminal, the text editor and VS Code skip ibus (close them completely and start them again)"; fi ;;
+         default) rm -f "$SKIP_AUTO"; skip_refresh; ok "automatic ibus skip follows the profile again: $(skip_auto_choice)" ;;
+         "") echo "ibus skip for $(id -un):"; skip_status ;;
+         *) echo "usage: be-azerty-fix ibus-skip auto [on | off | default]" >&2; exit 1 ;;
+@@ -713,7 +713,7 @@
+     off)
+       [ $# -gt 0 ] || { echo "usage: be-azerty-fix ibus-skip off APP...   or   be-azerty-fix ibus-skip off --all" >&2; exit 1; }
+       if [ "$1" = --all ]; then
+-        # Also the automatic part, or the next login would bring the Terminal and the text editor back.
++        # Also the automatic part, or the next login would bring the Terminal, the text editor and VS Code back.
+         skip_unapply_all; mkdir -p "${SKIP_AUTO%/*}" && echo off > "$SKIP_AUTO"
+         ok "no app skips ibus any more (stock behaviour; the automatic skip stays off: be-azerty-fix ibus-skip auto on brings it back)"
+       else
+--- <build dir>/tmp.j0FGQLLgO1/o/usr/bin/be-azerty-settings	2026-10-25 19:00:00.000000000 +0000
++++ <build dir>/tmp.j0FGQLLgO1/n/usr/bin/be-azerty-settings	2026-10-25 20:30:00.000000000 +0000
+@@ -2,7 +2,8 @@
+ # be-azerty-settings: a small window ("Belgian keyboard" in the app menu) to choose the profile (Windows or
+ # Linux-standard) and the numpad decimal key (Period or Comma) without typing commands. It runs
+ # "be-azerty-fix system PROFILE=... DECIMAL=..." through pkexec, so the change is the same as the command-line one.
+-# The "Fast typing" button opens a tick box for the automatic ibus skip of the Terminal and the text editor; that one
++# The "Fast typing" button opens a tick box for the automatic ibus skip of the Terminal, the text editor and VS Code;
++# that one
+ # is per user and runs "be-azerty-fix ibus-skip auto on|off" without pkexec.
+ # Needs zenity (shipped by Linux Mint and Zorin OS).
+ set -u
+@@ -22,9 +23,9 @@
+        OK="Klaar. Meld je af en weer aan om alles toe te passen."; ERR="Er ging iets mis. Details:"
+        NOZ="Dit venster heeft zenity nodig. Typ in een terminal:"
+        WAIT="Bezig met toepassen. Eerst kan om je wachtwoord gevraagd worden."
+-       B_FAST="Snel typen…"; C_FAST="Snel typen"; F_ROW="Terminal en teksteditor: typen zonder ibus (automatisch)"
+-       F_Q="Heel snel typen kan twee tekens omwisselen (@€ wordt €@) in de Terminal en de teksteditor. Met dit vinkje typen deze twee apps zonder ibus. Het pauzeert vanzelf als je Chinese, Japanse of gelijkaardige invoer toevoegt. Dit geldt alleen voor jouw gebruiker."
+-       F_DONE="Klaar. Sluit de Terminal en de teksteditor helemaal en open ze opnieuw."
++       B_FAST="Snel typen…"; C_FAST="Snel typen"; F_ROW="Terminal, teksteditor en VS Code: typen zonder ibus (automatisch)"
++       F_Q="Heel snel typen kan twee tekens omwisselen (@€ wordt €@) in de Terminal, de teksteditor en VS Code. Met dit vinkje typen deze apps zonder ibus. Het pauzeert vanzelf als je Chinese, Japanse of gelijkaardige invoer toevoegt. Dit geldt alleen voor jouw gebruiker."
++       F_DONE="Klaar. Sluit de Terminal, de teksteditor en VS Code helemaal en open ze opnieuw."
+        F_PAUSED="Let op: nu gepauzeerd, omdat er een invoermethode is ingesteld." ;;
+   fr*) T="Clavier belge"
+        Q="Choisissez le fonctionnement du clavier. Le réglage vaut pour tout l'ordinateur."
+@@ -34,9 +35,9 @@
+        OK="Terminé. Fermez la session et reconnectez-vous pour tout appliquer."; ERR="Un problème est survenu. Détails :"
+        NOZ="Cette fenêtre a besoin de zenity. Dans un terminal, tapez :"
+        WAIT="Application en cours. Votre mot de passe peut d'abord être demandé."
+-       B_FAST="Frappe rapide…"; C_FAST="Frappe rapide"; F_ROW="Terminal et éditeur de texte : saisie sans ibus (automatique)"
+-       F_Q="Une frappe très rapide peut inverser deux caractères (@€ devient €@) dans le Terminal et l'éditeur de texte. Case cochée, ces deux applications fonctionnent sans ibus. Elle se met en pause d'elle-même si vous ajoutez une saisie chinoise, japonaise ou semblable. Ce réglage ne vaut que pour votre utilisateur."
+-       F_DONE="Terminé. Fermez complètement le Terminal et l'éditeur de texte, puis rouvrez-les."
++       B_FAST="Frappe rapide…"; C_FAST="Frappe rapide"; F_ROW="Terminal, éditeur de texte et VS Code : saisie sans ibus (automatique)"
++       F_Q="Une frappe très rapide peut inverser deux caractères (@€ devient €@) dans le Terminal, l'éditeur de texte et VS Code. Case cochée, ces applications fonctionnent sans ibus. Elle se met en pause d'elle-même si vous ajoutez une saisie chinoise, japonaise ou semblable. Ce réglage ne vaut que pour votre utilisateur."
++       F_DONE="Terminé. Fermez complètement le Terminal, l'éditeur de texte et VS Code, puis rouvrez-les."
+        F_PAUSED="Remarque : en pause pour l'instant, car une méthode de saisie est configurée." ;;
+   de*) T="Belgische Tastatur"
+        Q="Wählen Sie, wie die Tastatur funktioniert. Das gilt für den ganzen Computer."
+@@ -46,9 +47,9 @@
+        OK="Fertig. Ab- und wieder anmelden, damit alles übernommen wird."; ERR="Etwas ist schiefgelaufen. Details:"
+        NOZ="Dieses Fenster braucht zenity. Im Terminal eingeben:"
+        WAIT="Wird übernommen. Zuerst wird eventuell Ihr Passwort abgefragt."
+-       B_FAST="Schnelles Tippen…"; C_FAST="Schnelles Tippen"; F_ROW="Terminal und Texteditor: ohne ibus tippen (automatisch)"
+-       F_Q="Sehr schnelles Tippen kann im Terminal und im Texteditor zwei Zeichen vertauschen (aus @€ wird €@). Mit diesem Haken tippen diese beiden Apps ohne ibus. Es pausiert von selbst, wenn Sie eine chinesische, japanische oder ähnliche Eingabe hinzufügen. Gilt nur für Ihren Benutzer."
+-       F_DONE="Fertig. Terminal und Texteditor ganz schließen und neu öffnen."
++       B_FAST="Schnelles Tippen…"; C_FAST="Schnelles Tippen"; F_ROW="Terminal, Texteditor und VS Code: ohne ibus tippen (automatisch)"
++       F_Q="Sehr schnelles Tippen kann im Terminal, im Texteditor und in VS Code zwei Zeichen vertauschen (aus @€ wird €@). Mit diesem Haken tippen diese Apps ohne ibus. Es pausiert von selbst, wenn Sie eine chinesische, japanische oder ähnliche Eingabe hinzufügen. Gilt nur für Ihren Benutzer."
++       F_DONE="Fertig. Terminal, Texteditor und VS Code ganz schließen und neu öffnen."
+        F_PAUSED="Hinweis: gerade pausiert, weil eine Eingabemethode eingerichtet ist." ;;
+   *)   T="Belgian keyboard"
+        Q="Choose how the keyboard works. This applies to the whole computer."
+@@ -58,9 +59,9 @@
+        OK="Done. Log out and back in to apply everything."; ERR="Something went wrong. Details:"
+        NOZ="This window needs zenity. In a terminal, type:"
+        WAIT="Applying. You may be asked for your password first."
+-       B_FAST="Fast typing…"; C_FAST="Fast typing"; F_ROW="Terminal and text editor: type without ibus (automatic)"
+-       F_Q="Very fast typing can swap two characters (@€ becomes €@) in the Terminal and the text editor. With this ticked, these two apps type without ibus. It pauses by itself if you add a Chinese, Japanese or similar input. This applies to your user only."
+-       F_DONE="Done. Close the Terminal and the text editor completely and open them again."
++       B_FAST="Fast typing…"; C_FAST="Fast typing"; F_ROW="Terminal, text editor and VS Code: type without ibus (automatic)"
++       F_Q="Very fast typing can swap two characters (@€ becomes €@) in the Terminal, the text editor and VS Code. With this ticked, these apps type without ibus. It pauses by itself if you add a Chinese, Japanese or similar input. This applies to your user only."
++       F_DONE="Done. Close the Terminal, the text editor and VS Code completely and open them again."
+        F_PAUSED="Note: paused right now, because an input method is set up." ;;
+ esac
+ 

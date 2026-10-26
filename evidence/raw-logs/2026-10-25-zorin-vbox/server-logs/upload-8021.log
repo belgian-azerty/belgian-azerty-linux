@@ -1,0 +1,20 @@
+127.0.0.1 - - [25/Oct/2026 13:11:49] "POST /probe.txt HTTP/1.1" 200 -
+saved probe.txt 4151 bytes
+127.0.0.1 - - [25/Oct/2026 13:12:30] "POST /vbox-term.txt HTTP/1.1" 200 -
+saved vbox-term.txt 37 bytes
+127.0.0.1 - - [25/Oct/2026 13:12:30] "POST /vbox-term-od.txt HTTP/1.1" 200 -
+saved vbox-term-od.txt 180 bytes
+127.0.0.1 - - [25/Oct/2026 13:12:56] "POST /vbox-letters.txt HTTP/1.1" 200 -
+saved vbox-letters.txt 27 bytes
+127.0.0.1 - - [25/Oct/2026 13:12:56] "POST /vbox-letters-od.txt HTTP/1.1" 200 -
+saved vbox-letters-od.txt 132 bytes
+127.0.0.1 - - [25/Oct/2026 13:13:19] "POST /vbox-caps.txt HTTP/1.1" 200 -
+saved vbox-caps.txt 3 bytes
+127.0.0.1 - - [25/Oct/2026 13:13:19] "POST /vbox-caps-od.txt HTTP/1.1" 200 -
+saved vbox-caps-od.txt 28 bytes
+127.0.0.1 - - [25/Oct/2026 13:15:50] "POST /vbox-gtk.txt HTTP/1.1" 200 -
+saved vbox-gtk.txt 37 bytes
+127.0.0.1 - - [25/Oct/2026 13:15:50] "POST /vbox-gtk-od.txt HTTP/1.1" 200 -
+saved vbox-gtk-od.txt 180 bytes
+
+[killed]

@@ -1,0 +1,77 @@
+#!/bin/bash
+# belgian-stick: the small glue that makes the Belgian stick (make_belgian_iso.sh with packages) apply the boot-menu
+# choice. It lives in the stick's extra layer (/casper/zz-belgian-azerty.squashfs) next to the untouched system image.
+#   belgian-stick live-boot      live session, before the login screen: apply the boot-menu choice
+#   belgian-stick install-target Ubiquity hook (target-config) at the end of an install: put our packages and the
+#                                choice into the installed system (/target) and arm a one-time first-boot run
+#   belgian-stick first-boot     installed system, first start only: "be-azerty-fix system" with the saved choice,
+#                                then removes its own service
+# The boot menu passes: belgian.keyboard=be|de  belgian.decimal=period|comma  belgian.formats=be (English entries:
+# English text with Belgian dates, 24-hour clock, A4, euro and decimal comma).
+set -u
+LOG=/var/log/belgian-stick.log
+SELF=/usr/local/lib/belgian-stick/belgian-stick
+UNIT=belgian-azerty-firstboot.service
+arg() { tr ' ' '\n' < /proc/cmdline | sed -n "s/^belgian\.$1=//p" | tail -1; }
+KB=$(arg keyboard); KB=${KB:-be}
+DEC=$(arg decimal); DEC=${DEC:-period}
+FMT=$(arg formats)
+case "$DEC" in period|comma) ;; *) DEC=period ;; esac
+# English text, Belgian formats: day/month dates with English month names, 24-hour clock, A4, metric (en_IE);
+# decimal comma and euro amounts as in Belgium (nl_BE). Linux has no "English (Belgium)".
+FORMAT_LINES='LC_TIME="en_IE.UTF-8"
+LC_PAPER="en_IE.UTF-8"
+LC_MEASUREMENT="en_IE.UTF-8"
+LC_NUMERIC="nl_BE.UTF-8"
+LC_MONETARY="nl_BE.UTF-8"'
+
+add_formats() {   # ROOT: Belgian formats in ROOT/etc/default/locale, and the two locales generated
+  local root=$1 l
+  printf '%s\n' "$FORMAT_LINES" | while IFS= read -r l; do
+    grep -q "^${l%%=*}=" "$root/etc/default/locale" 2>/dev/null || echo "$l" >> "$root/etc/default/locale"
+  done
+  for l in en_IE.UTF-8 nl_BE.UTF-8; do grep -q "^$l UTF-8" "$root/etc/locale.gen" 2>/dev/null || echo "$l UTF-8" >> "$root/etc/locale.gen"; done
+  if [ "$root" = / ]; then locale-gen --keep-existing; else chroot "$root" locale-gen --keep-existing; fi
+}
+
+case "${1:-}" in
+  live-boot)
+    exec >>"$LOG" 2>&1; echo "== $(date -u +%FT%TZ) live-boot keyboard=$KB decimal=$DEC formats=${FMT:-none}"
+    [ "$FMT" = be ] && add_formats /
+    if [ "$KB" = be ]; then
+      be-azerty-fix system "DECIMAL=$DEC"
+    else
+      # German QWERTZ: plain Linux behaviour, our Windows extras (made for the Belgian layout) stay off.
+      systemctl disable --now keyd
+    fi ;;
+  install-target)
+    exec >>"$LOG" 2>&1; echo "== $(date -u +%FT%TZ) install-target keyboard=$KB decimal=$DEC formats=${FMT:-none}"
+    T=/target
+    [ -d $T/etc ] || { echo "no /target, nothing to do"; exit 0; }
+    [ "$FMT" = be ] && add_formats $T
+    # Only when the installed system got the Belgian layout (the installer's keyboard page can change it).
+    if [ "$KB" != be ] || ! grep -q '^XKBLAYOUT="\?be"\?$' $T/etc/default/keyboard; then
+      echo "installed keyboard is not Belgian: packages not added"; cp "$LOG" $T/var/log/ 2>/dev/null; exit 0
+    fi
+    mkdir -p $T/tmp/belgian && cp /cdrom/belgian/keyd_*_amd64.deb /cdrom/belgian/keyd-belgian-windows_*_all.deb /cdrom/belgian/belgian-azerty-windows_*_all.deb $T/tmp/belgian/
+    # (the glob is expanded inside the target, where the files are)
+    chroot $T sh -c 'DEBIAN_FRONTEND=noninteractive apt-get install -y /tmp/belgian/*.deb'
+    echo "apt rc=$?"; rm -rf $T/tmp/belgian
+    mkdir -p $T/var/lib/belgian-azerty-windows
+    # No CAPS line in the fallback: the first boot then takes Caps Lock from the profile, which on GNOME (Zorin) stays
+    # Linux (Caps Lock option A, 0.9.6); a saved CAPS=windows would switch Windows Caps Lock on there.
+    cp /var/lib/belgian-azerty-windows/choices $T/var/lib/belgian-azerty-windows/choices 2>/dev/null \
+      || printf 'PROFILE=windows\nDECIMAL=%s\n' "$DEC" > $T/var/lib/belgian-azerty-windows/choices
+    mkdir -p $T/usr/local/lib/belgian-stick && cp "$SELF" $T/usr/local/lib/belgian-stick/
+    cp /etc/systemd/system/$UNIT $T/etc/systemd/system/$UNIT
+    mkdir -p $T/etc/systemd/system/multi-user.target.wants
+    ln -sf /etc/systemd/system/$UNIT $T/etc/systemd/system/multi-user.target.wants/$UNIT
+    cp "$LOG" $T/var/log/ ;;
+  first-boot)
+    exec >>"$LOG" 2>&1; echo "== $(date -u +%FT%TZ) first-boot"
+    be-azerty-fix system
+    rm -f /etc/systemd/system/multi-user.target.wants/$UNIT /etc/systemd/system/$UNIT
+    systemctl daemon-reload ;;
+  *) sed -n '2,12p' "$0"; exit 1 ;;
+esac
+exit 0

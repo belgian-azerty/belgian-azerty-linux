@@ -1,0 +1,20 @@
+typed 200 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z2-on-ag30r [altgr] typed lines 200: ok 192, order 8, count 0, other 0 | key log (keyd virtual keyboard): 200/200 lines in sent order, key gap median 30 ms min 13 ms
+typed 200 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z2-off-ag30r [altgr] typed lines 200: ok 188, order 12, count 0, other 0 | key log (AT Translated Set 2 keyboard): 200/200 lines in sent order, key gap median 30 ms min 17 ms
+typed 200 lines of ctrlalt gap 60.0 ms hold 36 ms, last line 1.15 s
+z2-on-ca60 [ctrlalt] typed lines 200: ok 198, order 2, count 0, other 0 | key log (keyd virtual keyboard): 200/200 lines in sent order, key gap median 60 ms min 44 ms
+typed 200 lines of altgr gap 60.0 ms hold 36 ms, last line 1.11 s
+z2-on-ag60 [altgr] typed lines 200: ok 200, order 0, count 0, other 0 | key log (keyd virtual keyboard): 200/200 lines in sent order, key gap median 60 ms min 44 ms
+typed 200 lines of altgr gap 60.0 ms hold 36 ms, last line 1.11 s
+z2-off-ag60 [altgr] typed lines 200: ok 200, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 200/200 lines in sent order, key gap median 60 ms min 49 ms
+typed 100 lines of ctrlalt gap 60.0 ms hold 36 ms, last line 1.15 s
+z3-box-on-ca60 [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 60 ms min 47 ms
+typed 100 lines of ctrlalt gap 60.0 ms hold 36 ms, last line 1.15 s
+z3-boxsimple-on-ca60 [ctrlalt] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 60 ms min 54 ms
+typed 100 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z3-box-on-ag30r [altgr] typed lines 100: ok 94, order 6, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 14 ms
+typed 100 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z3-boxsimple-on-ag30r [altgr] typed lines 100: ok 100, order 0, count 0, other 0 | key log (keyd virtual keyboard): 100/100 lines in sent order, key gap median 30 ms min 14 ms
+typed 100 lines of altgr gap 30.0 ms hold 45 ms roll, last line 0.67 s
+z3-box-off-ag30r [altgr] typed lines 100: ok 98, order 2, count 0, other 0 | key log (AT Translated Set 2 keyboard): 100/100 lines in sent order, key gap median 30 ms min 23 ms

@@ -1,0 +1,48 @@
+Linux Mint 22.3 Cinnamon live (stock ISO a081ab20..., = Mint's published sha256sum.txt), direct kernel boot, layoutcode=be,
+QEMU TCG 4 vCPU 6 GB, --cpu Nehalem --vga virtio; session X11 (no 3D in the emulator). Session sets GTK_IM_MODULE=ibus
+and QT_IM_MODULE=ibus (setup.txt), ibus-daemon running.
+Packages: keyd 2.5.0-5~ubuntu24.04.2, keyd-belgian-windows 0.9.4, belgian-azerty-windows 0.9.5 (e9152758e6f563b4...,
+checked against SHA256SUMS in setup.txt); be-azerty-fix live (Windows profile).
+Bursts per app, in this order: 100:ctrlalt-o30,100:altgr-o30,10:ctrlalt-60,10:altgr-60,3:dead (o30 = keys 30 ms apart
+and overlapping; 60 = 60 ms apart; 8 pairs @€ per line). Terminal = gnome-terminal (Ctrl+Alt+T); Typebox = GTK 3 test
+window opened from the Mint menu (Super, "typebox", Enter), i.e. through its menu entry.
+== term-ibus
+  ctrlalt-o30   47 right,  51 swapped,   2 other, of 100
+  altgr-o30     52 right,  48 swapped,   0 other, of 100
+  ctrlalt-60     8 right,   2 swapped,   0 other, of 10
+  altgr-60       9 right,   1 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+== tb-ibus
+  ctrlalt-o30   20 right,  80 swapped,   0 other, of 100
+  altgr-o30     39 right,  61 swapped,   0 other, of 100
+  ctrlalt-60     7 right,   3 swapped,   0 other, of 10
+  altgr-60       9 right,   1 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+== term-skip   (after: be-azerty-fix ibus-skip on terminal be-typebox, terminal server closed, new Ctrl+Alt+T)
+  ctrlalt-o30  100 right,   0 swapped,   0 other, of 100
+  altgr-o30    100 right,   0 swapped,   0 other, of 100
+  ctrlalt-60    10 right,   0 swapped,   0 other, of 10
+  altgr-60      10 right,   0 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+== tb-skip
+  ctrlalt-o30  100 right,   0 swapped,   0 other, of 100
+  altgr-o30    100 right,   0 swapped,   0 other, of 100
+  ctrlalt-60    10 right,   0 swapped,   0 other, of 10
+  altgr-60      10 right,   0 swapped,   0 other, of 10
+  dead           3 right,   0 swapped,   0 other, of 3
+What each app ran with (info-*.txt): ibus run: gnome-terminal-server GTK_IM_MODULE=ibus, Typebox gtk=3 context=ibus,
+im-ibus module loaded. Skip run: gnome-terminal-server GTK_IM_MODULE=gtk-im-context-simple (from the drop-in, also shown
+by systemctl --user cat), Typebox gtk=3 context=gtk-im-context-simple, ibus module NOT loaded.
+Note: even the slower 60 ms lines swapped with ibus on Mint here (2+1 terminal, 3+1 Typebox): the emulator is slow
+(TCG), so key timing inside the guest is not the timing that was sent. The counts compare the two runs; they are not a
+real-hardware rate, and Mint's higher numbers than Zorin's say nothing about real machines.
+Undo checks:
+- offall.txt + info-off.txt: "ibus-skip off --all" removed the list, the drop-in and the marked menu copy; the next
+  terminal server (new pid) ran with GTK_IM_MODULE=ibus again. Mint's own webapp-*.desktop in the same folder was left alone.
+- on2.txt + uninst.txt + after.txt: skip turned on again, then "sudo be-azerty-fix uninstall": step 4 removed the skip
+  for user mint, the three packages were purged; afterwards no marked menu copy, no drop-in, no ~/.config/belgian-azerty,
+  no autostart file. Left behind: the empty folder ~/.config/systemd/user (created by "on"; harmless, cosmetic).
+Not done on Mint: Xed (text-editor) and VS Code; an installed system; a real login (the login refresh was checked in
+the container only).
+Screens: screens/mint-ibus-typebox.png, screens/mint-skip-typebox.png (Typebox before typing), screens/m-now.png
+(terminal after the skip run).

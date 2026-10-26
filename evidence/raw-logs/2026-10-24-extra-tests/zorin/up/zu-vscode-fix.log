@@ -1,0 +1,26 @@
++ sudo pkill -f code.postinst
++ sudo pkill -f 'apt-get install -y ./code.deb'
++ sleep 3
++ ps -ef
++ grep -E 'apt|dpkg|debconf'
++ grep -v grep
++ echo 'code code/add-microsoft-repo boolean false'
++ sudo debconf-set-selections
++ sudo DEBIAN_FRONTEND=noninteractive dpkg --configure -a
+Instellen van code (1.143.1-1792691907) ...
+Instellen van shared-mime-info (2.4-4) ...
+Bezig met afhandelen van triggers voor desktop-file-utils (0.27-2build1) ...
++ echo 'configure exit 0'
+configure exit 0
++ sudo debconf-show code
+  code/add-copilot-command: true
+* code/add-microsoft-repo: false
++ dpkg-query -W code
+code	1.143.1-1792691907
++ ls -la /etc/apt/sources.list.d/ /usr/share/keyrings/
++ grep -i -E 'microsoft|vscode|code'
++ echo 'no Microsoft repo or key file'
+no Microsoft repo or key file
++ which code
+/usr/bin/code
++ set +x

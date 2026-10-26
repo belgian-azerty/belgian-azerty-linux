@@ -1,0 +1,2 @@
+keyd binary: patched 854b1e2eabdc7096 pkg=9b1cea38cb916816 active=active
+??5??????   /usr/bin/keyd.rvaiya

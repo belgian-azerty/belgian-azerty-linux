@@ -1,0 +1,30 @@
+Oct 25 01:32:07 mint systemd[1]: Started keyd.service - key remapping daemon.
+Oct 25 01:32:07 mint keyd.rvaiya[4876]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+Oct 25 01:32:07 mint keyd.rvaiya[4876]: Starting keyd v2.5.0 ()
+Oct 25 01:32:07 mint keyd.rvaiya[4876]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+Oct 25 01:32:07 mint keyd.rvaiya[4876]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+Oct 25 01:32:07 mint keyd.rvaiya[4876]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:32:07 mint keyd.rvaiya[4876]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:32:07 mint keyd.rvaiya[4876]: DEVICE: match    0001:0001:70533846  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+Oct 25 01:32:12 mint systemd[1]: Stopping keyd.service - key remapping daemon...
+Oct 25 01:32:12 mint systemd[1]: keyd.service: Deactivated successfully.
+Oct 25 01:32:12 mint systemd[1]: Stopped keyd.service - key remapping daemon.
+Oct 25 01:32:12 mint systemd[1]: Started keyd.service - key remapping daemon.
+Oct 25 01:32:12 mint keyd.rvaiya[4918]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+Oct 25 01:32:12 mint keyd.rvaiya[4918]: Starting keyd v2.5.0 ()
+Oct 25 01:32:12 mint keyd.rvaiya[4918]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+Oct 25 01:32:12 mint keyd.rvaiya[4918]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+Oct 25 01:32:12 mint keyd.rvaiya[4918]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:32:12 mint keyd.rvaiya[4918]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:32:12 mint keyd.rvaiya[4918]: DEVICE: match    0001:0001:70533846  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)
+Oct 25 01:32:17 mint systemd[1]: Stopping keyd.service - key remapping daemon...
+Oct 25 01:32:17 mint systemd[1]: keyd.service: Deactivated successfully.
+Oct 25 01:32:17 mint systemd[1]: Stopped keyd.service - key remapping daemon.
+Oct 25 01:32:17 mint systemd[1]: Started keyd.service - key remapping daemon.
+Oct 25 01:32:17 mint keyd.rvaiya[4961]: CONFIG: parsing /etc/keyd/be-winaltgr.conf
+Oct 25 01:32:17 mint keyd.rvaiya[4961]: Starting keyd v2.5.0 ()
+Oct 25 01:32:17 mint keyd.rvaiya[4961]: DEVICE: ignoring 0fac:1ade:d2b36ae6  (keyd virtual pointer)
+Oct 25 01:32:17 mint keyd.rvaiya[4961]: DEVICE: ignoring 0627:0001:f72f187b  (QEMU QEMU USB Tablet)
+Oct 25 01:32:17 mint keyd.rvaiya[4961]: DEVICE: ignoring 0002:0013:2c4ebcad  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:32:17 mint keyd.rvaiya[4961]: DEVICE: ignoring 0002:0013:4fd3608e  (VirtualPS/2 VMware VMMouse)
+Oct 25 01:32:17 mint keyd.rvaiya[4961]: DEVICE: match    0001:0001:70533846  /etc/keyd/be-winaltgr.conf        (AT Translated Set 2 keyboard)

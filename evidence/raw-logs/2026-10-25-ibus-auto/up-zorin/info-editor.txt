@@ -1,0 +1,29 @@
+== editor 11:51:42
+shell in this terminal: GTK_IM_MODULE=(unset)
+pid 3536 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE=gtk-im-context-simple, im-ibus loaded: 0
+pid 3862 gnome-text-editor : GTK_IM_MODULE=gtk-im-context-simple, im-ibus loaded: 5
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  [32m✔[0m org.gnome.Terminal (automatic): skips ibus (running now without ibus)
+  [32m✔[0m org.gnome.TextEditor (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+-- keyboard settings (org.gnome.desktop.input-sources)
+[('xkb', 'be')]
+@as []
+-- files
+ls: cannot access '/home/zorin/.config/belgian-azerty/': No such file or directory
+/home/zorin/.config/systemd/user/gnome-terminal-server.service.d/:
+total 4
+drwxrwxr-x 2 zorin zorin  60 Oct 25 11:43 .
+drwxrwxr-x 3 zorin zorin  60 Oct 25 11:43 ..
+-rw-rw-r-- 1 zorin zorin 183 Oct 25 11:43 zz-belgian-azerty-ibus-skip.conf
+
+/home/zorin/.local/share/applications/:
+total 4
+drwx------  2 zorin zorin   60 Oct 25 11:43 .
+drwx------ 16 zorin zorin  360 Oct 25 11:50 ..
+-rw-rw-r--  1 zorin zorin 1042 Oct 25 11:43 org.gnome.TextEditor.desktop
+-- login refresh in the journal
+-- typebox info
+cat: /tmp/tb.txt.info: No such file or directory

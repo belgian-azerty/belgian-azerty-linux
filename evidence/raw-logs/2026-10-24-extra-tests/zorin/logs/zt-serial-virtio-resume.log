@@ -1,0 +1,76 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0002 "EFI Internal Shell" from Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(7C04A583-9E3E-4F1C-AD65-E05268D0B4D1)
+BdsDxe: starting Boot0002 "EFI Internal Shell" from Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(7C04A583-9E3E-4F1C-AD65-E05268D0B4D1)
+[2J[01;01H[01;01HUEFI Interactive Shell v2.2
+EDK II
+UEFI v2.70 (Ubuntu distribution of EDK II, 0x00010000)
+[1m[33m[40mMapping table[0m[37m[40m
+[1m[33m[40m      FS0:[0m[37m[40m [1m[37m[40mAlias(s):[0m[37m[40mHD1b:;BLK2:
+          PciRoot(0x0)/Pci(0x4,0x0)/HD(1,GPT,1C1F4725-F910-434C-9B74-673B71CF5404,0x800,0x100000)
+[1m[33m[40m     BLK1:[0m[37m[40m [1m[37m[40mAlias(s):[0m[37m[40m
+          PciRoot(0x0)/Pci(0x4,0x0)
+[1m[33m[40m     BLK3:[0m[37m[40m [1m[37m[40mAlias(s):[0m[37m[40m
+          PciRoot(0x0)/Pci(0x4,0x0)/HD(2,GPT,626918AC-5F7C-4254-8749-6C6D87A09F45,0x100800,0x4EFF000)
+[1m[33m[40m     BLK0:[0m[37m[40m [1m[37m[40mAlias(s):[0m[37m[40m
+          PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)
+[14;01HPress [1m[37m[40mESC[0m[37m[40m in 5 seconds to skip [1m[33m[40mstartup.nsh[0m[37m[40m or any other key to continue.[14;01HPress [1m[37m[40mESC[0m[37m[40m in 4 seconds to skip [1m[33m[40mstartup.nsh[0m[37m[40m or any other key to continue.[14;01HPress [1m[37m[40mESC[0m[37m[40m in 3 seconds to skip [1m[33m[40mstartup.nsh[0m[37m[40m or any other key to continue.[14;01HPress [1m[37m[40mESC[0m[37m[40m in 2 seconds to skip [1m[33m[40mstartup.nsh[0m[37m[40m or any other key to continue.[14;01HPress [1m[37m[40mESC[0m[37m[40m in 1 seconds to skip [1m[33m[40mstartup.nsh[0m[37m[40m or any other key to continue.
+[15;01H[1m[33m[40mShell> [0m[37m[40m[15;08Hb[15;09H[15;09Hc[15;10H[15;10Hf[15;11H[15;11Hg[15;12H[15;12H [15;13H[15;13Hb[15;14H[15;14Ho[15;15H[15;15Ho[15;16H[15;16Ht[15;17H[15;17H [15;18H[15;18Hd[15;19H[15;19Hu[15;20H[15;20Hm[15;21H[15;21Hp[15;22H[15;22H
+Option: [1m[34m[40m00[0m[37m[40m. Variable: [1m[34m[40mBoot0000   [0m[37m[40m
+  Desc    - UiApp
+  DevPath - Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(462CAA21-7614-4503-836E-8AB6F4662331)
+  Optional- N
+Option: [1m[34m[40m01[0m[37m[40m. Variable: [1m[34m[40mBoot0002   [0m[37m[40m
+  Desc    - EFI Internal Shell
+  DevPath - Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(7C04A583-9E3E-4F1C-AD65-E05268D0B4D1)
+  Optional- N
+Option: [1m[34m[40m02[0m[37m[40m. Variable: [1m[34m[40mBoot0003   [0m[37m[40m
+  Desc    - UEFI PXEv4 (MAC:525400123456)
+  DevPath - PciRoot(0x0)/Pci(0x2,0x0)/MAC(525400123456,0x1)/IPv4(0.0.0.0)
+  Optional- Y
+Option: [1m[34m[40m03[0m[37m[40m. Variable: [1m[34m[40mBoot0004   [0m[37m[40m
+  Desc    - UEFI PXEv6 (MAC:525400123456)
+  DevPath - PciRoot(0x0)/Pci(0x2,0x0)/MAC(525400123456,0x1)/IPv6(0000:0000:0000:0000:0000:0000:0000:0000)
+  Optional- Y
+Option: [1m[34m[40m04[0m[37m[40m. Variable: [1m[34m[40mBoot0005   [0m[37m[40m
+  Desc    - UEFI HTTPv4 (MAC:525400123456)
+  DevPath - PciRoot(0x0)/Pci(0x2,0x0)/MAC(525400123456,0x1)/IPv4(0.0.0.0)/Uri()
+  Optional- Y
+Option: [1m[34m[40m05[0m[37m[40m. Variable: [1m[34m[40mBoot0006   [0m[37m[40m
+  Desc    - UEFI HTTPv6 (MAC:525400123456)
+  DevPath - PciRoot(0x0)/Pci(0x2,0x0)/MAC(525400123456,0x1)/IPv6(0000:0000:0000:0000:0000:0000:0000:0000)/Uri()
+  Optional- Y
+Option: [1m[34m[40m06[0m[37m[40m. Variable: [1m[34m[40mBoot0001   [0m[37m[40m
+  Desc    - UEFI Misc Device
+  DevPath - PciRoot(0x0)/Pci(0x4,0x0)
+  Optional- Y
+[31;01H[1m[33m[40mShell> [0m[37m[40m[31;08Hl[31;09H[31;09Hs[31;10H[31;10H [31;11H[31;11HF[31;12H[31;12HS[31;13H[31;13H0[31;14H[31;14H:[31;15H[31;15H\[31;16H[31;16H\[31;17H[31;17HE[31;18H[31;18HF[31;19H[31;19HI[31;20H[31;20H\[31;21H[31;21H\[31;22H[31;22HB[31;23H[31;23HO[31;24H[31;24HO[31;25H[31;25HT[31;26H[31;26H
+[31;01HDirectory of: [1m[37m[40mFS0:\EFI\BOOT\[0m[37m[40m
+10/25/2026  02:09 <DIR>         4,096  [1m[34m[40m.[0m[37m[40m
+10/25/2026  02:09 <DIR>         4,096  [1m[34m[40m..[0m[37m[40m
+10/25/2026  02:09             966,664  [1m[32m[40mBOOTX64.EFI[0m[37m[40m
+10/25/2026  02:09              88,344  [1m[32m[40mfbx64.efi[0m[37m[40m
+10/25/2026  02:09             856,280  [1m[32m[40mmmx64.efi[0m[37m[40m
+          3 File(s)   1,911,288 bytes
+          2 Dir(s)
+[31;01H[1m[33m[40mShell> [0m[37m[40m[31;08Hl[31;09H[31;09Hs[31;10H[31;10H [31;11H[31;11HF[31;12H[31;12HS[31;13H[31;13H0[31;14H[31;14H:[31;15H[31;15H\[31;16H[31;16H\[31;17H[31;17HE[31;18H[31;18HF[31;19H[31;19HI[31;20H[31;20H\[31;21H[31;21H\[31;22H[31;22Hu[31;23H[31;23Hb[31;24H[31;24Hu[31;25H[31;25Hn[31;26H[31;26Ht[31;27H[31;27Hu[31;28H[31;28H
+[31;01HDirectory of: [1m[37m[40mFS0:\EFI\ubuntu\[0m[37m[40m
+10/25/2026  02:09 <DIR>         4,096  [1m[34m[40m.[0m[37m[40m
+10/25/2026  02:09 <DIR>         4,096  [1m[34m[40m..[0m[37m[40m
+10/25/2026  02:09                 116  BOOTX64.CSV
+10/25/2026  02:09                 117  grub.cfg
+10/25/2026  02:09           2,660,232  [1m[32m[40mgrubx64.efi[0m[37m[40m
+10/25/2026  02:09             856,280  [1m[32m[40mmmx64.efi[0m[37m[40m
+10/25/2026  02:09             966,664  [1m[32m[40mshimx64.efi[0m[37m[40m
+          5 File(s)   4,483,409 bytes
+          2 Dir(s)
+[31;01H[1m[33m[40mShell> [0m[37m[40m[31;08HF[31;09H[31;09HS[31;10H[31;10H0[31;11H[31;11H:[31;12H[31;12H\[31;13H[31;13H\[31;14H[31;14HE[31;15H[31;15HF[31;16H[31;16HI[31;17H[31;17H\[31;18H[31;18H\[31;19H[31;19HB[31;20H[31;20HO[31;21H[31;21HO[31;22H[31;22HT[31;23H[31;23H\[31;24H[31;24H\[31;25H[31;25HB[31;26H[31;26HO[31;27H[31;27HO[31;28H[31;28HT[31;29H[31;29HX[31;30H[31;30H6[31;31H[31;31H4[31;32H[31;32H.[31;33H[31;33HE[31;34H[31;34HF[31;35H[31;35HI[31;36H[31;36H
+'[1m[33m[40mFS0:\\EFI\\BOOT\\BOOTX64.EFI[0m[37m[40m' is not recognized as an internal or external command, operable program, or script file.
+[31;01H[1m[33m[40mShell> [0m[37m[40m[31;08Hf[31;09H[31;09Hs[31;10H[31;10H0[31;11H[31;11H:[31;12H[31;12H
+[31;01H[1m[33m[40mFS0:\> [0m[37m[40m[31;08Hc[31;09H[31;09Hd[31;10H[31;10H [31;11H[31;11HE[31;12H[31;12HF[31;13H[31;13HI[31;14H[31;14H
+[31;01H[1m[33m[40mFS0:\EFI\> [0m[37m[40m[31;12Hc[31;13H[31;13Hd[31;14H[31;14H [31;15H[31;15HB[31;16H[31;16HO[31;17H[31;17HO[31;18H[31;18HT[31;19H[31;19H
+[31;01H[1m[33m[40mFS0:\EFI\BOOT\> [0m[37m[40m[31;17HB[31;18H[31;18HO[31;19H[31;19HO[31;20H[31;20HT[31;21H[31;21HX[31;22H[31;22H6[31;23H[31;23H4[31;24H[31;24H.[31;25H[31;25HE[31;26H[31;26HF[31;27H[31;27HI[31;28H[31;28H
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0007 "Zorin OS" from HD(1,GPT,1C1F4725-F910-434C-9B74-673B71CF5404,0x800,0x100000)/\EFI\ubuntu\shimx64.efi
+BdsDxe: starting Boot0007 "Zorin OS" from HD(1,GPT,1C1F4725-F910-434C-9B74-673B71CF5404,0x800,0x100000)/\EFI\ubuntu\shimx64.efi
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0007 "Zorin OS" from HD(1,GPT,1C1F4725-F910-434C-9B74-673B71CF5404,0x800,0x100000)/\EFI\ubuntu\shimx64.efi
+BdsDxe: starting Boot0007 "Zorin OS" from HD(1,GPT,1C1F4725-F910-434C-9B74-673B71CF5404,0x800,0x100000)/\EFI\ubuntu\shimx64.efi
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0007 "Zorin OS" from HD(1,GPT,1C1F4725-F910-434C-9B74-673B71CF5404,0x800,0x100000)/\EFI\ubuntu\shimx64.efi
+BdsDxe: starting Boot0007 "Zorin OS" from HD(1,GPT,1C1F4725-F910-434C-9B74-673B71CF5404,0x800,0x100000)/\EFI\ubuntu\shimx64.efi

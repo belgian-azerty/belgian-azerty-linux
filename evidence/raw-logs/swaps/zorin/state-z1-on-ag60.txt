@@ -1,0 +1,3 @@
+start 16:00:47.367Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=1.11 1.29 0.81
+end 16:02:00.232Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.42 1.05 0.76
+lagging-behind messages during block: 0

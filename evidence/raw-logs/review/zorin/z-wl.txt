@@ -1,0 +1,4 @@
+wayland
+active
+7483 /usr/bin/ibus-daemon --panel disable
+['lv3:ralt_switch', 'kpdl:comma', 'caps:be_windows']

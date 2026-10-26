@@ -1,0 +1,11 @@
+=== kbstate 12:25:47Z after-fix-system ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="caps:be_windows" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['caps:be_windows'] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   14:25 /boot/initrd.img-7.0.0-38-generic vs /etc/default/keyboard 14:25

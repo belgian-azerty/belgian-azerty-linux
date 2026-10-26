@@ -1,0 +1,14 @@
+# Which GTK_IM_MODULE value GTK honours (container, Ubuntu 24.04 packages = the versions in Mint 22.3 / Zorin 18.1)
+ii  ibus-gtk3:amd64     1.5.29-2              amd64        Intelligent Input Bus - GTK3 support
+ii  ibus-gtk4:amd64     1.5.29-2              amd64        Intelligent Input Bus - GTK4 support
+ii  libgtk-3-0t64:amd64 3.24.41-4ubuntu1.3    amd64        GTK graphical user interface library
+ii  libgtk-4-1:amd64    4.14.5+ds-0ubuntu0.10 amd64        GTK graphical user interface library
+# command: GTK_IM_MODULE=<value> xvfb-run python3.12 next-0.9.5/rig/typebox.py --gtk 3|4 --out /tmp/tb.txt; 'context' = context id GTK picked for a fresh IMMulticontext
+gtk=3 GTK_IM_MODULE=(unset) context=ibus ibus_module_loaded=True session=None
+gtk=3 GTK_IM_MODULE=simple context=ibus ibus_module_loaded=True session=None
+gtk=3 GTK_IM_MODULE=gtk-im-context-simple context=gtk-im-context-simple ibus_module_loaded=False session=None
+gtk=3 GTK_IM_MODULE=none context=ibus ibus_module_loaded=True session=None
+gtk=4 GTK_IM_MODULE=(unset) context=ibus ibus_module_loaded=True session=None
+gtk=4 GTK_IM_MODULE=simple context=gtk-im-context-simple ibus_module_loaded=True session=None
+gtk=4 GTK_IM_MODULE=gtk-im-context-simple context=gtk-im-context-simple ibus_module_loaded=True session=None
+gtk=4 GTK_IM_MODULE=none context=gtk-im-context-none ibus_module_loaded=True session=None

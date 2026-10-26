@@ -1,0 +1,64 @@
+### install 0.9.3
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) ...
+Setting up libgtk-4-1:amd64 (4.14.5+ds-0ubuntu0.10) ...
+Setting up libgtk-4-bin (4.14.5+ds-0ubuntu0.10) ...
+Setting up libadwaita-1-0:amd64 (1.5.0-1ubuntu2) ...
+Setting up zenity (4.0.1-1build3) ...
+Setting up libgtk-4-media-gstreamer (4.14.5+ds-0ubuntu0.10) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+ii  belgian-azerty-windows 0.9.3                 all          Belgian AZERTY keyboard that behaves like on Windows
+ii  keyd                   2.5.0-5~ubuntu24.04.1 amd64        keyboard key remapping daemon
+ii  keyd-belgian-windows   0.9.3                 all          Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards
+### upgrade to 0.9.4
+Preparing to unpack .../keyd-belgian-windows_0.9.4_all.deb ...
+Unpacking keyd-belgian-windows (0.9.4) over (0.9.3) ...
+Preparing to unpack .../keyd_2.5.0-5~ubuntu24.04.2_amd64.deb ...
+Unpacking keyd (2.5.0-5~ubuntu24.04.2) over (2.5.0-5~ubuntu24.04.1) ...
+Setting up keyd (2.5.0-5~ubuntu24.04.2) ...
+Setting up keyd-belgian-windows (0.9.4) ...
+Setting up belgian-azerty-windows (0.9.4) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+ii  belgian-azerty-windows 0.9.4                 all          Belgian AZERTY keyboard that behaves like on Windows
+ii  keyd                   2.5.0-5~ubuntu24.04.2 amd64        keyboard key remapping daemon
+ii  keyd-belgian-windows   0.9.4                 all          Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards
+diversion of /usr/share/X11/xkb/rules/evdev to /usr/share/X11/xkb/rules/evdev.distrib by belgian-azerty-windows
+952:  caps:be_windows	=	+be_capslock(windows)
+be_capslock
+missing     /usr/share/doc/keyd/CHANGELOG.md.gz
+missing     /usr/share/doc/keyd/DESIGN.md
+missing     /usr/share/doc/keyd/NEWS.Debian.gz
+missing     /usr/share/doc/keyd/README.Debian
+missing     /usr/share/doc/keyd/examples/capslock-esc-basic.conf
+missing     /usr/share/doc/keyd/examples/capslock-escape-with-vim-mode.conf
+missing     /usr/share/doc/keyd/examples/international-glyphs.conf
+missing     /usr/share/doc/keyd/examples/macos.conf
+missing     /usr/share/doc/keyd/examples/nav-layer.conf
+missing     /usr/share/man/man1/keyd.rvaiya.1.gz
+missing     /usr/share/doc/belgian-azerty-windows/README.md.gz
+missing     /usr/share/man/man1/be-azerty-settings.1.gz
+missing     /usr/share/man/man8/be-azerty-fix.8.gz
+dpkg -V rc=0
+6842f68f983993c73b04b47758796d1f  /usr/bin/keyd.rvaiya
+binary = 0.9.4 deb
+### purge
+Removing keyd (2.5.0-5~ubuntu24.04.2) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 64713 files and directories currently installed.)
+Purging configuration files for keyd (2.5.0-5~ubuntu24.04.2) ...
+Purging configuration files for keyd-belgian-windows (0.9.4) ...
+Purging configuration files for belgian-azerty-windows (0.9.4) ...
+remaining dpkg entries above (none = clean)
+no diversion
+8078207278372280124f1c300b442a75  /usr/share/X11/xkb/rules/evdev
+stock before install: 8078207278372280124f1c300b442a75
+missing     /usr/share/doc/xkb-data/NEWS.Debian.gz
+missing     /usr/share/doc/xkb-data/README.Debian
+missing     /usr/share/man/man7/xkeyboard-config.7.gz
+xkb-data verifies
+ls: cannot access '/etc/keyd': No such file or directory
+ls: cannot access '/usr/share/X11/xkb/symbols/be_capslock': No such file or directory
+ls: cannot access '/usr/lib/systemd/system/keyd.service*': No such file or directory
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.

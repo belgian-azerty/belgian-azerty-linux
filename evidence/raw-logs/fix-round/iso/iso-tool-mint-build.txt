@@ -1,0 +1,5 @@
+patched /boot/grub/grub.cfg (3 boot entries)
+patched /isolinux/live.cfg (3 boot entries)
+updated /md5sum.txt (2 checksums)
+checked: every boot menu matches /md5sum.txt
+wrote mint-be.iso

@@ -1,0 +1,89 @@
++ mkdir -p /tmp/t-up /tmp/t-wk /target
++ mount -t overlay -o lowerdir=/rofs,upperdir=/tmp/t-up,workdir=/tmp/t-wk none /target
++ for m in dev dev/pts proc sys
++ mount --bind /dev /target/dev
++ for m in dev dev/pts proc sys
++ mount --bind /dev/pts /target/dev/pts
++ for m in dev dev/pts proc sys
++ mount --bind /proc /target/proc
++ for m in dev dev/pts proc sys
++ mount --bind /sys /target/sys
++ mkdir -p /target/cdrom
++ mount --bind /cdrom /target/cdrom
++ sed -e 's/^XKBOPTIONS=.*/XKBOPTIONS=""/' /etc/default/keyboard
++ grep '^LANG=' /etc/default/locale
++ set +x
+== before: packages in target
+dpkg-query: no packages found matching keyd
+dpkg-query: no packages found matching keyd-belgian-windows
+dpkg-query: no packages found matching belgian-azerty-windows
+== hook
+-rwxr-xr-x 1 root root 174 okt 24 17:43 /usr/lib/ubiquity/target-config/90belgian_azerty
+hook rc=0
+== after: packages in target
+belgian-azerty-windows	0.9.3
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.3
+== target choices
+PROFILE=windows
+DECIMAL=period
+CAPS=windows
+== target first-boot unit
+-rw-r--r-- 1 root root 306 okt 24 18:19 /target/etc/systemd/system/belgian-azerty-firstboot.service
+total 0
+lrwxrwxrwx 1 root root 52 okt 24 18:19 belgian-azerty-firstboot.service -> /etc/systemd/system/belgian-azerty-firstboot.service
+lrwxrwxrwx 1 root root 36 okt 24 18:19 keyd.service -> /usr/lib/systemd/system/keyd.service
+total 8
+-rwxr-xr-x 1 root root 4385 okt 24 18:19 belgian-stick
+== target keyd enabled?
+lrwxrwxrwx 1 root root 36 okt 24 18:19 /target/etc/systemd/system/multi-user.target.wants/keyd.service -> /usr/lib/systemd/system/keyd.service
+== target /etc/default/locale
+LANG="nl_BE.UTF-8"
+== target locale.gen (active)
+C.utf8
+locale-archive
+== target /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS=""
+
+BACKSPACE="guess"
+== target log
+Get:3 /tmp/belgian/keyd-belgian-windows_0.9.3_all.deb keyd-belgian-windows all 0.9.3 [4598 B]
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "nl_BE.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_MESSAGES to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+Selecting previously unselected package belgian-azerty-windows.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 300429 files and directories currently installed.)
+Preparing to unpack .../belgian-azerty-windows_0.9.3_all.deb ...
+Unpacking belgian-azerty-windows (0.9.3) ...
+Selecting previously unselected package keyd.
+Preparing to unpack .../keyd_2.5.0-5~ubuntu24.04.1_amd64.deb ...
+Unpacking keyd (2.5.0-5~ubuntu24.04.1) ...
+Selecting previously unselected package keyd-belgian-windows.
+Preparing to unpack .../keyd-belgian-windows_0.9.3_all.deb ...
+Unpacking keyd-belgian-windows (0.9.3) ...
+Setting up keyd (2.5.0-5~ubuntu24.04.1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Setting up keyd-belgian-windows (0.9.3) ...
+Setting up belgian-azerty-windows (0.9.3) ...
+Adding 'diversion of /usr/share/X11/xkb/rules/evdev to /usr/share/X11/xkb/rules/evdev.distrib by belgian-azerty-windows'
+Processing triggers for gnome-menus (3.36.0-1.1ubuntu3) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+apt rc=0
+== live-only files must NOT be in target
+ls: cannot access '/target/etc/systemd/system/belgian-stick-live.service': No such file or directory
+ls: cannot access '/target/usr/lib/ubiquity/target-config/90belgian_azerty': No such file or directory

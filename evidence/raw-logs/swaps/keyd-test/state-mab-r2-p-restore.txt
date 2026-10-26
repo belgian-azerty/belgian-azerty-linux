@@ -1,0 +1,3 @@
+start app=terminal env=[start] 21:29:21.703Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.20 1.27 1.28
+end app=terminal env=[end] 21:29:29.063Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.43 1.32 1.29
+lagging-behind messages during block: 0

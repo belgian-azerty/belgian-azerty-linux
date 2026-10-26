@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+# keyd is restarted by our own maintainer scripts (keyd's package owns the unit).
+override_dh_installsystemd:

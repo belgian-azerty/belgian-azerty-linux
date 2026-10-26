@@ -1,0 +1,61 @@
+Gjs-Message: 21:03:32.051: JS LOG: [LookingGlass/info] Settings successfully installed for cornerbar@cinnamon.org
+Gjs-Message: 21:03:32.329: JS LOG: [LookingGlass/info] Loaded applet cornerbar@cinnamon.org in 453 ms
+Gjs-Message: 21:03:32.407: JS LOG: [LookingGlass/info] Installing settings for notifications@cinnamon.org
+Gjs-Message: 21:03:32.414: JS LOG: [LookingGlass/info] Settings successfully installed for notifications@cinnamon.org
+Gjs-Message: 21:03:32.767: JS LOG: [LookingGlass/info] Loaded applet notifications@cinnamon.org in 437 ms
+Gjs-Message: 21:03:33.014: JS LOG: calendar@cinnamon.org: Calendar events supported.
+Gjs-Message: 21:03:33.391: JS LOG: [LookingGlass/info] Installing settings for power@cinnamon.org
+Gjs-Message: 21:03:33.399: JS LOG: [LookingGlass/info] Settings successfully installed for power@cinnamon.org
+Gjs-Message: 21:03:34.082: JS LOG: [LookingGlass/info] Loaded applet power@cinnamon.org in 1311 ms
+Gjs-Message: 21:03:34.902: JS LOG: [LookingGlass/info] Installing settings for grouped-window-list@cinnamon.org
+Gjs-Message: 21:03:34.907: JS LOG: [LookingGlass/info] Settings successfully installed for grouped-window-list@cinnamon.org
+Gjs-Message: 21:03:35.404: JS LOG: [LookingGlass/info] Role locked: panellauncher
+Gjs-Message: 21:03:35.408: JS LOG: [LookingGlass/info] Role locked: windowattentionhandler
+Gjs-Message: 21:03:35.520: JS LOG: [LookingGlass/info] Monitor Watch List updated: [0]
+Gjs-Message: 21:03:35.532: JS LOG: [LookingGlass/info] Loaded applet grouped-window-list@cinnamon.org in 1446 ms
+
+(cinnamon:3046): Gjs-CRITICAL **: 21:03:35.661: JS ERROR: TypeError: currentWorkspace is null
+onWindowSkipTaskbarChanged@/usr/share/cinnamon/applets/grouped-window-list@cinnamon.org/applet.js:1021:13
+GroupedWindowListApplet/<@/usr/share/cinnamon/applets/grouped-window-list@cinnamon.org/applet.js:291:95
+
+Gjs-Message: 21:03:36.184: JS LOG: [LookingGlass/info] Installing settings for sound@cinnamon.org
+Gjs-Message: 21:03:36.192: JS LOG: [LookingGlass/info] Settings successfully installed for sound@cinnamon.org
+Gjs-Message: 21:03:37.141: JS LOG: [LookingGlass/info] Loaded applet sound@cinnamon.org in 1606 ms
+Gjs-Message: 21:03:38.802: JS LOG: [LookingGlass/info] Installing settings for menu@cinnamon.org
+Gjs-Message: 21:03:38.811: JS LOG: [LookingGlass/info] Settings successfully installed for menu@cinnamon.org
+Gjs-Message: 21:03:44.600: JS LOG: [LookingGlass/info] Loaded applet menu@cinnamon.org in 7455 ms
+Gjs-Message: 21:03:45.248: JS LOG: [LookingGlass/info] Installing settings for network@cinnamon.org
+Gjs-Message: 21:03:45.252: JS LOG: [LookingGlass/info] Settings successfully installed for network@cinnamon.org
+Gjs-Message: 21:03:45.440: JS LOG: [LookingGlass/info] Loaded applet network@cinnamon.org in 837 ms
+Gjs-Message: 21:03:45.490: JS LOG: [LookingGlass/info] AppletManager started in 26221 ms
+Gjs-Message: 21:03:45.658: JS LOG: [LookingGlass/info] Cinnamon took 48349 ms to start
+Gjs-Message: 21:03:46.744: JS LOG: Unknown network device type, is 32
+Nemo-Message: 21:04:24.242: nemo-desktop: session is cinnamon, establishing proxy
+/usr/bin/cinnamon-launcher:87: DeprecationWarning: This process (pid=3037) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.fb_pid = os.fork()
+Cannot register authentication agent: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: An authentication agent already exists for the given subject
+Kan het .desktop-bestand /usr/share/applications/mate-terminal.desktop van werkbalkstarter : Bestand of map bestaat niet niet openen.
+Kan het .desktop-bestand /usr/share/applications/caja-browser.desktop van werkbalkstarter : Bestand of map bestaat niet niet openen.
+
+(nm-applet:3490): GLib-GIO-WARNING **: 21:16:15.203: unable to send notifications through org.freedesktop.Notifications: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+okt 24 21:02:03 mint org.cinnamon.ScreenSaver[3085]: Muffin not running, skipping fractional scaling check.
+okt 24 21:02:03 mint org.cinnamon.ScreenSaver[3085]: Trying to connect to logind...
+okt 24 21:02:03 mint dbus-daemon[2671]: [session uid=1000 pid=2671] Successfully activated service 'org.cinnamon.ScreenSaver'
+okt 24 21:02:03 mint org.cinnamon.ScreenSaver[3085]: Starting screensaver...
+okt 24 21:02:04 mint cinnamon-session-binary[2664]: WARNING: t+94.66780s: Could not retrieve current screensaver active state: Timeout was reached
+okt 24 21:02:05 mint org.cinnamon.ScreenSaver[3085]: Cinnamon Screensaver support not found in current theme - adding some...
+okt 24 21:02:07 mint org.cinnamon.ScreenSaver[3085]: AccountsService ready
+okt 24 21:02:07 mint org.cinnamon.ScreenSaver[3085]: Failed to get keyboard layouts from Cinnamon - multiple layouts will not be available: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/Cinnamon”
+okt 24 21:02:07 mint org.cinnamon.ScreenSaver[3085]: Successfully using logind
+okt 24 21:02:13 mint org.cinnamon.ScreenSaver[3085]: Cinnamon Screensaver support not found in current theme - adding some...
+okt 24 21:02:25 mint cinnamon-killer-daemon[3091]: Bound Cinnamon restart to <Control><Alt>Escape.
+okt 24 21:03:17 mint dbus-daemon[1498]: [system] Activating via systemd: service name='org.freedesktop.locale1' unit='dbus-org.freedesktop.locale1.service' requested by ':1.54' (uid=1000 pid=3046 comm="cinnamon --replace" label="unconfined")
+okt 24 21:03:24 mint NetworkManager[1642]: <info>  [1792875804.9120] agent-manager: agent[a46165983a9c3969,:1.54/org.cinnamon.NetworkAgent/1000]: agent registered
+okt 24 21:03:34 mint dbus-daemon[2671]: [session uid=1000 pid=2671] Activating service name='org.cinnamon.CalendarServer' requested by ':1.55' (uid=1000 pid=3046 comm="cinnamon --replace" label="unconfined")
+okt 24 21:03:42 mint dbus-daemon[2671]: [session uid=1000 pid=2671] Successfully activated service 'org.cinnamon.CalendarServer'
+okt 24 21:04:03 mint org.cinnamon.CalendarServer[3332]: SET TIME: from 2026-09-28T00:00:00Z to 2026-11-08T23:59:59Z
+okt 24 21:04:03 mint org.cinnamon.CalendarServer[3332]: Discovered calendar:  Persoonlijk
+okt 24 21:04:03 mint org.cinnamon.CalendarServer[3332]: Discovered calendar:  Verjaardagen en gedenkdagen
+okt 24 21:13:03 mint kernel: llvmpipe-3[3061]: segfault at 7ea9044b53e8 ip 00007eaa62840482 sp 00007eaa8966db20 error 4 likely on CPU 3 (core 3, socket 0)
+okt 24 21:15:46 mint systemd-coredump[3420]: Process 3046 (cinnamon) of user 1000 dumped core.
+    PID %CPU   RSS     ELAPSED CMD

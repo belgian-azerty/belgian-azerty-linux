@@ -1,0 +1,12 @@
+=== kbstate 06:25:01Z base ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: be,be variant: , options: lv3:ralt_switch 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=['lv3:ralt_switch'] session=x11
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     inactive not-found conf=
+initrd:   18:04 /boot/initrd.img-6.17.0-20-generic vs /etc/default/keyboard 06:17
+XDG_SESSION_TYPE=x11

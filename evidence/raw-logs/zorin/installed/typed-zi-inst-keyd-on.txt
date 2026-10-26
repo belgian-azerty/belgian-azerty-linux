@@ -1,0 +1,7 @@
+zi-inst-keyd-on plain: azerty AZERTY 1234567890 &é"'(§èç!à ù µ , ; : = ) -
+zi-inst-keyd-on LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-inst-keyd-on AltGr: |@#{[^{}€[]'`~\
+zi-inst-keyd-on Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-inst-keyd-on RCtrl+LAlt 2 e: @€
+zi-inst-keyd-on Caps top/punct keys: ²&É"'(§ÈÇ!À)-^$Ù,;:=<AZ
+zi-inst-keyd-on Caps+Shift same keys: ³1234567890°_"*%£?./+>az

@@ -1,0 +1,1 @@
+vscode-terminal shell GTK_IM_MODULE=gtk-im-context-simple

@@ -1,0 +1,22 @@
+== paused 11:34:46
+shell in this terminal: GTK_IM_MODULE=ibus
+pid 3897 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE=ibus, im-ibus loaded: 5
+-- be-azerty-fix ibus-skip
+ibus skip for mint:
+  · automatic: paused, because an input method is set up in the keyboard settings: anthy (the Terminal and the text editor keep ibus; it resumes at the next login after that is removed)
+  · no app skips ibus. Per app by hand: be-azerty-fix ibus-skip on terminal
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+-- keyboard settings (org.cinnamon.desktop.input-sources)
+[('xkb', 'be'), ('ibus', 'anthy')]
+['xkb:be::deu']
+-- files
+ls: cannot access '/home/mint/.config/systemd/user/*.d/': No such file or directory
+ls: cannot access '/home/mint/.config/belgian-azerty/': No such file or directory
+/home/mint/.local/share/applications/:
+total 4
+drwxr-xr-x  2 mint mint  60 Oct 25 11:27 .
+drwxr-xr-x 11 mint mint 260 Oct 25 11:26 ..
+-rw-r--r--  1 mint mint 508 Oct 25 11:17 webapp-OnlineChat4519.desktop
+-- login refresh in the journal
+-- typebox info
+cat: /tmp/tb.txt.info: No such file or directory

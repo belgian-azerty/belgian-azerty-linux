@@ -1,0 +1,28 @@
+./belgian-azerty-windows_0.9.6_all.deb: OK
+./keyd-belgian-windows_0.9.6_all.deb: OK
+./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb: OK
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+Choices: profile windows (default), numpad decimal period (default), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows)
+  [32m✔[0m setxkbmap be  (options lv3:ralt_switch)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: period, Caps Lock: linux
+  · fast typing: ibus skip brought up to date for zorin (see: be-azerty-fix ibus-skip)
+  · This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+XDG_SESSION_TYPE=x11 GTK_IM_MODULE=(unset)
+-- VS Code
+-rw-rw-r-- 1 zorin zorin 243172986 Oct 22 18:33 /tmp/code.deb
+e459729dee13758960924be07157da44f0ba69503ab5edf4586fcde936bac9b9  /tmp/code.deb
+Package: code
+Version: 1.143.1-1792691907
+Maintainer: Microsoft Corporation <vscode-linux@microsoft.com>
+Processing triggers for shared-mime-info (2.4-4) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+1.143.1
+e646868227c3e3a9e3f24277c8c7220be42c0be7
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  · org.gnome.Terminal (automatic): skips ibus from its next start (still running with ibus: close all its windows)
+  [32m✔[0m org.gnome.TextEditor (automatic): skips ibus (menu entry /home/zorin/.local/share/applications/org.gnome.TextEditor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all

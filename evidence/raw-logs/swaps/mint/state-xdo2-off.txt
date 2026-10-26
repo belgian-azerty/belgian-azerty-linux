@@ -1,0 +1,2 @@
+start 19:40:04Z keyd=inactive xdotool=1:3.20160805.1-5build1 xclip=yes N=20 delay=12ms session=x11
+201

@@ -1,0 +1,16 @@
+Lecture des listes de paquets…
+Construction de l'arbre des dépendances…
+Lecture des informations d'état…
+ydotool est déjà la version la plus récente (0.1.8-3build1).
+Les NOUVEAUX paquets suivants seront installés :
+  ydotoold
+0 mis à jour, 1 nouvellement installés, 0 à enlever et 412 non mis à jour.
+Il est nécessaire de prendre 667 ko dans les archives.
+Après cette opération, 2.388 ko d'espace disque supplémentaires seront utilisés.
+Réception de :1 http://be.archive.ubuntu.com/ubuntu noble/universe amd64 ydotoold amd64 0.1.8-3build1 [667 kB]
+667 ko réceptionnés en 1s (1.026 ko/s)
+Sélection du paquet ydotoold précédemment désélectionné.
+(Lecture de la base de données... (Lecture de la base de données... 5%(Lecture de la base de données... 10%(Lecture de la base de données... 15%(Lecture de la base de données... 20%(Lecture de la base de données... 25%(Lecture de la base de données... 30%(Lecture de la base de données... 35%(Lecture de la base de données... 40%(Lecture de la base de données... 45%(Lecture de la base de données... 50%(Lecture de la base de données... 55%(Lecture de la base de données... 60%(Lecture de la base de données... 65%(Lecture de la base de données... 70%(Lecture de la base de données... 75%(Lecture de la base de données... 80%(Lecture de la base de données... 85%(Lecture de la base de données... 90%(Lecture de la base de données... 95%(Lecture de la base de données... 100%(Lecture de la base de données... 294276 fichiers et répertoires déjà installés.)
+Préparation du dépaquetage de .../ydotoold_0.1.8-3build1_amd64.deb ...
+Dépaquetage de ydotoold (0.1.8-3build1) ...
+Paramétrage de ydotoold (0.1.8-3build1) ...

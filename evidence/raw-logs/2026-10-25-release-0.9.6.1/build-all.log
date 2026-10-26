@@ -1,0 +1,8 @@
+built keyd-belgian-windows 0.9.6.1
+built belgian-azerty-windows 0.9.6.1
+keyd 2.5.0-5~ubuntu24.04.3 built into /mnt/attach/project-files/belgian-azerty/dist (upstream test suite ran: make test-io)
+lintian:
+  running with root privileges is not recommended!
+  W: keyd: wrong-name-for-upstream-changelog [usr/share/doc/keyd/CHANGELOG.md.gz]
+packages and SHA256SUMS in <project>/dist
+t14s-test/ refreshed

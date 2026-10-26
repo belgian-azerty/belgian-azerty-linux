@@ -1,0 +1,200 @@
+################ belgian-azerty-windows 0.9.6 -> 0.9.6.1
+## control
+2c2
+< Version: 0.9.6
+---
+> Version: 0.9.6.1
+4c4
+< Maintainer: Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+---
+> Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+## doc/belgian-azerty-windows
+# README.md.gz
+15,16c15,16
+< and Zorin OS 18.1 (on that laptop: Mint in VirtualBox, and Zorin started from USB). The final independent review is
+< still to come, and nothing has been accepted upstream yet. Version 0.9.6, not published yet. Compared with 0.9.4.1
+---
+> and Zorin OS 18.1 (on that laptop: Mint in VirtualBox, and Zorin started from USB). The independent review is
+> done, and nothing has been accepted upstream yet. Version 0.9.6.1, not published yet. Compared with 0.9.4.1
+20c20,21
+< tested in emulators only; the keyd package stays `2.5.0-5~ubuntu24.04.2`. The runs on real hardware (the laptop)
+---
+> tested in emulators only; the keyd package is `2.5.0-5~ubuntu24.04.3` (the same patch as `.2`, only its
+> Maintainer field changed). The runs on real hardware (the laptop)
+84c85,86
+< `2.5.0-5~ubuntu24.04.2`; 0.9.3 and earlier shipped the unchanged `2.5.0-5~ubuntu24.04.1`).
+---
+> `2.5.0-5~ubuntu24.04.2`, rebuilt as `2.5.0-5~ubuntu24.04.3` in 0.9.6.1 with only the Maintainer field changed; 0.9.3
+> and earlier shipped the unchanged `2.5.0-5~ubuntu24.04.1`).
+280c282,285
+< was run again with the final packages.
+---
+> was run again with the final packages. 0.9.6.1 changes only names and text (copyright holder, the Maintainer field of
+> keyd, the status line of this README, version numbers): every program file of the two packages of this project is
+> byte-identical to 0.9.6, the keyd program differs only in its build ID (an identity checksum; same machine code), and
+> both sticks were rebuilt and started once more.
+# changelog.gz
+0a1,10
+> belgian-azerty-windows (0.9.6.1) noble; urgency=medium
+> 
+>   * Metadata only, no program change (Younes, 2026-10-25 19:26Z and 20:02Z):
+>     Maintainer field "Younes", copyright holder "Younes from Belgium",
+>     README status line says the independent review is done; the keyd
+>     backport released with it is rebuilt as 2.5.0-5~ubuntu24.04.3 (Maintainer
+>     field only). Every program file is byte-identical to 0.9.6.
+> 
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 19:00:00 +0000
+> 
+17c27
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 12:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 12:00:00 +0000
+38c48
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 11:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 11:00:00 +0000
+45c55
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 02:30:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 02:30:00 +0000
+53c63
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:30:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:30:00 +0000
+67c77
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 17:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 17:00:00 +0000
+77c87
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 15:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 15:00:00 +0000
+90c100
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 09:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 09:00:00 +0000
+102c112
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 03:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 03:00:00 +0000
+# copyright
+6c6
+< Copyright: 2026 Younes and the Belgian AZERTY contributors
+---
+> Copyright: 2026 Younes from Belgium
+################ keyd-belgian-windows 0.9.6 -> 0.9.6.1
+## control
+2c2
+< Version: 0.9.6
+---
+> Version: 0.9.6.1
+4c4
+< Maintainer: Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+---
+> Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+## doc/keyd-belgian-windows
+# changelog.gz
+0a1,8
+> keyd-belgian-windows (0.9.6.1) noble; urgency=medium
+> 
+>   * Metadata only (Younes, 2026-10-25 19:26Z and 20:02Z): Maintainer field
+>     "Younes", copyright holder "Younes from Belgium". Rules and every other
+>     file unchanged; version kept equal to belgian-azerty-windows.
+> 
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 19:00:00 +0000
+> 
+5c13
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 12:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 12:00:00 +0000
+11c19
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 02:30:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 02:30:00 +0000
+20c28
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:30:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:30:00 +0000
+26c34
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 17:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 17:00:00 +0000
+35c43
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 15:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 15:00:00 +0000
+44c52
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 09:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 09:00:00 +0000
+54c62
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 03:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 03:00:00 +0000
+# copyright
+6c6
+< Copyright: 2026 Younes and the Belgian AZERTY contributors
+---
+> Copyright: 2026 Younes from Belgium
+################ keyd 2.5.0-5~ubuntu24.04.2 -> 2.5.0-5~ubuntu24.04.3
+## control
+2c2
+< Version: 2.5.0-5~ubuntu24.04.2
+---
+> Version: 2.5.0-5~ubuntu24.04.3
+4c4
+< Maintainer: Richard Hansen <rhansen@rhansen.org>
+---
+> Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+15a16
+> Original-Maintainer: Richard Hansen <rhansen@rhansen.org>
+## doc/keyd
+# changelog.Debian.gz
+1c1
+< keyd (2.5.0-5~ubuntu24.04.2) noble; urgency=medium
+---
+> keyd (2.5.0-5~ubuntu24.04.3) noble; urgency=medium
+11a12,14
+>   * Maintainer: Younes (builder of this backport); Debian's maintainer
+>     kept as XSBC-Original-Maintainer. Same source and patch as 2.5.0-
+>     5~ubuntu24.04.2.
+13c16
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 19:00:00 +0000
+## usr/share/man/man1/keyd.rvaiya.1.gz
+8c8
+< .TH "keyd.rvaiya" "1" "2026-10-24"
+---
+> .TH "keyd.rvaiya" "1" "2026-10-25"
+################ keyd-application-mapper 2.5.0-5~ubuntu24.04.2 -> 2.5.0-5~ubuntu24.04.3
+## control
+3c3
+< Version: 2.5.0-5~ubuntu24.04.2
+---
+> Version: 2.5.0-5~ubuntu24.04.3
+5c5
+< Maintainer: Richard Hansen <rhansen@rhansen.org>
+---
+> Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+21a22
+> Original-Maintainer: Richard Hansen <rhansen@rhansen.org>
+## doc/keyd-application-mapper
+# changelog.Debian.gz
+1c1
+< keyd (2.5.0-5~ubuntu24.04.2) noble; urgency=medium
+---
+> keyd (2.5.0-5~ubuntu24.04.3) noble; urgency=medium
+11a12,14
+>   * Maintainer: Younes (builder of this backport); Debian's maintainer
+>     kept as XSBC-Original-Maintainer. Same source and patch as 2.5.0-
+>     5~ubuntu24.04.2.
+13c16
+<  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:00:00 +0000
+---
+>  -- Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sun, 25 Oct 2026 19:00:00 +0000
+## usr/share/man/man1/keyd-application-mapper.1.gz
+8c8
+< .TH "keyd-application-mapper" "1" "2026-10-24"
+---
+> .TH "keyd-application-mapper" "1" "2026-10-25"

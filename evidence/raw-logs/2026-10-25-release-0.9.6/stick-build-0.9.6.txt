@@ -1,0 +1,74 @@
+== stock ISOs
+  zorin.iso
+  mint.iso
+44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5  zorin.iso
+a081ab202cfda17f6924128dbd2de8b63518ac0531bcfe3f1a1b88097c459bd4  mint.iso
+b5aaf9f3665a011bb220e48ed5d0a9b97346d26e60d8e8774dcff54ae7cc699a  zorin-belgian-stick-0.9.6.iso
+66299e6cb375d119f31795ff065bf098de33fc75d1eaf2e9b4285dd626ad7886  mint-belgian-stick-0.9.6.iso
+== build log zorin
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /boot/grub/loopback.cfg (12 boot entries)
+patched /isolinux/menuentries.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (6.1M layer)
+updated /md5sum.txt (8 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/zorin-belgian-stick-0.9.6.iso
+== content fingerprint zorin
+56c7189ab4b8e13f90af8d1c3caf2c047678b36f0b8485102c474e45be8295f0  belgian/README.txt
+a81642c59819fdc51cf2bd460399ddc00409b4fe341ec9922624a2f80e0cc0d8  belgian/belgian-azerty-windows_0.9.6_all.deb
+02dd6b924d6993ff125f210207baec043b1b6a3be9c1342bee2ec95df25b44e3  belgian/keyd-belgian-windows_0.9.6_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  belgian/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+9e056b6224cb57e58a87bf47e7ff53e4a0aa1c82d4ba7f04ba2bb7e1f5380448  grub.cfg
+faff7765a175639b5ac997490c88ca1eaa5d3dd653278b70d1a80246af9117c9  layer/etc/keyd/be-winaltgr.conf
+87700ec23bc5b21354933b943ef25fed1c53801b2656fde1a0720b37d1a16abb  layer/etc/systemd/system/belgian-azerty-firstboot.service
+eca28b51fd5e28942ed417a4edc7e1752be7a632339a3a752c870ce22df50428  layer/etc/systemd/system/belgian-stick-live.service
+42321c13b9a1208ce38282f3945b89ce67759d9ea5e34835f02106a0f8bbad19  layer/etc/xdg/autostart/be-azerty-ibus-skip.desktop
+562ccfbd7cf9dd8714f1dfa8ba6150ae4cb3c830506c5588c68b6f2d18003d95  layer/usr/bin/be-azerty-settings
+3ba243a214d9333e3b7b14f665a30468bd05892ac20e167880b8a7028068dc05  layer/usr/bin/keyd.rvaiya
+dab6d38dcc35dd9b7464c3e29ce8a99b061d71ab9d72a63ee1a556549f5a96b4  layer/usr/lib/belgian-azerty-windows/update-xkb-rules
+376097fb428edc1f5fb58d4fdd2e9e3cbff3ac7f96cdc11807b91c3c5f118370  layer/usr/lib/systemd/system/keyd.service
+8cea9dfda3c8782c2a0dcb41ff7d780b5419df5bc88e60c550511cee28405fd1  layer/usr/lib/systemd/system/keyd.service.d/belgian-windows-restart.conf
+2281a24e0746921c5256aee77896bc1610aa98a588908ae3547a8b894e4b5295  layer/usr/local/lib/belgian-stick/belgian-stick
+54eda415561b203ab3c92eb190f962e5c757ad2108f5b9776e52c3c5c7e94470  layer/usr/sbin/be-azerty-fix
+7d33ff092499f57fa12bc7b3cc69905861ab3d5b5d2c5c6714adb912e2a87423  layer/usr/share/X11/xkb/rules/evdev
+43a2ee6f57dd6a3217b4bba6dc2126bd8b27ea3ac5532e880b0be5d6ea30c668  layer/usr/share/X11/xkb/rules/evdev.distrib
+8f95a0faffcef3f2a5aa55f8476273239afda2974deb49aec57e9abc36d3d728  layer/usr/share/X11/xkb/symbols/be_capslock
+2c4cfee643b5baad8441b7fd6697463c2fc1c729c0a0d1201bf53b37ae49496b  layer/usr/share/applications/be-azerty-settings.desktop
+1c01a62308e07cd05485a8df23eea1d6afb0dc82ebea98c882a6f4460bf2e891  layer/usr/share/polkit-1/actions/org.belgianazerty.fix.policy
+e59a835118ab059f92737fa61f759b36cd7b85953c0e0dfba5a331dbf49e9275  loopback.cfg
+48d811bcfe1398618ee69ab9766de8ed9313ccff72fca2c9aeb82c438f8e08d1  md5sum.txt (without the layer line)
+254cb3ee5d825beb06677525a9479560446cc672342fbb2a361fbe663e26ed57  menuentries.cfg
+== build log mint
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /isolinux/live.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (5.4M layer)
+updated /md5sum.txt (7 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/mint-belgian-stick-0.9.6.iso
+== content fingerprint mint
+56c7189ab4b8e13f90af8d1c3caf2c047678b36f0b8485102c474e45be8295f0  belgian/README.txt
+a81642c59819fdc51cf2bd460399ddc00409b4fe341ec9922624a2f80e0cc0d8  belgian/belgian-azerty-windows_0.9.6_all.deb
+02dd6b924d6993ff125f210207baec043b1b6a3be9c1342bee2ec95df25b44e3  belgian/keyd-belgian-windows_0.9.6_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  belgian/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+a6cc1c7656b0773c5c807f4a34c91e697616025ba12e24631bcffebd8f2166e8  grub.cfg
+faff7765a175639b5ac997490c88ca1eaa5d3dd653278b70d1a80246af9117c9  layer/etc/keyd/be-winaltgr.conf
+87700ec23bc5b21354933b943ef25fed1c53801b2656fde1a0720b37d1a16abb  layer/etc/systemd/system/belgian-azerty-firstboot.service
+eca28b51fd5e28942ed417a4edc7e1752be7a632339a3a752c870ce22df50428  layer/etc/systemd/system/belgian-stick-live.service
+42321c13b9a1208ce38282f3945b89ce67759d9ea5e34835f02106a0f8bbad19  layer/etc/xdg/autostart/be-azerty-ibus-skip.desktop
+562ccfbd7cf9dd8714f1dfa8ba6150ae4cb3c830506c5588c68b6f2d18003d95  layer/usr/bin/be-azerty-settings
+3ba243a214d9333e3b7b14f665a30468bd05892ac20e167880b8a7028068dc05  layer/usr/bin/keyd.rvaiya
+dab6d38dcc35dd9b7464c3e29ce8a99b061d71ab9d72a63ee1a556549f5a96b4  layer/usr/lib/belgian-azerty-windows/update-xkb-rules
+376097fb428edc1f5fb58d4fdd2e9e3cbff3ac7f96cdc11807b91c3c5f118370  layer/usr/lib/systemd/system/keyd.service
+8cea9dfda3c8782c2a0dcb41ff7d780b5419df5bc88e60c550511cee28405fd1  layer/usr/lib/systemd/system/keyd.service.d/belgian-windows-restart.conf
+2281a24e0746921c5256aee77896bc1610aa98a588908ae3547a8b894e4b5295  layer/usr/local/lib/belgian-stick/belgian-stick
+54eda415561b203ab3c92eb190f962e5c757ad2108f5b9776e52c3c5c7e94470  layer/usr/sbin/be-azerty-fix
+7d33ff092499f57fa12bc7b3cc69905861ab3d5b5d2c5c6714adb912e2a87423  layer/usr/share/X11/xkb/rules/evdev
+43a2ee6f57dd6a3217b4bba6dc2126bd8b27ea3ac5532e880b0be5d6ea30c668  layer/usr/share/X11/xkb/rules/evdev.distrib
+8f95a0faffcef3f2a5aa55f8476273239afda2974deb49aec57e9abc36d3d728  layer/usr/share/X11/xkb/symbols/be_capslock
+2c4cfee643b5baad8441b7fd6697463c2fc1c729c0a0d1201bf53b37ae49496b  layer/usr/share/applications/be-azerty-settings.desktop
+1c01a62308e07cd05485a8df23eea1d6afb0dc82ebea98c882a6f4460bf2e891  layer/usr/share/polkit-1/actions/org.belgianazerty.fix.policy
+bd1bc69de36fb18d2e89a524a6fc9b1ffb94b315a159d38328b26b44d46a9efa  live.cfg
+17ff22e334099eefd0756524277954ddafddda51be9502809a4d54a79a452edc  loopback.cfg
+873ff959e3f1bf7227dc31a00b60e3b22241c2363401fd1bb996b89e51d83612  md5sum.txt (without the layer line)

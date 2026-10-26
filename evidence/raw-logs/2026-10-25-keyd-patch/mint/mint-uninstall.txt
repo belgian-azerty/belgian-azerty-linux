@@ -1,0 +1,18 @@
+== 2026-10-25T01:34:10Z sudo bash /tmp/k/be-azerty-fix.sh uninstall
+1. Caps Lock option out of every setting this script can reach
+  [32m✔[0m /etc/default/keyboard written (options: none)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+  [32m✔[0m org.cinnamon.desktop.input-sources for mint: caps:be_windows removed
+  [32m✔[0m running X session: Caps Lock back to Linux behaviour
+2. Cinnamon defaults
+  [32m✔[0m removed /usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override
+3. Files of older versions
+  [32m✔[0m no files of an older be-azerty-fix.sh
+4. Packages
+  [32m✔[0m purged belgian-azerty-windows keyd-belgian-windows keyd
+
+Done. The keyboard stays Belgian (numpad: period); Caps Lock has the Linux behaviour; Ctrl+Alt is no longer AltGr.
+Other users who had the Caps Lock option keep its name in their own settings; it is ignored (Linux Caps Lock).
+exit 0

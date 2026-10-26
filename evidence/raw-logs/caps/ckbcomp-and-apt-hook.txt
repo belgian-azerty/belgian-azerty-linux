@@ -1,0 +1,8 @@
+Container checks (Ubuntu 24.04 userland, xkb-data 2.41, keyboard-configuration/console-setup 1.226ubuntu1.1), 2026-10-23:
+- ckbcomp -layout be  vs  ckbcomp -layout be -option caps:be_windows (rules with our line): identical console keymaps
+  (also with -rules evdev). So the console and the initramfs unlock prompt keep the Linux Caps behaviour; nothing breaks.
+- stock ckbcomp/rules without our line + option caps:be_windows: exit 0 (unknown option ignored).
+- X11: xkbcomp compiles "pc+be+inet(evdev)+be_capslock(windows)" (exit 0).
+- libxkbcommon 1.6 (tools/captest.py): caps:be_windows = 0 mismatches vs Windows for Caps and Caps+Shift; AltGr unchanged.
+- apt hook: hook removed -> apt-get install --reinstall xkb-data -> rule count 0 (xkb-data rewrites rules/evdev);
+  hook present -> reinstall -> rule count 1 (be-azerty-xkb-ensure re-added it).

@@ -1,0 +1,178 @@
+groups: off=178 on=180 expected=176 (+ end marker)
+PASS Ctrl+Alt (AltGr table) ctrl-alt-1 altgr | leftcontrol down leftalt down 1 down 1 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 1 down 1 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-2 altgr | leftcontrol down leftalt down 2 down 2 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-3 altgr | leftcontrol down leftalt down 3 down 3 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 3 down 3 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-4 altgr | leftcontrol down leftalt down 4 down 4 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 9 down 9 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-5 altgr | leftcontrol down leftalt down 5 down 5 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up [ down [ up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-6 altgr | leftcontrol down leftalt down 6 down 6 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 6 down 6 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-9 altgr | leftcontrol down leftalt down 9 down 9 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 9 down 9 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-0 altgr | leftcontrol down leftalt down 0 down 0 up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 0 down 0 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-e altgr | leftcontrol down leftalt down e down e up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up e down e up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-bracket_left altgr | leftcontrol down leftalt down [ down [ up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up [ down [ up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-bracket_right altgr | leftcontrol down leftalt down ] down ] up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up ] down ] up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-apostrophe altgr | leftcontrol down leftalt down ' down ' up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up ' down ' up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-backslash altgr | leftcontrol down leftalt down \ down \ up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up \ down \ up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-slash altgr | leftcontrol down leftalt down / down / up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up / down / up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table) ctrl-alt-less altgr | leftcontrol down leftalt down 102nd down 102nd up leftalt up leftcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 102nd down 102nd up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-1 altgr | rightcontrol down leftalt down 1 down 1 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 1 down 1 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-2 altgr | rightcontrol down leftalt down 2 down 2 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-3 altgr | rightcontrol down leftalt down 3 down 3 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 3 down 3 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-4 altgr | rightcontrol down leftalt down 4 down 4 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 9 down 9 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-5 altgr | rightcontrol down leftalt down 5 down 5 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up [ down [ up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-6 altgr | rightcontrol down leftalt down 6 down 6 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 6 down 6 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-9 altgr | rightcontrol down leftalt down 9 down 9 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 9 down 9 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-0 altgr | rightcontrol down leftalt down 0 down 0 up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 0 down 0 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-e altgr | rightcontrol down leftalt down e down e up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up e down e up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-bracket_left altgr | rightcontrol down leftalt down [ down [ up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up [ down [ up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-bracket_right altgr | rightcontrol down leftalt down ] down ] up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up ] down ] up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-apostrophe altgr | rightcontrol down leftalt down ' down ' up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up ' down ' up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-backslash altgr | rightcontrol down leftalt down \ down \ up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up \ down \ up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-slash altgr | rightcontrol down leftalt down / down / up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up / down / up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Ctrl+Alt (AltGr table), right Ctrl ctrl_r-alt-less altgr | rightcontrol down leftalt down 102nd down 102nd up leftalt up rightcontrol up || leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 102nd down 102nd up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up
+PASS Shift+Ctrl+Alt (AltGr table) shift-ctrl-alt-2 altgr-shift | leftshift down leftcontrol down leftalt down 2 down 2 up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 2 down 2 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt (AltGr table) shift-ctrl-alt-e altgr-shift | leftshift down leftcontrol down leftalt down e down e up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down leftalt up rightalt down leftcontrol up e down e up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt (AltGr table) shift-ctrl-alt-9 altgr-shift | leftshift down leftcontrol down leftalt down 9 down 9 up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down leftalt up rightalt down leftcontrol up 9 down 9 up leftalt down rightalt up leftcontrol down leftalt up leftcontrol up leftshift up
+PASS AltGr alt_r-1 same | rightalt down 1 down 1 up rightalt up || rightalt down 1 down 1 up rightalt up
+PASS AltGr alt_r-2 same | rightalt down 2 down 2 up rightalt up || rightalt down 2 down 2 up rightalt up
+PASS AltGr alt_r-3 same | rightalt down 3 down 3 up rightalt up || rightalt down 3 down 3 up rightalt up
+PASS AltGr alt_r-4 altgr45 | rightalt down 4 down 4 up rightalt up || rightalt down 9 down 9 up rightalt up
+PASS AltGr alt_r-5 altgr45 | rightalt down 5 down 5 up rightalt up || rightalt down [ down [ up rightalt up
+PASS AltGr alt_r-6 same | rightalt down 6 down 6 up rightalt up || rightalt down 6 down 6 up rightalt up
+PASS AltGr alt_r-9 same | rightalt down 9 down 9 up rightalt up || rightalt down 9 down 9 up rightalt up
+PASS AltGr alt_r-0 same | rightalt down 0 down 0 up rightalt up || rightalt down 0 down 0 up rightalt up
+PASS AltGr alt_r-e same | rightalt down e down e up rightalt up || rightalt down e down e up rightalt up
+PASS AltGr alt_r-bracket_left same | rightalt down [ down [ up rightalt up || rightalt down [ down [ up rightalt up
+PASS AltGr alt_r-bracket_right same | rightalt down ] down ] up rightalt up || rightalt down ] down ] up rightalt up
+PASS AltGr alt_r-apostrophe same | rightalt down ' down ' up rightalt up || rightalt down ' down ' up rightalt up
+PASS AltGr alt_r-backslash same | rightalt down \ down \ up rightalt up || rightalt down \ down \ up rightalt up
+PASS AltGr alt_r-slash same | rightalt down / down / up rightalt up || rightalt down / down / up rightalt up
+PASS AltGr alt_r-less same | rightalt down 102nd down 102nd up rightalt up || rightalt down 102nd down 102nd up rightalt up
+PASS Ctrl+Alt (not in table) ctrl-alt-a same | leftcontrol down leftalt down a down a up leftalt up leftcontrol up || leftcontrol down leftalt down a down a up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-b same | leftcontrol down leftalt down b down b up leftalt up leftcontrol up || leftcontrol down leftalt down b down b up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-c same | leftcontrol down leftalt down c down c up leftalt up leftcontrol up || leftcontrol down leftalt down c down c up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-d same | leftcontrol down leftalt down d down d up leftalt up leftcontrol up || leftcontrol down leftalt down d down d up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-f same | leftcontrol down leftalt down f down f up leftalt up leftcontrol up || leftcontrol down leftalt down f down f up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-g same | leftcontrol down leftalt down g down g up leftalt up leftcontrol up || leftcontrol down leftalt down g down g up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-h same | leftcontrol down leftalt down h down h up leftalt up leftcontrol up || leftcontrol down leftalt down h down h up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-i same | leftcontrol down leftalt down i down i up leftalt up leftcontrol up || leftcontrol down leftalt down i down i up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-j same | leftcontrol down leftalt down j down j up leftalt up leftcontrol up || leftcontrol down leftalt down j down j up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-k same | leftcontrol down leftalt down k down k up leftalt up leftcontrol up || leftcontrol down leftalt down k down k up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-l same | leftcontrol down leftalt down l down l up leftalt up leftcontrol up || leftcontrol down leftalt down l down l up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-m same | leftcontrol down leftalt down m down m up leftalt up leftcontrol up || leftcontrol down leftalt down m down m up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-n same | leftcontrol down leftalt down n down n up leftalt up leftcontrol up || leftcontrol down leftalt down n down n up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-o same | leftcontrol down leftalt down o down o up leftalt up leftcontrol up || leftcontrol down leftalt down o down o up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-p same | leftcontrol down leftalt down p down p up leftalt up leftcontrol up || leftcontrol down leftalt down p down p up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-q same | leftcontrol down leftalt down q down q up leftalt up leftcontrol up || leftcontrol down leftalt down q down q up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-r same | leftcontrol down leftalt down r down r up leftalt up leftcontrol up || leftcontrol down leftalt down r down r up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-s same | leftcontrol down leftalt down s down s up leftalt up leftcontrol up || leftcontrol down leftalt down s down s up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-t same | leftcontrol down leftalt down t down t up leftalt up leftcontrol up || leftcontrol down leftalt down t down t up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-u same | leftcontrol down leftalt down u down u up leftalt up leftcontrol up || leftcontrol down leftalt down u down u up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-v same | leftcontrol down leftalt down v down v up leftalt up leftcontrol up || leftcontrol down leftalt down v down v up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-w same | leftcontrol down leftalt down w down w up leftalt up leftcontrol up || leftcontrol down leftalt down w down w up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-x same | leftcontrol down leftalt down x down x up leftalt up leftcontrol up || leftcontrol down leftalt down x down x up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-y same | leftcontrol down leftalt down y down y up leftalt up leftcontrol up || leftcontrol down leftalt down y down y up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-z same | leftcontrol down leftalt down z down z up leftalt up leftcontrol up || leftcontrol down leftalt down z down z up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-7 same | leftcontrol down leftalt down 7 down 7 up leftalt up leftcontrol up || leftcontrol down leftalt down 7 down 7 up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-8 same | leftcontrol down leftalt down 8 down 8 up leftalt up leftcontrol up || leftcontrol down leftalt down 8 down 8 up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-minus same | leftcontrol down leftalt down - down - up leftalt up leftcontrol up || leftcontrol down leftalt down - down - up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-equal same | leftcontrol down leftalt down = down = up leftalt up leftcontrol up || leftcontrol down leftalt down = down = up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-semicolon same | leftcontrol down leftalt down ; down ; up leftalt up leftcontrol up || leftcontrol down leftalt down ; down ; up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-comma same | leftcontrol down leftalt down , down , up leftalt up leftcontrol up || leftcontrol down leftalt down , down , up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-dot same | leftcontrol down leftalt down . down . up leftalt up leftcontrol up || leftcontrol down leftalt down . down . up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-grave_accent same | leftcontrol down leftalt down ` down ` up leftalt up leftcontrol up || leftcontrol down leftalt down ` down ` up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-tab same | leftcontrol down leftalt down tab down tab up leftalt up leftcontrol up || leftcontrol down leftalt down tab down tab up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-spc same | leftcontrol down leftalt down space down space up leftalt up leftcontrol up || leftcontrol down leftalt down space down space up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-ret same | leftcontrol down leftalt down enter down enter up leftalt up leftcontrol up || leftcontrol down leftalt down enter down enter up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-backspace same | leftcontrol down leftalt down backspace down backspace up leftalt up leftcontrol up || leftcontrol down leftalt down backspace down backspace up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-esc same | leftcontrol down leftalt down esc down esc up leftalt up leftcontrol up || leftcontrol down leftalt down esc down esc up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-up same | leftcontrol down leftalt down up down up up leftalt up leftcontrol up || leftcontrol down leftalt down up down up up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-down same | leftcontrol down leftalt down down down down up leftalt up leftcontrol up || leftcontrol down leftalt down down down down up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-left same | leftcontrol down leftalt down left down left up leftalt up leftcontrol up || leftcontrol down leftalt down left down left up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-right same | leftcontrol down leftalt down right down right up leftalt up leftcontrol up || leftcontrol down leftalt down right down right up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-home same | leftcontrol down leftalt down home down home up leftalt up leftcontrol up || leftcontrol down leftalt down home down home up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-end same | leftcontrol down leftalt down end down end up leftalt up leftcontrol up || leftcontrol down leftalt down end down end up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-pgup same | leftcontrol down leftalt down pageup down pageup up leftalt up leftcontrol up || leftcontrol down leftalt down pageup down pageup up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-pgdn same | leftcontrol down leftalt down pagedown down pagedown up leftalt up leftcontrol up || leftcontrol down leftalt down pagedown down pagedown up leftalt up leftcontrol up
+PASS Ctrl+Alt (not in table) ctrl-alt-insert same | leftcontrol down leftalt down insert down insert up leftalt up leftcontrol up || leftcontrol down leftalt down insert down insert up leftalt up leftcontrol up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-t same | leftshift down leftcontrol down leftalt down t down t up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down t down t up leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-up same | leftshift down leftcontrol down leftalt down up down up up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down up down up up leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-down same | leftshift down leftcontrol down leftalt down down down down up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down down down down up leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-left same | leftshift down leftcontrol down leftalt down left down left up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down left down left up leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-right same | leftshift down leftcontrol down leftalt down right down right up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down right down right up leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-7 same | leftshift down leftcontrol down leftalt down 7 down 7 up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down 7 down 7 up leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-8 same | leftshift down leftcontrol down leftalt down 8 down 8 up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down 8 down 8 up leftalt up leftcontrol up leftshift up
+PASS Shift+Ctrl+Alt shift-ctrl-alt-a same | leftshift down leftcontrol down leftalt down a down a up leftalt up leftcontrol up leftshift up || leftshift down leftcontrol down leftalt down a down a up leftalt up leftcontrol up leftshift up
+PASS Ctrl ctrl-a same | leftcontrol down a down a up leftcontrol up || leftcontrol down a down a up leftcontrol up
+PASS Ctrl ctrl-c same | leftcontrol down c down c up leftcontrol up || leftcontrol down c down c up leftcontrol up
+PASS Ctrl ctrl-v same | leftcontrol down v down v up leftcontrol up || leftcontrol down v down v up leftcontrol up
+PASS Ctrl ctrl-x same | leftcontrol down x down x up leftcontrol up || leftcontrol down x down x up leftcontrol up
+PASS Ctrl ctrl-z same | leftcontrol down z down z up leftcontrol up || leftcontrol down z down z up leftcontrol up
+PASS Ctrl ctrl-s same | leftcontrol down s down s up leftcontrol up || leftcontrol down s down s up leftcontrol up
+PASS Ctrl ctrl-y same | leftcontrol down y down y up leftcontrol up || leftcontrol down y down y up leftcontrol up
+PASS Ctrl ctrl-f same | leftcontrol down f down f up leftcontrol up || leftcontrol down f down f up leftcontrol up
+PASS Ctrl ctrl-n same | leftcontrol down n down n up leftcontrol up || leftcontrol down n down n up leftcontrol up
+PASS Ctrl ctrl-o same | leftcontrol down o down o up leftcontrol up || leftcontrol down o down o up leftcontrol up
+PASS Ctrl ctrl-p same | leftcontrol down p down p up leftcontrol up || leftcontrol down p down p up leftcontrol up
+PASS Ctrl ctrl-w same | leftcontrol down w down w up leftcontrol up || leftcontrol down w down w up leftcontrol up
+PASS Ctrl ctrl-q same | leftcontrol down q down q up leftcontrol up || leftcontrol down q down q up leftcontrol up
+PASS Ctrl ctrl-t same | leftcontrol down t down t up leftcontrol up || leftcontrol down t down t up leftcontrol up
+PASS Ctrl ctrl-l same | leftcontrol down l down l up leftcontrol up || leftcontrol down l down l up leftcontrol up
+PASS Ctrl ctrl-r same | leftcontrol down r down r up leftcontrol up || leftcontrol down r down r up leftcontrol up
+PASS Ctrl ctrl-1 same | leftcontrol down 1 down 1 up leftcontrol up || leftcontrol down 1 down 1 up leftcontrol up
+PASS Ctrl ctrl-2 same | leftcontrol down 2 down 2 up leftcontrol up || leftcontrol down 2 down 2 up leftcontrol up
+PASS Ctrl ctrl-3 same | leftcontrol down 3 down 3 up leftcontrol up || leftcontrol down 3 down 3 up leftcontrol up
+PASS Ctrl ctrl-4 same | leftcontrol down 4 down 4 up leftcontrol up || leftcontrol down 4 down 4 up leftcontrol up
+PASS Ctrl ctrl-5 same | leftcontrol down 5 down 5 up leftcontrol up || leftcontrol down 5 down 5 up leftcontrol up
+PASS Ctrl ctrl-6 same | leftcontrol down 6 down 6 up leftcontrol up || leftcontrol down 6 down 6 up leftcontrol up
+PASS Ctrl ctrl-7 same | leftcontrol down 7 down 7 up leftcontrol up || leftcontrol down 7 down 7 up leftcontrol up
+PASS Ctrl ctrl-8 same | leftcontrol down 8 down 8 up leftcontrol up || leftcontrol down 8 down 8 up leftcontrol up
+PASS Ctrl ctrl-9 same | leftcontrol down 9 down 9 up leftcontrol up || leftcontrol down 9 down 9 up leftcontrol up
+PASS Ctrl ctrl-0 same | leftcontrol down 0 down 0 up leftcontrol up || leftcontrol down 0 down 0 up leftcontrol up
+PASS Ctrl ctrl-tab same | leftcontrol down tab down tab up leftcontrol up || leftcontrol down tab down tab up leftcontrol up
+PASS Ctrl ctrl-pgup same | leftcontrol down pageup down pageup up leftcontrol up || leftcontrol down pageup down pageup up leftcontrol up
+PASS Ctrl ctrl-pgdn same | leftcontrol down pagedown down pagedown up leftcontrol up || leftcontrol down pagedown down pagedown up leftcontrol up
+PASS Ctrl ctrl-home same | leftcontrol down home down home up leftcontrol up || leftcontrol down home down home up leftcontrol up
+PASS Ctrl ctrl-end same | leftcontrol down end down end up leftcontrol up || leftcontrol down end down end up leftcontrol up
+PASS Ctrl+Shift ctrl-shift-c same | leftcontrol down leftshift down c down c up leftshift up leftcontrol up || leftcontrol down leftshift down c down c up leftshift up leftcontrol up
+PASS Ctrl+Shift ctrl-shift-v same | leftcontrol down leftshift down v down v up leftshift up leftcontrol up || leftcontrol down leftshift down v down v up leftshift up leftcontrol up
+PASS Ctrl+Shift ctrl-shift-t same | leftcontrol down leftshift down t down t up leftshift up leftcontrol up || leftcontrol down leftshift down t down t up leftshift up leftcontrol up
+PASS Ctrl+Shift ctrl-shift-n same | leftcontrol down leftshift down n down n up leftshift up leftcontrol up || leftcontrol down leftshift down n down n up leftshift up leftcontrol up
+PASS Ctrl+Shift ctrl-shift-w same | leftcontrol down leftshift down w down w up leftshift up leftcontrol up || leftcontrol down leftshift down w down w up leftshift up leftcontrol up
+PASS Ctrl+Shift ctrl-shift-z same | leftcontrol down leftshift down z down z up leftshift up leftcontrol up || leftcontrol down leftshift down z down z up leftshift up leftcontrol up
+PASS Ctrl+Shift ctrl-shift-tab same | leftcontrol down leftshift down tab down tab up leftshift up leftcontrol up || leftcontrol down leftshift down tab down tab up leftshift up leftcontrol up
+PASS Alt alt-f2 same | leftalt down f2 down f2 up leftalt up || leftalt down f2 down f2 up leftalt up
+PASS Alt alt-f4 same | leftalt down f4 down f4 up leftalt up || leftalt down f4 down f4 up leftalt up
+PASS Alt alt-f10 same | leftalt down f10 down f10 up leftalt up || leftalt down f10 down f10 up leftalt up
+PASS Alt alt-tab same | leftalt down tab down tab up leftalt up || leftalt down tab down tab up leftalt up
+PASS Alt alt-1 same | leftalt down 1 down 1 up leftalt up || leftalt down 1 down 1 up leftalt up
+PASS Alt alt-2 same | leftalt down 2 down 2 up leftalt up || leftalt down 2 down 2 up leftalt up
+PASS Alt alt-e same | leftalt down e down e up leftalt up || leftalt down e down e up leftalt up
+PASS Alt alt-f same | leftalt down f down f up leftalt up || leftalt down f down f up leftalt up
+PASS Alt alt-h same | leftalt down h down h up leftalt up || leftalt down h down h up leftalt up
+PASS Alt alt-shift-tab same | leftalt down leftshift down tab down tab up leftshift up leftalt up || leftalt down leftshift down tab down tab up leftshift up leftalt up
+PASS Super meta_l same | leftmeta down leftmeta up || leftmeta down leftmeta up
+PASS Super meta_l-a same | leftmeta down a down a up leftmeta up || leftmeta down a down a up leftmeta up
+PASS Super meta_l-d same | leftmeta down d down d up leftmeta up || leftmeta down d down d up leftmeta up
+PASS Super meta_l-e same | leftmeta down e down e up leftmeta up || leftmeta down e down e up leftmeta up
+PASS Super meta_l-l same | leftmeta down l down l up leftmeta up || leftmeta down l down l up leftmeta up
+PASS Super meta_l-up same | leftmeta down up down up up leftmeta up || leftmeta down up down up up leftmeta up
+PASS Super meta_l-down same | leftmeta down down down down up leftmeta up || leftmeta down down down down up leftmeta up
+PASS Super meta_l-left same | leftmeta down left down left up leftmeta up || leftmeta down left down left up leftmeta up
+PASS Super meta_l-right same | leftmeta down right down right up leftmeta up || leftmeta down right down right up leftmeta up
+PASS Super meta_l-tab same | leftmeta down tab down tab up leftmeta up || leftmeta down tab down tab up leftmeta up
+PASS Super meta_l-1 same | leftmeta down 1 down 1 up leftmeta up || leftmeta down 1 down 1 up leftmeta up
+PASS Super meta_l-shift-left same | leftmeta down leftshift down left down left up leftshift up leftmeta up || leftmeta down leftshift down left down left up leftshift up leftmeta up
+PASS Ctrl+Alt+F (VT switch) ctrl-alt-f1 same | leftcontrol down leftalt down f1 down f1 up leftalt up leftcontrol up || leftcontrol down leftalt down f1 down f1 up leftalt up leftcontrol up
+PASS (return) ctrl-alt-f3 same | leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up || leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up
+PASS Ctrl+Alt+F (VT switch) ctrl-alt-f2 same | leftcontrol down leftalt down f2 down f2 up leftalt up leftcontrol up || leftcontrol down leftalt down f2 down f2 up leftalt up leftcontrol up
+PASS (return) ctrl-alt-f3 same | leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up || leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up
+PASS Ctrl+Alt+F (VT switch) ctrl-alt-f3 same | leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up || leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up
+PASS Ctrl+Alt+F (VT switch) ctrl-alt-f4 same | leftcontrol down leftalt down f4 down f4 up leftalt up leftcontrol up || leftcontrol down leftalt down f4 down f4 up leftalt up leftcontrol up
+PASS (return) ctrl-alt-f3 same | leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up || leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up
+PASS Ctrl+Alt+F (VT switch) ctrl-alt-f5 same | leftcontrol down leftalt down f5 down f5 up leftalt up leftcontrol up || leftcontrol down leftalt down f5 down f5 up leftalt up leftcontrol up
+PASS (return) ctrl-alt-f3 same | leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up || leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up
+PASS Ctrl+Alt+F (VT switch) ctrl-alt-f6 same | leftcontrol down leftalt down f6 down f6 up leftalt up leftcontrol up || leftcontrol down leftalt down f6 down f6 up leftalt up leftcontrol up
+PASS (return) ctrl-alt-f3 same | leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up || leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up
+PASS Ctrl+Alt+F (VT switch) ctrl-alt-f7 same | leftcontrol down leftalt down f7 down f7 up leftalt up leftcontrol up || leftcontrol down leftalt down f7 down f7 up leftalt up leftcontrol up
+PASS (return) ctrl-alt-f3 same | leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up || leftcontrol down leftalt down f3 down f3 up leftalt up leftcontrol up
+PASS 176 FAIL 0

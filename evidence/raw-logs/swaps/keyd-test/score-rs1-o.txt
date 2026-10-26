@@ -1,0 +1,8 @@
+rs1-o [ctrlalt] typed lines 3: ok 2, order 1, count 0, other 0 | key log (keyd virtual keyboard): 3/3 lines in sent order, key gap median 31 ms min 18 ms
+start 22:35:10.735Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.51 0.43 0.59
+end 22:35:19.384Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.43 0.42 0.58
+lagging-behind messages during block: 0
+expected: @€@€@€@€@€@€@€@€
+  1 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  2 ok    @€@€@€@€@€@€@€@€   [keys in order]
+  3 order @€@€€@€@@€@€@€@€   [keys in order]

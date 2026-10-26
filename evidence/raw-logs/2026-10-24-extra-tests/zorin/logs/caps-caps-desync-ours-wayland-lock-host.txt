@@ -1,0 +1,8 @@
+2026-10-25T03:37:47Z capsrun caps-desync-ours-wayland-lock lock start
+2026-10-25T03:37:59Z sa  | guest 04:37:58 LED=00
+2026-10-25T03:38:19Z lock screen: caps_lock, password, ret; caps_lock, password, ret
+2026-10-25T03:38:41Z sb  | guest 04:38:40 LED=00
+2026-10-25T03:38:54Z sc toggle | guest 04:38:53 LED=11
+2026-10-25T03:39:06Z sd toggle | guest 04:39:05 LED=00
+2026-10-25T03:39:19Z se toggle | guest 04:39:19 LED=11
+2026-10-25T03:39:34Z capsrun caps-desync-ours-wayland-lock end

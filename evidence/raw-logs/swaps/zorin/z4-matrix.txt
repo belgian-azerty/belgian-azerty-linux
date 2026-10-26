@@ -1,0 +1,12 @@
+typed 150 lines of ctrlalt gap 120.0 ms hold 72 ms, last line 2.08 s
+z4-on-ca120 [ctrlalt] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 120 ms min 117 ms
+typed 150 lines of ctrlalt gap 90.0 ms hold 54 ms, last line 1.62 s
+z4-on-ca90 [ctrlalt] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 90 ms min 85 ms
+typed 150 lines of altgr gap 90.0 ms hold 54 ms, last line 1.58 s
+z4-on-ag90 [altgr] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 90 ms min 87 ms
+typed 150 lines of ctrlalt1 gap 60.0 ms hold 36 ms, last line 1.57 s
+z4-on-ca1-60 [ctrlalt1] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 90 ms min 80 ms
+typed 150 lines of altgr1 gap 60.0 ms hold 36 ms, last line 1.32 s
+z4-on-ag1-60 [altgr1] typed lines 150: ok 150, order 0, count 0, other 0 | key log (keyd virtual keyboard): 150/150 lines in sent order, key gap median 75 ms min 65 ms
+typed 150 lines of altgr1 gap 60.0 ms hold 36 ms, last line 1.32 s
+z4-off-ag1-60 [altgr1] typed lines 150: ok 150, order 0, count 0, other 0 | key log (AT Translated Set 2 keyboard): 150/150 lines in sent order, key gap median 75 ms min 66 ms

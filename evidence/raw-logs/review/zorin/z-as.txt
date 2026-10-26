@@ -1,0 +1,7 @@
+[User]
+Session=
+Icon=/home/zorin/.face
+SystemAccount=false
+
+[InputSource0]
+xkb=be

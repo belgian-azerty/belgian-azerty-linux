@@ -1,0 +1,101 @@
+ibus skip for root:
+  · automatic: off (needs the belgian-azerty-windows package); turn on: be-azerty-fix ibus-skip auto on
+  · no app skips ibus. Per app by hand: be-azerty-fix ibus-skip on terminal
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+PASS 1 default: nothing on, no files
+  [32m✔[0m org.gnome.Terminal: skips ibus (drop-in for gnome-terminal-server.service)
+  [32m✔[0m org.gnome.TextEditor: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.gnome.TextEditor.desktop)
+  · takes effect the next time org.gnome.TextEditor starts from the menu or the dock; close it completely first
+  [32m✔[0m code: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/code.desktop)
+  · takes effect the next time code starts from the menu or the dock; close it completely first
+  [32m✔[0m org.gnome.Calculator: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.gnome.Calculator.desktop)
+  · takes effect the next time org.gnome.Calculator starts from the menu or the dock; close it completely first
+  [32m✔[0m org.kde.kate: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.kde.kate.desktop)
+  · org.kde.kate looks like a Qt/KDE app: GTK_IM_MODULE has no effect there
+  · takes effect the next time org.kde.kate starts from the menu or the dock; close it completely first
+PASS 2 on: exit 0
+PASS 3 terminal: drop-in, no menu copy
+PASS 4 text editor: copy, both Exec lines prefixed
+PASS 5 text editor: marker in [Desktop Entry], DBusActivatable gone
+PASS 6 code: field codes kept
+PASS 7 everything else unchanged
+PASS 8 DBusActivatable=true app: removed, so Exec is used
+PASS 9 Qt app warned
+PASS 10 list has 5 ids
+/tmp/tmp.4WxKtvov4f/home/.local/share/applications/code.desktop: hint: value item "TextEditor" in key "Categories" in group "Desktop Entry" can be extended with another category among the following categories: Utility
+PASS 11 copies validate
+PASS 12 on twice: listed once
+ibus skip for root:
+  · automatic: off (needs the belgian-azerty-windows package); turn on: be-azerty-fix ibus-skip auto on
+  [32m✔[0m org.gnome.Terminal: skips ibus (drop-in for gnome-terminal-server.service)
+  [32m✔[0m org.gnome.TextEditor: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.gnome.TextEditor.desktop)
+  [32m✔[0m code: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/code.desktop)
+  [32m✔[0m org.gnome.Calculator: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.gnome.Calculator.desktop)
+  [32m✔[0m org.kde.kate: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.kde.kate.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+PASS 13 list shows all on
+PASS 14 refresh follows an updated menu file
+PASS 15 removed app: copy gone, still listed
+  [31m✘[0m mine: you already have your own /tmp/tmp.4WxKtvov4f/home/.local/share/applications/mine.desktop; not touching it (put env GTK_IM_MODULE=gtk-im-context-simple in front of its Exec= lines by hand)
+PASS 16 own copy refused, unchanged, not listed
+PASS 17 unknown app: error, not listed
+PASS 18 off one: copy gone, others stay
+PASS 19 off terminal: drop-in and its dir gone
+PASS 20 list deleted: refresh removes marked files only
+PASS 21 off --all: back to nothing but the user's own file (the automatic part saved as off)
+PASS 22 refresh with nothing listed: no-op, exit 0
+PASS 23 unknown subcommand: usage, exit 1
+ibus skip for root:
+  · automatic: on (default of the Windows profile): the Terminal, the text editor and VS Code skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  [32m✔[0m org.gnome.Terminal (automatic): skips ibus (drop-in for gnome-terminal-server.service)
+  [32m✔[0m org.gnome.TextEditor (automatic): skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.gnome.TextEditor.desktop)
+  [32m✔[0m code (automatic): skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/code.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+PASS 24 auto, Windows profile default, Belgian layout only: Terminal and text editor skip, nothing listed
+ibus skip for root:
+  · automatic: paused, because an input method is set up in the keyboard settings: anthy (the Terminal, the text editor and VS Code keep ibus; it resumes at the next login after that is removed)
+  · no app skips ibus. Per app by hand: be-azerty-fix ibus-skip on terminal
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+PASS 25 Japanese input added in GNOME settings: auto files gone, status says paused (anthy)
+PASS 26 input removed again: back on
+PASS 27 engine added in ibus preferences (pinyin): paused
+PASS 28 only xkb: entries in ibus preferences: on
+PASS 29 another framework (GTK_IM_MODULE=fcitx): paused
+PASS 30 GTK_IM_MODULE=ibus (Mint session): on
+PASS 31 Cinnamon settings with Korean input: paused
+PASS 32 Cinnamon settings, Belgian only: on
+PASS 33 settings unreadable: paused (safe side)
+PASS 34 app added by hand stays while the automatic part pauses
+  [32m✔[0m automatic ibus skip off: the Terminal, the text editor and VS Code use ibus again from their next start
+  · apps you added yourself still skip ibus: code 
+PASS 35 auto off: automatic files gone, hand-added code stays, choice saved
+PASS 36 auto off survives the login refresh
+PASS 37 auto on: back
+  · org.gnome.Terminal is one of the automatic apps: to give it ibus back, turn the automatic skip off (be-azerty-fix ibus-skip auto off)
+PASS 38 off for an automatic app: explained, not removed
+PASS 39 Linux-standard profile, no own choice: automatic off
+PASS 40 own text-editor menu file: left alone, no error, Terminal still skips
+PASS 41 without the package's login entry: automatic off
+PASS 42 off --all with auto on: nothing left, stays off after the login refresh
+PASS 43 purge (uninstall): every marked file, the list, the choice and the empty systemd folders gone; own file kept
+PASS 44 auto: VS Code under its old name (code.desktop) skips too, not listed
+PASS 45 auto: current VS Code (com.microsoft.VSCode.desktop) gets the marked copy, both Exec lines prefixed
+PASS 46 the new name wins over the old one: old-name copy removed
+/tmp/tmp.4WxKtvov4f/home/.local/share/applications/com.microsoft.VSCode.desktop: hint: value item "TextEditor" in key "Categories" in group "Desktop Entry" can be extended with another category among the following categories: Utility
+PASS 46b VS Code copy validates
+ibus skip for root:
+  · automatic: on (default of the Windows profile): the Terminal, the text editor and VS Code skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  [32m✔[0m org.gnome.Terminal (automatic): skips ibus (drop-in for gnome-terminal-server.service)
+  [32m✔[0m org.gnome.TextEditor (automatic): skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/org.gnome.TextEditor.desktop)
+  [32m✔[0m com.microsoft.VSCode (automatic): skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/com.microsoft.VSCode.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+PASS 47 status names VS Code
+PASS 48 input method added: VS Code copy gone with the others
+  [32m✔[0m com.microsoft.VSCode: skips ibus (menu entry /tmp/tmp.4WxKtvov4f/home/.local/share/applications/com.microsoft.VSCode.desktop)
+  · takes effect the next time com.microsoft.VSCode starts from the menu or the dock; close it completely first
+PASS 49 by hand: on vscode finds com.microsoft.VSCode (the 0.9.6 bug)
+PASS 50 auto off: VS Code copy gone unless listed by hand
+PASS 51 own VS Code menu file: left alone, no error, Terminal still skips
+PASS 52 VS Code not installed: no error, nothing for it, Terminal and editor still skip
+PASS 53 purge after all that: clean
+passed 54, failed 0

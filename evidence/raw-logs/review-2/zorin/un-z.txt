@@ -1,0 +1,43 @@
+== be-azerty-fix uninstall
+1. Caps Lock option out of every setting this script can reach
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+  [32m✔[0m org.gnome.desktop.input-sources for zorin: caps:be_windows removed
+  [32m✔[0m running X session: Caps Lock back to Linux behaviour
+2. Cinnamon defaults
+  [32m✔[0m no override to remove
+3. Files of older versions
+  [32m✔[0m no files of an older be-azerty-fix.sh
+4. Packages
+  [32m✔[0m purged belgian-azerty-windows keyd-belgian-windows keyd
+
+Done. The keyboard stays Belgian (numpad: period); Caps Lock has the Linux behaviour; Ctrl+Alt is no longer AltGr.
+Other users who had the Caps Lock option keep its name in their own settings; it is ignored (Linux Caps Lock).
+rc=0
+== after
+dpkg-query: aucun paquet ne correspond à keyd
+dpkg-query: aucun paquet ne correspond à keyd-belgian-windows
+dpkg-query: aucun paquet ne correspond à belgian-azerty-windows
+dpkg-query: dpkg-query: aucun paquet ne correspond à keyd dpkg-query: aucun paquet ne correspond à keyd-belgian-windows dpkg-query: aucun paquet ne correspond à belgian-azerty-windows 
+diversions: 0
+evdev md5 8078207278372280124f1c300b442a75, xkb-data says 8078207278372280124f1c300b442a75: IDENTICAL
+dpkg -V xkb-data: []
+ls: impossible d'accéder à '/usr/share/X11/xkb/rules/evdev.distrib': Aucun fichier ou dossier de ce nom
+ls: impossible d'accéder à '/usr/share/X11/xkb/symbols/be_capslock': Aucun fichier ou dossier de ce nom
+ls: impossible d'accéder à '/usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override': Aucun fichier ou dossier de ce nom
+ls: impossible d'accéder à '/etc/keyd': Aucun fichier ou dossier de ce nom
+ls: impossible d'accéder à '/usr/lib/systemd/system/keyd.service.d': Aucun fichier ou dossier de ce nom
+keyd service: inactive / not-found
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch"
+Cinnamon default now: Le schéma « org.cinnamon.desktop.input-sources » n’existe pas
+gnome user setting: ['lv3:ralt_switch']
+user setting now: Le schéma « org.cinnamon.desktop.input-sources » n’existe pas
+gnome user setting: ['lv3:ralt_switch']
+WARNING: Running setxkbmap against an Xwayland server
+keyd unit: LoadState=not-found ActiveState=inactive 
+be-azerty-fix still present: no

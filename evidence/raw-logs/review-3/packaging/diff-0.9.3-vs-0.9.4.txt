@@ -1,0 +1,73 @@
+# 0.9.3 vs 0.9.4 package contents (dpkg-deb -R, then diff -r), 2026-10-25, REVIEW-3
+Files d93/belgian-azerty-windows/DEBIAN/control and d94/belgian-azerty-windows/DEBIAN/control differ
+Files d93/belgian-azerty-windows/DEBIAN/md5sums and d94/belgian-azerty-windows/DEBIAN/md5sums differ
+Files d93/belgian-azerty-windows/usr/sbin/be-azerty-fix and d94/belgian-azerty-windows/usr/sbin/be-azerty-fix differ
+Files d93/belgian-azerty-windows/usr/share/doc/belgian-azerty-windows/README.md.gz and d94/belgian-azerty-windows/usr/share/doc/belgian-azerty-windows/README.md.gz differ
+Files d93/belgian-azerty-windows/usr/share/doc/belgian-azerty-windows/changelog.gz and d94/belgian-azerty-windows/usr/share/doc/belgian-azerty-windows/changelog.gz differ
+Files d93/belgian-azerty-windows/usr/share/man/man1/be-azerty-settings.1.gz and d94/belgian-azerty-windows/usr/share/man/man1/be-azerty-settings.1.gz differ
+Files d93/keyd/DEBIAN/control and d94/keyd/DEBIAN/control differ
+Files d93/keyd/DEBIAN/md5sums and d94/keyd/DEBIAN/md5sums differ
+Files d93/keyd/usr/bin/keyd.rvaiya and d94/keyd/usr/bin/keyd.rvaiya differ
+Files d93/keyd/usr/share/doc/keyd/changelog.Debian.gz and d94/keyd/usr/share/doc/keyd/changelog.Debian.gz differ
+Files d93/keyd-belgian-windows/DEBIAN/control and d94/keyd-belgian-windows/DEBIAN/control differ
+Files d93/keyd-belgian-windows/DEBIAN/md5sums and d94/keyd-belgian-windows/DEBIAN/md5sums differ
+Files d93/keyd-belgian-windows/usr/share/doc/keyd-belgian-windows/changelog.gz and d94/keyd-belgian-windows/usr/share/doc/keyd-belgian-windows/changelog.gz differ
+
+### belgian-azerty-windows/DEBIAN/control
+2c2
+< Version: 0.9.3
+---
+> Version: 0.9.4
+5c5
+< Installed-Size: 79
+---
+> Installed-Size: 81
+### belgian-azerty-windows/usr/share/doc/belgian-azerty-windows/README.md.gz (decompressed)
+16c16,17
+< 0.9.3, not published yet. See "Known issues" below.
+---
+> 0.9.4, not published yet (0.9.4 adds one labelled keyd patch, see "The keyd patch"; the real-laptop runs used older
+> versions). See "Known issues" below.
+33,34c34,36
+< Ubuntu 24.04 based systems (Mint 22, Zorin 18), which have no keyd of their own; it is an unchanged rebuild of
+< Debian's keyd package, and a keyd from the distribution replaces it automatically when there is one.
+---
+> Ubuntu 24.04 based systems (Mint 22, Zorin 18), which have no keyd of their own; it is a rebuild of
+> Debian's keyd package with one labelled patch of this project (see "The keyd patch" below), and a keyd from the
+> distribution replaces it automatically when there is one.
+### belgian-azerty-windows/usr/share/doc/belgian-azerty-windows/changelog.gz (decompressed)
+0a1,8
+> belgian-azerty-windows (0.9.4) noble; urgency=medium
+> 
+>   * No change to be-azerty-fix or the Caps Lock option. The README now has
+>     a section on the keyd patch that 0.9.4 adds (keep AltGr held while
+>     Ctrl+Alt is held). Version kept equal to keyd-belgian-windows.
+> 
+>  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:30:00 +0000
+> 
+### belgian-azerty-windows/usr/share/man/man1/be-azerty-settings.1.gz (decompressed)
+1c1
+< .TH BE-AZERTY-SETTINGS 1 "2026-10-24" "belgian-azerty-windows 0.9.3" "User Commands"
+---
+> .TH BE-AZERTY-SETTINGS 1 "2026-10-24" "belgian-azerty-windows 0.9.4" "User Commands"
+### belgian-azerty-windows/usr/sbin/be-azerty-fix
+42c42
+< # Status: see NOTES.md for what was run where. Version 0.9.3 (2026-10-24).
+---
+> # Status: see NOTES.md for what was run where. Version 0.9.4 (2026-10-25; the script itself is unchanged since 0.9.3).
+### keyd-belgian-windows/DEBIAN/control
+2c2
+< Version: 0.9.3
+---
+> Version: 0.9.4
+### keyd-belgian-windows/usr/share/doc/keyd-belgian-windows/changelog.gz (decompressed)
+0a1,9
+> keyd-belgian-windows (0.9.4) noble; urgency=medium
+> 
+>   * No change in this package. 0.9.4 ships with keyd 2.5.0-5~ubuntu24.04.2,
+>     which carries this project's patch "Keep AltGr held while a Ctrl+Alt
+>     layer is held" (fewer swapped characters with ibus at very fast
+>     Ctrl+Alt typing). The rules work with an unpatched keyd as before.
+> 
+>  -- Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>  Sat, 24 Oct 2026 23:30:00 +0000
+> 

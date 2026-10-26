@@ -1,0 +1,30 @@
+vsc-mint-keydon plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+vsc-mint-keydon LCtrl+LAlt: |@#{[^{}[]'`~\
+vsc-mint-keydon AltGr: |@#{[^{}€[]'`~\
+vsc-mint-keydon Caps+LCtrl+LAlt: |@#{[^{}[]'`~\
+vsc-mint-keydon RCtrl+LAlt 2 e: @€
+vsc-mint-keydon Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+vsc-mint-keydon Caps+Shift same keys: ³&é"'(§è!çà)-^$ùµ,;:=>az
+vsc-mint-keydon Caps+AltGr: |@#{[^{}€[]'`~\
+vsc-mint-keydon order Ctrl+Alt 2 e x8: @@€@€@€@@€@@
+vsc-mint-keydon numpad 1 dec 5 (NumLock on): 
+slow LCtrl+LAlt+E x8 (0.6 s): €€€€€€
+slow LCtrl+LAlt+2 x8 (0.6 s): @@@@@@@@
+AltGr+E x8 (0.6 s): €€€€€€€€
+numpad after NumLock toggle: 1.5
+AltFocus off, LCtrl+LAlt+E x8 (0.6 s): €€€€€€
+AltFocus off, order Ctrl+Alt 2 e x8: @@@€€@@€@€@€@€
+Mnemonics off, LCtrl+LAlt+E x8 (0.6 s): €€€€€€€€
+Mnemonics off, order Ctrl+Alt 2 e x8: @@€@€@€@€@€@@€
+vsc-mint-keydoff plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+vsc-mint-keydoff LCtrl+LAlt:    
+vsc-mint-keydoff AltGr: |@#¼½^{}€[]'`~\
+vsc-mint-keydoff Caps+LCtrl+LAlt:    
+vsc-mint-keydoff RCtrl+LAlt 2 e: 
+vsc-mint-keydoff Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+vsc-mint-keydoff Caps+Shift same keys: ³&é"'§(è!çà)-^$ùµ,;:=>az
+vsc-mint-keydoff Caps+AltGr: |@#¼½^{}€[]'`~\
+vsc-mint-keydoff order Ctrl+Alt 2 e x8: 
+vsc-mint-keydoff numpad 1 dec 5 (NumLock on): 1.5
+DECIMAL=comma, keyd on, numpad 1 dec 5: 1,5
+comma + Caps: 1,512

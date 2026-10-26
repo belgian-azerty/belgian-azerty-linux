@@ -1,0 +1,11 @@
+=== kbstate 12:22:53Z pre-install ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=@as [] session=wayland
+cinnamon: 
+accounts: 
+greeter:   gdm=(default)
+keyd:     inactive not-found conf=
+initrd:   13:56 /boot/initrd.img-7.0.0-38-generic vs /etc/default/keyboard 13:26

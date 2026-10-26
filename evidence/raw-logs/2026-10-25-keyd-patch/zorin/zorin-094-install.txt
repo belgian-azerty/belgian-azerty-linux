@@ -1,0 +1,65 @@
+== zorin-094 2026-10-25T01:55:13Z dir=d94
+6e50c62f8e6414cd94f1496652e2f642e25c786005d1cceec49e42b3f7b880da  ./belgian-azerty-windows_0.9.4_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  ./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+f9de04365e1c601a82101f3e29e3f624d9dfeedb629a564ed4222405dd33589c  ./keyd-belgian-windows_0.9.4_all.deb
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  belgian-azerty-windows keyd keyd-belgian-windows
+0 upgraded, 3 newly installed, 0 to remove and 562 not upgraded.
+Need to get 0 B/237 kB of archives.
+After this operation, 1,576 kB of additional disk space will be used.
+Get:1 /tmp/k/d94/belgian-azerty-windows_0.9.4_all.deb belgian-azerty-windows all 0.9.4 [24.9 kB]
+Get:2 /tmp/k/d94/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb keyd amd64 2.5.0-5~ubuntu24.04.2 [207 kB]
+Get:3 /tmp/k/d94/keyd-belgian-windows_0.9.4_all.deb keyd-belgian-windows all 0.9.4 [4,778 B]
+Selecting previously unselected package belgian-azerty-windows.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 300434 files and directories currently installed.)
+Preparing to unpack .../belgian-azerty-windows_0.9.4_all.deb ...
+Unpacking belgian-azerty-windows (0.9.4) ...
+Selecting previously unselected package keyd.
+Preparing to unpack .../keyd_2.5.0-5~ubuntu24.04.2_amd64.deb ...
+Unpacking keyd (2.5.0-5~ubuntu24.04.2) ...
+Selecting previously unselected package keyd-belgian-windows.
+Preparing to unpack .../keyd-belgian-windows_0.9.4_all.deb ...
+Unpacking keyd-belgian-windows (0.9.4) ...
+Setting up keyd (2.5.0-5~ubuntu24.04.2) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Setting up keyd-belgian-windows (0.9.4) ...
+Setting up belgian-azerty-windows (0.9.4) ...
+Adding 'diversion of /usr/share/X11/xkb/rules/evdev to /usr/share/X11/xkb/rules/evdev.distrib by belgian-azerty-windows'
+Processing triggers for gnome-menus (3.36.0-1.1ubuntu3) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+apt install exit 0
+== sudo bash be-azerty-fix.sh live
+Choices: profile windows (default), numpad decimal period (default), Caps Lock windows (from the profile)
+  [32m✔[0m setxkbmap be  (options caps:be_windows)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: period, Caps Lock: windows
+  · This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+be-azerty-fix.sh live exit 0
+== dpkg-query
+belgian-azerty-windows	0.9.4
+keyd	2.5.0-5~ubuntu24.04.2
+keyd-belgian-windows	0.9.4
+== keyd exe (sudo)
+lrwxrwxrwx 1 root root 0 Oct 25 01:55 /proc/6517/exe -> /usr/bin/keyd.rvaiya
+== keyd binary
+3ba243a214d9333e3b7b14f665a30468bd05892ac20e167880b8a7028068dc05  /usr/bin/keyd.rvaiya
+== systemctl is-active keyd
+active
+== systemctl --failed
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+== session
+type=x11 desktop=zorin:GNOME
+rules:      evdev
+model:      pc105+inet
+layout:     be,us
+variant:    ,
+options:    caps:be_windows

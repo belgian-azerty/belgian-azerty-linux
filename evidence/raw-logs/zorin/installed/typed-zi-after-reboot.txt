@@ -1,0 +1,9 @@
+zi-after-reboot plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+zi-after-reboot LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-after-reboot AltGr: |@#{[^{}€[]'`~\
+zi-after-reboot Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-after-reboot RCtrl+LAlt 2 e: @€
+zi-after-reboot Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+zi-after-reboot Caps+Shift same keys: ³&é"'(§è!çà)-^$ùµ,;:=>az
+zi-after-reboot Caps+AltGr: |@#{[^{}€[]'`~\
+zi-after-reboot order Ctrl+Alt 2 e x8: @€€@@€€@@€€@€@@€

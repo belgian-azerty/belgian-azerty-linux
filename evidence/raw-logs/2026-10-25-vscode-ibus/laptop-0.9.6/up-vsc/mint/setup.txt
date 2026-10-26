@@ -1,0 +1,29 @@
+./belgian-azerty-windows_0.9.6_all.deb: OK
+./keyd-belgian-windows_0.9.6_all.deb: OK
+./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb: OK
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
+Choices: profile windows (default), numpad decimal period (default), Caps Lock windows (from the profile)
+  [32m✔[0m setxkbmap be  (options terminate:ctrl_alt_bksp,caps:be_windows)
+  [32m✔[0m Cinnamon libgnomekbd layouts set
+  [32m✔[0m Cinnamon input-sources set
+  [32m✔[0m Cinnamon numpad decimal: period, Caps Lock: windows
+  · fast typing: ibus skip brought up to date for mint (see: be-azerty-fix ibus-skip)
+  · This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+XDG_SESSION_TYPE=x11 GTK_IM_MODULE=ibus
+-- VS Code
+-rw-rw-r-- 1 mint mint 243172986 Oct 22 18:33 /tmp/code.deb
+e459729dee13758960924be07157da44f0ba69503ab5edf4586fcde936bac9b9  /tmp/code.deb
+Package: code
+Version: 1.143.1-1792691907
+Maintainer: Microsoft Corporation <vscode-linux@microsoft.com>
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for shared-mime-info (2.4-4) ...
+1.143.1
+e646868227c3e3a9e3f24277c8c7220be42c0be7
+-- be-azerty-fix ibus-skip
+ibus skip for mint:
+  · automatic: on (default of the Windows profile): the Terminal and the text editor skip ibus; turn off: be-azerty-fix ibus-skip auto off
+  · org.gnome.Terminal (automatic): skips ibus from its next start (still running with ibus: close all its windows)
+  [32m✔[0m org.x.editor (automatic): skips ibus (menu entry /home/mint/.local/share/applications/org.x.editor.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all

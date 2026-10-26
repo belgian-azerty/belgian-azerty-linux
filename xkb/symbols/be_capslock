@@ -1,0 +1,29 @@
+// Caps Lock as on Windows "Belgian (Period)" / "Belgian (Comma)" (KBDBE / KBDBENE): every key of the main block
+// that has CAPLOK on Windows gives its Shift level with Caps Lock, and Shift+Caps Lock gives the base level again.
+// Letters already behave like this; this changes the digits row and the punctuation keys. ² and < stay as they are,
+// as on Windows. AltGr symbols are not affected by Caps Lock (Lock+LevelThree = Level3).
+// Same mechanism as xkeyboard-config's capslock(digits_row) (2.42+), extended to the punctuation keys.
+hidden partial alphanumeric_keys
+xkb_symbols "windows" {
+    key.type[group1] = "FOUR_LEVEL_SEMIALPHABETIC";
+    key <AE01> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE02> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE03> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE04> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE05> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE06> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE07> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE08> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE09> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE10> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE11> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE12> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AD11> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AD12> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AC11> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <BKSL> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB07> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB08> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB09> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB10> { [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+};

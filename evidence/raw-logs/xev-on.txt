@@ -1,0 +1,359 @@
+Outer window is 0x4600001, inner window is 0x4600002
+
+KeymapNotify event, serial 24, synthetic NO, window 0x0,
+    keys:  186 0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+           0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+
+KeymapNotify event, serial 24, synthetic NO, window 0x0,
+    keys:  186 0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+           0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+
+KeymapNotify event, serial 24, synthetic NO, window 0x0,
+    keys:  186 0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+           0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+
+KeyPress event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696442, (149,107), root:(949,219),
+    state 0x0, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696450, (149,107), root:(949,219),
+    state 0x4, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696463, (149,107), root:(949,219),
+    state 0xc, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696463, (149,107), root:(949,219),
+    state 0x4, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696463, (149,107), root:(949,219),
+    state 0x84, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696463, (149,107), root:(949,219),
+    state 0x80, keycode 11 (keysym 0x40, at), same_screen YES,
+    XLookupString gives 1 bytes: (40) "@"
+    XmbLookupString gives 1 bytes: (40) "@"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696470, (149,107), root:(949,219),
+    state 0x80, keycode 11 (keysym 0x40, at), same_screen YES,
+    XLookupString gives 1 bytes: (40) "@"
+    XFilterEvent returns: False
+
+KeyPress event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696475, (149,107), root:(949,219),
+    state 0x80, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696475, (149,107), root:(949,219),
+    state 0x88, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696475, (149,107), root:(949,219),
+    state 0x8, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696481, (149,107), root:(949,219),
+    state 0xc, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 25, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4696493, (149,107), root:(949,219),
+    state 0x4, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697242, (149,107), root:(949,219),
+    state 0x0, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697249, (149,107), root:(949,219),
+    state 0x4, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697262, (149,107), root:(949,219),
+    state 0xc, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697262, (149,107), root:(949,219),
+    state 0x4, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697262, (149,107), root:(949,219),
+    state 0x84, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697262, (149,107), root:(949,219),
+    state 0x80, keycode 26 (keysym 0x20ac, EuroSign), same_screen YES,
+    XLookupString gives 3 bytes: (e2 82 ac) "€"
+    XmbLookupString gives 3 bytes: (e2 82 ac) "€"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697272, (149,107), root:(949,219),
+    state 0x80, keycode 26 (keysym 0x20ac, EuroSign), same_screen YES,
+    XLookupString gives 3 bytes: (e2 82 ac) "€"
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697272, (149,107), root:(949,219),
+    state 0x80, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697272, (149,107), root:(949,219),
+    state 0x88, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697272, (149,107), root:(949,219),
+    state 0x8, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697280, (149,107), root:(949,219),
+    state 0xc, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4697290, (149,107), root:(949,219),
+    state 0x4, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698043, (149,107), root:(949,219),
+    state 0x0, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698053, (149,107), root:(949,219),
+    state 0x4, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698061, (149,107), root:(949,219),
+    state 0xc, keycode 28 (keysym 0x74, t), same_screen YES,
+    XLookupString gives 1 bytes: (14) ""
+    XmbLookupString gives 1 bytes: (14) ""
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698072, (149,107), root:(949,219),
+    state 0xc, keycode 28 (keysym 0x74, t), same_screen YES,
+    XLookupString gives 1 bytes: (14) ""
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698081, (149,107), root:(949,219),
+    state 0xc, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698092, (149,107), root:(949,219),
+    state 0x4, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698844, (149,107), root:(949,219),
+    state 0x0, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698853, (149,107), root:(949,219),
+    state 0x80, keycode 11 (keysym 0x40, at), same_screen YES,
+    XLookupString gives 1 bytes: (40) "@"
+    XmbLookupString gives 1 bytes: (40) "@"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698862, (149,107), root:(949,219),
+    state 0x80, keycode 11 (keysym 0x40, at), same_screen YES,
+    XLookupString gives 1 bytes: (40) "@"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4698872, (149,107), root:(949,219),
+    state 0x80, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4699642, (149,107), root:(949,219),
+    state 0x0, keycode 11 (keysym 0xe9, eacute), same_screen YES,
+    XLookupString gives 2 bytes: (c3 a9) "é"
+    XmbLookupString gives 2 bytes: (c3 a9) "é"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4699653, (149,107), root:(949,219),
+    state 0x0, keycode 11 (keysym 0xe9, eacute), same_screen YES,
+    XLookupString gives 2 bytes: (c3 a9) "é"
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4700445, (149,107), root:(949,219),
+    state 0x0, keycode 66 (keysym 0xffe5, Caps_Lock), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4700454, (149,107), root:(949,219),
+    state 0x2, keycode 66 (keysym 0xffe5, Caps_Lock), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701253, (149,107), root:(949,219),
+    state 0x2, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701259, (149,107), root:(949,219),
+    state 0x6, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701267, (149,107), root:(949,219),
+    state 0xe, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701267, (149,107), root:(949,219),
+    state 0x6, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701267, (149,107), root:(949,219),
+    state 0x86, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701268, (149,107), root:(949,219),
+    state 0x82, keycode 11 (keysym 0x40, at), same_screen YES,
+    XLookupString gives 1 bytes: (40) "@"
+    XmbLookupString gives 1 bytes: (40) "@"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701275, (149,107), root:(949,219),
+    state 0x82, keycode 11 (keysym 0x40, at), same_screen YES,
+    XLookupString gives 1 bytes: (40) "@"
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701275, (149,107), root:(949,219),
+    state 0x82, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701275, (149,107), root:(949,219),
+    state 0x8a, keycode 108 (keysym 0xfe03, ISO_Level3_Shift), same_screen YES,
+    XKeysymToKeycode returns keycode: 92
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701275, (149,107), root:(949,219),
+    state 0xa, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701286, (149,107), root:(949,219),
+    state 0xe, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4701295, (149,107), root:(949,219),
+    state 0x6, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyPress event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4702048, (149,107), root:(949,219),
+    state 0x2, keycode 66 (keysym 0xffe5, Caps_Lock), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 28, synthetic NO, window 0x4600001,
+    root 0x238, subw 0x0, time 4702056, (149,107), root:(949,219),
+    state 0x2, keycode 66 (keysym 0xffe5, Caps_Lock), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False

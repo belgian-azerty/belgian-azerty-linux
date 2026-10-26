@@ -1,0 +1,60 @@
+== stock ISOs (sha256; Mint = mirrors.edge.kernel.org/linuxmint/stable/22.3/sha256sum.txt, Zorin = the ISO of every earlier run)
+a081ab202cfda17f6924128dbd2de8b63518ac0531bcfe3f1a1b88097c459bd4  mint.iso
+44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5  zorin.iso
+== built 2026-10-25 ~02:17-02:19Z: MENU=b PACKAGES=dist tools/make_belgian_iso.sh IN OUT (cloud container, root)
+5d5532a22c86af5aa7c3b919f9d3828e2c79188de2dc6b702726b50daf7899c2  zorin-belgian-stick.iso
+e4b3f0186666ef52bb3cdbb260e931cfc36baa84626f2234e59167645940512b  mint-belgian-stick.iso
+-rw-r--r-- 1 root root 3095003136 Oct 25 02:19 <build dir>/iso/mint-belgian-stick.iso
+-rw-r--r-- 1 root root 3915448320 Oct 25 02:17 <build dir>/iso/zorin-belgian-stick.iso
+== packages inside the zorin stick's /belgian/
+7a52855e30a00b9b26d0efc2361387f867723844f03ce9fa73aa213ed671204e  belgian-azerty-windows_0.9.4_all.deb
+f9de04365e1c601a82101f3e29e3f624d9dfeedb629a564ed4222405dd33589c  keyd-belgian-windows_0.9.4_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+== packages inside the mint stick's /belgian/
+7a52855e30a00b9b26d0efc2361387f867723844f03ce9fa73aa213ed671204e  belgian-azerty-windows_0.9.4_all.deb
+f9de04365e1c601a82101f3e29e3f624d9dfeedb629a564ed4222405dd33589c  keyd-belgian-windows_0.9.4_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+== build log (the first Mint attempt failed: the shell's working directory on the network mount vanished; rerun with absolute paths)
+== zorin
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /boot/grub/loopback.cfg (12 boot entries)
+patched /isolinux/menuentries.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (6.1M layer)
+updated /md5sum.txt (8 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/zorin-belgian-stick.iso
+exit 0
+== mint
+shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+Traceback (most recent call last):
+  File "<frozen importlib._bootstrap_external>", line 1517, in _path_importer_cache
+KeyError: 'tools'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tools/belgian_boot_menu.py", line 17, in <module>
+    import re
+  File "<frozen importlib._bootstrap>", line 1369, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1265, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1560, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1532, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1519, in _path_importer_cache
+  File "<frozen importlib._bootstrap_external>", line 1495, in _path_hooks
+  File "<frozen importlib._bootstrap_external>", line 1721, in path_hook_for_FileFinder
+  File "<frozen importlib._bootstrap_external>", line 1611, in __init__
+  File "<frozen importlib._bootstrap_external>", line 195, in _path_abspath
+FileNotFoundError: [Errno 2] No such file or directory
+exit 1
+== mint (rerun)
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /isolinux/live.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+added the package layer and /belgian/ (5.4M layer)
+updated /md5sum.txt (7 checksums)
+checked: every boot menu and added file matches /md5sum.txt
+wrote <build dir>/iso/mint-belgian-stick.iso
+exit 0

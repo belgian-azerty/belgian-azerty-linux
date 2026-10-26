@@ -1,0 +1,6 @@
+wayland
+total 8
+drwx------  2 zorin zorin   60 oct 24 02:35 .
+drwxr-xr-x 16 zorin zorin  480 oct 24 02:21 ..
+-rw-rw-r--  1 zorin zorin 4948 oct 24 02:35 user
+0

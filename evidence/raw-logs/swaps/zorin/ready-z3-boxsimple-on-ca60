@@ -1,0 +1,1 @@
+start app=box4 env=[start GTK_IM_MODULE=simple] 17:01:13.742Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.24 0.40 0.68

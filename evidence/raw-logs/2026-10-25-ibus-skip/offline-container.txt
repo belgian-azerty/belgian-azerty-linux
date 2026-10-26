@@ -1,0 +1,45 @@
+ibus skip for root:
+  · no app skips ibus (the default). Turn it on per app: be-azerty-fix ibus-skip on terminal
+PASS 1 default: nothing on, no files
+  [32m✔[0m org.gnome.Terminal: skips ibus (drop-in for gnome-terminal-server.service)
+  [32m✔[0m org.gnome.TextEditor: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/org.gnome.TextEditor.desktop)
+  · takes effect the next time org.gnome.TextEditor starts from the menu or the dock; close it completely first
+  [32m✔[0m code: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/code.desktop)
+  · takes effect the next time code starts from the menu or the dock; close it completely first
+  [32m✔[0m org.gnome.Calculator: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/org.gnome.Calculator.desktop)
+  · takes effect the next time org.gnome.Calculator starts from the menu or the dock; close it completely first
+  [32m✔[0m org.kde.kate: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/org.kde.kate.desktop)
+  · org.kde.kate looks like a Qt/KDE app: GTK_IM_MODULE has no effect there
+  · takes effect the next time org.kde.kate starts from the menu or the dock; close it completely first
+PASS 2 on: exit 0
+PASS 3 terminal: drop-in, no menu copy
+PASS 4 text editor: copy, both Exec lines prefixed
+PASS 5 text editor: marker in [Desktop Entry], DBusActivatable gone
+PASS 6 code: field codes kept
+PASS 7 everything else unchanged
+PASS 8 DBusActivatable=true app: removed, so Exec is used
+PASS 9 Qt app warned
+PASS 10 list has 5 ids
+/tmp/tmp.PpeqjrrSLe/home/.local/share/applications/code.desktop: hint: value item "TextEditor" in key "Categories" in group "Desktop Entry" can be extended with another category among the following categories: Utility
+PASS 11 copies validate
+PASS 12 on twice: listed once
+ibus skip for root:
+  [32m✔[0m org.gnome.Terminal: skips ibus (drop-in for gnome-terminal-server.service)
+  [32m✔[0m org.gnome.TextEditor: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/org.gnome.TextEditor.desktop)
+  [32m✔[0m code: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/code.desktop)
+  [32m✔[0m org.gnome.Calculator: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/org.gnome.Calculator.desktop)
+  [32m✔[0m org.kde.kate: skips ibus (menu entry /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/org.kde.kate.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo: be-azerty-fix ibus-skip off --all
+PASS 13 list shows all on
+PASS 14 refresh follows an updated menu file
+PASS 15 removed app: copy gone, still listed
+  [31m✘[0m mine: you already have your own /tmp/tmp.PpeqjrrSLe/home/.local/share/applications/mine.desktop; not touching it (put env GTK_IM_MODULE=gtk-im-context-simple in front of its Exec= lines by hand)
+PASS 16 own copy refused, unchanged, not listed
+PASS 17 unknown app: error, not listed
+PASS 18 off one: copy gone, others stay
+PASS 19 off terminal: drop-in and its dir gone
+PASS 20 list deleted: refresh removes marked files only
+PASS 21 off --all: back to nothing but the user's own file
+PASS 22 refresh with nothing listed: no-op, exit 0
+PASS 23 unknown subcommand: usage, exit 1
+passed 23, failed 0

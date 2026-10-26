@@ -1,0 +1,5 @@
+== m-skip (skip) 20:04:00, launched with: /home/mint/.local/share/applications/com.microsoft.VSCode.desktop
+Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F
+pid 3423 /usr/share/code/code /tmp/vsc-m-skip.txt : GTK_IM_MODULE unset, im-ibus loaded: 0
+pid 3430 /usr/share/code/code --type=zygote --no-zygote-sandbox : GTK_IM_MODULE unset, im-ibus loaded: 0
+pid 3431 /usr/share/code/code --type=zygote : GTK_IM_MODULE unset, im-ibus loaded: 0

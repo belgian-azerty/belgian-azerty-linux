@@ -1,0 +1,3 @@
+$ be-azerty-fix ibus-skip on vscode
+  [31m✘[0m code: no menu file code.desktop found (is the app installed? see: ls /usr/share/applications)
+exit 1

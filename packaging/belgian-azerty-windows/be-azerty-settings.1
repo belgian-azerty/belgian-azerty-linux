@@ -1,0 +1,27 @@
+.TH BE-AZERTY-SETTINGS 1 "2026-10-25" "belgian-azerty-windows 0.9.7" "User Commands"
+.SH NAME
+be-azerty-settings \- window to switch the Belgian keyboard profile and numpad decimal key
+.SH SYNOPSIS
+.B be-azerty-settings
+.SH DESCRIPTION
+Opens the "Belgian keyboard" window (also in the app menu). It offers the four
+combinations of the profile (Windows: Ctrl+Alt works as AltGr and Caps Lock as
+on Windows, except on GNOME (Zorin), where Caps Lock stays Linux unless
+.B be-azerty-fix
+is run with CAPS=windows; Linux standard: Caps Lock for letters only) and the numpad decimal
+key (period or comma), with the current one selected. After a choice it asks
+for an administrator password and runs
+.B be-azerty-fix system PROFILE=... DECIMAL=...
+through
+.BR pkexec (1).
+The button "Fast typing" opens a tick box for the automatic ibus skip of the
+Terminal, the text editor and VS Code (see
+.BR be-azerty-fix (8),
+.BR ibus-skip ).
+It is per user and asks for no password; it runs
+.BR "be-azerty-fix ibus-skip auto on" | off .
+The texts follow the language of the session (Dutch, French, German, otherwise
+English). Needs
+.BR zenity (1).
+.SH SEE ALSO
+.BR be-azerty-fix (8)

@@ -1,0 +1,27 @@
+== ibus 02:16:27
+shell in this terminal: GTK_IM_MODULE=(unset)
+pid 3175 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE unset
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  · no app skips ibus (the default). Turn it on per app: be-azerty-fix ibus-skip on terminal
+-- files
+ls: cannot access '/home/zorin/.config/systemd/user/*.d/': No such file or directory
+ls: cannot access '/home/zorin/.config/belgian-azerty/': No such file or directory
+/home/zorin/.local/share/applications/:
+total 0
+drwx------  2 zorin zorin  40 Oct 25 01:46 .
+drwx------ 15 zorin zorin 340 Oct 25 02:05 ..
+-- systemctl --user cat gnome-terminal-server
+# /usr/lib/systemd/user/gnome-terminal-server.service
+[Unit]
+Description=GNOME Terminal Server
+PartOf=graphical-session.target
+[Service]
+Slice=app-org.gnome.Terminal.slice
+Type=dbus
+BusName=org.gnome.Terminal
+ExecStart=/usr/libexec/gnome-terminal-server
+TimeoutStopSec=5s
+KillMode=process
+-- typebox info
+pid=4209 gtk=4 GTK_IM_MODULE=(unset) context=ibus ibus_module_loaded=True session=x11

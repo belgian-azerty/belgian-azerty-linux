@@ -1,0 +1,7 @@
+# ckbcomp (console-setup 1.226ubuntu1.1) with and without caps:be_windows, belgian-azerty-windows 0.9.0 installed, Ubuntu 24.04 container, Sat Oct 24 03:57:21 UTC 2026
+installed: belgian-azerty-windows	0.9.0
+stderr plain:  | stderr caps: 
+lines: 142 vs 142
+--- diff (empty = identical console keymap):
+--- end diff, rc=0
+purged

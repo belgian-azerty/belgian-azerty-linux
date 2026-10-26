@@ -1,0 +1,81 @@
+cinnamon schema present here: 0
+=== S1 Zorin upgraded from 0.9.4.1, saved CAPS=windows, no desktop var (GNOME by fallback)
+choices before: PROFILE=windows DECIMAL=period CAPS=windows 
+env: 
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock windows (kept from the last run).
+  [32m✔[0m /etc/default/keyboard written (options: caps:be_windows)
+choices after:  PROFILE=windows DECIMAL=period CAPS=windows 
+XKBOPTIONS:     XKBOPTIONS="caps:be_windows"
+check:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  · GNOME: after a Caps Lock tap in a password field (lock screen, password dialog) 2 6 7 9 0 % can stop working until you log out and in (README, "Caps Lock on Zorin")
+=== S2 Zorin fresh, no choices file
+choices before: (no file)
+env: 
+Choices: profile windows (default), numpad decimal period (default), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+choices after:  PROFILE=windows DECIMAL=period CAPS=linux 
+XKBOPTIONS:     XKBOPTIONS=""
+check:
+  · Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on); switch: sudo PROFILE=linux be-azerty-fix system
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  [32m✔[0m Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=linux 
+=== S3 stick fallback file (no CAPS line), GNOME by fallback (first-boot service)
+choices before: PROFILE=windows DECIMAL=period 
+env: 
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+choices after:  PROFILE=windows DECIMAL=period CAPS=linux 
+XKBOPTIONS:     XKBOPTIONS=""
+check:
+  · Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on); switch: sudo PROFILE=linux be-azerty-fix system
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  [32m✔[0m Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=linux 
+=== S4 stick fallback file, XDG_CURRENT_DESKTOP=X-Cinnamon (Mint)
+choices before: PROFILE=windows DECIMAL=period 
+env: XDG_CURRENT_DESKTOP=X-Cinnamon
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock windows (from the profile).
+  [32m✔[0m /etc/default/keyboard written (options: caps:be_windows)
+choices after:  PROFILE=windows DECIMAL=period CAPS=windows 
+XKBOPTIONS:     XKBOPTIONS="caps:be_windows"
+check:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  [32m✔[0m Caps Lock option files present
+=== S5 GNOME, CAPS=windows given (opt-in)
+choices before: PROFILE=windows DECIMAL=period CAPS=linux 
+env: CAPS=windows XDG_CURRENT_DESKTOP=GNOME
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock windows (given).
+  [32m✔[0m /etc/default/keyboard written (options: caps:be_windows)
+choices after:  PROFILE=windows DECIMAL=period CAPS=windows 
+XKBOPTIONS:     XKBOPTIONS="caps:be_windows"
+check:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  · GNOME: after a Caps Lock tap in a password field (lock screen, password dialog) 2 6 7 9 0 % can stop working until you log out and in (README, "Caps Lock on Zorin")
+=== S6 GNOME, window picks Windows profile (PROFILE=windows given) after S5 saved CAPS=windows
+choices before: PROFILE=windows DECIMAL=period CAPS=windows 
+env: PROFILE=windows XDG_CURRENT_DESKTOP=zorin:GNOME
+Choices: profile windows (given), numpad decimal period (kept from the last run), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+choices after:  PROFILE=windows DECIMAL=period CAPS=linux 
+XKBOPTIONS:     XKBOPTIONS=""
+check:
+  · Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on); switch: sudo PROFILE=linux be-azerty-fix system
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  [32m✔[0m Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=linux 
+=== S7 GNOME, no choices file (repeat of S2 with the desktop variable set)
+choices before: (no file)
+env: XDG_CURRENT_DESKTOP=GNOME
+Choices: profile windows (default), numpad decimal period (default), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+choices after:  PROFILE=windows DECIMAL=period CAPS=linux 
+XKBOPTIONS:     XKBOPTIONS=""
+check:
+  · Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on); switch: sudo PROFILE=linux be-azerty-fix system
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  [32m✔[0m Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=linux 

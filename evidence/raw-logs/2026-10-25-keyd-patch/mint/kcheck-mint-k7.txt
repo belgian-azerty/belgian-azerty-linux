@@ -1,0 +1,11 @@
+# /root/be-rig/k94/uploads/keylog-mint-k7-1.txt: devices ['keyd virtual keyboard']
+  line 1: RIGHTALT down x1, before 1st symbol [LEFTCTRL:d LEFTALT:d LEFTALT:u RIGHTALT:d LEFTCTRL:u], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 74 ms
+# /root/be-rig/k94/uploads/keylog-mint-k7-2.txt: devices ['keyd virtual keyboard']
+  line 1: RIGHTALT down x1, before 1st symbol [LEFTCTRL:d LEFTALT:d LEFTALT:u RIGHTALT:d LEFTCTRL:u], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 75 ms
+# /root/be-rig/k94/uploads/keylog-mint-k7-3.txt: devices ['keyd virtual keyboard']
+  line 1: RIGHTALT down x1, before 1st symbol [LEFTCTRL:d LEFTALT:d LEFTALT:u RIGHTALT:d LEFTCTRL:u], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 76 ms
+# /root/be-rig/k94/uploads/keylog-mint-k7-4.txt: devices ['keyd virtual keyboard']
+  line 1: RIGHTALT down x1, before 1st symbol [LEFTCTRL:d LEFTALT:d LEFTALT:u RIGHTALT:d LEFTCTRL:u], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 74 ms
+# /root/be-rig/k94/uploads/keylog-mint-k7-5.txt: devices ['keyd virtual keyboard']
+  line 1: RIGHTALT down x1, before 1st symbol [LEFTCTRL:d LEFTALT:d LEFTALT:u RIGHTALT:d LEFTCTRL:u], 16 symbols, 32 events in symbol span (2.00/symbol), Ctrl/Alt events inside: 0, max gap 72 ms
+lines flagged: 0

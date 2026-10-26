@@ -1,0 +1,1 @@
+test deb (NOT a release build): 0.9.6.1 deb with the 4 staged files swapped in, a59fc00d8e77f32882a58c8e108217931eab066d4caafa822491a8f132813cc9

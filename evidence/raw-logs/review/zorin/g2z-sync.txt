@@ -1,0 +1,4 @@
+active
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+IBUS_ENABLE_SYNC_MODE=1
+grep: /var/lib/AccountsService/users/zorin: Permission non accordée

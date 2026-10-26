@@ -1,0 +1,4 @@
+2026-10-25T04:44:05Z produce try 4
+2026-10-25T04:44:17Z p4-before  | guest 05:44:17 LED=00
+2026-10-25T04:44:51Z seq.txt + ret ctrl-d into the dialog
+2026-10-25T04:45:14Z p4-after  | guest 05:45:13 LED=00

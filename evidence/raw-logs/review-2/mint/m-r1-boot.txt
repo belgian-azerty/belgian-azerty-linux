@@ -1,0 +1,25 @@
+sam 24 oct 2026 05:06:07 UTC
+BOOT_IMAGE=/casper/vmlinuz boot=casper uuid=6e72f523-dc09-4880-8910-93ffa64401c5 username=mint hostname=mint iso-scan/filename= quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 --
+--- secure boot:
+SecureBoot enabled
+   6   0   0   0   1
+--- boot medium:
+TARGET SOURCE    FSTYPE  OPTIONS
+/cdrom /dev/sda1 iso9660 ro,noatime,nojoliet,check=s,map=n,blocksize=2048,iocharset=utf8
+NAME   TRAN    SIZE TYPE MOUNTPOINT
+loop0          2,5G loop /rofs
+sda    usb     2,9G disk 
+├─sda1         2,9G part /cdrom
+└─sda2           5M part 
+sr0    sata   1024M rom  
+--- md5 check:
+● casper-md5check.service - casper-md5check Verify Live ISO checksums
+     Loaded: loaded (/usr/lib/systemd/system/casper-md5check.service; enabled; preset: enabled)
+     Active: active (exited) since Sat 2026-10-24 05:05:02 UTC; 1min 6s ago
+    Process: 1598 ExecStart=/usr/lib/casper/casper-md5check /cdrom /cdrom/md5sum.txt (code=exited, status=0/SUCCESS)
+   Main PID: 1598 (code=exited, status=0/SUCCESS)
+{
+  "checksum_missmatch": [
+],
+  "result": "pass"
+}

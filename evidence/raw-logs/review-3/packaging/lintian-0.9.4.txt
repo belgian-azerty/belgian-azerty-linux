@@ -1,0 +1,24 @@
+== belgian-azerty-windows_0.9.4_all.deb
+A future release will drop --no-tag-display-limit; please use '--tag-display-limit 0' instead.
+running with root privileges is not recommended!
+== keyd-application-mapper_2.5.0-5~ubuntu24.04.2_all.deb
+A future release will drop --no-tag-display-limit; please use '--tag-display-limit 0' instead.
+running with root privileges is not recommended!
+== keyd-belgian-windows_0.9.4_all.deb
+A future release will drop --no-tag-display-limit; please use '--tag-display-limit 0' instead.
+running with root privileges is not recommended!
+== keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+A future release will drop --no-tag-display-limit; please use '--tag-display-limit 0' instead.
+running with root privileges is not recommended!
+W: keyd: wrong-name-for-upstream-changelog [usr/share/doc/keyd/CHANGELOG.md.gz]
+== belgian-azerty-windows_0.9.4.dsc
+A future release will drop --no-tag-display-limit; please use '--tag-display-limit 0' instead.
+running with root privileges is not recommended!
+== keyd-belgian-windows_0.9.4.dsc
+A future release will drop --no-tag-display-limit; please use '--tag-display-limit 0' instead.
+running with root privileges is not recommended!
+== keyd_2.5.0-5~ubuntu24.04.2.dsc
+A future release will drop --no-tag-display-limit; please use '--tag-display-limit 0' instead.
+running with root privileges is not recommended!
+W: keyd source: binary-nmu-debian-revision-in-source 2.5.0-5~ubuntu24.04.2
+W: keyd source: newer-standards-version 4.7.2 (current is 4.6.2)

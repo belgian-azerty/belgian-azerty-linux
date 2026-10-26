@@ -1,0 +1,8 @@
+2026-10-25T04:33:41Z produce try 2
+2026-10-25T04:33:53Z p2-before  | guest 05:33:52 LED=00
+2026-10-25T04:34:26Z seq.txt + ret ctrl-d into the dialog
+2026-10-25T04:34:49Z p2-after  | guest 05:34:48 LED=00
+2026-10-25T04:38:03Z produce try 3
+2026-10-25T04:38:15Z p3-before  | guest 05:38:14 LED=00
+2026-10-25T04:38:48Z seq.txt + ret ctrl-d into the dialog
+2026-10-25T04:39:11Z p3-after  | guest 05:39:10 LED=00

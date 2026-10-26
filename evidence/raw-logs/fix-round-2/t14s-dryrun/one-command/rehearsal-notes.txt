@@ -1,0 +1,36 @@
+One-command T14s test (run-test.sh) rehearsals, 2026-10-24, cloud QEMU (TCG, ~20x slower than a laptop).
+Stick: the Rufus-like 8 GB FAT32 image (ISO-mode copy of zorin-belgian.iso + t14s-test folder), booted as a USB
+stick under UEFI WITHOUT Secure Boot, --cpu Nehalem --vga virtio --mem 5120.
+Keys are sent by the host (qemu_rig.py keys, 0.12 s apart); text read back by OCR, no screenshots kept.
+
+Rehearsal 1 (11:21-12:02Z), results file read back from the stick image after power-off:
+belgian-t14s-results-from-stick.txt (the file Younes will bring back).
+- Setup: files checked, packages installed, be-azerty-fix system all ticks, facts collected. OK.
+- Layout check Xorg and Wayland: azerty1234567890 (Caps Lock like Windows). OK.
+- Xorg A-D: planted wrong character in A line 3 -> reported as ANOMALY. Block D: all keys sent right after ibus was
+  stopped were lost (prompt showed nothing); one hand-typed probe line went in afterwards. -> FIX: flush early keys,
+  then "Press Enter when you are ready for this block" before every block.
+- VS Code: no internet in the VM -> "skipped, no internet" (Enter) and "skipped by choice" (s). Download path not
+  exercised here (no internet in the guest).
+- Switch to Wayland: gdm restarted, autologin into Wayland worked, the autostart entry ran, but gnome-terminal failed:
+  "Error constructing proxy for org.gnome.Terminal ... StartServiceByName ... timeout" (user journal) -> no terminal.
+  Manual fallback (Ctrl+Alt+T + same command) resumed correctly ("Welcome back ... now on Wayland").
+  -> FIX: autostart runs a small resume script that retries gnome-terminal 6 times, 10 s apart, then shows a
+  notification with the command.
+- Wayland A-D: the known emulator swaps (A 0/5, B 1/5, C 2/5, D 5/5), all reported as ANOMALY lines; dropped keys
+  were counted but not listed -> FIX: dropped/doubled keys are now an ANOMALY line too (named as typing slip or lost key).
+- Results written to the live desktop and to the stick (remount rw + sudo cp), present on the stick after power-off.
+- Cosmetic: colour codes from be-azerty-fix in the results -> stripped. Secure Boot "unknown" (no mokutil in the live
+  system) -> read from the EFI variable instead.
+
+Rehearsal 2 (12:04-12:37Z), same stick image with the fixed script (sha256 in t14s-test/SHA256SUMS):
+belgian-t14s-results-rehearsal-2-from-stick.txt.
+- Setup, facts, layout check Xorg + Wayland: OK; no colour codes in the file any more.
+- Xorg A-D all 5/5. Block D keys were deliberately sent before the prompt again: the early keys were flushed and the
+  block still collected its lines (one early Enter answered the ready prompt; a real user waits for the prompt).
+- Switch to Wayland: the terminal REOPENED BY ITSELF and the test carried on ("Layout check (wayland)" on screen with
+  no key sent by the host). Fix confirmed.
+- Wayland: the known emulator swaps again (A 0/5, B 2/5, C 1/5, D 5/5), one dropped key, one 'lagging behind'
+  journal message: all listed as anomalies in the summary. VS Code skipped by choice both times.
+- Results file present on the stick image after power-off. Secure Boot shows "unknown" here because this OVMF build
+  has no SecureBoot variable; on a real UEFI laptop it reads enabled/disabled.

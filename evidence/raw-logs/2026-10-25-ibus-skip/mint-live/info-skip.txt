@@ -1,0 +1,45 @@
+== skip 04:15:35
+shell in this terminal: GTK_IM_MODULE=ibus
+pid 3089 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE=gtk-im-context-simple
+-- be-azerty-fix ibus-skip
+ibus skip for mint:
+  [32m✔[0m org.gnome.Terminal: skips ibus (running now without ibus)
+  [32m✔[0m be-typebox: skips ibus (menu entry /home/mint/.local/share/applications/be-typebox.desktop)
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo: be-azerty-fix ibus-skip off --all
+-- files
+/home/mint/.config/belgian-azerty/:
+total 4
+drwxrwxr-x  2 mint mint  60 Oct 25 03:56 .
+drwxr-xr-x 16 mint mint 440 Oct 25 03:56 ..
+-rw-rw-r--  1 mint mint  30 Oct 25 03:56 ibus-skip
+
+/home/mint/.config/systemd/user/gnome-terminal-server.service.d/:
+total 4
+drwxrwxr-x 2 mint mint  60 Oct 25 03:56 .
+drwxrwxr-x 3 mint mint  60 Oct 25 03:56 ..
+-rw-rw-r-- 1 mint mint 183 Oct 25 03:56 zz-belgian-azerty-ibus-skip.conf
+
+/home/mint/.local/share/applications/:
+total 8
+drwxr-xr-x  2 mint mint  80 Oct 25 03:56 .
+drwxr-xr-x 11 mint mint 240 Oct 25 03:32 ..
+-rw-rw-r--  1 mint mint 438 Oct 25 03:56 be-typebox.desktop
+-rw-r--r--  1 mint mint 508 Oct 25 03:16 webapp-OnlineChat4519.desktop
+-- systemctl --user cat gnome-terminal-server
+# /usr/lib/systemd/user/gnome-terminal-server.service
+[Unit]
+Description=GNOME Terminal Server
+PartOf=graphical-session.target
+[Service]
+Slice=app-org.gnome.Terminal.slice
+Type=dbus
+BusName=org.gnome.Terminal
+ExecStart=/usr/libexec/gnome-terminal-server
+TimeoutStopSec=5s
+KillMode=process
+# /home/mint/.config/systemd/user/gnome-terminal-server.service.d/zz-belgian-azerty-ibus-skip.conf
+# Written by be-azerty-fix ibus-skip (X-BelgianAzerty-IbusSkip). Remove with: be-azerty-fix ibus-skip off org.gnome.Terminal
+[Service]
+Environment=GTK_IM_MODULE=gtk-im-context-simple
+-- typebox info
+pid=3113 gtk=3 GTK_IM_MODULE=gtk-im-context-simple context=gtk-im-context-simple ibus_module_loaded=False session=x11

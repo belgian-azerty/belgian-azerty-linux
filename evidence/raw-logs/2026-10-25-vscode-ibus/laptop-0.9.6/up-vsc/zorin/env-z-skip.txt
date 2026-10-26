@@ -1,0 +1,5 @@
+== z-skip (skip) 20:17:24, launched with: /home/zorin/.local/share/applications/com.microsoft.VSCode.desktop
+Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F
+pid 4071 /usr/share/code/code /tmp/vsc-z-skip.txt : GTK_IM_MODULE unset, im-ibus loaded: 0
+pid 4078 /usr/share/code/code --type=zygote --no-zygote-sandbox : GTK_IM_MODULE unset, im-ibus loaded: 0
+pid 4079 /usr/share/code/code --type=zygote : GTK_IM_MODULE unset, im-ibus loaded: 0

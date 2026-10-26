@@ -1,0 +1,5 @@
+running with root privileges is not recommended!
+W: keyd source: binary-nmu-debian-revision-in-source 2.5.0-5~ubuntu24.04.1
+W: keyd source: newer-standards-version 4.7.2 (current is 4.6.2)
+W: keyd: wrong-name-for-upstream-changelog [usr/share/doc/keyd/CHANGELOG.md.gz]
+exit=0

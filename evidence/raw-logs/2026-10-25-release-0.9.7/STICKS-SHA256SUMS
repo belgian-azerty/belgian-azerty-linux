@@ -1,0 +1,5 @@
+# all-in-one sticks, boot menu B, packages 0.9.7 (keyd 2.5.0-5~ubuntu24.04.3), built 2026-10-25 20:37-20:39Z in the cloud
+# from stock Zorin 18.1 Core 44649b97... and Mint 22.3 Cinnamon a081ab20.... Images NOT in the shared folder (it cannot
+# hold multi-GB files): see dist/sticks/REBUILD.md. Earlier sticks: dist-archive/0.9.6/ and dist-archive/0.9.6.1/.
+f6c078a3b272b07ca63e19315f447875d30156e06f618900e4363226532a43dc  zorin-belgian-stick-0.9.7.iso
+5d189336e82ae3d40961afb7b7829befc87cd124b6c250cf98ba408b16d14b29  mint-belgian-stick-0.9.7.iso

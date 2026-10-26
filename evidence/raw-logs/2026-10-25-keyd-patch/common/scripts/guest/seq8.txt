@@ -1,0 +1,1 @@
+x ctrl-alt-2 x spc alt_r-2 spc caps_lock 1 2 caps_lock spc 1 2

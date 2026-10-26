@@ -1,0 +1,6 @@
+zab-r3-o-restore [altgr] typed lines 1: ok 1, order 0, count 0, other 0 | key log (keyd virtual keyboard): 1/1 lines in sent order, key gap median 125 ms min 103 ms
+start 22:21:54.258Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.36 0.58 0.69
+end 22:22:01.716Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.33 0.57 0.68
+lagging-behind messages during block: 0
+expected: @€@€@€@€@€@€@€@€
+  1 ok    @€@€@€@€@€@€@€@€   [keys in order]

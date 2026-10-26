@@ -1,0 +1,9 @@
+zi-after-relogin plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+zi-after-relogin LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-after-relogin AltGr: |@#{[^{}€[]'`~\
+zi-after-relogin Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+zi-after-relogin RCtrl+LAlt 2 e: @€
+zi-after-relogin Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+zi-after-relogin Caps+Shift same keys: ³&é"'(§èç!à)-^$ùµ,;:=>az
+zi-after-relogin Caps+AltGr: |@#{[^{}€[]'`~\
+zi-after-relogin order Ctrl+Alt 2 e x8: @€@€€€€@@@€@@€€@

@@ -1,0 +1,28 @@
+# Session 1 of the cloud bench (live Zorin OS 18.1 switched to Wayland, belgian-azerty-windows 0.9.4.1, keyd stopped).
+# The recorder's own file for this session was overwritten when session 2 started; these lines are copied verbatim
+# from the host-side `cat`/`tail` output of uploads/rec.log during the session (2026-10-25, times are guest UTC).
+# Row typed after each step (physical keys q, 2, 7, 0, apostrophe; each plain then with Shift):
+#   expected Caps off: aA é2 è7 à0 ù%     expected Caps on (Windows Caps Lock): Aa 2é 7è 0à %ù
+# LED = /sys/class/leds/input*::capslock/brightness read when the line was entered.
+session=wayland keyd=inactive engine=xkb:us::eng sources=[('xkb', 'be')] opts=['lv3:ralt_switch', 'caps:be_windows']
+round 1 04:54:34 LED=0  line=[baseline]
+round 2 04:54:51 LED=0  line=[aA é2 è7 à0 ù%]                 # no Caps: correct
+round 3 04:55:01 LED=1  line=[Aa 2é 7è à0 %ù]                 # Caps in the terminal: correct (à0 = emulator reorder at 0.25 s pace)
+round 4 04:55:11 LED=0  line=[aA é2 èà7 0 ù%]                 # Caps off again: correct (reorder at 0.25 s pace; pace 0.6 s afterwards)
+round 5 04:55:23 LED=0  line=[p]                              # opens the pkexec dialog; Caps tapped (QEMU sendkey, 100 ms), "ab" typed, Esc
+pkexec rc=126
+round 6 04:56:05 LED=1  line=[aA éé èè àà ùù]                 # DESYNC: LED on, letters as Caps off, digits lost
+round 7 04:56:39 LED=0  line=[Aa éé èè àà ùù]                 # one Caps tap in the terminal: the other bad state
+round 8 04:56:54 LED=0  line=[P]                              # dialog again, one 100 ms Caps tap, Esc
+pkexec rc=126
+round 9 04:57:25 LED=1  line=[Aa 2é 7è 0à %ù]                 # back in step (a second dialog tap flips it back)
+round 10 04:57:48 LED=1  line=[p]                             # dialog, Caps held 2500 ms, Esc
+pkexec rc=126
+round 11 04:58:22 LED=0  line=[aA é2 è7 à0 ù%]                # stays in step
+# trial.sh HOLD_MS (dialog, one Caps press held HOLD_MS, Esc, row), run in this order:
+hold=100: round 13 04:59:21 LED=1  line=[aA éé èè àà ùù]       # in step before -> out of step
+hold=1000: round 15 05:00:01 LED=0  line=[Aa éé èè àà ùù]      # stays out of step (both sides toggled once)
+hold=300: round 17 05:00:39 LED=1  line=[Aa 2é 7è 0à %ù]       # flips back in step
+hold=50: round 19 05:01:18 LED=0  line=[Aa éé èè àà ùù]        # out of step
+hold=2000: round 21 05:01:59 LED=1  line=[aA éé èè àà ùù]      # stays out of step (both toggled once)
+# Then (desync state, no ibus command): gnome-session-quit --logout, log in at GDM -> see rec-session2.

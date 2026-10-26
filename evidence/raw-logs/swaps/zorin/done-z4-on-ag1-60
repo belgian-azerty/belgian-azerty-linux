@@ -1,0 +1,3 @@
+start app=terminal env=[start] 17:50:17.228Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.38 0.32 0.33
+end app=terminal env=[end] 17:55:09.237Z keyd=active ibus=on session=wayland desktop=zorin:GNOME gtk_im=unset sync=unset engine=xkb:us::eng load=0.55 0.39 0.34
+lagging-behind messages during block: 0

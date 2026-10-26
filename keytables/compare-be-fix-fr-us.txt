@@ -1,0 +1,366 @@
+key   | combo               | be                     | be:lv3:ctrlalt_switch  | fr                     | us                    
+TLDE  | plain               | ²                      | ²                      | ²                      | `                     
+TLDE  | Shift               | ³                      | ³                      | ~                      | ~                     
+TLDE  | AltGr               | ¬                      | ¬                      | ¬                      | `                     
+TLDE  | Shift+AltGr         | ¬                      | ¬                      | ¬                      | ~                     
+TLDE  | LCtrl+LAlt          | ² [Ctrl+Alt not consumed] | ¬                      | ² [Ctrl+Alt not consumed] | <grave> [Ctrl+Alt not consumed]
+TLDE  | Shift+LCtrl+LAlt    | ³ [Ctrl+Alt not consumed] | ¬                      | <asciitilde> [Ctrl+Alt not consumed] | <asciitilde> [Ctrl+Alt not consumed]
+TLDE  | Caps                | ²                      | ²                      | ²                      | `                     
+TLDE  | Caps+AltGr          | ¬                      | ¬                      | ¬                      | `                     
+TLDE  | Caps+LCtrl+LAlt     | ² [Ctrl+Alt not consumed] | ¬                      | ² [Ctrl+Alt not consumed] | <grave> [Ctrl+Alt not consumed]
+AE01  | plain               | &                      | &                      | &                      | 1                     
+AE01  | Shift               | 1                      | 1                      | 1                      | !                     
+AE01  | AltGr               | |                      | |                      | ¹                      | 1                     
+AE01  | Shift+AltGr         | ¡                      | ¡                      | ¡                      | !                     
+AE01  | LCtrl+LAlt          | & [Ctrl+Alt not consumed] | |                      | & [Ctrl+Alt not consumed] | 1 [Ctrl+Alt not consumed]
+AE01  | Shift+LCtrl+LAlt    | 1 [Ctrl+Alt not consumed] | ¡                      | 1 [Ctrl+Alt not consumed] | ! [Ctrl+Alt not consumed]
+AE01  | Caps                | &                      | &                      | &                      | 1                     
+AE01  | Caps+AltGr          | |                      | |                      | ¹                      | 1                     
+AE01  | Caps+LCtrl+LAlt     | & [Ctrl+Alt not consumed] | |                      | & [Ctrl+Alt not consumed] | 1 [Ctrl+Alt not consumed]
+AE02  | plain               | é                      | é                      | é                      | 2                     
+AE02  | Shift               | 2                      | 2                      | 2                      | @                     
+AE02  | AltGr               | @                      | @                      | ~                      | 2                     
+AE02  | Shift+AltGr         | ⅛                      | ⅛                      | ⅛                      | @                     
+AE02  | LCtrl+LAlt          | é [Ctrl+Alt not consumed] | @                      | é [Ctrl+Alt not consumed] | <2> [Ctrl+Alt not consumed]
+AE02  | Shift+LCtrl+LAlt    | <2> [Ctrl+Alt not consumed] | ⅛                      | <2> [Ctrl+Alt not consumed] | <at> [Ctrl+Alt not consumed]
+AE02  | Caps                | É                      | É                      | É                      | 2                     
+AE02  | Caps+AltGr          | @                      | @                      | ~                      | 2                     
+AE02  | Caps+LCtrl+LAlt     | É [Ctrl+Alt not consumed] | @                      | É [Ctrl+Alt not consumed] | <2> [Ctrl+Alt not consumed]
+AE03  | plain               | "                      | "                      | "                      | 3                     
+AE03  | Shift               | 3                      | 3                      | 3                      | #                     
+AE03  | AltGr               | #                      | #                      | #                      | 3                     
+AE03  | Shift+AltGr         | £                      | £                      | £                      | #                     
+AE03  | LCtrl+LAlt          | " [Ctrl+Alt not consumed] | #                      | " [Ctrl+Alt not consumed] | <3> [Ctrl+Alt not consumed]
+AE03  | Shift+LCtrl+LAlt    | <3> [Ctrl+Alt not consumed] | £                      | <3> [Ctrl+Alt not consumed] | # [Ctrl+Alt not consumed]
+AE03  | Caps                | "                      | "                      | "                      | 3                     
+AE03  | Caps+AltGr          | #                      | #                      | #                      | 3                     
+AE03  | Caps+LCtrl+LAlt     | " [Ctrl+Alt not consumed] | #                      | " [Ctrl+Alt not consumed] | <3> [Ctrl+Alt not consumed]
+AE04  | plain               | '                      | '                      | '                      | 4                     
+AE04  | Shift               | 4                      | 4                      | 4                      | $                     
+AE04  | AltGr               | ¼                      | ¼                      | {                      | 4                     
+AE04  | LCtrl+LAlt          | ' [Ctrl+Alt not consumed] | ¼                      | ' [Ctrl+Alt not consumed] | <4> [Ctrl+Alt not consumed]
+AE04  | Shift+LCtrl+LAlt    | <4> [Ctrl+Alt not consumed] | $                      | <4> [Ctrl+Alt not consumed] | $ [Ctrl+Alt not consumed]
+AE04  | Caps                | '                      | '                      | '                      | 4                     
+AE04  | Caps+AltGr          | ¼                      | ¼                      | {                      | 4                     
+AE04  | Caps+LCtrl+LAlt     | ' [Ctrl+Alt not consumed] | ¼                      | ' [Ctrl+Alt not consumed] | <4> [Ctrl+Alt not consumed]
+AE05  | plain               | (                      | (                      | (                      | 5                     
+AE05  | Shift               | 5                      | 5                      | 5                      | %                     
+AE05  | AltGr               | ½                      | ½                      | [                      | 5                     
+AE05  | Shift+AltGr         | ⅜                      | ⅜                      | ⅜                      | %                     
+AE05  | LCtrl+LAlt          | ( [Ctrl+Alt not consumed] | ½                      | ( [Ctrl+Alt not consumed] | <5> [Ctrl+Alt not consumed]
+AE05  | Shift+LCtrl+LAlt    | <5> [Ctrl+Alt not consumed] | ⅜                      | <5> [Ctrl+Alt not consumed] | % [Ctrl+Alt not consumed]
+AE05  | Caps                | (                      | (                      | (                      | 5                     
+AE05  | Caps+AltGr          | ½                      | ½                      | [                      | 5                     
+AE05  | Caps+LCtrl+LAlt     | ( [Ctrl+Alt not consumed] | ½                      | ( [Ctrl+Alt not consumed] | <5> [Ctrl+Alt not consumed]
+AE06  | plain               | §                      | §                      | -                      | 6                     
+AE06  | Shift               | 6                      | 6                      | 6                      | ^                     
+AE06  | AltGr               | ^                      | ^                      | |                      | 6                     
+AE06  | Shift+AltGr         | ⅝                      | ⅝                      | ⅝                      | ^                     
+AE06  | LCtrl+LAlt          | § [Ctrl+Alt not consumed] | ^                      | - [Ctrl+Alt not consumed] | <6> [Ctrl+Alt not consumed]
+AE06  | Shift+LCtrl+LAlt    | <6> [Ctrl+Alt not consumed] | ⅝                      | <6> [Ctrl+Alt not consumed] | <asciicircum> [Ctrl+Alt not consumed]
+AE06  | Caps                | §                      | §                      | -                      | 6                     
+AE06  | Caps+AltGr          | ^                      | ^                      | |                      | 6                     
+AE06  | Caps+LCtrl+LAlt     | § [Ctrl+Alt not consumed] | ^                      | - [Ctrl+Alt not consumed] | <6> [Ctrl+Alt not consumed]
+AE07  | plain               | è                      | è                      | è                      | 7                     
+AE07  | Shift               | 7                      | 7                      | 7                      | &                     
+AE07  | AltGr               | {                      | {                      | `                      | 7                     
+AE07  | Shift+AltGr         | ⅞                      | ⅞                      | ⅞                      | &                     
+AE07  | LCtrl+LAlt          | è [Ctrl+Alt not consumed] | {                      | è [Ctrl+Alt not consumed] | <7> [Ctrl+Alt not consumed]
+AE07  | Shift+LCtrl+LAlt    | <7> [Ctrl+Alt not consumed] | ⅞                      | <7> [Ctrl+Alt not consumed] | & [Ctrl+Alt not consumed]
+AE07  | Caps                | È                      | È                      | È                      | 7                     
+AE07  | Caps+AltGr          | {                      | {                      | `                      | 7                     
+AE07  | Caps+LCtrl+LAlt     | È [Ctrl+Alt not consumed] | {                      | È [Ctrl+Alt not consumed] | <7> [Ctrl+Alt not consumed]
+AE08  | plain               | !                      | !                      | _                      | 8                     
+AE08  | Shift               | 8                      | 8                      | 8                      | *                     
+AE08  | AltGr               | [                      | [                      | \                      | 8                     
+AE08  | Shift+AltGr         | ™                      | ™                      | ™                      | *                     
+AE08  | LCtrl+LAlt          | ! [Ctrl+Alt not consumed] | [                      | <underscore> [Ctrl+Alt not consumed] | <8> [Ctrl+Alt not consumed]
+AE08  | Shift+LCtrl+LAlt    | <8> [Ctrl+Alt not consumed] | ™                      | <8> [Ctrl+Alt not consumed] | * [Ctrl+Alt not consumed]
+AE08  | Caps                | !                      | !                      | _                      | 8                     
+AE08  | Caps+AltGr          | [                      | [                      | \                      | 8                     
+AE08  | Caps+LCtrl+LAlt     | ! [Ctrl+Alt not consumed] | [                      | <underscore> [Ctrl+Alt not consumed] | <8> [Ctrl+Alt not consumed]
+AE09  | plain               | ç                      | ç                      | ç                      | 9                     
+AE09  | Shift               | 9                      | 9                      | 9                      | (                     
+AE09  | AltGr               | {                      | {                      | ^                      | 9                     
+AE09  | Shift+AltGr         | ±                      | ±                      | ±                      | (                     
+AE09  | LCtrl+LAlt          | ç [Ctrl+Alt not consumed] | {                      | ç [Ctrl+Alt not consumed] | 9 [Ctrl+Alt not consumed]
+AE09  | Shift+LCtrl+LAlt    | 9 [Ctrl+Alt not consumed] | ±                      | 9 [Ctrl+Alt not consumed] | ( [Ctrl+Alt not consumed]
+AE09  | Caps                | Ç                      | Ç                      | Ç                      | 9                     
+AE09  | Caps+AltGr          | {                      | {                      | ^                      | 9                     
+AE09  | Caps+LCtrl+LAlt     | Ç [Ctrl+Alt not consumed] | {                      | Ç [Ctrl+Alt not consumed] | 9 [Ctrl+Alt not consumed]
+AE10  | plain               | à                      | à                      | à                      | 0                     
+AE10  | Shift               | 0                      | 0                      | 0                      | )                     
+AE10  | AltGr               | }                      | }                      | @                      | 0                     
+AE10  | Shift+AltGr         | °                      | °                      | °                      | )                     
+AE10  | LCtrl+LAlt          | à [Ctrl+Alt not consumed] | }                      | à [Ctrl+Alt not consumed] | 0 [Ctrl+Alt not consumed]
+AE10  | Shift+LCtrl+LAlt    | 0 [Ctrl+Alt not consumed] | °                      | 0 [Ctrl+Alt not consumed] | ) [Ctrl+Alt not consumed]
+AE10  | Caps                | À                      | À                      | À                      | 0                     
+AE10  | Caps+AltGr          | }                      | }                      | @                      | 0                     
+AE10  | Caps+LCtrl+LAlt     | À [Ctrl+Alt not consumed] | }                      | À [Ctrl+Alt not consumed] | 0 [Ctrl+Alt not consumed]
+AE11  | plain               | )                      | )                      | )                      | -                     
+AE11  | Shift               | °                      | °                      | °                      | _                     
+AE11  | AltGr               | \                      | \                      | ]                      | -                     
+AE11  | Shift+AltGr         | ¿                      | ¿                      | ¿                      | _                     
+AE11  | LCtrl+LAlt          | ) [Ctrl+Alt not consumed] | \                      | ) [Ctrl+Alt not consumed] | - [Ctrl+Alt not consumed]
+AE11  | Shift+LCtrl+LAlt    | ° [Ctrl+Alt not consumed] | ¿                      | ° [Ctrl+Alt not consumed] | <underscore> [Ctrl+Alt not consumed]
+AE11  | Caps                | )                      | )                      | )                      | -                     
+AE11  | Caps+AltGr          | \                      | \                      | ]                      | -                     
+AE11  | Caps+LCtrl+LAlt     | ) [Ctrl+Alt not consumed] | \                      | ) [Ctrl+Alt not consumed] | - [Ctrl+Alt not consumed]
+AE12  | plain               | -                      | -                      | =                      | =                     
+AE12  | Shift               | _                      | _                      | +                      | +                     
+AE12  | AltGr               | <dead_cedilla>         | <dead_cedilla>         | }                      | =                     
+AE12  | Shift+AltGr         | <dead_ogonek>          | <dead_ogonek>          | <dead_ogonek>          | +                     
+AE12  | LCtrl+LAlt          | - [Ctrl+Alt not consumed] | <dead_cedilla>         | = [Ctrl+Alt not consumed] | = [Ctrl+Alt not consumed]
+AE12  | Shift+LCtrl+LAlt    | <underscore> [Ctrl+Alt not consumed] | <dead_ogonek>          | + [Ctrl+Alt not consumed] | + [Ctrl+Alt not consumed]
+AE12  | Caps                | -                      | -                      | =                      | =                     
+AE12  | Caps+AltGr          | <dead_cedilla>         | <dead_cedilla>         | }                      | =                     
+AE12  | Caps+LCtrl+LAlt     | - [Ctrl+Alt not consumed] | <dead_cedilla>         | = [Ctrl+Alt not consumed] | = [Ctrl+Alt not consumed]
+AD01  | plain               | a                      | a                      | a                      | q                     
+AD01  | Shift               | A                      | A                      | A                      | Q                     
+AD01  | AltGr               | @                      | @                      | æ                      | q                     
+AD01  | Shift+AltGr         | Ω                      | Ω                      | Æ                      | Q                     
+AD01  | LCtrl+LAlt          | <a> [Ctrl+Alt not consumed] | @                      | <a> [Ctrl+Alt not consumed] | <q> [Ctrl+Alt not consumed]
+AD01  | Shift+LCtrl+LAlt    | <A> [Ctrl+Alt not consumed] | Ω                      | <A> [Ctrl+Alt not consumed] | <Q> [Ctrl+Alt not consumed]
+AD01  | Caps                | A                      | A                      | A                      | Q                     
+AD01  | Caps+AltGr          | @                      | @                      | Æ                      | Q                     
+AD01  | Caps+LCtrl+LAlt     | <A> [Ctrl+Alt not consumed] | @                      | <A> [Ctrl+Alt not consumed] | <Q> [Ctrl+Alt not consumed]
+AD02  | plain               | z                      | z                      | z                      | w                     
+AD02  | Shift               | Z                      | Z                      | Z                      | W                     
+AD02  | AltGr               | ſ                      | ſ                      | «                      | w                     
+AD02  | Shift+AltGr         | §                      | §                      | <                      | W                     
+AD02  | LCtrl+LAlt          | <z> [Ctrl+Alt not consumed] | ſ                      | <z> [Ctrl+Alt not consumed] | <w> [Ctrl+Alt not consumed]
+AD02  | Shift+LCtrl+LAlt    | <Z> [Ctrl+Alt not consumed] | §                      | <Z> [Ctrl+Alt not consumed] | <W> [Ctrl+Alt not consumed]
+AD02  | Caps                | Z                      | Z                      | Z                      | W                     
+AD02  | Caps+AltGr          | S                      | S                      | «                      | W                     
+AD02  | Caps+LCtrl+LAlt     | <Z> [Ctrl+Alt not consumed] | S                      | <Z> [Ctrl+Alt not consumed] | <W> [Ctrl+Alt not consumed]
+AD03  | AltGr               | €                      | €                      | €                      | e                     
+AD03  | Shift+AltGr         | ¢                      | ¢                      | ¢                      | E                     
+AD03  | LCtrl+LAlt          | <e> [Ctrl+Alt not consumed] | €                      | <e> [Ctrl+Alt not consumed] | <e> [Ctrl+Alt not consumed]
+AD03  | Shift+LCtrl+LAlt    | <E> [Ctrl+Alt not consumed] | ¢                      | <E> [Ctrl+Alt not consumed] | <E> [Ctrl+Alt not consumed]
+AD03  | Caps+AltGr          | €                      | €                      | €                      | E                     
+AD03  | Caps+LCtrl+LAlt     | <E> [Ctrl+Alt not consumed] | €                      | <E> [Ctrl+Alt not consumed] | <E> [Ctrl+Alt not consumed]
+AD04  | AltGr               | ¶                      | ¶                      | ¶                      | r                     
+AD04  | Shift+AltGr         | ®                      | ®                      | ®                      | R                     
+AD04  | LCtrl+LAlt          | <r> [Ctrl+Alt not consumed] | ¶                      | <r> [Ctrl+Alt not consumed] | <r> [Ctrl+Alt not consumed]
+AD04  | Shift+LCtrl+LAlt    | <R> [Ctrl+Alt not consumed] | ®                      | <R> [Ctrl+Alt not consumed] | <R> [Ctrl+Alt not consumed]
+AD04  | Caps+AltGr          | ¶                      | ¶                      | ¶                      | R                     
+AD04  | Caps+LCtrl+LAlt     | <R> [Ctrl+Alt not consumed] | ¶                      | <R> [Ctrl+Alt not consumed] | <R> [Ctrl+Alt not consumed]
+AD05  | AltGr               | ŧ                      | ŧ                      | ŧ                      | t                     
+AD05  | Shift+AltGr         | Ŧ                      | Ŧ                      | Ŧ                      | T                     
+AD05  | LCtrl+LAlt          | <t> [Ctrl+Alt not consumed] | ŧ                      | <t> [Ctrl+Alt not consumed] | <t> [Ctrl+Alt not consumed]
+AD05  | Shift+LCtrl+LAlt    | <T> [Ctrl+Alt not consumed] | Ŧ                      | <T> [Ctrl+Alt not consumed] | <T> [Ctrl+Alt not consumed]
+AD05  | Caps+AltGr          | Ŧ                      | Ŧ                      | Ŧ                      | T                     
+AD05  | Caps+LCtrl+LAlt     | <T> [Ctrl+Alt not consumed] | Ŧ                      | <T> [Ctrl+Alt not consumed] | <T> [Ctrl+Alt not consumed]
+AD06  | AltGr               | ←                      | ←                      | ←                      | y                     
+AD06  | Shift+AltGr         | ¥                      | ¥                      | ¥                      | Y                     
+AD06  | LCtrl+LAlt          | <y> [Ctrl+Alt not consumed] | ←                      | <y> [Ctrl+Alt not consumed] | <y> [Ctrl+Alt not consumed]
+AD06  | Shift+LCtrl+LAlt    | <Y> [Ctrl+Alt not consumed] | ¥                      | <Y> [Ctrl+Alt not consumed] | <Y> [Ctrl+Alt not consumed]
+AD06  | Caps+AltGr          | ←                      | ←                      | ←                      | Y                     
+AD06  | Caps+LCtrl+LAlt     | <Y> [Ctrl+Alt not consumed] | ←                      | <Y> [Ctrl+Alt not consumed] | <Y> [Ctrl+Alt not consumed]
+AD07  | AltGr               | ↓                      | ↓                      | ↓                      | u                     
+AD07  | Shift+AltGr         | ↑                      | ↑                      | ↑                      | U                     
+AD07  | LCtrl+LAlt          | <u> [Ctrl+Alt not consumed] | ↓                      | <u> [Ctrl+Alt not consumed] | <u> [Ctrl+Alt not consumed]
+AD07  | Shift+LCtrl+LAlt    | <U> [Ctrl+Alt not consumed] | ↑                      | <U> [Ctrl+Alt not consumed] | <U> [Ctrl+Alt not consumed]
+AD07  | Caps+AltGr          | ↓                      | ↓                      | ↓                      | U                     
+AD07  | Caps+LCtrl+LAlt     | <U> [Ctrl+Alt not consumed] | ↓                      | <U> [Ctrl+Alt not consumed] | <U> [Ctrl+Alt not consumed]
+AD08  | AltGr               | →                      | →                      | →                      | i                     
+AD08  | Shift+AltGr         | ı                      | ı                      | ı                      | I                     
+AD08  | LCtrl+LAlt          | <i> [Ctrl+Alt not consumed] | →                      | <i> [Ctrl+Alt not consumed] | <i> [Ctrl+Alt not consumed]
+AD08  | Shift+LCtrl+LAlt    | <I> [Ctrl+Alt not consumed] | ı                      | <I> [Ctrl+Alt not consumed] | <I> [Ctrl+Alt not consumed]
+AD08  | Caps+AltGr          | →                      | →                      | →                      | I                     
+AD08  | Caps+LCtrl+LAlt     | <I> [Ctrl+Alt not consumed] | →                      | <I> [Ctrl+Alt not consumed] | <I> [Ctrl+Alt not consumed]
+AD09  | AltGr               | œ                      | œ                      | ø                      | o                     
+AD09  | Shift+AltGr         | Œ                      | Œ                      | Ø                      | O                     
+AD09  | LCtrl+LAlt          | <o> [Ctrl+Alt not consumed] | œ                      | <o> [Ctrl+Alt not consumed] | <o> [Ctrl+Alt not consumed]
+AD09  | Shift+LCtrl+LAlt    | <O> [Ctrl+Alt not consumed] | Œ                      | <O> [Ctrl+Alt not consumed] | <O> [Ctrl+Alt not consumed]
+AD09  | Caps+AltGr          | Œ                      | Œ                      | Ø                      | O                     
+AD09  | Caps+LCtrl+LAlt     | <O> [Ctrl+Alt not consumed] | Œ                      | <O> [Ctrl+Alt not consumed] | <O> [Ctrl+Alt not consumed]
+AD10  | AltGr               | þ                      | þ                      | þ                      | p                     
+AD10  | Shift+AltGr         | Þ                      | Þ                      | Þ                      | P                     
+AD10  | LCtrl+LAlt          | <p> [Ctrl+Alt not consumed] | þ                      | <p> [Ctrl+Alt not consumed] | <p> [Ctrl+Alt not consumed]
+AD10  | Shift+LCtrl+LAlt    | <P> [Ctrl+Alt not consumed] | Þ                      | <P> [Ctrl+Alt not consumed] | <P> [Ctrl+Alt not consumed]
+AD10  | Caps+AltGr          | Þ                      | Þ                      | Þ                      | P                     
+AD10  | Caps+LCtrl+LAlt     | <P> [Ctrl+Alt not consumed] | Þ                      | <P> [Ctrl+Alt not consumed] | <P> [Ctrl+Alt not consumed]
+AD11  | plain               | ^(dead)                | ^(dead)                | ^(dead)                | [                     
+AD11  | Shift               | ¨(dead)                | ¨(dead)                | ¨(dead)                | {                     
+AD11  | AltGr               | [                      | [                      | ¨(dead)                | [                     
+AD11  | Shift+AltGr         | <dead_abovering>       | <dead_abovering>       | <dead_abovering>       | {                     
+AD11  | LCtrl+LAlt          | ^(dead) [Ctrl+Alt not consumed] | [                      | ^(dead) [Ctrl+Alt not consumed] | <bracketleft> [Ctrl+Alt not consumed]
+AD11  | Shift+LCtrl+LAlt    | ¨(dead) [Ctrl+Alt not consumed] | <dead_abovering>       | ¨(dead) [Ctrl+Alt not consumed] | <braceleft> [Ctrl+Alt not consumed]
+AD11  | Caps                | ^(dead)                | ^(dead)                | ^(dead)                | [                     
+AD11  | Caps+AltGr          | [                      | [                      | ¨(dead)                | [                     
+AD11  | Caps+LCtrl+LAlt     | ^(dead) [Ctrl+Alt not consumed] | [                      | ^(dead) [Ctrl+Alt not consumed] | <bracketleft> [Ctrl+Alt not consumed]
+AD12  | plain               | $                      | $                      | $                      | ]                     
+AD12  | Shift               | *                      | *                      | £                      | }                     
+AD12  | AltGr               | ]                      | ]                      | ¤                      | ]                     
+AD12  | Shift+AltGr         | <dead_macron>          | <dead_macron>          | <dead_macron>          | }                     
+AD12  | LCtrl+LAlt          | $ [Ctrl+Alt not consumed] | ]                      | $ [Ctrl+Alt not consumed] | <bracketright> [Ctrl+Alt not consumed]
+AD12  | Shift+LCtrl+LAlt    | * [Ctrl+Alt not consumed] | <dead_macron>          | £ [Ctrl+Alt not consumed] | <braceright> [Ctrl+Alt not consumed]
+AD12  | Caps                | $                      | $                      | $                      | ]                     
+AD12  | Caps+AltGr          | ]                      | ]                      | ¤                      | ]                     
+AD12  | Caps+LCtrl+LAlt     | $ [Ctrl+Alt not consumed] | ]                      | $ [Ctrl+Alt not consumed] | <bracketright> [Ctrl+Alt not consumed]
+AC01  | plain               | q                      | q                      | q                      | a                     
+AC01  | Shift               | Q                      | Q                      | Q                      | A                     
+AC01  | AltGr               | æ                      | æ                      | @                      | a                     
+AC01  | Shift+AltGr         | Æ                      | Æ                      | Ω                      | A                     
+AC01  | LCtrl+LAlt          | <q> [Ctrl+Alt not consumed] | æ                      | <q> [Ctrl+Alt not consumed] | <a> [Ctrl+Alt not consumed]
+AC01  | Shift+LCtrl+LAlt    | <Q> [Ctrl+Alt not consumed] | Æ                      | <Q> [Ctrl+Alt not consumed] | <A> [Ctrl+Alt not consumed]
+AC01  | Caps                | Q                      | Q                      | Q                      | A                     
+AC01  | Caps+AltGr          | Æ                      | Æ                      | @                      | A                     
+AC01  | Caps+LCtrl+LAlt     | <Q> [Ctrl+Alt not consumed] | Æ                      | <Q> [Ctrl+Alt not consumed] | <A> [Ctrl+Alt not consumed]
+AC02  | AltGr               | ß                      | ß                      | ß                      | s                     
+AC02  | Shift+AltGr         | ẞ                      | ẞ                      | ẞ                      | S                     
+AC02  | LCtrl+LAlt          | <s> [Ctrl+Alt not consumed] | ß                      | <s> [Ctrl+Alt not consumed] | <s> [Ctrl+Alt not consumed]
+AC02  | Shift+LCtrl+LAlt    | <S> [Ctrl+Alt not consumed] | ẞ                      | <S> [Ctrl+Alt not consumed] | <S> [Ctrl+Alt not consumed]
+AC02  | Caps+AltGr          | ẞ                      | ẞ                      | ẞ                      | S                     
+AC02  | Caps+LCtrl+LAlt     | <S> [Ctrl+Alt not consumed] | ẞ                      | <S> [Ctrl+Alt not consumed] | <S> [Ctrl+Alt not consumed]
+AC03  | AltGr               | ð                      | ð                      | ð                      | d                     
+AC03  | Shift+AltGr         | Ð                      | Ð                      | Ð                      | D                     
+AC03  | LCtrl+LAlt          | <d> [Ctrl+Alt not consumed] | ð                      | <d> [Ctrl+Alt not consumed] | <d> [Ctrl+Alt not consumed]
+AC03  | Shift+LCtrl+LAlt    | <D> [Ctrl+Alt not consumed] | Ð                      | <D> [Ctrl+Alt not consumed] | <D> [Ctrl+Alt not consumed]
+AC03  | Caps+AltGr          | Ð                      | Ð                      | Ð                      | D                     
+AC03  | Caps+LCtrl+LAlt     | <D> [Ctrl+Alt not consumed] | Ð                      | <D> [Ctrl+Alt not consumed] | <D> [Ctrl+Alt not consumed]
+AC04  | AltGr               | đ                      | đ                      | đ                      | f                     
+AC04  | Shift+AltGr         | ª                      | ª                      | ª                      | F                     
+AC04  | LCtrl+LAlt          | <f> [Ctrl+Alt not consumed] | đ                      | <f> [Ctrl+Alt not consumed] | <f> [Ctrl+Alt not consumed]
+AC04  | Shift+LCtrl+LAlt    | <F> [Ctrl+Alt not consumed] | ª                      | <F> [Ctrl+Alt not consumed] | <F> [Ctrl+Alt not consumed]
+AC04  | Caps+AltGr          | Đ                      | Đ                      | Đ                      | F                     
+AC04  | Caps+LCtrl+LAlt     | <F> [Ctrl+Alt not consumed] | Đ                      | <F> [Ctrl+Alt not consumed] | <F> [Ctrl+Alt not consumed]
+AC05  | AltGr               | ŋ                      | ŋ                      | ŋ                      | g                     
+AC05  | Shift+AltGr         | Ŋ                      | Ŋ                      | Ŋ                      | G                     
+AC05  | LCtrl+LAlt          | <g> [Ctrl+Alt not consumed] | ŋ                      | <g> [Ctrl+Alt not consumed] | <g> [Ctrl+Alt not consumed]
+AC05  | Shift+LCtrl+LAlt    | <G> [Ctrl+Alt not consumed] | Ŋ                      | <G> [Ctrl+Alt not consumed] | <G> [Ctrl+Alt not consumed]
+AC05  | Caps+AltGr          | Ŋ                      | Ŋ                      | Ŋ                      | G                     
+AC05  | Caps+LCtrl+LAlt     | <G> [Ctrl+Alt not consumed] | Ŋ                      | <G> [Ctrl+Alt not consumed] | <G> [Ctrl+Alt not consumed]
+AC06  | AltGr               | ħ                      | ħ                      | ħ                      | h                     
+AC06  | Shift+AltGr         | Ħ                      | Ħ                      | Ħ                      | H                     
+AC06  | LCtrl+LAlt          | <h> [Ctrl+Alt not consumed] | ħ                      | <h> [Ctrl+Alt not consumed] | <h> [Ctrl+Alt not consumed]
+AC06  | Shift+LCtrl+LAlt    | <H> [Ctrl+Alt not consumed] | Ħ                      | <H> [Ctrl+Alt not consumed] | <H> [Ctrl+Alt not consumed]
+AC06  | Caps+AltGr          | Ħ                      | Ħ                      | Ħ                      | H                     
+AC06  | Caps+LCtrl+LAlt     | <H> [Ctrl+Alt not consumed] | Ħ                      | <H> [Ctrl+Alt not consumed] | <H> [Ctrl+Alt not consumed]
+AC07  | AltGr               | <dead_hook>            | <dead_hook>            | <dead_hook>            | j                     
+AC07  | Shift+AltGr         | <dead_horn>            | <dead_horn>            | <dead_horn>            | J                     
+AC07  | LCtrl+LAlt          | <j> [Ctrl+Alt not consumed] | <dead_hook>            | <j> [Ctrl+Alt not consumed] | <j> [Ctrl+Alt not consumed]
+AC07  | Shift+LCtrl+LAlt    | <J> [Ctrl+Alt not consumed] | <dead_horn>            | <J> [Ctrl+Alt not consumed] | <J> [Ctrl+Alt not consumed]
+AC07  | Caps+AltGr          | <dead_hook>            | <dead_hook>            | <dead_hook>            | J                     
+AC07  | Caps+LCtrl+LAlt     | <J> [Ctrl+Alt not consumed] | <dead_hook>            | <J> [Ctrl+Alt not consumed] | <J> [Ctrl+Alt not consumed]
+AC08  | AltGr               | ĸ                      | ĸ                      | ĸ                      | k                     
+AC08  | Shift+AltGr         | &                      | &                      | &                      | K                     
+AC08  | LCtrl+LAlt          | <k> [Ctrl+Alt not consumed] | ĸ                      | <k> [Ctrl+Alt not consumed] | <k> [Ctrl+Alt not consumed]
+AC08  | Shift+LCtrl+LAlt    | <K> [Ctrl+Alt not consumed] | &                      | <K> [Ctrl+Alt not consumed] | <K> [Ctrl+Alt not consumed]
+AC08  | Caps+AltGr          | ĸ                      | ĸ                      | ĸ                      | K                     
+AC08  | Caps+LCtrl+LAlt     | <K> [Ctrl+Alt not consumed] | ĸ                      | <K> [Ctrl+Alt not consumed] | <K> [Ctrl+Alt not consumed]
+AC09  | AltGr               | ł                      | ł                      | ł                      | l                     
+AC09  | Shift+AltGr         | Ł                      | Ł                      | Ł                      | L                     
+AC09  | LCtrl+LAlt          | <l> [Ctrl+Alt not consumed] | ł                      | <l> [Ctrl+Alt not consumed] | <l> [Ctrl+Alt not consumed]
+AC09  | Shift+LCtrl+LAlt    | <L> [Ctrl+Alt not consumed] | Ł                      | <L> [Ctrl+Alt not consumed] | <L> [Ctrl+Alt not consumed]
+AC09  | Caps+AltGr          | Ł                      | Ł                      | Ł                      | L                     
+AC09  | Caps+LCtrl+LAlt     | <L> [Ctrl+Alt not consumed] | Ł                      | <L> [Ctrl+Alt not consumed] | <L> [Ctrl+Alt not consumed]
+AC10  | plain               | m                      | m                      | m                      | ;                     
+AC10  | Shift               | M                      | M                      | M                      | :                     
+AC10  | AltGr               | ´(dead)                | ´(dead)                | µ                      | ;                     
+AC10  | Shift+AltGr         | <dead_doubleacute>     | <dead_doubleacute>     | º                      | :                     
+AC10  | LCtrl+LAlt          | <m> [Ctrl+Alt not consumed] | ´(dead)                | <m> [Ctrl+Alt not consumed] | ; [Ctrl+Alt not consumed]
+AC10  | Shift+LCtrl+LAlt    | <M> [Ctrl+Alt not consumed] | <dead_doubleacute>     | <M> [Ctrl+Alt not consumed] | : [Ctrl+Alt not consumed]
+AC10  | Caps                | M                      | M                      | M                      | ;                     
+AC10  | Caps+AltGr          | ´(dead)                | ´(dead)                | <mu>                   | ;                     
+AC10  | Caps+LCtrl+LAlt     | <M> [Ctrl+Alt not consumed] | ´(dead)                | <M> [Ctrl+Alt not consumed] | ; [Ctrl+Alt not consumed]
+AC11  | plain               | ù                      | ù                      | ù                      | '                     
+AC11  | Shift               | %                      | %                      | %                      | "                     
+AC11  | AltGr               | ´(dead)                | ´(dead)                | ^(dead)                | '                     
+AC11  | Shift+AltGr         | <dead_caron>           | <dead_caron>           | <dead_caron>           | "                     
+AC11  | LCtrl+LAlt          | ù [Ctrl+Alt not consumed] | ´(dead)                | ù [Ctrl+Alt not consumed] | ' [Ctrl+Alt not consumed]
+AC11  | Shift+LCtrl+LAlt    | % [Ctrl+Alt not consumed] | <dead_caron>           | % [Ctrl+Alt not consumed] | " [Ctrl+Alt not consumed]
+AC11  | Caps                | Ù                      | Ù                      | Ù                      | '                     
+AC11  | Caps+AltGr          | ´(dead)                | ´(dead)                | ^(dead)                | '                     
+AC11  | Caps+LCtrl+LAlt     | Ù [Ctrl+Alt not consumed] | ´(dead)                | Ù [Ctrl+Alt not consumed] | ' [Ctrl+Alt not consumed]
+BKSL  | plain               | µ                      | µ                      | *                      | \                     
+BKSL  | Shift               | £                      | £                      | µ                      | |                     
+BKSL  | AltGr               | `(dead)                | `(dead)                | `(dead)                | \                     
+BKSL  | Shift+AltGr         | <dead_breve>           | <dead_breve>           | <dead_breve>           | |                     
+BKSL  | LCtrl+LAlt          | µ [Ctrl+Alt not consumed] | `(dead)                | * [Ctrl+Alt not consumed] | <backslash> [Ctrl+Alt not consumed]
+BKSL  | Shift+LCtrl+LAlt    | £ [Ctrl+Alt not consumed] | <dead_breve>           | µ [Ctrl+Alt not consumed] | <bar> [Ctrl+Alt not consumed]
+BKSL  | Caps                | <mu>                   | <mu>                   | *                      | \                     
+BKSL  | Caps+AltGr          | `(dead)                | `(dead)                | `(dead)                | \                     
+BKSL  | Caps+LCtrl+LAlt     | <mu> [Ctrl+Alt not consumed] | `(dead)                | * [Ctrl+Alt not consumed] | <backslash> [Ctrl+Alt not consumed]
+LSGT  | AltGr               | \                      | \                      | |                      | <                     
+LSGT  | Shift+AltGr         | \                      | \                      | ¦                      | >                     
+LSGT  | LCtrl+LAlt          | < [Ctrl+Alt not consumed] | \                      | < [Ctrl+Alt not consumed] | < [Ctrl+Alt not consumed]
+LSGT  | Shift+LCtrl+LAlt    | > [Ctrl+Alt not consumed] | \                      | > [Ctrl+Alt not consumed] | > [Ctrl+Alt not consumed]
+LSGT  | Caps+AltGr          | \                      | \                      | |                      | <                     
+LSGT  | Caps+LCtrl+LAlt     | < [Ctrl+Alt not consumed] | \                      | < [Ctrl+Alt not consumed] | < [Ctrl+Alt not consumed]
+AB01  | plain               | w                      | w                      | w                      | z                     
+AB01  | Shift               | W                      | W                      | W                      | Z                     
+AB01  | AltGr               | «                      | «                      | ł                      | z                     
+AB01  | Shift+AltGr         | <                      | <                      | Ł                      | Z                     
+AB01  | LCtrl+LAlt          | <w> [Ctrl+Alt not consumed] | «                      | <w> [Ctrl+Alt not consumed] | <z> [Ctrl+Alt not consumed]
+AB01  | Shift+LCtrl+LAlt    | <W> [Ctrl+Alt not consumed] | <                      | <W> [Ctrl+Alt not consumed] | <Z> [Ctrl+Alt not consumed]
+AB01  | Caps                | W                      | W                      | W                      | Z                     
+AB01  | Caps+AltGr          | «                      | «                      | Ł                      | Z                     
+AB01  | Caps+LCtrl+LAlt     | <W> [Ctrl+Alt not consumed] | «                      | <W> [Ctrl+Alt not consumed] | <Z> [Ctrl+Alt not consumed]
+AB02  | AltGr               | »                      | »                      | »                      | x                     
+AB02  | Shift+AltGr         | >                      | >                      | >                      | X                     
+AB02  | LCtrl+LAlt          | <x> [Ctrl+Alt not consumed] | »                      | <x> [Ctrl+Alt not consumed] | <x> [Ctrl+Alt not consumed]
+AB02  | Shift+LCtrl+LAlt    | <X> [Ctrl+Alt not consumed] | >                      | <X> [Ctrl+Alt not consumed] | <X> [Ctrl+Alt not consumed]
+AB02  | Caps+AltGr          | »                      | »                      | »                      | X                     
+AB02  | Caps+LCtrl+LAlt     | <X> [Ctrl+Alt not consumed] | »                      | <X> [Ctrl+Alt not consumed] | <X> [Ctrl+Alt not consumed]
+AB03  | AltGr               | ¢                      | ¢                      | ¢                      | c                     
+AB03  | Shift+AltGr         | ©                      | ©                      | ©                      | C                     
+AB03  | LCtrl+LAlt          | <c> [Ctrl+Alt not consumed] | ¢                      | <c> [Ctrl+Alt not consumed] | <c> [Ctrl+Alt not consumed]
+AB03  | Shift+LCtrl+LAlt    | <C> [Ctrl+Alt not consumed] | ©                      | <C> [Ctrl+Alt not consumed] | <C> [Ctrl+Alt not consumed]
+AB03  | Caps+AltGr          | ¢                      | ¢                      | ¢                      | C                     
+AB03  | Caps+LCtrl+LAlt     | <C> [Ctrl+Alt not consumed] | ¢                      | <C> [Ctrl+Alt not consumed] | <C> [Ctrl+Alt not consumed]
+AB04  | AltGr               | „                      | „                      | „                      | v                     
+AB04  | Shift+AltGr         | ‚                      | ‚                      | ‚                      | V                     
+AB04  | LCtrl+LAlt          | <v> [Ctrl+Alt not consumed] | „                      | <v> [Ctrl+Alt not consumed] | <v> [Ctrl+Alt not consumed]
+AB04  | Shift+LCtrl+LAlt    | <V> [Ctrl+Alt not consumed] | ‚                      | <V> [Ctrl+Alt not consumed] | <V> [Ctrl+Alt not consumed]
+AB04  | Caps+AltGr          | „                      | „                      | „                      | V                     
+AB04  | Caps+LCtrl+LAlt     | <V> [Ctrl+Alt not consumed] | „                      | <V> [Ctrl+Alt not consumed] | <V> [Ctrl+Alt not consumed]
+AB05  | AltGr               | “                      | “                      | “                      | b                     
+AB05  | Shift+AltGr         | ‘                      | ‘                      | ‘                      | B                     
+AB05  | LCtrl+LAlt          | <b> [Ctrl+Alt not consumed] | “                      | <b> [Ctrl+Alt not consumed] | <b> [Ctrl+Alt not consumed]
+AB05  | Shift+LCtrl+LAlt    | <B> [Ctrl+Alt not consumed] | ‘                      | <B> [Ctrl+Alt not consumed] | <B> [Ctrl+Alt not consumed]
+AB05  | Caps+AltGr          | “                      | “                      | “                      | B                     
+AB05  | Caps+LCtrl+LAlt     | <B> [Ctrl+Alt not consumed] | “                      | <B> [Ctrl+Alt not consumed] | <B> [Ctrl+Alt not consumed]
+AB06  | AltGr               | ”                      | ”                      | ”                      | n                     
+AB06  | Shift+AltGr         | ’                      | ’                      | ’                      | N                     
+AB06  | LCtrl+LAlt          | <n> [Ctrl+Alt not consumed] | ”                      | <n> [Ctrl+Alt not consumed] | <n> [Ctrl+Alt not consumed]
+AB06  | Shift+LCtrl+LAlt    | <N> [Ctrl+Alt not consumed] | ’                      | <N> [Ctrl+Alt not consumed] | <N> [Ctrl+Alt not consumed]
+AB06  | Caps+AltGr          | ”                      | ”                      | ”                      | N                     
+AB06  | Caps+LCtrl+LAlt     | <N> [Ctrl+Alt not consumed] | ”                      | <N> [Ctrl+Alt not consumed] | <N> [Ctrl+Alt not consumed]
+AB07  | plain               | ,                      | ,                      | ,                      | m                     
+AB07  | Shift               | ?                      | ?                      | ?                      | M                     
+AB07  | AltGr               | <dead_cedilla>         | <dead_cedilla>         | ´(dead)                | m                     
+AB07  | Shift+AltGr         | º                      | º                      | <dead_doubleacute>     | M                     
+AB07  | LCtrl+LAlt          | , [Ctrl+Alt not consumed] | <dead_cedilla>         | , [Ctrl+Alt not consumed] | <m> [Ctrl+Alt not consumed]
+AB07  | Shift+LCtrl+LAlt    | ? [Ctrl+Alt not consumed] | º                      | ? [Ctrl+Alt not consumed] | <M> [Ctrl+Alt not consumed]
+AB07  | Caps                | ,                      | ,                      | ,                      | M                     
+AB07  | Caps+AltGr          | <dead_cedilla>         | <dead_cedilla>         | ´(dead)                | M                     
+AB07  | Caps+LCtrl+LAlt     | , [Ctrl+Alt not consumed] | <dead_cedilla>         | , [Ctrl+Alt not consumed] | <M> [Ctrl+Alt not consumed]
+AB08  | plain               | ;                      | ;                      | ;                      | ,                     
+AB08  | Shift               | .                      | .                      | .                      | <                     
+AB08  | AltGr               | •                      | •                      | •                      | ,                     
+AB08  | Shift+AltGr         | ×                      | ×                      | ×                      | <                     
+AB08  | LCtrl+LAlt          | ; [Ctrl+Alt not consumed] | •                      | ; [Ctrl+Alt not consumed] | , [Ctrl+Alt not consumed]
+AB08  | Shift+LCtrl+LAlt    | . [Ctrl+Alt not consumed] | ×                      | . [Ctrl+Alt not consumed] | < [Ctrl+Alt not consumed]
+AB08  | Caps                | ;                      | ;                      | ;                      | ,                     
+AB08  | Caps+AltGr          | •                      | •                      | •                      | ,                     
+AB08  | Caps+LCtrl+LAlt     | ; [Ctrl+Alt not consumed] | •                      | ; [Ctrl+Alt not consumed] | , [Ctrl+Alt not consumed]
+AB09  | plain               | :                      | :                      | :                      | .                     
+AB09  | Shift               | /                      | /                      | /                      | >                     
+AB09  | AltGr               | ·                      | ·                      | ·                      | .                     
+AB09  | Shift+AltGr         | ÷                      | ÷                      | ÷                      | >                     
+AB09  | LCtrl+LAlt          | : [Ctrl+Alt not consumed] | ·                      | : [Ctrl+Alt not consumed] | . [Ctrl+Alt not consumed]
+AB09  | Shift+LCtrl+LAlt    | <slash> [Ctrl+Alt not consumed] | ÷                      | <slash> [Ctrl+Alt not consumed] | > [Ctrl+Alt not consumed]
+AB09  | Caps                | :                      | :                      | :                      | .                     
+AB09  | Caps+AltGr          | ·                      | ·                      | ·                      | .                     
+AB09  | Caps+LCtrl+LAlt     | : [Ctrl+Alt not consumed] | ·                      | : [Ctrl+Alt not consumed] | . [Ctrl+Alt not consumed]
+AB10  | plain               | =                      | =                      | !                      | /                     
+AB10  | Shift               | +                      | +                      | §                      | ?                     
+AB10  | AltGr               | ~(dead)                | ~(dead)                | <dead_belowdot>        | /                     
+AB10  | Shift+AltGr         | <dead_abovedot>        | <dead_abovedot>        | <dead_abovedot>        | ?                     
+AB10  | LCtrl+LAlt          | = [Ctrl+Alt not consumed] | ~(dead)                | ! [Ctrl+Alt not consumed] | <slash> [Ctrl+Alt not consumed]
+AB10  | Shift+LCtrl+LAlt    | + [Ctrl+Alt not consumed] | <dead_abovedot>        | § [Ctrl+Alt not consumed] | ? [Ctrl+Alt not consumed]
+AB10  | Caps                | =                      | =                      | !                      | /                     
+AB10  | Caps+AltGr          | ~(dead)                | ~(dead)                | <dead_belowdot>        | /                     
+AB10  | Caps+LCtrl+LAlt     | = [Ctrl+Alt not consumed] | ~(dead)                | ! [Ctrl+Alt not consumed] | <slash> [Ctrl+Alt not consumed]

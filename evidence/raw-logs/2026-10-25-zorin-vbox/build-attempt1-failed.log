@@ -1,0 +1,22 @@
+== Sun Oct 25 11:50:56 UTC 2026 tool check
+squashfs-tools and xorriso already present, nothing installed
+squashfs-tools	1:4.6.1-1build1
+xorriso	1:1.5.6-1.1ubuntu3
+== stock ISO hash
+44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5  Zorin-OS-18.1-Core-64-bit.iso
+== df
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdd       1007G   71G  886G   8% /
+== build Sun Oct 25 11:51:08 UTC 2026
+patched /boot/grub/grub.cfg (12 boot entries)
+patched /boot/grub/loopback.cfg (12 boot entries)
+patched /isolinux/menuentries.cfg (12 boot entries)
+building the package layer (this unpacks the system image once)
+building the layer failed:
+mount: /tmp/tmp.4KLTmntws4/lower: wrong fs type, bad option, bad superblock on /dev/loop0, missing codepage or helper program, or other error.
+       dmesg(1) may have more information after failed mount system call.
+== build exit 1 Sun Oct 25 11:51:21 UTC 2026
+ls: cannot access 'zorin-belgian-stick.iso': No such file or directory
+sha256sum: zorin-belgian-stick.iso: No such file or directory
+
+[exited with code 0]

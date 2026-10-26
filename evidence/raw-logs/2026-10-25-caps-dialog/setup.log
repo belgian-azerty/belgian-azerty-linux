@@ -1,0 +1,111 @@
++++ dirname /mnt/setup.sh
+++ cd /mnt
+++ pwd
++ D=/mnt
+++ id -un
++ U=zorin
++ sudo dpkg -i /mnt/keyd_2.5.0-5~ubuntu24.04.2_amd64.deb /mnt/keyd-belgian-windows_0.9.4.1_all.deb /mnt/belgian-azerty-windows_0.9.4.1_all.deb /mnt/libxkbcommon-tools_1.6.0-1build1_amd64.deb /mnt/wev_1.0.0-3_amd64.deb
+Voorheen niet geselecteerd pakket keyd wordt geselecteerd.
+(Database wordt ingelezen ... 300434 bestanden en mappen momenteel geïnstalleerd.)
+Uitpakken van .../keyd_2.5.0-5~ubuntu24.04.2_amd64.deb wordt voorbereid...
+Bezig met uitpakken van keyd (2.5.0-5~ubuntu24.04.2) ...
+Voorheen niet geselecteerd pakket keyd-belgian-windows wordt geselecteerd.
+Uitpakken van .../keyd-belgian-windows_0.9.4.1_all.deb wordt voorbereid...
+Bezig met uitpakken van keyd-belgian-windows (0.9.4.1) ...
+Voorheen niet geselecteerd pakket belgian-azerty-windows wordt geselecteerd.
+Uitpakken van .../belgian-azerty-windows_0.9.4.1_all.deb wordt voorbereid...
+Bezig met uitpakken van belgian-azerty-windows (0.9.4.1) ...
+Voorheen niet geselecteerd pakket libxkbcommon-tools wordt geselecteerd.
+Uitpakken van .../libxkbcommon-tools_1.6.0-1build1_amd64.deb wordt voorbereid...
+Bezig met uitpakken van libxkbcommon-tools (1.6.0-1build1) ...
+Voorheen niet geselecteerd pakket wev wordt geselecteerd.
+Uitpakken van /mnt/wev_1.0.0-3_amd64.deb wordt voorbereid...
+Bezig met uitpakken van wev (1.0.0-3) ...
+Instellen van keyd (2.5.0-5~ubuntu24.04.2) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Instellen van keyd-belgian-windows (0.9.4.1) ...
+Instellen van belgian-azerty-windows (0.9.4.1) ...
+'omleiding van /usr/share/X11/xkb/rules/evdev naar /usr/share/X11/xkb/rules/evdev.distrib door belgian-azerty-windows' wordt toegevoegd
+Instellen van libxkbcommon-tools (1.6.0-1build1) ...
+Instellen van wev (1.0.0-3) ...
+Bezig met afhandelen van triggers voor man-db (2.12.0-4build2) ...
+Bezig met afhandelen van triggers voor desktop-file-utils (0.27-2build1) ...
+Bezig met afhandelen van triggers voor gnome-menus (3.36.0-1.1ubuntu3) ...
++ sudo be-azerty-fix system
+Choices: profile windows (default), numpad decimal period (default), Caps Lock windows (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user zorin
+  [32m✔[0m setxkbmap be  (options lv3:ralt_switch,caps:be_windows)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: period, Caps Lock: windows
+4. Login screen
+  [32m✔[0m GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
++ sudo systemctl stop keyd
++ cat /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch,caps:be_windows"
+
+BACKSPACE="guess"
++ ls /usr/share/wayland-sessions/ /usr/share/xsessions/
+/usr/share/wayland-sessions/:
+zorin.desktop
+zorin-wayland.desktop
+
+/usr/share/xsessions/:
+zorin.desktop
+zorin-xorg.desktop
++ cat /etc/gdm3/custom.conf
+# GDM configuration storage
+#
+# See /usr/share/gdm/gdm.schemas for a list of available options.
+
+[daemon]
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=false
+
+# Enabling automatic login
+AutomaticLoginEnable=true
+AutomaticLogin=zorin
+
+# Enabling timed login
+TimedLoginEnable=false
+#  TimedLogin = user1
+#  TimedLoginDelay = 10
+
+[security]
+
+[xdmcp]
+
+[chooser]
+
+[debug]
+# Uncomment the line below to turn on debugging
+# More verbose logs
+# Additionally lets the X server dump core if it crashes
+#Enable=true
+
++ ls /lib/udev/rules.d/
++ grep -i gdm
+61-gdm.rules
++ cat /var/lib/AccountsService/users/zorin
+cat: /var/lib/AccountsService/users/zorin: Permission denied
++ curl -sS -T /tmp/setup.log http://10.0.2.2:8001/setup.log

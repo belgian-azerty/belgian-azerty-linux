@@ -1,0 +1,8 @@
+2026-10-25T03:44:08Z capsrun caps-desync-ours-x11-dialog dialog start
+2026-10-25T03:44:20Z sa  | guest 04:44:19 LED=00
+2026-10-25T03:44:52Z seq.txt + ret ctrl-d into the dialog
+2026-10-25T03:45:15Z sb  | guest 04:45:14 LED=00
+2026-10-25T03:45:28Z sc toggle | guest 04:45:28 LED=11
+2026-10-25T03:45:41Z sd toggle | guest 04:45:40 LED=00
+2026-10-25T03:45:53Z se toggle | guest 04:45:53 LED=11
+2026-10-25T03:46:08Z capsrun caps-desync-ours-x11-dialog end

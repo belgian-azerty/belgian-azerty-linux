@@ -1,0 +1,20 @@
+0. Packages
+1. System default (console-setup / keyboard-configuration)
+  ✔ /etc/default/keyboard written (options: lv3:ralt_switch,kpdl:comma,caps:be_windows)
+  ✔ console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  ✔ Cinnamon default for new users and reset settings: terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows
+3. Your desktop (cinnamon) for user mint
+  ✔ setxkbmap be  (options terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows)
+  ✔ Cinnamon libgnomekbd layouts set
+  ✔ Cinnamon input-sources set
+  ✔ Cinnamon numpad decimal: comma, Caps Lock: windows
+4. Login screen
+  ✔ LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  ✔ keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+rc=0

@@ -1,0 +1,27 @@
+{
+ "editor.autoClosingBrackets": "never",
+ "editor.autoClosingQuotes": "never",
+ "editor.autoSurround": "never",
+ "editor.quickSuggestions": {
+  "other": false,
+  "comments": false,
+  "strings": false
+ },
+ "editor.suggestOnTriggerCharacters": false,
+ "editor.acceptSuggestionOnEnter": "off",
+ "workbench.startupEditor": "none",
+ "security.workspace.trust.enabled": false,
+ "telemetry.telemetryLevel": "off",
+ "update.mode": "none",
+ "extensions.autoCheckUpdates": false,
+ "workbench.tips.enabled": false,
+ "window.titleBarStyle": "custom",
+ "files.autoSave": "afterDelay",
+ "files.autoSaveDelay": 500,
+ "chat.disableAIFeatures": true,
+ "workbench.welcomePage.walkthroughs.openOnInstall": false,
+ "chat.commandCenter.enabled": false,
+ "workbench.secondarySideBar.defaultVisibility": "hidden",
+ "editor.minimap.enabled": false,
+ "git.enabled": false
+}

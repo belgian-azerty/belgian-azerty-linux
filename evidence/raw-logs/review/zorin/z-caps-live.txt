@@ -1,0 +1,5 @@
+  [32m✔[0m Caps Lock option caps:be_windows installed (rule kept across xkb-data upgrades by an apt hook)
+  [32m✔[0m setxkbmap be  (options lv3:ralt_switch,caps:be_windows)
+  [32m✔[0m GNOME input source set
+  [32m✔[0m GNOME numpad decimal: period, Caps Lock: windows
+  · Live sessions forget this at reboot. For a USB that boots Belgian, add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).

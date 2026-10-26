@@ -1,0 +1,18 @@
+== 2026-10-25T02:02:48Z sudo bash /tmp/k/be-azerty-fix.sh uninstall
+1. Caps Lock option out of every setting this script can reach
+  ✔ /etc/default/keyboard written (options: none)
+  ✔ console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+  ✔ org.gnome.desktop.input-sources for zorin: caps:be_windows removed
+  ✔ running X session: Caps Lock back to Linux behaviour
+2. Cinnamon defaults
+  ✔ no override to remove
+3. Files of older versions
+  ✔ no files of an older be-azerty-fix.sh
+4. Packages
+  ✔ purged belgian-azerty-windows keyd-belgian-windows keyd
+
+Done. The keyboard stays Belgian (numpad: period); Caps Lock has the Linux behaviour; Ctrl+Alt is no longer AltGr.
+Other users who had the Caps Lock option keep its name in their own settings; it is ignored (Linux Caps Lock).
+exit 0

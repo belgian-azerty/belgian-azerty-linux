@@ -1,0 +1,105 @@
+++ id -un
++ U=zorin
++ echo zorin:azerty
++ sudo chpasswd
+BAD PASSWORD: The password is shorter than 8 characters
++ sudo grep -rn . /etc/polkit-1/localauthority /var/lib/polkit-1/localauthority /etc/polkit-1/rules.d
++ head -40
+/var/lib/polkit-1/localauthority/10-vendor.d/com.endlessm.ParentalControls.pkla:1:[Allow administrators to read parental controls (for any account) without needing an additional polkit authorisation dialogue]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.endlessm.ParentalControls.pkla:2:Identity=unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.endlessm.ParentalControls.pkla:3:Action=com.endlessm.ParentalControls.AppFilter.ReadOwn;com.endlessm.ParentalControls.AppFilter.ReadAny;com.endlessm.ParentalControls.SessionLimits.ReadOwn;com.endlessm.ParentalControls.SessionLimits.ReadAny
+/var/lib/polkit-1/localauthority/10-vendor.d/com.endlessm.ParentalControls.pkla:4:ResultActive=yes
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:1:[Mounting, checking, etc. of internal drives]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:2:Identity=unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:3:Action=org.freedesktop.udisks2.filesystem-mount-system;org.freedesktop.udisks2.encrypted-unlock-system;org.freedesktop.udisks2.filesystem-fstab;
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:4:ResultActive=yes
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:6:[Change CPU Frequency scaling]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:7:Identity=unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:8:Action=org.gnome.cpufreqselector;org.mate.cpufreqselector
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:9:ResultActive=yes
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:11:[Setting the clock]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:12:Identity=unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:13:Action=org.gnome.clockapplet.mechanism.*;org.gnome.controlcenter.datetime.configure;org.kde.kcontrol.kcmclock.save;org.freedesktop.timedate1.set-time;org.freedesktop.timedate1.set-timezone;org.freedesktop.timedate1.set-local-rtc;org.freedesktop.timedate1.set-ntp;com.canonical.controlcenter.datetime.configure;org.mate.settingsdaemon.datetimemechanism.settime
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:14:ResultActive=yes
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:16:[Update already installed software]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:17:Identity=unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:18:Action=org.debian.apt.upgrade-packages
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:19:ResultActive=yes
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:21:[Printer administration]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:22:Identity=unix-group:lpadmin;unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:23:Action=org.opensuse.cupspkhelper.mechanism.*
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:24:ResultActive=yes
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:26:[Disable hibernate by default in upower]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:27:Identity=unix-user:*
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:28:Action=org.freedesktop.upower.hibernate
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:29:ResultActive=no
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:31:[Disable hibernate by default in logind]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:32:Identity=unix-user:*
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:33:Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.handle-hibernate-key;org.freedesktop.login1;org.freedesktop.login1.hibernate-multiple-sessions;org.freedesktop.login1.hibernate-ignore-inhibit
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:34:ResultActive=no
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:36:[Modify error reporting settings]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:37:Identity=unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:38:Action=com.ubuntu.whoopsiepreferences.change
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:39:ResultActive=yes
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:41:[Allow admins to set the hostname,locale,keyboard,date/time without prompting]
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:42:Identity=unix-group:admin;unix-group:sudo
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:43:Action=org.freedesktop.locale1.set-locale;org.freedesktop.locale1.set-keyboard;org.freedesktop.hostname1.set-static-hostname;org.freedesktop.hostname1.set-hostname
+/var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla:44:ResultActive=yes
++ sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla' -path '*casper*' -o -name '*live*.pkla'
+/var/lib/polkit-1/localauthority/10-vendor.d/10-live-cd.pkla
+++ sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla'
+++ xargs -r sudo grep -l ResultActive=yes
++ for f in $(sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla' 2> /dev/null | xargs -r sudo grep -l 'ResultActive=yes')
++ sudo mv /var/lib/polkit-1/localauthority/10-vendor.d/com.endlessm.ParentalControls.pkla /var/lib/polkit-1/localauthority/10-vendor.d/com.endlessm.ParentalControls.pkla.off
++ for f in $(sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla' 2> /dev/null | xargs -r sudo grep -l 'ResultActive=yes')
++ sudo mv /var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla /var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla.off
++ for f in $(sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla' 2> /dev/null | xargs -r sudo grep -l 'ResultActive=yes')
++ sudo mv /var/lib/polkit-1/localauthority/10-vendor.d/fwupd.pkla /var/lib/polkit-1/localauthority/10-vendor.d/fwupd.pkla.off
++ for f in $(sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla' 2> /dev/null | xargs -r sudo grep -l 'ResultActive=yes')
++ sudo mv /var/lib/polkit-1/localauthority/10-vendor.d/org.freedesktop.Flatpak.pkla /var/lib/polkit-1/localauthority/10-vendor.d/org.freedesktop.Flatpak.pkla.off
++ for f in $(sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla' 2> /dev/null | xargs -r sudo grep -l 'ResultActive=yes')
++ sudo mv /var/lib/polkit-1/localauthority/10-vendor.d/org.freedesktop.packagekit.pkla /var/lib/polkit-1/localauthority/10-vendor.d/org.freedesktop.packagekit.pkla.off
++ for f in $(sudo find /var/lib/polkit-1/localauthority /etc/polkit-1/localauthority -name '*.pkla' 2> /dev/null | xargs -r sudo grep -l 'ResultActive=yes')
++ sudo mv /var/lib/polkit-1/localauthority/10-vendor.d/10-live-cd.pkla /var/lib/polkit-1/localauthority/10-vendor.d/10-live-cd.pkla.off
++ sudo grep -rln 'zorin\|live' /etc/polkit-1/rules.d /usr/share/polkit-1/rules.d
++ sudo sed -i -E 's/^WaylandEnable=false/WaylandEnable=true/' /etc/gdm3/custom.conf
++ sudo sed -i 's/^\[daemon\]/[daemon]\nDefaultSession=zorin-wayland.desktop/' /etc/gdm3/custom.conf
++ printf '[User]\nSession=zorin-wayland\nSystemAccount=false\n'
++ sudo tee /var/lib/AccountsService/users/zorin
+[User]
+Session=zorin-wayland
+SystemAccount=false
++ sudo mkdir -p /etc/udev/rules.d
++ sudo ln -sf /dev/null /etc/udev/rules.d/61-gdm.rules
++ cat /etc/gdm3/custom.conf
+# GDM configuration storage
+#
+# See /usr/share/gdm/gdm.schemas for a list of available options.
+
+[daemon]
+DefaultSession=zorin-wayland.desktop
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=true
+
+# Enabling automatic login
+AutomaticLoginEnable=true
+AutomaticLogin=zorin
+
+# Enabling timed login
+TimedLoginEnable=false
+#  TimedLogin = user1
+#  TimedLoginDelay = 10
+
+[security]
+
+[xdmcp]
+
+[chooser]
+
+[debug]
+# Uncomment the line below to turn on debugging
+# More verbose logs
+# Additionally lets the X server dump core if it crashes
+#Enable=true
+
++ curl -sS -T /tmp/w.log http://10.0.2.2:8001/w.log

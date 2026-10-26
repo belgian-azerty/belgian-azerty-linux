@@ -1,0 +1,45 @@
+=== kbstate 19:18:26Z start ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=@as [] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   19:22 /boot/initrd.img-7.0.0-38-generic vs /etc/default/keyboard 15:52
+A0 baseline keyd on | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+keyd after stop: failed
+C1 after systemctl stop keyd | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: é
+keyd after start: active
+C2 after systemctl start keyd | plain: azertyé  | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+keyd 4 s after kill -9: active
+C3 4 s after kill -9 keyd (service state above) | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+keyd with broken.conf: active
+C4 with a broken extra config file + keyd reload | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+C5 broken config removed | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+B1 after opening Text Editor, Settings > Mouse, Files and toggling an unrelated setting | plain: azertyé  | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+=== kbstate 19:24:50Z after-B1 ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=@as [] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   19:22 /boot/initrd.img-7.0.0-38-generic vs /etc/default/keyboard 15:52
+reinstall rc=0
+=== kbstate 19:35:12Z after-A3-reinstall ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="" 
+localed:   VC Keymap: (unset)  X11 Layout: be 
+x11:      layout: us 
+gkbd:     @as []
+gnome:    [('xkb', 'be')] mru=@a(ss) [] opts=@as [] session=wayland
+cinnamon: 
+accounts: xkb=be 
+greeter:   gdm=(default)
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf 
+initrd:   21:34 /boot/initrd.img-7.0.0-38-generic vs /etc/default/keyboard 21:26

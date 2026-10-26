@@ -1,0 +1,120 @@
+okt 25 06:03:01 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:04 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:07 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:11 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:14 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:17 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:21 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:21 zorin sudo[19899]:    zorin : TTY=pts/0 ; PWD=/home/zorin ; USER=root ; COMMAND=/usr/bin/cp -a /usr/lib/x86_64-linux-gnu/libmutter-14.so.0.0.0 /tmp/libmutter-zorin.so
+okt 25 06:03:22 zorin sudo[19912]:    zorin : TTY=pts/0 ; PWD=/home/zorin ; USER=root ; COMMAND=/usr/bin/cp /tmp/libmutter-unpatched.so /usr/lib/x86_64-linux-gnu/libmutter-14.so.0.0.0
+okt 25 06:03:24 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:25 zorin sudo[19929]:    zorin : TTY=pts/0 ; PWD=/home/zorin ; USER=root ; COMMAND=/usr/bin/tee /var/tmp/mutter-variant
+okt 25 06:03:25 zorin gnome-shell[19931]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+okt 25 06:03:25 zorin gnome-shell[19931]: >                   X11 cannot support keycodes above 255.
+okt 25 06:03:25 zorin gnome-shell[19931]: Errors from xkbcomp are not fatal to the X server
+okt 25 06:03:26 zorin sudo[19940]:    zorin : TTY=pts/0 ; PWD=/home/zorin ; USER=root ; COMMAND=/usr/bin/systemctl restart gdm3
+okt 25 06:03:26 zorin systemd[1]: Stopping gdm.service - GNOME Display Manager...
+okt 25 06:03:26 zorin systemd[8941]: Stopped target gnome-session-wayland@zorin.target - GNOME Wayland Session (session: zorin).
+okt 25 06:03:27 zorin gnome-shell[9126]: Owner of volume monitor org.gtk.vfs.AfcVolumeMonitor disconnected from the bus; removing drives/volumes/mounts
+okt 25 06:03:27 zorin systemd[8941]: Stopped target gnome-session-wayland.target - GNOME Wayland Session.
+okt 25 06:03:29 zorin gnome-shell[9126]: Owner of volume monitor org.gtk.vfs.GoaVolumeMonitor disconnected from the bus; removing drives/volumes/mounts
+okt 25 06:03:30 zorin gnome-shell[9126]: Owner of volume monitor org.gtk.vfs.MTPVolumeMonitor disconnected from the bus; removing drives/volumes/mounts
+okt 25 06:03:30 zorin gnome-shell[9126]: Owner of volume monitor org.gtk.vfs.GPhoto2VolumeMonitor disconnected from the bus; removing drives/volumes/mounts
+okt 25 06:03:30 zorin gnome-shell[9126]: Owner of volume monitor org.gtk.vfs.UDisks2VolumeMonitor disconnected from the bus; removing drives/volumes/mounts
+okt 25 06:03:31 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:31 zorin gdm3[4602]: Gdm: GdmCommon: process (pid:8918, command 'gdm-session-worker [pam/gdm-password]') isn't dying after 5 seconds, now ignoring it.
+okt 25 06:03:31 zorin systemd[1]: gdm.service: Deactivated successfully.
+okt 25 06:03:31 zorin systemd[1]: Stopped gdm.service - GNOME Display Manager.
+okt 25 06:03:31 zorin systemd[1]: gdm.service: Consumed 10.516s CPU time, 20.4M memory peak, 0B memory swap peak.
+okt 25 06:03:33 zorin systemd[8941]: Stopping org.gnome.Shell@wayland.service - GNOME Shell on Wayland...
+okt 25 06:03:33 zorin gnome-shell[9126]: Connection to xwayland lost
+okt 25 06:03:33 zorin gnome-shell[9126]: Launching DING process
+okt 25 06:03:33 zorin gnome-shell[9126]: Shutting down GNOME Shell
+okt 25 06:03:36 zorin systemd[1]: Starting gdm.service - GNOME Display Manager...
+okt 25 06:03:37 zorin evolution-alarm[9293]: Error reading events from display: Broken pipe
+okt 25 06:03:37 zorin update-notifier[9711]: Error reading events from display: Broken pipe
+okt 25 06:03:37 zorin xdg-desktop-por[10461]: Error reading events from display: Broken pipe
+okt 25 06:03:38 zorin systemd[8941]: org.gnome.Shell@wayland.service: State 'stop-sigterm' timed out. Killing.
+okt 25 06:03:38 zorin systemd[8941]: org.gnome.Shell@wayland.service: Killing process 9126 (gnome-shell) with signal SIGKILL.
+okt 25 06:03:38 zorin systemd[8941]: org.gnome.Shell@wayland.service: Main process exited, code=killed, status=9/KILL
+okt 25 06:03:39 zorin systemd[1]: Started gdm.service - GNOME Display Manager.
+okt 25 06:03:39 zorin systemd[8941]: org.gnome.Shell@wayland.service: Failed with result 'timeout'.
+okt 25 06:03:39 zorin systemd[8941]: Stopped org.gnome.Shell@wayland.service - GNOME Shell on Wayland.
+okt 25 06:03:39 zorin systemd[8941]: org.gnome.Shell@wayland.service: Triggering OnFailure= dependencies.
+okt 25 06:03:39 zorin systemd[8941]: org.gnome.Shell@wayland.service: Consumed 46min 721ms CPU time.
+okt 25 06:03:40 zorin gdm-autologin][20101]: gkr-pam: no password is available for user
+okt 25 06:03:41 zorin gdm-autologin][20101]: pam_unix(gdm-autologin:session): session opened for user zorin(uid=1000) by zorin(uid=0)
+okt 25 06:03:41 zorin gdm-password][8918]: pam_unix(gdm-password:session): session closed for user zorin
+okt 25 06:03:41 zorin evolution-calen[9259]: Error setting property 'ConnectionStatus' on interface org.gnome.evolution.dataserver.Source: The connection is closed (g-io-error-quark, 18)
+okt 25 06:03:41 zorin evolution-addre[9407]: Error setting property 'ConnectionStatus' on interface org.gnome.evolution.dataserver.Source: The connection is closed (g-io-error-quark, 18)
+okt 25 06:03:43 zorin gdm-autologin][20101]: gkr-pam: couldn't unlock the login keyring.
+okt 25 06:03:43 zorin gdm3[20084]: Gdm: on_display_added: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:03:43 zorin gdm3[20084]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:03:47 zorin systemd[8941]: Reached target gnome-session-wayland.target - GNOME Wayland Session.
+okt 25 06:03:51 zorin systemd[8941]: Starting org.gnome.Shell@wayland.service - GNOME Shell on Wayland...
+okt 25 06:03:54 zorin gnome-shell[20246]: Running GNOME Shell (using mutter 46.2) as a Wayland display server
+okt 25 06:03:57 zorin gnome-shell[20246]: Made thread 'KMS thread' realtime scheduled
+okt 25 06:03:57 zorin gnome-shell[20246]: libEGL warning: egl: failed to create dri2 screen
+okt 25 06:03:57 zorin gnome-shell[20246]: libEGL warning: egl: failed to create dri2 screen
+okt 25 06:03:57 zorin gnome-shell[20246]: libEGL warning: NEEDS EXTENSION: falling back to kms_swrast
+okt 25 06:03:57 zorin gnome-shell[20246]: Added device '/dev/dri/card0' (virtio_gpu) using atomic mode setting.
+okt 25 06:03:57 zorin gnome-shell[20246]: Failed to initialize accelerated iGPU/dGPU framebuffer sharing: Not hardware accelerated
+okt 25 06:03:57 zorin gnome-shell[20246]: Created gbm renderer for '/dev/dri/card0'
+okt 25 06:03:57 zorin gnome-shell[20246]: Boot VGA GPU /dev/dri/card0 selected as primary
+okt 25 06:03:59 zorin gnome-shell[20246]: /usr/bin/gnome-shell: symbol lookup error: /lib/x86_64-linux-gnu/libmutter-14.so.0: undefined symbol: clutter_frame_clock_set_deadline_evasion
+okt 25 06:04:00 zorin systemd[8941]: org.gnome.Shell@wayland.service: Main process exited, code=exited, status=127/n/a
+okt 25 06:04:00 zorin systemd[8941]: org.gnome.Shell@wayland.service: Failed with result 'exit-code'.
+okt 25 06:04:00 zorin systemd[8941]: Failed to start org.gnome.Shell@wayland.service - GNOME Shell on Wayland.
+okt 25 06:04:00 zorin systemd[8941]: org.gnome.Shell@wayland.service: Triggering OnFailure= dependencies.
+okt 25 06:04:00 zorin systemd[8941]: org.gnome.Shell@wayland.service: Consumed 8.606s CPU time.
+okt 25 06:04:00 zorin systemd[8941]: Stopped target gnome-session-wayland.target - GNOME Wayland Session.
+okt 25 06:04:02 zorin gdm-autologin][20101]: pam_unix(gdm-autologin:session): session closed for user zorin
+okt 25 06:04:02 zorin tracker-miner-f[20294]: Error creating proxy: Error calling StartServiceByName for org.gtk.vfs.Daemon: The connection is closed (g-io-error-quark, 18)
+okt 25 06:04:02 zorin gdm3[20084]: Gdm: GdmDisplay: Session never registered, failing
+okt 25 06:04:02 zorin tracker-miner-f[20294]: Error while sending AddMatch() message: The connection is closed
+okt 25 06:04:02 zorin gdm3[20084]: Gdm: on_display_added: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:02 zorin tracker-miner-f[20294]: Error while sending AddMatch() message: The connection is closed
+okt 25 06:04:02 zorin tracker-miner-fs-3[20294]: Error creating proxy: Error calling StartServiceByName for org.gtk.vfs.UDisks2VolumeMonitor: The connection is closed (g-io-error-quark, 18)
+okt 25 06:04:02 zorin tracker-miner-f[20294]: Error while sending AddMatch() message: The connection is closed
+okt 25 06:04:02 zorin tracker-miner-fs-3[20294]: Error creating proxy: Error calling StartServiceByName for org.gtk.vfs.AfcVolumeMonitor: The connection is closed (g-io-error-quark, 18)
+okt 25 06:04:02 zorin tracker-miner-f[20294]: Error while sending AddMatch() message: The connection is closed
+okt 25 06:04:02 zorin tracker-miner-fs-3[20294]: Error creating proxy: Error calling StartServiceByName for org.gtk.vfs.GoaVolumeMonitor: The connection is closed (g-io-error-quark, 18)
+okt 25 06:04:02 zorin tracker-miner-f[20294]: Error while sending AddMatch() message: The connection is closed
+okt 25 06:04:02 zorin tracker-miner-fs-3[20294]: Error creating proxy: Error calling StartServiceByName for org.gtk.vfs.GPhoto2VolumeMonitor: The connection is closed (g-io-error-quark, 18)
+okt 25 06:04:02 zorin tracker-miner-f[20294]: Error while sending AddMatch() message: The connection is closed
+okt 25 06:04:02 zorin tracker-miner-fs-3[20294]: Error creating proxy: Error calling StartServiceByName for org.gtk.vfs.MTPVolumeMonitor: The connection is closed (g-io-error-quark, 18)
+okt 25 06:04:03 zorin gdm3[20084]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:03 zorin gdm-autologin][20327]: gkr-pam: no password is available for user
+okt 25 06:04:04 zorin gdm-autologin][20327]: pam_unix(gdm-autologin:session): session opened for user zorin(uid=1000) by zorin(uid=0)
+okt 25 06:04:05 zorin gdm-autologin][20327]: gkr-pam: couldn't unlock the login keyring.
+okt 25 06:04:05 zorin gdm3[20084]: Gdm: on_display_added: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:05 zorin gdm3[20084]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:09 zorin systemd[8941]: Reached target gnome-session-wayland.target - GNOME Wayland Session.
+okt 25 06:04:13 zorin systemd[8941]: Starting org.gnome.Shell@wayland.service - GNOME Shell on Wayland...
+okt 25 06:04:16 zorin gnome-shell[20475]: Running GNOME Shell (using mutter 46.2) as a Wayland display server
+okt 25 06:04:17 zorin tracker-miner-fs-3[20506]: (tracker-extract-3:20506): GLib-GIO-WARNING **: 06:04:17.762: Error creating IO channel for /proc/self/mountinfo: Invalid argument (g-io-error-quark, 13)
+okt 25 06:04:18 zorin gnome-shell[20475]: Made thread 'KMS thread' realtime scheduled
+okt 25 06:04:19 zorin gnome-shell[20475]: libEGL warning: egl: failed to create dri2 screen
+okt 25 06:04:19 zorin gnome-shell[20475]: libEGL warning: egl: failed to create dri2 screen
+okt 25 06:04:19 zorin gnome-shell[20475]: libEGL warning: NEEDS EXTENSION: falling back to kms_swrast
+okt 25 06:04:19 zorin gnome-shell[20475]: Added device '/dev/dri/card0' (virtio_gpu) using atomic mode setting.
+okt 25 06:04:19 zorin gnome-shell[20475]: Failed to initialize accelerated iGPU/dGPU framebuffer sharing: Not hardware accelerated
+okt 25 06:04:19 zorin gnome-shell[20475]: Created gbm renderer for '/dev/dri/card0'
+okt 25 06:04:19 zorin gnome-shell[20475]: Boot VGA GPU /dev/dri/card0 selected as primary
+okt 25 06:04:22 zorin gnome-shell[20475]: /usr/bin/gnome-shell: symbol lookup error: /lib/x86_64-linux-gnu/libmutter-14.so.0: undefined symbol: clutter_frame_clock_set_deadline_evasion
+okt 25 06:04:22 zorin systemd[8941]: org.gnome.Shell@wayland.service: Main process exited, code=exited, status=127/n/a
+okt 25 06:04:23 zorin systemd[8941]: org.gnome.Shell@wayland.service: Failed with result 'exit-code'.
+okt 25 06:04:23 zorin systemd[8941]: Failed to start org.gnome.Shell@wayland.service - GNOME Shell on Wayland.
+okt 25 06:04:23 zorin systemd[8941]: org.gnome.Shell@wayland.service: Triggering OnFailure= dependencies.
+okt 25 06:04:23 zorin systemd[8941]: org.gnome.Shell@wayland.service: Consumed 9.189s CPU time.
+okt 25 06:04:23 zorin systemd[8941]: Stopped target gnome-session-wayland.target - GNOME Wayland Session.
+okt 25 06:04:24 zorin gdm-autologin][20327]: pam_unix(gdm-autologin:session): session closed for user zorin
+okt 25 06:04:25 zorin gdm3[20084]: Gdm: GdmDisplay: Session never registered, failing
+okt 25 06:04:25 zorin gdm3[20084]: Gdm: on_display_added: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:26 zorin gdm3[20084]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:26 zorin gdm-autologin][20567]: gkr-pam: no password is available for user
+okt 25 06:04:26 zorin gdm-autologin][20567]: pam_unix(gdm-autologin:session): session opened for user zorin(uid=1000) by zorin(uid=0)
+okt 25 06:04:27 zorin gdm-autologin][20567]: gkr-pam: couldn't unlock the login keyring.
+okt 25 06:04:27 zorin gdm3[20084]: Gdm: on_display_added: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:27 zorin gdm3[20084]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+okt 25 06:04:31 zorin systemd[8941]: Reached target gnome-session-wayland.target - GNOME Wayland Session.

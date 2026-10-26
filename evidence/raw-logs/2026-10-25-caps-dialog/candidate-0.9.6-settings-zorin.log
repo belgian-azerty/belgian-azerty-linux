@@ -1,0 +1,61 @@
+== saved choices before
+PROFILE=windows
+DECIMAL=period
+CAPS=windows
+== A: sudo be-azerty-fix system (candidate, no settings given)
+Choices: profile windows (default), numpad decimal period (default), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  ✔ no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  ✔ /etc/default/keyboard written (options: lv3:ralt_switch)
+  ✔ console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user zorin
+  ✔ GNOME input source set
+  ✔ GNOME numpad decimal: period, Caps Lock: linux
+4. Login screen
+  ✔ GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  ✔ keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== after A
+XKBOPTIONS="lv3:ralt_switch"
+['lv3:ralt_switch']
+PROFILE=windows
+DECIMAL=period
+CAPS=linux
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+  · Caps Lock: Linux behaviour (letters and é è ç à only)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=linux 
+== B: sudo be-azerty-fix system CAPS=windows (opt-in)
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock windows (given).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+  ✔ /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+  ✔ GNOME numpad decimal: period, Caps Lock: windows
+== after B
+XKBOPTIONS="lv3:ralt_switch,caps:be_windows"
+['lv3:ralt_switch', 'caps:be_windows']
+PROFILE=windows
+DECIMAL=period
+CAPS=windows
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=lv3:ralt_switch,caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  · GNOME: after a Caps Lock tap in a password field (lock screen, password dialog) 2 6 7 9 0 % can stop working until you log out and in (README, "Caps Lock on Zorin")
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=windows 
+  · xkb-options: lv3:ralt_switch,caps:be_windows
+== C: rerun without settings keeps the opt-in
+Choices: profile windows (kept from the last run), numpad decimal period (kept from the last run), Caps Lock windows (kept from the last run).
+== D: back to the candidate default: sudo be-azerty-fix system PROFILE=windows
+Choices: profile windows (given), numpad decimal period (kept from the last run), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows).
+XKBOPTIONS="lv3:ralt_switch"
+['lv3:ralt_switch']
+inactive

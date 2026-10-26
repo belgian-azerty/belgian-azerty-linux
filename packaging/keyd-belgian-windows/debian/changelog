@@ -1,0 +1,62 @@
+keyd-belgian-windows (0.9.7) noble; urgency=medium
+
+  * Metadata only (Younes, 2026-10-25 19:26Z and 20:02Z): Maintainer field
+    "Younes", copyright holder "Younes from Belgium". Rules and every other
+    file unchanged; version kept equal to belgian-azerty-windows.
+
+ -- @MAINTAINER@  Sun, 25 Oct 2026 20:30:00 +0000
+
+keyd-belgian-windows (0.9.6) noble; urgency=medium
+
+  * No change; version kept equal to belgian-azerty-windows.
+
+ -- @MAINTAINER@  Sun, 25 Oct 2026 12:00:00 +0000
+
+keyd-belgian-windows (0.9.4.1) noble; urgency=medium
+
+  * No change in this package; version kept equal to belgian-azerty-windows.
+
+ -- @MAINTAINER@  Sun, 25 Oct 2026 02:30:00 +0000
+
+keyd-belgian-windows (0.9.4) noble; urgency=medium
+
+  * No change in this package. 0.9.4 ships with keyd 2.5.0-5~ubuntu24.04.2,
+    which carries this project's patch "Keep AltGr held while a Ctrl+Alt
+    layer is held" (fewer swapped characters with ibus at very fast
+    Ctrl+Alt typing). The rules work with an unpatched keyd as before.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 23:30:00 +0000
+
+keyd-belgian-windows (0.9.3) noble; urgency=medium
+
+  * No change in this package; version kept equal to belgian-azerty-windows.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 17:00:00 +0000
+
+keyd-belgian-windows (0.9.2) noble; urgency=medium
+
+  * No functional change; version kept equal to belgian-azerty-windows,
+    whose be-azerty-fix can now switch keyd off (Linux-standard profile).
+    The service stays off across package updates, which only restart keyd
+    when it is enabled.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 15:00:00 +0000
+
+keyd-belgian-windows (0.9.1) noble; urgency=medium
+
+  * systemd drop-in: Restart=always and SuccessExitStatus=2 15, so that
+    "systemctl stop keyd" ends as inactive instead of failed (keyd exits
+    with status 15 on SIGTERM), while keyd is still restarted when anything
+    else stops it.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 09:00:00 +0000
+
+keyd-belgian-windows (0.9.0) noble; urgency=medium
+
+  * First packaged version. Split out of the earlier all-in-one keyd
+    2.5.0-0beazerty2 build: the rules now come in their own package on top
+    of the distribution's (or a backported) keyd, so a keyd upgrade never
+    takes them away.
+  * Restart=on-failure for keyd through a systemd drop-in.
+
+ -- @MAINTAINER@  Sat, 24 Oct 2026 03:00:00 +0000

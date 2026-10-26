@@ -1,0 +1,3 @@
+efivarfs on /sys/firmware/efi/efivars type efivarfs (rw,nosuid,nodev,noexec,relatime)
+/dev/vda on /usr/lib/firmware type ext4 (rw,relatime)
+/dev/vda on /usr/lib/modules/7.0.0-38-generic type ext4 (rw,relatime)

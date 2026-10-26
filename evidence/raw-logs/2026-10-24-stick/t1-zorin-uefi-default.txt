@@ -1,0 +1,115 @@
+== cmdline
+BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=nl_BE.UTF-8 belgian.keyboard=be belgian.decimal=period ---
+== belgian-stick.log
+== 2026-10-24T17:34:51Z live-boot keyboard=be decimal=period formats=none
+Choices: profile windows (default), numpad decimal period (given), Caps Lock windows (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  ✔ no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  ✔ /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+  ✔ console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard
+3. Your desktop (gnome) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  ✔ GDM follows /etc/default/keyboard (no override)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  ✔ keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== services
+inactive
+active
+enabled
+== /etc/default/keyboard
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch,caps:be_windows"
+
+BACKSPACE="guess"
+== /etc/default/locale
+LANG="nl_BE.UTF-8"
+== session locale
+LANG=nl_BE.UTF-8
+LANGUAGE=
+LC_CTYPE="nl_BE.UTF-8"
+LC_NUMERIC="nl_BE.UTF-8"
+LC_TIME="nl_BE.UTF-8"
+LC_COLLATE="nl_BE.UTF-8"
+LC_MONETARY="nl_BE.UTF-8"
+LC_MESSAGES="nl_BE.UTF-8"
+LC_PAPER="nl_BE.UTF-8"
+LC_NAME="nl_BE.UTF-8"
+LC_ADDRESS="nl_BE.UTF-8"
+LC_TELEPHONE="nl_BE.UTF-8"
+LC_MEASUREMENT="nl_BE.UTF-8"
+LC_IDENTIFICATION="nl_BE.UTF-8"
+LC_ALL=
+za 24 okt 2026 17:40:29 | 24-10-26 | 17:40:29
+== gsettings
+[('xkb', 'be')]
+['lv3:ralt_switch', 'caps:be_windows']
+No such schema “org.cinnamon.desktop.input-sources”
+@as []
+== setxkbmap
+rules:      evdev
+model:      pc105+inet
+layout:     be,us
+variant:    ,
+options:    lv3:ralt_switch,caps:be_windows
+== choices
+PROFILE=windows
+DECIMAL=period
+CAPS=windows
+== packages
+belgian-azerty-windows	0.9.3
+keyd	2.5.0-5~ubuntu24.04.1
+keyd-belgian-windows	0.9.3
+== layers
+/dev/loop0 on /rofs type squashfs (ro,noatime,errors=continue,threads=single)
+/cow on / type overlay (rw,relatime,lowerdir=/zz-belgian-azerty.squashfs:/filesystem.squashfs,upperdir=/cow/upper,workdir=/cow/work,uuid=on,xino=off,nouserxattr)
+== check
+Packages:
+  ✔ belgian-azerty-windows 0.9.3
+  ✔ keyd-belgian-windows 0.9.3
+  ✔ keyd 2.5.0-5~ubuntu24.04.1
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:
+  ✔ XKBLAYOUT=be XKBVARIANT=
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=lv3:ralt_switch,caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=windows 
+systemd-localed:
+      VC Keymap: (unset)
+     X11 Layout: be
+Running X11 session:
+  rules:      evdev
+  model:      pc105+inet
+  layout:     be,us
+  variant:    ,
+  options:    lv3:ralt_switch,caps:be_windows
+Desktop setting (gnome):
+  [('xkb', 'be')]
+  · xkb-options: lv3:ralt_switch,caps:be_windows
+AccountsService record for zorin:
+  · not readable (needs sudo) or absent
+Login screen:
+  · GDM: follows the system default unless the gdm user overrides it
+Input method:
+  · ibus-daemon is running (can override the layout per app; very fast typing can swap characters, see README)
+Windows-style Ctrl+Alt = AltGr (keyd):
+  ✔ keyd installed with the Belgian Ctrl+Alt rules
+  ✔ keyd service running
+Boot image:
+  · live session (root is an overlay): no boot image to check

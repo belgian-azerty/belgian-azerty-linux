@@ -1,0 +1,6 @@
+mab-r2-p-restore [altgr] typed lines 1: ok 1, order 0, count 0, other 0 | key log (keyd virtual keyboard): 1/1 lines in sent order, key gap median 122 ms min 121 ms
+start app=terminal env=[start] 21:29:21.703Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.20 1.27 1.28
+end app=terminal env=[end] 21:29:29.063Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.43 1.32 1.29
+lagging-behind messages during block: 0
+expected: @€@€@€@€@€@€@€@€
+  1 ok    @€@€@€@€@€@€@€@€   [keys in order]

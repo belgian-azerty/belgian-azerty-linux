@@ -1,0 +1,65 @@
+
+### shellcheck (warnings and errors)
+PASS  shellcheck
+
+### build every package from source, lintian
+built keyd-belgian-windows 0.9.1
+built belgian-azerty-windows 0.9.1
+keyd 2.5.0-5~ubuntu24.04.1 built into <build dir>/offline/dist (upstream test suite ran: make test-io)
+lintian:
+  running with root privileges is not recommended!
+  W: keyd: wrong-name-for-upstream-changelog [usr/share/doc/keyd/CHANGELOG.md.gz]
+packages and SHA256SUMS in <build dir>/offline/dist
+t14s-test/ refreshed
+PASS  build
+PASS  lintian: no errors or warnings in our packages (Debian's own keyd packaging excluded)
+
+### Caps Lock option vs the Windows table (libxkbcommon, files from the package source)
+expect  caps      :    ²    1    2    3    4    5    6    7    8    9    0    °    _    A    Z    ·    *    M    %    £    <    ?    .    /    +    1    .
+  caps:be_windows             :    ²    1    2    3    4    5    6    7    8    9    0    °    _    A    Z    ·    *    M    %    £    <    ?    .    /    +    1    .   mismatches=0
+expect  caps+shift:    ³    &    é    "    '    (    §    è    !    ç    à    )    -    a    z    ·    $    m    ù    µ    >    ,    ;    :    =    ·    ·
+  caps:be_windows             :    ³    &    é    "    '    (    §    è    !    ç    à    )    -    a    z    ·    $    m    ù    µ    >    ,    ;    :    =    ·    ·   mismatches=0
+expect  caps+altgr:    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @    ſ    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .
+  caps:be_windows             :    ¬    |    @    #    ¼    ½    ^    {    [    {    }    \    ·    @   *S    [    ]    ·    ·    ·    \    ·    •    ·    ·    1    .   mismatches=1
+PASS  Caps and Caps+Shift: 0 mismatches
+PASS  Caps+AltGr unchanged from stock Linux
+PASS  variant oss compiles with caps:be_windows
+PASS  variant nodeadkeys compiles with caps:be_windows
+
+### install / upgrade / trigger / purge cycle
+PASS  dpkg -V xkb-data clean before
+PASS  installed
+PASS  rules file diverted to evdev.distrib
+PASS  rule present exactly once (legacy block dropped)
+PASS  evdev.distrib has no hand-written block
+PASS  legacy apt hook and helper removed
+PASS  symbols file owned by the package
+PASS  dpkg -V xkb-data clean while installed
+PASS  dpkg -V belgian-azerty-windows clean
+PASS  captest: Caps and Caps+Shift 0 mismatches vs Windows; Caps+AltGr identical to stock Linux
+PASS  trigger ran and regenerated evdev (stale line gone)
+PASS  rule still present once after apt reinstall
+PASS  trigger ran under plain dpkg too (stale line gone)
+PASS  rule still present once after dpkg -i
+PASS  dpkg -V xkb-data clean after both
+PASS  captest still 0 mismatches
+PASS  rerun without DECIMAL/CAPS keeps comma and linux
+PASS  DECIMAL=period given beats the saved choice
+PASS  diversion gone
+PASS  rules file identical to xkb-data's original
+PASS  no evdev.distrib left
+PASS  symbols file gone
+PASS  Cinnamon override gone
+PASS  caps:be_windows taken out of /etc/default/keyboard, other options kept
+PASS  saved choices removed by purge
+PASS  dpkg -V xkb-data clean after purge
+PASS  leftover caps:be_windows in a setting is ignored, keymap still compiles
+PASS  keyd + keyd-belgian-windows installed (upgrading the old bundle if present)
+PASS  be-winaltgr.conf is a conffile of keyd-belgian-windows
+PASS  restart drop-in installed
+PASS  drop-in: Restart=always, exit status 15 (SIGTERM) counts as a clean stop
+PASS  keyd parses the rules (keyd.rvaiya check)
+PASS  after purge: no be-winaltgr.conf, no drop-in, no keyd
+PASS  package cycle
+
+ALL PASS

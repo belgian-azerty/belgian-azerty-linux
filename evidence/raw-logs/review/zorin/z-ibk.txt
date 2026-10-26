@@ -1,0 +1,2 @@
+9436 ibus-daemon -dr --panel disable
+failed

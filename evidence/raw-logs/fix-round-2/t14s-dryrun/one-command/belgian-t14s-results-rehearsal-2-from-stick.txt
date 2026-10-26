@@ -1,0 +1,70 @@
+=== Belgian AZERTY T14s test, version 0.9.1, started 2026-10-24T12:22:39Z
+✔ files checked
+✔ packages installed
+  Choices: numpad decimal period (default), Caps Lock windows (default). Change with DECIMAL=period|comma CAPS=windows|linux
+    ✔ no files of an older be-azerty-fix.sh
+    ✔ /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+    ✔ console keymap applied and cached
+    ✔ setxkbmap be  (options lv3:ralt_switch,caps:be_windows)
+    ✔ GNOME input source set
+    ✔ GNOME numpad decimal: period, Caps Lock: windows
+    ✔ GDM follows /etc/default/keyboard (no override)
+    ✔ keyd with the Belgian rules is installed and running
+
+== System facts (xorg-start) 2026-10-24T12:25:59Z
+machine: QEMU pc-q35-8.2 (Standard PC (Q35 + ICH9, 2009)), BIOS 2024.02-2ubuntu0.10
+cpu:  Intel Core i7 9xx (Nehalem Class Core i7)  ram: 4 GB
+system: Zorin OS 18.1, kernel 6.17.0-20-generic, boot UEFI, secure boot: unknown
+session: x11 zorin:GNOME, locale fr_BE.UTF-8
+keyboards: Power Button;AT Translated Set 2 keyboard;keyd virtual keyboard
+/etc/default/keyboard: XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,caps:be_windows"
+desktop layouts: [('xkb', 'be')]  options: ['lv3:ralt_switch', 'caps:be_windows']
+keyd: active  ibus: running IBus 1.5.29-rc2
+packages: belgian-azerty-windows 0.9.1; ibus 1.5.29-2; keyboard-configuration 1.226ubuntu1; keyd 2.5.0-5~ubuntu24.04.1; keyd-belgian-windows 0.9.1; xkb-data 2.41-2ubuntu1.1; 
+journal: 'event processing lagging' messages this boot: 0; keyd warnings: 0
+layout check xorg: ok (azerty1234567890)
+-- 12:27:16Z x11 keyd=active ibus=on
+xorg A keyd-on Ctrl+Alt: 5/5 right, 0 with swapped order, 0 with a dropped/doubled key, 0 with other characters
+-- 12:27:31Z x11 keyd=active ibus=on
+xorg B keyd-on AltGr: 5/5 right, 0 with swapped order, 0 with a dropped/doubled key, 0 with other characters
+-- 12:27:52Z x11 keyd=inactive ibus=on
+xorg C keyd-off AltGr (stock Linux): 5/5 right, 0 with swapped order, 0 with a dropped/doubled key, 0 with other characters
+-- 12:29:09Z x11 keyd=active ibus=off
+xorg D keyd-on ibus-off Ctrl+Alt: 5/5 right, 0 with swapped order, 0 with a dropped/doubled key, 0 with other characters
+VS Code xorg: skipped by choice
+switch to Wayland requested 12:29:49Z
+
+== System facts (wayland) 2026-10-24T12:32:46Z
+machine: QEMU pc-q35-8.2 (Standard PC (Q35 + ICH9, 2009)), BIOS 2024.02-2ubuntu0.10
+cpu:  Intel Core i7 9xx (Nehalem Class Core i7)  ram: 4 GB
+system: Zorin OS 18.1, kernel 6.17.0-20-generic, boot UEFI, secure boot: unknown
+session: wayland zorin:GNOME, locale fr_BE.UTF-8
+keyboards: Power Button;AT Translated Set 2 keyboard;keyd virtual keyboard
+/etc/default/keyboard: XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS="lv3:ralt_switch,caps:be_windows"
+desktop layouts: [('xkb', 'be')]  options: ['lv3:ralt_switch', 'caps:be_windows']
+keyd: active  ibus: running IBus 1.5.29-rc2
+packages: belgian-azerty-windows 0.9.1; ibus 1.5.29-2; keyboard-configuration 1.226ubuntu1; keyd 2.5.0-5~ubuntu24.04.1; keyd-belgian-windows 0.9.1; xkb-data 2.41-2ubuntu1.1; 
+journal: 'event processing lagging' messages this boot: 1; keyd warnings: 0
+ANOMALY: wayland: the desktop logged 1 'input lagging behind' messages (keyboard events late)
+layout check wayland: ok (azerty1234567890)
+-- 12:34:36Z wayland keyd=active ibus=on
+wayland A keyd-on Ctrl+Alt: 0/5 right, 4 with swapped order, 1 with a dropped/doubled key, 0 with other characters | wrong lines: [@€€€@@@€€@@€@] [@€@€€€€@@@€€€@@@] [@€€@@€@€€@@€@€@€] [@€€€€@@@€@@€€@€@] [@€@€€€@@€€€@@@@€]
+ANOMALY: wayland A keyd-on Ctrl+Alt: characters arrived in the wrong order in 4 of 5 lines
+ANOMALY: wayland A keyd-on Ctrl+Alt: a key missing or doubled in 1 of 5 lines (a typing slip, or a lost key)
+-- 12:34:54Z wayland keyd=active ibus=on
+wayland B keyd-on AltGr: 2/5 right, 3 with swapped order, 0 with a dropped/doubled key, 0 with other characters | wrong lines: [@€@€@€€@@€@€@€@€] [@€€@@€@€@€@€@€€@] [@€@€@€@€@€@€€@@€]
+ANOMALY: wayland B keyd-on AltGr: characters arrived in the wrong order in 3 of 5 lines
+-- 12:35:15Z wayland keyd=inactive ibus=on
+wayland C keyd-off AltGr (stock Linux): 1/5 right, 4 with swapped order, 0 with a dropped/doubled key, 0 with other characters | wrong lines: [@€@€@€@€€@@€@€@€] [@€@€€@@€€@@€€@@€] [@€@€@€@€@€€€@@€@] [@€€@€@@€€€@@@€@€]
+ANOMALY: wayland C keyd-off AltGr (stock Linux): characters arrived in the wrong order in 4 of 5 lines
+-- 12:35:40Z wayland keyd=active ibus=off
+wayland D keyd-on ibus-off Ctrl+Alt: 5/5 right, 0 with swapped order, 0 with a dropped/doubled key, 0 with other characters
+VS Code wayland: skipped by choice
+
+== Summary 2026-10-24T12:36:50Z: 5 anomalies
+  - wayland: the desktop logged 1 'input lagging behind' messages (keyboard events late)
+  - wayland A keyd-on Ctrl+Alt: characters arrived in the wrong order in 4 of 5 lines
+  - wayland A keyd-on Ctrl+Alt: a key missing or doubled in 1 of 5 lines (a typing slip, or a lost key)
+  - wayland B keyd-on AltGr: characters arrived in the wrong order in 3 of 5 lines
+  - wayland C keyd-off AltGr (stock Linux): characters arrived in the wrong order in 4 of 5 lines
+== End of results

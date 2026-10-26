@@ -1,0 +1,28 @@
+# 0.9.4 -> 0.9.4.1 (README-only rebuild), 2026-10-25T02:52:20Z
+## belgian-azerty-windows: files that differ
+Files p1/usr/share/doc/belgian-azerty-windows/README.md.gz and p2/usr/share/doc/belgian-azerty-windows/README.md.gz differ
+Files p1/usr/share/doc/belgian-azerty-windows/changelog.gz and p2/usr/share/doc/belgian-azerty-windows/changelog.gz differ
+Files p1/usr/share/man/man1/be-azerty-settings.1.gz and p2/usr/share/man/man1/be-azerty-settings.1.gz differ
+## keyd-belgian-windows: files that differ
+Files q1/usr/share/doc/keyd-belgian-windows/changelog.gz and q2/usr/share/doc/keyd-belgian-windows/changelog.gz differ
+## code files compared byte for byte (cmp):
+same ./usr/share/polkit-1/actions/org.belgianazerty.fix.policy
+same ./usr/share/X11/xkb/symbols/be_capslock
+same ./usr/share/applications/be-azerty-settings.desktop
+same ./usr/sbin/be-azerty-fix
+same ./usr/lib/belgian-azerty-windows/update-xkb-rules
+same ./usr/bin/be-azerty-settings
+same ./etc/keyd/be-winaltgr.conf
+same ./usr/lib/systemd/system/keyd.service.d/belgian-windows-restart.conf
+## dist/SHA256SUMS
+33321c6344a2ecce48b188c85a0bf1b0798fe0853710edd5d3ab69c3ccdb8f95  ./belgian-azerty-windows_0.9.4.1_all.deb
+906aa32aae7bf80dc2b9cebc0b721cfb6ebe719cb366c3832fbbc5346f9d2e90  ./keyd-application-mapper_2.5.0-5~ubuntu24.04.2_all.deb
+7343a82c3b29b9eda77773655d14647f74a2fd8284c73569f2f377eb291468d6  ./keyd-belgian-windows_0.9.4.1_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  ./keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+337b67c9297662f6d0e15d299d6f3c97255b3e3ec7197e8def936780f5985c9b  ./belgian-azerty-windows_0.9.4.1.dsc
+f0e6313ff0d7a54603a99abf5e80a5c6d720dba3e0d1cd45967de1dd912d854d  ./keyd-belgian-windows_0.9.4.1.dsc
+29851301042ec9dd59fab0ec87355beae51a1a978a6354ea4b4b2d467612d2f2  ./keyd_2.5.0-5~ubuntu24.04.2.dsc
+bf6cfb5fcf3b2cddde085019f9998efa0a3940f467de699cf031f8b785879c45  ./belgian-azerty-windows_0.9.4.1.tar.xz
+cc4d70196d8423cc6966f2ce34a81f6ae6b39f355db8cee5509ca6f13f893de4  ./keyd-belgian-windows_0.9.4.1.tar.xz
+c63a1257cf8bf5d68816b0a4eb8339c50f9c663d426dbb7b6e0e468574af8ea5  ./keyd_2.5.0-5~ubuntu24.04.2.debian.tar.xz
+93ec6c153ef673a7a8b4d8b686494dee11d182513f4531c71dce15a8db7f6c1c  ./keyd_2.5.0.orig.tar.gz

@@ -1,0 +1,32 @@
+86
+./bin/test-io t/test.conf t/*.t
+t/altgr-modifier-guard.t [32;1mPASSED[0m (27 us)
+t/chord-disambiguate.t [32;1mPASSED[0m (17 us)
+t/chord-double.t [32;1mPASSED[0m (9 us)
+t/chord-hold.t [32;1mPASSED[0m (13 us)
+t/chord.t [32;1mPASSED[0m (13 us)
+t/chord2.t [32;1mPASSED[0m (8 us)
+t/chord3.t [32;1mPASSED[0m (5 us)
+t/clear.t [32;1mPASSED[0m (12 us)
+t/composite.t [32;1mPASSED[0m (9 us)
+t/composite2.t [32;1mPASSED[0m (11 us)
+t/composite3.t [32;1mPASSED[0m (10 us)
+t/composite4.t [32;1mPASSED[0m (7 us)
+t/control.t [32;1mPASSED[0m (15 us)
+t/disarm.t [32;1mPASSED[0m (6 us)
+t/disarm2.t [32;1mPASSED[0m (2 us)
+t/disarm3.t [32;1mPASSED[0m (6 us)
+t/layer.t [32;1mPASSED[0m (9 us)
+t/layer1.t [32;1mPASSED[0m (6 us)
+t/layer2.t [32;1mPASSED[0m (5 us)
+8
+./bin/test-io t/test.conf t/*.t
+t/altgr-modifier-guard.t [32;1mPASSED[0m (21 us)
+t/chord-disambiguate.t [32;1mPASSED[0m (19 us)
+t/chord-double.t [32;1mPASSED[0m (10 us)
+t/chord-hold.t [32;1mPASSED[0m (14 us)
+t/chord.t [32;1mPASSED[0m (12 us)
+t/chord2.t [32;1mPASSED[0m (10 us)
+t/chord3.t [32;1mPASSED[0m (6 us)
+t/clear.t [32;1mPASSED[0m (12 us)
+t/composite.t [31;1mFAILED[0m

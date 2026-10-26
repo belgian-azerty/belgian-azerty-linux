@@ -1,0 +1,10 @@
+== zorin /belgian/
+-rw-r--r--    1 0        0             280 Oct 25 20:38 'README.txt'
+-rw-r--r--    1 0        0           44618 Oct 25 20:38 'belgian-azerty-windows_0.9.7_all.deb'
+-rw-r--r--    1 0        0            4890 Oct 25 20:38 'keyd-belgian-windows_0.9.7_all.deb'
+-rw-r--r--    1 0        0          207320 Oct 25 20:38 'keyd_2.5.0-5~ubuntu24.04.3_amd64.deb'
+== mint /belgian/
+-rw-r--r--    1 0        0             280 Oct 25 20:39 'README.txt'
+-rw-r--r--    1 0        0           44618 Oct 25 20:39 'belgian-azerty-windows_0.9.7_all.deb'
+-rw-r--r--    1 0        0            4890 Oct 25 20:39 'keyd-belgian-windows_0.9.7_all.deb'
+-rw-r--r--    1 0        0          207320 Oct 25 20:39 'keyd_2.5.0-5~ubuntu24.04.3_amd64.deb'

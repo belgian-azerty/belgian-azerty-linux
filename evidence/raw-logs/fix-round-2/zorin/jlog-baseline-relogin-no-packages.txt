@@ -1,0 +1,154 @@
+sam 24 oct 2026 09:52:48 UTC
+7 1000 zorin seat0 tty3 active no -
+Name=zorin VTNr=3 Remote=no Type=wayland Class=user Active=yes State=active 
+--- journal (gnome-shell, gdm, mutter, xkb)
+oct 24 09:48:26.870336 zorin gnome-shell[6043]: Failed to initialize glamor, falling back to sw
+oct 24 09:48:27.409892 zorin gnome-session[5373]: gnome-session-binary[5373]: WARNING: Could not retrieve current screensaver active state: Le délai d’attente est dépassé
+oct 24 09:48:27.410073 zorin gnome-session-binary[5373]: WARNING: Could not retrieve current screensaver active state: Le délai d’attente est dépassé
+oct 24 09:48:28.619416 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating via systemd: service name='org.gtk.vfs.Metadata' unit='gvfs-metadata.service' requested by ':1.22' (uid=1000 pid=5372 comm="/usr/bin/gnome-shell" label="unconfined")
+oct 24 09:48:29.245838 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.gtk.vfs.Metadata'
+oct 24 09:48:29.676350 zorin gnome-shell[6043]: libEGL warning: failed to open /dev/dri/card1: Permission denied
+oct 24 09:48:29.688511 zorin gnome-shell[6043]: libEGL warning: failed to open /dev/dri/card1: Permission denied
+oct 24 09:48:29.688511 zorin gnome-shell[6043]: libEGL warning: failed to open /dev/dri/card1: Permission denied
+oct 24 09:48:32.316267 zorin gnome-shell[6257]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+oct 24 09:48:32.345422 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86CameraAccessEnable
+oct 24 09:48:32.353134 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86CameraAccessDisable
+oct 24 09:48:32.357500 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86CameraAccessToggle
+oct 24 09:48:32.366136 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86NextElement
+oct 24 09:48:32.373119 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86PreviousElement
+oct 24 09:48:32.376896 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86AutopilotEngageToggle
+oct 24 09:48:32.383601 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86MarkWaypoint
+oct 24 09:48:32.397589 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86Sos
+oct 24 09:48:32.400850 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86NavChart
+oct 24 09:48:32.403846 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86FishingChart
+oct 24 09:48:32.415544 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86SingleRangeRadar
+oct 24 09:48:32.420552 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86DualRangeRadar
+oct 24 09:48:32.424556 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86RadarOverlay
+oct 24 09:48:32.429920 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86TraditionalSonar
+oct 24 09:48:32.434219 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86ClearvuSonar
+oct 24 09:48:32.447256 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86SidevuSonar
+oct 24 09:48:32.450825 zorin gnome-shell[6257]: > Warning:          Could not resolve keysym XF86NavInfo
+oct 24 09:48:32.495944 zorin gnome-shell[6257]: Errors from xkbcomp are not fatal to the X server
+oct 24 09:48:34.249221 zorin gnome-shell[5422]: Un objet est déjà exporté pour l’interface « org.freedesktop.IBus.Service » en « /org/freedesktop/IBus/Panel »
+oct 24 09:48:36.184593 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating service name='org.gnome.ScreenSaver' requested by ':1.50' (uid=1000 pid=5575 comm="/usr/libexec/gsd-power" label="unconfined")
+oct 24 09:48:36.330838 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.gnome.Shell.Screencast'
+oct 24 09:48:38.375251 zorin gdm-password][6311]: pam_unix(gdm-password:auth): user [zorin] has blank password; authenticated without it
+oct 24 09:48:38.452601 zorin gdm-password][6311]: gkr-pam: no password is available for user
+oct 24 09:48:38.903463 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.gnome.ScreenSaver'
+oct 24 09:48:40.337999 zorin systemd[2011]: Started app-gnome-update\x2dnotifier-6337.scope - Application launched by gnome-session-binary.
+oct 24 09:48:40.370226 zorin gnome-session[5304]: gnome-session-binary[5304]: WARNING: Could not retrieve current screensaver active state: Le délai d’attente est dépassé
+oct 24 09:48:40.370200 zorin gnome-session-binary[5304]: WARNING: Could not retrieve current screensaver active state: Le délai d’attente est dépassé
+oct 24 09:48:41.151471 zorin systemd[2011]: Reached target gnome-session-x11-services.target - GNOME session X11 services.
+oct 24 09:48:41.732985 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating via systemd: service name='ca.desrt.dconf' unit='dconf.service' requested by ':1.22' (uid=1000 pid=5372 comm="/usr/bin/gnome-shell" label="unconfined")
+oct 24 09:48:42.517360 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'ca.desrt.dconf'
+oct 24 09:48:47.296061 zorin gnome-shell[5372]: [tilingshell] [DefaultMenu] updateMonitorName: monitor=0, x=0, y=0
+oct 24 09:48:47.298970 zorin gnome-shell[5372]: [tilingshell] [DefaultMenu] updateMonitorName: monitorsDetails=[]
+oct 24 09:48:47.305901 zorin gnome-shell[5372]: [tilingshell] [DefaultMenu] updateMonitorName: no match found for monitor 0
+oct 24 09:48:47.360071 zorin gnome-shell[5372]: [tilingshell] [extension] extension is enabled
+oct 24 09:48:54.949755 zorin gnome-shell[5372]: Gio.UnixInputStream has been moved to a separate platform-specific library. Please update your code to use GioUnix.InputStream instead.
+                                                0 _seekStatusNotifierItems() ["file:///usr/share/gnome-shell/extensions/zorin-appindicator@zorinos.com/statusNotifierWatcher.js":166:34]
+oct 24 09:48:55.672487 zorin gnome-shell[5372]: GNOME Shell started at Sat Oct 24 2026 09:47:26 GMT+0000 (temps universel coordonné)
+oct 24 09:48:55.704039 zorin gnome-shell[5372]: Registering session with GDM
+oct 24 09:48:56.390426 zorin gdm-launch-environment][5217]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+oct 24 09:48:56.728367 zorin systemd-logind[1686]: Session c1 logged out. Waiting for processes to exit.
+oct 24 09:48:57.097501 zorin systemd[1]: session-c1.scope: Deactivated successfully.
+oct 24 09:48:57.159446 zorin systemd[1]: session-c1.scope: Consumed 2min 31.524s CPU time.
+oct 24 09:48:57.107256 zorin polkitd[1664]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.225, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale fr_BE.UTF-8) (disconnected from bus)
+oct 24 09:48:57.199512 zorin gdm3[5155]: Gdm: on_display_removed: assertion 'GDM_IS_REMOTE_DISPLAY (display)' failed
+oct 24 09:48:57.318618 zorin systemd-logind[1686]: Removed session c1.
+oct 24 09:48:58.173342 zorin gnome-shell[5372]: [tilingshell] [extension] building a tiling manager for each monitor
+oct 24 09:48:58.194378 zorin gnome-shell[5372]: [tilingshell] [TilingManager 0] Work area for monitor 0: 0 0 1280x748
+oct 24 09:48:59.255728 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:48:59.812315 zorin systemd[2011]: Reached target gnome-session-x11-services-ready.target - GNOME session X11 services.
+oct 24 09:48:59.835926 zorin systemd[2011]: Reached target gnome-session.target - GNOME Session.
+oct 24 09:48:59.842487 zorin systemd[2011]: Reached target gnome-session-wayland@zorin.target - GNOME Wayland Session (session: zorin).
+oct 24 09:48:59.850371 zorin systemd[2011]: Reached target graphical-session.target - Current graphical user session.
+oct 24 09:49:03.433933 zorin gnome-shell[5372]: [tilingshell] [GlobalState] added workspace 1
+oct 24 09:49:03.645085 zorin gnome-shell[5372]: [tilingshell] [LayoutWidget] relayout not needed
+oct 24 09:49:05.404425 zorin gnome-shell[6531]: libEGL warning: DRI3 error: Could not get DRI3 device
+oct 24 09:49:05.415572 zorin gnome-shell[6531]: libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+oct 24 09:49:08.075437 zorin systemd[5242]: Stopping wireplumber.service - Multimedia Service Session Manager...
+oct 24 09:49:08.340708 zorin systemd[5242]: Stopped wireplumber.service - Multimedia Service Session Manager.
+oct 24 09:49:08.515542 zorin systemd[5242]: Removed slice session.slice - User Core Session Slice.
+oct 24 09:49:08.520583 zorin systemd[5242]: session.slice: Consumed 6.675s CPU time.
+oct 24 09:49:08.683345 zorin systemd[5242]: Closed snapd.session-agent.socket - REST API socket for snapd user session agent.
+oct 24 09:49:09.706794 zorin systemd[5242]: Finished systemd-exit.service - Exit the Session.
+oct 24 09:49:09.711445 zorin systemd[5242]: Reached target exit.target - Exit the Session.
+oct 24 09:49:14.873539 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:18.876999 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:22.266073 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:25.495359 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:28.737364 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:31.979101 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:35.193144 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:38.423576 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:40.217486 zorin systemd[2011]: Started app-gnome-org.gnome.DejaDup.Monitor-6699.scope - Application launched by gnome-session-binary.
+oct 24 09:49:41.631339 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:44.810401 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:47.998517 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:51.162645 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:54.432576 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:49:57.626010 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:00.785490 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:04.066003 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:07.344602 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:10.572312 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:13.758115 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:16.923986 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:20.157807 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:23.382295 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:26.567463 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:29.817408 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:32.989277 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:36.215584 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:39.453540 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:42.937353 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:46.197937 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:49.385285 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:52.680351 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:55.884363 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:50:59.083295 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:02.405175 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:05.598190 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:08.794302 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:11.985056 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:15.232181 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:18.457878 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:21.613545 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:24.789524 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:27.993349 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:31.164259 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:34.394100 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:37.726616 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:40.955513 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:42.020282 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating service name='org.gnome.DejaDup' requested by ':1.99' (uid=1000 pid=6699 comm="/usr/libexec/deja-dup/deja-dup-monitor" label="unconfined")
+oct 24 09:51:42.920344 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.gnome.DejaDup'
+oct 24 09:51:44.191365 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:45.632528 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating via systemd: service name='org.freedesktop.portal.Desktop' unit='xdg-desktop-portal.service' requested by ':1.157' (uid=1000 pid=7175 comm="/usr/bin/deja-dup --gapplication-service" label="unconfined")
+oct 24 09:51:46.547189 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating via systemd: service name='org.freedesktop.portal.Documents' unit='xdg-document-portal.service' requested by ':1.159' (uid=1000 pid=7196 comm="/usr/libexec/xdg-desktop-portal" label="unconfined")
+oct 24 09:51:47.451278 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:47.469165 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.freedesktop.portal.Documents'
+oct 24 09:51:47.859829 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating via systemd: service name='org.freedesktop.impl.portal.desktop.gnome' unit='xdg-desktop-portal-gnome.service' requested by ':1.159' (uid=1000 pid=7196 comm="/usr/libexec/xdg-desktop-portal" label="unconfined")
+oct 24 09:51:50.851548 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:52.252851 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'
+oct 24 09:51:53.061262 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Activating via systemd: service name='org.freedesktop.impl.portal.desktop.gtk' unit='xdg-desktop-portal-gtk.service' requested by ':1.159' (uid=1000 pid=7196 comm="/usr/libexec/xdg-desktop-portal" label="unconfined")
+oct 24 09:51:54.078998 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:56.635150 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+oct 24 09:51:57.255058 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:51:57.709418 zorin dbus-daemon[5209]: [session uid=1000 pid=5209] Successfully activated service 'org.freedesktop.portal.Desktop'
+oct 24 09:52:00.489403 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:03.709618 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:06.938059 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:10.718018 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:14.019455 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:17.303070 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:20.543129 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:23.809345 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:27.049890 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:30.255395 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:33.508405 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:36.697908 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:39.868841 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:43.332552 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:46.525615 zorin gnome-shell[5372]: Launching DING process
+oct 24 09:52:49.737079 zorin gnome-shell[5372]: Launching DING process

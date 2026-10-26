@@ -1,0 +1,15 @@
+AltGr015-1: @€@€@€@€@€@€@€@€
+CtrlAlt015-1: @€@€@€@€@€@€@€@€
+AltGr015-2: @€@€@€@€@€@€@€@€
+CtrlAlt015-2: @€@€@€@€@€@€@€@€
+AltGr015-3: @€@€@€@€@€@€@€@€
+CtrlAlt015-3: @€@€@€@€@€@€@€@€
+AltGr015-4: @€@€@€@€@€@€@€@€
+CtrlAlt015-4: @€@€@€@€@€@€@€@€
+AltGr015-5: @€@€@€@€@€@€@€@€
+CtrlAlt015-5: @€@€@€@€@€@€@€@€
+AltGr008: @€@€@€@€@€@€@€@€
+CtrlAlt008: @€@€@€@€@€@€@€@€
+plain008: azazazazazazazaz
+lear; wget -q --post-file=/tmp/xed-sync.txt http://10.0.2.2:8001/ord-mint-xed-ibus-syncmode.txt -O /dev/null
+

@@ -1,0 +1,25 @@
+VS Code with and without the ibus skip, laptop rig (QEMU + KVM in WSL, T14s), 2026-10-25 ~19:50-20:40Z.
+Approved by Younes 19:31Z ("Run it to see if it fixes"). Packages: dist/ 0.9.6 (belgian-azerty-windows a81642c5...,
+keyd-belgian-windows 0.9.6, keyd 2.5.0-5~ubuntu24.04.2). VS Code 1.143.1 (commit e646868), Microsoft's .deb from
+update.code.visualstudio.com, installed inside the live VMs only. Live Mint 22.3 and Zorin 18.1, both X11.
+Raw results stay on the laptop: ibus-auto-test\results-vscode\ (uploads per distro, scores.txt, v2.sh, charcount.py,
+vsc-m-ibus/skip.png, vsc-z-ibus/skip.png), local git commit 773f114 (not pushed). Pull at the next mirror refresh.
+Typing: 10 slower Ctrl+Alt lines (150 ms), 30 fast Ctrl+Alt + 30 fast AltGr (30 ms, overlapping), 3 dead-key lines;
+8 pairs @€ per line; 73 lines in all.
+
+Mint   ibus (stock menu entry): only 15 of 73 lines; many Enter presses became a second €: @ 560/560, € 616/560
+       (56 extra €, lines ending "€€"); dead keys 2/3.
+Mint   skip: all 73 lines exact (slow 10/10, fast Ctrl+Alt 30/30, fast AltGr 30/30, dead 3/3).
+Zorin  ibus: 20 of 73 lines; @ 560/560, € 612/560 (same pattern after the first 15 lines); dead keys 2/3.
+Zorin  skip: all 73 lines exact.
+Process check: ibus runs "im-ibus loaded: 5" in the VS Code main process; skip runs "im-ibus loaded: 0", Exec of the
+marked menu copy = "env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F". /proc/PID/environ of the
+main process showed GTK_IM_MODULE unset in all four runs (not explained; the module count shows the skip worked).
+
+BUG FOUND in 0.9.6: VS Code 1.143.1's menu file is com.microsoft.VSCode.desktop, not code.desktop. The short name
+"vscode" only looks for code, code-oss, codium, so "be-azerty-fix ibus-skip on vscode" fails ("no menu file
+code.desktop found") and changes nothing. "be-azerty-fix ibus-skip on com.microsoft.VSCode" works and was used for the
+skip runs (laptop copy v2.sh differs from v.sh only in that name). Fix: add com.microsoft.VSCode to the vscode
+candidates in skip_resolve (not done yet: it changes code, Younes's go first).
+Other: every VS Code start showed GNOME's "Choose password for new keyring" (cancelled) and the first one the
+Copilot sign-in screen; no keys went astray.

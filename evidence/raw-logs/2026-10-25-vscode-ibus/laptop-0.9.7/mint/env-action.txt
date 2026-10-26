@@ -1,0 +1,6 @@
+== open action action 20:46:40
+Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code %F
+Exec=env GTK_IM_MODULE=gtk-im-context-simple /usr/share/code/code --new-window %F
+pid 4317 /usr/share/code/code --new-window : im-ibus loaded: 0
+pid 4325 /usr/share/code/code --type=zygote --no-zygote-sandbox : im-ibus loaded: 0
+pid 4326 /usr/share/code/code --type=zygote : im-ibus loaded: 0

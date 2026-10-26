@@ -1,0 +1,11 @@
+e7b159d70ec7bb945640a76efbf99165b8ac00859b85432a2516169f58aba013  ./belgian-azerty-windows_0.9.6.1_all.deb
+81ae69fe7942092a15cc9e1b8cb1683d5315aea96379eacbb014d8affe1032f9  ./keyd-application-mapper_2.5.0-5~ubuntu24.04.3_all.deb
+32ba9d7511629f33540d8ef3741c336f97f4920b1a5346514c86d65914721ac3  ./keyd-belgian-windows_0.9.6.1_all.deb
+cc58478fe358cf3fec7e673b84cd20b9e3768297a1fe1183054261bcb7d06bb4  ./keyd_2.5.0-5~ubuntu24.04.3_amd64.deb
+af7c2c060cf60364ab9961d0dd931026ff231f0625fcc28497c11ac2987aaa12  ./belgian-azerty-windows_0.9.6.1.dsc
+e54daf26aae81b4bfccdbff7c1f11a2434e466d231c46458ed8ee3567600d16b  ./keyd-belgian-windows_0.9.6.1.dsc
+994a8b0f5ee3fb588c6d2d1596153f168a9c6ef7bd942ba422ba128c5306ebdb  ./keyd_2.5.0-5~ubuntu24.04.3.dsc
+d2bd690bc4013f61984c6a8af745f354ca8166f4189cd3d5962d11444e7c016c  ./belgian-azerty-windows_0.9.6.1.tar.xz
+28140b11d0b217eb775a4035f31fde90d65b39ae90b751400ae92f795b390a93  ./keyd-belgian-windows_0.9.6.1.tar.xz
+8a3de8c09a592ad3c02f5841e737e8039b9890fb5df572f4db28cbcbde60c562  ./keyd_2.5.0-5~ubuntu24.04.3.debian.tar.xz
+93ec6c153ef673a7a8b4d8b686494dee11d182513f4531c71dce15a8db7f6c1c  ./keyd_2.5.0.orig.tar.gz

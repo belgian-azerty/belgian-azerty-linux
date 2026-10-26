@@ -1,0 +1,21 @@
+sam 24 oct 2026 06:24:59 UTC
+BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 ---
+--- secure boot:
+SecureBoot enabled
+   6   0   0   0   1
+--- boot medium:
+TARGET SOURCE    FSTYPE  OPTIONS
+/cdrom /dev/sda1 iso9660 ro,noatime,nojoliet,check=s,map=n,blocksize=2048,iocharset=utf8
+NAME   TRAN    SIZE TYPE MOUNTPOINT
+loop0          2,8G loop /rofs
+sda    usb     3,6G disk 
+├─sda1         3,6G part /cdrom
+└─sda2           5M part 
+sr0    sata   1024M rom  
+--- md5 check:
+Unit casper-md5check.service could not be found.
+{
+  "checksum_missmatch": [
+],
+  "result": "pass"
+}

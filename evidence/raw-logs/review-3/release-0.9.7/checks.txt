@@ -1,0 +1,13 @@
+### shellcheck
+clean
+bash -n ok
+### lintian
+W: keyd: wrong-name-for-upstream-changelog [usr/share/doc/keyd/CHANGELOG.md.gz]
+### ibus-skip offline, extended suite, on the packaged 0.9.7 script
+passed 52, failed 0
+### same suite on the shipped 0.9.6.1 script (expect the VS Code tests to fail)
+FAIL 44 auto: VS Code under its old name (code.desktop) skips too, not listed
+FAIL 45 auto: current VS Code (com.microsoft.VSCode.desktop) gets the marked copy, both Exec lines prefixed
+FAIL 47 status names VS Code
+FAIL 49 by hand: on vscode finds com.microsoft.VSCode (the 0.9.6 bug)
+passed 48, failed 4

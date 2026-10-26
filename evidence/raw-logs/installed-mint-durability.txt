@@ -1,0 +1,80 @@
+# Durability log, installed Linux Mint 22.3 (Belgian chosen in the installer), user "test", QEMU TCG rig, 2026-10-23 07:30-08:45Z
+# Each probe line was typed by the rig into a gnome-terminal (or tty3) and captured with `head -n 1 >> file`:
+#   "plain: azerty é" = the keys at the US positions q w e r t y 2 as a Belgian typist presses them
+#   "AltGr+2 e"       = right Alt + 2, right Alt + e        -> expected @€
+#   "LCtrl+LAlt+2 e"  = left Ctrl + left Alt + 2, then + e  -> expected @€ with the keyd fix, nothing/garbage without
+# The guest's /tmp was cleared by the reboot in step A4, so the lines before A4 are copied verbatim from the uploads
+# made during the run (see evidence/real-mint-17/18/19/21/22 screenshots for the same lines on screen).
+
+== fresh install, before keyd (stores: installed-mint-stores-fresh-install.txt) ==
+installed Mint desktop, keyd OFF. plain: azerty AZERTY 1234567890 é è ç à ù µ , ; : = ( ) AltGr: |@#{}€\
+keyd OFF. LCtrl+LAlt+ 1 2 3 4 5 6 9 0 e ^$ ù µ = < : &é"'(§çà$ù µ = <
+== keyd installed (sudo dpkg -i keyd_2.5.0-0beazerty1_amd64.deb) ==
+installed Mint desktop, keyd ON. plain: azerty AZERTY 1234567890 é è ç à ù µ , ; : = ( ) AltGr: |@#{}€\
+keyd ON. LCtrl+LAlt+ 1 2 3 4 5 6 9 0 e ^$ ù µ = < : |@#{[^{}€[]'`~\
+keyd ON, CapsLock. LCtrl+LAlt+ same : |@#{[^{}€[]'`~\
+
+== C: keyd robustness (can the fix ever leave the keyboard dead?) ==
+A0 baseline keyd on | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+C1 after systemctl stop keyd | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: é
+C2 after systemctl start keyd | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+C3 after kill -9 keyd (service state above) | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: é
+C4 with a broken extra config file + keyd reload | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+C5 broken config removed | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+# C1/C3: with keyd down the keyboard keeps working with the stock Belgian layout (Ctrl+Alt+2 = é again). Nothing is ever dead.
+# C3: after kill -9 the service stayed down until started by hand -> package rebuilt with Restart=on-failure (see keyd/).
+# C4: keyd ignores an unparsable config file and keeps the good one.
+
+== B: unrelated applications and settings ==
+B1 after xed (GTK), Mouse settings panel and an unrelated setting toggled | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+=== kbstate 07:46:15Z after-B1 ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS=""
+localed:   VC Keymap: (unset)  X11 Layout: be
+x11:      layout: be
+gkbd:     @as []
+cinnamon: [('xkb', 'be')]
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf
+initrd:   08:55 /boot/initrd.img-6.14.0-37-generic vs /etc/default/keyboard 06:45
+
+== A2: the per-user layout stores changed live (what the Keyboard settings panel writes) ==
+gsettings org.cinnamon.desktop.input-sources sources = [('xkb','us')]  -> setxkbmap layout: be ; /etc/default/keyboard XKBLAYOUT="be"
+A2a Cinnamon input-sources set to us (what the Keyboard settings panel does) | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+A2b Cinnamon input-sources set back to be | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+gsettings org.gnome.libgnomekbd.keyboard layouts = ['us']  -> setxkbmap layout: be ; input-sources still [('xkb','be')]
+A2c libgnomekbd layouts set to [us] (typed as a Belgian typist) | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+A2d libgnomekbd layouts reset to [] (follow system) | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+AccountsService record /var/lib/AccountsService/users/test: no keyboard keys before or after (identical files).
+csd-keyboard (pid 1336) was running during these tests.
+
+== A1: forced log-out/log-in (sudo systemctl restart lightdm) with a US entry planted in a per-user store ==
+libgnomekbd layouts=['us'] planted, LightDM restarted, logged in again with the password typed as a Belgian typist:
+=== kbstate 07:59:57Z after-relogin-with-gkbd-us-planted ===
+default:  XKBLAYOUT="be" ; localed X11 Layout: be ; x11 layout: be ; gkbd: ['us'] ; cinnamon: [('xkb','be')] ; keyd active enabled
+A1 after forced logout + login, libgnomekbd layouts=[us] planted | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+Cinnamon input-sources=[('xkb','us')] planted, LightDM restarted, logged in again:
+=== kbstate 08:06:18Z after-relogin-with-input-sources-us-planted ===
+default:  XKBLAYOUT="be" ; localed X11 Layout: be ; x11 layout: be ; gkbd: [] ; cinnamon: [('xkb','us')] ; keyd active enabled
+A1b after forced logout + login, Cinnamon input-sources=[us] planted | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+(both stores reset to be/[] afterwards)
+
+== A3: package reinstall (sudo apt-get install --reinstall keyboard-configuration console-setup; regenerates the initramfs) ==
+A3 after apt reinstall keyboard-configuration console-setup:
+XKBLAYOUT="be"
+active            (keyd)
+
+== A4: reboot ==
+Login screen after reboot: "be" indicator (evidence/real-mint-21-greeter-after-reboot.png), password typed as a Belgian typist accepted.
+A4 tty3 after reboot | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€
+A4 desktop after reboot | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€ | CapsLock LCtrl+LAlt+2 e: @€
+=== kbstate 08:43:41Z desktop-after-reboot ===
+default:  XKBLAYOUT="be" XKBVARIANT="" XKBOPTIONS=""
+localed:   VC Keymap: (unset)  X11 Layout: be
+x11:      layout: be options: terminate:ctrl_alt_bksp
+gkbd:     @as []
+cinnamon: [('xkb', 'be')]
+keyd:     active enabled conf=/etc/keyd/be-winaltgr.conf
+initrd:   10:30 /boot/initrd.img-6.14.0-37-generic vs /etc/default/keyboard 10:24
+
+== C6: package -0beazerty2 (Restart=on-failure) ==
+keyd after kill -9 with v2: active (4 s later)
+C6 v2 package, after kill -9 (auto-restart) | plain: azerty é | AltGr+2 e: @€ | LCtrl+LAlt+2 e: @€

@@ -1,0 +1,103 @@
+PASS t/altgr-modifier-guard.t
+PASS t/chord-disambiguate.t
+PASS t/chord-double.t
+PASS t/chord-hold.t
+PASS t/chord.t
+PASS t/chord2.t
+PASS t/chord3.t
+PASS t/clear.t
+FAIL t/composite.t
+PASS t/composite2.t
+PASS t/composite3.t
+PASS t/composite4.t
+PASS t/control.t
+PASS t/disarm.t
+PASS t/disarm2.t
+PASS t/disarm3.t
+PASS t/layer.t
+PASS t/layer1.t
+PASS t/layer2.t
+PASS t/layer3.t
+PASS t/layer4.t
+PASS t/layerm.t
+PASS t/layout-mods.t
+PASS t/layout-mods2.t
+PASS t/layout-seq.t
+PASS t/layout.t
+PASS t/layout2.t
+PASS t/macro-disarm.t
+PASS t/macro-hold-1.t
+PASS t/macro-hold-2.t
+PASS t/macro-hold.t
+PASS t/macro-nested.t
+PASS t/macro-unicode-2.t
+PASS t/macro-unicode.t
+PASS t/macro.t
+PASS t/meta.t
+PASS t/mod.t
+PASS t/mod2.t
+PASS t/mod3.t
+PASS t/oneshot+overload.t
+PASS t/oneshot-single-key.t
+PASS t/oneshot.t
+PASS t/oneshot10.t
+PASS t/oneshot11.t
+PASS t/oneshot12.t
+PASS t/oneshot14.t
+PASS t/oneshot2.t
+PASS t/oneshot3.t
+PASS t/oneshot4.t
+PASS t/oneshot5.t
+PASS t/oneshot6.t
+PASS t/oneshot9.t
+PASS t/oneshotm.t
+PASS t/oneshotn.t
+PASS t/oneshotn3.t
+PASS t/overload-expire.t
+PASS t/overload-expire2.t
+PASS t/overload-nested.t
+PASS t/overload-nested2.t
+PASS t/overload-oneshot.t
+PASS t/overload-same-key.t
+PASS t/overload-swap.t
+PASS t/overload.t
+PASS t/overload1.t
+PASS t/overload2.t
+PASS t/overload3.t
+PASS t/overload4.t
+PASS t/overload5.t
+PASS t/overload_2-2.t
+PASS t/overload_2.t
+PASS t/overload_3.t
+PASS t/swap-oneshot.t
+PASS t/swap-toggle.t
+FAIL t/swap.t
+FAIL t/swap2.t
+FAIL t/swap3.t
+FAIL t/swap4.t
+PASS t/swap5.t
+PASS t/swap6.t
+FAIL t/swap8.t
+PASS t/swap9.t
+PASS t/timeout1.t
+PASS t/timeout2.t
+PASS t/toggle-2.t
+PASS t/toggle.t
+PASS t/toggle2.t
+	[33mWARNING:[0m line 9: chord_interkey_timeout is not a valid global option
+t/composite.t [31;1mFAILED[0m
+
+Expected                      Output
+
+leftcontrol down              leftcontrol down
+leftalt down                  leftalt down
+leftalt up                    leftalt up
+leftshift down                leftshift down
+leftcontrol up                leftcontrol up
+h down                        h down
+h up                          h up
+leftalt down                  leftalt down
+leftshift up                  leftshift up
+leftcontrol down              leftcontrol down
+[32;1mleftcontrol up                [0m[31;1mleftalt up[0m
+[32;1mleftalt up                    [0m[31;1mleftcontrol up[0m

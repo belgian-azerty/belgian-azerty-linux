@@ -1,0 +1,44 @@
+make: git: No such file or directory
+mkdir bin
+mkdir: cannot create directory ‘bin’: File exists
+make: [Makefile:100: test-io] Error 1 (ignored)
+cc \
+-DDATA_DIR= \
+-o bin/test-io \
+	t/test-io.c \
+	src/keyboard.c \
+	src/string.c \
+	src/macro.c \
+	src/config.c \
+	src/log.c \
+	src/ini.c \
+	src/keys.c  \
+	src/unicode.c && \
+./bin/test-io t/test.conf t/*.t
+	[33mWARNING:[0m line 9: chord_interkey_timeout is not a valid global option
+t/altgr-modifier-guard.t [32;1mPASSED[0m (21 us)
+t/chord-disambiguate.t [32;1mPASSED[0m (19 us)
+t/chord-double.t [32;1mPASSED[0m (10 us)
+t/chord-hold.t [32;1mPASSED[0m (14 us)
+t/chord.t [32;1mPASSED[0m (12 us)
+t/chord2.t [32;1mPASSED[0m (10 us)
+t/chord3.t [32;1mPASSED[0m (6 us)
+t/clear.t [32;1mPASSED[0m (12 us)
+t/composite.t [31;1mFAILED[0m
+
+Expected                      Output
+
+leftcontrol down              leftcontrol down
+leftalt down                  leftalt down
+leftalt up                    leftalt up
+leftshift down                leftshift down
+leftcontrol up                leftcontrol up
+h down                        h down
+h up                          h up
+leftalt down                  leftalt down
+leftshift up                  leftshift up
+leftcontrol down              leftcontrol down
+[32;1mleftcontrol up                [0m[31;1mleftalt up[0m
+[32;1mleftalt up                    [0m[31;1mleftcontrol up[0m
+make: *** [Makefile:101: test-io] Error 255
+rc=2

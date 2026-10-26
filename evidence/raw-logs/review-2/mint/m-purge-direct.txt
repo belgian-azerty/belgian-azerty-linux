@@ -1,0 +1,12 @@
+install rc=0
+system rc=0
+XKBOPTIONS="lv3:ralt_switch,caps:be_windows"
+Purge des fichiers de configuration de keyd (2.5.0-5~ubuntu24.04.1) ...
+Purge des fichiers de configuration de keyd-belgian-windows (0.9.0) ...
+Purge des fichiers de configuration de belgian-azerty-windows (0.9.0) ...
+purge rc=0
+XKBOPTIONS="lv3:ralt_switch,caps:be_windows"
+['terminate:ctrl_alt_bksp', 'caps:be_windows']
+keyd: LoadState=not-found ActiveState=failed 
+ls: impossible d'accéder à '/usr/share/glib-2.0/schemas/zz_*': Aucun fichier ou dossier de ce nom
+Cinnamon default: ['terminate:ctrl_alt_bksp']

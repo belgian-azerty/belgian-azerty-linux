@@ -1,0 +1,28 @@
+Source: keyd-belgian-windows
+Section: utils
+Priority: optional
+Maintainer: @MAINTAINER@
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: keyd-belgian-windows
+Architecture: all
+Depends: keyd (>= 2.4.0), ${misc:Depends}
+Breaks: keyd (<< 2.5.0-1~)
+Replaces: keyd (<< 2.5.0-1~)
+Description: Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards
+ On Windows, Ctrl+Alt is the same as AltGr, so Belgians type @ with
+ Ctrl+Alt+2, EUR with Ctrl+Alt+E, { } with Ctrl+Alt+9 / 0, and so on. Linux only
+ honours the right Alt key (AltGr), and GTK and Qt refuse to treat a key press
+ that still carries Ctrl or Alt as text, so those combinations type nothing.
+ .
+ This package adds a keyd configuration that turns Ctrl+Alt+<key> into
+ AltGr+<key> for exactly the 15 keys that carry an AltGr symbol on the Windows
+ "Belgian (Period)" layout, below X11 and Wayland, so it works in every
+ desktop, on the text console and on the login screen. Every other Ctrl+Alt
+ shortcut (Ctrl+Alt+T, Ctrl+Alt+Del, Ctrl+Alt+F3, ...) is passed through.
+ AltGr+4 and AltGr+5 give { and [ as on Windows.
+ .
+ The rules apply to every keyboard, whatever layout is selected; they are
+ meant for systems that use the Belgian layout.

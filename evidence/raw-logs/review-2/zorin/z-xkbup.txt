@@ -1,0 +1,9 @@
+before: 1 rule line(s)
+E: Impossible de trouver une source de téléchargement de la version « 2.41-2ubuntu1.1 » de « xkb-data:amd64 »
+dpkg: erreur: ne peut pas accéder à l'archive « xkb-data_*.deb »: Aucun fichier ou dossier de ce nom
+dpkg rc=0
+after: 1 rule line(s), stale line: 1
+dpkg -V xkb-data: []
+compile rc=127 xkbup.sh: ligne 7: xkbcli : commande introuvable
+WARNING: Running setxkbmap against an Xwayland server
+options:    kpdl:comma,caps:be_windows

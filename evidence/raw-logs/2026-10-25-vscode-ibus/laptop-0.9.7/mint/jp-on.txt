@@ -1,0 +1,1 @@
+org.cinnamon.desktop.input-sources sources: [('xkb', 'be'), ('ibus', 'anthy')]

@@ -1,0 +1,2 @@
+== open paused menu copy 20:50:20
+grep: /home/mint/.local/share/applications/com.microsoft.VSCode.desktop: No such file or directory

@@ -1,0 +1,28 @@
+Source: belgian-azerty-windows
+Section: x11
+Priority: optional
+Maintainer: @MAINTAINER@
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: belgian-azerty-windows
+Architecture: all
+Depends: xkb-data, keyboard-configuration, ${misc:Depends}
+Recommends: keyd-belgian-windows, libglib2.0-bin, zenity, pkexec
+Description: Belgian AZERTY keyboard that behaves like on Windows
+ The Belgian layout on Linux is correct, but a few Windows habits are
+ missing. This package provides them for Ubuntu-based systems such as
+ Linux Mint and Zorin OS:
+ .
+  * the XKB option caps:be_windows: Caps Lock gives the Shift level on the
+    whole main block (digits row and punctuation), as Windows "Belgian
+    (Period)" and "Belgian (Comma)" do; ², <, AltGr and the numpad are
+    unaffected;
+  * be-azerty-fix, which makes every place that stores the keyboard layout
+    (console, boot prompt, login screen, desktop, defaults for new users)
+    agree on Belgian, with the Period or Comma numpad, and can undo it all.
+ .
+ Installing the package only makes the Caps Lock option available; run
+ "sudo be-azerty-fix system" to switch it on. The Ctrl+Alt = AltGr habit is
+ in the keyd-belgian-windows package.

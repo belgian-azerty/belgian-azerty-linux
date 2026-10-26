@@ -1,0 +1,37 @@
+ydotool: notice: ydotoold backend unavailable (may have latency+delay issues)
+Usage: key [--delay <ms>] [--key-delay <ms>] [--repeat <times>] [--repeat-delay <ms>] <key sequence> ...
+  --help                Show this help.
+  --delay ms            Delay time before start pressing keys. Default 100ms.
+  --key-delay ms        Delay time between keystrokes. Default 12ms.
+  --repeat times        Times to repeat the key sequence.
+  --repeat-delay ms     Delay time between repetitions. Default 0ms.
+
+Each key sequence can be any number of modifiers and keys, separated by plus (+)
+For example: alt+r Alt+F4 CTRL+alt+f3 aLT+1+2+3 ctrl+Backspace 
+
+Since we are emulating keyboard input, combination like Shift+# is invalid.
+Because typing a `#' involves pressing Shift and 3.
+ydotool: notice: ydotoold backend unavailable (may have latency+delay issues)
+Usage: type [--delay milliseconds] [--key-delay milliseconds] [--args N][--file <filepath>] <things to type>
+  --help                    Show this help.
+  --delay milliseconds      Delay time before start typing.
+  --key-delay milliseconds  Delay time between keystrokes. Default 12ms.
+  --file filepath           Specify a file, the contents of which will be be typed as if passed asan argument. The filepath may also be '-' to read from stdin.
+/.
+/usr
+/usr/bin
+/usr/bin/ydotool
+/usr/share
+/usr/share/doc
+/usr/share/doc/ydotool
+/usr/share/doc/ydotool/changelog.Debian.gz
+/usr/share/doc/ydotool/copyright
+/usr/share/lintian
+/usr/share/lintian/overrides
+/usr/share/lintian/overrides/ydotool
+ydotoold:
+  Installé : (aucun)
+  Candidat : 0.1.8-3build1
+ Table de version :
+     0.1.8-3build1 500
+        500 http://be.archive.ubuntu.com/ubuntu noble/universe amd64 Packages

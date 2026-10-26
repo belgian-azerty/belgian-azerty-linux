@@ -1,0 +1,27 @@
+== tickoff 12:05:57
+shell in this terminal: GTK_IM_MODULE=(unset)
+pid 8138 /usr/libexec/gnome-terminal-server : GTK_IM_MODULE=gtk-im-context-simple, im-ibus loaded: 0
+-- be-azerty-fix ibus-skip
+ibus skip for zorin:
+  · automatic: off (your choice); turn on: be-azerty-fix ibus-skip auto on
+  · no app skips ibus. Per app by hand: be-azerty-fix ibus-skip on terminal
+  · only when started from the menu, the dock or a shortcut (and gnome-terminal however it starts); undo all: be-azerty-fix ibus-skip off --all
+-- keyboard settings (org.gnome.desktop.input-sources)
+[('xkb', 'be')]
+@as []
+-- files
+ls: cannot access '/home/zorin/.config/systemd/user/*.d/': No such file or directory
+/home/zorin/.config/belgian-azerty/:
+total 4
+drwxrwxr-x  2 zorin zorin  60 Oct 25 12:05 .
+drwxr-xr-x 19 zorin zorin 540 Oct 25 12:05 ..
+-rw-rw-r--  1 zorin zorin   4 Oct 25 12:05 ibus-skip-auto
+
+/home/zorin/.local/share/applications/:
+total 0
+drwx------  2 zorin zorin  40 Oct 25 12:05 .
+drwx------ 16 zorin zorin 360 Oct 25 11:50 ..
+/home/zorin/.config/belgian-azerty/ibus-skip-auto:off
+-- login refresh in the journal
+-- typebox info
+cat: /tmp/tb.txt.info: No such file or directory

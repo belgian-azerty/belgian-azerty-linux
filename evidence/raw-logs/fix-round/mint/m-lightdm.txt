@@ -1,0 +1,6 @@
+autologin-guest=false
+autologin-user=mint
+autologin-user-timeout=0
+autologin-guest=false
+autologin-user=newbe
+autologin-user-timeout=0

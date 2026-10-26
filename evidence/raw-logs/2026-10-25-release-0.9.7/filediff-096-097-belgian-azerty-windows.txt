@@ -1,0 +1,19 @@
+SAME     ctl/conffiles  old fe9c3cee9dc423b6  new fe9c3cee9dc423b6
+DIFF     ctl/control  old a3a20fc2b38498ed  new 0b30348d78d4095a
+DIFF     ctl/md5sums  old fcfa613e62b12fed  new 74f1cd252f150f5a
+SAME     ctl/postinst  old edffe121020a7629  new edffe121020a7629
+SAME     ctl/postrm  old 872c89819d97111b  new 872c89819d97111b
+SAME     ctl/triggers  old 14a5f3714e3fd888  new 14a5f3714e3fd888
+SAME     data/etc/xdg/autostart/be-azerty-ibus-skip.desktop  old 42321c13b9a1208c  new 42321c13b9a1208c
+DIFF     data/usr/bin/be-azerty-settings  old 562ccfbd7cf9dd87  new 6ed2cb341449ea47
+SAME     data/usr/lib/belgian-azerty-windows/update-xkb-rules  old dab6d38dcc35dd9b  new dab6d38dcc35dd9b
+DIFF     data/usr/sbin/be-azerty-fix  old 54eda415561b203a  new c3d2a2aefd1288b0
+SAME     data/usr/share/X11/xkb/symbols/be_capslock  old 8f95a0faffcef3f2  new 8f95a0faffcef3f2
+SAME     data/usr/share/applications/be-azerty-settings.desktop  old 2c4cfee643b5baad  new 2c4cfee643b5baad
+DIFF     data/usr/share/doc/belgian-azerty-windows/README.md.gz  old 8290e2b63ef95134  new 0f90fca53f99be5e
+DIFF     data/usr/share/doc/belgian-azerty-windows/changelog.gz  old 970ff56645814eef  new 8732f161fba91c85
+DIFF     data/usr/share/doc/belgian-azerty-windows/copyright  old 171fb65fd31481a1  new 972ba7591f3664b6
+DIFF     data/usr/share/man/man1/be-azerty-settings.1.gz  old 30f25531b0274d6c  new 7a5515cfc8b9e5b3
+DIFF     data/usr/share/man/man8/be-azerty-fix.8.gz  old 31a3c0a75170446c  new 3501b2e32c9ace3c
+SAME     data/usr/share/polkit-1/actions/org.belgianazerty.fix.policy  old 1c01a62308e07cd0  new 1c01a62308e07cd0
+modes/owners/paths: SAME

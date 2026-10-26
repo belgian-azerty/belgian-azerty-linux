@@ -1,0 +1,28 @@
+  [32m✔[0m Caps Lock option caps:be_windows installed (rule kept across xkb-data upgrades by an apt hook)
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (numpad decimal: comma, Caps Lock: windows)
+  [32m✔[0m console keymap applied and cached
+2. Boot image (so the disk-encryption prompt is Belgian)
+  [32m✔[0m initramfs rebuilt
+3. Your desktop (cinnamon) for user mint
+  [32m✔[0m setxkbmap be  (options terminate:ctrl_alt_bksp,kpdl:comma,caps:be_windows)
+  [32m✔[0m Cinnamon libgnomekbd layouts set
+  [32m✔[0m Cinnamon input-sources set
+  [32m✔[0m Cinnamon numpad decimal: comma, Caps Lock: windows
+  · Live sessions forget this at reboot. For a USB that boots Belgian, add  keyboard-configuration/layoutcode=be  to the boot line (press e at the boot menu).
+4. Login screen
+  [32m✔[0m LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is already installed
+
+Done. Reboot, then run:  be-azerty-fix.sh check
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows"
+
+BACKSPACE="guess"

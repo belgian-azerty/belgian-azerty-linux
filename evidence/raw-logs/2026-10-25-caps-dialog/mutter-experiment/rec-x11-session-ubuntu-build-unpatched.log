@@ -1,0 +1,12 @@
+session=x11 keyd=inactive engine=xkb:us::eng sources=[('xkb', 'be')] opts=['lv3:ralt_switch', 'caps:be_windows']
+round 1 06:16:39 LED=0  line=[unpatched]
+round 2 06:16:52 LED=0  line=[aA é2 è7 à0 ù%]
+round 3 06:16:57 LED=0  line=[p]
+pkexec rc=126
+round 4 06:17:29 LED=1  line=[Aa 2é 7è 0à %ù]
+round 5 06:17:36 LED=1  line=[P]
+pkexec rc=126
+round 6 06:18:07 LED=0  line=[aA é2 è7 à0 ù%]
+round 7 06:18:14 LED=0  line=[p]
+pkexec rc=126
+round 8 06:18:46 LED=1  line=[Aa 2é 7è 0à %ù]

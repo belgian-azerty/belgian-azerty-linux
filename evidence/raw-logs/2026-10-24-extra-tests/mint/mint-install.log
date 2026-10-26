@@ -1,0 +1,74 @@
++ date -u
+zo 25 okt 2026 00:16:49 UTC
++ wget -q -O /tmp/mint.preseed http://10.0.2.2:8000/mint.preseed
++ sudo debconf-set-selections /tmp/mint.preseed
++ sudo -E ubiquity --automatic gtk_ui
++ echo 'ubiquity exit 0'
+ubiquity exit 0
++ date -u
+zo 25 okt 2026 05:15:50 UTC
++ sudo cat /var/log/belgian-stick.log
+== 2026-10-24T23:54:00Z live-boot keyboard=be decimal=period formats=none
+Choices: profile windows (default), numpad decimal period (given), Caps Lock windows (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  [32m✔[0m no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  [32m✔[0m /etc/default/keyboard written (options: lv3:ralt_switch,caps:be_windows)
+  [32m✔[0m console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  [32m✔[0m Cinnamon default for new users and reset settings: terminate:ctrl_alt_bksp,caps:be_windows
+3. Your desktop (cinnamon) for user root
+  · no desktop session for root right now: skipped; desktops started later follow the system default
+4. Login screen
+  [32m✔[0m LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  [32m✔[0m keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== 2026-10-25T02:53:48Z install-target keyboard=be decimal=period formats=none
+Pakketlijsten worden ingelezen...
+Boom van vereisten wordt opgebouwd...
+De statusinformatie wordt gelezen...
+De volgende NIEUWE pakketten zullen geïnstalleerd worden:
+  belgian-azerty-windows keyd keyd-belgian-windows
+0 opgewaardeerd, 3 nieuw geïnstalleerd, 0 te verwijderen en 588 niet opgewaardeerd.
+Er moeten 0 B/248 kB aan archieven opgehaald worden.
+Na deze bewerking zal er 1576 kB extra schijfruimte gebruikt worden.
+Ophalen:1 /tmp/belgian/belgian-azerty-windows_0.9.3_all.deb belgian-azerty-windows all 0.9.3 [24.8 kB]
+Ophalen:2 /tmp/belgian/keyd_2.5.0-5~ubuntu24.04.1_amd64.deb keyd amd64 2.5.0-5~ubuntu24.04.1 [219 kB]
+Ophalen:3 /tmp/belgian/keyd-belgian-windows_0.9.3_all.deb keyd-belgian-windows all 0.9.3 [4598 B]
+E: Kan log (Is /dev/pts aangekoppeld?) niet opschrijven - posix_openpt (19: Onjuist apparaat)
+Voorheen niet geselecteerd pakket belgian-azerty-windows wordt geselecteerd.
+(Database wordt ingelezen ... 498468 bestanden en mappen momenteel geïnstalleerd.)
+Uitpakken van .../belgian-azerty-windows_0.9.3_all.deb wordt voorbereid...
+Bezig met uitpakken van belgian-azerty-windows (0.9.3) ...
+Voorheen niet geselecteerd pakket keyd wordt geselecteerd.
+Uitpakken van .../keyd_2.5.0-5~ubuntu24.04.1_amd64.deb wordt voorbereid...
+Bezig met uitpakken van keyd (2.5.0-5~ubuntu24.04.1) ...
+Voorheen niet geselecteerd pakket keyd-belgian-windows wordt geselecteerd.
+Uitpakken van .../keyd-belgian-windows_0.9.3_all.deb wordt voorbereid...
+Bezig met uitpakken van keyd-belgian-windows (0.9.3) ...
+Instellen van keyd (2.5.0-5~ubuntu24.04.1) ...
+⚠️ /proc/ is not mounted. This is not a supported mode of operation. Please fix
+your invocation environment to mount /proc/ and /sys/ properly. Proceeding anyway.
+Your mileage may vary.
+Created symlink /etc/systemd/system/multi-user.target.wants/keyd.service → /usr/lib/systemd/system/keyd.service.
+Instellen van keyd-belgian-windows (0.9.3) ...
+Instellen van belgian-azerty-windows (0.9.3) ...
+'omleiding van /usr/share/X11/xkb/rules/evdev naar /usr/share/X11/xkb/rules/evdev.distrib door belgian-azerty-windows' wordt toegevoegd
+Bezig met afhandelen van triggers voor desktop-file-utils (0.27-2build1) ...
+Bezig met afhandelen van triggers voor gnome-menus (3.36.0-1.1ubuntu3) ...
+Bezig met afhandelen van triggers voor mate-menus (1.26.1+mint1) ...
+Bezig met afhandelen van triggers voor man-db (2.12.0-4build2) ...
+Bezig met afhandelen van triggers voor mailcap (3.70+nmu1ubuntu1) ...
+apt rc=0
++ sudo tail -50 /var/log/installer/syslog
++ ls -la /target
++ head -3
+totaal 2097260
+drwxr-xr-x  22 root root       4096 okt 25 03:45 .
+drwxr-xr-x   1 root root        260 okt 25 02:36 ..
++ set +x

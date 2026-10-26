@@ -1,0 +1,28 @@
+7:WaylandEnable=false
+[User]
+Session=
+Icon=/home/zorin/.face
+SystemAccount=false
+
+[InputSource0]
+xkb=be
+/etc/udev/rules.d:
+
+/run/udev/rules.d:
+71-nvidia.rules
+oct 24 01:33:50 zorin /usr/libexec/gdm-x-session[6066]:         If no devices become available, reconfigure udev or disable AutoAddDevices.
+oct 24 01:33:50 zorin /usr/libexec/gdm-x-session[6066]: (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+oct 24 01:33:50 zorin /usr/libexec/gdm-x-session[6066]: (II) Loading /usr/lib/xorg/modules/drivers/modesetting_drv.so
+oct 24 01:33:50 zorin /usr/libexec/gdm-x-session[6066]: (II) Loading /usr/lib/xorg/modules/drivers/fbdev_drv.so
+oct 24 01:33:50 zorin /usr/libexec/gdm-x-session[6066]: (II) Loading /usr/lib/xorg/modules/drivers/vesa_drv.so
+oct 24 01:33:50 zorin /usr/libexec/gdm-x-session[6066]: (II) Loading /usr/lib/xorg/modules/libfbdevhw.so
+oct 24 01:33:50 zorin /usr/libexec/gdm-x-session[6066]: (II) Loading /usr/lib/xorg/modules/libglamoregl.so
+oct 24 01:33:52 zorin /usr/libexec/gdm-x-session[6066]: (II) modeset(0): ShadowFB: preferred NO, enabled NO
+oct 24 01:33:52 zorin /usr/libexec/gdm-x-session[6066]: (II) modeset(0): First detailed timing is preferred mode
+oct 24 01:33:52 zorin /usr/libexec/gdm-x-session[6066]: (II) modeset(0): Preferred mode is native pixel format and refresh rate
+oct 24 01:33:52 zorin /usr/libexec/gdm-x-session[6066]: (II) SELinux: Disabled on system
+oct 24 01:33:53 zorin /usr/libexec/gdm-x-session[6077]: > Warning:          Could not resolve keysym XF86CameraAccessDisable
+oct 24 01:33:54 zorin /usr/libexec/gdm-x-session[6066]: (II) Loading /usr/lib/xorg/modules/input/libinput_drv.so
+oct 24 01:33:55 zorin /usr/libexec/gdm-x-session[6079]: > Warning:          Could not resolve keysym XF86CameraAccessDisable
+oct 24 01:34:47 zorin /usr/libexec/gdm-x-session[6331]: > Warning:          Could not resolve keysym XF86CameraAccessDisable
+BOOT_IMAGE=/casper/vmlinuz quiet splash keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8 ---

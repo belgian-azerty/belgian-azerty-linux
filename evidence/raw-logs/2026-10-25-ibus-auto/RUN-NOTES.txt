@@ -1,0 +1,23 @@
+Laptop run of RUNBOOK.md, 2026-10-25 11:16-12:07 UTC (WSL Ubuntu-24.04 as root, QEMU/KVM, 5 GB, 4 vCPU, one VM at a time).
+Mint 22.3 live (ba-mint) first, then Zorin 18.1 live (ba-zor). Both VMs stopped at the end. Hashes: 3 debs OK, ISOs Mint a081ab20..., Zorin 44649b97...
+
+Deviations from the runbook
+- Ports: 127.0.0.1:8000/8001 were already held by the "extra-tests" thread's servers (pids 2433/2434, serving
+  /root/be-rig/extra-tests/serve and .../up, idle since 05:57 local). Left untouched. My servers ran on 8010/8011:
+  the copy of g.sh in /root/be-rig/ibus-auto/srv and the copy of upload_server.py in /root/be-rig/ibus-auto were sed-edited
+  for that, and step 1 was typed with :8010. The kit files in this folder are unchanged.
+- Step 7 "after": typed $HOME instead of ~ (~ is AltGr+= = dead tilde on the Belgian layout and can be swallowed).
+- Zorin: an extra Enter before each typed command (stock Zorin live drops the first keys after idle).
+- Step 6 on both distros: the "Fast typing" dialog is wider than the 1280x800 screen (see finding 1), so OK/Valider was
+  off-screen; Enter did not confirm (Mint). Moved the window with Alt+F7 + Left arrows, then clicked OK/Valider.
+- Zorin step 3: Super + "text editor" + Enter opened Text Editor (it appeared after a delay; the first screenshot
+  looked like nothing had opened). No second terminal was opened.
+
+Findings
+1. be-azerty-settings "Snel typen…/Frappe rapide…" checklist: zenity list --text does not wrap, so the long F_Q line makes
+   the window ~1400 px (nl) / ~2000 px (fr) wide despite --width=640. OK button off-screen on 1280 px. Shots:
+   m-fast.png, z-fast.png, *-fast-offscreen-ok-moved.png. A user on a laptop screen would only see "Annuleren/Annuler".
+2. Mint step 7 and Zorin step 7: uninstall leaves an empty ~/.config/systemd/user/ directory (harmless).
+3. "login refresh in the journal" section is empty in every info file (journalctl --user shows no be-azerty/ibus-skip
+   lines), although the login-time switch to paused / back to on clearly worked.
+4. Zorin paused run (Terminal with ibus, X11): Ctrl+Alt 38 swapped + 9 other of 100; AltGr 1/100. Mint paused: 1 and 2/100.

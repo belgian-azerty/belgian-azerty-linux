@@ -1,0 +1,106 @@
+0.9.6 laptop retest (RUNBOOK.md in this kit), 2026-10-25, laptop WSL Ubuntu-24.04 + QEMU/KVM guests in /root/be-rig/r96
+Times: Z = UTC; guest clocks and file times show local time (CET, UTC+1).
+
+RESULT: items 0, 1, 2, 3, 5, 6 MET. Item 4 and 7 are done in the cloud (not part of this run).
+Optional measure-term.sh (3.3): SKIPPED (see "Not done").
+
+== k94 snapshot deletion (approved by Younes 11:19Z; the hook asked again, answered "Approve" ~13:41Z)
+Before: no qemu process at all ("no-k94-qemu"); k94-mint-state.qcow2 4042653696 B, k94-zorin-state.qcow2 4066181120 B;
+        df -h /: 1007G size, 71G used, 886G avail (8%)
+Command: wsl -d Ubuntu-24.04 -u root -- rm -f /root/be-rig/k94/k94-mint-state.qcow2 /root/be-rig/k94/k94-zorin-state.qcow2
+After:  both files gone, nothing else in /root/be-rig/k94 changed; df -h /: 64G used, 893G avail (7%)
+Details: k94-delete.txt
+
+== 0. Stick build + fingerprint: MET
+kit096.tgz sha256 30285b80...dda45c14 OK; every line of kit/SHA256SUMS OK
+Stock ISO sha256 44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5 (matches)
+make_belgian_iso.sh: build exit 0, "checked: every boot menu and added file matches /md5sum.txt" (make-stick.log)
+diff fingerprint-zorin-cloud.txt fp-zorin-laptop.txt: no difference -> FINGERPRINT-MATCH
+Laptop stick sha256: 504893655965d8bd19e306c275062e71970d3087bf530620dcfa7c450f0ad04f  zorin-belgian-stick-0.9.6.iso
+(differs from the cloud ISO file only by timestamps, as the RUNBOOK expects)
+
+== 1. Fresh install zf96 from the stick: MET
+Installer keyboard page: Belgian / Belgian preselected (zf96-06-keyboard-page.png). Timezone Brussels preselected.
+Session type at first boot: Wayland ("Zorin Desktop" selected in GDM, zf96-30-session-menu.png)
+up/first.txt:
+  XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=zorin:GNOME
+  belgian-azerty-windows 0.9.6 / keyd 2.5.0-5~ubuntu24.04.2 / keyd-belgian-windows 0.9.6
+  choices: PROFILE=windows  DECIMAL=period  CAPS=linux
+  /etc/default/keyboard XKBOPTIONS=""   "caps:be_windows count: 0"
+  gsettings xkb-options: @as []
+  check: no ✘; "Windows profile (Ctrl+Alt as AltGr; Caps Lock as on Linux, CAPS=windows switches Windows Caps Lock on)";
+         "Caps Lock: Linux behaviour (letters and é è ç à only)"
+  belgian-stick.log sections (up/stick-log-heads.txt): live-boot 13:45:25Z, install-target 14:01:50Z, first-boot 14:36:49Z
+  ibus: automatic on, Terminal drop-in present, marked org.gnome.TextEditor.desktop, gnome-terminal-server GTK_IM_MODULE=gtk-im-context-simple
+
+== 2. Wayland Caps Lock tap, password dialog and lock screen: MET
+row-before: qQ é2 ù% &é"'(§è!çà 1234567890
+row-dialog: qQ é2 ù% &é"'(§è!çà 1234567890     (dialog showed "abcABC" and "Caps lock staat aan"; after Escape the Terminal typed as Caps off)
+row-lock:   Qq É2 Ù% &É"'(§È!ÇÀ 1234567890     (Caps on, Linux style: letters and é è ç à upper, digits unchanged)
+Pass: in both rows the Shift digit row is 1234567890 and the digit row is &é"'(§è!çà (with Caps on: &É"'(§È!ÇÀ); ù%/Ù% present.
+The 0.9.4.1 failure row 1é345§è8çà did NOT appear.
+Letter case / Caps state mismatch (stock GNOME, mutter issue 3441), seen twice, reproducible:
+  - after the dialog, the lock screen said "Caps lock staat aan" while the Terminal had typed as Caps off;
+  - after one tap on the lock screen the lock screen showed Caps off and "azerty" was accepted, but back on the desktop
+    apps typed as Caps ON ("echo azerty" came out "ECHO AZERTY", zf96-53-capsstate.png).
+  row-lock was recorded in that state without touching Caps Lock (command typed in inverted case, zf96-54-rowlock-cmd.png).
+RUNBOOK text note: the RUNBOOK expects "aA" at the start of the row, but caps-row.txt sends QEMU key "a" = the key that is
+  Q on Belgian AZERTY, so "qQ" is the correct output. Only the RUNBOOK's expected text is off; not a package problem.
+
+== 3. Terminal skips ibus on Wayland, test line: MET
+up/ibus.txt: "automatic: on (default of the Windows profile)", drop-in zz-belgian-azerty-ibus-skip.conf with
+  Environment=GTK_IM_MODULE=gtk-im-context-simple, marked org.gnome.TextEditor.desktop, running gnome-terminal-server
+  "GTK_IM_MODULE=gtk-im-context-simple"
+up/line.txt: |@#{[^{}€[]\ |@#{[^{}€[]\ &É &é   -> byte-for-byte equal to the expected line (cmp: LINE-EXACT)
+Rig note: seq.txt does not end with Enter, so one Ctrl+D only flushes the line; a second Ctrl+D ends the capture.
+
+== 5. Install fallback without a live choices file (zf96b): MET
+Live session: sudo rm /var/lib/belgian-azerty-windows/choices -> folder empty (zf96b-03-removed.png). Same install choices as zf96.
+up/fallback.txt: Wayland; packages 0.9.6/0.9.6/2.5.0-5~ubuntu24.04.2; choices PROFILE=windows DECIMAL=period CAPS=linux;
+  caps:be_windows count 0; xkb-options @as []; check no ✘, "Caps Lock: Linux behaviour (letters and é è ç à only)"
+choices written by first boot: file time 16:35:23 local = 15:35:23Z, first-boot section started 15:34:52Z.
+The phrase "Windows profile on GNOME, where Windows Caps Lock is opt-in" is in the first-boot "Choices:" line:
+  "Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows)".
+  It is NOT in `be-azerty-fix check`'s Caps line (that line says "Linux behaviour"), unlike the RUNBOOK wording.
+Odd: first boot says "profile windows (kept from the last run), numpad decimal period (kept from the last run)" although
+  the live choices file was removed before the install. Cause not investigated (full log: up/fallback-belgian-stick-full.log).
+
+== 6. Upgrade path, overlay zt96 on the installed 0.9.3 Zorin: MET
+Session: Wayland. up/upgrade.txt: sums OK; 0.9.3 -> 0.9.6, keyd ...1 -> ...2; choices CAPS=windows KEPT;
+  check "Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows)" and the GNOME Caps-tap warning line; ibus skip
+  "from your next login" (no drop-in yet, as expected before relogin).
+sudo CAPS=linux be-azerty-fix system: all ✔ (up/upgrade-capslinux-system.log); logout + login.
+up/after-capslinux.txt: Wayland; CAPS=linux; XKBOPTIONS=""; caps:be_windows count 0; xkb-options @as [];
+  automatic ibus skip on; gnome-terminal-server GTK_IM_MODULE=gtk-im-context-simple
+up/upgrade-line.txt: |@#{[^{}€[]\ |@#{[^{}€[]\ &É &é   -> byte-exact (LINE-EXACT)
+zt.qcow2 / zt-vars.fd untouched: same size and mtime before/after (zt-base-before.txt, zt-base-after.txt: identical),
+  zt-vars.fd sha256 cab48bdb...6612bfd183 before and after.
+RUNBOOK command note: "cd extra-tests && qemu-img create -b zt.qcow2 ... $W/zt96.qcow2" fails (qemu-img resolves a relative
+  backing name next to the new overlay: "Could not open '/root/be-rig/r96/zt.qcow2'"). I used the absolute path
+  -b /root/be-rig/extra-tests/zt.qcow2, which is the same file.
+
+== Other oddities (rig / environment, not our packages)
+- UEFI boot entry missing after install (zf96 and zf96b): the fresh OVMF vars had no Zorin entry and booted the UEFI
+  shell (zf96-25-gdm.png, zf96b-20-boot.png). ESP files were present (EFI\BOOT\BOOTX64.EFI, EFI\ubuntu\shimx64.efi,
+  grubx64.efi, zf96-27-esp.png). I ran FS0:\EFI\BOOT\BOOTX64.EFI once from the shell; it booted Zorin, and that only
+  touches the VM's own vars file.
+- Installer: I unticked "download updates" and "third-party software" and ticked "do not take part in the census".
+  The installer still fetched language packs and installed kernel 7.0.0-38 (HWE) plus systemd updates (apt history
+  15:23-15:26 local). Installed kernel: 7.0.0-38-generic.
+- After login, Zorin's Update Manager popped up (1190 MB of updates) while keys were being typed; keys went into it.
+  I chose "Remind me later". Nothing was installed (apt history shows only the installer's runs, no apt process running;
+  up/aptchk.txt). row-lock was redone cleanly after that.
+- The first double-click on the live desktop's installer icon did nothing; the second opened it.
+- One WSL "connection attempt failed" (Wsl/Service/0x8007274c) on a single command; WSL itself kept running (uptime 14 h).
+
+== Not done
+- 3.3 measure-term.sh (optional): skipped. It needs /tmp/g.sh in the guest and the ibus-auto rig's own folders and
+  upload server; the 0.9.6 kit does not provide them and there is no RUNBOOK for it here.
+
+== Clean-up
+VMs started: zf96, zt96, zf96b; all powered off from inside the guest (systemctl poweroff); no qemu process left.
+Servers 8020 (pid 18081, http.server) and 8021 (pid 18082, upload_server.py) stopped by PID; ports free.
+Kept in /root/be-rig/r96: zf96.qcow2, zf96-vars.fd, zf96b.qcow2, zf96b-vars.fd, zt96.qcow2, zt96-vars.fd,
+  stick96.qcow2, stick96b.qcow2 (stick overlays), zorin-belgian-stick-0.9.6.iso, kit/, up/, srv/ (listing: r96-ls.txt).
+Files here: up/ (probe uploads), make-stick.log, fp-zorin-laptop.txt, fingerprint-diff.txt, stick-sha256.txt,
+  k94-delete.txt, zt-base-*.txt, *.png (all screenshots; screenshots/ holds the same pictures again).

@@ -1,0 +1,54 @@
+# What changed, version by version
+
+A plain-language summary. The technical changelogs are in `packaging/*/debian/changelog`. All versions were made
+between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds that were
+never published. They are listed because the README and the test evidence refer to them.
+
+## 0.9.7 — first public version
+
+- **VS Code** also skips the ibus input method by itself now, like the Terminal and the text editor. In the tests this
+  stopped the extra or missing `€` that very fast Ctrl+Alt typing caused in VS Code.
+- The setting now finds current VS Code (its menu file was renamed by Microsoft).
+- Names and text: the packages name "Younes" as maintainer and "Younes from Belgium" as copyright holder, and the
+  README says how far the project was tested.
+
+## 0.9.6
+
+- **Fast typing:** the Terminal and the text editor skip the ibus input method by themselves, which in our tests
+  removed the swapped characters that very fast typing could cause there. It steps aside on its own when you use an input method
+  that needs ibus (Chinese, Japanese, Korean and similar). A tick box in the "Belgian keyboard" window switches it off.
+- **Caps Lock on Zorin:** Zorin now keeps the normal Linux Caps Lock unless you switch the Windows one on
+  (`sudo CAPS=windows be-azerty-fix system`). Reason: a GNOME problem where a Caps Lock tap in a password field could
+  make six keys stop typing with the Windows Caps Lock. Mint keeps the Windows Caps Lock.
+
+## 0.9.5 (not released)
+
+- First version of the fast-typing change above.
+
+## 0.9.4 and 0.9.4.1
+
+- **Ctrl+Alt symbols are steadier when you type fast.** While you hold Ctrl+Alt for several symbols, keyd now keeps
+  AltGr down instead of pressing and releasing Ctrl and Alt for every character. This is one small, labelled change to
+  keyd, to be offered to the keyd project after this release.
+- 0.9.4.1 changed only the documentation.
+
+## 0.9.3
+
+- **"Belgian keyboard" window** in the app menu (Nederlands, Français, Deutsch, English): choose the Windows-style
+  profile or the standard Linux behaviour, and a period or a comma on the numpad.
+- **Live USB that starts with the Belgian keyboard:** a tool that adds Belgian boot-menu entries to the official Mint or Zorin ISO.
+
+## 0.9.2
+
+- **Two profiles:** the Windows-style profile (default) and a Linux-standard profile that keeps the Belgian layout
+  with normal Linux behaviour.
+
+## 0.9.1
+
+- Running the setup again keeps your earlier choices (period or comma, Caps Lock).
+- Fixes for Wayland sessions and for removing the package cleanly.
+
+## 0.9.0
+
+- First packaged version: Ctrl+Alt as AltGr, Caps Lock as on Windows, Belgian (Period) or Belgian (Comma), and the
+  layout kept Belgian everywhere (login screen, desktop, new users). An `uninstall` command puts the system back.

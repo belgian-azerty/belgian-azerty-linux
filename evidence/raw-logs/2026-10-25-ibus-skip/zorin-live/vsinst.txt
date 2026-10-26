@@ -1,0 +1,47 @@
+$ sudo apt-get install -y /tmp/code.deb
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Recommended packages:
+  socat
+The following NEW packages will be installed:
+  code
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 0 B/243 MB of archives.
+After this operation, 1,034 MB of additional disk space will be used.
+Get:1 /tmp/code.deb code amd64 1.143.1-1792691907 [243 MB]
+Preconfiguring packages ...
+Selecting previously unselected package code.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 300581 files and directories currently installed.)
+Preparing to unpack /tmp/code.deb ...
+Unpacking code (1.143.1-1792691907) ...
+Setting up code (1.143.1-1792691907) ...
+[?1049h[22;0;0t[1;24r[4l[?25l(B[m[37m[40m[1;24r[H[2J[1;1H[97m[45m[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[1;1H[37mPackage configuration[8;2H[30m[47m┌───────────────────────────┤ [31mConfiguring code[30m ├────────────────────────────┐[9;2H│                                                                           │[97m[40m [10;2H[30m[47m│ The installer would like to add the Microsoft repository and signing key  │[97m[40m [11;2H[30m[47m│ to update VS Code through apt.                                            │[97m[40m [12;2H[30m[47m│                                                                           │[97m[40m [13;2H[30m[47m│ Add Microsoft apt repository for Visual Studio Code?                      │[97m[40m [14;2H[30m[47m│                                                                           │[97m[40m [15;2H[30m[47m│                    [37m[41m<Yes>[30m[47m                       <No>                       │[97m[40m [16;2H[30m[47m│                                                                           │[97m[40m [17;2H[30m[47m└───────────────────────────────────────────────────────────────────────────┘[97m[40m [18;3H                                                                             [15;24H[?12l[?25h[24;1H[37m(B[m[39;49m[K[?1049l[23;0;0tls -la /tmp/code.deb; tail -3 /tmp/Processing triggers for gnome-menus (3.36.0-1.1ubuntu3) ...
+Processing triggers for shared-mime-info (2.4-4) ...
+vsinst.txt; free -m
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+W: Operation was interrupted before it could finish
+exit 0

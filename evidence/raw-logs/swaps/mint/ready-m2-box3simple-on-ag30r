@@ -1,0 +1,1 @@
+start app=box3 env=[start GTK_IM_MODULE=simple] 18:57:44.218Z keyd=active ibus=on session=x11 desktop=X-Cinnamon gtk_im=ibus sync=unset engine=xkb:us::eng load=1.12 0.74 0.66

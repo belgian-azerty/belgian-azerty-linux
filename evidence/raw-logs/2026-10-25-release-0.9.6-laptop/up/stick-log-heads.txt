@@ -1,0 +1,3 @@
+1:== 2026-10-25T13:45:25Z live-boot keyboard=be decimal=period formats=none
+21:== 2026-10-25T14:01:50Z install-target keyboard=be decimal=period formats=none
+56:== 2026-10-25T14:36:49Z first-boot

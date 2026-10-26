@@ -1,0 +1,65 @@
+# Candidate 0.9.6 (next-0.9.6/be-azerty-fix.sh = bf96.sh) on Mint 22.3 live (ISO sha256 a081ab20...), X11 Cinnamon, cloud QEMU TCG, keyd stopped, 2026-10-25 ~06:38-06:45Z.
+# Rounds 4-7: line p started pkexec, but the Mint live user is allowed without a password, so NO dialog appeared (rc=0, screenshot mint-no-dialog.png); the 100 ms Caps taps of those rounds went to the terminal. The dialog path was therefore not exercised on Mint.
+33321c6344a2ecce48b188c85a0bf1b0798fe0853710edd5d3ab69c3ccdb8f95  belgian-azerty-windows_0.9.4.1_all.deb
+7343a82c3b29b9eda77773655d14647f74a2fd8284c73569f2f377eb291468d6  keyd-belgian-windows_0.9.4.1_all.deb
+946cc443bf5c355ec8383765c6a1696d9001fbccc9f0d5062dc90dd835540468  keyd_2.5.0-5~ubuntu24.04.2_amd64.deb
+5f96858bf70fb8f4e3b1d77e06873e850726b4bdac7b3e9d2328198fd8baf4b8  bf96.sh
+== install 0.9.4.1 debs
+Processing triggers for gnome-menus (3.36.0-1.1ubuntu3) ...
+Processing triggers for mate-menus (1.26.1+mint1) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+== candidate: sudo be-azerty-fix system (no settings)
+Choices: profile windows (default), numpad decimal period (default), Caps Lock windows (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux
+0. Packages
+  ✔ no files of an older be-azerty-fix.sh
+1. System default (console-setup / keyboard-configuration)
+  ✔ /etc/default/keyboard written (options: caps:be_windows)
+  ✔ console keymap applied and cached
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  ✔ Cinnamon default for new users and reset settings: terminate:ctrl_alt_bksp,caps:be_windows
+3. Your desktop (cinnamon) for user mint
+  ✔ setxkbmap be  (options terminate:ctrl_alt_bksp,caps:be_windows)
+  ✔ Cinnamon libgnomekbd layouts set
+  ✔ Cinnamon input-sources set
+  ✔ Cinnamon numpad decimal: period, Caps Lock: windows
+4. Login screen
+  ✔ LightDM follows /etc/default/keyboard (already set)
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  ✔ keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+== after
+XKBOPTIONS="caps:be_windows"
+PROFILE=windows
+DECIMAL=period
+CAPS=windows
+rules:      evdev
+model:      pc105
+layout:     be,us
+variant:    ,
+options:    terminate:ctrl_alt_bksp,caps:be_windows
+Profile:
+  · Windows profile (Ctrl+Alt as AltGr, Caps Lock as on Windows); switch: sudo PROFILE=linux be-azerty-fix system
+  · numpad decimal: period (Windows "Belgian (Period)"), XKBOPTIONS=caps:be_windows
+  · Caps Lock: Windows behaviour (caps:be_windows)
+  ✔ Caps Lock option files present
+  · choices saved by the last "system" run: PROFILE=windows DECIMAL=period CAPS=windows 
+  options:    terminate:ctrl_alt_bksp,caps:be_windows
+Desktop setting (cinnamon):
+  · xkb-options: terminate:ctrl_alt_bksp,caps:be_windows
+  ✔ new users and reset settings start with: ['terminate:ctrl_alt_bksp', 'caps:be_windows']
+keyd=inactive session=x11 desktop=X-Cinnamon
+round 1 06:41:24 LED=0  line=[aA é2 è7 à0 ù%]
+round 2 06:41:43 LED=1  line=[Aa 2é 7è 0à %ù]
+round 3 06:42:01 LED=0  line=[aA é2 è7 à0 ù%]
+round 4 06:42:14 LED=0  line=[p]
+pkexec rc=0
+round 5 06:42:59 LED=1  line=[Aa 2é 7è 0à %ù]
+round 6 06:43:08 LED=1  line=[P]
+pkexec rc=0
+round 7 06:43:54 LED=0  line=[aA é2 è7 à0 ù%]
+round 8 06:44:14 LED=1  line=[Aa 2é 7è 0à %ù]
+round 9 06:44:35 LED=1  line=[A]

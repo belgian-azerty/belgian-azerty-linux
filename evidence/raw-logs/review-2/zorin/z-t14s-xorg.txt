@@ -1,0 +1,9 @@
+rw,nosuid,no
+ls: impossible d'accéder à '/home/zorin/belgian-typing-results.txt': Aucun fichier ou dossier de ce nom
+-rw-r--r-- 1 zorin zorin 712 oct 24 06:38 /media/zorin/STICK/t14s-test/belgian-typing-results.txt
+--- sam 24 oct 2026 06:31:46 UTC T14s, session x11, kernel 6.17.0-20-generic
+06:34:14Z x11 keyd=active ibus=on A keyd-on Ctrl+Alt: order right in 23/24 lines (wrong: [@€€@@€@€@€@€@€@€]); 0 lines not 16 characters (dropped/extra key, or miscounted)
+06:35:29Z x11 keyd=active ibus=on B keyd-on AltGr: order right in 24/24 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)
+06:36:49Z x11 keyd=failed ibus=on C keyd-off AltGr (stock Linux): order right in 24/24 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)
+06:38:08Z x11 keyd=active ibus=off D keyd-on ibus-off Ctrl+Alt: order right in 24/24 lines; 0 lines not 16 characters (dropped/extra key, or miscounted)
+4739 ibus-daemon -drx

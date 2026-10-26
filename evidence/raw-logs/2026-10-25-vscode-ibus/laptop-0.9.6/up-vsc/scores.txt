@@ -1,0 +1,32 @@
+== mint ibus
+  ctrlalt-slow   0 right,   0 swapped,   0 other, of 0  (expected 10)
+  ctrlalt-o30    0 right,   0 swapped,   0 other, of 0  (expected 30)
+  altgr-o30      8 right,   1 swapped,   3 other, of 12  (expected 30)
+  dead           2 right,   0 swapped,   1 other, of 3
+  lines 15 (expected 73); line lengths: [16, 16, 16, 16, 16, 16, 16, 16, 16, 15, 15, 934, 75, 7, 7]
+  burst text (1176 chars, expected 1120): @ 560/560, € 616/560, '@€' pairs 553, '€€' 62, '@@' 6, other chars []
+  dead-key strings found: 3/3
+== mint skip
+  ctrlalt-slow  10 right,   0 swapped,   0 other, of 10
+  ctrlalt-o30   30 right,   0 swapped,   0 other, of 30
+  altgr-o30     30 right,   0 swapped,   0 other, of 30
+  dead           3 right,   0 swapped,   0 other, of 3
+  lines 73 (expected 73); line lengths: [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 7, 7, 7]
+  burst text (1120 chars, expected 1120): @ 560/560, € 560/560, '@€' pairs 560, '€€' 0, '@@' 0, other chars []
+  dead-key strings found: 3/3
+== zorin ibus
+  ctrlalt-slow   0 right,   0 swapped,   0 other, of 0  (expected 10)
+  ctrlalt-o30    7 right,   0 swapped,   0 other, of 7  (expected 30)
+  altgr-o30     15 right,   0 swapped,   2 other, of 17  (expected 30)
+  dead           2 right,   0 swapped,   1 other, of 3
+  lines 20 (expected 73); line lengths: [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 117, 441, 381, 7, 7]
+  burst text (1172 chars, expected 1120): @ 560/560, € 612/560, '@€' pairs 556, '€€' 56, '@@' 3, other chars []
+  dead-key strings found: 3/3
+== zorin skip
+  ctrlalt-slow  10 right,   0 swapped,   0 other, of 10
+  ctrlalt-o30   30 right,   0 swapped,   0 other, of 30
+  altgr-o30     30 right,   0 swapped,   0 other, of 30
+  dead           3 right,   0 swapped,   0 other, of 3
+  lines 73 (expected 73); line lengths: [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 7, 7, 7]
+  burst text (1120 chars, expected 1120): @ 560/560, € 560/560, '@€' pairs 560, '€€' 0, '@@' 0, other chars []
+  dead-key strings found: 3/3

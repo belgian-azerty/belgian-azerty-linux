@@ -1,0 +1,3 @@
+ibus-CtrlAlt060: @€@€@€@€@€@€@€@€
+ibus-AltGr060: @€@€@€@€@€@€@€@€
+ibus-AltGr-plain015: @a@a@a@a@a@a@a@a
