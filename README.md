@@ -413,6 +413,12 @@ keyboard, keyboards with a built-in touchpad (see "Known issues"), Ubuntu itself
 - The Caps Lock option does not appear in the keyboard settings dialogs (it is not in xkb-data's option list); it is
   switched with `be-azerty-fix`.
 
+## Help test, or answer the survey
+
+- **Test it** on your own computer: the steps are in [TESTING.md](TESTING.md) (Nederlands: [TESTING.nl.md](TESTING.nl.md),
+  Français : [TESTING.fr.md](TESTING.fr.md)). You can report with or without a GitHub account.
+- **2-minute survey**, anonymous, open until 30 November 2026: [English](https://cryptpad.fr/form/#/2/form/view/A9o2MXPQHcgJr0e6Y0eG3Qy0fjz13WeJ1IHy-JGxTy0/) · [Nederlands](https://cryptpad.fr/form/#/2/form/view/mLakgWAFAMsQhn1VkX+rnDxlHPSzbZiloRZxeS6IYlQ/) · [Français](https://cryptpad.fr/form/#/2/form/view/Vs07SGZoahOJOklE8G6wDZaC4Kjdl9mKyBwYAshSCQA/).
+
 ## For maintainers
 
 `MAINTAINERS.md` explains how the pieces fit together, how to build every package from source

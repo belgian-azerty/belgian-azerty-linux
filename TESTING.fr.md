@@ -118,10 +118,13 @@ Au choix, le plus simple pour vous :
 
 - **Avec un compte GitHub :** [ouvrir un rapport de test](https://github.com/belgian-azerty/belgian-azerty-linux/issues/new?template=test-report.yml) (un formulaire avec les mêmes
   étapes).
+- **Sans compte :** [le formulaire de test anonyme](https://cryptpad.fr/form/#/2/form/view/s+Hn2IgNJ4cU55Hgx+CHNMPwvcyeARYS+n+OxnQPke4/) (ni compte, ni nom, ni e-mail).
 - **Par e-mail :** linuxbelgiumkeyboard.rc0g4@aleeas.com, avec les lignes obtenues et `belgian-check.txt`.
 
 Indiquez : Mint ou Zorin, installé / machine virtuelle / clé live, ce que vous avez vu pour les lignes A à E, et tout
 ce qui vous a semblé étrange. La marque et le modèle de l'ordinateur et du clavier aident, mais sont facultatifs.
 N'envoyez ni nom, ni adresse e-mail, ni nom d'utilisateur, sauf si vous souhaitez une réponse par e-mail.
+
+**Pas le temps de tester ?** Le questionnaire de 2 minutes aide aussi : [English](https://cryptpad.fr/form/#/2/form/view/A9o2MXPQHcgJr0e6Y0eG3Qy0fjz13WeJ1IHy-JGxTy0/) · [Nederlands](https://cryptpad.fr/form/#/2/form/view/mLakgWAFAMsQhn1VkX+rnDxlHPSzbZiloRZxeS6IYlQ/) · [Français](https://cryptpad.fr/form/#/2/form/view/Vs07SGZoahOJOklE8G6wDZaC4Kjdl9mKyBwYAshSCQA/).
 
 Merci !

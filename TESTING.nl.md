@@ -112,10 +112,13 @@ stap 8.
 Kies wat het makkelijkst is:
 
 - **Met een GitHub-account:** [open een testverslag](https://github.com/belgian-azerty/belgian-azerty-linux/issues/new?template=test-report.yml) (een formulier met dezelfde stappen).
+- **Zonder account:** [het anonieme testformulier](https://cryptpad.fr/form/#/2/form/view/cT78QsJwrlkIgiaH7zAyEfyDp+wKDwmZIE1P98anqxs/) (geen account, naam of e-mail nodig).
 - **Per e-mail:** linuxbelgiumkeyboard.rc0g4@aleeas.com, met de regels die je zag en `belgian-check.txt`.
 
 Vermeld: Mint of Zorin, geïnstalleerd / virtuele machine / live-USB, wat je zag bij de regels A tot E, en alles wat
 vreemd was. Het merk en model van de computer en het toetsenbord helpen, maar zijn niet verplicht. Stuur geen naam,
 e-mailadres of gebruikersnaam, tenzij je een antwoord per e-mail wilt.
+
+**Geen tijd om te testen?** De enquête van 2 minuten helpt ook: [English](https://cryptpad.fr/form/#/2/form/view/A9o2MXPQHcgJr0e6Y0eG3Qy0fjz13WeJ1IHy-JGxTy0/) · [Nederlands](https://cryptpad.fr/form/#/2/form/view/mLakgWAFAMsQhn1VkX+rnDxlHPSzbZiloRZxeS6IYlQ/) · [Français](https://cryptpad.fr/form/#/2/form/view/Vs07SGZoahOJOklE8G6wDZaC4Kjdl9mKyBwYAshSCQA/).
 
 Bedankt!

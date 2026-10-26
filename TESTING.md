@@ -109,10 +109,13 @@ the setup once; let it run). Then lines A to E, step 7 and step 8.
 Pick one, whichever is easiest:
 
 - **With a GitHub account:** [open a test report](https://github.com/belgian-azerty/belgian-azerty-linux/issues/new?template=test-report.yml) (a form with the same steps).
+- **Without an account:** [the anonymous test form](https://cryptpad.fr/form/#/2/form/view/5pyp77A2OWeYL8oIgyPDl7DLfyyXh3St+p2L3pdFXdo/) (no account, no name, no e-mail needed).
 - **By e-mail:** linuxbelgiumkeyboard.rc0g4@aleeas.com, with the lines you saw and `belgian-check.txt`.
 
 Please include: Mint or Zorin, installed / virtual machine / live USB, what you saw for lines A to E, anything strange.
 The computer model and keyboard model help but are optional. Do not send your name, e-mail address or user name
 unless you want a reply by e-mail.
+
+**No time to test?** The 2-minute survey also helps: [English](https://cryptpad.fr/form/#/2/form/view/A9o2MXPQHcgJr0e6Y0eG3Qy0fjz13WeJ1IHy-JGxTy0/) · [Nederlands](https://cryptpad.fr/form/#/2/form/view/mLakgWAFAMsQhn1VkX+rnDxlHPSzbZiloRZxeS6IYlQ/) · [Français](https://cryptpad.fr/form/#/2/form/view/Vs07SGZoahOJOklE8G6wDZaC4Kjdl9mKyBwYAshSCQA/).
 
 Thank you!

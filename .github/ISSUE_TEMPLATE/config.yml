@@ -1,1 +1,8 @@
 blank_issues_enabled: true
+contact_links:
+  - name: Test report without a GitHub account
+    url: https://cryptpad.fr/form/#/2/form/view/5pyp77A2OWeYL8oIgyPDl7DLfyyXh3St+p2L3pdFXdo/
+    about: Anonymous form (no account, no name, no e-mail). Nederlands and Français versions are linked from TESTING.nl.md and TESTING.fr.md.
+  - name: 2-minute survey
+    url: https://cryptpad.fr/form/#/2/form/view/A9o2MXPQHcgJr0e6Y0eG3Qy0fjz13WeJ1IHy-JGxTy0/
+    about: Anonymous survey about the Belgian keyboard on Linux. Nederlands and Français versions are linked from the README.
