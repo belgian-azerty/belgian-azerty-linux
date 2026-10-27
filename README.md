@@ -1,5 +1,12 @@
 # Belgian AZERTY that works as it does on Windows, for Linux Mint and Zorin OS
 
+> **Known problem in 0.9.7: it removes your other keyboard layouts and input methods** (found 26 October 2026 by an
+> outside reviewer). `sudo be-azerty-fix system`, and the Period/Comma choice in the "Belgian keyboard" window,
+> replace your list of layouts with Belgian only. If you also use a second layout, or an input method for Chinese,
+> Japanese, Korean or similar, do not run either of them until version 0.9.8. If it already happened, add the layout
+> or input method again in your keyboard settings (Zorin: Settings > Keyboard; Mint: Keyboard > Layouts), then log
+> out and back in. Installing the packages alone does not remove anything.
+
 The Belgian keyboard layout itself has been correct on Linux for a long time. What is missing is the Windows
 behaviour that Belgians are used to, and a live USB that starts with the Belgian keyboard already set. This project adds:
 
@@ -336,6 +343,8 @@ keyboard, keyboards with a built-in touchpad (see "Known issues"), Ubuntu itself
 
 ## Known issues
 
+- **0.9.7 removes other keyboard layouts and input methods** (found 2026-10-26, to be fixed in 0.9.8). See the
+  warning at the top of this page.
 - **On Zorin with Wayland, six keys can stop working after Caps Lock in a password field** (only when the Windows
   Caps Lock is switched on by hand with `CAPS=windows`, see "Caps Lock on Zorin"; found 2026-10-25; cause traced to
   GNOME, upstream report drafted). On Zorin OS 18.1 in a Wayland
