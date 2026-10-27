@@ -12,10 +12,12 @@ Caps Lock setting on uninstall. These changes were tested in Ubuntu 24.04 test c
 packages as Mint 22 and Zorin 18 underneath but no real desktop, no boot and no keyboard hardware:
 
 - `tests/settings-logic.sh`: the list and option logic, saved choices, the ibus skip default and the keyd version
-  check, with a stand-in for the settings store (51 checks).
+  check, with a stand-in for the settings store (60 checks).
 - `tests/lived-in.sh`: a container with systemd and real users whose settings are "lived in": one with US first, a
   Japanese input method and Belgian second plus her own options and launcher, one not logged in with a French second
-  layout and the Windows Caps Lock option, one with only a Chinese input method, and one created afterwards. Every
+  layout and the Windows Caps Lock option, one with only a Chinese input method, a Mint user who never changed her
+  layouts (empty lists), one not logged in with his own US-only list, and one created afterwards. Also four layouts
+  already in the system default, and a Belgian (alt.) user. Every
   keyboard setting of every user is compared before and after each step; anything that disappears fails the test.
   Run for a fresh install with the PPA's keyd already present, and for an upgrade from 0.9.7 (including the switch to
   the PPA's keyd), then uninstall, then each package on its own. The same test run on 0.9.7 fails 13 times (it
@@ -25,6 +27,10 @@ packages as Mint 22 and Zorin 18 underneath but no real desktop, no boot and no 
   source: the 15 symbols, Ctrl+Alt held for several symbols, AltGr+4/5, and Ctrl+Alt shortcuts (T, Delete, F3,
   arrows) passed through (18 cases).
 - `tests/run-offline.sh`: shellcheck, package build, lintian, the Caps Lock table.
+
+Fresh install: 49 checks pass; upgrade from 0.9.7: 57 pass. A few extra checks ran once (logs kept with the evidence):
+the packages install when apt answers in Dutch; uninstall keeps the old keyd build when the user has their own keyd
+configuration or keyd-application-mapper from the PPA; `switch-keyd` reports failure with an error code.
 
 A container cannot run keyd (no virtual keyboard device), the login screen, a reboot or a real desktop session, so
 those parts of 0.9.8 rely on the earlier emulator and laptop tests below, where the code did not change.
@@ -67,7 +73,12 @@ Flatpak.
 Before 0.9.7, three separate reviews checked the code, the packages, the documents and the test evidence. They were
 done with an AI assistant, Claude, in separate sessions that had not written the code. They checked our claims
 against our evidence and missed the layout removal; an outside reviewer found it on 26 October 2026. For 0.9.8 a
-review starts from "who could this hurt" instead, running as different kinds of users.
+review started from "who could this hurt" instead, without our claim tables, running as different kinds of users in
+test containers (also a separate Claude session that had not written the code). It found nine problems in the first
+0.9.8 build, four of them harmful: an empty layout list on Mint was still replaced by Belgian only, the packages
+could not find keyd when apt answered in Dutch or French, an existing keyd configuration of the user silently
+competed with ours, and uninstall could remove a keyd the user still used. All nine were fixed and each has a test
+now (`CHANGELOG.md`, 0.9.8).
 
 ## Where the extra US layout in Dutch and German sessions comes from
 

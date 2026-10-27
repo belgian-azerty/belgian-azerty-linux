@@ -9,5 +9,13 @@ if [ "$1" = configure ] && [ -d /run/systemd/system ]; then
     fi
     deb-systemd-invoke restart keyd.service >/dev/null 2>&1 || true
 fi
+if [ "$1" = configure ]; then
+    # keyd gives each keyboard one configuration only: say so when the user already has their own.
+    for f in /etc/keyd/*.conf; do
+        [ -f "$f" ] && [ "$f" != /etc/keyd/be-winaltgr.conf ] || continue
+        echo "keyd-belgian-windows: $f exists. keyd uses one configuration per keyboard, so on keyboards that both" \
+             "files match only one of them works. Put the Belgian rules into your own file, or limit one file under [ids]." >&2
+    done
+fi
 
 #DEBHELPER#

@@ -32,7 +32,11 @@ start from. When they disagree the keyboard seems to switch layout by itself.
 .B be-azerty-fix
 puts the Belgian layout first in all of them and switches on the Windows habits
 Belgians expect. Other layouts and input methods in those lists are kept, in
-their order; a list that cannot be read is left unchanged.
+their order; a Belgian variant already in a list stays the Belgian entry; an
+empty list (meaning "use the system default") is filled with the system
+default's layouts; a list that cannot be read is left unchanged. The system
+default keeps at most four layouts, the most the console, the login screen and
+X use; the command names a layout left out there.
 .TP
 .B check
 Show what every store says. Changes nothing; needs no root.
@@ -45,6 +49,9 @@ Fix the installed system: system default, console keymap, boot image, the
 defaults for new users and reset settings (Cinnamon), the current user's
 desktop, the GDM login screen. When /etc/default/keyboard already has the
 wanted values, nothing is reconfigured and the boot image is not rebuilt.
+When the user is not logged in (ssh, a console), their stored desktop settings
+are changed. Warns when keyd has another configuration besides ours: keyd
+applies one configuration file per keyboard.
 Installs the packages found next to the script if they are missing (keyd itself
 comes from the keyd-team PPA, ppa:keyd-team/ppa).
 .TP
@@ -52,8 +59,10 @@ comes from the keyd-team PPA, ppa:keyd-team/ppa).
 Remove the Caps Lock option from the system default and from every user's own
 GNOME and Cinnamon settings (also users who are not logged in), the Cinnamon
 defaults, files of older versions, and purge belgian-azerty-windows,
-keyd-belgian-windows and (unless KEEP_KEYD=1) the keyd build of versions
-0.9.7 and earlier. A keyd from the keyd-team PPA or the distribution stays. The
+keyd-belgian-windows and the keyd build of versions 0.9.7 and earlier, unless
+KEEP_KEYD=1, another keyd configuration exists in /etc/keyd, or a
+keyd-application-mapper not from this project needs it. A keyd from the
+keyd-team PPA or the distribution stays. The
 layouts stay as they are. Also removes every user's ibus skip files (see below).
 .TP
 .B switch-keyd

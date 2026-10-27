@@ -76,6 +76,7 @@ set -u
   esac
 done
 LAYOUT=be
+VARIANT_GIVEN=${VARIANT:+1}   # without VARIANT=, a Belgian entry the user already has (e.g. be+oss) keeps its variant
 VARIANT="${VARIANT:-}"
 case "$VARIANT" in ""|oss|nodeadkeys) ;; *) echo "VARIANT must be empty, oss or nodeadkeys" >&2; exit 1 ;; esac
 MODEL=pc105
@@ -113,6 +114,7 @@ LEGACY_RULE_MARK='// be-azerty-fix.sh: Caps Lock as on Windows Belgian'
 ok()   { printf '  \033[32m✔\033[0m %s\n' "$*"; }
 bad()  { printf '  \033[31m✘\033[0m %s\n' "$*"; FAILED=1; }
 info() { printf '  · %s\n' "$*"; }
+warn() { printf '  \033[33m!\033[0m %s\n' "$*"; }
 FAILED=0
 
 usage() { sed -n '2,/^set -u$/{/^set -u$/d;s/^# \{0,1\}//;p}' "$0"; }
@@ -127,6 +129,10 @@ user_gsettings() {         # run gsettings as the target user on their session b
   local u; u=$(target_user)
   local uid; uid=$(id -u "$u")
   local bus="unix:path=/run/user/$uid/bus"
+  # Not logged in (system over ssh, from a console): root changes their stored settings on a private bus.
+  if [ ! -S "/run/user/$uid/bus" ] && [ "$(id -u)" = 0 ] && [ "$u" != root ]; then
+    as_user_gsettings "$u" "$uid" "$(getent passwd "$u" | cut -d: -f6)" "$@"; return
+  fi
   if [ "$(id -un)" = "$u" ]; then
     DBUS_SESSION_BUS_ADDRESS="$bus" gsettings "$@"
   else
@@ -155,6 +161,18 @@ ours_keyd() {
   return 1
 }
 PPA_HINT="sudo add-apt-repository ppa:keyd-team/ppa && sudo apt install keyd"
+keyd_other_configs() {     # keyd configurations besides ours, comma separated
+  local f out=""
+  for f in /etc/keyd/*.conf; do
+    [ -f "$f" ] && [ "$f" != /etc/keyd/be-winaltgr.conf ] && out="${out:+$out, }$f"
+  done
+  echo "$out"
+}
+keyd_shared_warning() {    # keyd uses one configuration per keyboard (the best [ids] match), never two together
+  local o; o=$(keyd_other_configs)
+  [ -n "$o" ] && [ -r /etc/keyd/be-winaltgr.conf ] && warn "keyd uses one configuration per keyboard: on keyboards that $o also matches, either those rules or the Belgian Ctrl+Alt rules work, not both. Put the Belgian rules into your own file and remove /etc/keyd/be-winaltgr.conf, or limit one file to some keyboards under [ids]."
+  return 0
+}
 session_type() {           # x11, wayland, tty ... of the target user's graphical session
   # sudo drops XDG_SESSION_TYPE, so ask logind about the user's session; without an answer fall back to the variable.
   local u sid t=""; u=$(target_user)
@@ -226,9 +244,11 @@ gsettings_options() {      # ['a', 'b'] -> a,b
   user_gsettings get "$1" xkb-options 2>/dev/null | sed -E "s/^@as //; s/[][' ]//g"
 }
 # Layout lists: Belgian goes first, every other entry stays, in its order (a second layout, an ibus input method).
-# Only an entry equal to the Belgian one is dropped, so it is not listed twice. Nothing else is ever removed.
+# Only an entry equal to the Belgian one is dropped, so it is not listed twice. Nothing else is ever removed. Without
+# VARIANT=, a Belgian entry already in the list (be, be+oss, be+nodeadkeys) is the one moved to the front.
 be_first_sources() {       # GNOME/Cinnamon input sources: [('xkb', 'us'), ('ibus', 'anthy')] -> [('xkb', 'be'), ...]
   local want="('xkb', '$LAYOUT${VARIANT:++$VARIANT}')" out e
+  [ -n "$VARIANT_GIVEN" ] || { e=$(printf '%s\n' "$1" | grep -o "('xkb', '$LAYOUT\(+[^']*\)\{0,1\}')" | head -1); [ -z "$e" ] || want=$e; }
   out=$want
   while read -r e; do
     [ -n "$e" ] && [ "$e" != "$want" ] && out="$out, $e"
@@ -237,6 +257,7 @@ be_first_sources() {       # GNOME/Cinnamon input sources: [('xkb', 'us'), ('ibu
 }
 be_first_layouts() {       # libgnomekbd/MATE layouts: ['us', 'de\tneo'] -> ['be\t', 'us', 'de\tneo']
   local want="'$LAYOUT\\t$VARIANT'" out e
+  [ -n "$VARIANT_GIVEN" ] || { e=$(printf '%s\n' "$1" | grep -o "'$LAYOUT\(\\\\t[^']*\)\{0,1\}'" | head -1); [ -z "$e" ] || want=$e; }
   out=$want
   while read -r e; do
     [ -n "$e" ] && [ "$(layout_entry_norm "$e")" != "$(layout_entry_norm "$want")" ] && out="$out, $e"
@@ -251,10 +272,13 @@ be_first_xkb() {           # LAYOUTS VARIANTS (comma lists, as in /etc/default/k
   local l v ls vs i n out_l=$LAYOUT out_v=$VARIANT
   IFS=, read -r -a ls <<< "$1"; IFS=, read -r -a vs <<< "$2"
   n=${#ls[@]}
+  if [ -z "$VARIANT_GIVEN" ]; then   # keep the variant of a Belgian layout already in the list
+    for ((i = 0; i < n; i++)); do [ "${ls[$i]}" = "$LAYOUT" ] && { out_v=${vs[$i]:-}; break; }; done
+  fi
   for ((i = 0; i < n; i++)); do
     l=${ls[$i]}; v=${vs[$i]:-}
     [ -n "$l" ] || continue
-    { [ "$l" = "$LAYOUT" ] && [ "$v" = "$VARIANT" ]; } && continue
+    { [ "$l" = "$LAYOUT" ] && [ "$v" = "${out_v%%,*}" ]; } && continue
     out_l="$out_l,$l"; out_v="$out_v,$v"
   done
   [ -n "${out_v//,/}" ] || out_v=""   # no variant anywhere: leave the variant line empty, as the installers do
@@ -265,14 +289,36 @@ kept_entries() {           # LIST WITH BELGIAN FIRST -> the other entries for th
     | sed -E "s/^\('xkb', '([^']*)'\)$/\1/; s/^\('([^']*)', '([^']*)'\)$/\1 \2/; s/^'(.*)'$/\1/; s/\\\\t$//; s/\\\\t/+/" \
     | paste -sd, - | sed 's/,/, /g'
 }
+KEYBOARD_FILE=/etc/default/keyboard   # read by system_list (tests/settings-logic.sh points it elsewhere)
+system_list() {            # KEY: the system default's layouts (Belgian first) in the format of a desktop list
+  local l v ls vs i out=""
+  # shellcheck disable=SC1090
+  read -r l v <<< "$(be_first_xkb "$(. "$KEYBOARD_FILE" 2>/dev/null; echo "${XKBLAYOUT:-}")" \
+                                  "$(. "$KEYBOARD_FILE" 2>/dev/null; echo "${XKBVARIANT:-}")")"
+  IFS=, read -r -a ls <<< "$l"; IFS=, read -r -a vs <<< "$v"
+  for ((i = 0; i < ${#ls[@]}; i++)); do
+    case "$1" in
+      sources) out="${out:+$out, }('xkb', '${ls[$i]}${vs[$i]:++${vs[$i]}}')" ;;
+      *) out="${out:+$out, }'${ls[$i]}\\t${vs[$i]:-}'" ;;
+    esac
+  done
+  echo "[$out]"
+}
 put_be_first() {           # SCHEMA KEY LABEL: Belgian first in the user's list, every other entry kept
-  local cur new
+  local cur new was=""
   # If the list cannot be read, nothing is written: a failed read must never turn into a list with Belgian only.
   if ! cur=$(user_gsettings get "$1" "$2" 2>/dev/null) || [ -z "$cur" ]; then bad "could not read $1 $2; left unchanged"; return; fi
-  case "$2" in sources) new=$(be_first_sources "$cur") ;; *) new=$(be_first_layouts "$cur") ;; esac
-  if [ "$(printf '%s' "$cur" | sed 's/^@a[(s)]* //')" = "$new" ]; then ok "$3: Belgian already first$(kept_msg "$new")"; return; fi
+  # An empty list means "use the system default's layouts" (Mint users who never changed their layouts). Start from
+  # those, so a second layout of the system default is not lost when Belgian is written in.
+  if ! printf '%s' "$cur" | grep -q "'"; then
+    case "$2" in sources) new=$(be_first_sources "$(system_list sources)") ;; *) new=$(be_first_layouts "$(system_list layouts)") ;; esac
+    was=" (was empty, following the system default; now the system default's layouts)"
+  else
+    case "$2" in sources) new=$(be_first_sources "$cur") ;; *) new=$(be_first_layouts "$cur") ;; esac
+    if [ "$(printf '%s' "$cur" | sed 's/^@a[(s)]* //')" = "$new" ]; then ok "$3: Belgian already first$(kept_msg "$new")"; return; fi
+  fi
   user_gsettings set "$1" "$2" "$new" && [ "$(user_gsettings get "$1" "$2" 2>/dev/null)" = "$new" ] \
-    && ok "$3: Belgian first$(kept_msg "$new")" || bad "could not set $1 $2"
+    && ok "$3: Belgian first$was$(kept_msg "$new")" || bad "could not set $1 $2"
 }
 put_options() {            # SCHEMA LABEL: our numpad and Caps Lock options in the user's xkb-options, the rest kept
   local cur
@@ -337,7 +383,7 @@ check() {
   echo "System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:"
   if [ -r /etc/default/keyboard ]; then
     local l v; l=$(. /etc/default/keyboard; echo "${XKBLAYOUT:-}"); v=$(. /etc/default/keyboard; echo "${XKBVARIANT:-}")
-    [ "$l" = "$LAYOUT" ] && ok "XKBLAYOUT=$l XKBVARIANT=$v" || bad "XKBLAYOUT=$l XKBVARIANT=$v (want $LAYOUT)"
+    [ "${l%%,*}" = "$LAYOUT" ] && ok "XKBLAYOUT=$l XKBVARIANT=$v$([ "$l" != "$LAYOUT" ] && echo " (Belgian first)")" || bad "XKBLAYOUT=$l XKBVARIANT=$v (want $LAYOUT first)"
     local o; o=$(. /etc/default/keyboard; echo "${XKBOPTIONS:-}")
     case ",$o," in *,kpdl:comma,*) info "numpad decimal: comma (Windows \"Belgian (Comma)\"), XKBOPTIONS=$o" ;;
                    *) info "numpad decimal: period (Windows \"Belgian (Period)\"), XKBOPTIONS=$o" ;; esac
@@ -404,6 +450,7 @@ check() {
     else
       systemctl is-active --quiet keyd 2>/dev/null && ok "keyd service running" || bad "keyd service not running"
     fi
+    keyd_shared_warning
   else info "keyd not installed: Ctrl+Alt+2 will not type @ in graphical apps (only AltGr does); to add it: $PPA_HINT, then sudo apt install keyd-belgian-windows (or its .deb)"; fi
 
   echo "Boot image:"
@@ -425,11 +472,17 @@ live() {
     xo=$(want_options "$(printf '%s\n' "$q" | sed -n 's/^options: *//p')")
     read -r xl xv <<< "$(be_first_xkb "$(printf '%s\n' "$q" | sed -n 's/^layout: *//p')" "$(printf '%s\n' "$q" | sed -n 's/^variant: *//p')")"
     # X11 holds at most four layouts at a time; the desktop settings below keep the full list.
+    [ "$(printf '%s' "$xl" | cut -d, -f5-)" ] && info "the running X session holds 4 layouts at a time: $(printf '%s' "$xl" | cut -d, -f5-) not in it now (your desktop settings keep it)"
     xl=$(printf '%s' "$xl" | cut -d, -f1-4); [ -n "$xv" ] && xv=$(printf '%s' "$xv" | cut -d, -f1-4)
     if setxkbmap -layout "$xl" -variant "$xv" -model "$MODEL" -option "" ${xo:+-option "$xo"}; then
       ok "setxkbmap $xl${xv:+ (variants $xv)}${xo:+ (options $xo)}"
     else bad "setxkbmap failed"; fi
   fi
+  desktop_lists
+  [ "${IN_SYSTEM:-0}" = 1 ] || skip_after_change
+  [ "${IN_SYSTEM:-0}" = 1 ] || info "This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=$LAYOUT  to the boot line (press e at the boot menu)."
+}
+desktop_lists() {          # the target user's desktop settings: Belgian first, our options
   case "$(desktop)" in
     gnome)
       put_be_first org.gnome.desktop.input-sources sources "GNOME input sources"
@@ -445,8 +498,6 @@ live() {
         put_options org.cinnamon.desktop.input-sources Cinnamon
       fi ;;
   esac
-  [ "${IN_SYSTEM:-0}" = 1 ] || skip_after_change
-  [ "${IN_SYSTEM:-0}" = 1 ] || info "This lasts until reboot. For a USB stick that boots Belgian, use the Belgian ISO (make_belgian_iso.sh) or add  keyboard-configuration/layoutcode=$LAYOUT  to the boot line (press e at the boot menu)."
 }
 
 # ---------- installed system ----------------------------------------------------------------------
@@ -456,6 +507,11 @@ apply_default_keyboard() {   # OPTIONS [as-is]: write debconf + /etc/default/key
   cl=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBLAYOUT:-}"); cv=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBVARIANT:-}")
   cm=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBMODEL:-}"); co=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")
   if [ "${2:-}" = as-is ]; then l=$cl; v=$cv; else read -r l v <<< "$(be_first_xkb "$cl" "$cv")"; fi
+  # The console, the login screen and X use at most four layouts; a fifth would be dropped there without a word.
+  if [ -n "$(printf '%s' "$l" | cut -d, -f5-)" ]; then
+    info "only 4 layouts fit in the system default: $(printf '%s' "$l" | cut -d, -f5-) left out there (your own desktop settings keep it)"
+    l=$(printf '%s' "$l" | cut -d, -f1-4); [ -n "$v" ] && v=$(printf '%s' "$v" | cut -d, -f1-4)
+  fi
   [ "${l#*,}" != "$l" ] && [ "${2:-}" != as-is ] && info "other layouts kept for the login screen and new users: ${l#*,}"
   newest=$(ls -t /boot/initrd.img-* 2>/dev/null | head -1)
   # Nothing to change (a rerun, or the window applying the same choice): no reconfiguration and no boot image
@@ -496,7 +552,7 @@ install_packages() {         # install our .deb files shipped next to this scrip
     [ -n "$d" ] || continue
     # keyd itself is not ours to ship any more: it comes from the keyd-team PPA (or the distribution, from Ubuntu 25.04).
     if [ "$n" = keyd-belgian-windows ] && ! pkg_installed keyd && \
-       [ -z "$(apt-cache policy keyd 2>/dev/null | sed -n 's/^ *Candidate: *//p' | grep -v '(none)')" ]; then
+       [ -z "$(LC_ALL=C apt-cache policy keyd 2>/dev/null | sed -n 's/^ *Candidate: *//p' | grep -v '(none)')" ]; then
       info "Ctrl+Alt as AltGr needs keyd, which Ubuntu 24.04 does not have; add it with:  $PPA_HINT  and run this again"
       continue
     fi
@@ -517,14 +573,14 @@ switch_keyd() {              # replace our old keyd build by the keyd-team PPA's
   # Our build sorts above the PPA's version, so apt would never replace it by itself: pick the newest keyd that a
   # configured repository offers and is not ours, and install it explicitly (a downgrade by version number only).
   local v p pk
-  v=$(apt-cache madison keyd 2>/dev/null | awk -F'|' '{gsub(/ /, "", $2); print $2}' | grep -v -e '-5~ubuntu24\.04\.[0-9]$' -e beazerty | head -1)
+  v=$(LC_ALL=C apt-cache madison keyd 2>/dev/null | awk -F'|' '{gsub(/ /, "", $2); print $2}' | grep -v -e '-5~ubuntu24\.04\.[0-9]$' -e beazerty | head -1)
   if [ -z "$v" ]; then
     bad "no other keyd found. First add the keyd-team PPA:  sudo add-apt-repository ppa:keyd-team/ppa  then run this again"
     return 1
   fi
   pk=("keyd=$v")
   p=keyd-application-mapper   # same source package as keyd: switch it along, if installed
-  pkg_installed "$p" && apt-cache madison "$p" 2>/dev/null | grep -qF "| $v |" && pk+=("$p=$v")
+  pkg_installed "$p" && LC_ALL=C apt-cache madison "$p" 2>/dev/null | grep -qF "| $v |" && pk+=("$p=$v")
   if DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-downgrades "${pk[@]}" >/dev/null 2>&1; then
     ok "keyd $v installed (from a configured repository, normally the keyd-team PPA); updates now come with your normal updates"
   else bad "apt-get install ${pk[*]} failed"; return 1; fi
@@ -549,11 +605,16 @@ system() {
   cinnamon_defaults
 
   echo "3. Your desktop ($(desktop)) for user $(target_user)"
-  # At boot (e.g. the first start after installing from the Belgian stick) or over ssh there is no desktop session to
-  # change; desktops started later follow the system default written in step 1 (and the Cinnamon default of step 2).
-  if [ "$(target_user)" = root ] || [ ! -S "/run/user/$(id -u "$(target_user)")/bus" ]; then
-    info "no desktop session for $(target_user) right now: skipped; desktops started later follow the system default"
-  else IN_SYSTEM=1 live; fi
+  # At boot (e.g. the first start after installing from the Belgian stick) there is no desktop user; desktops started
+  # later follow the system default written in step 1 (and the Cinnamon default of step 2). Over ssh or from a console
+  # the user's stored settings are changed without a running desktop.
+  local tu; tu=$(target_user)
+  if [ "$tu" = root ]; then
+    info "no desktop user (run as root, not through sudo): skipped; desktops started later follow the system default"
+  elif [ -S "/run/user/$(id -u "$tu")/bus" ]; then IN_SYSTEM=1 live
+  elif [ -f "$(getent passwd "$tu" | cut -d: -f6)/.config/dconf/user" ]; then
+    info "$tu is not logged in: changing their stored desktop settings"; IN_SYSTEM=1 desktop_lists
+  else info "$tu has no desktop settings yet: their first desktop follows the system default"; fi
 
   echo "4. Login screen"
   if [ -d /etc/gdm3 ] && [ -f /var/lib/gdm3/.config/dconf/user ]; then
@@ -573,7 +634,7 @@ system() {
   if [ -n "$(keyd_bin)" ] && [ -r /etc/keyd/be-winaltgr.conf ] && [ "$PROFILE" = linux ]; then
     # Linux-standard profile: switch the keyd service off (stays off after reboots and package updates, which only
     # restart keyd when it is enabled). Only when our rules are keyd's only configuration, so other keyd users keep theirs.
-    local others; others=$(find /etc/keyd -maxdepth 1 -name '*.conf' ! -name be-winaltgr.conf 2>/dev/null | head -1)
+    local others; others=$(keyd_other_configs)
     if [ -n "$others" ]; then
       bad "keyd has other configuration ($others): not switching keyd off; remove /etc/keyd/be-winaltgr.conf by hand instead"
     elif systemctl disable --now keyd >/dev/null 2>&1; then
@@ -585,6 +646,7 @@ system() {
       systemctl enable --now keyd >/dev/null 2>&1 || true
     fi
     systemctl is-active --quiet keyd && ok "keyd with the Belgian rules is installed and running" || bad "keyd is installed but not running"
+    keyd_shared_warning
     ours_keyd && info "keyd is still the build of 0.9.7 and earlier; to get keyd updates, switch to the keyd-team PPA's: sudo add-apt-repository ppa:keyd-team/ppa && sudo be-azerty-fix switch-keyd"
   else
     info "keyd-belgian-windows not installed: Ctrl+Alt+2 keeps doing nothing in graphical apps (AltGr works)"
@@ -879,7 +941,7 @@ skip_after_change() {      # after live/system: apply the ibus skip for the desk
 skip_cleanup_all_users() { # root: remove every user's ibus-skip files (uninstall)
   local u uid home self n=0; self=$(readlink -f "$0")
   while IFS=: read -r u _ uid _ _ home _; do
-    { [ "$uid" -ge 1000 ] && [ "$uid" -lt 60000 ]; } || [ "$uid" = 0 ] || continue
+    { [ "$uid" -ge 1000 ] && [ "$uid" != 65534 ]; } || [ "$uid" = 0 ] || continue   # people (also LDAP), not nobody
     [ -d "$home" ] || continue
     [ -e "$home/.config/belgian-azerty/ibus-skip" ] || [ -e "$home/.config/belgian-azerty/ibus-skip-auto" ] \
       || ls "$home"/.config/systemd/user/*.d/"$SKIP_DROPIN" >/dev/null 2>&1 \
@@ -895,12 +957,16 @@ skip_cleanup_all_users() { # root: remove every user's ibus-skip files (uninstal
 caps_cleanup_all_users() {  # root: take caps:be_windows out of every user's GNOME and Cinnamon keyboard options
   local u uid home schema uo n=0 bus
   while IFS=: read -r u _ uid _ _ home _; do
-    { [ "$uid" -ge 1000 ] && [ "$uid" -lt 60000 ]; } || [ "$uid" = 0 ] || continue
+    { [ "$uid" -ge 1000 ] && [ "$uid" != 65534 ]; } || [ "$uid" = 0 ] || continue   # people (also LDAP), not nobody
     [ -f "$home/.config/dconf/user" ] || continue        # no desktop settings of their own: nothing to clean
     bus="/run/user/$uid/bus"
     for schema in org.gnome.desktop.input-sources org.cinnamon.desktop.input-sources; do
       has_schema "$schema" || continue
-      uo=$(as_user_gsettings "$u" "$uid" "$home" get "$schema" xkb-options | sed -E "s/^@as //; s/[][' ]//g")
+      # Only the user's own value: gsettings would also show a default (our Cinnamon override), and writing that
+      # back would pin it for users who never set anything.
+      if command -v dconf >/dev/null; then
+        uo=$(timeout -k 5 30 runuser -u "$u" -- env HOME="$home" dconf read "/${schema//.//}/xkb-options" </dev/null 2>/dev/null | sed -E "s/^@as //; s/[][' ]//g")
+      else uo=$(as_user_gsettings "$u" "$uid" "$home" get "$schema" xkb-options | sed -E "s/^@as //; s/[][' ]//g"); fi
       case ",$uo," in *,caps:be_windows,*)
         if as_user_gsettings "$u" "$uid" "$home" set "$schema" xkb-options "$(gvariant_list "$(without_caps_option "$uo")")" >/dev/null; then
           ok "$schema for $u: caps:be_windows removed$([ -S "$bus" ] || echo " (not logged in)")"
@@ -949,10 +1015,21 @@ uninstall() {
   echo "5. Packages"
   local pk=() p
   for p in belgian-azerty-windows keyd-belgian-windows; do pkg_installed "$p" && pk+=("$p"); done
-  # keyd itself goes too when it is our old build, unless KEEP_KEYD=1. A keyd from the keyd-team PPA or the
-  # distribution was installed by the user and stays.
-  if pkg_installed keyd && [ "${KEEP_KEYD:-0}" != 1 ] && ours_keyd; then
-    pk+=(keyd); pkg_installed keyd-application-mapper && pk+=(keyd-application-mapper)
+  # keyd itself goes too when it is our old build, unless KEEP_KEYD=1, unless the user has their own keyd
+  # configuration, or keyd-application-mapper from somewhere else (it needs keyd). A keyd from the keyd-team PPA or
+  # the distribution was installed by the user and stays.
+  if pkg_installed keyd && ours_keyd; then
+    local why="" mv
+    mv=$(dpkg-query -W -f='${Version}' keyd-application-mapper 2>/dev/null)
+    [ "${KEEP_KEYD:-0}" = 1 ] && why="KEEP_KEYD=1"
+    [ -z "$why" ] && [ -n "$(keyd_other_configs)" ] && why="you have your own keyd configuration: $(keyd_other_configs)"
+    [ -z "$why" ] && pkg_installed keyd-application-mapper && [ "$mv" != "$(dpkg-query -W -f='${Version}' keyd)" ] \
+      && why="keyd-application-mapper $mv, which needs keyd, is not from this project"
+    if [ -z "$why" ]; then
+      pk+=(keyd); pkg_installed keyd-application-mapper && pk+=(keyd-application-mapper)
+    else
+      info "keyd (this project's old build) stays because $why. It gets no updates; to replace it by the keyd-team PPA's keyd, run  sudo be-azerty-fix switch-keyd  before uninstalling (README, \"Coming from 0.9.7\")"
+    fi
   fi
   pkg_installed keyd && ! ours_keyd && info "keyd $(dpkg-query -W -f='${Version}' keyd) stays (not installed by this project; remove with: sudo apt purge keyd)"
   if [ ${#pk[@]} -gt 0 ]; then
@@ -972,7 +1049,7 @@ case "${1:-check}" in
   live) live ;;
   system) system ;;
   uninstall) uninstall ;;
-  switch-keyd) switch_keyd ;;
+  switch-keyd) switch_keyd && [ "$FAILED" = 0 ] || exit 1 ;;
   caps-cleanup-users) caps_cleanup_all_users ;;   # used by the package's prerm; not for people
   ibus-skip) shift; ibus_skip "$@" ;;
   -h|--help|help) usage ;;

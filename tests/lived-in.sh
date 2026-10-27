@@ -5,10 +5,13 @@
 # NEW_DIST_DIR: the packages to test. OLD_DIST_DIR (optional): the 0.9.7 packages, for the upgrade path.
 # Users: alice (logged in; GNOME-style list us + Japanese ibus input method + be, own options), bob (not logged in,
 # Cinnamon settings with a second layout and the Windows Caps Lock option), chen (logged in; Chinese input method only),
-# dave (created after "system": a new user). Every store is dumped before and after each step; the only changes
+# dave (created after "system": a new user), erin (logged in; Mint user who never changed her layouts: empty lists),
+# frank (not logged in; his own list with US only). Every store is dumped before and after each step; the only changes
 # allowed are listed per step, anything else that disappears is a FAIL.
 set -u
 NEW=$(realpath "${1:?usage: lived-in.sh NEW_DIST_DIR [OLD_DIST_DIR]}"); OLD=${2:+$(realpath "$2")}
+# Wait until systemd has finished starting: it mounts a fresh /tmp, which would hide a work folder made before.
+systemctl is-system-running --wait >/dev/null 2>&1
 FAIL=0; W=$(mktemp -d)
 pass() { echo "PASS  $*"; }
 fail() { echo "FAIL  $*"; FAIL=1; }
@@ -24,8 +27,10 @@ gs() {   # USER ARGS...: gsettings as that user (session bus if logged in, else 
   if [ -S "/run/user/$uid/bus" ]; then runuser -u "$u" -- env HOME="/home/$u" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$uid/bus" gsettings "$@" 2>/dev/null
   else runuser -u "$u" -- env -u XDG_RUNTIME_DIR HOME="/home/$u" GIO_USE_VFS=local dbus-run-session -- gsettings "$@" 2>/dev/null; fi
 }
-mkuser alice 1000; mkuser bob 1001; mkuser chen 1002
-bus_up alice; bus_up chen
+mkuser alice 1000; mkuser bob 1001; mkuser chen 1002; mkuser erin 1004; mkuser frank 1005
+bus_up alice; bus_up chen; bus_up erin
+gs erin set org.gnome.desktop.interface clock-format "'24h'"   # some setting of her own, but the layout lists empty
+gs frank set org.gnome.desktop.input-sources sources "[('xkb', 'us')]"
 gs alice set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'mozc-jp'), ('xkb', 'be')]"
 gs alice set org.gnome.desktop.input-sources xkb-options "['compose:ralt', 'grp:alt_shift_toggle']"
 gs alice set org.cinnamon.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'mozc-jp'), ('xkb', 'be')]"
@@ -56,7 +61,7 @@ dump() {   # FILE: every keyboard store of every user, one "key = value" line ea
     echo "system XKBLAYOUT = $(. /etc/default/keyboard; echo "$XKBLAYOUT")"
     echo "system XKBVARIANT = $(. /etc/default/keyboard; echo "$XKBVARIANT")"
     echo "system XKBOPTIONS = $(. /etc/default/keyboard; echo "$XKBOPTIONS")"
-    for u in alice bob chen dave; do
+    for u in alice bob chen dave erin frank; do
       id "$u" >/dev/null 2>&1 || continue
       for k in "org.gnome.desktop.input-sources sources" "org.gnome.desktop.input-sources xkb-options" \
                "org.cinnamon.desktop.input-sources sources" "org.cinnamon.desktop.input-sources xkb-options" \
@@ -135,6 +140,8 @@ t "alice GNOME options: compose and switch key kept" sh -c "grep -F 'alice org.g
 t "system default: be first, us kept, switch key kept" sh -c ". /etc/default/keyboard; [ \"\$XKBLAYOUT\" = be,us ] && echo \"\$XKBOPTIONS\" | grep -q grp:alt_shift_toggle"
 t "bob (not logged in) untouched by alice's system run" bash -c "diff <(grep '^bob' $W/0) <(grep '^bob' $W/1)"
 t "chen untouched" bash -c "diff <(grep '^chen' $W/0) <(grep '^chen' $W/1)"
+t "check after system: the system default with be first counts as right" sh -c "be-azerty-fix check 2>/dev/null | grep 'XKBLAYOUT=' | grep -q '✔'"
+t "erin and frank untouched by alice's run" bash -c "diff <(grep -E '^(erin|frank)' $W/0) <(grep -E '^(erin|frank)' $W/1)"
 t "alice's own launcher copy untouched" bash -c "diff <(grep '^alice launchers' $W/0) <(grep '^alice launchers' $W/1)"
 t "alice: no ibus skip files (she has an input method; and the skip is off by default)" sh -c "! grep -rqs '^X-BelgianAzerty-IbusSkip=' /home/alice/.local/share/applications"
 t "boot image rebuilt once (the file changed)" test "$(( $(runs) - r0 ))" = 1
@@ -158,6 +165,20 @@ dump "$W/5"; SUDO_USER=chen XDG_CURRENT_DESKTOP=GNOME be-azerty-fix system >/dev
 nothing_lost "$W/5" "$W/6" "system (chen)" "kpdl"
 t "chen: be first, pinyin kept" grep -qF "chen org.gnome.desktop.input-sources sources = [('xkb', 'be'), ('ibus', 'libpinyin')]" "$W/6"
 
+echo "== erin runs it on Mint (Cinnamon), her layout lists empty (they follow the system default be,us)"
+dump "$W/6a"; SUDO_USER=erin XDG_CURRENT_DESKTOP=X-Cinnamon be-azerty-fix system > "$W/erin.log" 2>&1; dump "$W/6b"
+nothing_lost "$W/6a" "$W/6b" "system (erin)" "kpdl|caps"
+t "erin libgnomekbd: be first and the system default's us (not Belgian only)" grep -qF "erin org.gnome.libgnomekbd.keyboard layouts = ['be\\t', 'us\\t']" "$W/6b"
+t "erin Cinnamon input sources: be, us" grep -qF "erin org.cinnamon.desktop.input-sources sources = [('xkb', 'be'), ('xkb', 'us')]" "$W/6b"
+t "erin: the message says the list was empty and names us" grep -q 'was empty.*kept: us' "$W/erin.log"
+
+echo "== system for frank, who is not logged in (over ssh or from a console)"
+dump "$W/6c"; SUDO_USER=frank XDG_CURRENT_DESKTOP=GNOME be-azerty-fix system > "$W/frank.log" 2>&1; dump "$W/6d"
+nothing_lost "$W/6c" "$W/6d" "system (frank)" "kpdl|caps"
+t "frank's own list: be first, us kept (his setting would beat the system default)" grep -qF "frank org.gnome.desktop.input-sources sources = [('xkb', 'be'), ('xkb', 'us')]" "$W/6d"
+t "frank: the message says he is not logged in" grep -q 'frank is not logged in' "$W/frank.log"
+grep -E 'frank|kept' "$W/frank.log" | sed 's/^/      /'
+
 echo "== a new user after system"
 mkuser dave 1003; dump "$W/7"
 t "dave starts with the system default be,us (no own settings yet)" sh -c ". /etc/default/keyboard; [ \"\$XKBLAYOUT\" = be,us ]"
@@ -171,6 +192,7 @@ dump "$W/9"
 nothing_lost "$W/8" "$W/9" "uninstall" "caps:be_windows"
 t "bob's caps:be_windows removed although bob was not logged in (Cinnamon)" sh -c "grep -F 'bob org.cinnamon.desktop.input-sources xkb-options' $W/9 | grep -q \"\\['terminate:ctrl_alt_bksp'\\]\""
 t "bob's caps:be_windows removed (GNOME), compose kept" sh -c "grep -F 'bob org.gnome.desktop.input-sources xkb-options' $W/9 | grep -q \"\\['compose:menu'\\]\""
+t "chen never had Cinnamon options: uninstall does not pin any for him" sh -c "[ -z \"\$(runuser -u chen -- env HOME=/home/chen dconf read /org/cinnamon/desktop/input-sources/xkb-options)\" ]"
 t "bob's layouts kept" grep -qF "bob org.cinnamon.desktop.input-sources sources = [('xkb', 'be'), ('xkb', 'fr')]" "$W/9"
 t "packages purged" sh -c "! dpkg-query -W -f='\${Status}' belgian-azerty-windows 2>/dev/null | grep -q installed"
 t "keyd from the PPA stays (installed by the user)" sh -c "dpkg-query -W -f='\${Version}' keyd | grep -q '~debian'"
@@ -184,6 +206,18 @@ out=$(as_alice be-azerty-fix system 2>&1); rc=$?
 t "system without keyd: no error" test "$rc" = 0
 t "system without keyd: says where keyd comes from" sh -c "echo \"\$0\" | grep -q 'keyd-belgian-windows not installed'" "$out"
 runuser -u dave -- env HOME=/home/dave be-azerty-fix ibus-skip refresh >/dev/null 2>&1   # dave's login: no input method
+echo "== four layouts in the system default already, and a be(oss) user"
+cp /etc/default/keyboard "$W/keyboard.saved"
+sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="us,de,fr,ru"/; s/^XKBVARIANT=.*/XKBVARIANT="intl,nodeadkeys,,phonetic"/' /etc/default/keyboard
+out=$(as_alice be-azerty-fix system 2>&1)
+t "five layouts do not fit: system default be,us,de,fr with their variants" sh -c ". /etc/default/keyboard; [ \"\$XKBLAYOUT\" = be,us,de,fr ] && [ \"\$XKBVARIANT\" = ,intl,nodeadkeys, ]"
+t "and the command says ru was left out there" sh -c "echo \"\$0\" | grep -q 'ru left out'" "$out"
+sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="be"/; s/^XKBVARIANT=.*/XKBVARIANT="oss"/' /etc/default/keyboard
+gs alice set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'be+oss')]"
+as_alice be-azerty-fix system >/dev/null 2>&1
+t "be(oss) system default keeps oss (not pushed back by plain be)" sh -c ". /etc/default/keyboard; [ \"\$XKBLAYOUT\" = be ] && [ \"\$XKBVARIANT\" = oss ]"
+t "alice's be+oss moved first, not plain be added" sh -c "[ \"\$(runuser -u alice -- env HOME=/home/alice DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gsettings get org.gnome.desktop.input-sources sources)\" = \"[('xkb', 'be+oss'), ('xkb', 'us')]\" ]"
+cp "$W/keyboard.saved" /etc/default/keyboard
 t "Caps-only route: no ibus skip files at dave's login" sh -c "! grep -rqs '^X-BelgianAzerty-IbusSkip=' /home/dave/.local/share/applications /home/dave/.config/systemd"
 apt-get purge -y belgian-azerty-windows >/dev/null 2>&1
 

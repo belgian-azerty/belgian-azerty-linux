@@ -16,6 +16,17 @@ that were never published. They are listed because the test evidence refers to t
   (0.9.7 removed the PPA's keyd too).
 - **The fast-typing ibus skip is off unless you switch it on.** No swaps were measured at normal typing speed, so it
   should not be on for everyone. Users who never chose lose it at their next login.
+- Found by a second, independent review of this version before release, and fixed: an empty layout list on Mint
+  (meaning "use the system default") was replaced by Belgian only, so a second layout of the system default was
+  lost there; it is now filled from the system default. Also: a Belgian variant the user already has (be+oss) stays
+  the Belgian entry; the system default keeps at most four layouts and says which one is left out; users who are not
+  logged in get their stored settings changed instead of a wrong "follows the system default"; `check` accepts
+  Belgian first with other layouts; the packages could not find keyd when apt answered in Dutch or French; a warning
+  when the user has their own keyd configuration (keyd uses one per keyboard); uninstall keeps the old keyd build
+  when the user's own keyd configuration or another package still needs it; uninstall no longer writes Cinnamon
+  options for users who never had the Caps Lock option, and includes users with high user numbers; the window keeps
+  a Caps Lock choice made with `CAPS=` when only the numpad key changes; `switch-keyd` exits with an error when it
+  cannot switch.
 - **Faster reruns:** when nothing needs changing, nothing is reconfigured and the boot image is not rebuilt.
 - **Uninstall cleans every user's Caps Lock setting**, also users who are not logged in.
 - The "Belgian keyboard" window is wider (a German column header was cut off).

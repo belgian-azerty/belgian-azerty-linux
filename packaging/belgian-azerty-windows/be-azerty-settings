@@ -118,7 +118,9 @@ set -- $pick
 
 # Applying takes a while (console keymap, boot image), so a pulsing bar shows it is busy.
 log=$(mktemp); trap 'rm -f "$log" "$log.rc"' EXIT
-( pkexec "$FIX" system "PROFILE=$1" "DECIMAL=$2" >"$log" 2>&1; echo $? >"$log.rc" ) &
+# Same profile, other decimal key: keep a Caps Lock choice made on the command line (CAPS=), as a rerun does.
+caps=(); [ "$1" = "$PROFILE" ] && c=$(saved CAPS) && [ -n "$c" ] && caps=("CAPS=$c")
+( pkexec "$FIX" system "PROFILE=$1" "DECIMAL=$2" "${caps[@]}" >"$log" 2>&1; echo $? >"$log.rc" ) &
 pid=$!
 while kill -0 "$pid" 2>/dev/null; do echo "# $WAIT"; sleep 1; done |
   zenity --progress --pulsate --auto-close --no-cancel --title="$T" --text="$WAIT" --width=420 2>/dev/null

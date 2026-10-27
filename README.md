@@ -72,10 +72,15 @@ You do not have to install everything:
 ## What `be-azerty-fix system` changes
 
 - `/etc/default/keyboard` (console, disk-unlock prompt, login screen, new users): Belgian first, other layouts kept,
-  your numpad and Caps Lock choice added to the options, other options kept. The boot image is rebuilt only when this
-  file changed.
+  your numpad and Caps Lock choice added to the options, other options kept. These places use at most four layouts:
+  if you already had four, the last one is left out there (the command names it; your own desktop list keeps it).
+  The boot image is rebuilt only when this file changed.
 - Your own desktop settings (GNOME on Zorin, Cinnamon on Mint, MATE): Belgian first in your list of layouts; a second
-  layout or a Chinese, Japanese or Korean input method stays, in its order. The command says what it kept.
+  layout or a Chinese, Japanese or Korean input method stays, in its order. If you already use a Belgian variant
+  (for example Belgian (alt.)), that one is moved first. An empty list, which means "use the system default" (Mint
+  users who never changed their layouts), is filled with the system default's layouts, Belgian first. When you run
+  the command over ssh or from a console while not logged in, your stored settings are changed the same way. The
+  command says what it kept.
 - On Mint: the default options for new users and reset settings (one small file, removed again by uninstall).
 - The login screen on Zorin: a layout stored only for the login screen is cleared, so it follows the system default.
 - keyd: switched on with the Windows profile, off with the Linux-standard profile.
@@ -153,7 +158,7 @@ sudo be-azerty-fix uninstall
 This takes the Caps Lock option out of the system default and out of every user's own desktop settings, removes the
 defaults for new users and the ibus skip files of every user, purges both packages, and removes files left by older
 versions. keyd stays when you installed it yourself (from the PPA); this project's old keyd build (0.9.7 and earlier) is
-removed (`KEEP_KEYD=1` keeps it). The keyboard stays Belgian, with your other layouts, because the Belgian layout and
+removed, unless you have your own keyd configuration or another package that needs keyd (`KEEP_KEYD=1` keeps it too). The keyboard stays Belgian, with your other layouts, because the Belgian layout and
 the Period/Comma choice are standard Linux settings. Log out and back in afterwards.
 
 Removing the packages with `sudo apt purge belgian-azerty-windows keyd-belgian-windows` also works. Use `purge`, not
@@ -186,6 +191,10 @@ with Linux Mint or Zorin OS.
 - **On Zorin with Wayland, six keys can stop working after Caps Lock in a password field**, only with the Windows Caps
   Lock switched on by hand: see "Caps Lock on Zorin". Not caused by keyd. Details: `research/CAPS-DIALOG-DESYNC.md`.
 - **The Ctrl+Alt rules apply to every keyboard**, also an external US keyboard: see the note under "Install".
+- **If you already use keyd with your own configuration**, keyd applies only one configuration file per keyboard, so
+  either your rules or the Belgian Ctrl+Alt rules work on a keyboard, not both. `be-azerty-fix check` and the package
+  installation warn about it. Copy the lines of `/etc/keyd/be-winaltgr.conf` into your own file and remove ours, or
+  limit one of the files to some keyboards under `[ids]`.
 - **Keyboards with a touchpad or mouse built into the same device**: keyd takes over every device with a full set of
   keyboard keys and passes its pointer on without high-resolution scrolling or multi-finger gestures. Not tested with
   such a device. Normal laptop touchpads are separate devices and keyd leaves them alone (checked). Fix for one

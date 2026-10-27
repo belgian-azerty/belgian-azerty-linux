@@ -55,10 +55,14 @@ echo "== pure list functions"
   eq "GNOME list: us+be -> be first, us kept" "[('xkb', 'be'), ('xkb', 'us')]" "$(be_first_sources "[('xkb', 'us'), ('xkb', 'be')]")"
   eq "GNOME list: ibus engines kept in order" "[('xkb', 'be'), ('ibus', 'mozc-jp'), ('xkb', 'us'), ('ibus', 'libpinyin')]" \
      "$(be_first_sources "[('ibus', 'mozc-jp'), ('xkb', 'us'), ('ibus', 'libpinyin')]")"
-  eq "GNOME list: other Belgian variant kept" "[('xkb', 'be'), ('xkb', 'be+oss')]" "$(be_first_sources "[('xkb', 'be+oss')]")"
+  eq "GNOME list: the user's own be+oss stays the Belgian entry (no VARIANT given)" "[('xkb', 'be+oss'), ('xkb', 'us')]" "$(be_first_sources "[('xkb', 'us'), ('xkb', 'be+oss')]")"
+  eq "libgnomekbd/MATE: the user's own be oss stays the Belgian entry" "['be\\toss', 'us']" "$(be_first_layouts "['us', 'be\\toss']")"
+  eq "X11 / default file: be(oss) keeps its variant" "be,us oss," "$(be_first_xkb "us,be" ",oss")"
+  eq "X11 / default file: be(oss) alone stays" "be oss" "$(be_first_xkb "be" "oss")"
+  eq "GNOME list: no Belgian prefix confusion (bepo is not be)" "[('xkb', 'be'), ('xkb', 'fr+bepo')]" "$(be_first_sources "[('xkb', 'fr+bepo')]")"
   eq "GNOME list: Belgian listed twice -> once" "[('xkb', 'be'), ('xkb', 'us')]" "$(be_first_sources "[('xkb', 'be'), ('xkb', 'us'), ('xkb', 'be')]")"
   eq "libgnomekbd/MATE: empty -> Belgian" "['be\\t']" "$(be_first_layouts "@as []")"
-  eq "libgnomekbd/MATE: us, be -> be first, us kept, be not twice" "['be\\t', 'us']" "$(be_first_layouts "['us', 'be']")"
+  eq "libgnomekbd/MATE: us, be -> the user's be moved first, us kept, be not twice" "['be', 'us']" "$(be_first_layouts "['us', 'be']")"
   eq "libgnomekbd/MATE: variants kept" "['be\\t', 'us\\tintl', 'de\\tneo']" "$(be_first_layouts "['us\\tintl', 'be\\t', 'de\\tneo']")"
   eq "X11 / default file: us,be -> be,us" "be,us " "$(be_first_xkb "us,be" "")"
   eq "X11 / default file: variants follow their layouts" "be,us,ru ,,phonetic" "$(be_first_xkb "us,ru" ",phonetic")"
@@ -67,7 +71,7 @@ echo "== pure list functions"
   eq "messages name what was kept" "us, ibus anthy" "$(kept_entries "[('xkb', 'be'), ('xkb', 'us'), ('ibus', 'anthy')]")"
   eq "messages: nothing kept when Belgian is alone" "" "$(kept_entries "[('xkb', 'be')]")"
   # shellcheck disable=SC2034   # read by the functions of the loaded script
-  VARIANT=oss
+  VARIANT=oss VARIANT_GIVEN=1
   eq "VARIANT=oss: plain be kept after be+oss" "[('xkb', 'be+oss'), ('xkb', 'be')]" "$(be_first_sources "[('xkb', 'be')]")"
   eq "VARIANT=oss in X11 list" "be,be oss," "$(be_first_xkb "be" "")"
 )
@@ -115,6 +119,24 @@ CAPS=linux
   eq "$d: no errors" 0 "$FAILED"
 )
 done
+
+echo "== live: an empty list (follows the system default) starts from the system default's layouts"
+(
+  rm -f "$FAKE_STORE"/*
+  export XDG_CURRENT_DESKTOP=X-Cinnamon FAKE_SCHEMAS="org.cinnamon.desktop.input-sources org.gnome.libgnomekbd.keyboard"
+  put org.cinnamon.desktop.input-sources sources "[('xkb', 'de'), ('xkb', 'be')]"   # only the libgnomekbd list is empty
+  load ""
+  printf 'XKBLAYOUT="us,be"\nXKBVARIANT="intl,"\n' > "$T/keyboard"
+  # shellcheck disable=SC2034   # read by system_list of the loaded script
+  KEYBOARD_FILE=$T/keyboard
+  out=$(live 2>&1)
+  eq "empty libgnomekbd list: system layouts, Belgian first, us(intl) kept" "['be\\t', 'us\\tintl']" "$(got org.gnome.libgnomekbd.keyboard layouts)"
+  eq "the other (non-empty) list keeps its own entries" "[('xkb', 'be'), ('xkb', 'de')]" "$(got org.cinnamon.desktop.input-sources sources)"
+  eq "message says it was empty and what was kept" 1 "$(printf '%s\n' "$out" | grep -c 'was empty.*kept: us+intl')"
+  rm -f "$FAKE_STORE"/*; out=$(live 2>&1)
+  eq "both empty: input sources from the system default" "[('xkb', 'be'), ('xkb', 'us+intl')]" "$(got org.cinnamon.desktop.input-sources sources)"
+  eq "no errors" 0 "$FAILED"
+)
 
 echo "== live: a list that cannot be read is left alone"
 (
