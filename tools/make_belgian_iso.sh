@@ -21,11 +21,11 @@
 # chosen here: casper ignores keyboard options on the kernel command line (19keyboard resets XKBOPTIONS), so it
 # needs the packages (be-azerty-fix DECIMAL=comma).
 #
-# MENU=b: boot menu "B" (decided by Younes 2026-10-24): the first live entry becomes one submenu per language
+# MENU=b: boot menu "B": the first live entry becomes one submenu per language
 # (Nederlands, Français, Deutsch, English), each asking for the keyboard (Belgian AZERTY with the numpad period or
 # comma; German QWERTZ under Deutsch and English); Nederlands with the period starts after the timeout. Done by
 # tools/belgian_boot_menu.py. Every other entry stays as the distribution wrote it.
-# PACKAGES=DIR (with MENU=b, needs root): the all-in-one stick. Our three packages from DIR are installed into an
+# PACKAGES=DIR (with MENU=b, needs root): the all-in-one stick. Our two packages and keyd (the keyd-team PPA's .deb) from DIR are installed into an
 # extra layer, /casper/zz-belgian-azerty.squashfs, which casper stacks on top of the untouched filesystem.squashfs
 # (tools/stick/build-layer.sh); the packages themselves go to /belgian/ for the installer. The layer applies the boot
 # menu choice in the live session (numpad comma, Belgian formats for English) and makes an install from the stick

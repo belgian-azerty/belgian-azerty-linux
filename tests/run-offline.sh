@@ -5,7 +5,7 @@
 #   sudo DISPOSABLE=1 tests/run-offline.sh   additionally the install/upgrade/purge cycle (tests/pkg-cycle.sh), which
 #                                            changes this system's packages: only in a throwaway container or VM
 # Needs: shellcheck debhelper devscripts lintian xorriso python3 libxkbcommon-tools, python3 module xkbcommon
-# (pip install xkbcommon), and for keyd's build dh-python scdoc curl.
+# (pip install xkbcommon).
 set -u
 ROOT=$(cd "$(dirname "$0")/.." && pwd); FAIL=0
 step() { echo; echo "### $*"; }
@@ -13,15 +13,18 @@ res() { if [ "$1" = 0 ]; then echo "PASS  $2"; else echo "FAIL  $2"; FAIL=1; fi;
 
 step "shellcheck (warnings and errors)"
 shellcheck -S warning "$ROOT"/be-azerty-fix.sh "$ROOT"/tools/make_belgian_iso.sh "$ROOT"/packaging/*.sh \
-  "$ROOT"/packaging/*/build.sh "$ROOT"/packaging/belgian-azerty-windows/update-xkb-rules \
-  "$ROOT"/packaging/*/debian/postinst "$ROOT"/packaging/*/debian/postrm "$ROOT"/tests/*.sh "$ROOT"/t14s-test/*.sh
+  "$ROOT"/packaging/belgian-azerty-windows/update-xkb-rules "$ROOT"/packaging/belgian-azerty-windows/be-azerty-settings \
+  "$ROOT"/packaging/*/debian/postinst "$ROOT"/packaging/*/debian/postrm "$ROOT"/packaging/belgian-azerty-windows/debian/prerm "$ROOT"/tests/*.sh "$ROOT"/t14s-test/*.sh
 res $? "shellcheck"
 
-step "build every package from source, lintian"
+step "settings logic (layout lists, options, saved choices, ibus skip default): tests/settings-logic.sh"
+bash "$ROOT/tests/settings-logic.sh" | grep -E '^(FAIL|ALL|SOME)'; res "${PIPESTATUS[0]}" "settings logic"
+
+step "build both packages from source, lintian"
 out=$(bash "$ROOT/packaging/build-all.sh" 2>&1); rc=$?; echo "$out" | tail -8
 res $rc "build"
 echo "$out" | grep -E '^  [EW]: ' | grep -v 'wrong-name-for-upstream-changelog' > /tmp/lintian-issues.txt
-[ ! -s /tmp/lintian-issues.txt ]; res $? "lintian: no errors or warnings in our packages (Debian's own keyd packaging excluded)"
+[ ! -s /tmp/lintian-issues.txt ]; res $? "lintian: no errors or warnings in our packages"
 
 step "Caps Lock option vs the Windows table (libxkbcommon, files from the package source)"
 inc=$(mktemp -d); mkdir -p "$inc/rules" "$inc/symbols"
@@ -46,7 +49,7 @@ done
 
 if [ "${DISPOSABLE:-0}" = 1 ]; then
   step "install / upgrade / trigger / purge cycle"
-  OLD_KEYD="$ROOT/keyd/keyd_2.5.0-0beazerty2_amd64.deb" bash "$ROOT/tests/pkg-cycle.sh" "$ROOT/dist" | grep -E '^(PASS|FAIL)'
+  bash "$ROOT/tests/pkg-cycle.sh" "$ROOT/dist" | grep -E '^(PASS|FAIL)'
   res "${PIPESTATUS[0]}" "package cycle"
 fi
 echo; [ "$FAIL" = 0 ] && echo "ALL PASS" || echo "SOME FAILED"; exit "$FAIL"

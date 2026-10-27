@@ -1,7 +1,16 @@
+keyd-belgian-windows (0.9.8) noble; urgency=medium
+
+  * Rules unchanged. Meant for the keyd of the keyd-team PPA on Ubuntu
+    24.04 based systems (Linux Mint 22, Zorin OS 18), or the distribution's
+    keyd from Ubuntu 25.04; this project no longer ships a keyd build.
+    The description says where to get keyd.
+
+ -- @MAINTAINER@  Tue, 27 Oct 2026 23:00:00 +0000
+
 keyd-belgian-windows (0.9.7) noble; urgency=medium
 
-  * Metadata only (Younes, 2026-10-25 19:26Z and 20:02Z): Maintainer field
-    "Younes", copyright holder "Younes from Belgium". Rules and every other
+  * Metadata only: Maintainer field "Younes", copyright holder "Younes
+    from Belgium". Rules and every other
     file unchanged; version kept equal to belgian-azerty-windows.
 
  -- @MAINTAINER@  Sun, 25 Oct 2026 20:30:00 +0000

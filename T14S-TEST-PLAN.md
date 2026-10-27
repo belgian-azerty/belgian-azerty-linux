@@ -18,7 +18,7 @@ In the emulator, two characters typed quickly one after the other sometimes arri
 - it also happened on stock Linux, without this project (Zorin on Wayland, AltGr, 4 of 5 lines);
 - with this project's Ctrl+Alt rules (keyd) it happened more often, because each Ctrl+Alt+key reached the desktop as
   a burst of about eight key events (Ctrl and Alt released, AltGr pressed, the key, then Ctrl and Alt pressed again).
-  The keyd patch of 0.9.4, made after this test, brings that down to 2 events per character (README, "The keyd
+  The keyd patch of 0.9.4, made after this test, brings that down to 2 events per character (HOW-WE-TESTED.md, "The keyd
   patch");
 - the cloud emulator runs about 20 times slower than a real laptop, so the problem might be much rarer, or absent,
   at real speed.

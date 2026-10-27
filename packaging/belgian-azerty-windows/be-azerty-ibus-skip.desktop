@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Belgian keyboard: per-app ibus skip
-Comment=Re-applies the apps chosen with "be-azerty-fix ibus-skip on"; does nothing when no app was chosen
+Name=Belgian keyboard: ibus skip
+Comment=Brings the ibus skip up to date at login: re-applies it when switched on, removes it when switched off
 TryExec=/usr/sbin/be-azerty-fix
 Exec=/usr/sbin/be-azerty-fix ibus-skip refresh
 NoDisplay=true

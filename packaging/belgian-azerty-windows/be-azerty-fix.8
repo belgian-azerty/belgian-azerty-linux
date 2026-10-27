@@ -1,4 +1,4 @@
-.TH BE-AZERTY-FIX 8 "2026-10-25" "belgian-azerty-windows 0.9.7" "System Administration"
+.TH BE-AZERTY-FIX 8 "2026-10-27" "belgian-azerty-windows 0.9.8" "System Administration"
 .SH NAME
 be-azerty-fix \- make a Linux Mint or Zorin OS system type Belgian AZERTY as on Windows
 .SH SYNOPSIS
@@ -10,6 +10,8 @@ be-azerty-fix \- make a Linux Mint or Zorin OS system type Belgian AZERTY as on 
 .B sudo be-azerty-fix system
 .br
 .B sudo be-azerty-fix uninstall
+.br
+.B sudo be-azerty-fix switch-keyd
 .br
 .B be-azerty-fix ibus-skip
 .RB [ list ]
@@ -28,8 +30,9 @@ system default (/etc/default/keyboard, used by the console, the boot prompt and
 the login screen), the desktop settings of each user, and the defaults new users
 start from. When they disagree the keyboard seems to switch layout by itself.
 .B be-azerty-fix
-makes all of them agree on the Belgian layout and switches on the Windows habits
-Belgians expect.
+puts the Belgian layout first in all of them and switches on the Windows habits
+Belgians expect. Other layouts and input methods in those lists are kept, in
+their order; a list that cannot be read is left unchanged.
 .TP
 .B check
 Show what every store says. Changes nothing; needs no root.
@@ -40,30 +43,41 @@ Fix the running session only (forgotten at reboot).
 .B system
 Fix the installed system: system default, console keymap, boot image, the
 defaults for new users and reset settings (Cinnamon), the current user's
-desktop, the GDM login screen. Installs the packages found next to the script
-if they are missing.
+desktop, the GDM login screen. When /etc/default/keyboard already has the
+wanted values, nothing is reconfigured and the boot image is not rebuilt.
+Installs the packages found next to the script if they are missing (keyd itself
+comes from the keyd-team PPA, ppa:keyd-team/ppa).
 .TP
 .B uninstall
-Remove the Caps Lock option from every setting it can reach, the Cinnamon
+Remove the Caps Lock option from the system default and from every user's own
+GNOME and Cinnamon settings (also users who are not logged in), the Cinnamon
 defaults, files of older versions, and purge belgian-azerty-windows,
-keyd-belgian-windows and (unless KEEP_KEYD=1) a keyd built by this project.
-The layout stays Belgian. Also removes every user's ibus skip files (see below).
+keyd-belgian-windows and (unless KEEP_KEYD=1) the keyd build of versions
+0.9.7 and earlier. A keyd from the keyd-team PPA or the distribution stays. The
+layouts stay as they are. Also removes every user's ibus skip files (see below).
+.TP
+.B switch-keyd
+Replace the keyd build that 0.9.7 and earlier installed
+(2.5.0\-5~ubuntu24.04.\fIN\fR, with an extra patch) by the newest keyd that a
+configured repository offers, normally the keyd-team PPA (add it first with
+.BR "sudo add-apt-repository ppa:keyd-team/ppa" ).
+apt does not do this by itself, because the old build has a higher version
+number. Does nothing when keyd is not that build.
 .TP
 .B ibus-skip
-Per user; run it as yourself, without sudo. Automatic: with the Windows
-profile, at every login the Terminal, the text editor and VS Code (when
-installed) skip ibus, unless you
-have an input method set up (an ibus engine in the keyboard settings or in the
-ibus preferences, or another input-method framework such as fcitx); then they
-keep ibus, until it is removed again. With the Linux-standard profile it is
-off.
+Per user; run it as yourself, without sudo. Off unless you switch it on. When
+on, at every login the Terminal, the text editor and VS Code (when installed)
+skip ibus, unless you have an input method set up (an ibus engine in the
+keyboard settings or in the ibus preferences, or another input-method framework
+such as fcitx); then they keep ibus, until it is removed again. Up to 0.9.7 it
+was on by default with the Windows profile.
 .B auto on
 and
 .B auto off
 are your own choice (also the "Fast typing" tick box of the "Belgian keyboard"
 window);
 .B auto default
-follows the profile again. It needs the belgian-azerty-windows package (its
+forgets your choice (off). It needs the belgian-azerty-windows package (its
 login entry keeps the files right).
 .B on
 .I APP
@@ -97,14 +111,15 @@ and
 .B system
 run it for the desktop user.
 .IP
-Why: with ibus in the key path, very fast typing can swap two characters
-(@\[eu] arrives as \[eu]@), on stock systems too. In an app that skips ibus,
+Why: with ibus in the key path, keys sent much faster than people type could
+swap two characters in emulator tests (@\[eu] arrived as \[eu]@), on stock
+systems too; at normal typing speed no swaps were measured. In an app that skips ibus,
 GTK handles the keys itself: the layout, dead keys (^ \[ad] \[aa] \` ~) and
 Compose keep working, and the swaps measured with ibus did not happen.
 .IP
 Limits: it is a workaround, not a fix of ibus. It only helps GTK apps; Qt and
-other toolkits ignore GTK_IM_MODULE, and Electron apps (VS Code) were not
-tested. In a skipped app the ibus features are gone: Chinese, Japanese, Korean
+other toolkits ignore GTK_IM_MODULE; of the Electron apps only VS Code
+(Microsoft's package) was tested. In a skipped app the ibus features are gone: Chinese, Japanese, Korean
 and other ibus input methods, and the ibus emoji picker. It applies when the
 app is started from the menu, the dock or a keyboard shortcut; an app started
 by typing its name in a terminal still uses ibus, except gnome-terminal, which

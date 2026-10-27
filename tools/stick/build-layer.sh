@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build the Belgian stick's extra layer: our three packages installed on top of a distribution's untouched system
+# Build the Belgian stick's extra layer: our two packages and keyd installed on top of a distribution's untouched system
 # image, as a second squashfs that casper stacks above filesystem.squashfs. The layer holds only what installing the
 # packages changed, plus the stick glue (belgian-stick, its two services, the Ubiquity hook).
 #   sudo tools/stick/build-layer.sh filesystem.squashfs DEB_DIR OUT.squashfs

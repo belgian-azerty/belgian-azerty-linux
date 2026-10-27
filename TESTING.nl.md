@@ -29,8 +29,8 @@ Een virtuele machine (VirtualBox, GNOME Boxes) met Mint 22.3 of Zorin OS 18.1 he
 
 ## Test 1: op een geïnstalleerd systeem of een virtuele machine (ongeveer 20 minuten)
 
-**1. Downloaden.** Download van de [releasepagina](https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest) deze vier bestanden naar je map Downloads:
-`keyd_…_amd64.deb`, `keyd-belgian-windows_…_all.deb`, `belgian-azerty-windows_…_all.deb` en `SHA256SUMS`.
+**1. Downloaden.** Download van de [releasepagina](https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest) deze drie bestanden naar je map Downloads:
+`keyd-belgian-windows_…_all.deb`, `belgian-azerty-windows_…_all.deb` en `SHA256SUMS`.
 
 **2. Open daar een terminal.** Open de map Downloads, klik rechts op een lege plek, kies "Openen in terminal" (of gelijkaardig).
 
@@ -40,16 +40,19 @@ Een virtuele machine (VirtualBox, GNOME Boxes) met Mint 22.3 of Zorin OS 18.1 he
 sha256sum -c SHA256SUMS --ignore-missing
 ```
 
-Elk van de drie regels moet eindigen op `OK` (op een Nederlandstalig systeem kan dat een vertaald woord zijn).
+Elk van de twee regels moet eindigen op `OK` (op een Nederlandstalig systeem kan dat een vertaald woord zijn).
 
 **4. Installeren.** Typ (het vraagt je wachtwoord):
 
 ```
-sudo apt install ./keyd_*.deb ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
+sudo add-apt-repository ppa:keyd-team/ppa
+sudo apt install keyd ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
 sudo be-azerty-fix system
 ```
 
-Voor de komma op het numerieke klavier typ je `sudo DECIMAL=comma be-azerty-fix system` in plaats van de tweede regel.
+De eerste regel voegt de keyd-team PPA toe, die keyd levert (het programma achter Ctrl+Alt als AltGr) voor Mint 22 en
+Zorin 18. Voor de komma op het numerieke klavier typ je `sudo DECIMAL=comma be-azerty-fix system` in plaats van de
+laatste regel.
 
 **5. Meld je af en weer aan.**
 

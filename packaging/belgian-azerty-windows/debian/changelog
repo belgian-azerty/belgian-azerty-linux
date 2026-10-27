@@ -1,11 +1,41 @@
+belgian-azerty-windows (0.9.8) noble; urgency=medium
+
+  * Other layouts and input methods are kept. Up to 0.9.7, "be-azerty-fix
+    system" (also run by the Period/Comma choice in the "Belgian keyboard"
+    window) and "be-azerty-fix live" replaced the desktop's layout list
+    with Belgian only, removing a second layout or a Chinese/Japanese
+    input method. Now Belgian is put first and every other entry stays, in
+    the GNOME, Cinnamon and MATE lists, the running X session and
+    /etc/default/keyboard. A list that cannot be read is left unchanged.
+  * The ibus skip for the Terminal, the text editor and VS Code is off
+    unless the user switches it on (tick box or "ibus-skip auto on"). Up
+    to 0.9.7 it was on by default with the Windows profile, although no
+    swaps were measured at normal typing speed. Users who never chose lose
+    the skip at their next login.
+  * keyd now comes from the keyd-team PPA (or the distribution from Ubuntu
+    25.04). This project no longer ships its own keyd build or its extra
+    keyd patch (now only a proposal for keyd upstream). New command
+    "be-azerty-fix switch-keyd" replaces the keyd build of 0.9.7 and earlier by
+    the PPA's; "check" and "system" point to it. Uninstall only removes
+    keyd when it is that old build.
+  * The boot image is rebuilt only when /etc/default/keyboard changed (or
+    is newer than the boot image).
+  * Uninstall and removing the package take the Caps Lock option out of
+    every user's own settings, not only the user who runs it.
+  * "Belgian keyboard" window: wider, so the German column header fits;
+    the fast-typing text says to tick it only when swaps are seen.
+  * Autostart entry text says what it does.
+
+ -- @MAINTAINER@  Tue, 27 Oct 2026 23:00:00 +0000
+
 belgian-azerty-windows (0.9.7) noble; urgency=medium
 
   * VS Code now skips ibus automatically too (same rules as the Terminal and
     the text editor), and the short name "vscode" finds current VS Code,
     whose menu file is com.microsoft.VSCode.desktop (0.9.6 only looked for
     code.desktop).
-  * Names and text (Younes, 2026-10-25 19:26Z and 20:02Z):
-    Maintainer field "Younes", copyright holder "Younes from Belgium",
+  * Names and text: Maintainer field "Younes", copyright holder "Younes
+    from Belgium",
     README status line says the independent review is done; the keyd
     backport released with it is rebuilt as 2.5.0-5~ubuntu24.04.3 (Maintainer
     field only).

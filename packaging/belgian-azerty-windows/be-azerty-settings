@@ -2,9 +2,8 @@
 # be-azerty-settings: a small window ("Belgian keyboard" in the app menu) to choose the profile (Windows or
 # Linux-standard) and the numpad decimal key (Period or Comma) without typing commands. It runs
 # "be-azerty-fix system PROFILE=... DECIMAL=..." through pkexec, so the change is the same as the command-line one.
-# The "Fast typing" button opens a tick box for the automatic ibus skip of the Terminal, the text editor and VS Code;
-# that one
-# is per user and runs "be-azerty-fix ibus-skip auto on|off" without pkexec.
+# The "Fast typing" button opens a tick box for the optional ibus skip of the Terminal, the text editor and VS Code
+# (off unless ticked); that one is per user and runs "be-azerty-fix ibus-skip auto on|off" without pkexec.
 # Needs zenity (shipped by Linux Mint and Zorin OS).
 set -u
 FIX=/usr/sbin/be-azerty-fix
@@ -23,8 +22,8 @@ case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
        OK="Klaar. Meld je af en weer aan om alles toe te passen."; ERR="Er ging iets mis. Details:"
        NOZ="Dit venster heeft zenity nodig. Typ in een terminal:"
        WAIT="Bezig met toepassen. Eerst kan om je wachtwoord gevraagd worden."
-       B_FAST="Snel typen…"; C_FAST="Snel typen"; F_ROW="Terminal, teksteditor en VS Code: typen zonder ibus (automatisch)"
-       F_Q="Heel snel typen kan twee tekens omwisselen (@€ wordt €@) in de Terminal, de teksteditor en VS Code. Met dit vinkje typen deze apps zonder ibus. Het pauzeert vanzelf als je Chinese, Japanse of gelijkaardige invoer toevoegt. Dit geldt alleen voor jouw gebruiker."
+       B_FAST="Snel typen…"; C_FAST="Snel typen"; F_ROW="Terminal, teksteditor en VS Code: typen zonder ibus"
+       F_Q="Vink dit alleen aan als je verwisselde tekens ziet (je typt @€ en er verschijnt €@) in de Terminal, de teksteditor of VS Code. Met dit vinkje typen deze apps zonder ibus. Het pauzeert vanzelf als je Chinese, Japanse of gelijkaardige invoer toevoegt. Dit geldt alleen voor jouw gebruiker."
        F_DONE="Klaar. Sluit de Terminal, de teksteditor en VS Code helemaal en open ze opnieuw."
        F_PAUSED="Let op: nu gepauzeerd, omdat er een invoermethode is ingesteld." ;;
   fr*) T="Clavier belge"
@@ -35,20 +34,20 @@ case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
        OK="Terminé. Fermez la session et reconnectez-vous pour tout appliquer."; ERR="Un problème est survenu. Détails :"
        NOZ="Cette fenêtre a besoin de zenity. Dans un terminal, tapez :"
        WAIT="Application en cours. Votre mot de passe peut d'abord être demandé."
-       B_FAST="Frappe rapide…"; C_FAST="Frappe rapide"; F_ROW="Terminal, éditeur de texte et VS Code : saisie sans ibus (automatique)"
-       F_Q="Une frappe très rapide peut inverser deux caractères (@€ devient €@) dans le Terminal, l'éditeur de texte et VS Code. Case cochée, ces applications fonctionnent sans ibus. Elle se met en pause d'elle-même si vous ajoutez une saisie chinoise, japonaise ou semblable. Ce réglage ne vaut que pour votre utilisateur."
+       B_FAST="Frappe rapide…"; C_FAST="Frappe rapide"; F_ROW="Terminal, éditeur de texte et VS Code : saisie sans ibus"
+       F_Q="Cochez seulement si vous voyez des caractères inversés (vous tapez @€ et €@ s'affiche) dans le Terminal, l'éditeur de texte ou VS Code. Case cochée, ces applications fonctionnent sans ibus. Elle se met en pause d'elle-même si vous ajoutez une saisie chinoise, japonaise ou semblable. Ce réglage ne vaut que pour votre utilisateur."
        F_DONE="Terminé. Fermez complètement le Terminal, l'éditeur de texte et VS Code, puis rouvrez-les."
        F_PAUSED="Remarque : en pause pour l'instant, car une méthode de saisie est configurée." ;;
   de*) T="Belgische Tastatur"
        Q="Wählen Sie, wie die Tastatur funktioniert. Das gilt für den ganzen Computer."
-       C_PROF="Profil"; C_DEC="Dezimaltaste auf dem Ziffernblock"
+       C_PROF="Profil"; C_DEC="Dezimaltaste (Ziffernblock)"
        WIN="Windows (Strg+Alt wie AltGr, Feststelltaste wie unter Windows)"; LIN="Linux-Standard (Feststelltaste nur für Buchstaben)"
        PER="Punkt ."; COM="Komma ,"
        OK="Fertig. Ab- und wieder anmelden, damit alles übernommen wird."; ERR="Etwas ist schiefgelaufen. Details:"
        NOZ="Dieses Fenster braucht zenity. Im Terminal eingeben:"
        WAIT="Wird übernommen. Zuerst wird eventuell Ihr Passwort abgefragt."
-       B_FAST="Schnelles Tippen…"; C_FAST="Schnelles Tippen"; F_ROW="Terminal, Texteditor und VS Code: ohne ibus tippen (automatisch)"
-       F_Q="Sehr schnelles Tippen kann im Terminal, im Texteditor und in VS Code zwei Zeichen vertauschen (aus @€ wird €@). Mit diesem Haken tippen diese Apps ohne ibus. Es pausiert von selbst, wenn Sie eine chinesische, japanische oder ähnliche Eingabe hinzufügen. Gilt nur für Ihren Benutzer."
+       B_FAST="Schnelles Tippen…"; C_FAST="Schnelles Tippen"; F_ROW="Terminal, Texteditor und VS Code: ohne ibus tippen"
+       F_Q="Nur ankreuzen, wenn Sie vertauschte Zeichen sehen (Sie tippen @€ und es erscheint €@) im Terminal, im Texteditor oder in VS Code. Mit diesem Haken tippen diese Apps ohne ibus. Es pausiert von selbst, wenn Sie eine chinesische, japanische oder ähnliche Eingabe hinzufügen. Gilt nur für Ihren Benutzer."
        F_DONE="Fertig. Terminal, Texteditor und VS Code ganz schließen und neu öffnen."
        F_PAUSED="Hinweis: gerade pausiert, weil eine Eingabemethode eingerichtet ist." ;;
   *)   T="Belgian keyboard"
@@ -59,8 +58,8 @@ case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
        OK="Done. Log out and back in to apply everything."; ERR="Something went wrong. Details:"
        NOZ="This window needs zenity. In a terminal, type:"
        WAIT="Applying. You may be asked for your password first."
-       B_FAST="Fast typing…"; C_FAST="Fast typing"; F_ROW="Terminal, text editor and VS Code: type without ibus (automatic)"
-       F_Q="Very fast typing can swap two characters (@€ becomes €@) in the Terminal, the text editor and VS Code. With this ticked, these apps type without ibus. It pauses by itself if you add a Chinese, Japanese or similar input. This applies to your user only."
+       B_FAST="Fast typing…"; C_FAST="Fast typing"; F_ROW="Terminal, text editor and VS Code: type without ibus"
+       F_Q="Tick this only if you see swapped characters (you type @€ and €@ appears) in the Terminal, the text editor or VS Code. With this ticked, these apps type without ibus. It pauses by itself if you add a Chinese, Japanese or similar input. This applies to your user only."
        F_DONE="Done. Close the Terminal, the text editor and VS Code completely and open them again."
        F_PAUSED="Note: paused right now, because an input method is set up." ;;
 esac
@@ -87,7 +86,7 @@ fast_typing() {   # the tick box for the automatic ibus skip (per user, no pkexe
   text=$(printf '%s\n' "$F_Q" | fold -s -w 70)
   f="${XDG_CONFIG_HOME:-$HOME/.config}/belgian-azerty/ibus-skip-auto"
   cur=$(head -1 "$f" 2>/dev/null)
-  case "$cur" in on|off) ;; *) [ "$PROFILE" = linux ] && cur=off || cur=on ;; esac
+  case "$cur" in on|off) ;; *) cur=off ;; esac   # off unless the user ticked it
   "$FIX" ibus-skip auto 2>/dev/null | grep -q "automatic: paused" && text="$text
 
 $(printf '%s\n' "$F_PAUSED" | fold -s -w 70)"
@@ -109,7 +108,7 @@ row() {   # PROFILE DECIMAL: one radio row, ticked when it is the current choice
   printf '%s\n%s\n%s\n%s\n' "$on" "$1 $2" "$p" "$d"
 }
 pick=$( { row windows period; row windows comma; row linux period; row linux comma; } |
-  zenity --list --radiolist --title="$T" --text="$Q" --width=720 --height=400 --extra-button="$B_FAST" \
+  zenity --list --radiolist --title="$T" --text="$Q" --width=860 --height=400 --extra-button="$B_FAST" \
     --column="" --column=id --column="$C_PROF" --column="$C_DEC" --hide-column=2 --print-column=2 2>/dev/null ); rc=$?
 # The extra button prints its own label (and zenity exits 1).
 if [ "$pick" = "$B_FAST" ]; then fast_typing; exit $?; fi

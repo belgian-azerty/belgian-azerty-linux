@@ -1,4 +1,0 @@
-! include %S/evdev
-
-! option = symbols
-  caps:be_windows = +be_capslock(windows)

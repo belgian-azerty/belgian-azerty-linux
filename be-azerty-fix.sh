@@ -9,25 +9,30 @@
 #                                     and the defaults that new users (and reset settings) start from
 #   sudo be-azerty-fix uninstall      remove everything this project added and leave a stock system that still
 #                                     types Belgian (the layout and the Period/Comma choice are standard Linux)
+#   sudo be-azerty-fix switch-keyd    replace the keyd build of 0.9.7 and earlier by the keyd of the keyd-team PPA
 #   be-azerty-fix ibus-skip [list]    show which apps skip the ibus input method (no sudo: for your own user)
-#   be-azerty-fix ibus-skip auto on|off|default   the automatic skip for the Terminal, the text editor and VS Code
+#   be-azerty-fix ibus-skip auto on|off|default   the optional skip for the Terminal, the text editor and VS Code
 #   be-azerty-fix ibus-skip on APP... let more apps skip ibus; APP is the app's menu file name (org.gnome.Terminal,
 #                                     org.x.editor, com.microsoft.VSCode ...) or terminal, text-editor, vscode
 #   be-azerty-fix ibus-skip off APP...  |  be-azerty-fix ibus-skip off --all     undo it (--all: the automatic part too)
 #
-# ibus skip: very fast typing can swap two characters (@€ arrives as €@) while the ibus input method sits between the
-# keyboard and the app. An app that skips ibus gets GTK_IM_MODULE=gtk-im-context-simple: GTK then handles the keys
-# itself (layout, dead keys and Compose still work) and the swaps measured with ibus do not happen there. (The short
-# name "simple" works in GTK 4 only; GTK 3.24, as in gnome-terminal, needs the long one.) It is a workaround, not a fix:
-# it only helps GTK apps (Qt and other toolkits ignore the variable), and in a skipped app ibus features are gone
-# (Chinese/Japanese/Korean input methods, the ibus emoji picker).
-# Automatic (Windows profile, with the belgian-azerty-windows package): at every login the Terminal and the text
-# editor skip ibus, unless the user has an input method set up (an ibus engine in the keyboard settings or in the ibus
-# preferences, or another framework such as fcitx); then they keep ibus until it is removed. Off with the Linux-standard
-# profile; each user can switch it with "ibus-skip auto on|off" or the "Belgian keyboard" window.
+# Other layouts and input methods are kept: "system" and "live" put Belgian first in every list and keep every other
+# entry (a second layout, a Chinese or Japanese input method) in its order.
+#
+# ibus skip (off unless you switch it on): in emulator tests, keys sent much faster than people type could swap two
+# characters (@€ arrived as €@) while the ibus input method sat between the keyboard and the app; at normal typing
+# speed no swaps were measured. An app that skips ibus gets GTK_IM_MODULE=gtk-im-context-simple: GTK then handles the
+# keys itself (layout, dead keys and Compose still work). (The short name "simple" works in GTK 4 only; GTK 3.24, as
+# in gnome-terminal, needs the long one.) It is a workaround, not a fix: it only helps GTK apps (Qt and other toolkits
+# ignore the variable), and in a skipped app ibus features are gone (Chinese/Japanese/Korean input methods, the ibus
+# emoji picker).
+# Switched on per user ("ibus-skip auto on" or the tick box in the "Belgian keyboard" window): at every login the
+# Terminal, the text editor and VS Code skip ibus, unless the user has an input method set up (an ibus engine in the
+# keyboard settings or in the ibus preferences, or another framework such as fcitx); then they keep ibus until it is
+# removed.
 # Done through a copy of the app's menu file in ~/.local/share/applications (with "env GTK_IM_MODULE=..." in front of
 # the command), or, for an app that a systemd user service starts (gnome-terminal), a drop-in for that service. Apps
-# added by hand are listed in ~/.config/belgian-azerty/ibus-skip, the automatic choice in ibus-skip-auto next to it;
+# added by hand are listed in ~/.config/belgian-azerty/ibus-skip, the on/off choice in ibus-skip-auto next to it;
 # at every login the copies are made again from the current menu files.
 #
 # Settings, given as environment variables:
@@ -58,10 +63,11 @@
 # The settings can also follow the command, e.g.  sudo be-azerty-fix system PROFILE=linux DECIMAL=comma
 # (that is how the "Belgian keyboard" window, be-azerty-settings, passes them through pkexec).
 #
-# Ctrl+Alt+2 = @ and Ctrl+Alt+E = € come from the keyd-belgian-windows package (keyd rules); "system" installs the
-# packages found next to this script (or in dist/ next to it) if they are not installed yet.
+# Ctrl+Alt+2 = @ and Ctrl+Alt+E = € come from the keyd-belgian-windows package (keyd rules) on top of keyd, which
+# Ubuntu 24.04 based systems get from the keyd-team PPA (sudo add-apt-repository ppa:keyd-team/ppa). "system" installs
+# the packages found next to this script (or in dist/ next to it) if they are not installed yet.
 #
-# Status: see NOTES.md for what was run where. Version 0.9.7 (2026-10-25, not published yet): 0.9.6 + VS Code in the automatic ibus skip (current menu file name).
+# Version 0.9.8. What was tested where: HOW-WE-TESTED.md.
 set -u
 [ "${1:-}" = ibus-skip ] || for a in "${@:2}"; do
   case "$a" in
@@ -76,6 +82,8 @@ MODEL=pc105
 # PROFILE, DECIMAL and CAPS chosen with "system" are saved here, so running "system" again (after an update, or to repair the
 # settings) keeps a Comma or Linux Caps Lock choice instead of silently going back to the defaults.
 CHOICES=/var/lib/belgian-azerty-windows/choices
+# tests/settings-logic.sh loads this file with BE_AZERTY_FIX_SOURCE=1 (no command runs) and its own choices file.
+[ "${BE_AZERTY_FIX_SOURCE:-0}" = 1 ] && CHOICES=${TEST_CHOICES:-$CHOICES}
 saved_choice() { [ -r "$CHOICES" ] && sed -n "s/^$1=\([a-z]*\)\$/\1/p" "$CHOICES" | tail -1; }
 if [ -n "${DECIMAL:-}" ]; then DECIMAL_FROM="given"
 elif DECIMAL=$(saved_choice DECIMAL) && [ -n "$DECIMAL" ]; then DECIMAL_FROM="kept from the last run"
@@ -137,6 +145,16 @@ desktop() {
 is_live() { [ "$(findmnt -no FSTYPE / 2>/dev/null)" = overlay ]; }
 pkg_installed() { dpkg-query -W -f='${db:Status-Status}' "$1" 2>/dev/null | grep -qx installed; }
 keyd_bin() { command -v keyd.rvaiya || command -v keyd; }   # Debian names the binary keyd.rvaiya
+# keyd built by this project for versions 0.9.1-0.9.7 (2.5.0-5~ubuntu24.04.N; before that 2.5.0-0beazerty...). The
+# keyd-team PPA's versions look like 2.5.0-5~debian...~ubuntu24.04.1 and are not ours.
+ours_keyd() {
+  case "$(dpkg-query -W -f='${Version}' keyd 2>/dev/null)" in
+    *~debian*|"") return 1 ;;
+    *-5~ubuntu24.04.[0-9]|*beazerty*) return 0 ;;
+  esac
+  return 1
+}
+PPA_HINT="sudo add-apt-repository ppa:keyd-team/ppa && sudo apt install keyd"
 session_type() {           # x11, wayland, tty ... of the target user's graphical session
   # sudo drops XDG_SESSION_TYPE, so ask logind about the user's session; without an answer fall back to the variable.
   local u sid t=""; u=$(target_user)
@@ -207,6 +225,67 @@ gvariant_list() {          # "a,b" -> ['a', 'b']
 gsettings_options() {      # ['a', 'b'] -> a,b
   user_gsettings get "$1" xkb-options 2>/dev/null | sed -E "s/^@as //; s/[][' ]//g"
 }
+# Layout lists: Belgian goes first, every other entry stays, in its order (a second layout, an ibus input method).
+# Only an entry equal to the Belgian one is dropped, so it is not listed twice. Nothing else is ever removed.
+be_first_sources() {       # GNOME/Cinnamon input sources: [('xkb', 'us'), ('ibus', 'anthy')] -> [('xkb', 'be'), ...]
+  local want="('xkb', '$LAYOUT${VARIANT:++$VARIANT}')" out e
+  out=$want
+  while read -r e; do
+    [ -n "$e" ] && [ "$e" != "$want" ] && out="$out, $e"
+  done < <(printf '%s\n' "$1" | grep -o "('[^']*', '[^']*')")
+  echo "[$out]"
+}
+be_first_layouts() {       # libgnomekbd/MATE layouts: ['us', 'de\tneo'] -> ['be\t', 'us', 'de\tneo']
+  local want="'$LAYOUT\\t$VARIANT'" out e
+  out=$want
+  while read -r e; do
+    [ -n "$e" ] && [ "$(layout_entry_norm "$e")" != "$(layout_entry_norm "$want")" ] && out="$out, $e"
+  done < <(printf '%s\n' "$1" | grep -o "'[^']*'")
+  echo "[$out]"
+}
+layout_entry_norm() {      # 'be\t' and 'be' are the same entry (layout without variant)
+  case "$1" in *"\\t'") echo "${1%\\t\'}'" ;; *) echo "$1" ;; esac
+}
+be_first_xkb() {           # LAYOUTS VARIANTS (comma lists, as in /etc/default/keyboard or setxkbmap -query)
+  # -> "be,us" and ",intl": Belgian first, the others after it, variants kept in step with their layouts.
+  local l v ls vs i n out_l=$LAYOUT out_v=$VARIANT
+  IFS=, read -r -a ls <<< "$1"; IFS=, read -r -a vs <<< "$2"
+  n=${#ls[@]}
+  for ((i = 0; i < n; i++)); do
+    l=${ls[$i]}; v=${vs[$i]:-}
+    [ -n "$l" ] || continue
+    { [ "$l" = "$LAYOUT" ] && [ "$v" = "$VARIANT" ]; } && continue
+    out_l="$out_l,$l"; out_v="$out_v,$v"
+  done
+  [ -n "${out_v//,/}" ] || out_v=""   # no variant anywhere: leave the variant line empty, as the installers do
+  echo "$out_l $out_v"
+}
+kept_entries() {           # LIST WITH BELGIAN FIRST -> the other entries for the messages: "us, ibus anthy"
+  printf '%s\n' "$1" | grep -oE "\('[^']*', '[^']*'\)|'[^']*'" | tail -n +2 \
+    | sed -E "s/^\('xkb', '([^']*)'\)$/\1/; s/^\('([^']*)', '([^']*)'\)$/\1 \2/; s/^'(.*)'$/\1/; s/\\\\t$//; s/\\\\t/+/" \
+    | paste -sd, - | sed 's/,/, /g'
+}
+put_be_first() {           # SCHEMA KEY LABEL: Belgian first in the user's list, every other entry kept
+  local cur new
+  # If the list cannot be read, nothing is written: a failed read must never turn into a list with Belgian only.
+  if ! cur=$(user_gsettings get "$1" "$2" 2>/dev/null) || [ -z "$cur" ]; then bad "could not read $1 $2; left unchanged"; return; fi
+  case "$2" in sources) new=$(be_first_sources "$cur") ;; *) new=$(be_first_layouts "$cur") ;; esac
+  if [ "$(printf '%s' "$cur" | sed 's/^@a[(s)]* //')" = "$new" ]; then ok "$3: Belgian already first$(kept_msg "$new")"; return; fi
+  user_gsettings set "$1" "$2" "$new" && [ "$(user_gsettings get "$1" "$2" 2>/dev/null)" = "$new" ] \
+    && ok "$3: Belgian first$(kept_msg "$new")" || bad "could not set $1 $2"
+}
+put_options() {            # SCHEMA LABEL: our numpad and Caps Lock options in the user's xkb-options, the rest kept
+  local cur
+  if ! cur=$(user_gsettings get "$1" xkb-options 2>/dev/null) || [ -z "$cur" ]; then bad "could not read $1 xkb-options; left unchanged"; return; fi
+  cur=$(printf '%s' "$cur" | sed -E "s/^@as //; s/[][' ]//g")
+  local want; want=$(gvariant_list "$(want_options "$cur")")
+  user_gsettings set "$1" xkb-options "$want" && [ "$(user_gsettings get "$1" xkb-options 2>/dev/null | sed 's/^@as //')" = "$want" ] \
+    && ok "$2 numpad decimal: $DECIMAL, Caps Lock: $CAPS" || bad "could not set the $2 keyboard options"
+}
+kept_msg() {               # LIST: ", kept: us, ibus anthy" (or nothing when Belgian is the only entry)
+  local k; k=$(kept_entries "$1")
+  [ -n "$k" ] && printf ', kept: %s (remove them in the keyboard settings if you do not need them)' "$k"
+}
 set_default_keyboard() {   # KEY VALUE: set (or add) one line of /etc/default/keyboard
   if grep -q "^$1=" /etc/default/keyboard 2>/dev/null; then sed -i "s|^$1=.*|$1=\"$2\"|" /etc/default/keyboard
   else printf '%s="%s"\n' "$1" "$2" >> /etc/default/keyboard; fi
@@ -242,6 +321,7 @@ check() {
   for p in belgian-azerty-windows keyd-belgian-windows keyd; do
     if pkg_installed "$p"; then ok "$p $(dpkg-query -W -f='${Version}' "$p")"; else info "$p not installed"; fi
   done
+  ours_keyd && info "this keyd is the build shipped with 0.9.7 and earlier (with an extra patch, no updates); switch to the keyd-team PPA's: sudo add-apt-repository ppa:keyd-team/ppa && sudo be-azerty-fix switch-keyd"
   echo "Profile:"
   case "$(saved_choice PROFILE)" in
     windows) if [ "$(saved_choice CAPS)" = linux ]; then
@@ -312,7 +392,7 @@ check() {
   if [ "$(id -un)" = "$(target_user)" ]; then (skip_paths; skip_status)
   else
     local sl; sl="$(getent passwd "$(target_user)" | cut -d: -f6)/.config/belgian-azerty"
-    info "automatic: $(head -1 "$sl/ibus-skip-auto" 2>/dev/null || echo "from the profile"); added by hand: $( [ -s "$sl/ibus-skip" ] && tr '\n' ' ' < "$sl/ibus-skip" || echo none) (details: be-azerty-fix ibus-skip, without sudo)"
+    info "automatic: $(head -1 "$sl/ibus-skip-auto" 2>/dev/null || echo "off (default)"); added by hand: $( [ -s "$sl/ibus-skip" ] && tr '\n' ' ' < "$sl/ibus-skip" || echo none) (details: be-azerty-fix ibus-skip, without sudo)"
   fi
 
   echo "Windows-style Ctrl+Alt = AltGr (keyd):"
@@ -324,7 +404,7 @@ check() {
     else
       systemctl is-active --quiet keyd 2>/dev/null && ok "keyd service running" || bad "keyd service not running"
     fi
-  else info "keyd not installed: Ctrl+Alt+2 will not type @ in graphical apps (only AltGr does)"; fi
+  else info "keyd not installed: Ctrl+Alt+2 will not type @ in graphical apps (only AltGr does); to add it: $PPA_HINT, then sudo apt install keyd-belgian-windows (or its .deb)"; fi
 
   echo "Boot image:"
   if is_live; then
@@ -340,31 +420,29 @@ live() {
   [ "${IN_SYSTEM:-0}" = 1 ] || echo "Choices: profile $PROFILE ($PROFILE_FROM), numpad decimal $DECIMAL ($DECIMAL_FROM), Caps Lock $CAPS ($CAPS_FROM)"
   caps_needs_package
   if x11_session; then
-    local xo; xo=$(want_options "$(setxkbmap -query 2>/dev/null | sed -n 's/^options: *//p')")
-    if setxkbmap -layout "$LAYOUT" ${VARIANT:+-variant "$VARIANT"} -model "$MODEL" -option "" ${xo:+-option "$xo"}; then
-      ok "setxkbmap $LAYOUT $VARIANT ${xo:+(options $xo)}"
+    local q xo xl xv
+    q=$(setxkbmap -query 2>/dev/null)
+    xo=$(want_options "$(printf '%s\n' "$q" | sed -n 's/^options: *//p')")
+    read -r xl xv <<< "$(be_first_xkb "$(printf '%s\n' "$q" | sed -n 's/^layout: *//p')" "$(printf '%s\n' "$q" | sed -n 's/^variant: *//p')")"
+    # X11 holds at most four layouts at a time; the desktop settings below keep the full list.
+    xl=$(printf '%s' "$xl" | cut -d, -f1-4); [ -n "$xv" ] && xv=$(printf '%s' "$xv" | cut -d, -f1-4)
+    if setxkbmap -layout "$xl" -variant "$xv" -model "$MODEL" -option "" ${xo:+-option "$xo"}; then
+      ok "setxkbmap $xl${xv:+ (variants $xv)}${xo:+ (options $xo)}"
     else bad "setxkbmap failed"; fi
   fi
   case "$(desktop)" in
     gnome)
-      user_gsettings set org.gnome.desktop.input-sources sources "[('xkb', '$LAYOUT${VARIANT:++$VARIANT}')]" \
-        && ok "GNOME input source set" || bad "could not set the GNOME input source"
-      user_gsettings set org.gnome.desktop.input-sources xkb-options "$(gvariant_list "$(want_options "$(gsettings_options org.gnome.desktop.input-sources)")")" \
-        && ok "GNOME numpad decimal: $DECIMAL, Caps Lock: $CAPS" || bad "could not set the GNOME keyboard options" ;;
+      put_be_first org.gnome.desktop.input-sources sources "GNOME input sources"
+      put_options org.gnome.desktop.input-sources GNOME ;;
     mate)
-      user_gsettings set org.mate.peripherals-keyboard-xkb.kbd layouts "['$LAYOUT\t$VARIANT']" \
-        && ok "MATE layouts set" || bad "could not set the MATE layouts" ;;
+      put_be_first org.mate.peripherals-keyboard-xkb.kbd layouts "MATE layouts" ;;
     cinnamon) # Cinnamon 6 ships both stores (csd-keyboard reads libgnomekbd; the settings UI also knows input-sources); set both
       if has_schema org.gnome.libgnomekbd.keyboard; then
-        user_gsettings set org.gnome.libgnomekbd.keyboard layouts "['$LAYOUT\t$VARIANT']" \
-          && ok "Cinnamon libgnomekbd layouts set" || bad "could not set the libgnomekbd layouts"
+        put_be_first org.gnome.libgnomekbd.keyboard layouts "Cinnamon libgnomekbd layouts"
       fi
       if has_schema org.cinnamon.desktop.input-sources; then
-        user_gsettings set org.cinnamon.desktop.input-sources sources "[('xkb', '$LAYOUT${VARIANT:++$VARIANT}')]" \
-          && ok "Cinnamon input-sources set" || bad "could not set the Cinnamon input sources"
-        user_gsettings set org.cinnamon.desktop.input-sources xkb-options \
-          "$(gvariant_list "$(want_options "$(gsettings_options org.cinnamon.desktop.input-sources)")")" \
-          && ok "Cinnamon numpad decimal: $DECIMAL, Caps Lock: $CAPS" || bad "could not set the Cinnamon keyboard options"
+        put_be_first org.cinnamon.desktop.input-sources sources "Cinnamon input sources"
+        put_options org.cinnamon.desktop.input-sources Cinnamon
       fi ;;
   esac
   [ "${IN_SYSTEM:-0}" = 1 ] || skip_after_change
@@ -372,35 +450,88 @@ live() {
 }
 
 # ---------- installed system ----------------------------------------------------------------------
-apply_default_keyboard() {   # OPTIONS: write debconf + /etc/default/keyboard, rebuild console keymap and boot image
+apply_default_keyboard() {   # OPTIONS [as-is]: write debconf + /etc/default/keyboard, rebuild console keymap and boot image
+  # Belgian becomes the first layout; other layouts already in the file stay after it ("as-is": layouts untouched).
+  local cl cv cm co l v newest
+  cl=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBLAYOUT:-}"); cv=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBVARIANT:-}")
+  cm=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBMODEL:-}"); co=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")
+  if [ "${2:-}" = as-is ]; then l=$cl; v=$cv; else read -r l v <<< "$(be_first_xkb "$cl" "$cv")"; fi
+  [ "${l#*,}" != "$l" ] && [ "${2:-}" != as-is ] && info "other layouts kept for the login screen and new users: ${l#*,}"
+  newest=$(ls -t /boot/initrd.img-* 2>/dev/null | head -1)
+  # Nothing to change (a rerun, or the window applying the same choice): no reconfiguration and no boot image
+  # rebuild, which takes tens of seconds. Only a boot image older than the file is rebuilt (repair).
+  if [ "$l" = "$cl" ] && { [ "$v" = "$cv" ] || [ -z "${v//,/}${cv//,/}" ]; } && [ "$MODEL" = "$cm" ] && [ "$1" = "$co" ]; then
+    ok "/etc/default/keyboard already set (layouts: $l; options: ${1:-none}); nothing to rebuild"
+    if ! is_live && [ -n "$newest" ] && ! [ "$newest" -nt /etc/default/keyboard ]; then
+      update-initramfs -u >/dev/null 2>&1 && ok "boot image was older than the keyboard settings: rebuilt" || bad "update-initramfs failed"
+    fi
+    return 0
+  fi
   printf '%s\n' \
-    "keyboard-configuration keyboard-configuration/layoutcode string $LAYOUT" \
-    "keyboard-configuration keyboard-configuration/variantcode string $VARIANT" \
+    "keyboard-configuration keyboard-configuration/layoutcode string $l" \
+    "keyboard-configuration keyboard-configuration/variantcode string $v" \
     "keyboard-configuration keyboard-configuration/modelcode string $MODEL" \
     "keyboard-configuration keyboard-configuration/optionscode string $1" \
     "keyboard-configuration keyboard-configuration/layout select Belgian" \
     | debconf-set-selections
-  set_default_keyboard XKBLAYOUT "$LAYOUT"; set_default_keyboard XKBVARIANT "$VARIANT"
+  set_default_keyboard XKBLAYOUT "$l"; set_default_keyboard XKBVARIANT "$v"
   set_default_keyboard XKBMODEL "$MODEL"; set_default_keyboard XKBOPTIONS "$1"
+  # keyboard-configuration's postinst also asks for a boot image rebuild, which dpkg-reconfigure carries out.
   DEBIAN_FRONTEND=noninteractive dpkg-reconfigure -f noninteractive keyboard-configuration >/dev/null 2>&1 \
-    && ok "/etc/default/keyboard written (options: ${1:-none})" || bad "dpkg-reconfigure keyboard-configuration failed"
+    && ok "/etc/default/keyboard written (layouts: $l$([ -n "${v//,/}" ] && echo ", variants: $v"); options: ${1:-none})" || bad "dpkg-reconfigure keyboard-configuration failed"
   if command -v setupcon >/dev/null; then setupcon --save >/dev/null 2>&1 && ok "console keymap applied and cached" || bad "setupcon failed"; fi
   echo "Boot image (so the disk-encryption prompt types the same)"
+  newest=$(ls -t /boot/initrd.img-* 2>/dev/null | head -1)
   if is_live; then info "live session: the boot image cannot change here; skipped"
-  else update-initramfs -u >/dev/null 2>&1 && ok "initramfs rebuilt" || bad "update-initramfs failed"; fi
+  elif [ -n "$newest" ] && [ "$newest" -nt /etc/default/keyboard ]; then ok "boot image rebuilt"
+  else update-initramfs -u >/dev/null 2>&1 && ok "boot image rebuilt" || bad "update-initramfs failed"; fi
 }
 
-install_packages() {         # install the .deb files shipped next to this script, if any
+install_packages() {         # install our .deb files shipped next to this script, if any
   local here; here=$(cd "$(dirname "$(readlink -f "$0")")" && pwd)
   local debs=() d n
-  for n in keyd keyd-belgian-windows belgian-azerty-windows; do
+  for n in belgian-azerty-windows keyd-belgian-windows; do
     pkg_installed "$n" && continue
     d=$(ls "$here"/dist/"${n}"_*.deb "$here"/"${n}"_*.deb 2>/dev/null | sort -V | tail -1)
-    [ -n "$d" ] && debs+=("$d")
+    [ -n "$d" ] || continue
+    # keyd itself is not ours to ship any more: it comes from the keyd-team PPA (or the distribution, from Ubuntu 25.04).
+    if [ "$n" = keyd-belgian-windows ] && ! pkg_installed keyd && \
+       [ -z "$(apt-cache policy keyd 2>/dev/null | sed -n 's/^ *Candidate: *//p' | grep -v '(none)')" ]; then
+      info "Ctrl+Alt as AltGr needs keyd, which Ubuntu 24.04 does not have; add it with:  $PPA_HINT  and run this again"
+      continue
+    fi
+    debs+=("$d")
   done
   [ ${#debs[@]} -gt 0 ] || return 0
   if DEBIAN_FRONTEND=noninteractive apt-get install -y "${debs[@]}" >/dev/null 2>&1; then ok "installed ${debs[*]##*/}"
   else bad "apt-get install ${debs[*]##*/} failed"; fi
+}
+
+switch_keyd() {              # replace our old keyd build by the keyd-team PPA's (same keyd 2.5.0, without our patch)
+  if [ "$(id -u)" -ne 0 ]; then bad "run with sudo"; exit 1; fi
+  if ! ours_keyd; then
+    if pkg_installed keyd; then ok "keyd $(dpkg-query -W -f='${Version}' keyd) is not the build of 0.9.7 and earlier: nothing to switch"
+    else info "keyd is not installed. For Ctrl+Alt as AltGr:  $PPA_HINT"; fi
+    return 0
+  fi
+  # Our build sorts above the PPA's version, so apt would never replace it by itself: pick the newest keyd that a
+  # configured repository offers and is not ours, and install it explicitly (a downgrade by version number only).
+  local v p pk
+  v=$(apt-cache madison keyd 2>/dev/null | awk -F'|' '{gsub(/ /, "", $2); print $2}' | grep -v -e '-5~ubuntu24\.04\.[0-9]$' -e beazerty | head -1)
+  if [ -z "$v" ]; then
+    bad "no other keyd found. First add the keyd-team PPA:  sudo add-apt-repository ppa:keyd-team/ppa  then run this again"
+    return 1
+  fi
+  pk=("keyd=$v")
+  p=keyd-application-mapper   # same source package as keyd: switch it along, if installed
+  pkg_installed "$p" && apt-cache madison "$p" 2>/dev/null | grep -qF "| $v |" && pk+=("$p=$v")
+  if DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-downgrades "${pk[@]}" >/dev/null 2>&1; then
+    ok "keyd $v installed (from a configured repository, normally the keyd-team PPA); updates now come with your normal updates"
+  else bad "apt-get install ${pk[*]} failed"; return 1; fi
+  if [ -r /etc/keyd/be-winaltgr.conf ] && [ "$(saved_choice PROFILE)" != linux ]; then
+    systemctl restart keyd >/dev/null 2>&1 || true
+    systemctl is-active --quiet keyd && ok "keyd runs with the Belgian Ctrl+Alt rules" || bad "keyd is not running"
+  fi
 }
 
 system() {
@@ -454,6 +585,7 @@ system() {
       systemctl enable --now keyd >/dev/null 2>&1 || true
     fi
     systemctl is-active --quiet keyd && ok "keyd with the Belgian rules is installed and running" || bad "keyd is installed but not running"
+    ours_keyd && info "keyd is still the build of 0.9.7 and earlier; to get keyd updates, switch to the keyd-team PPA's: sudo add-apt-repository ppa:keyd-team/ppa && sudo be-azerty-fix switch-keyd"
   else
     info "keyd-belgian-windows not installed: Ctrl+Alt+2 keeps doing nothing in graphical apps (AltGr works)"
   fi
@@ -464,11 +596,12 @@ system() {
 }
 
 # ---------- ibus skip (per app, per user) -----------------------------------------------------------
-# Automatic (from the profile; Windows profile: on): the Terminal, the text editor and VS Code (when installed) skip
-# ibus while the user has no input method set up (no Chinese/Japanese-style ibus engine, no other input-method framework); it pauses by itself at
-# the next login once one is added. Users can turn it off (ibus-skip auto off, or the tick box in the "Belgian
-# keyboard" window) and add or remove apps by hand. Every file written here carries a marker, and only marked files
-# are ever changed or removed.
+# Off unless the user switches it on (ibus-skip auto on, or the tick box in the "Belgian keyboard" window). When on,
+# the Terminal, the text editor and VS Code (when installed) skip ibus while the user has no input method set up (no
+# Chinese/Japanese-style ibus engine, no other input-method framework); it pauses by itself at the next login once one
+# is added. Users can also add or remove apps by hand. Every file written here carries a marker, and only marked
+# files are ever changed or removed. Up to 0.9.7 it was on by default; users who never chose keep no files from that:
+# the login refresh removes them, because the default is now off.
 SKIP_MARK=X-BelgianAzerty-IbusSkip
 SKIP_DROPIN=zz-belgian-azerty-ibus-skip.conf
 SKIP_AUTO_APPS="terminal text-editor vscode"
@@ -512,18 +645,16 @@ skip_own_copy() {          # ID: the user has their own (unmarked) menu file for
   [ -z "$(skip_unit "$1")" ] && [ -e "$SKIP_APPS/$1.desktop" ] && ! grep -q "^$SKIP_MARK=" "$SKIP_APPS/$1.desktop"
 }
 SKIP_AUTOSTART=/etc/xdg/autostart/be-azerty-ibus-skip.desktop
-skip_auto_choice() {       # on | off: the user's own choice, else the saved profile's (Linux-standard: off, else on)
+skip_auto_choice() {       # on | off: the user's own choice, else off
   local c
   [ -f "$SKIP_AUTOSTART" ] || { echo off; return 0; }   # script used without the package: no login refresh, no clean-up
   c=$(head -1 "$SKIP_AUTO" 2>/dev/null)
-  case "$c" in on|off) echo "$c"; return 0 ;; esac
-  [ "$(saved_choice PROFILE)" = linux ] && echo off || echo on
+  case "$c" in on|off) echo "$c" ;; *) echo off ;; esac
 }
 skip_auto_from() {
   if [ ! -f "$SKIP_AUTOSTART" ]; then echo "needs the belgian-azerty-windows package"
   elif [ -s "$SKIP_AUTO" ]; then echo "your choice"
-  elif [ "$(saved_choice PROFILE)" = linux ]; then echo "default of the Linux-standard profile"
-  else echo "default of the Windows profile"; fi
+  else echo "default"; fi
 }
 skip_unsafe() {            # why skipping ibus automatically would take something from this user (nothing printed: safe)
   # Another input-method framework (fcitx, uim, xim ...) chosen for the session: leave every app alone.
@@ -662,7 +793,7 @@ skip_status() {
   local id why auto
   auto=$(skip_auto_choice); why=$(skip_unsafe)
   if [ "$auto" = off ]; then
-    info "automatic: off ($(skip_auto_from)); turn on: be-azerty-fix ibus-skip auto on"
+    info "automatic: off ($(skip_auto_from)); only if you see swapped characters (@€ typed, €@ shown): be-azerty-fix ibus-skip auto on"
   elif [ -n "$why" ]; then
     info "automatic: paused, because $why (the Terminal, the text editor and VS Code keep ibus; it resumes at the next login after that is removed)"
   else
@@ -698,7 +829,7 @@ ibus_skip() {
             [ -s "$SKIP_LIST" ] && info "apps you added yourself still skip ibus: $(tr '\n' ' ' < "$SKIP_LIST")"
           elif [ -n "$(skip_unsafe)" ]; then info "automatic ibus skip on, but paused: $(skip_unsafe)"
           else ok "automatic ibus skip on: the Terminal, the text editor and VS Code skip ibus (close them completely and start them again)"; fi ;;
-        default) rm -f "$SKIP_AUTO"; skip_refresh; ok "automatic ibus skip follows the profile again: $(skip_auto_choice)" ;;
+        default) rm -f "$SKIP_AUTO"; skip_refresh; ok "automatic ibus skip back to the default: $(skip_auto_choice)" ;;
         "") echo "ibus skip for $(id -un):"; skip_status ;;
         *) echo "usage: be-azerty-fix ibus-skip auto [on | off | default]" >&2; exit 1 ;;
       esac ;;
@@ -761,6 +892,36 @@ skip_cleanup_all_users() { # root: remove every user's ibus-skip files (uninstal
   [ "$n" -gt 0 ] || ok "no user has apps that skip ibus"
 }
 
+caps_cleanup_all_users() {  # root: take caps:be_windows out of every user's GNOME and Cinnamon keyboard options
+  local u uid home schema uo n=0 bus
+  while IFS=: read -r u _ uid _ _ home _; do
+    { [ "$uid" -ge 1000 ] && [ "$uid" -lt 60000 ]; } || [ "$uid" = 0 ] || continue
+    [ -f "$home/.config/dconf/user" ] || continue        # no desktop settings of their own: nothing to clean
+    bus="/run/user/$uid/bus"
+    for schema in org.gnome.desktop.input-sources org.cinnamon.desktop.input-sources; do
+      has_schema "$schema" || continue
+      uo=$(as_user_gsettings "$u" "$uid" "$home" get "$schema" xkb-options | sed -E "s/^@as //; s/[][' ]//g")
+      case ",$uo," in *,caps:be_windows,*)
+        if as_user_gsettings "$u" "$uid" "$home" set "$schema" xkb-options "$(gvariant_list "$(without_caps_option "$uo")")" >/dev/null; then
+          ok "$schema for $u: caps:be_windows removed$([ -S "$bus" ] || echo " (not logged in)")"
+        else bad "could not change $schema for $u"; fi
+        n=$((n + 1)) ;;
+      esac
+    done
+  done < <(getent passwd)
+  [ "$n" -gt 0 ] || ok "no user has the Caps Lock option in their own settings"
+}
+as_user_gsettings() {      # USER UID HOME ARGS...: gsettings for that user, on their session bus or, when they are
+  # not logged in, on a private one for this call. GIO_USE_VFS=local and the redirections: see "Login screen" in system.
+  local u=$1 uid=$2 home=$3; shift 3
+  if [ -S "/run/user/$uid/bus" ]; then
+    timeout -k 5 30 runuser -u "$u" -- env HOME="$home" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$uid/bus" gsettings "$@" </dev/null 2>/dev/null
+  else
+    timeout -k 5 30 runuser -u "$u" -- env -u DBUS_SESSION_BUS_ADDRESS -u XDG_RUNTIME_DIR HOME="$home" GIO_USE_VFS=local \
+      dbus-run-session -- gsettings "$@" </dev/null 2>/dev/null
+  fi
+}
+
 # ---------- uninstall -----------------------------------------------------------------------------
 uninstall() {
   if [ "$(id -u)" -ne 0 ]; then bad "run with sudo"; exit 1; fi
@@ -769,16 +930,8 @@ uninstall() {
   keep=$(without_caps_option "$o")
   case ",$keep," in *,kpdl:comma,*) DECIMAL=comma ;; *) DECIMAL=period ;; esac
   CAPS=linux
-  if [ "$keep" != "$o" ]; then apply_default_keyboard "$keep"; else ok "/etc/default/keyboard has no caps:be_windows"; fi
-  local schema uo
-  for schema in org.gnome.desktop.input-sources org.cinnamon.desktop.input-sources; do
-    has_schema "$schema" || continue
-    uo=$(gsettings_options "$schema")
-    case ",$uo," in *,caps:be_windows,*)
-      user_gsettings set "$schema" xkb-options "$(gvariant_list "$(without_caps_option "$uo")")" \
-        && ok "$schema for $(target_user): caps:be_windows removed" || bad "could not change $schema for $(target_user)" ;;
-    esac
-  done
+  if [ "$keep" != "$o" ]; then apply_default_keyboard "$keep" as-is; else ok "/etc/default/keyboard has no caps:be_windows"; fi
+  caps_cleanup_all_users
   if x11_session; then
     local xo; xo=$(without_caps_option "$(setxkbmap -query 2>/dev/null | sed -n 's/^options: *//p')")
     setxkbmap -option "" ${xo:+-option "$xo"} 2>/dev/null && ok "running X session: Caps Lock back to Linux behaviour"
@@ -796,11 +949,12 @@ uninstall() {
   echo "5. Packages"
   local pk=() p
   for p in belgian-azerty-windows keyd-belgian-windows; do pkg_installed "$p" && pk+=("$p"); done
-  # keyd itself goes too when it is our build (version ...~ubuntu24.04.N, or the older ...beazerty build), unless
-  # KEEP_KEYD=1; a keyd from the distribution is left alone.
-  if pkg_installed keyd && [ "${KEEP_KEYD:-0}" != 1 ]; then
-    case "$(dpkg-query -W -f='${Version}' keyd)" in *~ubuntu24.04.*|*beazerty*) pk+=(keyd) ;; esac
+  # keyd itself goes too when it is our old build, unless KEEP_KEYD=1. A keyd from the keyd-team PPA or the
+  # distribution was installed by the user and stays.
+  if pkg_installed keyd && [ "${KEEP_KEYD:-0}" != 1 ] && ours_keyd; then
+    pk+=(keyd); pkg_installed keyd-application-mapper && pk+=(keyd-application-mapper)
   fi
+  pkg_installed keyd && ! ours_keyd && info "keyd $(dpkg-query -W -f='${Version}' keyd) stays (not installed by this project; remove with: sudo apt purge keyd)"
   if [ ${#pk[@]} -gt 0 ]; then
     if DEBIAN_FRONTEND=noninteractive apt-get purge -y "${pk[@]}" >/dev/null 2>&1; then ok "purged ${pk[*]}"; else bad "apt-get purge ${pk[*]} failed"; fi
     # keyd exits with status 15 when stopped, so systemd would keep listing the removed unit as "failed".
@@ -809,15 +963,17 @@ uninstall() {
   echo
   if [ "$FAILED" = 0 ]; then
     echo "Done. The keyboard stays Belgian (numpad: $DECIMAL); Caps Lock has the Linux behaviour; Ctrl+Alt is no longer AltGr."
-    echo "Other users who had the Caps Lock option keep its name in their own settings; it is ignored (Linux Caps Lock)."
   else echo "Finished with errors (marked ✘ above)."; exit 1; fi
 }
 
+[ "${BE_AZERTY_FIX_SOURCE:-0}" = 1 ] && return 0
 case "${1:-check}" in
   check) check ;;
   live) live ;;
   system) system ;;
   uninstall) uninstall ;;
+  switch-keyd) switch_keyd ;;
+  caps-cleanup-users) caps_cleanup_all_users ;;   # used by the package's prerm; not for people
   ibus-skip) shift; ibus_skip "$@" ;;
   -h|--help|help) usage ;;
   *) usage; exit 1 ;;

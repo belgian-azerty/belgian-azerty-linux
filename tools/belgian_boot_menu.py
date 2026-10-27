@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Boot menu "B" for the Belgian stick: language first, then keyboard (decided by Younes on 2026-10-24).
+"""Boot menu "B" for the Belgian stick: language first, then keyboard.
 
     belgian_boot_menu.py grub|isolinux WITH_PACKAGES < menu.cfg > menu.cfg.new
 

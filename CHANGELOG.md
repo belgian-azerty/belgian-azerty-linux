@@ -1,8 +1,28 @@
 # What changed, version by version
 
-A plain-language summary. The technical changelogs are in `packaging/*/debian/changelog`. All versions were made
-between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds that were
-never published. They are listed because the README and the test evidence refer to them.
+A plain-language summary. The technical changelogs are in `packaging/*/debian/changelog`. Versions 0.9.0 to 0.9.7
+were made between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds
+that were never published. They are listed because the test evidence refers to them.
+
+## 0.9.8
+
+- **Your other layouts and input methods are kept.** 0.9.7 replaced the list of layouts with Belgian only when you
+  ran `sudo be-azerty-fix system` (also through the Period/Comma choice in the "Belgian keyboard" window), so a second
+  layout or a Chinese or Japanese input method was lost. Now Belgian is put first and everything else stays, in the
+  desktop settings, the running session and the system default. Found by an outside reviewer.
+- **keyd comes from the keyd-team PPA** instead of this project's own build, so it gets updates. The extra keyd patch
+  of 0.9.4-0.9.7 is no longer shipped; it is now only a proposal for keyd (`upstream/keyd/`). 0.9.7 users switch with
+  `sudo be-azerty-fix switch-keyd` after adding the PPA. Uninstall no longer removes a keyd you installed yourself
+  (0.9.7 removed the PPA's keyd too).
+- **The fast-typing ibus skip is off unless you switch it on.** No swaps were measured at normal typing speed, so it
+  should not be on for everyone. Users who never chose lose it at their next login.
+- **Faster reruns:** when nothing needs changing, nothing is reconfigured and the boot image is not rebuilt.
+- **Uninstall cleans every user's Caps Lock setting**, also users who are not logged in.
+- The "Belgian keyboard" window is wider (a German column header was cut off).
+- Shorter README, with "Only the parts you need"; the test tables moved to `HOW-WE-TESTED.md`. Unused files of an
+  abandoned first approach (`xkb/types/winaltgr`, `xkb/rules/`) were removed.
+- New tests: `tests/settings-logic.sh`, `tests/lived-in.sh` (lived-in profiles, "take nothing away"),
+  `tests/keyd-rules.sh`.
 
 ## 0.9.7 — first public version
 

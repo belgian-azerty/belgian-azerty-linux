@@ -26,3 +26,6 @@ Description: Windows-style Ctrl+Alt = AltGr for Belgian AZERTY keyboards
  .
  The rules apply to every keyboard, whatever layout is selected; they are
  meant for systems that use the Belgian layout.
+ .
+ keyd itself: on Ubuntu 24.04 based systems (Linux Mint 22, Zorin OS 18)
+ from the keyd-team PPA (ppa:keyd-team/ppa); in Ubuntu from 25.04 on.

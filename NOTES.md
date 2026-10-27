@@ -92,7 +92,7 @@ AltGr+5 give `{` and `[` as on Windows. Every other Ctrl+Alt combination passes 
 as Ctrl+Alt+T, Ctrl+Alt+arrows and Ctrl+Alt+F3 keep working. keyd's output log shows the exchange: for Ctrl+Alt+2 it
 releases Ctrl and Alt, presses AltGr, sends 2, then restores Ctrl and Alt; for Ctrl+Alt+T it passes the keys through
 untouched (`raw-logs/keyd-monitor-output.txt`). From 0.9.4 a small keyd patch keeps AltGr held while Ctrl+Alt stays
-down; see `research/FAST-TYPING-SWAPS.md` and the README section "The keyd patch".
+down; see `research/FAST-TYPING-SWAPS.md` and the section "The keyd patch" in HOW-WE-TESTED.md.
 
 Because keyd works below the display server, the same rules work on X11 (Mint), on Wayland (Zorin) and on the text
 console (`real-mint-11`, `14`, `real-zorin-06`, `09`, `raw-logs/xev-on.txt`), and so also on the login screen. The one

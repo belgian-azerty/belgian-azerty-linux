@@ -3,8 +3,8 @@
 # it installs and purges packages and changes xkb-data's rules file. Run as root:  tests/pkg-cycle.sh DIST_DIR
 # Checks: the Caps Lock rule is added once (also over a hand-installed older version), survives xkb-data reinstalls by
 # apt and by plain dpkg, dpkg -V xkb-data stays clean, the option gives Windows Caps Lock (0 mismatches), and purging
-# gives back xkb-data's original file byte for byte. keyd: upgrade from the old bundled keyd 2.5.0-0beazerty2 (if its
-# .deb is given as OLD_KEYD=path) and purge.
+# gives back xkb-data's original file byte for byte. keyd-belgian-windows on top of the keyd-team PPA's keyd (or
+# KEYD_DEB=path), and purge.
 set -u
 D=$(realpath "${1:?usage: pkg-cycle.sh DIST_DIR}"); HERE=$(cd "$(dirname "$0")/.." && pwd)
 R=/usr/share/X11/xkb/rules/evdev; FAIL=0
@@ -83,10 +83,11 @@ xkbcli compile-keymap --layout be --options caps:be_windows >/dev/null 2>/tmp/xk
 sed 's/^/      /' /tmp/xkbcli.err
 
 echo "== keyd packages"
+# keyd itself comes from the keyd-team PPA (or a .deb given as KEYD_DEB=path); OLD_KEYD=path installs an older keyd first.
 if [ -n "${OLD_KEYD:-}" ]; then
-  dpkg -i "$OLD_KEYD" >/dev/null 2>&1; echo "old bundled package: $(dpkg-query -W keyd)"
+  dpkg -i "$OLD_KEYD" >/dev/null 2>&1; echo "older keyd installed first: $(dpkg-query -W keyd)"
 fi
-apt-get install -y "$D"/keyd_*_amd64.deb "$D"/keyd-belgian-windows_*_all.deb > /tmp/keyd-inst.log 2>&1; t "keyd + keyd-belgian-windows installed (upgrading the old bundle if present)" sh -c "dpkg-query -W keyd-belgian-windows"
+apt-get install -y ${KEYD_DEB:-keyd} "$D"/keyd-belgian-windows_*_all.deb > /tmp/keyd-inst.log 2>&1; t "keyd + keyd-belgian-windows installed" sh -c "dpkg-query -W keyd-belgian-windows"
 echo "      keyd $(dpkg-query -W -f='${Version}' keyd); conffile owner: $(dpkg -S /etc/keyd/be-winaltgr.conf)"
 t "be-winaltgr.conf is a conffile of keyd-belgian-windows" sh -c "dpkg-query -W -f='\${Conffiles}' keyd-belgian-windows | grep -q be-winaltgr.conf"
 t "restart drop-in installed" test -f /usr/lib/systemd/system/keyd.service.d/belgian-windows-restart.conf

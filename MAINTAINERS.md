@@ -2,8 +2,8 @@
 
 For whoever builds, tests, reviews or takes over these pieces, including Mint, Zorin, Ubuntu or Debian maintainers.
 User documentation is `README.md`; the technical notes (findings and how to rerun the tests) are in `NOTES.md`; raw
-test output is in `evidence/`. Version 0.9.7 (2026-10-25), the first public release; 0.9.0 to 0.9.6 were unpublished
-test builds.
+test output is in `evidence/`. Version 0.9.8 (2026-10-27); 0.9.7 was the first public release, 0.9.0 to 0.9.6 were
+unpublished test builds.
 
 ## 1. The problem in one paragraph
 
@@ -21,34 +21,27 @@ users experience as "the layout switches back by itself".
 |---|---|---|---|
 | ISO repack tool | `tools/make_belgian_iso.sh` | Adds `keyboard-configuration/layoutcode=be locale=fr_BE.UTF-8` to every casper boot entry (GRUB and isolinux), drops Zorin's `maybe-ubiquity`, updates `md5sum.txt` | Mint / Zorin ISO builds (a "Belgian" boot entry), casper |
 | Ubiquity patch (draft, not run) | `upstream/ubiquity-indicator-keymaps-honour-layoutcode.patch` | Welcome screen keeps a layout chosen on the boot line | Ubiquity (Zorin) |
-| `keyd` backport | `packaging/keyd-backport/build.sh` | Rebuild of Debian's keyd 2.5.0-5 for Ubuntu 24.04 ("noble") plus one labelled patch (`patches/0012-*`, from 0.9.4; README "The keyd patch"), version `2.5.0-5~ubuntu24.04.3` (sorts below Debian's, so a distribution keyd always wins) | Ubuntu (sync keyd from Debian) |
+| keyd itself | not built here (from 0.9.8) | The keyd-team PPA (`ppa:keyd-team/ppa`, run by Debian's keyd maintainer) has Debian's keyd 2.5.0-5 for Ubuntu 24.04; Ubuntu has keyd from 25.04. Versions 0.9.1-0.9.7 shipped a rebuild (`2.5.0-5~ubuntu24.04.N`), from 0.9.4 with one patch, now only a proposal: `upstream/keyd/` | keyd (the patch), Ubuntu 24.04 backports |
 | `keyd-belgian-windows` | `packaging/keyd-belgian-windows/`, config `keyd/be-winaltgr.conf` | Ctrl+Alt+key = AltGr+key for the 15 AltGr keys of Windows "Belgian (Period)"; AltGr+4/5 = { [ as on Windows; `Restart=on-failure` drop-in | keyd (as an example config), or Mint/Zorin as an optional package |
 | `belgian-azerty-windows` | `packaging/belgian-azerty-windows/`, symbols `xkb/symbols/be_capslock` | XKB option `caps:be_windows` (Caps Lock = Shift level on the main block, as Windows KBDBE/KBDBENE CAPLOK) and the `be-azerty-fix` command | xkeyboard-config (the option itself; it generalises `caps:digits_row` from 2.42), Mint (new-user defaults) |
-| `be-azerty-fix` | `be-azerty-fix.sh` (installed as `/usr/sbin/be-azerty-fix`) | `check`, `live`, `system`, `uninstall`; see `man be-azerty-fix` | Mint/Zorin keyboard settings tools, in spirit |
+| `be-azerty-fix` | `be-azerty-fix.sh` (installed as `/usr/sbin/be-azerty-fix`) | `check`, `live`, `system`, `uninstall`, `switch-keyd`; see `man be-azerty-fix`. Puts Belgian first in every layout list and keeps every other entry | Mint/Zorin keyboard settings tools, in spirit |
 
 All changes are additive and reversible. Nothing patches distribution files in place: the one distribution file we
 must extend (xkb-data's `rules/evdev`) is diverted, see 4.2.
 
 ## 3. Building
 
-On Ubuntu 24.04 with `build-essential debhelper devscripts lintian dh-python python3 scdoc curl`:
+On Ubuntu 24.04 with `build-essential debhelper devscripts lintian`:
 
 ```
-packaging/build-all.sh            # -> dist/: .deb + source package (.dsc, .tar.xz) of each package, SHA256SUMS, lintian
-packaging/build-all.sh --no-keyd  # only our two packages
+packaging/build-all.sh            # -> dist/: .deb + source package (.dsc, .tar.xz) of both packages, SHA256SUMS, lintian
 ```
 
 `MAINTAINER="Name <mail>" COPYRIGHT_HOLDER="Name" SOURCE_URL=https://...` fill the placeholders in `debian/control`,
 `debian/changelog` and `debian/copyright`. The defaults are: licence MIT, maintainer
-`Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>`, copyright holder "Younes from Belgium" (the test builds up to 0.9.6
-named "Belgian AZERTY for Linux maintainers" instead); `SOURCE_URL` stays a placeholder until the project's
-public address is known. The keyd backport
-downloads Debian's three source files from deb.debian.org and checks their SHA-256 sums before building; Debian's
-upstream test suite (`make test-io`) runs during the build. lintian is clean for our two packages; Debian's keyd has
-one Debian-side warning (`wrong-name-for-upstream-changelog`), kept unchanged on purpose. Two builds give
-byte-identical packages: `keyd-backport/build.sh` pins the changelog date that the backport step (`dch`) writes,
-which was the only difference between two builds before that fix (found by the second review, 2026-10-24). The 0.9.7
-packages were built twice with the same result (`evidence/raw-logs/2026-10-25-release-0.9.7/`).
+`Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>`, copyright holder "Younes from Belgium", source
+`https://github.com/belgian-azerty/belgian-azerty-linux`. lintian is clean for both packages. keyd is not built
+here any more (see section 2); the 0.9.7 keyd build script is in the `v0.9.7` tag.
 
 ## 4. Design decisions (and why)
 
@@ -107,7 +100,9 @@ menu against the new `md5sum.txt`) and fails loudly on any xorriso error.
 
 | What | How | Where the evidence is |
 |---|---|---|
-| Static checks, package build, lintian, Caps table, ISO checksums | `tests/run-offline.sh [ISO...]` | `evidence/raw-logs/fix-round/run-offline.txt` |
+| Static checks, settings logic, package build, lintian, Caps table, ISO checksums | `tests/run-offline.sh [ISO...]` (runs `tests/settings-logic.sh`) | `evidence/raw-logs/fix-round/run-offline.txt`; 0.9.8: `evidence/raw-logs/2026-10-27-build-0.9.8/` |
+| Lived-in profiles, "take nothing away", upgrade from 0.9.7, uninstall | `tests/lived-in.sh NEW_DIST [OLD_DIST]` in a throwaway Ubuntu 24.04 system container (adds the keyd-team PPA) | 0.9.8: `evidence/raw-logs/2026-10-27-build-0.9.8/` |
+| The Ctrl+Alt rules against a keyd source tree (keyd's own test program, no device needed) | `tests/keyd-rules.sh KEYD_SOURCE_DIR` | same |
 | Install / upgrade / trigger / purge | `sudo DISPOSABLE=1 tests/run-offline.sh` (throwaway system only) | `evidence/raw-logs/fix-round/pkg-cycle-container.txt` |
 | Live, installer, installed systems, durability, shortcut check | QEMU test scripts in `rig/` (one VM at a time), see NOTES "How to rerun these tests" | `evidence/` |
 | Real hardware (fast typing, VS Code) | `T14S-TEST-PLAN.md` + `t14s-test/` | run once with 0.9.1 (Zorin live session from USB): `evidence/t14s/` |
@@ -118,15 +113,17 @@ on the test laptop, it is close to real speed (`RIG-SPEED.md`).
 
 ## 6. Known limits
 
-See README "Known issues". The open one that matters is the order of fast-typed characters with ibus: stock ibus
-behaviour that keyd's extra key events made more frequent (the keyd patch brings Ctrl+Alt back to the AltGr level;
-the Terminal, the text editor and VS Code skip ibus). A measurement on real hardware with a key log is still to do.
+See README "Known issues". The open one is the order of very fast-typed characters with ibus: stock ibus behaviour,
+measured only at speeds faster than people type; the optional ibus skip helps there. A measurement on real hardware
+with a key log is still to do.
 
 ## 7. Before any release
 
 1. `tests/run-offline.sh` on both Belgian ISOs: ALL PASS.
 2. The emulator checks in NOTES.md ("How to rerun these tests") for every changed piece.
 3. A test on real hardware (`T14S-TEST-PLAN.md`).
-4. A separate re-review.
+4. A separate re-review that starts from "who could this hurt" and runs as other kinds of users (second layout, input
+   method, second user, external keyboard, Wayland, one package only, existing keyd, upgrade and uninstall), with
+   `tests/lived-in.sh` as the "take nothing away" check.
 5. Check `MAINTAINER`, `COPYRIGHT_HOLDER` and `SOURCE_URL`.
 6. Re-check the upstream trackers (xkeyboard-config, GTK, Ubiquity/subiquity, Mint, Zorin) for changes.

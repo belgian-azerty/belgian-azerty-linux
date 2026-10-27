@@ -29,9 +29,8 @@ Une machine virtuelle (VirtualBox, GNOME Boxes) avec Mint 22.3 ou Zorin OS 18.1 
 
 ## Test 1 : sur un système installé ou une machine virtuelle (environ 20 minutes)
 
-**1. Télécharger.** Depuis la [page de la version](https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest), téléchargez ces quatre fichiers dans votre dossier
-Téléchargements : `keyd_…_amd64.deb`, `keyd-belgian-windows_…_all.deb`, `belgian-azerty-windows_…_all.deb` et
-`SHA256SUMS`.
+**1. Télécharger.** Depuis la [page de la version](https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest), téléchargez ces trois fichiers dans votre dossier
+Téléchargements : `keyd-belgian-windows_…_all.deb`, `belgian-azerty-windows_…_all.deb` et `SHA256SUMS`.
 
 **2. Ouvrir un terminal à cet endroit.** Ouvrez le dossier Téléchargements, clic droit dans un espace vide, choisissez
 « Ouvrir dans un terminal » (ou un intitulé proche).
@@ -42,16 +41,18 @@ Téléchargements : `keyd_…_amd64.deb`, `keyd-belgian-windows_…_all.deb`, `b
 sha256sum -c SHA256SUMS --ignore-missing
 ```
 
-Chacune des trois lignes doit se terminer par `OK` (sur un système en français, ce peut être un mot traduit).
+Chacune des deux lignes doit se terminer par `OK` (sur un système en français, ce peut être un mot traduit).
 
 **4. Installer.** Tapez (le mot de passe est demandé) :
 
 ```
-sudo apt install ./keyd_*.deb ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
+sudo add-apt-repository ppa:keyd-team/ppa
+sudo apt install keyd ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
 sudo be-azerty-fix system
 ```
 
-Pour la virgule sur le pavé numérique, tapez `sudo DECIMAL=comma be-azerty-fix system` à la place de la deuxième
+La première ligne ajoute le PPA keyd-team, qui fournit keyd (le programme derrière Ctrl+Alt comme AltGr) pour Mint 22
+et Zorin 18. Pour la virgule sur le pavé numérique, tapez `sudo DECIMAL=comma be-azerty-fix system` à la place de la dernière
 ligne.
 
 **5. Fermez la session et reconnectez-vous.**

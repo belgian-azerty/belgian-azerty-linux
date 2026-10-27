@@ -34,8 +34,10 @@ Description: Keep AltGr held while a Ctrl+Alt layer is held (Belgian AZERTY proj
  there); a mouse click with Ctrl+Alt right after a symbol sees AltGr until
  the next key press (untested); real hardware.
 Author: Belgian AZERTY for Linux maintainers <linuxbelgiumkeyboard.rc0g4@aleeas.com>
-Forwarded: no (a proposal for keyd upstream, https://github.com/rvaiya/keyd, is
- drafted in research/upstream-drafts/keyd-hold-altgr.md and not sent yet)
+Forwarded: no (a proposal for keyd upstream, https://github.com/rvaiya/keyd; not
+ sent yet). Shipped in this project's keyd build of 0.9.4-0.9.7 only; from 0.9.8
+ the project uses the keyd-team PPA's unpatched keyd and keeps this file only as
+ the proposal.
 Last-Update: 2026-10-25
 ---
 --- a/src/keyboard.c

@@ -28,8 +28,8 @@ A virtual machine (VirtualBox, GNOME Boxes) with Mint 22.3 or Zorin OS 18.1 is a
 
 ## Test 1: on an installed system or a virtual machine (about 20 minutes)
 
-**1. Download.** From the [release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest), download these four files into your Downloads folder:
-`keyd_…_amd64.deb`, `keyd-belgian-windows_…_all.deb`, `belgian-azerty-windows_…_all.deb` and `SHA256SUMS`.
+**1. Download.** From the [release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest), download these three files into your Downloads folder:
+`keyd-belgian-windows_…_all.deb`, `belgian-azerty-windows_…_all.deb` and `SHA256SUMS`.
 
 **2. Open a terminal there.** Open the Downloads folder, right-click in an empty spot, choose "Open in Terminal".
 
@@ -39,16 +39,18 @@ A virtual machine (VirtualBox, GNOME Boxes) with Mint 22.3 or Zorin OS 18.1 is a
 sha256sum -c SHA256SUMS --ignore-missing
 ```
 
-Each of the three lines must end with `OK`.
+Each of the two lines must end with `OK`.
 
 **4. Install.** Type (it asks for your password):
 
 ```
-sudo apt install ./keyd_*.deb ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
+sudo add-apt-repository ppa:keyd-team/ppa
+sudo apt install keyd ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
 sudo be-azerty-fix system
 ```
 
-For the comma on the numpad, type `sudo DECIMAL=comma be-azerty-fix system` instead of the second line.
+The first line adds the keyd-team PPA, which provides keyd (the program behind Ctrl+Alt as AltGr) for Mint 22 and
+Zorin 18. For the comma on the numpad, type `sudo DECIMAL=comma be-azerty-fix system` instead of the last line.
 
 **5. Log out and log back in.**
 
