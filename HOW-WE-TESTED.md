@@ -33,7 +33,29 @@ the packages install when apt answers in Dutch; uninstall keeps the old keyd bui
 configuration or keyd-application-mapper from the PPA; `switch-keyd` reports failure with an error code.
 
 A container cannot run keyd (no virtual keyboard device), the login screen, a reboot or a real desktop session, so
-those parts of 0.9.8 rely on the earlier emulator and laptop tests below, where the code did not change.
+0.9.8 was then tested on the test laptop, in emulators with hardware acceleration (29 October 2026). Zorin (encrypted
+disk) and Mint were installed from the 0.9.7 sticks, given a second layout (and on Zorin a third), and upgraded to
+0.9.8 the way the README says:
+
+- Zorin: the user's US and German layouts and the system's US layout were kept, with Belgian first. The disk-unlock
+  prompt, the login screen and the text console all took the Belgian password at the first try after the upgrade and
+  after a restart. keyd from the keyd-team PPA typed the whole test line, including AltGr+4/5 by Ctrl+Alt, and
+  Super+Space switched between US and Belgian. Uninstall kept keyd and the layouts.
+- Mint: the empty layout list was filled with Belgian first and US; a user created before the upgrade who had never
+  logged in got Belgian first at the login screen; the test line typed exactly before and after a restart (with the old keyd build in the first run, with the PPA's keyd
+  in the second).
+- The first run found two faults, both fixed and run again: on Mint, adding the keyd-team PPA does not refresh the
+  package list, so the switch to the PPA's keyd found nothing (now `be-azerty-fix` refreshes it, and the README says
+  `sudo apt update`); and the "Belgian keyboard" window did not open at all in a German session when German was not
+  installed (now it opens in English). In the second run both passed: the switch installed keyd
+  2.5.0-5~debian202508121658~ubuntu24.04.1, the test line typed exactly, uninstall kept keyd; the window opened in
+  English without German, and in German with both column headers fully visible once German was installed.
+- Seen, not fixed: with two layouts in the system default, the disk-unlock prompt no longer shows the "be" label
+  (typing is still Belgian); Debian's keyboard tools add the Scroll Lock light option for multi-layout systems; in a
+  German session on a Dutch system the window's own OK and Cancel buttons stayed Dutch (not checked further).
+
+The second run used a package rebuilt on the laptop from the same code (the two changed programs checked by
+fingerprint); only the README and man page inside it were older.
 
 ## Where (all versions)
 
@@ -63,7 +85,7 @@ lived-in test above covers it.
 
 ## Not tested yet
 
-0.9.8 in an emulator or on real hardware; an install from the stick on real hardware; Mint directly on real
+0.9.8 on real hardware (only in the laptop emulator); a 0.9.8 stick; an install from the stick on real hardware; Mint directly on real
 hardware; Mint on Wayland; disk encryption on Mint; a second USB keyboard (US or other); keyboards with a built-in
 touchpad; the "Belgian keyboard" window on Mint; Ubuntu itself and any other distribution; VS Code from Snap or
 Flatpak.

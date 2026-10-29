@@ -12,8 +12,8 @@ behaviour that Belgians are used to, and a live USB that starts with the Belgian
 | Live USB and installer start with the Belgian keyboard | Repacked ISO whose boot menu asks for the language, then the Belgian keyboard (period or comma) | `tools/make_belgian_iso.sh` |
 
 **Status.** Version 0.9.8. This is a long-standing problem that no project owns. The fix was tested in emulators and
-on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.8 so far in test containers, see
-`HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
+on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.8 in test containers and in emulators
+on the test laptop, see `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
 for Linux Mint, Zorin OS and the projects they build on to adopt these fixes themselves (`MAINTAINERS.md` says which
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
 version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
@@ -176,7 +176,9 @@ stick is a stopgap until the distributions offer a Belgian boot entry themselves
 sudo MENU=b PACKAGES=dist tools/make_belgian_iso.sh linuxmint-22.3-cinnamon-64bit.iso mint-belgian-stick.iso
 ```
 
-`PACKAGES` is a folder with the two packages and a keyd `.deb` (for example from the keyd-team PPA). The boot menu
+`PACKAGES` is a folder with the two packages and a keyd `.deb` (for example from the keyd-team PPA). A system
+installed from the stick has that keyd but not the PPA, so **keyd gets no updates** until you add the PPA (step 1 of
+"Install on an installed system"). The boot menu
 first asks for the language (Nederlands, Français, Deutsch, English), then for the keyboard: Belgian AZERTY with a
 period or a comma on the numpad, and for Deutsch and English also German QWERTZ. Without a key press it starts
 Nederlands with the period, except on Mint in UEFI mode, which waits (stock Mint does the same). What the tool
