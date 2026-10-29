@@ -160,7 +160,7 @@ ours_keyd() {
   esac
   return 1
 }
-PPA_HINT="sudo add-apt-repository ppa:keyd-team/ppa && sudo apt install keyd"
+PPA_HINT="sudo add-apt-repository ppa:keyd-team/ppa && sudo apt update && sudo apt install keyd"
 keyd_other_configs() {     # keyd configurations besides ours, comma separated
   local f out=""
   for f in /etc/keyd/*.conf; do
@@ -543,6 +543,7 @@ apply_default_keyboard() {   # OPTIONS [as-is]: write debconf + /etc/default/key
   else update-initramfs -u >/dev/null 2>&1 && ok "boot image rebuilt" || bad "update-initramfs failed"; fi
 }
 
+keyd_candidate() { [ -n "$(LC_ALL=C apt-cache policy keyd 2>/dev/null | sed -n 's/^ *Candidate: *//p' | grep -v '(none)')" ]; }
 install_packages() {         # install our .deb files shipped next to this script, if any
   local here; here=$(cd "$(dirname "$(readlink -f "$0")")" && pwd)
   local debs=() d n
@@ -551,8 +552,9 @@ install_packages() {         # install our .deb files shipped next to this scrip
     d=$(ls "$here"/dist/"${n}"_*.deb "$here"/"${n}"_*.deb 2>/dev/null | sort -V | tail -1)
     [ -n "$d" ] || continue
     # keyd itself is not ours to ship any more: it comes from the keyd-team PPA (or the distribution, from Ubuntu 25.04).
-    if [ "$n" = keyd-belgian-windows ] && ! pkg_installed keyd && \
-       [ -z "$(LC_ALL=C apt-cache policy keyd 2>/dev/null | sed -n 's/^ *Candidate: *//p' | grep -v '(none)')" ]; then
+    # (Mint's add-apt-repository does not refresh the package lists, so refresh them once before deciding.)
+    if [ "$n" = keyd-belgian-windows ] && ! pkg_installed keyd && ! keyd_candidate && \
+       { DEBIAN_FRONTEND=noninteractive apt-get update >/dev/null 2>&1; ! keyd_candidate; }; then
       info "Ctrl+Alt as AltGr needs keyd, which Ubuntu 24.04 does not have; add it with:  $PPA_HINT  and run this again"
       continue
     fi
@@ -573,6 +575,8 @@ switch_keyd() {              # replace our old keyd build by the keyd-team PPA's
   # Our build sorts above the PPA's version, so apt would never replace it by itself: pick the newest keyd that a
   # configured repository offers and is not ours, and install it explicitly (a downgrade by version number only).
   local v p pk
+  # Mint's add-apt-repository adds the PPA without refreshing the package list: refresh it here.
+  DEBIAN_FRONTEND=noninteractive apt-get update >/dev/null 2>&1 || info "apt-get update reported a problem; using the package lists as they are"
   v=$(LC_ALL=C apt-cache madison keyd 2>/dev/null | awk -F'|' '{gsub(/ /, "", $2); print $2}' | grep -v -e '-5~ubuntu24\.04\.[0-9]$' -e beazerty | head -1)
   if [ -z "$v" ]; then
     bad "no other keyd found. First add the keyd-team PPA:  sudo add-apt-repository ppa:keyd-team/ppa  then run this again"

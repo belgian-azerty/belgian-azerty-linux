@@ -46,6 +46,7 @@ Elk van de twee regels moet eindigen op `OK` (op een Nederlandstalig systeem kan
 
 ```
 sudo add-apt-repository ppa:keyd-team/ppa
+sudo apt update
 sudo apt install keyd ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
 sudo be-azerty-fix system
 ```

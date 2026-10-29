@@ -33,8 +33,11 @@ version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
 
    ```
    sudo add-apt-repository ppa:keyd-team/ppa
+   sudo apt update
    sudo apt install keyd
    ```
+
+   (`apt update` is needed on Mint, whose `add-apt-repository` does not refresh the package list by itself.)
 
 2. Download the two packages from the release page into one folder, open a terminal there, then:
 

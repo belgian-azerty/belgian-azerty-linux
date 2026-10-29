@@ -27,6 +27,11 @@ that were never published. They are listed because the test evidence refers to t
   options for users who never had the Caps Lock option, and includes users with high user numbers; the window keeps
   a Caps Lock choice made with `CAPS=` when only the numpad key changes; `switch-keyd` exits with an error when it
   cannot switch.
+- Found by the laptop test (Zorin and Mint installed in an emulator, upgraded from 0.9.7), and fixed: on Mint,
+  `switch-keyd` and the install found no PPA keyd, because Mint's `add-apt-repository` does not refresh the package
+  lists (the install steps now include `sudo apt update`, and both commands refresh the lists themselves); the
+  "Belgian keyboard" window did not open at all when its language was not installed (it now falls back to English,
+  and shows zenity's error instead of quitting without a word).
 - **Faster reruns:** when nothing needs changing, nothing is reconfigured and the boot image is not rebuilt.
 - **Uninstall cleans every user's Caps Lock setting**, also users who are not logged in.
 - The "Belgian keyboard" window is wider (a German column header was cut off).

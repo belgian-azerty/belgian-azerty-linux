@@ -47,6 +47,7 @@ Chacune des deux lignes doit se terminer par `OK` (sur un système en français,
 
 ```
 sudo add-apt-repository ppa:keyd-team/ppa
+sudo apt update
 sudo apt install keyd ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
 sudo be-azerty-fix system
 ```

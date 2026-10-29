@@ -13,7 +13,11 @@ PROFILE=$(saved PROFILE); PROFILE=${PROFILE:-windows}
 DECIMAL=$(saved DECIMAL)
 if [ -z "$DECIMAL" ]; then grep -qE '^XKBOPTIONS=.*kpdl:comma' /etc/default/keyboard 2>/dev/null && DECIMAL=comma || DECIMAL=period; fi
 
-case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
+# The window speaks the session's language when that language is installed. Otherwise English, in UTF-8: zenity
+# refuses texts with é or … when the session asks for a language that is not installed, and no window would open.
+L=${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}
+case "$L" in nl*|fr*|de*) locale -a 2>/dev/null | grep -qix "${L%%.*}.utf8" || { L=en; export LC_ALL=C.UTF-8; } ;; esac
+case "$L" in
   nl*) T="Belgisch toetsenbord"
        Q="Kies hoe het toetsenbord werkt. Dit geldt voor de hele computer."
        C_PROF="Profiel"; C_DEC="Decimaaltoets op het numeriek klavier"
@@ -67,7 +71,7 @@ esac
 # On GNOME (Zorin) the Windows profile keeps the Linux Caps Lock (be-azerty-fix: Windows Caps Lock is opt-in there).
 case "${XDG_CURRENT_DESKTOP:-}" in
   *GNOME*|*Zorin*)
-    case "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" in
+    case "$L" in
       nl*) WIN="Windows (Ctrl+Alt werkt als AltGr; Caps Lock blijft Linux, zie README)" ;;
       fr*) WIN="Windows (Ctrl+Alt fait AltGr ; Verr. Maj reste Linux, voir README)" ;;
       de*) WIN="Windows (Strg+Alt wie AltGr; Feststelltaste bleibt Linux, siehe README)" ;;
@@ -107,9 +111,12 @@ row() {   # PROFILE DECIMAL: one radio row, ticked when it is the current choice
   local p="$WIN" d="$PER"; [ "$1" = linux ] && p="$LIN"; [ "$2" = comma ] && d="$COM"
   printf '%s\n%s\n%s\n%s\n' "$on" "$1 $2" "$p" "$d"
 }
+err=$(mktemp)
 pick=$( { row windows period; row windows comma; row linux period; row linux comma; } |
   zenity --list --radiolist --title="$T" --text="$Q" --width=860 --height=400 --extra-button="$B_FAST" \
-    --column="" --column=id --column="$C_PROF" --column="$C_DEC" --hide-column=2 --print-column=2 2>/dev/null ); rc=$?
+    --column="" --column=id --column="$C_PROF" --column="$C_DEC" --hide-column=2 --print-column=2 2>"$err" ); rc=$?
+# zenity's own error (it exits with something else than 0 or 1): show it instead of quitting without a word.
+if [ "$rc" -gt 1 ]; then cat "$err" >&2; rm -f "$err"; exit "$rc"; fi; rm -f "$err"
 # The extra button prints its own label (and zenity exits 1).
 if [ "$pick" = "$B_FAST" ]; then fast_typing; exit $?; fi
 [ "$rc" = 0 ] && [ -n "$pick" ] || exit 0

@@ -45,6 +45,7 @@ Each of the two lines must end with `OK`.
 
 ```
 sudo add-apt-repository ppa:keyd-team/ppa
+sudo apt update
 sudo apt install keyd ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
 sudo be-azerty-fix system
 ```

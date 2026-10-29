@@ -71,7 +71,8 @@ Replace the keyd build that 0.9.7 and earlier installed
 configured repository offers, normally the keyd-team PPA (add it first with
 .BR "sudo add-apt-repository ppa:keyd-team/ppa" ).
 apt does not do this by itself, because the old build has a higher version
-number. Does nothing when keyd is not that build.
+number. Refreshes the package lists first (Mint's add-apt-repository does not).
+Does nothing when keyd is not that build.
 .TP
 .B ibus-skip
 Per user; run it as yourself, without sudo. Off unless you switch it on. When
