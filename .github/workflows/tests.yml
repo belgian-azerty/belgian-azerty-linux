@@ -76,7 +76,7 @@ jobs:
           RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
               ca-certificates systemd systemd-sysv dbus dbus-user-session sudo libglib2.0-bin dconf-gsettings-backend \
               dconf-cli gsettings-desktop-schemas cinnamon-desktop-data libgnomekbd-common ibus keyboard-configuration \
-              console-setup software-properties-common gpg-agent python3 xkb-data >/dev/null
+              console-setup software-properties-common gpg-agent python3 xkb-data libxkbcommon-tools >/dev/null
           CMD ["/sbin/init"]
           DOCKERFILE
           docker run -d --name lived --privileged --cgroupns=private --tmpfs /run --tmpfs /run/lock --tmpfs /tmp \

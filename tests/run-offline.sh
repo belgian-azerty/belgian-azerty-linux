@@ -54,8 +54,10 @@ t=$(python3 "$ROOT/tools/optiontest.py" --include "$inc" be be_azerty:mac fr:mac
 t=$(python3 "$ROOT/tools/optiontest.py" --include "$inc" be caps:be_windows,be_azerty:accents be caps:be_windows | tail -1)
 [ "$t" = "differences: 3" ]; res $? "accents option on top of Windows Caps Lock: same 3 changes"
 if command -v ckbcomp >/dev/null; then
+  plain=$(ckbcomp -I"$inc" -rules evdev -layout be 2>/dev/null)
   for o in be_azerty:accents be_azerty:mac; do
-    ckbcomp -I"$inc" -rules "$inc/rules/evdev" -layout be -option "$o" >/dev/null 2>&1; res $? "console keymap (ckbcomp) with $o"
+    km=$(ckbcomp -I"$inc" -rules evdev -layout be -option "$o" 2>/dev/null) && [ -n "$km" ] && [ "$km" != "$plain" ]
+    res $? "console keymap (ckbcomp) with $o: builds and follows the option"
   done
 fi
 rm -rf "$inc"

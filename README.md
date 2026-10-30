@@ -150,7 +150,7 @@ sudo be-azerty-fix apple-iso-keys on    # only if the key left of 1 and the key 
 `APPLE=yes` uses the layout data of Unicode CLDR (macOS "Belgian"); Option acts as AltGr, and the Windows Caps Lock
 and Shift+AltGr accents do not apply (Caps Lock works as on Linux). It changes the layout for every keyboard on the
 computer and on the login screen, so it is refused when no Apple keyboard is connected (`FORCE=1` overrides). The
-text console and the disk unlock prompt keep the PC layout. Back to a PC keyboard: `sudo APPLE=no be-azerty-fix
+text console and the disk unlock prompt follow it too (checked with the console keymap tool, not on a real console). Back to a PC keyboard: `sudo APPLE=no be-azerty-fix
 system` and `sudo be-azerty-fix apple-iso-keys auto`. **Not tested on a real Apple keyboard**; in a test container 333
 of 367 macOS characters came out the same (the PC layout: 199); the rest is Caps Lock, which works differently on a Mac.
 
@@ -271,6 +271,8 @@ with Linux Mint or Zorin OS.
 - **`sudo be-azerty-fix system` can say "only 4 layouts fit in the system default: be left out there"** when Belgian is
   your only layout. The message is wrong (also in 0.9.8): nothing is left out and the layout is not changed. Fixed in
   the next version.
+- **The package changelog says the text console and disk unlock keep the PC layout with `APPLE=yes`.** That is wrong:
+  they follow the Apple layout too (see "Apple keyboards"). Fixed in the next version.
 - Not tested: a real Apple keyboard, real hardware with 0.9.9 (only the laptop emulator), VirtualBox, Ubuntu itself, other distributions, a second USB keyboard, Wine, remote
   desktop. Full list: `HOW-WE-TESTED.md`.
 
