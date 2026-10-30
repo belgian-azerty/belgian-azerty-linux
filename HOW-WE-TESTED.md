@@ -57,6 +57,25 @@ disk) and Mint were installed from the 0.9.7 sticks, given a second layout (and 
 The second run used a package rebuilt on the laptop from the same code (the two changed programs checked by
 fingerprint); only the README and man page inside it were older.
 
+### 0.9.8 sticks with the keyd-team PPA (30 October 2026)
+
+Both sticks (Zorin OS 18.1 Core, Linux Mint 22.3 Cinnamon) were built on the test laptop and checked in its emulator:
+live session, install (no encryption) and, on the installed system, adding the PPA again the way the README says. All
+8 checks passed: the build fingerprints matched, keyd 2.5.0-5~debian202508121658~ubuntu24.04.1 ran, the keyd-team
+PPA entry was present on the live and the installed system, `apt-get update` gave no error or warning about keyd,
+adding the PPA again gave no "Conflicting values" error and left one PPA file, and the test line typed exactly. The
+first build attempt failed on Mint: Mint's own `add-apt-repository` fetches the PPA key with gpg, which leaves a
+helper program running, and the build's clean-up then removed the build machine's device files under the still
+mounted build folder. Fixed before the second attempt: programs left in the build are stopped, the clean-up never
+deletes through a mount, the full build log is kept, and when Mint's key download fails the PPA key shipped in
+`tools/stick/keyd-team-ppa.asc` is used and checked by fingerprint (`tools/stick/check-ppa-key.py`).
+
+The Zorin stick was then started on a real Lenovo ThinkPad T14s Gen 2i (live session only, nothing installed, X11):
+the setup checks passed, the typed lines (letters, the 12 Ctrl+Alt and AltGr symbols, Caps Lock, é) were exact and the
+touchpad worked normally. Seen, not yet explained: on the first start, the installer's Wi-Fi password window typed as a
+US keyboard (not seen after a restart); the installer's "detect keyboard layout" button chose French after one key;
+some folders of the live session kept English names.
+
 ## Where (all versions)
 
 - **Emulators:** QEMU virtual machines, in the cloud and on one laptop (faster, with hardware acceleration). Keys are
@@ -85,7 +104,7 @@ lived-in test above covers it.
 
 ## Not tested yet
 
-0.9.8 on real hardware (only in the laptop emulator); a 0.9.8 stick; an install from the stick on real hardware; Mint directly on real
+0.9.8 installed on real hardware (only in the laptop emulator; the Zorin stick ran live on one real laptop); an install from the stick on real hardware; Mint directly on real
 hardware; Mint on Wayland; disk encryption on Mint; a second USB keyboard (US or other); keyboards with a built-in
 touchpad; the "Belgian keyboard" window on Mint; Ubuntu itself and any other distribution; VS Code from Snap or
 Flatpak.

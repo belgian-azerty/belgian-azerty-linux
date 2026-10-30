@@ -29,7 +29,8 @@
 # extra layer, /casper/zz-belgian-azerty.squashfs, which casper stacks on top of the untouched filesystem.squashfs
 # (tools/stick/build-layer.sh); the packages themselves go to /belgian/ for the installer. The layer applies the boot
 # menu choice in the live session (numpad comma, Belgian formats for English) and makes an install from the stick
-# get the packages and the same choice (tools/stick/belgian-stick).
+# get the packages and the same choice (tools/stick/belgian-stick). PPA=1 (default) also adds the keyd-team PPA with the
+# distribution's own add-apt-repository (needs the internet and gpg), so an installed system keeps getting keyd updates.
 #
 # The tool also updates md5sum.txt for every file it changes, so the boot menu's "Check the disc for defects"
 # and casper's background check still pass. Needs xorriso. Exit status is non-zero on any failure.

@@ -176,14 +176,17 @@ stick is a stopgap until the distributions offer a Belgian boot entry themselves
 sudo MENU=b PACKAGES=dist tools/make_belgian_iso.sh linuxmint-22.3-cinnamon-64bit.iso mint-belgian-stick.iso
 ```
 
-`PACKAGES` is a folder with the two packages and a keyd `.deb` (for example from the keyd-team PPA). A system
-installed from the stick has that keyd but not the PPA, so **keyd gets no updates** until you add the PPA (step 1 of
-"Install on an installed system"). The boot menu
+`PACKAGES` is a folder with the two packages and a keyd `.deb` (for example from the keyd-team PPA). Building needs
+root, `xorriso`, `squashfs-tools`, `gpg` and the internet: the tool adds the keyd-team PPA to the stick with the
+distribution's own `add-apt-repository`, and a system installed from the stick keeps that PPA, so keyd gets updates
+(`PPA=0` leaves the PPA out; keyd then gets no updates until you add it, step 1 of "Install on an installed system").
+The boot menu
 first asks for the language (Nederlands, Français, Deutsch, English), then for the keyboard: Belgian AZERTY with a
 period or a comma on the numpad, and for Deutsch and English also German QWERTZ. Without a key press it starts
 Nederlands with the period, except on Mint in UEFI mode, which waits (stock Mint does the same). What the tool
 changes, and nothing else: the boot menu entries, the checksum list for the disc check, one extra file
-`/casper/zz-belgian-azerty.squashfs` (the packages, stacked on top of the distribution's untouched system image) and
+`/casper/zz-belgian-azerty.squashfs` (the packages and the keyd-team PPA entry, stacked on top of the distribution's
+untouched system image) and
 the packages in `/belgian/` for the installer. This is an unofficial, community-made stick, not made by or affiliated
 with Linux Mint or Zorin OS.
 
