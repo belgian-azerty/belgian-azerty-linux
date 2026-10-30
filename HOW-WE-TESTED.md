@@ -8,8 +8,19 @@ been accepted by the Linux projects themselves yet. Technical notes are in `NOTE
 
 0.9.9 adds the Shift+AltGr accents of Windows, an optional "accent then space" for each user, and an optional layout
 for Belgian Apple keyboards. So far these were tested **only in Ubuntu 24.04 test containers and a headless GNOME
-desktop** (GNOME Shell 46, Wayland, no screen, keys sent through GNOME's remote-desktop interface). Not yet in the
-laptop emulator, on a stick, in VirtualBox, on real hardware or with a real Apple keyboard.
+desktop** (GNOME Shell 46, Wayland, no screen, keys sent through GNOME's remote-desktop interface), then in emulators
+on the test laptop (QEMU with KVM, 30 October 2026, 16 of 16 checks passed):
+
+- Update from 0.9.8 on Zorin OS 18.1 and Linux Mint 22.3 systems installed from the 0.9.8 sticks: the update alone
+  changed no setting; after `sudo be-azerty-fix system` the accents stayed as in 0.9.8 (ǎ ă ȧ); with
+  `ACCENTS=windows` Shift+AltGr gave é à ñ; with accent-space on, ´ then space and ¨ then space gave ´ and ¨ in the
+  Terminal after logging in again; uninstall removed every option and the file, keyd stayed. The typed test line also
+  covers Ctrl+Alt and AltGr on 15 keys (including AltGr+4 and AltGr+5) and Caps Lock.
+- New 0.9.9 sticks for both: built from the stock ISOs, started in Dutch with Belgian (period), live session and a
+  full install each; the installer preselected Belgian; keyd from the keyd-team PPA active; Windows accents on; the
+  typed line exact in the live session and after the install.
+
+Not yet: VirtualBox, real hardware, a real Apple keyboard.
 
 - Typed into a GTK 4 window in the headless GNOME desktop, all 377 key combinations of the Windows check (308 of
   them have a Windows character): Windows profile 302 of 308 the same as Windows, 306 with accent-space on (0.9.8:
@@ -134,8 +145,8 @@ lived-in test above covers it.
 
 ## Not tested yet
 
-0.9.9 anywhere outside test containers (laptop emulator, stick, VirtualBox, real hardware); a real Apple keyboard;
-accent-then-space in Qt apps, VS Code and terminals. 0.9.8 installed on real hardware (only in the laptop emulator; the Zorin stick ran live on one real laptop); an install from the stick on real hardware; Mint directly on real
+0.9.9 on real hardware or in VirtualBox (only in the laptop emulator); a real Apple keyboard; accent-then-space in Qt
+apps and VS Code. 0.9.8 installed on real hardware (only in the laptop emulator; the Zorin stick ran live on one real laptop); an install from the stick on real hardware; Mint directly on real
 hardware; Mint on Wayland; disk encryption on Mint; a second USB keyboard (US or other); keyboards with a built-in
 touchpad; the "Belgian keyboard" window on Mint; Ubuntu itself and any other distribution; VS Code from Snap or
 Flatpak.

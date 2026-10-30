@@ -13,8 +13,8 @@ behaviour that Belgians are used to, and a live USB that starts with the Belgian
 | Live USB and installer start with the Belgian keyboard | Repacked ISO whose boot menu asks for the language, then the Belgian keyboard (period or comma) | `tools/make_belgian_iso.sh` |
 
 **Status.** Version 0.9.9. This is a long-standing problem that no project owns. The fix was tested in emulators and
-on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.9 so far in test containers and a
-headless GNOME desktop only, see `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
+on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.9 in test containers, a headless GNOME
+desktop and emulators on the test laptop, see `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
 for Linux Mint, Zorin OS and the projects they build on to adopt these fixes themselves (`MAINTAINERS.md` says which
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
 version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
@@ -130,11 +130,12 @@ standard Belgian layout (not Belgian (alt.), (no dead keys) or other variants), 
 `"`. To get the Windows behaviour for your user (no sudo): `be-azerty-fix accent-space on`, then log out and in. It
 writes a small `~/.XCompose`; a `~/.XCompose` of your own is never changed (the command shows the two lines to add).
 It refuses when you also use a "US international"-type layout, where `'` and `"` are accent keys. Off again:
-`be-azerty-fix accent-space off`. Checked in GTK 3 and GTK 4 apps on GNOME (Wayland and X11, with and without ibus);
-not checked in Qt, Electron (VS Code) or terminal apps.
+`be-azerty-fix accent-space off`. Checked in GTK 3 and GTK 4 apps on GNOME (Wayland and X11, with and without ibus)
+and in the Terminal of Zorin and Mint; not checked in Qt or Electron apps (VS Code).
 
 With both, 306 of the 308 Windows Belgian characters we compared come out the same (0.9.8: 272); the two left are
-AltGr+4 and AltGr+5, which keyd handles. Measured in a test container, not yet on the laptop.
+AltGr+4 and AltGr+5, which keyd handles. Measured in a test container; the accents, accent-space (also in the Terminal)
+and AltGr+4/5 were also typed in Mint and Zorin in the laptop emulator.
 
 ## Belgian Apple keyboards (optional)
 
@@ -265,9 +266,12 @@ with Linux Mint or Zorin OS.
 - **On Linux Mint, Ctrl+Alt+Backspace ends the whole session at once** (Mint's own setting, kept as Mint set it).
 - If the keyboard ever stops while the mouse still works (never seen in testing): restart from the system menu with
   the mouse, or run `sudo systemctl restart keyd` with the on-screen keyboard.
-- **Accent then space only works in apps that read `~/.XCompose`** (GTK apps and the ibus input method). Not checked
-  in Qt apps, VS Code or terminals.
-- Not tested: a real Apple keyboard, real hardware with 0.9.9, Ubuntu itself, other distributions, a second USB keyboard, Wine, remote
+- **Accent then space only works in apps that read `~/.XCompose`** (GTK apps, the Terminal and the ibus input method).
+  Not checked in Qt apps or VS Code.
+- **`sudo be-azerty-fix system` can say "only 4 layouts fit in the system default: be left out there"** when Belgian is
+  your only layout. The message is wrong (also in 0.9.8): nothing is left out and the layout is not changed. Fixed in
+  the next version.
+- Not tested: a real Apple keyboard, real hardware with 0.9.9 (only the laptop emulator), VirtualBox, Ubuntu itself, other distributions, a second USB keyboard, Wine, remote
   desktop. Full list: `HOW-WE-TESTED.md`.
 
 ## Help test, or answer the survey
