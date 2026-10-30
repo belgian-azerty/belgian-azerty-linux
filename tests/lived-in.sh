@@ -261,7 +261,8 @@ t "five layouts do not fit: system default be,us,de,fr with their variants" sh -
 t "and the command says ru was left out there" sh -c "echo \"\$0\" | grep -q 'ru left out'" "$out"
 sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="be"/; s/^XKBVARIANT=.*/XKBVARIANT="oss"/' /etc/default/keyboard
 gs alice set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'be+oss')]"
-as_alice be-azerty-fix system >/dev/null 2>&1
+out=$(as_alice be-azerty-fix system 2>&1)
+t "one layout in the system default: no 'only 4 layouts fit' message (0.9.8 printed 'be left out')" sh -c "! echo \"\$0\" | grep -q 'layouts fit'" "$out"
 t "be(oss) system default: no Windows accents option (oss has its own Shift+AltGr level)" sh -c ". /etc/default/keyboard; ! echo \"\$XKBOPTIONS\" | grep -q be_azerty:accents"
 t "alice with be+oss first: no accents option in her options" sh -c "! runuser -u alice -- env HOME=/home/alice DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gsettings get org.gnome.desktop.input-sources xkb-options | grep -q be_azerty:accents"
 t "be(oss) system default keeps oss (not pushed back by plain be)" sh -c ". /etc/default/keyboard; [ \"\$XKBLAYOUT\" = be ] && [ \"\$XKBVARIANT\" = oss ]"

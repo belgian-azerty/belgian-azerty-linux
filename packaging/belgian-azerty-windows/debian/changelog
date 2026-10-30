@@ -26,6 +26,9 @@ belgian-azerty-windows (0.9.9) noble; urgency=medium
     variant (not nodeadkeys, oss, iso-alternate, wang).
   * accent-space refuses to switch on when a "US international"-type
     layout is in use (its own accents would change); FORCE=1 overrides.
+  * "be-azerty-fix system" no longer says "only 4 layouts fit ... be left
+    out" on a system with one layout (wrong message since 0.9.8; the
+    layout itself was never changed). Found in the laptop test.
   * Uninstall and removing the package take all of this project's
     keyboard options out of every setting (system default, every user's
     GNOME and Cinnamon options), and remove the Apple key setting.

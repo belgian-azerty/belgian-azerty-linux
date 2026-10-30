@@ -567,7 +567,7 @@ live() {
     read -r xl xv <<< "$(be_first_xkb "$(printf '%s\n' "$q" | sed -n 's/^layout: *//p')" "$(printf '%s\n' "$q" | sed -n 's/^variant: *//p')")"
     xo=$(want_options "$(printf '%s\n' "$q" | sed -n 's/^options: *//p')" "$(xkb_be_variant "$xl" "$xv")")
     # X11 holds at most four layouts at a time; the desktop settings below keep the full list.
-    [ "$(printf '%s' "$xl" | cut -d, -f5-)" ] && info "the running X session holds 4 layouts at a time: $(printf '%s' "$xl" | cut -d, -f5-) not in it now (your desktop settings keep it)"
+    [ "$(printf '%s' "$xl" | cut -s -d, -f5-)" ] && info "the running X session holds 4 layouts at a time: $(printf '%s' "$xl" | cut -s -d, -f5-) not in it now (your desktop settings keep it)"
     xl=$(printf '%s' "$xl" | cut -d, -f1-4); [ -n "$xv" ] && xv=$(printf '%s' "$xv" | cut -d, -f1-4)
     if setxkbmap -layout "$xl" -variant "$xv" -model "$MODEL" -option "" ${xo:+-option "$xo"}; then
       ok "setxkbmap $xl${xv:+ (variants $xv)}${xo:+ (options $xo)}"
@@ -603,8 +603,8 @@ apply_default_keyboard() {   # OPTIONS [as-is]: write debconf + /etc/default/key
   cm=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBMODEL:-}"); co=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")
   if [ "${2:-}" = as-is ]; then l=$cl; v=$cv; else read -r l v <<< "$(be_first_xkb "$cl" "$cv")"; fi
   # The console, the login screen and X use at most four layouts; a fifth would be dropped there without a word.
-  if [ -n "$(printf '%s' "$l" | cut -d, -f5-)" ]; then
-    info "only 4 layouts fit in the system default: $(printf '%s' "$l" | cut -d, -f5-) left out there (your own desktop settings keep it)"
+  if [ -n "$(printf '%s' "$l" | cut -s -d, -f5-)" ]; then
+    info "only 4 layouts fit in the system default: $(printf '%s' "$l" | cut -s -d, -f5-) left out there (your own desktop settings keep it)"
     l=$(printf '%s' "$l" | cut -d, -f1-4); [ -n "$v" ] && v=$(printf '%s' "$v" | cut -d, -f1-4)
   fi
   [ "${l#*,}" != "$l" ] && [ "${2:-}" != as-is ] && info "other layouts kept for the login screen and new users: ${l#*,}"

@@ -21,6 +21,8 @@ that were never published. They are listed because the test evidence refers to t
   accent-space: 302), and nothing that matched in 0.9.8 changed.
 - Uninstall and removing the package take all of this project's keyboard options out of every setting, and remove the
   Apple key setting.
+- `sudo be-azerty-fix system` no longer says "only 4 layouts fit in the system default: be left out" when Belgian is the
+  only layout (a wrong message since 0.9.8; the layout was never changed).
 - Found by an independent "try to break it" review of this version before release, and fixed: updating from 0.9.8
   would have changed your Shift+AltGr accents without asking; `APPLE=yes` on a PC keyboard (or with only an Apple
   mouse) would have changed every keyboard and the login screen; the new options hit the first layout even when
