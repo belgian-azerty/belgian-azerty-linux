@@ -10,11 +10,18 @@
 #   sudo be-azerty-fix uninstall      remove everything this project added and leave a stock system that still
 #                                     types Belgian (the layout and the Period/Comma choice are standard Linux)
 #   sudo be-azerty-fix switch-keyd    replace the keyd build of 0.9.7 and earlier by the keyd of the keyd-team PPA
+#   sudo be-azerty-fix apple-iso-keys on|off|auto   Apple keyboards only: the two keys left of 1 and next to left
+#                                     Shift come out swapped (< where @ should be)? "on" makes the kernel swap them
+#                                     back (hid_apple iso_layout=1), "off" never swaps, "auto" is the kernel default
 #   be-azerty-fix ibus-skip [list]    show which apps skip the ibus input method (no sudo: for your own user)
 #   be-azerty-fix ibus-skip auto on|off|default   the optional skip for the Terminal, the text editor and VS Code
 #   be-azerty-fix ibus-skip on APP... let more apps skip ibus; APP is the app's menu file name (org.gnome.Terminal,
 #                                     org.x.editor, com.microsoft.VSCode ...) or terminal, text-editor, vscode
 #   be-azerty-fix ibus-skip off APP...  |  be-azerty-fix ibus-skip off --all     undo it (--all: the automatic part too)
+#   be-azerty-fix accent-space [on|off]  accent then space as on Windows (´ then space gives ´, ¨ then space gives ¨;
+#                                     standard Linux gives ' and "). No sudo: for your own user, through a small
+#                                     ~/.XCompose that loads the normal accent table and changes these two. A
+#                                     ~/.XCompose of your own is never changed. Apps read it when they start.
 #
 # Other layouts and input methods are kept: "system" and "live" put Belgian first in every list and keep every other
 # entry (a second layout, a Chinese or Japanese input method) in its order.
@@ -56,6 +63,18 @@
 #                                     (1 2 3 ... 0 ° _ % £ ? . / +); Shift+Caps gives the normal level; ² < AltGr and
 #                                     the numpad are unaffected. Needs the belgian-azerty-windows package (option
 #                                     caps:be_windows). linux: Caps Lock only changes letters and é è ç à.
+#   ACCENTS=windows | linux           Shift+AltGr on the ù, µ and = keys. windows: the same accent as AltGr (´ ` ~), as on
+#                                     Windows (option be_azerty:accents). linux: caron, breve and dot above (ǎ ă ȧ), as
+#                                     on standard Linux. When not given: like CAPS, but on GNOME too; after an update
+#                                     from 0.9.8 or earlier (saved choices without ACCENTS) linux, as before.
+#   APPLE=no | yes                    yes: a Belgian Apple (Mac) keyboard: the characters printed on its keys, Option
+#                                     (right Option) as AltGr, Caps Lock and accents as on a Mac (option be_azerty:mac;
+#                                     it replaces caps:be_windows and be_azerty:accents). Only for Apple keyboards: a
+#                                     PC keyboard would type the wrong characters (@ left of 1, ` on the µ key), also
+#                                     at the login screen. So APPLE=yes is refused unless an Apple keyboard is
+#                                     connected (FORCE=1 to set it anyway). The console and the disk-unlock prompt keep
+#                                     the PC layout. Not tested on a real Apple keyboard. When not given: the last
+#                                     "system" run, else no. Back to a PC keyboard: sudo APPLE=no be-azerty-fix system
 #   VARIANT=  (default, standard Belgian) | oss | nodeadkeys   other variants of the Belgian layout. Only the default
 #                                     was tested on the real distributions; oss and nodeadkeys were checked at the
 #                                     layout level only (libxkbcommon).
@@ -67,20 +86,23 @@
 # Ubuntu 24.04 based systems get from the keyd-team PPA (sudo add-apt-repository ppa:keyd-team/ppa). "system" installs
 # the packages found next to this script (or in dist/ next to it) if they are not installed yet.
 #
-# Version 0.9.8. What was tested where: HOW-WE-TESTED.md.
+# Version 0.9.9. What was tested where: HOW-WE-TESTED.md.
 set -u
-[ "${1:-}" = ibus-skip ] || for a in "${@:2}"; do
-  case "$a" in
-    PROFILE=*|DECIMAL=*|CAPS=*|VARIANT=*|KEEP_KEYD=*) export "${a?}" ;;
-    *) echo "unknown setting: $a (expected PROFILE=, DECIMAL=, CAPS=, VARIANT= or KEEP_KEYD=)" >&2; exit 1 ;;
-  esac
-done
+# Commands with their own words after them (ibus-skip, apple-iso-keys, accent-space) take no settings.
+case "${1:-}" in ibus-skip|apple-iso-keys|accent-space) ;; *)
+  for a in "${@:2}"; do
+    case "$a" in
+      PROFILE=*|DECIMAL=*|CAPS=*|ACCENTS=*|APPLE=*|FORCE=*|VARIANT=*|KEEP_KEYD=*) export "${a?}" ;;
+      *) echo "unknown setting: $a (expected PROFILE=, DECIMAL=, CAPS=, ACCENTS=, APPLE=, FORCE=, VARIANT= or KEEP_KEYD=)" >&2; exit 1 ;;
+    esac
+  done ;;
+esac
 LAYOUT=be
 VARIANT_GIVEN=${VARIANT:+1}   # without VARIANT=, a Belgian entry the user already has (e.g. be+oss) keeps its variant
 VARIANT="${VARIANT:-}"
 case "$VARIANT" in ""|oss|nodeadkeys) ;; *) echo "VARIANT must be empty, oss or nodeadkeys" >&2; exit 1 ;; esac
 MODEL=pc105
-# PROFILE, DECIMAL and CAPS chosen with "system" are saved here, so running "system" again (after an update, or to repair the
+# PROFILE, DECIMAL, CAPS, ACCENTS and APPLE chosen with "system" are saved here, so running "system" again (after an update, or to repair the
 # settings) keeps a Comma or Linux Caps Lock choice instead of silently going back to the defaults.
 CHOICES=/var/lib/belgian-azerty-windows/choices
 # tests/settings-logic.sh loads this file with BE_AZERTY_FIX_SOURCE=1 (no command runs) and its own choices file.
@@ -100,8 +122,21 @@ elif [ "${PROFILE_GIVEN:-0}" = 1 ]; then CAPS=$PROFILE; CAPS_FROM="from the prof
 elif CAPS=$(saved_choice CAPS) && [ -n "$CAPS" ]; then CAPS_FROM="kept from the last run"
 else CAPS=$PROFILE; CAPS_FROM="from the profile"; fi
 case "$CAPS" in windows|linux) ;; *) echo "CAPS must be windows or linux" >&2; exit 1 ;; esac
+if [ -n "${ACCENTS:-}" ]; then ACCENTS_FROM="given"
+elif [ "${PROFILE_GIVEN:-0}" = 1 ]; then ACCENTS=$PROFILE; ACCENTS_FROM="from the profile"
+elif ACCENTS=$(saved_choice ACCENTS) && [ -n "$ACCENTS" ]; then ACCENTS_FROM="kept from the last run"
+# Choices saved by 0.9.8 or earlier (no ACCENTS line): Shift+AltGr stays as it was (caron, breve, dot above), so an
+# update plus a rerun never takes those away from someone who uses them. ACCENTS=windows switches the new one on.
+elif [ -s "$CHOICES" ]; then ACCENTS=linux; ACCENTS_FROM="as before 0.9.9; ACCENTS=windows gives the Windows accents"
+else ACCENTS=$PROFILE; ACCENTS_FROM="from the profile"; fi
+case "$ACCENTS" in windows|linux) ;; *) echo "ACCENTS must be windows or linux" >&2; exit 1 ;; esac
+if [ -n "${APPLE:-}" ]; then APPLE_FROM="given"
+elif APPLE=$(saved_choice APPLE) && [ -n "$APPLE" ]; then APPLE_FROM="kept from the last run"
+else APPLE=no; APPLE_FROM="default"; fi
+case "$APPLE" in yes|no) ;; *) echo "APPLE must be yes or no" >&2; exit 1 ;; esac
 XKB_RULES=/usr/share/X11/xkb/rules/evdev
 XKB_CAPS=/usr/share/X11/xkb/symbols/be_capslock
+APPLE_MODPROBE=/etc/modprobe.d/belgian-azerty-apple.conf
 # Cinnamon (Mint) ships a schema default for its xkb-options, which beats /etc/default/keyboard for every user who has
 # no setting of their own (new users, reset settings). This override (written by "system", removed by "uninstall" and
 # by removing the package) makes that default carry our options. GNOME (Zorin) has no such default and follows
@@ -193,23 +228,45 @@ if [ "$CAPS" = windows ] && [ "$CAPS_FROM" = "from the profile" ] && [ "$(deskto
   CAPS=linux; CAPS_FROM="Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows"
 fi
 
-# XKB options with our choices applied: drop any kpdl:* option and our caps:be_windows, add kpdl:comma for
-# DECIMAL=comma and caps:be_windows for CAPS=windows (only once the XKB files for it are in place), keep everything
-# else (lv3:ralt_switch, terminate:ctrl_alt_bksp, ...). In and out: comma-separated list.
+# XKB options with our choices applied: drop any kpdl:* option and our own options (caps:be_windows, be_azerty:*),
+# add kpdl:comma for DECIMAL=comma, caps:be_windows for CAPS=windows, be_azerty:accents for ACCENTS=windows, or
+# be_azerty:mac alone for APPLE=yes (each only once the XKB files for it are in place), keep everything else
+# (lv3:ralt_switch, terminate:ctrl_alt_bksp, ...). In and out: comma-separated list. The second argument is the
+# variant of the Belgian layout these options go with: the accents option is for the standard Belgian layout only
+# (oss has its own Shift+AltGr level, nodeadkeys already gives the AltGr character there).
 want_options() {
   local out="" o
   local IFS=,
   for o in $1; do
-    case "$o" in ""|kpdl:*|caps:be_windows) ;; *) out="${out:+$out,}$o" ;; esac
+    case "$o" in ""|kpdl:*|caps:be_windows|be_azerty:*) ;; *) out="${out:+$out,}$o" ;; esac
   done
   [ "$DECIMAL" = comma ] && out="${out:+$out,}kpdl:comma"
-  [ "$CAPS" = windows ] && caps_xkb_ready && out="${out:+$out,}caps:be_windows"
+  if [ "$APPLE" = yes ]; then
+    xkb_option_ready be_azerty:mac && out="${out:+$out,}be_azerty:mac"
+  else
+    [ "$CAPS" = windows ] && caps_xkb_ready && out="${out:+$out,}caps:be_windows"
+    [ "$ACCENTS" = windows ] && [ -z "${2:-}" ] && xkb_option_ready be_azerty:accents && out="${out:+$out,}be_azerty:accents"
+  fi
   echo "$out"
 }
-without_caps_option() {    # "a,caps:be_windows,b" -> "a,b"
+xkb_be_variant() {         # LAYOUTS VARIANTS (comma lists): the variant of the first Belgian layout ("" for the standard one)
+  local ls vs i
+  IFS=, read -r -a ls <<< "$1"; IFS=, read -r -a vs <<< "$2"
+  for ((i = 0; i < ${#ls[@]}; i++)); do [ "${ls[$i]}" = "$LAYOUT" ] && { echo "${vs[$i]:-}"; return; }; done
+}
+default_be_variant() {     # the variant of Belgian in /etc/default/keyboard once Belgian is first there
+  local l v
+  read -r l v <<< "$(be_first_xkb "$(. /etc/default/keyboard 2>/dev/null; echo "${XKBLAYOUT:-}")" "$(. /etc/default/keyboard 2>/dev/null; echo "${XKBVARIANT:-}")")"
+  echo "${v%%,*}"
+}
+desktop_be_variant() {     # SCHEMA: the variant of the first Belgian entry in the user's input sources
+  user_gsettings get "$1" sources 2>/dev/null | grep -o "'xkb', '$LAYOUT\(+[^']*\)\{0,1\}'" | head -1 | sed -n "s/^'xkb', '$LAYOUT+\{0,1\}\([^']*\)'\$/\1/p"
+}
+is_our_option() { case "$1" in caps:be_windows|be_azerty:*) return 0 ;; esac; return 1; }
+without_caps_option() {    # "a,caps:be_windows,be_azerty:accents,b" -> "a,b" (all options of this project out)
   local out="" o
   local IFS=,
-  for o in $1; do [ -z "$o" ] || [ "$o" = caps:be_windows ] || out="${out:+$out,}$o"; done
+  for o in $1; do [ -z "$o" ] || is_our_option "$o" || out="${out:+$out,}$o"; done
   echo "$out"
 }
 
@@ -217,10 +274,18 @@ without_caps_option() {    # "a,caps:be_windows,b" -> "a,b"
 # the evdev rules file, which the package keeps in place across xkb-data upgrades (dpkg diversion + trigger). The same
 # files serve X11 (Xorg), Wayland (libxkbcommon) and ckbcomp (whose console keymap does not change). An option the
 # rules do not know is ignored by all three, so a missing rule only means Linux Caps behaviour, never a broken keyboard.
-caps_xkb_ready() { [ -f "$XKB_CAPS" ] && grep -q 'caps:be_windows' "$XKB_RULES" 2>/dev/null; }
+caps_xkb_ready() { xkb_option_ready caps:be_windows; }
+xkb_option_ready() { [ -f "$XKB_CAPS" ] && grep -qE "(^|[[:space:]])$1([[:space:]]|\$)" "$XKB_RULES" 2>/dev/null; }
 caps_needs_package() {
+  if [ "$APPLE" = yes ]; then
+    xkb_option_ready be_azerty:mac || info "the Apple keyboard layout needs belgian-azerty-windows 0.9.9 or later (sudo apt install ./belgian-azerty-windows_*.deb); the keyboard keeps the PC layout for now"
+    return 0
+  fi
   if [ "$CAPS" = windows ] && ! caps_xkb_ready; then
     info "Caps Lock as on Windows needs the belgian-azerty-windows package (sudo apt install ./belgian-azerty-windows_*.deb); Caps Lock keeps the Linux behaviour for now"
+  fi
+  if [ "$ACCENTS" = windows ] && ! xkb_option_ready be_azerty:accents; then
+    info "Shift+AltGr accents as on Windows need belgian-azerty-windows 0.9.9 or later (sudo apt install ./belgian-azerty-windows_*.deb); they keep the Linux behaviour for now"
   fi
 }
 remove_legacy_caps_files() {   # pieces an older be-azerty-fix.sh wrote by hand
@@ -324,7 +389,7 @@ put_options() {            # SCHEMA LABEL: our numpad and Caps Lock options in t
   local cur
   if ! cur=$(user_gsettings get "$1" xkb-options 2>/dev/null) || [ -z "$cur" ]; then bad "could not read $1 xkb-options; left unchanged"; return; fi
   cur=$(printf '%s' "$cur" | sed -E "s/^@as //; s/[][' ]//g")
-  local want; want=$(gvariant_list "$(want_options "$cur")")
+  local want; want=$(gvariant_list "$(want_options "$cur" "$(desktop_be_variant "$1")")")
   user_gsettings set "$1" xkb-options "$want" && [ "$(user_gsettings get "$1" xkb-options 2>/dev/null | sed 's/^@as //')" = "$want" ] \
     && ok "$2 numpad decimal: $DECIMAL, Caps Lock: $CAPS" || bad "could not set the $2 keyboard options"
 }
@@ -346,7 +411,7 @@ cinnamon_defaults() {
   # The distribution's default (Mint: ['terminate:ctrl_alt_bksp']), read without any user setting.
   local dist want
   dist=$(GSETTINGS_BACKEND=memory gsettings get org.cinnamon.desktop.input-sources xkb-options 2>/dev/null | sed -E "s/^@as //; s/[][' ]//g")
-  want=$(want_options "$dist")
+  want=$(want_options "$dist" "$(default_be_variant)")
   if [ "$want" = "$dist" ]; then ok "Cinnamon default options already match (${dist:-none}); no override needed"; return 0; fi
   printf '%s\n' "# Written by be-azerty-fix system; removed by be-azerty-fix uninstall and by removing belgian-azerty-windows." \
     "# Default keyboard options for Cinnamon users without a setting of their own (new users, reset settings)." \
@@ -390,7 +455,11 @@ check() {
     case ",$o," in *,caps:be_windows,*) info "Caps Lock: Windows behaviour (caps:be_windows)"
                      [ "$(desktop)" = gnome ] && info "GNOME: after a Caps Lock tap in a password field (lock screen, password dialog) 2 6 7 9 0 % can stop working until you log out and in (README, \"Caps Lock on Zorin\")" ;;
                    *) info "Caps Lock: Linux behaviour (letters and é è ç à only)" ;; esac
+    case ",$o," in *,be_azerty:accents,*) info "Shift+AltGr on ù µ =: the same accents as AltGr, as on Windows (be_azerty:accents)" ;;
+                   *,be_azerty:mac,*) info "Apple keyboard: Belgian Mac layout (be_azerty:mac); for a PC keyboard: sudo APPLE=no be-azerty-fix system" ;;
+                   *) info "Shift+AltGr on ù µ =: caron, breve, dot above, as on standard Linux" ;; esac
     caps_xkb_ready && ok "Caps Lock option files present" || info "Caps Lock option files not installed"
+    xkb_option_ready be_azerty:accents || info "files for the Windows Shift+AltGr accents and the Apple layout not installed (belgian-azerty-windows 0.9.9 or later)"
     [ -r "$CHOICES" ] && info "choices saved by the last \"system\" run: $(tr '\n' ' ' < "$CHOICES")"
   else bad "file missing"; fi
 
@@ -441,6 +510,10 @@ check() {
     info "automatic: $(head -1 "$sl/ibus-skip-auto" 2>/dev/null || echo "off (default)"); added by hand: $( [ -s "$sl/ibus-skip" ] && tr '\n' ' ' < "$sl/ibus-skip" || echo none) (details: be-azerty-fix ibus-skip, without sudo)"
   fi
 
+  echo "Accent then space, for $(target_user):"
+  if [ "$(id -un)" = "$(target_user)" ]; then accent_space
+  else info "see: be-azerty-fix accent-space (without sudo)"; fi
+
   echo "Windows-style Ctrl+Alt = AltGr (keyd):"
   if [ -n "$(keyd_bin)" ]; then
     if [ -r /etc/keyd/be-winaltgr.conf ]; then ok "keyd installed with the Belgian Ctrl+Alt rules"; else info "keyd installed, but /etc/keyd/be-winaltgr.conf is missing (install keyd-belgian-windows)"; fi
@@ -453,6 +526,13 @@ check() {
     keyd_shared_warning
   else info "keyd not installed: Ctrl+Alt+2 will not type @ in graphical apps (only AltGr does); to add it: $PPA_HINT, then sudo apt install keyd-belgian-windows (or its .deb)"; fi
 
+  if [ "$(saved_choice APPLE)" = yes ] || [ -f "$APPLE_MODPROBE" ] || apple_keyboard_present; then
+    echo "Apple keyboard:"
+    apple_keyboard_present && info "an Apple keyboard is connected" || info "no Apple keyboard connected right now"
+    info "kernel setting for the two keys left of 1 and next to left Shift: $(apple_iso_text "$(apple_iso_now)")$([ -f "$APPLE_MODPROBE" ] && echo ", set by be-azerty-fix apple-iso-keys")"
+    [ "$(saved_choice APPLE)" = yes ] || info "the PC layout is in use; for the Belgian Apple layout: sudo APPLE=yes be-azerty-fix system"
+  fi
+
   echo "Boot image:"
   if is_live; then
     info "live session (root is an overlay): no boot image to check"
@@ -462,15 +542,30 @@ check() {
   fi
 }
 
+apple_guard() {            # APPLE=yes given without an Apple keyboard: refuse (it would change the PC keyboard too)
+  [ "$APPLE" = yes ] || return 0
+  apple_keyboard_present && return 0
+  if [ "$APPLE_FROM" = given ] && [ "${FORCE:-0}" != 1 ]; then
+    bad "APPLE=yes: no Apple keyboard found (connect it first). It would change the layout of every keyboard on this computer, the login screen included. Nothing changed. To set it anyway: FORCE=1"
+    exit 1
+  fi
+  info "APPLE=yes ($APPLE_FROM), but no Apple keyboard is connected now: every keyboard types the Belgian Mac layout. For a PC keyboard: sudo APPLE=no be-azerty-fix system"
+}
+choices_text() {
+  local t="profile $PROFILE ($PROFILE_FROM), numpad decimal $DECIMAL ($DECIMAL_FROM)"
+  if [ "$APPLE" = yes ]; then echo "$t, Apple keyboard ($APPLE_FROM): Belgian Mac layout (Caps Lock as on Linux)"
+  else echo "$t, Caps Lock $CAPS ($CAPS_FROM), Shift+AltGr accents $ACCENTS ($ACCENTS_FROM)"; fi
+}
+
 # ---------- running session (no persistence) -----------------------------------------------------
 live() {
-  [ "${IN_SYSTEM:-0}" = 1 ] || echo "Choices: profile $PROFILE ($PROFILE_FROM), numpad decimal $DECIMAL ($DECIMAL_FROM), Caps Lock $CAPS ($CAPS_FROM)"
+  [ "${IN_SYSTEM:-0}" = 1 ] || { apple_guard; echo "Choices: $(choices_text)"; }
   caps_needs_package
   if x11_session; then
     local q xo xl xv
     q=$(setxkbmap -query 2>/dev/null)
-    xo=$(want_options "$(printf '%s\n' "$q" | sed -n 's/^options: *//p')")
     read -r xl xv <<< "$(be_first_xkb "$(printf '%s\n' "$q" | sed -n 's/^layout: *//p')" "$(printf '%s\n' "$q" | sed -n 's/^variant: *//p')")"
+    xo=$(want_options "$(printf '%s\n' "$q" | sed -n 's/^options: *//p')" "$(xkb_be_variant "$xl" "$xv")")
     # X11 holds at most four layouts at a time; the desktop settings below keep the full list.
     [ "$(printf '%s' "$xl" | cut -d, -f5-)" ] && info "the running X session holds 4 layouts at a time: $(printf '%s' "$xl" | cut -d, -f5-) not in it now (your desktop settings keep it)"
     xl=$(printf '%s' "$xl" | cut -d, -f1-4); [ -n "$xv" ] && xv=$(printf '%s' "$xv" | cut -d, -f1-4)
@@ -596,14 +691,15 @@ switch_keyd() {              # replace our old keyd build by the keyd-team PPA's
 
 system() {
   if [ "$(id -u)" -ne 0 ]; then bad "run with sudo"; exit 1; fi
-  echo "Choices: profile $PROFILE ($PROFILE_FROM), numpad decimal $DECIMAL ($DECIMAL_FROM), Caps Lock $CAPS ($CAPS_FROM)."
-  echo "  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux"
+  apple_guard
+  echo "Choices: $(choices_text)."
+  echo "  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux ACCENTS=windows|linux APPLE=no|yes"
   echo "0. Packages"
   install_packages
   remove_legacy_caps_files
   caps_needs_package
   echo "1. System default (console-setup / keyboard-configuration)"
-  apply_default_keyboard "$(want_options "$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")")"
+  apply_default_keyboard "$(want_options "$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")" "$(default_be_variant)")"
 
   echo "2. Defaults for new users and reset settings"
   cinnamon_defaults
@@ -630,7 +726,7 @@ system() {
   elif [ -d /etc/gdm3 ]; then ok "GDM follows /etc/default/keyboard (no override)"; fi
   [ -d /etc/lightdm ] && ok "LightDM follows /etc/default/keyboard (already set)"
 
-  mkdir -p "${CHOICES%/*}" && printf 'PROFILE=%s\nDECIMAL=%s\nCAPS=%s\n' "$PROFILE" "$DECIMAL" "$CAPS" > "$CHOICES" \
+  mkdir -p "${CHOICES%/*}" && printf 'PROFILE=%s\nDECIMAL=%s\nCAPS=%s\nACCENTS=%s\nAPPLE=%s\n' "$PROFILE" "$DECIMAL" "$CAPS" "$ACCENTS" "$APPLE" > "$CHOICES" \
     || bad "could not save the choices in $CHOICES"
   [ "$(target_user)" != root ] && [ -S "/run/user/$(id -u "$(target_user)")/bus" ] && skip_after_change
 
@@ -958,7 +1054,7 @@ skip_cleanup_all_users() { # root: remove every user's ibus-skip files (uninstal
   [ "$n" -gt 0 ] || ok "no user has apps that skip ibus"
 }
 
-caps_cleanup_all_users() {  # root: take caps:be_windows out of every user's GNOME and Cinnamon keyboard options
+caps_cleanup_all_users() {  # root: take our options (caps:be_windows, be_azerty:*) out of every user's GNOME and Cinnamon keyboard options
   local u uid home schema uo n=0 bus
   while IFS=: read -r u _ uid _ _ home _; do
     { [ "$uid" -ge 1000 ] && [ "$uid" != 65534 ]; } || [ "$uid" = 0 ] || continue   # people (also LDAP), not nobody
@@ -971,15 +1067,15 @@ caps_cleanup_all_users() {  # root: take caps:be_windows out of every user's GNO
       if command -v dconf >/dev/null; then
         uo=$(timeout -k 5 30 runuser -u "$u" -- env HOME="$home" dconf read "/${schema//.//}/xkb-options" </dev/null 2>/dev/null | sed -E "s/^@as //; s/[][' ]//g")
       else uo=$(as_user_gsettings "$u" "$uid" "$home" get "$schema" xkb-options | sed -E "s/^@as //; s/[][' ]//g"); fi
-      case ",$uo," in *,caps:be_windows,*)
+      if [ "$(without_caps_option "$uo")" != "$uo" ]; then
         if as_user_gsettings "$u" "$uid" "$home" set "$schema" xkb-options "$(gvariant_list "$(without_caps_option "$uo")")" >/dev/null; then
-          ok "$schema for $u: caps:be_windows removed$([ -S "$bus" ] || echo " (not logged in)")"
+          ok "$schema for $u: our keyboard options removed$([ -S "$bus" ] || echo " (not logged in)")"
         else bad "could not change $schema for $u"; fi
-        n=$((n + 1)) ;;
-      esac
+        n=$((n + 1))
+      fi
     done
   done < <(getent passwd)
-  [ "$n" -gt 0 ] || ok "no user has the Caps Lock option in their own settings"
+  [ "$n" -gt 0 ] || ok "no user has our keyboard options in their own settings"
 }
 as_user_gsettings() {      # USER UID HOME ARGS...: gsettings for that user, on their session bus or, when they are
   # not logged in, on a private one for this call. GIO_USE_VFS=local and the redirections: see "Login screen" in system.
@@ -992,19 +1088,133 @@ as_user_gsettings() {      # USER UID HOME ARGS...: gsettings for that user, on 
   fi
 }
 
+# ---------- accent then space (per user) ---------------------------------------------------------
+# GTK 3, GTK 4 and ibus (also inside GNOME Shell on Wayland) read ~/.XCompose instead of the system's accent table
+# when it exists; ours includes the system table ("%L") and overrides two lines. Only a file with exactly our content
+# is ever removed: a user who edits it (or has their own) keeps it.
+ACCENT_MARK="# Written by be-azerty-fix accent-space (Belgian AZERTY): accent then space as on Windows."
+accent_space_file() {
+  printf '%s\n' "$ACCENT_MARK" \
+    "# Everything else comes from the normal table. Remove with: be-azerty-fix accent-space off" \
+    'include "%L"' \
+    '<dead_acute> <space> : "´" acute' \
+    '<dead_diaeresis> <space> : "¨" diaeresis'
+}
+accent_intl_layouts() {     # the user's layouts where ' and " are accent keys (us+intl and the like): listed
+  local sc
+  for sc in org.gnome.desktop.input-sources org.cinnamon.desktop.input-sources; do
+    has_schema "$sc" && gsettings get "$sc" sources 2>/dev/null
+  done | grep -oE "'xkb', '[a-z]+\+[a-z-]*intl[a-z-]*'" | sed "s/'xkb', //; s/'//g" | sort -u | paste -sd ' ' -
+}
+accent_space() {
+  local f="${HOME:-$(getent passwd "$(id -un)" | cut -d: -f6)}/.XCompose" intl
+  case "${1:-}" in
+    "") if [ -L "$f" ]; then info "$f is a link of your own (not changed by be-azerty-fix)"
+        elif [ ! -e "$f" ]; then info "off: accent then space gives ' and \" (standard Linux); switch on: be-azerty-fix accent-space on"
+        elif [ "$(cat "$f")" = "$(accent_space_file)" ]; then ok "on: ´ then space gives ´, ¨ then space gives ¨ ($f)"
+        else info "$f is your own file (not changed by be-azerty-fix)"; fi ;;
+    on) intl=$(accent_intl_layouts)
+        if [ -n "$intl" ] && [ "${FORCE:-0}" != 1 ]; then
+          bad "you also have $intl: there ' and \" are accent keys, so with this on, ' then space would give ´ instead of '. Not switched on (FORCE=1 be-azerty-fix accent-space on to do it anyway)"; return 1
+        fi
+        if [ -e "$f" ] || [ -L "$f" ] && [ "$(cat "$f" 2>/dev/null)" != "$(accent_space_file)" ]; then
+          bad "$f already exists and is not ours: left unchanged. To get the Windows behaviour, add these two lines to it:"
+          accent_space_file | tail -2 | sed 's/^/      /'; return 1
+        fi
+        accent_space_file > "$f" && ok "on for $(id -un): ´ then space gives ´, ¨ then space gives ¨. Log out and back in (apps and the input method read it when they start)" \
+          || { bad "could not write $f"; return 1; }
+        [ -n "${XCOMPOSEFILE:-}" ] && info "XCOMPOSEFILE is set ($XCOMPOSEFILE): apps that read it ignore ~/.XCompose"
+        [ -e "${f%/*}/.config/gtk-3.0/Compose" ] && info "you have ~/.config/gtk-3.0/Compose: GTK 3 apps read that one instead"
+        return 0 ;;
+    off) if [ -L "$f" ]; then info "$f is a link of your own: left unchanged"
+         elif [ ! -e "$f" ]; then ok "already off"
+         elif [ "$(cat "$f")" = "$(accent_space_file)" ]; then rm -f "$f" && ok "off: removed $f. Log out and back in"
+         elif head -1 "$f" | grep -qxF "$ACCENT_MARK"; then
+           bad "$f was changed after be-azerty-fix wrote it: left alone. Remove the two lines with <space> from it by hand"; return 1
+         else info "$f is your own file: left unchanged"; fi ;;
+    *) echo "accent-space: on or off" >&2; return 1 ;;
+  esac
+}
+accent_cleanup_all_users() { # root: remove every user's unchanged ~/.XCompose written by accent-space (uninstall)
+  # Each check runs as that user (their own files only) with a time limit (a home folder on a hung network share
+  # must not block apt).
+  local u uid home n=0 self out; self=$(readlink -f "$0")
+  while IFS=: read -r u _ uid _ _ home _; do
+    { [ "$uid" -ge 1000 ] && [ "$uid" != 65534 ]; } || [ "$uid" = 0 ] || continue
+    timeout -k 2 5 test -f "$home/.XCompose" 2>/dev/null || continue
+    timeout -k 2 5 head -1 "$home/.XCompose" 2>/dev/null | grep -qxF "$ACCENT_MARK" || continue
+    if [ "$uid" = 0 ]; then out=$(timeout -k 5 15 env HOME="$home" "$self" accent-space off 2>&1)
+    else out=$(timeout -k 5 15 runuser -u "$u" -- env HOME="$home" "$self" accent-space off 2>&1); fi
+    if [ ! -e "$home/.XCompose" ]; then ok "accent then space: removed ~/.XCompose of $u"
+    else info "$home/.XCompose of $u was changed after be-azerty-fix wrote it: left alone"; fi
+    n=$((n + 1))
+  done < <(getent passwd)
+  [ "$n" -gt 0 ] || ok "no user has the accent-then-space file"
+}
+
+# ---------- Apple keyboards: the two ISO keys ---------------------------------------------------
+# On Apple ISO keyboards the key left of 1 and the key next to left Shift send each other's codes. The kernel's
+# hid_apple driver swaps them back, but by itself only for keyboards that report the "International ISO" country
+# code. iso_layout=1 always swaps (Apple keyboards only; hid_apple handles no other keyboards), 0 never, -1 = the
+# kernel's own choice. Written to /etc/modprobe.d (and into the boot image, which loads hid_apple for the disk-unlock
+# prompt) and set at once when the driver is loaded.
+apple_keyboard_present() {   # a device bound to the kernel's Apple keyboard driver (not an Apple mouse or trackpad)
+  local d
+  for d in /sys/bus/hid/drivers/apple/[0-9]*; do [ -e "$d" ] && return 0; done
+  return 1
+}
+apple_iso_now() { cat /sys/module/hid_apple/parameters/iso_layout 2>/dev/null || echo unloaded; }
+apple_iso_text() {
+  case "$1" in 1) echo "always swapped back (iso_layout=1)" ;; 0) echo "never swapped (iso_layout=0)" ;;
+               -1) echo "kernel default (iso_layout=-1, swapped back only if the keyboard reports ISO)" ;;
+               *) echo "driver not loaded (no Apple keyboard since the last start)" ;; esac
+}
+apple_iso_keys() {
+  local want
+  case "${1:-}" in on) want=1 ;; off) want=0 ;; auto) want=-1 ;;
+    "") info "now: $(apple_iso_text "$(apple_iso_now)")"
+        echo "Use: sudo be-azerty-fix apple-iso-keys on|off|auto (Apple keyboards only; see README, \"Apple keyboards\")"; return 0 ;;
+    *) echo "apple-iso-keys: on, off or auto" >&2; return 1 ;; esac
+  if [ "$(id -u)" -ne 0 ]; then bad "run with sudo"; return 1; fi
+  local before; before=$(cat "$APPLE_MODPROBE" 2>/dev/null)
+  if [ "$want" = -1 ]; then rm -f "$APPLE_MODPROBE"; ok "no $APPLE_MODPROBE: the kernel decides"
+  else
+    mkdir -p "${APPLE_MODPROBE%/*}"
+    printf '%s\n' "# Written by be-azerty-fix apple-iso-keys; removed by \"apple-iso-keys auto\", uninstall and removing belgian-azerty-windows." \
+      "# Apple keyboards: swap the key left of 1 and the key next to left Shift back (1), or never (0)." \
+      "options hid_apple iso_layout=$want" > "$APPLE_MODPROBE" && ok "wrote $APPLE_MODPROBE (iso_layout=$want)" || { bad "could not write $APPLE_MODPROBE"; return 1; }
+  fi
+  if [ -w /sys/module/hid_apple/parameters/iso_layout ]; then
+    echo "$want" > /sys/module/hid_apple/parameters/iso_layout && ok "set now (unplug and replug the keyboard if a key still looks swapped)" \
+      || bad "could not set it now; it applies after the next restart"
+  else info "the Apple keyboard driver is not loaded now; the setting applies when an Apple keyboard is connected"; fi
+  if [ "$(cat "$APPLE_MODPROBE" 2>/dev/null)" = "$before" ]; then ok "boot image unchanged (setting already so)"
+  elif ! is_live && command -v update-initramfs >/dev/null; then
+    update-initramfs -u >/dev/null 2>&1 && ok "boot image rebuilt (disk-unlock prompt)" || bad "update-initramfs -u failed"
+  fi
+  [ "$FAILED" = 0 ]
+}
+
 # ---------- uninstall -----------------------------------------------------------------------------
 uninstall() {
   if [ "$(id -u)" -ne 0 ]; then bad "run with sudo"; exit 1; fi
-  echo "1. Caps Lock option out of every setting this script can reach"
+  echo "1. Our keyboard options (Caps Lock, Shift+AltGr accents, Apple layout) out of every setting this script can reach"
   local o keep; o=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")
   keep=$(without_caps_option "$o")
   case ",$keep," in *,kpdl:comma,*) DECIMAL=comma ;; *) DECIMAL=period ;; esac
-  CAPS=linux
-  if [ "$keep" != "$o" ]; then apply_default_keyboard "$keep" as-is; else ok "/etc/default/keyboard has no caps:be_windows"; fi
+  CAPS=linux; ACCENTS=linux; APPLE=no
+  if [ "$keep" != "$o" ]; then apply_default_keyboard "$keep" as-is; else ok "/etc/default/keyboard has none of our options"; fi
   caps_cleanup_all_users
   if x11_session; then
     local xo; xo=$(without_caps_option "$(setxkbmap -query 2>/dev/null | sed -n 's/^options: *//p')")
-    setxkbmap -option "" ${xo:+-option "$xo"} 2>/dev/null && ok "running X session: Caps Lock back to Linux behaviour"
+    setxkbmap -option "" ${xo:+-option "$xo"} 2>/dev/null && ok "running X session: Caps Lock and accents back to Linux behaviour"
+  fi
+  if [ -f "$APPLE_MODPROBE" ]; then
+    rm -f "$APPLE_MODPROBE" && ok "removed $APPLE_MODPROBE (Apple keyboard keys: kernel default again after the next restart)"
+    [ -w /sys/module/hid_apple/parameters/iso_layout ] && echo -1 > /sys/module/hid_apple/parameters/iso_layout
+    if ! is_live && command -v update-initramfs >/dev/null; then
+      update-initramfs -u >/dev/null 2>&1 && ok "boot image rebuilt without it" || bad "update-initramfs -u failed"
+    fi
   fi
   echo "2. Cinnamon defaults"
   if [ -f "$CINNAMON_OVERRIDE" ]; then
@@ -1014,8 +1224,9 @@ uninstall() {
   echo "3. Files of older versions"
   remove_legacy_caps_files
   rm -f "$CHOICES"; rmdir "${CHOICES%/*}" 2>/dev/null
-  echo "4. ibus skip per app (files in the users' home folders)"
+  echo "4. ibus skip per app and accent then space (files in the users' home folders)"
   skip_cleanup_all_users
+  accent_cleanup_all_users
   echo "5. Packages"
   local pk=() p
   for p in belgian-azerty-windows keyd-belgian-windows; do pkg_installed "$p" && pk+=("$p"); done
@@ -1043,7 +1254,7 @@ uninstall() {
   else ok "no packages of this project installed"; fi
   echo
   if [ "$FAILED" = 0 ]; then
-    echo "Done. The keyboard stays Belgian (numpad: $DECIMAL); Caps Lock has the Linux behaviour; Ctrl+Alt is no longer AltGr."
+    echo "Done. The keyboard stays Belgian (numpad: $DECIMAL); Caps Lock and Shift+AltGr have the Linux behaviour; Ctrl+Alt is no longer AltGr."
   else echo "Finished with errors (marked ✘ above)."; exit 1; fi
 }
 
@@ -1054,8 +1265,11 @@ case "${1:-check}" in
   system) system ;;
   uninstall) uninstall ;;
   switch-keyd) switch_keyd && [ "$FAILED" = 0 ] || exit 1 ;;
+  apple-iso-keys) apple_iso_keys "${2:-}" || exit 1 ;;
   caps-cleanup-users) caps_cleanup_all_users ;;   # used by the package's prerm; not for people
   ibus-skip) shift; ibus_skip "$@" ;;
+  accent-space) accent_space "${2:-}" || exit 1 ;;
+  accent-cleanup-users) accent_cleanup_all_users ;;   # used by the package's prerm; not for people
   -h|--help|help) usage ;;
   *) usage; exit 1 ;;
 esac

@@ -1,3 +1,9 @@
+keyd-belgian-windows (0.9.9) noble; urgency=medium
+
+  * Rules unchanged; version kept in step with belgian-azerty-windows.
+
+ -- @MAINTAINER@  Fri, 30 Oct 2026 16:00:00 +0000
+
 keyd-belgian-windows (0.9.8) noble; urgency=medium
 
   * Rules unchanged. Meant for the keyd of the keyd-team PPA on Ubuntu

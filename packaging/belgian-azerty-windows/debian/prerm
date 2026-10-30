@@ -6,8 +6,10 @@ case "$1" in
         # Without this package caps:be_windows is an unknown option (ignored, Linux Caps Lock). Take it out of every
         # user's own GNOME and Cinnamon keyboard options too, while be-azerty-fix is still installed; postrm does the
         # same for /etc/default/keyboard.
+        # The same for be_azerty:accents and be_azerty:mac, and each user's unchanged ~/.XCompose from accent-space.
         if command -v be-azerty-fix >/dev/null 2>&1; then
             be-azerty-fix caps-cleanup-users >/dev/null 2>&1 || true
+            be-azerty-fix accent-cleanup-users >/dev/null 2>&1 || true
         fi
         ;;
 esac

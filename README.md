@@ -9,21 +9,24 @@ behaviour that Belgians are used to, and a live USB that starts with the Belgian
 | Caps Lock as on Windows | Caps Lock gives the Shift character on the whole main block (1 2 3 ... ° _ % £ ? . / +); the ² and < keys, AltGr and the numpad are unchanged. On by default on Mint; on Zorin you switch it on yourself (see "Caps Lock on Zorin") | package `belgian-azerty-windows` (XKB option `caps:be_windows`) |
 | "Belgian (Period)" or "Belgian (Comma)" | Numpad decimal key types `.` or `,` | `be-azerty-fix` (`DECIMAL=comma`, standard option `kpdl:comma`) |
 | The layout never switches by itself | Every place where the system stores the layout has Belgian first, also for new users and after a settings reset. Your other layouts and input methods stay | `be-azerty-fix system` |
+| Shift+AltGr accents | Shift+AltGr on the `ù` `µ` `=` keys gives `´` `` ` `` `~`, as on Windows (Linux gives caron, breve, dot above) | package `belgian-azerty-windows` (XKB option `be_azerty:accents`, `ACCENTS=`) |
 | Live USB and installer start with the Belgian keyboard | Repacked ISO whose boot menu asks for the language, then the Belgian keyboard (period or comma) | `tools/make_belgian_iso.sh` |
 
-**Status.** Version 0.9.8. This is a long-standing problem that no project owns. The fix was tested in emulators and
-on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.8 in test containers and in emulators
-on the test laptop, see `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
+**Status.** Version 0.9.9. This is a long-standing problem that no project owns. The fix was tested in emulators and
+on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.9 so far in test containers and a
+headless GNOME desktop only, see `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
 for Linux Mint, Zorin OS and the projects they build on to adopt these fixes themselves (`MAINTAINERS.md` says which
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
 version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
 
-**New in 0.9.8** (`CHANGELOG.md` has the details):
-- Your other keyboard layouts and input methods are kept. Version 0.9.7 replaced them with Belgian only when you
-  ran `sudo be-azerty-fix system` or changed Period/Comma in the "Belgian keyboard" window. Now Belgian is put first
-  and nothing else is removed.
-- keyd now comes from the keyd-team PPA, so it gets updates; this project no longer ships its own keyd build.
-- The fast-typing workaround for the Terminal, the text editor and VS Code is off unless you switch it on.
+**New in 0.9.9** (`CHANGELOG.md` has the details):
+- Shift+AltGr on the `ù`, `µ` and `=` keys gives the same accents as on Windows (new installs with the Windows
+  profile; after an update from 0.9.8, see "Coming from 0.9.8").
+- Optional, per user: an accent then space gives the accent itself, as on Windows (`be-azerty-fix accent-space on`).
+- Optional: Belgian Apple keyboards (`APPLE=yes`). Not tested on a real Apple keyboard.
+
+**New in 0.9.8**: your other keyboard layouts and input methods are kept; keyd comes from the keyd-team PPA; the
+fast-typing workaround is off unless you switch it on.
 
 ## Install on an installed system
 
@@ -116,6 +119,40 @@ Caps Lock it also stops `2 6 7 9 0` and `%` from typing on the main block. If yo
 the "Belgian keyboard" window sets Caps Lock back to Linux on Zorin (the window says so). Tested in emulators only;
 a report for GNOME is drafted, not yet sent.
 
+## Accents as on Windows
+
+**Shift+AltGr.** With the Windows profile, Shift+AltGr on the `ù`, `µ` and `=` keys gives the same accent as AltGr
+(`´`, `` ` ``, `~`), as on Windows. Standard Linux gives caron, breve and dot above there (`ǎ ă ȧ`), used in Czech,
+Romanian, Lithuanian and other languages. To keep those: `sudo ACCENTS=linux be-azerty-fix system`. It changes only the
+standard Belgian layout (not Belgian (alt.), (no dead keys) or other variants), wherever Belgian sits in your list.
+
+**Accent then space.** On Windows, `´` then space gives `´` and `¨` then space gives `¨`; standard Linux gives `'` and
+`"`. To get the Windows behaviour for your user (no sudo): `be-azerty-fix accent-space on`, then log out and in. It
+writes a small `~/.XCompose`; a `~/.XCompose` of your own is never changed (the command shows the two lines to add).
+It refuses when you also use a "US international"-type layout, where `'` and `"` are accent keys. Off again:
+`be-azerty-fix accent-space off`. Checked in GTK 3 and GTK 4 apps on GNOME (Wayland and X11, with and without ibus);
+not checked in Qt, Electron (VS Code) or terminal apps.
+
+With both, 306 of the 308 Windows Belgian characters we compared come out the same (0.9.8: 272); the two left are
+AltGr+4 and AltGr+5, which keyd handles. Measured in a test container, not yet on the laptop.
+
+## Belgian Apple keyboards (optional)
+
+A Belgian Apple (Mac) keyboard has other characters printed on its keys than a PC keyboard (for example `@` left of
+`1`, `[` `]` on Option+5 and Option+°). With the PC layout, many of them type something else. If you use one:
+
+```
+sudo APPLE=yes be-azerty-fix system     # the characters printed on a Belgian Apple keyboard
+sudo be-azerty-fix apple-iso-keys on    # only if the key left of 1 and the key next to left Shift are swapped
+```
+
+`APPLE=yes` uses the layout data of Unicode CLDR (macOS "Belgian"); Option acts as AltGr, and the Windows Caps Lock
+and Shift+AltGr accents do not apply (Caps Lock works as on Linux). It changes the layout for every keyboard on the
+computer and on the login screen, so it is refused when no Apple keyboard is connected (`FORCE=1` overrides). The
+text console and the disk unlock prompt keep the PC layout. Back to a PC keyboard: `sudo APPLE=no be-azerty-fix
+system` and `sudo be-azerty-fix apple-iso-keys auto`. **Not tested on a real Apple keyboard**; in a test container 333
+of 367 macOS characters came out the same (the PC layout: 199); the rest is Caps Lock, which works differently on a Mac.
+
 ## Fast typing: optional ibus skip for the Terminal, the text editor and VS Code
 
 In emulator tests, keys sent much faster than people type could arrive swapped (`@€` as `€@`) while the ibus input
@@ -135,6 +172,12 @@ be-azerty-fix ibus-skip off --all          # nothing skips ibus any more
 ```
 
 How it works, the measurements and its limits: `HOW-WE-TESTED.md`, section "Fast typing".
+
+## Coming from 0.9.8
+
+Install the two new packages as in step 2 above. Nothing changes until you run `sudo be-azerty-fix system` again, and
+even then your Shift+AltGr accents stay as they were (caron, breve, dot above). For the Windows accents:
+`sudo ACCENTS=windows be-azerty-fix system`.
 
 ## Coming from 0.9.7
 
@@ -222,7 +265,9 @@ with Linux Mint or Zorin OS.
 - **On Linux Mint, Ctrl+Alt+Backspace ends the whole session at once** (Mint's own setting, kept as Mint set it).
 - If the keyboard ever stops while the mouse still works (never seen in testing): restart from the system menu with
   the mouse, or run `sudo systemctl restart keyd` with the on-screen keyboard.
-- Not tested: real hardware with 0.9.8, Ubuntu itself, other distributions, a second USB keyboard, Wine, remote
+- **Accent then space only works in apps that read `~/.XCompose`** (GTK apps and the ibus input method). Not checked
+  in Qt apps, VS Code or terminals.
+- Not tested: a real Apple keyboard, real hardware with 0.9.9, Ubuntu itself, other distributions, a second USB keyboard, Wine, remote
   desktop. Full list: `HOW-WE-TESTED.md`.
 
 ## Help test, or answer the survey

@@ -1,7 +1,8 @@
 #!/bin/sh
 # Regenerate /usr/share/X11/xkb/rules/evdev = xkb-data's file (diverted to evdev.distrib by belgian-azerty-windows)
-# + the rule for the option caps:be_windows. Run by the package's postinst on install and on every xkb-data upgrade
-# (dpkg trigger). The new file replaces the old one in a single rename, so the rules file never goes missing.
+# + the rules for our options caps:be_windows, be_azerty:accents and be_azerty:mac (all in symbols/be_capslock).
+# Run by the package's postinst on install and on every xkb-data upgrade (dpkg trigger). The new file replaces the
+# old one in a single rename, so the rules file never goes missing.
 #   update-xkb-rules              regenerate evdev from evdev.distrib
 #   update-xkb-rules strip IN OUT copy IN to OUT without the block an older be-azerty-fix.sh appended by hand
 set -e
@@ -34,6 +35,19 @@ cat >> "$tmp" <<'RULE'
 ! option	=	symbols
   caps:be_windows	=	+be_capslock(windows)
 RULE
+# Shift+AltGr accents as on Windows and the Belgian Apple layout: only on the Belgian layout, wherever it is in the
+# list (one section for a single layout, one per position for up to four).
+{
+    printf '\n// belgian-azerty-windows: Shift+AltGr accents as on Windows, Belgian Apple keyboards (symbols/be_capslock)\n'
+    printf '! layout\toption\t=\tsymbols\n'
+    printf '  be\tbe_azerty:accents\t=\t+be_capslock(windows_accents)\n'
+    printf '  be\tbe_azerty:mac\t=\t+be_capslock(mac)\n'
+    for i in 1 2 3 4; do
+        printf '\n! layout[%s]\toption\t=\tsymbols\n' "$i"
+        printf '  be\tbe_azerty:accents\t=\t+be_capslock(windows_accents):%s\n' "$i"
+        printf '  be\tbe_azerty:mac\t=\t+be_capslock(mac):%s\n' "$i"
+    done
+} >> "$tmp"
 chmod 644 "$tmp"
 mv -f "$tmp" "$RULES"
 trap - EXIT

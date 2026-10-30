@@ -13,10 +13,22 @@ case "$1" in
             fi
             dpkg-divert --package belgian-azerty-windows --no-rename --remove "$RULES"
         fi
-        # Without the rule, caps:be_windows is an unknown option (ignored, Linux Caps Lock); take it out of the system
-        # default too, so nothing refers to a removed package. keyboard-configuration reads this file as its truth.
-        if [ -f /etc/default/keyboard ] && grep -q '^XKBOPTIONS=.*caps:be_windows' /etc/default/keyboard; then
-            sed -i -E '/^XKBOPTIONS=/{s/caps:be_windows,?//; s/,("?)$/\1/}' /etc/default/keyboard
+        # Without the rules, caps:be_windows, be_azerty:accents and be_azerty:mac are unknown options (ignored: Linux
+        # Caps Lock and accents, PC layout); take them out of the system default too, so nothing refers to a removed
+        # package. keyboard-configuration reads this file as its truth.
+        if [ -f /etc/default/keyboard ] && grep -qE '^XKBOPTIONS=.*(caps:be_windows|be_azerty:)' /etc/default/keyboard; then
+            sed -i -E '/^XKBOPTIONS=/{s/(caps:be_windows|be_azerty:[a-z_]+),?//g; s/,("?)$/\1/}' /etc/default/keyboard
+        fi
+        # Apple keyboard key swap written by "be-azerty-fix apple-iso-keys on|off". The setting is also copied into
+        # the initramfs, so rebuild it once (only when the file was there).
+        if [ -f /etc/modprobe.d/belgian-azerty-apple.conf ]; then
+            rm -f /etc/modprobe.d/belgian-azerty-apple.conf
+            if [ -w /sys/module/hid_apple/parameters/iso_layout ]; then
+                echo -1 > /sys/module/hid_apple/parameters/iso_layout 2>/dev/null || true
+            fi
+            if command -v update-initramfs >/dev/null; then
+                update-initramfs -u >/dev/null 2>&1 || true
+            fi
         fi
         # Cinnamon defaults written by "be-azerty-fix system".
         if [ -f "$OVERRIDE" ]; then

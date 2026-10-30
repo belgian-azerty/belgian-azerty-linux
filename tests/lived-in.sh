@@ -139,12 +139,21 @@ t "alice GNOME: be first, us and Japanese input method kept" grep -qF "alice org
 t "alice GNOME options: compose and switch key kept" sh -c "grep -F 'alice org.gnome.desktop.input-sources xkb-options' $W/1 | grep -q \"'compose:ralt', 'grp:alt_shift_toggle'\""
 t "system default: be first, us kept, switch key kept" sh -c ". /etc/default/keyboard; [ \"\$XKBLAYOUT\" = be,us ] && echo \"\$XKBOPTIONS\" | grep -q grp:alt_shift_toggle"
 t "bob (not logged in) untouched by alice's system run" bash -c "diff <(grep '^bob' $W/0) <(grep '^bob' $W/1)"
-t "chen untouched" bash -c "diff <(grep '^chen' $W/0) <(grep '^chen' $W/1)"
+# Users without Cinnamon options of their own see the new Cinnamon default (the override that "system" writes for new
+# users and reset settings): with the Windows profile it now carries be_azerty:accents. That one addition is allowed.
+others_same() {   # REGEX: those users' lines unchanged, apart from be_azerty:accents in the Cinnamon default
+  diff <(grep -E "$1" "$W/0") <(grep -E "$1" "$W/1" | sed -E "/cinnamon.desktop.input-sources xkb-options/{s/, 'be_azerty:accents'//; s/'be_azerty:accents', //; s/\['be_azerty:accents'\]/@as []/}")
+}
+diff <(grep -E '^(chen|erin|frank)' "$W/0") <(grep -E '^(chen|erin|frank)' "$W/1") | sed 's/^/      /'
+t "chen untouched (apart from the new Cinnamon default)" others_same '^chen'
 t "check after system: the system default with be first counts as right" sh -c "be-azerty-fix check 2>/dev/null | grep 'XKBLAYOUT=' | grep -q '✔'"
-t "erin and frank untouched by alice's run" bash -c "diff <(grep -E '^(erin|frank)' $W/0) <(grep -E '^(erin|frank)' $W/1)"
+t "erin and frank untouched by alice's run (apart from the new Cinnamon default)" others_same '^(erin|frank)'
 t "alice's own launcher copy untouched" bash -c "diff <(grep '^alice launchers' $W/0) <(grep '^alice launchers' $W/1)"
 t "alice: no ibus skip files (she has an input method; and the skip is off by default)" sh -c "! grep -rqs '^X-BelgianAzerty-IbusSkip=' /home/alice/.local/share/applications"
 t "boot image rebuilt once (the file changed)" test "$(( $(runs) - r0 ))" = 1
+t "alice GNOME options: Windows Shift+AltGr accents added (Windows profile, also on GNOME)" sh -c "grep -F 'alice org.gnome.desktop.input-sources xkb-options' $W/1 | grep -q be_azerty:accents"
+t "system default: accents option added" sh -c ". /etc/default/keyboard; echo \"\$XKBOPTIONS\" | grep -q be_azerty:accents"
+t "choices file has ACCENTS and APPLE" sh -c "grep -qx ACCENTS=windows /var/lib/belgian-azerty-windows/choices && grep -qx APPLE=no /var/lib/belgian-azerty-windows/choices"
 grep -E 'kept|initramfs|boot image' "$W/system1.log" | sed 's/^/      /'
 
 echo "== same run again: nothing changes, no boot image rebuild"
@@ -159,6 +168,41 @@ nothing_lost "$W/2" "$W/3" "switch to comma"
 t "comma: boot image rebuilt (the file changed)" test "$(( $(runs) - r1 ))" = 1
 as_alice be-azerty-fix system DECIMAL=period >/dev/null 2>&1; dump "$W/4"
 nothing_lost "$W/3" "$W/4" "switch back to period" "kpdl:comma"
+
+echo "== ACCENTS=linux, then back to the profile's"
+as_alice be-azerty-fix system ACCENTS=linux >/dev/null 2>&1; dump "$W/4a"
+nothing_lost "$W/4" "$W/4a" "ACCENTS=linux" "be_azerty:accents"
+t "ACCENTS=linux: option out of alice's options and the system default" sh -c "! grep -E '^(alice org.gnome.desktop.input-sources xkb-options|system XKBOPTIONS)' $W/4a | grep -q be_azerty"
+as_alice be-azerty-fix system ACCENTS=windows >/dev/null 2>&1; dump "$W/4b"
+nothing_lost "$W/4a" "$W/4b" "ACCENTS=windows again"
+t "rerun without ACCENTS keeps the saved choice" sh -c "SUDO_USER=alice XDG_CURRENT_DESKTOP=GNOME be-azerty-fix system 2>/dev/null | head -1 | grep -q 'accents windows (kept from the last run)'"
+
+echo "== Apple keyboard: APPLE=yes, the key-swap switch, back to a PC keyboard"
+as_alice be-azerty-fix system APPLE=yes > "$W/apple0.log" 2>&1; rc=$?; dump "$W/4b2"
+t "APPLE=yes without an Apple keyboard: refused, nothing changed" sh -c "[ $rc != 0 ] && grep -q 'no Apple keyboard' $W/apple0.log && diff -q $W/4b $W/4b2"
+as_alice be-azerty-fix system APPLE=yes FORCE=1 > "$W/apple.log" 2>&1; rc=$?; dump "$W/4c"
+t "APPLE=yes: no errors" no_errors "$W/apple.log" "$rc"
+nothing_lost "$W/4b" "$W/4c" "APPLE=yes" "be_azerty:accents|caps:be_windows"
+t "APPLE=yes: alice's options have be_azerty:mac, not the Windows accents" sh -c "grep -F 'alice org.gnome.desktop.input-sources xkb-options' $W/4c | grep be_azerty:mac | grep -vq be_azerty:accents"
+t "APPLE=yes: system default too" sh -c ". /etc/default/keyboard; echo \"\$XKBOPTIONS\" | grep be_azerty:mac | grep -vq be_azerty:accents"
+t "APPLE=yes: the keymap compiles with the system default's options" sh -c ". /etc/default/keyboard; xkbcli compile-keymap --layout \"\$XKBLAYOUT\" --options \"\$XKBOPTIONS\" | grep -q enfilledcircbullet"
+be-azerty-fix apple-iso-keys on > "$W/iso.log" 2>&1
+t "apple-iso-keys on: modprobe file with iso_layout=1" grep -qx 'options hid_apple iso_layout=1' /etc/modprobe.d/belgian-azerty-apple.conf
+t "apple-iso-keys on: says the driver is not loaded (no Apple keyboard here)" grep -q 'not loaded now' "$W/iso.log"
+t "check shows the Apple section" sh -c "be-azerty-fix check 2>/dev/null | grep -q 'iso_layout\|driver not loaded'"
+be-azerty-fix apple-iso-keys auto >/dev/null 2>&1
+t "apple-iso-keys auto: file removed" test ! -e /etc/modprobe.d/belgian-azerty-apple.conf
+as_alice be-azerty-fix system APPLE=no >/dev/null 2>&1; dump "$W/4d"
+t "APPLE=no: back to the Windows accents, no Mac option" sh -c "grep -F 'alice org.gnome.desktop.input-sources xkb-options' $W/4d | grep be_azerty:accents | grep -vq be_azerty:mac"
+nothing_lost "$W/4b" "$W/4d" "Apple and back" "kpdl"
+
+echo "== accent then space (per user)"
+runuser -u alice -- env HOME=/home/alice be-azerty-fix accent-space on >/dev/null 2>&1
+t "alice: ~/.XCompose written, loads the normal table" grep -qx 'include "%L"' /home/alice/.XCompose
+printf '<Multi_key> <a> <a> : "å"\n' > /home/bob/.XCompose; chown bob: /home/bob/.XCompose
+runuser -u bob -- env HOME=/home/bob be-azerty-fix accent-space on >/dev/null 2>&1
+t "bob's own ~/.XCompose untouched by accent-space on" grep -qx '<Multi_key> <a> <a> : "å"' /home/bob/.XCompose
+t "check shows alice's accent-then-space status" sh -c "runuser -u alice -- env HOME=/home/alice be-azerty-fix check 2>/dev/null | grep -q 'then space gives ´'"
 
 echo "== chen runs it (Chinese input method only)"
 dump "$W/5"; SUDO_USER=chen XDG_CURRENT_DESKTOP=GNOME be-azerty-fix system >/dev/null 2>&1; dump "$W/6"
@@ -189,7 +233,10 @@ as_alice be-azerty-fix uninstall > "$W/uninstall.log" 2>&1; rc=$?
 t "uninstall finished without errors" no_errors "$W/uninstall.log" "$rc"
 grep '✘' "$W/uninstall.log" | sed 's/^/      /'
 dump "$W/9"
-nothing_lost "$W/8" "$W/9" "uninstall" "caps:be_windows"
+nothing_lost "$W/8" "$W/9" "uninstall" "caps:be_windows|be_azerty:"
+t "uninstall: none of our options left anywhere" sh -c "! grep -q 'be_azerty:\|caps:be_windows' $W/9"
+t "uninstall: alice's accent-space file removed" test ! -e /home/alice/.XCompose
+t "uninstall: bob's own ~/.XCompose kept" grep -qx '<Multi_key> <a> <a> : "å"' /home/bob/.XCompose
 t "bob's caps:be_windows removed although bob was not logged in (Cinnamon)" sh -c "grep -F 'bob org.cinnamon.desktop.input-sources xkb-options' $W/9 | grep -q \"\\['terminate:ctrl_alt_bksp'\\]\""
 t "bob's caps:be_windows removed (GNOME), compose kept" sh -c "grep -F 'bob org.gnome.desktop.input-sources xkb-options' $W/9 | grep -q \"\\['compose:menu'\\]\""
 t "chen never had Cinnamon options: uninstall does not pin any for him" sh -c "[ -z \"\$(runuser -u chen -- env HOME=/home/chen dconf read /org/cinnamon/desktop/input-sources/xkb-options)\" ]"
@@ -215,6 +262,8 @@ t "and the command says ru was left out there" sh -c "echo \"\$0\" | grep -q 'ru
 sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="be"/; s/^XKBVARIANT=.*/XKBVARIANT="oss"/' /etc/default/keyboard
 gs alice set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'be+oss')]"
 as_alice be-azerty-fix system >/dev/null 2>&1
+t "be(oss) system default: no Windows accents option (oss has its own Shift+AltGr level)" sh -c ". /etc/default/keyboard; ! echo \"\$XKBOPTIONS\" | grep -q be_azerty:accents"
+t "alice with be+oss first: no accents option in her options" sh -c "! runuser -u alice -- env HOME=/home/alice DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gsettings get org.gnome.desktop.input-sources xkb-options | grep -q be_azerty:accents"
 t "be(oss) system default keeps oss (not pushed back by plain be)" sh -c ". /etc/default/keyboard; [ \"\$XKBLAYOUT\" = be ] && [ \"\$XKBVARIANT\" = oss ]"
 t "alice's be+oss moved first, not plain be added" sh -c "[ \"\$(runuser -u alice -- env HOME=/home/alice DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gsettings get org.gnome.desktop.input-sources sources)\" = \"[('xkb', 'be+oss'), ('xkb', 'us')]\" ]"
 cp "$W/keyboard.saved" /etc/default/keyboard

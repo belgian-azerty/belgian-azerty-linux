@@ -29,15 +29,35 @@ echo "$out" | grep -E '^  [EW]: ' | grep -v 'wrong-name-for-upstream-changelog' 
 step "Caps Lock option vs the Windows table (libxkbcommon, files from the package source)"
 inc=$(mktemp -d); mkdir -p "$inc/rules" "$inc/symbols"
 cp "$ROOT/xkb/symbols/be_capslock" "$inc/symbols/"
-{ cat /usr/share/X11/xkb/rules/evdev; printf '\n! option\t=\tsymbols\n  caps:be_windows\t=\t+be_capslock(windows)\n'; } > "$inc/rules/evdev"
+# the rules file exactly as the package's update-xkb-rules writes it
+cp /usr/share/X11/xkb/rules/evdev "$inc/rules/evdev.distrib"
+sed "s|^RULES=.*|RULES=$inc/rules/evdev|" "$ROOT/packaging/belgian-azerty-windows/update-xkb-rules" > "$inc/update-xkb-rules"
+sh "$inc/update-xkb-rules"; res $? "update-xkb-rules writes the rules file"
 t=$(python3 "$ROOT/tools/captest.py" --include "$inc" none caps:be_windows 2>/dev/null); echo "$t" | grep -E 'expect|caps:be_windows'
 [ "$(echo "$t" | grep 'caps:be_windows' | head -2 | grep -c 'mismatches=0')" = 2 ]; res $? "Caps and Caps+Shift: 0 mismatches"
 a=$(echo "$t" | sed -n '/caps+altgr/,$p' | grep '  none ' | sed 's/^ *none *//'); b=$(echo "$t" | sed -n '/caps+altgr/,$p' | grep 'caps:be_windows' | sed 's/^ *caps:be_windows *//')
 [ "$a" = "$b" ]; res $? "Caps+AltGr unchanged from stock Linux"
-for v in oss nodeadkeys; do
-  xkbcli compile-keymap --include "$inc" --include-defaults --layout be --variant "$v" --options caps:be_windows >/dev/null 2>&1
-  res $? "variant $v compiles with caps:be_windows"
-done
+for v in "" oss nodeadkeys; do for o in caps:be_windows be_azerty:accents be_azerty:mac caps:be_windows,be_azerty:accents; do
+  xkbcli compile-keymap --include "$inc" --include-defaults --layout be --variant "$v" --options "$o" >/dev/null 2>&1
+  res $? "variant ${v:-standard} compiles with $o"
+done; done
+
+step "Shift+AltGr accents and the Apple layout (libxkbcommon)"
+t=$(python3 "$ROOT/tools/optiontest.py" --include "$inc" be be_azerty:accents); echo "$t"
+[ "$t" = "AC11 shift+altgr: dead_caron -> dead_acute
+BKSL shift+altgr: dead_breve -> dead_grave
+AB10 shift+altgr: dead_abovedot -> dead_tilde
+differences: 3" ]; res $? "be_azerty:accents changes exactly Shift+AltGr on ù µ = to ´ \` ~"
+t=$(python3 "$ROOT/tools/optiontest.py" --include "$inc" be be_azerty:mac fr:mac "")
+[ -z "$(echo "$t" | grep -E ' (base|shift):')" ]; res $? "be_azerty:mac: plain and Shift keys equal Linux's French (Macintosh), the closest Mac layout"
+[ "$(echo "$t" | grep -c ' altgr\| shift+altgr')" -le 20 ]; res $? "be_azerty:mac: Option layer close to French (Macintosh) ($(echo "$t" | tail -1))"
+t=$(python3 "$ROOT/tools/optiontest.py" --include "$inc" be caps:be_windows,be_azerty:accents be caps:be_windows | tail -1)
+[ "$t" = "differences: 3" ]; res $? "accents option on top of Windows Caps Lock: same 3 changes"
+if command -v ckbcomp >/dev/null; then
+  for o in be_azerty:accents be_azerty:mac; do
+    ckbcomp -I"$inc" -rules "$inc/rules/evdev" -layout be -option "$o" >/dev/null 2>&1; res $? "console keymap (ckbcomp) with $o"
+  done
+fi
 rm -rf "$inc"
 
 for iso in "$@"; do

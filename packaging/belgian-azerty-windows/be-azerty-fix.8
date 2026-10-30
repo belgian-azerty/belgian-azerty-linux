@@ -1,4 +1,4 @@
-.TH BE-AZERTY-FIX 8 "2026-10-27" "belgian-azerty-windows 0.9.8" "System Administration"
+.TH BE-AZERTY-FIX 8 "2026-10-30" "belgian-azerty-windows 0.9.9" "System Administration"
 .SH NAME
 be-azerty-fix \- make a Linux Mint or Zorin OS system type Belgian AZERTY as on Windows
 .SH SYNOPSIS
@@ -12,6 +12,12 @@ be-azerty-fix \- make a Linux Mint or Zorin OS system type Belgian AZERTY as on 
 .B sudo be-azerty-fix uninstall
 .br
 .B sudo be-azerty-fix switch-keyd
+.br
+.B sudo be-azerty-fix apple-iso-keys
+.RB [ on | off | auto ]
+.br
+.B be-azerty-fix accent-space
+.RB [ on | off ]
 .br
 .B be-azerty-fix ibus-skip
 .RB [ list ]
@@ -56,14 +62,18 @@ Installs the packages found next to the script if they are missing (keyd itself
 comes from the keyd-team PPA, ppa:keyd-team/ppa).
 .TP
 .B uninstall
-Remove the Caps Lock option from the system default and from every user's own
+Remove this project's keyboard options (caps:be_windows, be_azerty:accents,
+be_azerty:mac) from the system default and from every user's own
 GNOME and Cinnamon settings (also users who are not logged in), the Cinnamon
 defaults, files of older versions, and purge belgian-azerty-windows,
 keyd-belgian-windows and the keyd build of versions 0.9.7 and earlier, unless
 KEEP_KEYD=1, another keyd configuration exists in /etc/keyd, or a
 keyd-application-mapper not from this project needs it. A keyd from the
 keyd-team PPA or the distribution stays. The
-layouts stay as they are. Also removes every user's ibus skip files (see below).
+layouts stay as they are. Also removes every user's ibus skip files (see below),
+every unchanged ~/.XCompose written by
+.BR accent-space ,
+and /etc/modprobe.d/belgian-azerty-apple.conf.
 .TP
 .B switch-keyd
 Replace the keyd build that 0.9.7 and earlier installed
@@ -73,6 +83,37 @@ configured repository offers, normally the keyd-team PPA (add it first with
 apt does not do this by itself, because the old build has a higher version
 number. Refreshes the package lists first (Mint's add-apt-repository does not).
 Does nothing when keyd is not that build.
+.TP
+.B apple-iso-keys
+Apple keyboards only. On Apple ISO keyboards the key left of 1 and the key next
+to left Shift send each other's codes; the kernel's hid_apple driver swaps them
+back by itself only when the keyboard reports the "International ISO" country.
+.B on
+always swaps them back (hid_apple iso_layout=1),
+.B off
+never (0),
+.B auto
+removes the setting (the kernel decides, \-1). Written to
+/etc/modprobe.d/belgian-azerty-apple.conf, set at once when the driver is
+loaded, and the boot image is rebuilt. hid_apple only handles Apple keyboards,
+but
+.B on
+also affects an Apple keyboard without that key (US layout). Without an
+argument: show the current setting. Not tested on a real Apple keyboard.
+.TP
+.B accent-space
+Per user, without sudo. With
+.BR on ,
+\[aa] then space gives \[aa] and \[ad] then space gives \[ad], as on Windows
+(standard Linux gives ' and "). Writes ~/.XCompose, which loads the system's
+accent table (include "%L") and overrides these two sequences; GTK 3, GTK 4 and
+ibus (also inside GNOME Shell) read it when they start, so log out and in.
+A ~/.XCompose of your own is never changed;
+.B off
+removes the file only if it is still exactly as written. Refused when a "US
+international"-type layout (an intl variant) is in use, because its own accent
+sequences would change; FORCE=1 switches it on anyway. Not read when
+XCOMPOSEFILE is set or ~/.config/gtk-3.0/Compose exists (check says so).
 .TP
 .B ibus-skip
 Per user; run it as yourself, without sudo. Off unless you switch it on. When
@@ -156,7 +197,7 @@ offers the profile and the numpad decimal key in a window and runs
 .B be-azerty-fix system
 through
 .BR pkexec (1);
-choosing a profile there also sets CAPS to that profile.
+choosing a profile there also sets CAPS and ACCENTS to that profile.
 .SH ENVIRONMENT
 .TP
 .B PROFILE=windows|linux
@@ -192,6 +233,33 @@ dialog) puts Caps Lock out of step until the next login, and with
 caps:be_windows the keys 2 6 7 9 0 and % then type only \['e] \[sc] \[`e] \[,c] \[`a] \[`u].
 Give CAPS=windows to switch it on there anyway; log out and in if it happens.
 .TP
+.B ACCENTS=windows|linux
+windows: Shift+AltGr on the \[`u], \[mc] and = keys gives the same accent as AltGr
+(\[aa] \` ~), as on Windows (XKB option be_azerty:accents). linux: caron, breve
+and dot above, as on standard Linux. Only for the standard Belgian layout (not
+with the oss or nodeadkeys variants). When not given: the choice of the last
+.B system
+run; after an update from 0.9.8 (a saved choice without ACCENTS) linux, so
+nobody loses the accents they had; else the profile's (also on GNOME). A
+PROFILE given on the command line sets ACCENTS too, unless ACCENTS is also
+given. Only the Belgian layout changes, wherever it is in the layout list.
+.TP
+.B APPLE=no|yes
+yes: a Belgian Apple (Mac) keyboard: the characters printed on its keys, Option
+(right Option) as AltGr (XKB option be_azerty:mac, from Unicode CLDR 43; it
+replaces caps:be_windows and be_azerty:accents). Only for Apple keyboards: a PC
+keyboard would type @ left of 1, and the setting reaches every keyboard and
+the login screen. So APPLE=yes is refused when no Apple keyboard is connected,
+unless FORCE=1 is given too. The text console and the disk unlock prompt keep
+the PC layout. Kept from the last
+.B system
+run, else no. Not tested on a real Apple keyboard.
+.TP
+.B FORCE=1
+With APPLE=yes: accept it without a connected Apple keyboard. With
+.BR "accent-space on" :
+switch it on next to an intl layout.
+.TP
 .B VARIANT=|oss|nodeadkeys
 Variant of the Belgian layout (default: none).
 .TP
@@ -201,12 +269,14 @@ With uninstall: keep the keyd daemon package.
 /etc/default/keyboard, /usr/share/X11/xkb/symbols/be_capslock,
 /usr/share/X11/xkb/rules/evdev (generated; xkb-data's file is diverted to
 evdev.distrib), /usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override,
-/var/lib/belgian-azerty-windows/choices, /usr/bin/be-azerty-settings,
+/var/lib/belgian-azerty-windows/choices, /etc/modprobe.d/belgian-azerty-apple.conf,
+/usr/bin/be-azerty-settings,
 /usr/share/polkit-1/actions/org.belgianazerty.fix.policy,
 /etc/xdg/autostart/be-azerty-ibus-skip.desktop,
 ~/.config/belgian-azerty/ibus-skip, ~/.config/belgian-azerty/ibus-skip-auto,
 ~/.local/share/applications/\fIAPP\fR.desktop (marked copies),
-~/.config/systemd/user/\fISERVICE\fR.d/zz-belgian-azerty-ibus-skip.conf
+~/.config/systemd/user/\fISERVICE\fR.d/zz-belgian-azerty-ibus-skip.conf,
+~/.XCompose (accent-space)
 .SH SEE ALSO
 .BR keyboard (5),
 .BR setxkbmap (1),

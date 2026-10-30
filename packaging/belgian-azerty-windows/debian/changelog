@@ -1,3 +1,37 @@
+belgian-azerty-windows (0.9.9) noble; urgency=medium
+
+  * Shift+AltGr on the ù, µ and = keys gives the same accent as AltGr
+    (´ ` ~), as on Windows, with the Windows profile (new option
+    be_azerty:accents; setting ACCENTS=windows|linux). The Linux profile
+    keeps caron, breve and dot above (ǎ ă ȧ).
+  * Accent then space as on Windows, for users who switch it on:
+    "be-azerty-fix accent-space on" writes a small ~/.XCompose (´ then
+    space gives ´, ¨ then space gives ¨). Never changes a ~/.XCompose of
+    the user's own; uninstall removes only an unchanged one.
+  * Belgian Apple keyboards, opt-in: APPLE=yes gives the characters
+    printed on a Belgian Apple keyboard (option be_azerty:mac, generated
+    from Unicode CLDR 43). "be-azerty-fix apple-iso-keys on|off|auto" sets
+    the kernel's hid_apple iso_layout for keyboards whose key left of 1
+    and key next to left Shift come out swapped. Not tested on a real
+    Apple keyboard.
+  * Updating from 0.9.8 keeps the accents you had (caron, breve, dot
+    above), also with the Windows profile; "sudo be-azerty-fix system
+    ACCENTS=windows" gives the Windows accents. New installs with the
+    Windows profile get them by default.
+  * APPLE=yes is refused when no Apple keyboard is connected (it would
+    change every keyboard and the login screen); FORCE=1 overrides. The
+    text console and disk unlock keep the PC layout.
+  * The new options only change the Belgian layout, wherever it sits in
+    the layout list (be,us or us,be), and only the standard Belgian
+    variant (not nodeadkeys, oss, iso-alternate, wang).
+  * accent-space refuses to switch on when a "US international"-type
+    layout is in use (its own accents would change); FORCE=1 overrides.
+  * Uninstall and removing the package take all of this project's
+    keyboard options out of every setting (system default, every user's
+    GNOME and Cinnamon options), and remove the Apple key setting.
+
+ -- @MAINTAINER@  Fri, 30 Oct 2026 16:00:00 +0000
+
 belgian-azerty-windows (0.9.8) noble; urgency=medium
 
   * Other layouts and input methods are kept. Up to 0.9.7, "be-azerty-fix

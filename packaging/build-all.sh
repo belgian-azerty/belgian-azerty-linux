@@ -13,7 +13,7 @@ SOURCE_URL=${SOURCE_URL:-https://github.com/belgian-azerty/belgian-azerty-linux}
 mkdir -p "$DIST"
 W=$(mktemp -d); trap 'rm -rf "$W"' EXIT
 
-V=0.9.8         # version of our two packages (keep equal to their debian/changelog)
+V=0.9.9         # version of our two packages (keep equal to their debian/changelog)
 stage() {   # NAME: copy packaging/NAME plus its files from the project tree into $W/NAME-$V, fill placeholders
   local n=$1 d="$W/$1-$V"
   cp -r "$ROOT/packaging/$n" "$d"

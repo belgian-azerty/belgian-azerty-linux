@@ -38,6 +38,9 @@ apt-get install -y "$D"/belgian-azerty-windows_*_all.deb >/dev/null 2>&1; t "ins
 dpkg-divert --list "$R"
 t "rules file diverted to evdev.distrib" sh -c "dpkg-divert --list $R | grep -q belgian-azerty-windows"
 [ "$(rules_count)" = 1 ] && pass "rule present exactly once (legacy block dropped)" || fail "rule count $(rules_count)"
+t "accents and Apple rules: one per layout position (single, 1-4)" sh -c "[ \$(grep -c 'be_azerty:accents' $R) = 5 ] && [ \$(grep -c 'be_azerty:mac' $R) = 5 ]"
+t "keymap with the accents option: Shift+AltGr+ù is dead_acute" sh -c "xkbcli compile-keymap --layout be --options be_azerty:accents | grep -A1 'key <AC11>' | grep -q 'dead_acute, *dead_acute'"
+t "console keymap (ckbcomp) with be_azerty:accents and be_azerty:mac" sh -c "! command -v ckbcomp || { ckbcomp -layout be -option be_azerty:accents >/dev/null && ckbcomp -layout be -option be_azerty:mac >/dev/null; }"
 t "evdev.distrib has no hand-written block" sh -c "! grep -q caps:be_windows $R.distrib"
 t "legacy apt hook and helper removed" sh -c "[ ! -e /etc/apt/apt.conf.d/99be-azerty-xkb ] && [ ! -e /usr/local/sbin/be-azerty-xkb-ensure ]"
 t "symbols file owned by the package" sh -c "dpkg -S /usr/share/X11/xkb/symbols/be_capslock | grep -q belgian-azerty-windows"
@@ -67,7 +70,8 @@ t "DECIMAL=period given beats the saved choice" sh -c "DECIMAL=period be-azerty-
 echo "== be-azerty-fix uninstall-relevant part: override file removed by package removal"
 mkdir -p /usr/share/glib-2.0/schemas; echo '# test' > /usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override
 cp /etc/default/keyboard /tmp/keyboard.before 2>/dev/null
-sed -i '/^XKBOPTIONS=/d' /etc/default/keyboard 2>/dev/null; echo 'XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows"' >> /etc/default/keyboard
+sed -i '/^XKBOPTIONS=/d' /etc/default/keyboard 2>/dev/null; echo 'XKBOPTIONS="lv3:ralt_switch,kpdl:comma,caps:be_windows,be_azerty:accents"' >> /etc/default/keyboard
+mkdir -p /etc/modprobe.d; printf 'options hid_apple iso_layout=1\n' > /etc/modprobe.d/belgian-azerty-apple.conf
 echo "== purge belgian-azerty-windows"
 apt-get purge -y belgian-azerty-windows >/dev/null 2>&1
 t "diversion gone" sh -c "! dpkg-divert --list $R | grep -q ."
@@ -75,11 +79,12 @@ t "diversion gone" sh -c "! dpkg-divert --list $R | grep -q ."
 t "no evdev.distrib left" test ! -e "$R.distrib"
 t "symbols file gone" test ! -e /usr/share/X11/xkb/symbols/be_capslock
 t "Cinnamon override gone" test ! -e /usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override
-t "caps:be_windows taken out of /etc/default/keyboard, other options kept" grep -qx 'XKBOPTIONS="lv3:ralt_switch,kpdl:comma"' /etc/default/keyboard
+t "caps:be_windows and be_azerty:accents taken out of /etc/default/keyboard, other options kept" grep -qx 'XKBOPTIONS="lv3:ralt_switch,kpdl:comma"' /etc/default/keyboard
+t "Apple key setting removed" test ! -e /etc/modprobe.d/belgian-azerty-apple.conf
 t "saved choices removed by purge" test ! -e /var/lib/belgian-azerty-windows
 [ -f /tmp/keyboard.before ] && cp /tmp/keyboard.before /etc/default/keyboard
 t "dpkg -V xkb-data clean after purge" test -z "$(dv xkb-data)"
-xkbcli compile-keymap --layout be --options caps:be_windows >/dev/null 2>/tmp/xkbcli.err; t "leftover caps:be_windows in a setting is ignored, keymap still compiles" test $? -eq 0
+xkbcli compile-keymap --layout be --options caps:be_windows,be_azerty:accents,be_azerty:mac >/dev/null 2>/tmp/xkbcli.err; t "leftover options of ours in a setting are ignored, keymap still compiles" test $? -eq 0
 sed 's/^/      /' /tmp/xkbcli.err
 
 echo "== keyd packages"

@@ -4,6 +4,36 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## 0.9.9
+
+0.9.9 adds the Shift+AltGr accents of Windows, an optional "accent then space" for each user, and an optional layout
+for Belgian Apple keyboards. So far these were tested **only in Ubuntu 24.04 test containers and a headless GNOME
+desktop** (GNOME Shell 46, Wayland, no screen, keys sent through GNOME's remote-desktop interface). Not yet in the
+laptop emulator, on a stick, in VirtualBox, on real hardware or with a real Apple keyboard.
+
+- Typed into a GTK 4 window in the headless GNOME desktop, all 377 key combinations of the Windows check (308 of
+  them have a Windows character): Windows profile 302 of 308 the same as Windows, 306 with accent-space on (0.9.8:
+  272). Compared cell by cell with 0.9.8's typed result: 0 combinations that matched Windows in 0.9.8 differ now, and
+  none of the 69 combinations without a Windows character changed. The Linux-standard profile types exactly as stock
+  Linux (0 differences). The two left: AltGr+4 and AltGr+5, which keyd handles (keyd cannot run in a container).
+- Accent then space: `~/.XCompose` read by GTK 4 and GTK 3 apps, with and without ibus, on Wayland and on X11
+  (Xvfb). Not checked: Qt, Electron (VS Code), terminals.
+- Apple: the Belgian Mac layout generated from Unicode CLDR 43 (macOS "Belgian", `tools/gen_mac_symbols.py`); typed in
+  the same desktop, 333 of 367 macOS characters the same (336 with accent-space; the PC layout: 199). The 31 left are
+  Caps Lock combinations (a Mac's Caps Lock works differently). Data only: no real Apple keyboard, and the
+  `apple-iso-keys` switch only checked as files (no hid_apple driver in a container).
+- `tests/settings-logic.sh` (93 checks), `tests/run-offline.sh` (now also: each option changes only the keys it
+  should, in every Belgian variant and layout position), `tests/pkg-cycle.sh`, `tests/lived-in.sh` (76 checks:
+  nothing taken away from any user, the new options added and removed, Apple refused without an Apple keyboard,
+  accent-space per user, uninstall removes everything), and an update test 0.9.8 → 0.9.9 → back to 0.9.8 (16 checks:
+  an update changes no setting; the accents stay as in 0.9.8 until `ACCENTS=windows`; a leftover option after going
+  back is harmless).
+- An independent "try to break it" review (a separate Claude session that had not written the code) found nine
+  problems before these tests; all but one were fixed, see `CHANGELOG.md`, 0.9.9. The one not changed: it judged the
+  Apple layout more work than it is worth, since only a few Option combinations differ from the French Mac layout
+  Linux already has. It stays: with it, every combination except Caps Lock ones matches a Belgian Apple keyboard, and
+it comes with the key-swap switch and the refusal on PC keyboards.
+
 ## 0.9.8
 
 0.9.8 changes how `be-azerty-fix` writes the layout lists (Belgian first, nothing removed), switches the optional ibus
@@ -104,7 +134,8 @@ lived-in test above covers it.
 
 ## Not tested yet
 
-0.9.8 installed on real hardware (only in the laptop emulator; the Zorin stick ran live on one real laptop); an install from the stick on real hardware; Mint directly on real
+0.9.9 anywhere outside test containers (laptop emulator, stick, VirtualBox, real hardware); a real Apple keyboard;
+accent-then-space in Qt apps, VS Code and terminals. 0.9.8 installed on real hardware (only in the laptop emulator; the Zorin stick ran live on one real laptop); an install from the stick on real hardware; Mint directly on real
 hardware; Mint on Wayland; disk encryption on Mint; a second USB keyboard (US or other); keyboards with a built-in
 touchpad; the "Belgian keyboard" window on Mint; Ubuntu itself and any other distribution; VS Code from Snap or
 Flatpak.

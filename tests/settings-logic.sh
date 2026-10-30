@@ -5,7 +5,7 @@
 # for the desktop's settings store, a fake dpkg-query for the installed keyd version.
 # Covered: layout lists (Belgian first, nothing else removed) for GNOME, Cinnamon and MATE, the X11 and
 # /etc/default/keyboard lists, a list that cannot be read, keyboard options, saved choices, the ibus skip default,
-# and which keyd counts as this project's old build.
+# the accent-then-space file, and which keyd counts as this project's old build.
 set -u
 ROOT=$(cd "$(dirname "$0")/.." && pwd); FIX=$ROOT/be-azerty-fix.sh
 T=$(mktemp -d); trap 'rm -rf "$T"' EXIT
@@ -78,7 +78,10 @@ echo "== pure list functions"
 
 echo "== keyboard options"
 (
-  load ""; XKB_CAPS=$T/caps; XKB_RULES=$T/rules; : > "$XKB_CAPS"; echo caps:be_windows > "$XKB_RULES"
+  load ""; XKB_CAPS=$T/caps; XKB_RULES=$T/rules; : > "$XKB_CAPS"
+  printf '  caps:be_windows\t=\t+be_capslock(windows)\n  be_azerty:accents\t=\t+be_capslock(windows_accents)\n  be_azerty:mac\t=\t+be_capslock(mac)\n' > "$XKB_RULES"
+  # shellcheck disable=SC2034   # read by want_options of the loaded script
+  ACCENTS=linux APPLE=no
   DECIMAL=comma CAPS=windows
   eq "comma + Windows Caps: others kept, old kpdl replaced" "compose:ralt,grp:alt_shift_toggle,kpdl:comma,caps:be_windows" \
      "$(want_options "compose:ralt,kpdl:dot,grp:alt_shift_toggle")"
@@ -87,6 +90,24 @@ echo "== keyboard options"
   rm -f "$XKB_CAPS"; CAPS=windows
   eq "Windows Caps without the package files: option not added" "lv3:ralt_switch" "$(want_options "lv3:ralt_switch")"
   eq "uninstall: only caps:be_windows removed" "a,kpdl:comma,b" "$(without_caps_option "a,caps:be_windows,kpdl:comma,b")"
+  eq "uninstall: be_azerty options removed too" "a,kpdl:comma" "$(without_caps_option "be_azerty:accents,a,caps:be_windows,kpdl:comma,be_azerty:mac")"
+  : > "$XKB_CAPS"; DECIMAL=period CAPS=windows ACCENTS=windows
+  eq "Windows accents added after Caps, others kept" "terminate:ctrl_alt_bksp,caps:be_windows,be_azerty:accents" "$(want_options "terminate:ctrl_alt_bksp")"
+  CAPS=linux
+  eq "Linux Caps, Windows accents" "be_azerty:accents" "$(want_options "caps:be_windows,be_azerty:accents")"
+  eq "Belgian oss variant: no accents option (oss has its own Shift+AltGr level)" "" "$(want_options "be_azerty:accents" oss)"
+  eq "Belgian nodeadkeys variant: no accents option" "" "$(want_options "" nodeadkeys)"
+  eq "variant of Belgian in an X11 list" "oss" "$(xkb_be_variant "us,be" "intl,oss")"
+  eq "variant of standard Belgian in an X11 list" "" "$(xkb_be_variant "be,us" ",intl")"
+  ACCENTS=linux
+  eq "Linux accents: be_azerty:accents taken out" "lv3:ralt_switch" "$(want_options "be_azerty:accents,lv3:ralt_switch")"
+  CAPS=windows ACCENTS=windows APPLE=yes
+  eq "Apple keyboard: only the Mac option, no Windows Caps or accents" "kpdl:comma,be_azerty:mac" "$(DECIMAL=comma want_options "caps:be_windows,be_azerty:accents")"
+  APPLE=no
+  eq "back to a PC keyboard: Mac option out" "caps:be_windows,be_azerty:accents" "$(want_options "be_azerty:mac")"
+  printf '  caps:be_windows\t=\t+be_capslock(windows)\n' > "$XKB_RULES"   # 0.9.8 rules: no accents or Mac rule yet
+  eq "rules of 0.9.8: accents option not added" "caps:be_windows" "$(want_options "")"
+  eq "rules of 0.9.8: no Mac option either" "" "$(APPLE=yes want_options "")"
 )
 
 echo "== live: desktop lists keep other layouts and input methods"
@@ -117,6 +138,25 @@ CAPS=linux
     MATE)  eq "$d: layouts" "['be\\t', 'de\\t']" "$(got org.mate.peripherals-keyboard-xkb.kbd layouts)" ;;
   esac
   eq "$d: no errors" 0 "$FAILED"
+)
+done
+
+echo "== live: the accents option follows the variant of the user's Belgian entry"
+for src in "[('xkb', 'be'), ('xkb', 'us')]" "[('xkb', 'us'), ('xkb', 'be+oss')]" "[('xkb', 'be+nodeadkeys')]"; do
+(
+  rm -f "$FAKE_STORE"/*
+  export XDG_CURRENT_DESKTOP=GNOME FAKE_SCHEMAS="org.gnome.desktop.input-sources"
+  put org.gnome.desktop.input-sources sources "$src"
+  put org.gnome.desktop.input-sources xkb-options "['be_azerty:accents']"
+  load "PROFILE=windows
+CAPS=linux
+ACCENTS=windows
+"
+  XKB_CAPS=$T/caps; XKB_RULES=$T/rules; : > "$XKB_CAPS"
+  printf '  be_azerty:accents\t=\t+be_capslock(windows_accents)\n' > "$XKB_RULES"
+  live >/dev/null 2>&1
+  case "$src" in *"'be'"*) want="['be_azerty:accents']" ;; *) want="[]" ;; esac
+  eq "sources $src: options" "$want" "$(got org.gnome.desktop.input-sources xkb-options)"
 )
 done
 
@@ -156,6 +196,10 @@ choice() {   # CHOICES-FILE-CONTENT ENV... -> "PROFILE DECIMAL CAPS"
   local c=$1; shift
   ( export XDG_CURRENT_DESKTOP=${DESK:-X-Cinnamon} FAKE_SCHEMAS=""; for e; do export "${e?}"; done; load "$c"; echo "$PROFILE $DECIMAL $CAPS" )
 }
+choice2() {   # CHOICES-FILE-CONTENT ENV... -> "ACCENTS APPLE"
+  local c=$1; shift
+  ( export XDG_CURRENT_DESKTOP=${DESK:-X-Cinnamon} FAKE_SCHEMAS=""; for e; do export "${e?}"; done; load "$c"; echo "$ACCENTS $APPLE" )
+}
 eq "nothing saved, Mint: windows period windows" "windows period windows" "$(choice "")"
 eq "nothing saved, Zorin (GNOME): Windows profile keeps Linux Caps Lock" "windows period linux" "$(DESK=GNOME choice "")"
 eq "Zorin: CAPS=windows given wins" "windows period windows" "$(DESK=GNOME choice "" CAPS=windows)"
@@ -171,6 +215,59 @@ eq "PROFILE given sets Caps Lock from the profile" "linux comma linux" "$(choice
 DECIMAL=comma
 CAPS=windows
 " PROFILE=linux)"
+
+eq "nothing saved: Windows accents, no Apple keyboard" "windows no" "$(choice2 "")"
+eq "Zorin (GNOME): Windows accents with the Windows profile (no GNOME exception as for Caps)" "windows no" "$(DESK=GNOME choice2 "")"
+eq "0.9.8 choices file (no ACCENTS line): from the profile" "linux no" "$(choice2 "PROFILE=linux
+DECIMAL=period
+CAPS=linux
+")"
+eq "saved ACCENTS=linux and APPLE=yes kept on a rerun" "linux yes" "$(choice2 "PROFILE=windows
+DECIMAL=period
+CAPS=windows
+ACCENTS=linux
+APPLE=yes
+")"
+eq "PROFILE given sets the accents from the profile, Apple kept" "windows yes" "$(choice2 "PROFILE=linux
+ACCENTS=linux
+APPLE=yes
+" PROFILE=windows)"
+eq "APPLE=no given wins" "windows no" "$(choice2 "PROFILE=windows
+ACCENTS=windows
+APPLE=yes
+" APPLE=no)"
+eq "update from 0.9.8 with the Windows profile (no ACCENTS line): accents stay as they were (linux)" "linux no" "$(choice2 "PROFILE=windows
+DECIMAL=period
+CAPS=windows
+")"
+eq "update from 0.9.8, ACCENTS=windows given: Windows accents" "windows no" "$(choice2 "PROFILE=windows
+DECIMAL=period
+CAPS=windows
+" ACCENTS=windows)"
+eq "update from 0.9.8, PROFILE=windows given: from the profile" "windows no" "$(choice2 "PROFILE=windows
+DECIMAL=period
+CAPS=windows
+" PROFILE=windows)"
+
+echo "== accent then space (~/.XCompose, per user)"
+(
+  load ""; rm -f "$HOME/.XCompose"
+  accent_space on >/dev/null
+  eq "on: file written with the include and the two lines" 3 "$(grep -cE '^include "%L"$|^<dead_acute> <space> : "´"|^<dead_diaeresis> <space> : "¨"' "$HOME/.XCompose")"
+  accent_space on >/dev/null; eq "on twice: still ours, no error" 0 "$FAILED"
+  accent_space off >/dev/null; eq "off: our file removed" no "$([ -e "$HOME/.XCompose" ] && echo yes || echo no)"
+  printf '<Multi_key> <a> <a> : "å"\n' > "$HOME/.XCompose"
+  accent_space on >/dev/null 2>&1; eq "on with the user's own file: unchanged" '<Multi_key> <a> <a> : "å"' "$(cat "$HOME/.XCompose")"
+  eq "and reported" 1 "$FAILED"; FAILED=0
+  accent_space off >/dev/null; eq "off with the user's own file: unchanged" '<Multi_key> <a> <a> : "å"' "$(cat "$HOME/.XCompose")"
+  rm -f "$HOME/.XCompose"; accent_space on >/dev/null; echo '<Multi_key> <o> <o> : "ø"' >> "$HOME/.XCompose"
+  accent_space off >/dev/null 2>&1; eq "off after the user edited our file: left alone" 1 "$(grep -c 'ø' "$HOME/.XCompose")"
+  rm -f "$HOME/.XCompose"
+  export FAKE_SCHEMAS=org.gnome.desktop.input-sources; rm -f "$FAKE_STORE"/org.gnome.desktop.input-sources.sources*; put org.gnome.desktop.input-sources sources "[('xkb', 'be'), ('xkb', 'us+intl')]"
+  accent_space on >/dev/null 2>&1; eq "on next to US international: refused" "no 1" "$([ -e "$HOME/.XCompose" ] && echo yes || echo no) $FAILED"; FAILED=0
+  FORCE=1 accent_space on >/dev/null 2>&1; eq "FORCE=1: switched on anyway" yes "$([ -e "$HOME/.XCompose" ] && echo yes || echo no)"
+  accent_space off >/dev/null; rm -f "$FAKE_STORE/org.gnome.desktop.input-sources.sources"; FAKE_SCHEMAS=""
+)
 
 echo "== ibus skip: off unless the user switched it on"
 (

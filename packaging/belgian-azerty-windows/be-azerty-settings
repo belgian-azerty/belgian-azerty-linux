@@ -79,6 +79,20 @@ case "${XDG_CURRENT_DESKTOP:-}" in
     esac ;;
 esac
 
+# Belgian Apple keyboard layout switched on (APPLE=yes, command line only): say so, and how to switch it off.
+if [ "$(saved APPLE)" = yes ]; then
+  case "$L" in
+    nl*) Q="$Q
+Apple-toetsenbord aan (Mac-indeling). Uitzetten: sudo APPLE=no be-azerty-fix system" ;;
+    fr*) Q="$Q
+Clavier Apple activé (disposition Mac). Désactiver : sudo APPLE=no be-azerty-fix system" ;;
+    de*) Q="$Q
+Apple-Tastatur an (Mac-Belegung). Ausschalten: sudo APPLE=no be-azerty-fix system" ;;
+    *)   Q="$Q
+Apple keyboard on (Mac layout). Switch off: sudo APPLE=no be-azerty-fix system" ;;
+  esac
+fi
+
 if ! command -v zenity >/dev/null; then
   echo "$NOZ  sudo PROFILE=windows|linux DECIMAL=period|comma be-azerty-fix system" >&2; exit 1
 fi
@@ -125,8 +139,14 @@ set -- $pick
 
 # Applying takes a while (console keymap, boot image), so a pulsing bar shows it is busy.
 log=$(mktemp); trap 'rm -f "$log" "$log.rc"' EXIT
-# Same profile, other decimal key: keep a Caps Lock choice made on the command line (CAPS=), as a rerun does.
-caps=(); [ "$1" = "$PROFILE" ] && c=$(saved CAPS) && [ -n "$c" ] && caps=("CAPS=$c")
+# Same profile, other decimal key: keep Caps Lock and Shift+AltGr choices made on the command line (CAPS=, ACCENTS=),
+# as a rerun does. An Apple keyboard choice (APPLE=) is kept by be-azerty-fix itself.
+caps=(); if [ "$1" = "$PROFILE" ]; then
+  c=$(saved CAPS); [ -n "$c" ] && caps+=("CAPS=$c")
+  c=$(saved ACCENTS); [ -n "$c" ] && caps+=("ACCENTS=$c")
+  # choices saved by 0.9.8 or earlier have no ACCENTS line: keep Shift+AltGr as it was (caron, breve, dot above)
+  [ -z "$c" ] && [ -s "$CHOICES" ] && caps+=("ACCENTS=linux")
+fi
 ( pkexec "$FIX" system "PROFILE=$1" "DECIMAL=$2" "${caps[@]}" >"$log" 2>&1; echo $? >"$log.rc" ) &
 pid=$!
 while kill -0 "$pid" 2>/dev/null; do echo "# $WAIT"; sleep 1; done |

@@ -4,6 +4,29 @@ A plain-language summary. The technical changelogs are in `packaging/*/debian/ch
 were made between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds
 that were never published. They are listed because the test evidence refers to them.
 
+## 0.9.9
+
+- **Shift+AltGr accents as on Windows.** With the Windows profile, Shift+AltGr on the `ù`, `µ` and `=` keys gives
+  `´`, `` ` `` and `~`, the same accents as AltGr, as on Windows. Linux gives caron, breve and dot above there; the
+  Linux-standard profile and `ACCENTS=linux` keep those. Only the standard Belgian layout changes, wherever it sits in
+  the list of layouts. If you update from 0.9.8, your accents stay as they were until you choose `ACCENTS=windows`.
+- **Accent then space, optional and per user.** `be-azerty-fix accent-space on` makes `´` then space give `´` and
+  `¨` then space give `¨`, as on Windows, in GTK apps and the ibus input method. A `~/.XCompose` of your own is never
+  changed. Refused next to a "US international"-type layout.
+- **Belgian Apple keyboards, optional.** `APPLE=yes` types the characters printed on a Belgian Apple keyboard (from
+  Unicode CLDR's macOS data); `be-azerty-fix apple-iso-keys on` fixes keyboards whose key left of 1 and key next to
+  left Shift come out swapped. Refused without a connected Apple keyboard, because it changes every keyboard and the
+  login screen. Not tested on a real Apple keyboard.
+- In a test container, 306 of the 308 Windows Belgian characters compared now come out the same (0.9.8: 272; without
+  accent-space: 302), and nothing that matched in 0.9.8 changed.
+- Uninstall and removing the package take all of this project's keyboard options out of every setting, and remove the
+  Apple key setting.
+- Found by an independent "try to break it" review of this version before release, and fixed: updating from 0.9.8
+  would have changed your Shift+AltGr accents without asking; `APPLE=yes` on a PC keyboard (or with only an Apple
+  mouse) would have changed every keyboard and the login screen; the new options hit the first layout even when
+  Belgian was second; accent-space ignored `XCOMPOSEFILE`, a link of your own and US international layouts; the Apple
+  key setting outlived uninstall; the boot image was rebuilt on every `apple-iso-keys` run.
+
 ## 0.9.8
 
 - **Your other layouts and input methods are kept.** 0.9.7 replaced the list of layouts with Belgian only when you

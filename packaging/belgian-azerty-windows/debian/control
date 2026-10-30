@@ -19,10 +19,14 @@ Description: Belgian AZERTY keyboard that behaves like on Windows
     whole main block (digits row and punctuation), as Windows "Belgian
     (Period)" and "Belgian (Comma)" do; ², <, AltGr and the numpad are
     unaffected;
+  * the XKB option be_azerty:accents: Shift+AltGr on ù, µ and = gives the
+    same accent as AltGr (´ ` ~), as on Windows;
+  * the XKB option be_azerty:mac: the Belgian Apple (Mac) keyboard layout,
+    for Apple keyboards only;
   * be-azerty-fix, which makes every place that stores the keyboard layout
     (console, boot prompt, login screen, desktop, defaults for new users)
     agree on Belgian, with the Period or Comma numpad, and can undo it all.
  .
- Installing the package only makes the Caps Lock option available; run
- "sudo be-azerty-fix system" to switch it on. The Ctrl+Alt = AltGr habit is
+ Installing the package only makes these options available; run
+ "sudo be-azerty-fix system" to switch them on. The Ctrl+Alt = AltGr habit is
  in the keyd-belgian-windows package.
