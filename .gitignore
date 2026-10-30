@@ -1,0 +1,13 @@
+# Built packages, disk images and archives belong on the release page, not in git
+*.deb
+*.dsc
+*.tar.xz
+*.iso
+*.img
+*.qcow2
+*.vdi
+*.tgz
+*.tar.gz
+*.zip
+# Emulator screenshots: keep them in the evidence archive outside git, or shrink them (pngquant) before committing
+evidence/**/shots/

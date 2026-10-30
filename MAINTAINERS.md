@@ -98,6 +98,11 @@ menu against the new `md5sum.txt`) and fails loudly on any xorriso error.
 
 ## 5. Testing
 
+GitHub runs the first four rows below on every change to `main` and on every pull request, on a fresh Ubuntu 24.04
+machine each time (`.github/workflows/tests.yml`; results in the repository's Actions tab). Built packages, disk images,
+archives and emulator screenshot folders are no longer committed (`.gitignore`): packages go on the release page, and
+new screenshots are shrunk before committing or kept outside git with their sha256 in the log.
+
 | What | How | Where the evidence is |
 |---|---|---|
 | Static checks, settings logic, package build, lintian, Caps table, ISO checksums | `tests/run-offline.sh [ISO...]` (runs `tests/settings-logic.sh`) | `evidence/raw-logs/fix-round/run-offline.txt`; 0.9.8: `evidence/raw-logs/2026-10-27-build-0.9.8/` |
