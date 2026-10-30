@@ -2,8 +2,9 @@
 # belgian-stick: the small glue that makes the Belgian stick (make_belgian_iso.sh with packages) apply the boot-menu
 # choice. It lives in the stick's extra layer (/casper/zz-belgian-azerty.squashfs) next to the untouched system image.
 #   belgian-stick live-boot      live session, before the login screen: apply the boot-menu choice
-#   belgian-stick install-target Ubiquity hook (target-config) at the end of an install: put our packages and the
-#                                choice into the installed system (/target) and arm a one-time first-boot run
+#   belgian-stick install-target Ubiquity hook (target-config) at the end of an install: put our packages, the
+#                                keyd-team PPA entry and the choice into the installed system (/target) and arm a
+#                                one-time first-boot run
 #   belgian-stick first-boot     installed system, first start only: "be-azerty-fix system" with the saved choice,
 #                                then removes its own service
 # The boot menu passes: belgian.keyboard=be|de  belgian.decimal=period|comma  belgian.formats=be (English entries:
@@ -57,6 +58,10 @@ case "${1:-}" in
     # (the glob is expanded inside the target, where the files are)
     chroot $T sh -c 'DEBIAN_FRONTEND=noninteractive apt-get install -y /tmp/belgian/*.deb'
     echo "apt rc=$?"; rm -rf $T/tmp/belgian
+    # The stick's keyd-team PPA entry (build-layer.sh), so the installed system gets keyd updates as well.
+    for f in /etc/apt/sources.list.d/*keyd* /etc/apt/keyrings/*keyd* /etc/apt/trusted.gpg.d/*keyd*; do
+      [ -e "$f" ] || continue; mkdir -p "$T${f%/*}"; cp -a "$f" "$T$f" && echo "added $f"
+    done
     mkdir -p $T/var/lib/belgian-azerty-windows
     # No CAPS line in the fallback: the first boot then takes Caps Lock from the profile, which on GNOME (Zorin) stays
     # Linux (Caps Lock option A, 0.9.6); a saved CAPS=windows would switch Windows Caps Lock on there.

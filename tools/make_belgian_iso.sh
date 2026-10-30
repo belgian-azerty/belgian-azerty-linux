@@ -137,8 +137,9 @@ if [ -n "$PACKAGES" ]; then
   echo "building the package layer (this unpacks the system image once)"
   xorriso -osirrox on -indev "$IN" -extract /casper/filesystem.squashfs "$W/filesystem.squashfs" >/dev/null 2>&1 \
     || { echo "could not read /casper/filesystem.squashfs from $IN" >&2; exit 1; }
-  bash "$HERE/stick/build-layer.sh" "$W/filesystem.squashfs" "$PACKAGES" "$W/zz-belgian-azerty.squashfs" > "$W/layer.log" 2>&1 \
-    || { echo "building the layer failed:" >&2; tail -20 "$W/layer.log" >&2; exit 1; }
+  rc=0; bash "$HERE/stick/build-layer.sh" "$W/filesystem.squashfs" "$PACKAGES" "$W/zz-belgian-azerty.squashfs" \
+    > "$OUT.layer.log" 2>&1 || rc=$?
+  [ $rc = 0 ] || { echo "building the layer failed (full log: $OUT.layer.log):" >&2; tail -40 "$OUT.layer.log" >&2; exit 1; }
   rm -f "$W/filesystem.squashfs"
   mkdir -p "$W/belgian"
   cp "$PACKAGES"/keyd_*_amd64.deb "$PACKAGES"/keyd-belgian-windows_*_all.deb "$PACKAGES"/belgian-azerty-windows_*_all.deb "$W/belgian/"
