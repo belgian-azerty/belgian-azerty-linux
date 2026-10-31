@@ -1,3 +1,17 @@
+belgian-azerty-windows (0.9.10) noble; urgency=medium
+
+  * "be-azerty-fix system" no longer says "only 4 layouts fit ... be left
+    out" on a system with one layout, and "be-azerty-fix live" no longer
+    says the running X session left a layout out (wrong messages since
+    0.9.8; the layouts themselves were never changed). Found in the
+    laptop test of 0.9.9.
+  * README: corrected the 0.9.9 sentence that the text console and disk
+    unlock follow the Apple layout. They keep the PC layout, as the 0.9.9
+    entry below says: setupcon reads the base rules, which this package
+    does not change.
+
+ -- @MAINTAINER@  Sat, 31 Oct 2026 14:28:37 +0000
+
 belgian-azerty-windows (0.9.9) noble; urgency=medium
 
   * Shift+AltGr on the ù, µ and = keys gives the same accent as AltGr
@@ -26,9 +40,6 @@ belgian-azerty-windows (0.9.9) noble; urgency=medium
     variant (not nodeadkeys, oss, iso-alternate, wang).
   * accent-space refuses to switch on when a "US international"-type
     layout is in use (its own accents would change); FORCE=1 overrides.
-  * "be-azerty-fix system" no longer says "only 4 layouts fit ... be left
-    out" on a system with one layout (wrong message since 0.9.8; the
-    layout itself was never changed). Found in the laptop test.
   * Uninstall and removing the package take all of this project's
     keyboard options out of every setting (system default, every user's
     GNOME and Cinnamon options), and remove the Apple key setting.

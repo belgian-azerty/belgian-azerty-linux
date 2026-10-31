@@ -4,6 +4,27 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## 0.9.10
+
+0.9.10 only removes two wrong messages; the keyboard types exactly as with 0.9.9 (the keyboard files and the rules
+are the same; the update leaves the rules file byte for byte as it was). Tested **only in Ubuntu 24.04 test
+containers** on 31 October 2026, not in the laptop emulators and not on real hardware:
+
+- Update 0.9.9 → 0.9.10 → back to 0.9.9, then removal (32 checks): with Belgian as the only layout, 0.9.9 printed
+  "only 4 layouts fit ... be left out" and 0.9.10 does not; with 2, 3 and 4 layouts no message; with 5 layouts the
+  message names the fifth one (ru) and the system default keeps the first four. The update alone changes no setting;
+  `sudo be-azerty-fix system` afterwards keeps the 0.9.9 choices and settings and does not rebuild the boot image.
+- The text console: `setupcon`, the tool that makes the console keymap and the copy in the boot image for the disk
+  unlock prompt, gives exactly the PC keymap with `be_azerty:accents`, with `be_azerty:mac` and after `APPLE=yes`:
+  it reads the general rules file, which this project does not change. So the console keeps the PC layout, as the
+  0.9.9 package changelog said; the 0.9.9 README said the opposite, from a check that called the keymap tool with
+  the rules file the console never uses. Checked in a container only, not on a real console or disk unlock prompt.
+- `be-azerty-fix live` on X11 (as on Mint), with a stand-in for the X server's layout list: 0.9.9 said "be not in it
+  now" with Belgian as the only layout; 0.9.10 says nothing with 1 to 4 layouts and names the fifth layout when there
+  is one.
+- `tests/run-offline.sh`, `tests/pkg-cycle.sh` (37 checks), `tests/lived-in.sh` (77 checks, one more than 0.9.9: no
+  "layouts fit" message with one layout): all pass.
+
 ## 0.9.9
 
 0.9.9 adds the Shift+AltGr accents of Windows, an optional "accent then space" for each user, and an optional layout

@@ -54,10 +54,12 @@ t=$(python3 "$ROOT/tools/optiontest.py" --include "$inc" be be_azerty:mac fr:mac
 t=$(python3 "$ROOT/tools/optiontest.py" --include "$inc" be caps:be_windows,be_azerty:accents be caps:be_windows | tail -1)
 [ "$t" = "differences: 3" ]; res $? "accents option on top of Windows Caps Lock: same 3 changes"
 if command -v ckbcomp >/dev/null; then
-  plain=$(ckbcomp -I"$inc" -rules evdev -layout be 2>/dev/null)
+  # setupcon passes -rules only when /etc/default/keyboard sets XKBRULES (it does not on Mint and Zorin), so ckbcomp
+  # uses the base rules, which this project does not change: the console keeps the PC layout with these options.
+  plain=$(ckbcomp -I"$inc" -layout be 2>/dev/null)
   for o in be_azerty:accents be_azerty:mac; do
-    km=$(ckbcomp -I"$inc" -rules evdev -layout be -option "$o" 2>/dev/null) && [ -n "$km" ] && [ "$km" != "$plain" ]
-    res $? "console keymap (ckbcomp) with $o: builds and follows the option"
+    km=$(ckbcomp -I"$inc" -layout be -option "$o" 2>/dev/null) && [ -n "$km" ] && [ "$km" = "$plain" ]
+    res $? "console keymap (ckbcomp as setupcon calls it) with $o: builds and keeps the PC layout"
   done
 fi
 rm -rf "$inc"

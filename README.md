@@ -12,12 +12,17 @@ behaviour that Belgians are used to, and a live USB that starts with the Belgian
 | Shift+AltGr accents | Shift+AltGr on the `ù` `µ` `=` keys gives `´` `` ` `` `~`, as on Windows (Linux gives caron, breve, dot above) | package `belgian-azerty-windows` (XKB option `be_azerty:accents`, `ACCENTS=`) |
 | Live USB and installer start with the Belgian keyboard | Repacked ISO whose boot menu asks for the language, then the Belgian keyboard (period or comma) | `tools/make_belgian_iso.sh` |
 
-**Status.** Version 0.9.9. This is a long-standing problem that no project owns. The fix was tested in emulators and
+**Status.** Version 0.9.10. This is a long-standing problem that no project owns. The fix was tested in emulators and
 on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.9 in test containers, a headless GNOME
-desktop and emulators on the test laptop, see `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
+desktop and emulators on the test laptop; the fixes of 0.9.10 in test containers only; see
+`HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
 for Linux Mint, Zorin OS and the projects they build on to adopt these fixes themselves (`MAINTAINERS.md` says which
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
 version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
+
+**New in 0.9.10**: no more false "left out" messages from `be-azerty-fix system` and `be-azerty-fix live` when
+Belgian is your only layout, and the 0.9.9 README sentence about the text console is corrected (the console keeps the PC
+layout). The keyboard types the same as with 0.9.9.
 
 **New in 0.9.9** (`CHANGELOG.md` has the details):
 - Shift+AltGr on the `ù`, `µ` and `=` keys gives the same accents as on Windows (new installs with the Windows
@@ -42,7 +47,8 @@ fast-typing workaround is off unless you switch it on.
 
    (`apt update` is needed on Mint, whose `add-apt-repository` does not refresh the package list by itself.)
 
-2. Download the two packages from the release page into one folder, open a terminal there, then:
+2. Download the two packages from the release page into a folder without older versions of them, open a terminal
+   there, then:
 
    ```
    sudo apt install ./keyd-belgian-windows_*.deb ./belgian-azerty-windows_*.deb
@@ -150,8 +156,9 @@ sudo be-azerty-fix apple-iso-keys on    # only if the key left of 1 and the key 
 `APPLE=yes` uses the layout data of Unicode CLDR (macOS "Belgian"); Option acts as AltGr, and the Windows Caps Lock
 and Shift+AltGr accents do not apply (Caps Lock works as on Linux). It changes the layout for every keyboard on the
 computer and on the login screen, so it is refused when no Apple keyboard is connected (`FORCE=1` overrides). The
-text console and the disk unlock prompt follow it too (checked with the console keymap tool, not on a real console). Back to a PC keyboard: `sudo APPLE=no be-azerty-fix
-system` and `sudo be-azerty-fix apple-iso-keys auto`. **Not tested on a real Apple keyboard**; in a test container 333
+text console and the disk unlock prompt keep the PC layout: the console tool reads the general rules file, which this
+project does not change (checked with the console tool in a test container, not on a real console). Back to a PC
+keyboard: `sudo APPLE=no be-azerty-fix system` and `sudo be-azerty-fix apple-iso-keys auto`. **Not tested on a real Apple keyboard**; in a test container 333
 of 367 macOS characters came out the same (the PC layout: 199); the rest is Caps Lock, which works differently on a Mac.
 
 ## Fast typing: optional ibus skip for the Terminal, the text editor and VS Code
@@ -173,6 +180,17 @@ be-azerty-fix ibus-skip off --all          # nothing skips ibus any more
 ```
 
 How it works, the measurements and its limits: `HOW-WE-TESTED.md`, section "Fast typing".
+
+## Coming from 0.9.9
+
+Install the two new packages, naming the new files exactly (if the folder still holds the 0.9.9 files, `*.deb` would
+pick those and nothing would be updated):
+
+```
+sudo apt install ./keyd-belgian-windows_0.9.10_all.deb ./belgian-azerty-windows_0.9.10_all.deb
+```
+
+Nothing else is needed: 0.9.10 changes no setting and types the same as 0.9.9.
 
 ## Coming from 0.9.8
 
@@ -268,12 +286,7 @@ with Linux Mint or Zorin OS.
   the mouse, or run `sudo systemctl restart keyd` with the on-screen keyboard.
 - **Accent then space only works in apps that read `~/.XCompose`** (GTK apps, the Terminal and the ibus input method).
   Not checked in Qt apps or VS Code.
-- **`sudo be-azerty-fix system` can say "only 4 layouts fit in the system default: be left out there"** when Belgian is
-  your only layout. The message is wrong (also in 0.9.8): nothing is left out and the layout is not changed. Fixed in
-  the next version.
-- **The package changelog says the text console and disk unlock keep the PC layout with `APPLE=yes`.** That is wrong:
-  they follow the Apple layout too (see "Apple keyboards"). Fixed in the next version.
-- Not tested: a real Apple keyboard, real hardware with 0.9.9 (only the laptop emulator), VirtualBox, Ubuntu itself, other distributions, a second USB keyboard, Wine, remote
+- Not tested: a real Apple keyboard, real hardware with 0.9.9 or 0.9.10 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu itself, other distributions, a second USB keyboard, Wine, remote
   desktop. Full list: `HOW-WE-TESTED.md`.
 
 ## Help test, or answer the survey

@@ -1,3 +1,9 @@
+keyd-belgian-windows (0.9.10) noble; urgency=medium
+
+  * Rules unchanged; version kept in step with belgian-azerty-windows.
+
+ -- @MAINTAINER@  Sat, 31 Oct 2026 14:28:37 +0000
+
 keyd-belgian-windows (0.9.9) noble; urgency=medium
 
   * Rules unchanged; version kept in step with belgian-azerty-windows.

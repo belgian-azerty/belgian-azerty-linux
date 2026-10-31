@@ -4,6 +4,19 @@ A plain-language summary. The technical changelogs are in `packaging/*/debian/ch
 were made between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds
 that were never published. They are listed because the test evidence refers to them.
 
+## 0.9.10
+
+A small fix release; the keyboard itself types exactly as with 0.9.9.
+
+- `sudo be-azerty-fix system` no longer says "only 4 layouts fit in the system default: be left out" when Belgian is the
+  only layout, and `be-azerty-fix live` no longer says a layout is missing from the running X session (wrong messages
+  since 0.9.8; nothing was left out and the layout was never changed). Found in the laptop test of 0.9.9.
+- Correction: the 0.9.9 README (and its "Known issues") said that the text console and the disk unlock prompt follow
+  the Apple layout with `APPLE=yes`. That was wrong: they keep the PC layout, as the package changelog said. The
+  console tool (`setupcon`) reads the general rules file, which this project does not change, so it ignores this
+  project's options. Found by the "try to break it" review of 0.9.10 with the console tool itself; the 0.9.9 check
+  had used the keymap tool in a way the console never does.
+
 ## 0.9.9
 
 - **Shift+AltGr accents as on Windows.** With the Windows profile, Shift+AltGr on the `ù`, `µ` and `=` keys gives
@@ -21,8 +34,6 @@ that were never published. They are listed because the test evidence refers to t
   accent-space: 302), and nothing that matched in 0.9.8 changed.
 - Uninstall and removing the package take all of this project's keyboard options out of every setting, and remove the
   Apple key setting.
-- `sudo be-azerty-fix system` no longer says "only 4 layouts fit in the system default: be left out" when Belgian is the
-  only layout (a wrong message since 0.9.8; the layout was never changed).
 - Found by an independent "try to break it" review of this version before release, and fixed: updating from 0.9.8
   would have changed your Shift+AltGr accents without asking; `APPLE=yes` on a PC keyboard (or with only an Apple
   mouse) would have changed every keyboard and the login screen; the new options hit the first layout even when
