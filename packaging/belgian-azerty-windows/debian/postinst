@@ -1,12 +1,20 @@
 #!/bin/sh
 set -e
 
-RULES=/usr/share/X11/xkb/rules/evdev
+OLD_RULES=/usr/share/X11/xkb/rules/evdev
+# xkb-data 2.46 (Ubuntu 26.04 and later) keeps its files in /usr/share/xkeyboard-config-2 and makes
+# /usr/share/X11/xkb a link to it. dpkg only knows the real name, so the diversion must use the real name.
+RULES=$(readlink -f "$OLD_RULES")
 
 case "$1" in
     configure)
         # Divert xkb-data's rules file, so xkb-data upgrades write to evdev.distrib and our generated evdev stays.
         # --no-rename and a copy: the rules file is never missing, not even for a moment.
+        # 0.9.10 and earlier diverted the old name, which does nothing when it is a link: drop that diversion first
+        # (--no-rename: nothing is moved, the file under the link stays where it is).
+        if [ "$RULES" != "$OLD_RULES" ] && dpkg-divert --list "$OLD_RULES" | grep -q belgian-azerty-windows; then
+            dpkg-divert --package belgian-azerty-windows --no-rename --remove "$OLD_RULES"
+        fi
         if ! dpkg-divert --list "$RULES" | grep -q belgian-azerty-windows; then
             # The copy leaves out a rule an older be-azerty-fix.sh appended by hand, so evdev.distrib is xkb-data's file.
             /usr/lib/belgian-azerty-windows/update-xkb-rules strip "$RULES" "$RULES.distrib.tmp"

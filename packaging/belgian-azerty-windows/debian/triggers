@@ -1,2 +1,4 @@
 # Re-add the caps:be_windows rule whenever xkb-data (or anything else) installs files in the rules directory.
 interest-noawait /usr/share/X11/xkb/rules
+# xkb-data 2.46+ installs its files under this name (/usr/share/X11/xkb is then a link to it)
+interest-noawait /usr/share/xkeyboard-config-2/rules

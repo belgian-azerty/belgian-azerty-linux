@@ -4,6 +4,31 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## 0.9.11
+
+0.9.11 only changes how the package keeps its rules in the keyboard files; the keyboard files and the rules themselves
+are the same as in 0.9.10. Tested **only in test containers** on 2 November 2026 (Ubuntu 24.04, Ubuntu 26.04 and
+Debian 13), not in the laptop emulators and not on real hardware:
+
+- First, 0.9.10 on the three systems: on Ubuntu 24.04 and Debian 13 every check passed; on Ubuntu 26.04 four checks of
+  `tests/pkg-cycle.sh` failed, because an update of xkb-data removed the rules (see `CHANGELOG.md`).
+- 0.9.11, `tests/pkg-cycle.sh` (37 checks): all pass on all three, including Ubuntu 26.04.
+- Update 0.9.10 → 0.9.11, then removal (15 checks, `tests/xkb-link-upgrade.sh`), on all three, and on Ubuntu 26.04 a
+  second time with an xkb-data update between them: all pass. On 26.04 the rules were gone under 0.9.10 and are back
+  once with 0.9.11, never twice; after removal the keyboard rules file is byte for byte the one xkb-data shipped.
+- `tests/lived-in.sh` (77 checks) and every Belgian key typed on a headless GNOME desktop against the Windows table
+  (302 of the 308 combinations where Windows types a character came out as on Windows, the same as 0.9.10; the other
+  6 are keyd's AltGr+4/5, which cannot run in a container, and the optional accent then space, which was off) on
+  Ubuntu 24.04 and Debian 13. On Debian, `tests/lived-in.sh` ran with its two keyd-team PPA lines replaced, because
+  Debian has keyd itself.
+- Upgrade of the keyboard data from Ubuntu 24.04's xkb-data to Ubuntu 26.04's (2.46-2), with `dpkg -i` in an Ubuntu
+  24.04 container (only this one package, not a full system upgrade): without our package it works; with 0.9.10 or
+  0.9.11 installed it **fails** (xkb-data's own check refuses to turn the folder into a link while our files are in it).
+  Removing the package first (`apt remove` or `apt purge`), then updating xkb-data, then installing 0.9.11 again works:
+  the rules are back once, on the real name.
+- Not run on Ubuntu 26.04: `tests/lived-in.sh` and the typing check, because its system manager (systemd 259) does not
+  start in the test machine used; the laptop emulator can run them later.
+
 ## 0.9.10
 
 0.9.10 only removes two wrong messages; the keyboard types exactly as with 0.9.9 (the keyboard files and the rules

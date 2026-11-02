@@ -6,12 +6,15 @@
 #   update-xkb-rules              regenerate evdev from evdev.distrib
 #   update-xkb-rules strip IN OUT copy IN to OUT without the block an older be-azerty-fix.sh appended by hand
 set -e
-RULES=/usr/share/X11/xkb/rules/evdev
+RULES=$(readlink -f /usr/share/X11/xkb/rules/evdev)   # real name: xkeyboard-config-2 on xkb-data 2.46+
 SRC=$RULES.distrib
 
 # The hand-written block was: an empty line, the marker comment, "! option = symbols", the caps:be_windows line.
+# Also drops our own generated rules (from the first "// belgian-azerty-windows:" line to the end), so a file that
+# already holds them (0.9.10 and earlier on xkb-data 2.46+, where the old diversion did nothing) is cleaned too.
 strip_legacy() {
     awk '
+        /^\/\/ belgian-azerty-windows: / { held = 0; exit }
         /^$/ { if (held) print ""; held = 1; next }
         /^\/\/ be-azerty-fix\.sh: Caps Lock as on Windows Belgian$/ { held = 0; skip = 1; next }
         skip { if (/caps:be_windows/) skip = 0; next }

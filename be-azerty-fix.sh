@@ -86,7 +86,7 @@
 # Ubuntu 24.04 based systems get from the keyd-team PPA (sudo add-apt-repository ppa:keyd-team/ppa). "system" installs
 # the packages found next to this script (or in dist/ next to it) if they are not installed yet.
 #
-# Version 0.9.10. What was tested where: HOW-WE-TESTED.md.
+# Version 0.9.11. What was tested where: HOW-WE-TESTED.md.
 set -u
 # Commands with their own words after them (ibus-skip, apple-iso-keys, accent-space) take no settings.
 case "${1:-}" in ibus-skip|apple-iso-keys|accent-space) ;; *)
@@ -134,7 +134,7 @@ if [ -n "${APPLE:-}" ]; then APPLE_FROM="given"
 elif APPLE=$(saved_choice APPLE) && [ -n "$APPLE" ]; then APPLE_FROM="kept from the last run"
 else APPLE=no; APPLE_FROM="default"; fi
 case "$APPLE" in yes|no) ;; *) echo "APPLE must be yes or no" >&2; exit 1 ;; esac
-XKB_RULES=/usr/share/X11/xkb/rules/evdev
+XKB_RULES=$(readlink -f /usr/share/X11/xkb/rules/evdev)   # real name: xkeyboard-config-2 on xkb-data 2.46+
 XKB_CAPS=/usr/share/X11/xkb/symbols/be_capslock
 APPLE_MODPROBE=/etc/modprobe.d/belgian-azerty-apple.conf
 # Cinnamon (Mint) ships a schema default for its xkb-options, which beats /etc/default/keyboard for every user who has

@@ -7,7 +7,7 @@
 # KEYD_DEB=path), and purge.
 set -u
 D=$(realpath "${1:?usage: pkg-cycle.sh DIST_DIR}"); HERE=$(cd "$(dirname "$0")/.." && pwd)
-R=/usr/share/X11/xkb/rules/evdev; FAIL=0
+R=$(readlink -f /usr/share/X11/xkb/rules/evdev); FAIL=0   # real name on xkb-data 2.46+
 pass() { echo "PASS  $*"; }
 fail() { echo "FAIL  $*"; FAIL=1; }
 t() { local d=$1; shift; if "$@" >/dev/null 2>&1; then pass "$d"; else fail "$d"; fi; }

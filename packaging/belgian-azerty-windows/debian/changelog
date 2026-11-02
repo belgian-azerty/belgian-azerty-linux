@@ -1,3 +1,17 @@
+belgian-azerty-windows (0.9.11) noble; urgency=medium
+
+  * Keep the Caps Lock, accents and Apple rules on xkb-data 2.46 and later
+    (Ubuntu 26.04, which Linux Mint 23 will use; Debian made the same
+    change). There /usr/share/X11/xkb is a link to
+    /usr/share/xkeyboard-config-2, and the diversion of the old name did
+    nothing: an xkb-data update removed the rules (Linux Caps Lock and
+    accents came back; the keyboard kept working). The package now diverts
+    the real name, watches the new folder, and on an update from 0.9.10
+    drops the old diversion and cleans the rules file. Nothing changes on
+    systems without the link (Mint 22, Zorin 18, Ubuntu 24.04, Debian 13).
+
+ -- @MAINTAINER@  Mon, 02 Nov 2026 11:29:31 +0000
+
 belgian-azerty-windows (0.9.10) noble; urgency=medium
 
   * "be-azerty-fix system" no longer says "only 4 layouts fit ... be left

@@ -4,6 +4,23 @@ A plain-language summary. The technical changelogs are in `packaging/*/debian/ch
 were made between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds
 that were never published. They are listed because the test evidence refers to them.
 
+## 0.9.11
+
+Preparation for the next Ubuntu base; on Mint 22.3 and Zorin 18.1 the keyboard types exactly as with 0.9.10.
+
+- **The rules stay after a keyboard-data update on Ubuntu 26.04.** From xkb-data 2.46 (Ubuntu 26.04, the base Linux
+  Mint 23 will use; Debian made the same change), the keyboard files live in `/usr/share/xkeyboard-config-2` and
+  `/usr/share/X11/xkb` is only a link to it. The package protected the rules file under the old name, which the package
+  system no longer knows, so an update of xkb-data removed the Caps Lock, accents and Apple rules: Linux Caps Lock and
+  accents came back until the package was installed again. The keyboard itself kept working. 0.9.11 protects the real
+  name, follows updates in the new folder, and when updating from 0.9.10 cleans up the old protection. Found while
+  trying the packages on Ubuntu 24.04, Ubuntu 26.04 and Debian 13 in test containers.
+- **Known problem, not fixed (all versions so far): upgrading the system.** On Ubuntu 24.04 with the package installed,
+  the update to xkb-data 2.46 (part of an upgrade to Ubuntu 26.04, Linux Mint 23 or Debian 14) stops with an error:
+  xkb-data can only turn `/usr/share/X11/xkb` into a link when that folder holds nothing but its own files, and the
+  package keeps its Caps Lock file and the rules diversion there. Remove the package before such an upgrade
+  (`sudo apt remove belgian-azerty-windows`), install it again afterwards and run `sudo be-azerty-fix system` again.
+
 ## 0.9.10
 
 A small fix release; the keyboard itself types exactly as with 0.9.9.

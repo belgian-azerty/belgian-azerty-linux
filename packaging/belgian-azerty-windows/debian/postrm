@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
 
-RULES=/usr/share/X11/xkb/rules/evdev
+OLD_RULES=/usr/share/X11/xkb/rules/evdev
+RULES=$(readlink -f "$OLD_RULES")   # real name on xkb-data 2.46+ (see postinst)
 OVERRIDE=/usr/share/glib-2.0/schemas/zz_belgian-azerty-windows.gschema.override
 
 case "$1" in
@@ -12,6 +13,10 @@ case "$1" in
                 mv -f "$RULES.distrib" "$RULES"
             fi
             dpkg-divert --package belgian-azerty-windows --no-rename --remove "$RULES"
+        fi
+        # A diversion of the old name left by 0.9.10 or earlier on a system where it is a link: drop it too.
+        if [ "$RULES" != "$OLD_RULES" ] && dpkg-divert --list "$OLD_RULES" | grep -q belgian-azerty-windows; then
+            dpkg-divert --package belgian-azerty-windows --no-rename --remove "$OLD_RULES"
         fi
         # Without the rules, caps:be_windows, be_azerty:accents and be_azerty:mac are unknown options (ignored: Linux
         # Caps Lock and accents, PC layout); take them out of the system default too, so nothing refers to a removed
