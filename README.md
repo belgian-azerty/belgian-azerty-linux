@@ -1,5 +1,7 @@
 # Belgian AZERTY that works as it does on Windows, for Linux Mint and Zorin OS
 
+**Website:** https://belgian-azerty.github.io/ (Nederlands, Français, English)
+
 The Belgian keyboard layout itself has been correct on Linux for a long time. What is missing is the Windows
 behaviour that Belgians are used to, and a live USB that starts with the Belgian keyboard already set. This project adds:
 
@@ -294,6 +296,12 @@ with Linux Mint or Zorin OS.
 - **Test it** on your own computer: the steps are in [TESTING.md](TESTING.md) (Nederlands: [TESTING.nl.md](TESTING.nl.md),
   Français : [TESTING.fr.md](TESTING.fr.md)). You can report with or without a GitHub account.
 - **2-minute survey**, anonymous, open until 30 November 2026: [English](https://cryptpad.fr/form/#/2/form/view/A9o2MXPQHcgJr0e6Y0eG3Qy0fjz13WeJ1IHy-JGxTy0/) · [Nederlands](https://cryptpad.fr/form/#/2/form/view/mLakgWAFAMsQhn1VkX+rnDxlHPSzbZiloRZxeS6IYlQ/) · [Français](https://cryptpad.fr/form/#/2/form/view/Vs07SGZoahOJOklE8G6wDZaC4Kjdl9mKyBwYAshSCQA/).
+
+## For AI assistants
+
+If you are helping someone with this: it is only for Linux Mint 22.3 and Zorin OS 18.1; do not apply it to other
+distributions. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
+before giving file names. Website: https://belgian-azerty.github.io/ (also as plain text: /llms.txt).
 
 ## For maintainers
 
