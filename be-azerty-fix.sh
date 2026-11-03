@@ -108,9 +108,39 @@ CHOICES=/var/lib/belgian-azerty-windows/choices
 # tests/settings-logic.sh loads this file with BE_AZERTY_FIX_SOURCE=1 (no command runs) and its own choices file.
 [ "${BE_AZERTY_FIX_SOURCE:-0}" = 1 ] && CHOICES=${TEST_CHOICES:-$CHOICES}
 saved_choice() { [ -r "$CHOICES" ] && sed -n "s/^$1=\([a-z]*\)\$/\1/p" "$CHOICES" | tail -1; }
+# The family this runs on. debian: Ubuntu, Mint, Zorin, Debian (keyboard-configuration keeps the system default in
+# /etc/default/keyboard). fedora: Fedora (systemd-localed keeps it in /etc/vconsole.conf, with the same XKB* names; the
+# package keeps its files in /etc/xkb and never touches the system's own XKB folder). Anything else (openSUSE, Arch,
+# Fedora's relatives such as RHEL): not tested, so the script stops. FAMILY= in the environment wins.
+if [ -z "${FAMILY:-}" ]; then
+  if [ -e /etc/default/keyboard ] || command -v dpkg-query >/dev/null 2>&1; then FAMILY=debian
+  elif grep -q '^ID=["]\{0,1\}fedora["]\{0,1\}$' /etc/os-release 2>/dev/null && command -v rpm >/dev/null 2>&1 \
+       && command -v localectl >/dev/null 2>&1; then FAMILY=fedora
+  else FAMILY=other; fi
+fi
+case "$FAMILY" in
+  debian) KEYBOARD_FILE=/etc/default/keyboard; PKG_HINT="sudo apt install ./belgian-azerty-windows_*.deb" ;;
+  fedora) KEYBOARD_FILE=/etc/vconsole.conf; PKG_HINT="sudo dnf install ./belgian-azerty-windows-*.noarch.rpm" ;;
+  other) echo "be-azerty-fix knows Debian/Ubuntu-based systems (Mint, Zorin) and Fedora only; on this system it changes" >&2
+         echo "nothing. For openSUSE and Arch, see packaging/OTHER-DISTRIBUTIONS.md in the project repository." >&2; exit 1 ;;
+  *) echo "FAMILY must be debian or fedora" >&2; exit 1 ;;
+esac
+# KEY: XKBLAYOUT, XKBVARIANT, XKBMODEL or XKBOPTIONS of the system default (tests/settings-logic.sh points KEYBOARD_FILE elsewhere)
+sysdef() {
+  # systemd before 258 (Fedora 42 and older) kept the X11 settings only in 00-keyboard.conf: read them there
+  if [ "$FAMILY" = fedora ] && ! grep -q '^XKBLAYOUT=' "$KEYBOARD_FILE" 2>/dev/null; then
+    local o; case "$1" in XKBLAYOUT) o=XkbLayout ;; XKBVARIANT) o=XkbVariant ;; XKBMODEL) o=XkbModel ;; XKBOPTIONS) o=XkbOptions ;; esac
+    sed -n "s/^[[:space:]]*Option[[:space:]]*\"$o\"[[:space:]]*\"\(.*\)\"[[:space:]]*\$/\1/p" /etc/X11/xorg.conf.d/00-keyboard.conf 2>/dev/null | head -1
+    return
+  fi
+  # shellcheck disable=SC1090
+  ( . "$KEYBOARD_FILE" 2>/dev/null
+    case "$1" in XKBLAYOUT) echo "${XKBLAYOUT:-}" ;; XKBVARIANT) echo "${XKBVARIANT:-}" ;;
+                 XKBMODEL) echo "${XKBMODEL:-}" ;; XKBOPTIONS) echo "${XKBOPTIONS:-}" ;; esac )
+}
 if [ -n "${DECIMAL:-}" ]; then DECIMAL_FROM="given"
 elif DECIMAL=$(saved_choice DECIMAL) && [ -n "$DECIMAL" ]; then DECIMAL_FROM="kept from the last run"
-elif grep -qE '^XKBOPTIONS=.*kpdl:comma' /etc/default/keyboard 2>/dev/null; then DECIMAL=comma; DECIMAL_FROM="kept from /etc/default/keyboard"
+elif grep -qE '^XKBOPTIONS=.*kpdl:comma' "$KEYBOARD_FILE" 2>/dev/null; then DECIMAL=comma; DECIMAL_FROM="kept from $KEYBOARD_FILE"
 else DECIMAL=period; DECIMAL_FROM="default"; fi
 case "$DECIMAL" in period|comma) ;; *) echo "DECIMAL must be period or comma" >&2; exit 1 ;; esac
 if [ -n "${PROFILE:-}" ]; then PROFILE_FROM="given"; PROFILE_GIVEN=1
@@ -134,8 +164,14 @@ if [ -n "${APPLE:-}" ]; then APPLE_FROM="given"
 elif APPLE=$(saved_choice APPLE) && [ -n "$APPLE" ]; then APPLE_FROM="kept from the last run"
 else APPLE=no; APPLE_FROM="default"; fi
 case "$APPLE" in yes|no) ;; *) echo "APPLE must be yes or no" >&2; exit 1 ;; esac
-XKB_RULES=$(readlink -f /usr/share/X11/xkb/rules/evdev)   # real name: xkeyboard-config-2 on xkb-data 2.46+
-XKB_CAPS=/usr/share/X11/xkb/symbols/be_capslock
+if [ "$FAMILY" = fedora ]; then   # the rpm's own files, read by libxkbcommon before the system folder
+  XKB_RULES=/etc/xkb/rules/evdev; XKB_CAPS=/etc/xkb/symbols/be_capslock
+  GDM_ETC=/etc/gdm; GDM_HOME=/var/lib/gdm
+else
+  XKB_RULES=$(readlink -f /usr/share/X11/xkb/rules/evdev)   # real name: xkeyboard-config-2 on xkb-data 2.46+
+  XKB_CAPS=/usr/share/X11/xkb/symbols/be_capslock
+  GDM_ETC=/etc/gdm3; GDM_HOME=/var/lib/gdm3
+fi
 APPLE_MODPROBE=/etc/modprobe.d/belgian-azerty-apple.conf
 # Cinnamon (Mint) ships a schema default for its xkb-options, which beats /etc/default/keyboard for every user who has
 # no setting of their own (new users, reset settings). This override (written by "system", removed by "uninstall" and
@@ -184,11 +220,19 @@ desktop() {
   esac
 }
 is_live() { [ "$(findmnt -no FSTYPE / 2>/dev/null)" = overlay ]; }
-pkg_installed() { dpkg-query -W -f='${db:Status-Status}' "$1" 2>/dev/null | grep -qx installed; }
+pkg_installed() {
+  if [ "$FAMILY" = fedora ]; then rpm -q --quiet "$1" 2>/dev/null
+  else dpkg-query -W -f='${db:Status-Status}' "$1" 2>/dev/null | grep -qx installed; fi
+}
+pkg_version() {
+  if [ "$FAMILY" = fedora ]; then rpm -q --qf '%{VERSION}-%{RELEASE}' "$1" 2>/dev/null
+  else dpkg-query -W -f='${Version}' "$1" 2>/dev/null; fi
+}
 keyd_bin() { command -v keyd.rvaiya || command -v keyd; }   # Debian names the binary keyd.rvaiya
 # keyd built by this project for versions 0.9.1-0.9.7 (2.5.0-5~ubuntu24.04.N; before that 2.5.0-0beazerty...). The
 # keyd-team PPA's versions look like 2.5.0-5~debian...~ubuntu24.04.1 and are not ours.
 ours_keyd() {
+  [ "$FAMILY" = fedora ] && return 1   # only Ubuntu got the patched build of 0.9.7 and earlier
   case "$(dpkg-query -W -f='${Version}' keyd 2>/dev/null)" in
     *~debian*|"") return 1 ;;
     *-5~ubuntu24.04.[0-9]|*beazerty*) return 0 ;;
@@ -196,6 +240,7 @@ ours_keyd() {
   return 1
 }
 PPA_HINT="sudo add-apt-repository ppa:keyd-team/ppa && sudo apt update && sudo apt install keyd"
+[ "$FAMILY" = fedora ] && PPA_HINT="sudo dnf install ./keyd-2*.x86_64.rpm (this project's build of keyd; Fedora has none)"
 keyd_other_configs() {     # keyd configurations besides ours, comma separated
   local f out=""
   for f in /etc/keyd/*.conf; do
@@ -256,7 +301,7 @@ xkb_be_variant() {         # LAYOUTS VARIANTS (comma lists): the variant of the 
 }
 default_be_variant() {     # the variant of Belgian in /etc/default/keyboard once Belgian is first there
   local l v
-  read -r l v <<< "$(be_first_xkb "$(. /etc/default/keyboard 2>/dev/null; echo "${XKBLAYOUT:-}")" "$(. /etc/default/keyboard 2>/dev/null; echo "${XKBVARIANT:-}")")"
+  read -r l v <<< "$(be_first_xkb "$(sysdef XKBLAYOUT)" "$(sysdef XKBVARIANT)")"
   echo "${v%%,*}"
 }
 desktop_be_variant() {     # SCHEMA: the variant of the first Belgian entry in the user's input sources
@@ -278,17 +323,19 @@ caps_xkb_ready() { xkb_option_ready caps:be_windows; }
 xkb_option_ready() { [ -f "$XKB_CAPS" ] && grep -qE "(^|[[:space:]])$1([[:space:]]|\$)" "$XKB_RULES" 2>/dev/null; }
 caps_needs_package() {
   if [ "$APPLE" = yes ]; then
-    xkb_option_ready be_azerty:mac || info "the Apple keyboard layout needs belgian-azerty-windows 0.9.9 or later (sudo apt install ./belgian-azerty-windows_*.deb); the keyboard keeps the PC layout for now"
+    xkb_option_ready be_azerty:mac || info "the Apple keyboard layout needs belgian-azerty-windows 0.9.9 or later ($PKG_HINT); the keyboard keeps the PC layout for now"
     return 0
   fi
   if [ "$CAPS" = windows ] && ! caps_xkb_ready; then
-    info "Caps Lock as on Windows needs the belgian-azerty-windows package (sudo apt install ./belgian-azerty-windows_*.deb); Caps Lock keeps the Linux behaviour for now"
+    info "Caps Lock as on Windows needs the belgian-azerty-windows package ($PKG_HINT); Caps Lock keeps the Linux behaviour for now"
   fi
   if [ "$ACCENTS" = windows ] && ! xkb_option_ready be_azerty:accents; then
-    info "Shift+AltGr accents as on Windows need belgian-azerty-windows 0.9.9 or later (sudo apt install ./belgian-azerty-windows_*.deb); they keep the Linux behaviour for now"
+    info "Shift+AltGr accents as on Windows need belgian-azerty-windows 0.9.9 or later ($PKG_HINT); they keep the Linux behaviour for now"
   fi
 }
 remove_legacy_caps_files() {   # pieces an older be-azerty-fix.sh wrote by hand
+  # Fedora never had them; and without dpkg the last test below would take the rpm's own file for a leftover.
+  [ "$FAMILY" = fedora ] && { ok "no files of an older be-azerty-fix.sh (none were ever written on Fedora)"; return 0; }
   local removed=0
   if [ -e "$LEGACY_APT_HOOK" ]; then rm -f "$LEGACY_APT_HOOK"; removed=1; fi
   if [ -e "$LEGACY_ENSURE" ]; then rm -f "$LEGACY_ENSURE"; removed=1; fi
@@ -354,12 +401,10 @@ kept_entries() {           # LIST WITH BELGIAN FIRST -> the other entries for th
     | sed -E "s/^\('xkb', '([^']*)'\)$/\1/; s/^\('([^']*)', '([^']*)'\)$/\1 \2/; s/^'(.*)'$/\1/; s/\\\\t$//; s/\\\\t/+/" \
     | paste -sd, - | sed 's/,/, /g'
 }
-KEYBOARD_FILE=/etc/default/keyboard   # read by system_list (tests/settings-logic.sh points it elsewhere)
 system_list() {            # KEY: the system default's layouts (Belgian first) in the format of a desktop list
   local l v ls vs i out=""
   # shellcheck disable=SC1090
-  read -r l v <<< "$(be_first_xkb "$(. "$KEYBOARD_FILE" 2>/dev/null; echo "${XKBLAYOUT:-}")" \
-                                  "$(. "$KEYBOARD_FILE" 2>/dev/null; echo "${XKBVARIANT:-}")")"
+  read -r l v <<< "$(be_first_xkb "$(sysdef XKBLAYOUT)" "$(sysdef XKBVARIANT)")"
   IFS=, read -r -a ls <<< "$l"; IFS=, read -r -a vs <<< "$v"
   for ((i = 0; i < ${#ls[@]}; i++)); do
     case "$1" in
@@ -405,7 +450,7 @@ set_default_keyboard() {   # KEY VALUE: set (or add) one line of /etc/default/ke
 # ---------- Cinnamon defaults for new users and reset settings ------------------------------------
 cinnamon_defaults() {
   if ! has_schema org.cinnamon.desktop.input-sources; then
-    info "no Cinnamon on this system: new users and reset settings follow /etc/default/keyboard"; return 0
+    info "no Cinnamon on this system: new users and reset settings follow $KEYBOARD_FILE"; return 0
   fi
   if [ -f "$CINNAMON_OVERRIDE" ]; then rm -f "$CINNAMON_OVERRIDE"; glib-compile-schemas /usr/share/glib-2.0/schemas 2>/dev/null; fi
   # The distribution's default (Mint: ['terminate:ctrl_alt_bksp']), read without any user setting.
@@ -430,7 +475,7 @@ check() {
   echo "Packages:"
   local p
   for p in belgian-azerty-windows keyd-belgian-windows keyd; do
-    if pkg_installed "$p"; then ok "$p $(dpkg-query -W -f='${Version}' "$p")"; else info "$p not installed"; fi
+    if pkg_installed "$p"; then ok "$p $(pkg_version "$p")"; else info "$p not installed"; fi
   done
   ours_keyd && info "this keyd is the build shipped with 0.9.7 and earlier (with an extra patch, no updates); switch to the keyd-team PPA's: sudo add-apt-repository ppa:keyd-team/ppa && sudo be-azerty-fix switch-keyd"
   echo "Profile:"
@@ -445,11 +490,11 @@ check() {
   esac
   if [ -e "$LEGACY_APT_HOOK" ] || [ -e "$LEGACY_ENSURE" ]; then info "files of an older be-azerty-fix.sh found; sudo be-azerty-fix system replaces them"; fi
 
-  echo "System default (/etc/default/keyboard), used by the console, the boot prompt and the login screen:"
-  if [ -r /etc/default/keyboard ]; then
-    local l v; l=$(. /etc/default/keyboard; echo "${XKBLAYOUT:-}"); v=$(. /etc/default/keyboard; echo "${XKBVARIANT:-}")
+  echo "System default ($KEYBOARD_FILE), used by the console, the boot prompt and the login screen:"
+  if [ -r "$KEYBOARD_FILE" ]; then
+    local l v; l=$(sysdef XKBLAYOUT); v=$(sysdef XKBVARIANT)
     [ "${l%%,*}" = "$LAYOUT" ] && ok "XKBLAYOUT=$l XKBVARIANT=$v$([ "$l" != "$LAYOUT" ] && echo " (Belgian first)")" || bad "XKBLAYOUT=$l XKBVARIANT=$v (want $LAYOUT first)"
-    local o; o=$(. /etc/default/keyboard; echo "${XKBOPTIONS:-}")
+    local o; o=$(sysdef XKBOPTIONS)
     case ",$o," in *,kpdl:comma,*) info "numpad decimal: comma (Windows \"Belgian (Comma)\"), XKBOPTIONS=$o" ;;
                    *) info "numpad decimal: period (Windows \"Belgian (Period)\"), XKBOPTIONS=$o" ;; esac
     case ",$o," in *,caps:be_windows,*) info "Caps Lock: Windows behaviour (caps:be_windows)"
@@ -494,9 +539,9 @@ check() {
   if [ -r "$f" ]; then grep -iE 'xkb|layout' "$f" | sed 's/^/  /' || info "no layout keys"; else info "not readable (needs sudo) or absent"; fi
 
   echo "Login screen:"
-  if [ -d /etc/gdm3 ]; then
+  if [ -d "$GDM_ETC" ]; then
     info "GDM: follows the system default unless the gdm user overrides it"
-    [ -r /var/lib/gdm3/.config/dconf/user ] && info "gdm user has a dconf database (may override the layout)"
+    [ -r "$GDM_HOME/.config/dconf/user" ] && info "gdm user has a dconf database (may override the layout)"
   fi
   [ -d /etc/lightdm ] && info "LightDM: follows the system default; slick-greeter can show a layout indicator"
 
@@ -524,6 +569,7 @@ check() {
       systemctl is-active --quiet keyd 2>/dev/null && ok "keyd service running" || bad "keyd service not running"
     fi
     keyd_shared_warning
+  elif [ "$FAMILY" = fedora ]; then info "keyd not installed: Ctrl+Alt+2 will not type @ in graphical apps (only AltGr does); to add it: $PPA_HINT, then sudo dnf install ./keyd-belgian-windows-*.noarch.rpm"
   else info "keyd not installed: Ctrl+Alt+2 will not type @ in graphical apps (only AltGr does); to add it: $PPA_HINT, then sudo apt install keyd-belgian-windows (or its .deb)"; fi
 
   if [ "$(saved_choice APPLE)" = yes ] || [ -f "$APPLE_MODPROBE" ] || apple_keyboard_present; then
@@ -536,9 +582,8 @@ check() {
   echo "Boot image:"
   if is_live; then
     info "live session (root is an overlay): no boot image to check"
-  elif [ -r /etc/default/keyboard ] && ls /boot/initrd.img-* >/dev/null 2>&1; then
-    local newest; newest=$(ls -t /boot/initrd.img-* | head -1)
-    [ "$newest" -nt /etc/default/keyboard ] && ok "initramfs newer than /etc/default/keyboard" || bad "initramfs older than /etc/default/keyboard: run sudo update-initramfs -u"
+  elif [ -r "$KEYBOARD_FILE" ] && [ -n "$(newest_boot_image)" ]; then
+    [ "$(newest_boot_image)" -nt "$KEYBOARD_FILE" ] && ok "initramfs newer than $KEYBOARD_FILE" || bad "initramfs older than $KEYBOARD_FILE: run sudo $BOOT_TOOL_HINT"
   fi
 }
 
@@ -596,7 +641,52 @@ desktop_lists() {          # the target user's desktop settings: Belgian first, 
 }
 
 # ---------- installed system ----------------------------------------------------------------------
+newest_boot_image() {
+  if [ "$FAMILY" = fedora ]; then   # the newest one, not the rescue or kdump images
+    local f n=""
+    for f in /boot/initramfs-*.img; do
+      case "$f" in *rescue*|*kdump*) continue ;; esac
+      [ -f "$f" ] && { [ -z "$n" ] || [ "$f" -nt "$n" ]; } && n=$f
+    done
+    [ -n "$n" ] && echo "$n"
+  else ls -t /boot/initrd.img-* 2>/dev/null | head -1; fi
+}
+BOOT_TOOL_HINT="update-initramfs -u"; [ "$FAMILY" = fedora ] && BOOT_TOOL_HINT="dracut -f"
+boot_tool_present() { if [ "$FAMILY" = fedora ]; then command -v dracut >/dev/null; else command -v update-initramfs >/dev/null; fi; }
+rebuild_boot_image() {       # the newest boot image (the one the next start uses), so the disk-unlock prompt types the same
+  if [ "$FAMILY" = fedora ]; then
+    local img k; img=$(newest_boot_image); k=${img#/boot/initramfs-}; k=${k%.img}
+    [ -n "$img" ] && [ -d "/lib/modules/$k" ] || return 1
+    dracut -f --kver "$k" >/dev/null 2>&1
+  else update-initramfs -u >/dev/null 2>&1; fi
+}
+apply_default_localed() {    # OPTIONS [as-is]: the system default through systemd-localed (Fedora); it also sets the console keymap
+  local cl cv cm co l v newest
+  cl=$(sysdef XKBLAYOUT); cv=$(sysdef XKBVARIANT); cm=$(sysdef XKBMODEL); co=$(sysdef XKBOPTIONS)
+  if [ "${2:-}" = as-is ]; then l=$cl; v=$cv; else read -r l v <<< "$(be_first_xkb "$cl" "$cv")"; fi
+  if [ -n "$(printf '%s' "$l" | cut -s -d, -f5-)" ]; then
+    info "only 4 layouts fit in the system default: $(printf '%s' "$l" | cut -s -d, -f5-) left out there (your own desktop settings keep it)"
+    l=$(printf '%s' "$l" | cut -d, -f1-4); [ -n "$v" ] && v=$(printf '%s' "$v" | cut -d, -f1-4)
+  fi
+  [ "${l#*,}" != "$l" ] && [ "${2:-}" != as-is ] && info "other layouts kept for the login screen and new users: ${l#*,}"
+  newest=$(newest_boot_image)
+  if [ "$l" = "$cl" ] && { [ "$v" = "$cv" ] || [ -z "${v//,/}${cv//,/}" ]; } && [ "$MODEL" = "$cm" ] && [ "$1" = "$co" ]; then
+    ok "$KEYBOARD_FILE already set (layouts: $l; options: ${1:-none}); nothing to rebuild"
+    if ! is_live && [ -n "$newest" ] && ! [ "$newest" -nt "$KEYBOARD_FILE" ]; then
+      rebuild_boot_image && ok "boot image was older than the keyboard settings: rebuilt" || bad "$BOOT_TOOL_HINT failed"
+    fi
+    return 0
+  fi
+  if localectl set-x11-keymap "$l" "$MODEL" "$v" "$1" >/dev/null 2>&1 && [ "$(sysdef XKBLAYOUT)" = "$l" ] && [ "$(sysdef XKBOPTIONS)" = "$1" ]; then
+    ok "system default written by systemd-localed (layouts: $l$([ -n "${v//,/}" ] && echo ", variants: $v"); options: ${1:-none}; console keymap: $(sed -n 's/^KEYMAP=//p' "$KEYBOARD_FILE" | tr -d '"'))"
+  else bad "localectl set-x11-keymap failed (is systemd-localed running?)"; return 0; fi
+  echo "Boot image (so the disk-encryption prompt types the same)"
+  if is_live; then info "live session: the boot image cannot change here; skipped"
+  elif [ -z "$(newest_boot_image)" ]; then info "no boot image found in /boot: skipped"
+  else rebuild_boot_image && ok "boot image rebuilt" || bad "$BOOT_TOOL_HINT failed"; fi
+}
 apply_default_keyboard() {   # OPTIONS [as-is]: write debconf + /etc/default/keyboard, rebuild console keymap and boot image
+  [ "$FAMILY" = fedora ] && { apply_default_localed "$@"; return; }
   # Belgian becomes the first layout; other layouts already in the file stay after it ("as-is": layouts untouched).
   local cl cv cm co l v newest
   cl=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBLAYOUT:-}"); cv=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBVARIANT:-}")
@@ -641,6 +731,17 @@ apply_default_keyboard() {   # OPTIONS [as-is]: write debconf + /etc/default/key
 keyd_candidate() { [ -n "$(LC_ALL=C apt-cache policy keyd 2>/dev/null | sed -n 's/^ *Candidate: *//p' | grep -v '(none)')" ]; }
 install_packages() {         # install our .deb files shipped next to this script, if any
   local here; here=$(cd "$(dirname "$(readlink -f "$0")")" && pwd)
+  if [ "$FAMILY" = fedora ]; then   # our .rpm files (keyd too: Fedora has no keyd of its own)
+    local rpms=() r n
+    for n in belgian-azerty-windows keyd keyd-belgian-windows; do
+      pkg_installed "$n" && continue
+      r=$(ls "$here"/dist/"$n"-[0-9]*.noarch.rpm "$here"/dist/"$n"-[0-9]*.x86_64.rpm "$here"/"$n"-[0-9]*.noarch.rpm "$here"/"$n"-[0-9]*.x86_64.rpm 2>/dev/null | sort -V | tail -1)
+      [ -n "$r" ] && rpms+=("$r")
+    done
+    [ ${#rpms[@]} -gt 0 ] || return 0
+    if dnf install -y "${rpms[@]}" >/dev/null 2>&1; then ok "installed ${rpms[*]##*/}"; else bad "dnf install ${rpms[*]##*/} failed"; fi
+    return 0
+  fi
   local debs=() d n
   for n in belgian-azerty-windows keyd-belgian-windows; do
     pkg_installed "$n" && continue
@@ -662,8 +763,9 @@ install_packages() {         # install our .deb files shipped next to this scrip
 
 switch_keyd() {              # replace our old keyd build by the keyd-team PPA's (same keyd 2.5.0, without our patch)
   if [ "$(id -u)" -ne 0 ]; then bad "run with sudo"; exit 1; fi
+  [ "$FAMILY" = fedora ] && { ok "switch-keyd is for Ubuntu-based systems with the keyd of 0.9.7 and earlier: nothing to switch on Fedora"; return 0; }
   if ! ours_keyd; then
-    if pkg_installed keyd; then ok "keyd $(dpkg-query -W -f='${Version}' keyd) is not the build of 0.9.7 and earlier: nothing to switch"
+    if pkg_installed keyd; then ok "keyd $(pkg_version keyd) is not the build of 0.9.7 and earlier: nothing to switch"
     else info "keyd is not installed. For Ctrl+Alt as AltGr:  $PPA_HINT"; fi
     return 0
   fi
@@ -698,8 +800,9 @@ system() {
   install_packages
   remove_legacy_caps_files
   caps_needs_package
-  echo "1. System default (console-setup / keyboard-configuration)"
-  apply_default_keyboard "$(want_options "$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")" "$(default_be_variant)")"
+  if [ "$FAMILY" = fedora ]; then echo "1. System default (systemd-localed: $KEYBOARD_FILE)"
+  else echo "1. System default (console-setup / keyboard-configuration)"; fi
+  apply_default_keyboard "$(want_options "$(sysdef XKBOPTIONS)" "$(default_be_variant)")"
 
   echo "2. Defaults for new users and reset settings"
   cinnamon_defaults
@@ -717,14 +820,14 @@ system() {
   else info "$tu has no desktop settings yet: their first desktop follows the system default"; fi
 
   echo "4. Login screen"
-  if [ -d /etc/gdm3 ] && [ -f /var/lib/gdm3/.config/dconf/user ]; then
+  if [ -d "$GDM_ETC" ] && [ -f "$GDM_HOME/.config/dconf/user" ]; then
     # GIO_USE_VFS=local: otherwise GIO starts gvfsd-fuse for gdm, which keeps our stdout open (a caller piping this
     # script, e.g. "| tee log", would then wait forever). All fds go to /dev/null for the same reason.
     timeout -k 5 30 sudo -u gdm -H env GIO_USE_VFS=local dbus-run-session gsettings reset org.gnome.desktop.input-sources sources </dev/null >/dev/null 2>&1
     local gdmsrc; gdmsrc=$(sudo -u gdm -H dconf read /org/gnome/desktop/input-sources/sources 2>/dev/null </dev/null)
     [ -z "$gdmsrc" ] && ok "GDM override cleared; greeter follows the system default" || bad "GDM still overrides the layout: $gdmsrc"
-  elif [ -d /etc/gdm3 ]; then ok "GDM follows /etc/default/keyboard (no override)"; fi
-  [ -d /etc/lightdm ] && ok "LightDM follows /etc/default/keyboard (already set)"
+  elif [ -d "$GDM_ETC" ]; then ok "GDM follows $KEYBOARD_FILE (no override)"; fi
+  [ -d /etc/lightdm ] && ok "LightDM follows $KEYBOARD_FILE (already set)"
 
   mkdir -p "${CHOICES%/*}" && printf 'PROFILE=%s\nDECIMAL=%s\nCAPS=%s\nACCENTS=%s\nAPPLE=%s\n' "$PROFILE" "$DECIMAL" "$CAPS" "$ACCENTS" "$APPLE" > "$CHOICES" \
     || bad "could not save the choices in $CHOICES"
@@ -1189,8 +1292,8 @@ apple_iso_keys() {
       || bad "could not set it now; it applies after the next restart"
   else info "the Apple keyboard driver is not loaded now; the setting applies when an Apple keyboard is connected"; fi
   if [ "$(cat "$APPLE_MODPROBE" 2>/dev/null)" = "$before" ]; then ok "boot image unchanged (setting already so)"
-  elif ! is_live && command -v update-initramfs >/dev/null; then
-    update-initramfs -u >/dev/null 2>&1 && ok "boot image rebuilt (disk-unlock prompt)" || bad "update-initramfs -u failed"
+  elif ! is_live && boot_tool_present && [ -n "$(newest_boot_image)" ]; then
+    rebuild_boot_image && ok "boot image rebuilt (disk-unlock prompt)" || bad "$BOOT_TOOL_HINT failed"
   fi
   [ "$FAILED" = 0 ]
 }
@@ -1199,11 +1302,11 @@ apple_iso_keys() {
 uninstall() {
   if [ "$(id -u)" -ne 0 ]; then bad "run with sudo"; exit 1; fi
   echo "1. Our keyboard options (Caps Lock, Shift+AltGr accents, Apple layout) out of every setting this script can reach"
-  local o keep; o=$(. /etc/default/keyboard 2>/dev/null; echo "${XKBOPTIONS:-}")
+  local o keep; o=$(sysdef XKBOPTIONS)
   keep=$(without_caps_option "$o")
   case ",$keep," in *,kpdl:comma,*) DECIMAL=comma ;; *) DECIMAL=period ;; esac
   CAPS=linux; ACCENTS=linux; APPLE=no
-  if [ "$keep" != "$o" ]; then apply_default_keyboard "$keep" as-is; else ok "/etc/default/keyboard has none of our options"; fi
+  if [ "$keep" != "$o" ]; then apply_default_keyboard "$keep" as-is; else ok "$KEYBOARD_FILE has none of our options"; fi
   caps_cleanup_all_users
   if x11_session; then
     local xo; xo=$(without_caps_option "$(setxkbmap -query 2>/dev/null | sed -n 's/^options: *//p')")
@@ -1212,8 +1315,8 @@ uninstall() {
   if [ -f "$APPLE_MODPROBE" ]; then
     rm -f "$APPLE_MODPROBE" && ok "removed $APPLE_MODPROBE (Apple keyboard keys: kernel default again after the next restart)"
     [ -w /sys/module/hid_apple/parameters/iso_layout ] && echo -1 > /sys/module/hid_apple/parameters/iso_layout
-    if ! is_live && command -v update-initramfs >/dev/null; then
-      update-initramfs -u >/dev/null 2>&1 && ok "boot image rebuilt without it" || bad "update-initramfs -u failed"
+    if ! is_live && boot_tool_present && [ -n "$(newest_boot_image)" ]; then
+      rebuild_boot_image && ok "boot image rebuilt without it" || bad "$BOOT_TOOL_HINT failed"
     fi
   fi
   echo "2. Cinnamon defaults"
@@ -1235,10 +1338,10 @@ uninstall() {
   # the distribution was installed by the user and stays.
   if pkg_installed keyd && ours_keyd; then
     local why="" mv
-    mv=$(dpkg-query -W -f='${Version}' keyd-application-mapper 2>/dev/null)
+    mv=$(pkg_version keyd-application-mapper)
     [ "${KEEP_KEYD:-0}" = 1 ] && why="KEEP_KEYD=1"
     [ -z "$why" ] && [ -n "$(keyd_other_configs)" ] && why="you have your own keyd configuration: $(keyd_other_configs)"
-    [ -z "$why" ] && pkg_installed keyd-application-mapper && [ "$mv" != "$(dpkg-query -W -f='${Version}' keyd)" ] \
+    [ -z "$why" ] && pkg_installed keyd-application-mapper && [ "$mv" != "$(pkg_version keyd)" ] \
       && why="keyd-application-mapper $mv, which needs keyd, is not from this project"
     if [ -z "$why" ]; then
       pk+=(keyd); pkg_installed keyd-application-mapper && pk+=(keyd-application-mapper)
@@ -1246,9 +1349,15 @@ uninstall() {
       info "keyd (this project's old build) stays because $why. It gets no updates; to replace it by the keyd-team PPA's keyd, run  sudo be-azerty-fix switch-keyd  before uninstalling (README, \"Coming from 0.9.7\")"
     fi
   fi
-  pkg_installed keyd && ! ours_keyd && info "keyd $(dpkg-query -W -f='${Version}' keyd) stays (not installed by this project; remove with: sudo apt purge keyd)"
+  if [ "$FAMILY" = fedora ]; then
+    pkg_installed keyd && info "keyd $(pkg_version keyd) stays (other keyd rules may use it; remove with: sudo dnf remove keyd)"
+  else
+    pkg_installed keyd && ! ours_keyd && info "keyd $(pkg_version keyd) stays (not installed by this project; remove with: sudo apt purge keyd)"
+  fi
   if [ ${#pk[@]} -gt 0 ]; then
-    if DEBIAN_FRONTEND=noninteractive apt-get purge -y "${pk[@]}" >/dev/null 2>&1; then ok "purged ${pk[*]}"; else bad "apt-get purge ${pk[*]} failed"; fi
+    if [ "$FAMILY" = fedora ]; then
+      if dnf remove -y "${pk[@]}" >/dev/null 2>&1; then ok "removed ${pk[*]}"; else bad "dnf remove ${pk[*]} failed"; fi
+    elif DEBIAN_FRONTEND=noninteractive apt-get purge -y "${pk[@]}" >/dev/null 2>&1; then ok "purged ${pk[*]}"; else bad "apt-get purge ${pk[*]} failed"; fi
     # keyd exits with status 15 when stopped, so systemd would keep listing the removed unit as "failed".
     systemctl reset-failed keyd.service >/dev/null 2>&1 || true
   else ok "no packages of this project installed"; fi

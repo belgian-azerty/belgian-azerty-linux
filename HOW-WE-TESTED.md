@@ -4,6 +4,41 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## After 0.9.12, not released: Fedora, openSUSE and Arch Linux
+
+The package files in `packaging/fedora`, `packaging/opensuse` and `packaging/arch` and the Fedora part of
+`be-azerty-fix` (see `packaging/OTHER-DISTRIBUTIONS.md`). Tested **only in test containers**, without a desktop and
+without systemd running, on 2 and 3 November 2026; the final run on 3 November used packages built from the public
+v0.9.12 release archive. Nothing is published for these systems.
+
+| System | Keyboard data | Package cycle | `be-azerty-fix` |
+|---|---|---|---|
+| Fedora 44 | xkeyboard-config 2.47 | `tests/rpm-cycle.sh` 18/18 | `tests/fedora-fix.sh` 27/27 |
+| Fedora 45 (prerelease) | 2.48 | 18/18 | 27/27 |
+| openSUSE Tumbleweed | 2.48 | 19/19 | stops, changes nothing |
+| openSUSE Leap 16.0 | 2.44 | 18/18 (keyd 2.5.0 has no `keyd check`) | stops, changes nothing |
+| Arch Linux | 2.49 | `tests/arch-cycle.sh` 30/30 | stops, changes nothing |
+
+- The package cycle checks: our options unknown before and known after; the system's keyboard package unchanged
+  (`rpm -V`, or `pacman -Qkk` against the state before); Caps Lock and Caps+Shift 0 differences from the Windows table;
+  the accents option exactly its 3 changes; the Apple option equal to French (Macintosh) on the plain and Shift
+  levels; a normal user gets the options; a reinstall of the keyboard data keeps them; an upgrade to a rebuilt package;
+  removal (options unknown, keyboard compiles, keyd itself stays); a user's own files in `/etc/xkb` and `/etc/keyd`
+  kept, with our rules beside them and a message; keyd's own check of our rules (2.6.0).
+- Earlier the same day, with the packages built from the repository: every Belgian key on the data layer, 302 of 377
+  combinations as on Windows, line for line the same as Ubuntu 24.04, on Tumbleweed and Leap 16.0 (and on Fedora on 2
+  November).
+- `be-azerty-fix` on Fedora (27 checks): family and paths found, `system` from a US default (Belgian first, US kept,
+  the accents option, console keymap, the X11 file), the stored GNOME settings of a user who is not logged in, a
+  rerun, the comma and Linux profiles, a variant, uninstall. systemd-localed was started by hand.
+- The build steps in `packaging/OTHER-DISTRIBUTIONS.md` were followed as written, as a normal user, on Fedora 44,
+  Tumbleweed, Leap 16.0 and Arch (a copy of the repository instead of `git clone`), and the `localectl` line given there
+  wrote the system default on all four.
+- Debian and Ubuntu after the `be-azerty-fix` change: `tests/run-offline.sh` with the package cycle (62 checks) on Ubuntu
+  24.04, and `tests/lived-in.sh` (77 checks) on Ubuntu 24.04 and Debian 13: all pass.
+- Not tested: a desktop session (GNOME, KDE), the login screen, keyd running, the text console, disk unlock (dracut),
+  a real installation or a real PC, Fedora 42 and older, Fedora's relatives.
+
 ## 0.9.12
 
 0.9.12 only adds the upgrade step-aside (`xkb-move` and its apt setting); the keyboard files and the rules are the same

@@ -1,0 +1,40 @@
+# Belgian AZERTY like on Windows, Arch build. As on Fedora, nothing of
+# Arch's own files is touched: the rules and symbols go to /etc/xkb, which libxkbcommon (and so GNOME's mutter on
+# Wayland) reads before the system folder. Not read by a pure X11 session or the text console.
+# Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+pkgname=belgian-azerty-windows
+pkgver=0.9.12
+pkgrel=1
+pkgdesc='Belgian AZERTY like on Windows: Caps Lock, Shift+AltGr accents, Apple option (XKB options in /etc/xkb)'
+arch=('any')
+url='https://github.com/belgian-azerty/belgian-azerty-linux'
+license=('MIT')
+depends=('libxkbcommon' 'xkeyboard-config')
+backup=('etc/xkb/rules/evdev' 'etc/xkb/symbols/be_capslock')
+install=belgian-azerty-windows.install
+options=('!debug' '!strip')
+source=("belgian-azerty-linux-$pkgver.tar.gz::https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('b9ea122633f0cacd6267c433d6bb74c9bcf4c1eb45c0f3ce01eb932a2c566afc')
+
+build() {
+  cd belgian-azerty-linux-$pkgver
+  # The rules: the system's own (include) followed by exactly the blocks the Debian package's update-xkb-rules writes.
+  mkdir -p gen; : > gen/evdev.distrib
+  sed "s|^RULES=.*|RULES=$PWD/gen/evdev|" packaging/belgian-azerty-windows/update-xkb-rules > gen/update-xkb-rules
+  sh gen/update-xkb-rules
+  { echo '// belgian-azerty-windows (Arch): the system rules, then our three options. Removed with the package.'
+    echo '! include %S/evdev'; cat gen/evdev; } > gen/evdev.etc
+}
+
+check() {
+  cd belgian-azerty-linux-$pkgver
+  grep -qx '! include %S/evdev' gen/evdev.etc
+  test "$(grep -c '^// belgian-azerty-windows: ' gen/evdev.etc)" = 2
+}
+
+package() {
+  cd belgian-azerty-linux-$pkgver
+  install -Dm644 gen/evdev.etc "$pkgdir/etc/xkb/rules/evdev"
+  install -Dm644 xkb/symbols/be_capslock "$pkgdir/etc/xkb/symbols/be_capslock"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

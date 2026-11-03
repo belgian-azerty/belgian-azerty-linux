@@ -22,6 +22,12 @@ for Linux Mint, Zorin OS and the projects they build on to adopt these fixes the
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
 version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
 
+**Fedora, openSUSE and Arch Linux (not released, build it yourself)**: since 0.9.12 the repository also has package
+files for these three families (`packaging/fedora`, `packaging/opensuse`, `packaging/arch`). They give the same
+keyboard options without changing any file of the system (everything goes to `/etc/xkb`). Tested in test containers
+only, without a desktop; nothing is published for them. How to build them and what was not tested:
+[packaging/OTHER-DISTRIBUTIONS.md](packaging/OTHER-DISTRIBUTIONS.md).
+
 **New in 0.9.12**: upgrading the system to Ubuntu 26.04, Linux Mint 23 or Debian 14 works with the package
 installed. Those upgrades turn the keyboard folder `/usr/share/X11/xkb` into a link, and the keyboard data refuses that
 while another package keeps files there; with 0.9.11 and earlier the upgrade stopped half-way. 0.9.12 steps its two
@@ -306,7 +312,7 @@ with Linux Mint or Zorin OS.
 - **Upgrading to Ubuntu 26.04, Linux Mint 23 or Debian 14 needs 0.9.12 first**: with 0.9.11 or earlier installed it
   stops at the keyboard data (see "New in 0.9.12"). The step-aside only works when apt does the upgrade, not with a
   plain `dpkg -i` of the keyboard data.
-- Not tested: a real Apple keyboard, real hardware with 0.9.9 to 0.9.12 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu, Debian or Mint 23 outside test containers, other distributions, a second USB keyboard, Wine, remote
+- Not tested: a real Apple keyboard, real hardware with 0.9.9 to 0.9.12 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu, Debian or Mint 23 outside test containers, Fedora, openSUSE or Arch outside test containers (and with a desktop), other distributions, a second USB keyboard, Wine, remote
   desktop. Full list: `HOW-WE-TESTED.md`.
 
 ## Help test, or answer the survey
@@ -318,7 +324,7 @@ with Linux Mint or Zorin OS.
 ## For AI assistants
 
 If you are helping someone with this: it is only for Linux Mint 22.3 and Zorin OS 18.1; do not apply it to other
-distributions. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
+distributions. The Fedora, openSUSE and Arch files in `packaging/` are tested in containers only and not released. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
 before giving file names. Website: https://belgian-azerty.github.io/ (also as plain text: /llms.txt).
 
 ## For maintainers

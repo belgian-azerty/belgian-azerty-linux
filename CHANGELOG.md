@@ -4,6 +4,20 @@ A plain-language summary. The technical changelogs are in `packaging/*/debian/ch
 were made between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds
 that were never published. They are listed because the test evidence refers to them.
 
+## Not released yet (after 0.9.12)
+
+Nothing changes on Linux Mint, Zorin OS, Ubuntu or Debian: the keyboard types exactly as with 0.9.12.
+
+- **Package files for Fedora, openSUSE and Arch Linux**, to build yourself (`packaging/OTHER-DISTRIBUTIONS.md`):
+  `belgian-azerty-windows` and `keyd-belgian-windows` for each, plus keyd 2.6.0 for Fedora (Fedora has no keyd
+  package). They put the rules in `/etc/xkb` only and change no file of the system. Built from the v0.9.12 release
+  archive. Tested in test containers only; nothing published.
+- **`be-azerty-fix` knows Fedora**: the system default through systemd-localed (`/etc/vconsole.conf`), the boot image
+  with dracut, the files in `/etc/xkb`, packages with rpm and dnf, GDM's Fedora paths. The Debian/Ubuntu part is
+  unchanged. On systems it does not know (openSUSE, Arch, Fedora's relatives) it now stops and changes nothing; before,
+  it would have treated them as Debian. Not in the Fedora package yet: run `be-azerty-fix.sh` from the repository.
+- New tests: `tests/rpm-cycle.sh` (Fedora and openSUSE), `tests/arch-cycle.sh` (Arch), `tests/fedora-fix.sh`.
+
 ## 0.9.12
 
 The upgrade fix; the keyboard types exactly as with 0.9.11.

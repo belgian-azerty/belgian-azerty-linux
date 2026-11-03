@@ -1,0 +1,30 @@
+_warn_other() {
+  for f in /etc/keyd/*.conf; do
+    [ -f "$f" ] && [ "$f" != /etc/keyd/be-winaltgr.conf ] || continue
+    echo "keyd-belgian-windows: $f exists. keyd uses one configuration per keyboard; put the Belgian rules into your own file, or limit one file under [ids]."
+  done
+}
+post_install() {
+  # Same as the Debian and Fedora packages: the reason to install this is Ctrl+Alt = AltGr, so keyd is switched on.
+  if [ -d /run/systemd/system ]; then
+    systemctl daemon-reload >/dev/null 2>&1 || :
+    systemctl enable keyd.service >/dev/null 2>&1 || :
+    systemctl restart keyd.service >/dev/null 2>&1 || :
+  else
+    echo "keyd-belgian-windows: systemd is not running; switch keyd on later with: systemctl enable --now keyd"
+  fi
+  _warn_other
+}
+post_upgrade() {
+  if [ -d /run/systemd/system ]; then
+    systemctl daemon-reload >/dev/null 2>&1 || :
+    systemctl try-restart keyd.service >/dev/null 2>&1 || :
+  fi
+  _warn_other
+}
+post_remove() {
+  if [ -d /run/systemd/system ]; then
+    systemctl daemon-reload >/dev/null 2>&1 || :
+    systemctl try-restart keyd.service >/dev/null 2>&1 || :
+  fi
+}

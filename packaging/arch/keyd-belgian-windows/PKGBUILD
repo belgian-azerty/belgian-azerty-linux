@@ -1,0 +1,24 @@
+# Ctrl+Alt = AltGr as on Windows, for Belgian keyboards (keyd rules), Arch build. keyd itself is Arch's own [extra]
+# package (2.6.0), not rebuilt.
+# Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
+pkgname=keyd-belgian-windows
+pkgver=0.9.12
+pkgrel=1
+pkgdesc='Ctrl+Alt works as AltGr, as on Windows (keyd rules for Belgian keyboards)'
+arch=('any')
+url='https://github.com/belgian-azerty/belgian-azerty-linux'
+license=('MIT')
+depends=('keyd>=2.5.0')
+backup=('etc/keyd/be-winaltgr.conf')
+install=keyd-belgian-windows.install
+options=('!debug' '!strip')
+source=("belgian-azerty-linux-$pkgver.tar.gz::https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('b9ea122633f0cacd6267c433d6bb74c9bcf4c1eb45c0f3ce01eb932a2c566afc')
+
+package() {
+  cd belgian-azerty-linux-$pkgver
+  install -Dm644 keyd/be-winaltgr.conf "$pkgdir/etc/keyd/be-winaltgr.conf"
+  install -Dm644 packaging/keyd-belgian-windows/belgian-windows-restart.conf \
+    "$pkgdir/usr/lib/systemd/system/keyd.service.d/belgian-windows-restart.conf"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

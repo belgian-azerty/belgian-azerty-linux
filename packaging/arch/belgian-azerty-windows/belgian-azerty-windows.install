@@ -1,0 +1,9 @@
+post_install() {
+  if [ -f /etc/xkb/rules/evdev.pacnew ]; then
+    echo "belgian-azerty-windows: /etc/xkb/rules/evdev was already there and is kept. Our rules are in /etc/xkb/rules/evdev.pacnew: copy its lines into your file, or our options stay unknown."
+  fi
+  echo "belgian-azerty-windows: the options caps:be_windows, be_azerty:accents and be_azerty:mac are now known. How to switch them on: https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md"
+}
+post_upgrade() {
+  [ -f /etc/xkb/rules/evdev.pacnew ] && echo "belgian-azerty-windows: /etc/xkb/rules/evdev.pacnew holds the new rules; your changed file is kept." || true
+}
