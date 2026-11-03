@@ -1,0 +1,47 @@
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='ca.desrt.dconf' requested by ':1.0' (uid=1001 pid=186 comm="gsettings set org.cinnamon.desktop.input-sources s" label="kernel")
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'ca.desrt.dconf'
+LANG=fr_BE.UTF-8 sources=[('xkb', 'be')]
+before cinnamon: layout: us
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.gtk.vfs.Daemon' requested by ':1.2' (uid=1001 pid=206 comm="cinnamon --replace" label="kernel")
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.gtk.vfs.Daemon'
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.a11y.Bus' requested by ':1.4' (uid=1001 pid=206 comm="cinnamon --replace" label="kernel")
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.gtk.vfs.UDisks2VolumeMonitor' requested by ':1.2' (uid=1001 pid=206 comm="cinnamon --replace" label="kernel")
+
+(process:250): GVFS-UDisks2-WARNING **: 22:29:10.375: Failed to connect to UDisks: Could not connect: No such file or directory
+
+(process:250): GVFS-RemoteVolumeMonitorDaemon-WARNING **: 22:29:10.375: monitor says it's not supported
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.gtk.vfs.UDisks2VolumeMonitor'
+
+(process:250): GVFS-RemoteVolumeMonitorDaemon-WARNING **: 22:29:10.378: monitor says it's not supported
+dbus-daemon[242]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=1001 pid=206 comm="cinnamon --replace" label="kernel")
+dbus-daemon[242]: Successfully activated service 'org.a11y.atspi.Registry'
+SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.9' (uid=1001 pid=273 comm="/usr/lib/x86_64-linux-gnu/xapps/xapp-sn-watcher" label="kernel")
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.11' (uid=1001 pid=279 comm="/usr/libexec/xdg-desktop-portal" label="kernel")
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.freedesktop.portal.Documents' requested by ':1.11' (uid=1001 pid=279 comm="/usr/libexec/xdg-desktop-portal" label="kernel")
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.freedesktop.portal.Documents'
+fusermount3: fuse device not found, try 'modprobe fuse' first
+error: fuse init failed: Can't mount path /home/tester/.cache/doc
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.freedesktop.impl.portal.desktop.xapp' requested by ':1.11' (uid=1001 pid=279 comm="/usr/libexec/xdg-desktop-portal" label="kernel")
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.freedesktop.impl.portal.desktop.xapp'
+
+(/usr/libexec/xdg-desktop-portal:279): xdg-desktop-portal-WARNING **: 22:29:10.937: Failed to create RealtimeKit proxy: Could not connect: No such file or directory
+dbus-daemon[184]: [session uid=1001 pid=184] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.11' (uid=1001 pid=279 comm="/usr/libexec/xdg-desktop-portal" label="kernel")
+
+(xdg-desktop-portal-gtk:309): xdg-desktop-portal-gtk-WARNING **: 22:29:10.975: error: Could not connect: No such file or directory
+
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+
+(/usr/libexec/xdg-desktop-portal:279): xdg-desktop-portal-WARNING **: 22:29:11.004: Failed connect to PipeWire: Couldn't connect to PipeWire
+
+(/usr/libexec/xdg-desktop-portal:279): xdg-desktop-portal-WARNING **: 22:29:11.014: Choosing xapp-gnome-keyring.portal for org.freedesktop.impl.portal.Secret via the deprecated UseIn key
+
+(/usr/libexec/xdg-desktop-portal:279): xdg-desktop-portal-WARNING **: 22:29:11.014: The preferred method to match portal implementations to desktop environments is to use the portals.conf(5) configuration file
+dbus-daemon[184]: [session uid=1001 pid=184] Successfully activated service 'org.freedesktop.portal.Desktop'
+after cinnamon:  layout: be
+nl_BE (False, type=None, id=None)
+fr_BE (True, type='xkb', id='be')
+de_BE (False, type=None, id=None)
+A connection to the bus can't be made

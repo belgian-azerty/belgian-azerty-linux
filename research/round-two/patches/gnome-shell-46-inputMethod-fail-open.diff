@@ -1,0 +1,18 @@
+--- a/js/misc/inputMethod.js
++++ b/js/misc/inputMethod.js
+@@ -331,8 +331,13 @@
+                     let retval = context.process_key_event_async_finish(res);
+                     this.notify_key_event(event, retval);
+                 } catch (e) {
+-                    if (!e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
+-                        log(`Error processing key on IM: ${e.message}`);
++                    if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
++                        return;
++
++                    log(`Error processing key on IM: ${e.message}`);
++                    // Fail open: if the input method cannot handle the key,
++                    // deliver it unfiltered instead of dropping it.
++                    this.notify_key_event(event, false);
+                 }
+             });
+         return true;

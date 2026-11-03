@@ -1,0 +1,24 @@
+stock nl_BE: after cinnamon:  layout: be,us variant: , | lookup: nl_BE (False, type=None, id=None)
+stock fr_BE: after cinnamon:  layout: be,be variant: , | lookup: fr_BE (True, type='xkb', id='be')
+stock de_BE: after cinnamon:  layout: be,us variant: , | lookup: de_BE (False, type=None, id=None)
+stock en_US: after cinnamon:  layout: be,us variant: , | lookup: 
+patched nl_BE: after cinnamon:  layout: be,be variant: , | lookup: nl_BE (True, type='xkb', id='be')
+patched fr_BE: after cinnamon:  layout: be,be variant: , | lookup: fr_BE (True, type='xkb', id='be')
+patched de_BE: after cinnamon:  layout: be,us variant: , | lookup: de_BE (False, type=None, id=None)
+patched en_US: after cinnamon:  layout: be,us variant: , | lookup: 
+js67 nl_BE: after cinnamon:  layout: be,us variant: ,
+js67 fr_BE: after cinnamon:  layout: be
+js67 de_BE: after cinnamon:  layout: be,us variant: ,
+js67 en_US: after cinnamon:  layout: be,us variant: ,
+both nl_BE: after cinnamon:  layout: be
+both fr_BE: after cinnamon:  layout: be
+both de_BE: after cinnamon:  layout: be,us variant: ,
+both en_US: after cinnamon:  layout: be,us variant: ,
+gnome-stock nl_BE: (true, '"\\"be,us\\" locale layout {\\"layout\\":\\"us\\",\\"variant\\":\\"\\"}"')
+gnome-stock fr_BE: (true, '"\\"be,be\\" locale layout {\\"layout\\":\\"be\\",\\"variant\\":\\"\\"}"')
+gnome-stock de_BE: (true, '"\\"be,us\\" locale layout {\\"layout\\":\\"us\\",\\"variant\\":\\"\\"}"')
+gnome-stock en_US: (true, '"\\"be,us\\" locale layout {\\"layout\\":\\"us\\",\\"variant\\":\\"\\"}"')
+gnome-patched nl_BE: (true, '"\\"be,be\\" locale layout {\\"layout\\":\\"be\\",\\"variant\\":\\"\\"}"')
+gnome-patched fr_BE: (true, '"\\"be,be\\" locale layout {\\"layout\\":\\"be\\",\\"variant\\":\\"\\"}"')
+gnome-patched de_BE: (true, '"\\"be,us\\" locale layout {\\"layout\\":\\"us\\",\\"variant\\":\\"\\"}"')
+gnome-patched en_US: (true, '"\\"be,us\\" locale layout {\\"layout\\":\\"us\\",\\"variant\\":\\"\\"}"')

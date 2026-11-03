@@ -1,0 +1,17 @@
+overlay in use: (true, 'false')
+ibus context before A: (true, '"true"')
+241 ibus-daemon --panel disable
+errors before A: 0
+errors after A: 0
+(true, '"/org/freedesktop/IBus/InputContext_999"')
+errors after B: 19
+errors after B2 (fast, Shift, é, &): 63
+(true, '"reconnected"')
+ibus context before C: (true, '"/org/freedesktop/IBus/InputContext_3"')
+347 ibus-daemon --panel disable -r --xim -d
+ibus context after restart: (true, '"null"')
+errors after C: 63
+--- typed:
+qw
+azerty
+clavier

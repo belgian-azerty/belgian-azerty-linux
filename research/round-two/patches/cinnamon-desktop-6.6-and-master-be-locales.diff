@@ -1,0 +1,24 @@
+diff --git a/libcinnamon-desktop/default-input-sources.h b/libcinnamon-desktop/default-input-sources.h
+index ca4700b..c27fa67 100644
+--- a/libcinnamon-desktop/default-input-sources.h
++++ b/libcinnamon-desktop/default-input-sources.h
+@@ -38,9 +38,11 @@ static DefaultInputSource default_input_sources[] =
+   { "ja_JP",    "ibus",         "kkc" },
+   { "kn_IN",    "ibus",         "m17n:kn:kgp" },
+   { "ko_KR",    "ibus",         "hangul" },
++  { "li_BE",    "xkb",          "be" },
+   { "mai_IN",   "ibus",         "m17n:mai:inscript" },
+   { "ml_IN",    "ibus",         "m17n:ml:inscript" },
+   { "mr_IN",    "ibus",         "m17n:mr:inscript" },
++  { "nl_BE",    "xkb",          "be" },
+   { "nl_NL",    "xkb",          "us+altgr-intl" },
+   { "or_IN",    "ibus",         "m17n:or:inscript" },
+   { "pa_IN",    "ibus",         "m17n:pa:inscript" },
+@@ -53,6 +55,7 @@ static DefaultInputSource default_input_sources[] =
+   { "ta_IN",    "ibus",         "m17n:ta:tamil99" },
+   { "te_IN",    "ibus",         "m17n:te:inscript" },
+   { "ur_IN",    "ibus",         "m17n:ur:phonetic" },
++  { "wa_BE",    "xkb",          "be" },
+   { "zh_CN",    "ibus",         "libpinyin" },
+   { "zh_HK",    "ibus",         "cangjie" },
+   { "zh_TW",    "ibus",         "libzhuyin" },

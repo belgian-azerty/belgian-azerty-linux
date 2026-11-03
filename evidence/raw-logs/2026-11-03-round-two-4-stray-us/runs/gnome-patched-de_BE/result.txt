@@ -1,0 +1,1 @@
+LANG=de_BE.UTF-8 keymap: (true, '"\\"be,us\\" locale layout {\\"layout\\":\\"us\\",\\"variant\\":\\"\\"}"')

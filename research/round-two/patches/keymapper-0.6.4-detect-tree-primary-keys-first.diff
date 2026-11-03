@@ -1,0 +1,39 @@
+--- a/keymapper/tree.py
++++ b/keymapper/tree.py
+@@ -652,7 +652,7 @@
+                                 # If that's the best we can do, OK.
+                                 map_yes, map_no = exc.args
+                                 if trace > 2:
+-                                    if exc == SingleMapping:
++                                    if isinstance(exc, SingleMapping):
+                                         print("single mapping:", end="")
+                                     else:
+                                         print("single mapping no alt:", end="")
+@@ -667,7 +667,7 @@
+                                         len(track),
+                                     )
+                                 if not track:
+-                                    if exc == SingleMapping:
++                                    if isinstance(exc, SingleMapping):
+                                         return Ask(
+                                             maps,
+                                             sym,
+@@ -1103,6 +1103,18 @@
+                 print("Return3", do_log, "".join(get_sym(sym)))
+             yield sym, SingleMappingNoAlt
+ 
++    # Before asking whether a symbol that may exist only on an AltGr level
++    # is present (such symbols are often not printed on the key caps, e.g.
++    # oe on Belgian keyboards), try "press a key" choices with symbols on
++    # plain or Shift levels that the depth limit above skipped.
++    if depth:
++        tried = set(sym for pri, sym in syms[:depth + 1])
++        for pri, sym in syms_no_alt:
++            if sym not in tried and sym not in xxsyms:
++                if do_log and trace > 1:
++                    print("Return1b", do_log, "".join(get_sym(sym)))
++                yield sym, None
++
+             # If that didn't work, generate yes/no questions.
+     for pri, sym in syms:
+         if symdata[sym][1] < len(maps) - len(supermaps):

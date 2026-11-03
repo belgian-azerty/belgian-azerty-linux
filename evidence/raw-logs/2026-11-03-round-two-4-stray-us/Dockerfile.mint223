@@ -1,0 +1,9 @@
+FROM mirror.gcr.io/linuxmintd/mint22.3-amd64
+# Optional: behind a TLS proxy, copy its CA certificate here first:
+# COPY proxy-ca.crt /usr/local/share/ca-certificates/proxy-ca.crt
+RUN update-ca-certificates >/dev/null 2>&1; apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
+    ca-certificates cinnamon cinnamon-desktop-data xvfb x11-xkb-utils dbus-x11 dbus libglib2.0-bin gir1.2-cinnamondesktop-3.0 \
+    python3-gi locales git meson ninja-build build-essential pkg-config libgtk-3-dev libxkbfile-dev libxrandr-dev libxext-dev \
+    libpulse-dev libgdk-pixbuf-2.0-dev libglib2.0-dev gobject-introspection libgirepository1.0-dev libsystemd-dev libudev-dev \
+    xkb-data iso-codes libcvc-dev >/tmp/apt.log 2>&1; rc=$?; tail -3 /tmp/apt.log; \
+    for l in nl_BE fr_BE de_BE en_US; do sed -i "s/^# *$l.UTF-8/$l.UTF-8/" /etc/locale.gen; done; locale-gen >/dev/null 2>&1; exit 0

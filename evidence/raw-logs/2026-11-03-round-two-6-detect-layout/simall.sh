@@ -1,0 +1,1 @@
+for t in "$@"; do echo "== $(basename $t)"; for m in $(grep "^MAP" $t | cut -d' ' -f2 | sort -u); do l=${m%%:*}; v=; [ "$m" != "$l" ] && v=${m#*:}; python3 /w/sim.py /w/ubi/ubiquity/keyboard_detector.py $t $l "$v" ${MODEL:-strict} 2>&1 | tail -1; done; done

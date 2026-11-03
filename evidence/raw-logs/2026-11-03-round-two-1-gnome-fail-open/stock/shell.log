@@ -1,0 +1,89 @@
+libmutter-Message: 22:05:13.376: Running GNOME Shell (using mutter 46.2) as a Wayland display server
+
+(gnome-shell:188): libmutter-WARNING **: 22:05:13.439: Failed to make thread 'KMS thread' realtime scheduled: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Name "org.freedesktop.RealtimeKit1" does not exist
+libmutter-Message: 22:05:13.507: Created surfaceless renderer without GPU
+libmutter-Message: 22:05:13.607: Added virtual monitor Meta-0
+
+(gnome-shell:188): dbind-WARNING **: 22:05:13.649: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+libmutter-Message: 22:05:13.650: Using Wayland display name 'wayland-0'
+Window manager warning: Failed to set environment variable WAYLAND_DISPLAY for gnome-session: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Name "org.gnome.SessionManager" does not exist
+GNOME Shell-Message: 22:05:14.183: Error loading calendars: Error calling StartServiceByName for org.gnome.Shell.CalendarServer: Process org.gnome.Shell.CalendarServer exited with status 1
+GNOME Shell-Message: 22:05:14.190: Error connecting to the screencast service
+
+(gnome-shell:188): libmutter-WARNING **: 22:05:14.191: There is no colord server available
+
+(gnome-shell:188): accountsservice-WARNING **: 22:05:14.199: ActUserManager: user (null) has no username (uid: -1)
+GNOME Shell-Message: 22:05:14.209: Failed to register AuthenticationAgent
+GNOME Shell-Message: 22:05:14.650: No permission to control network connections: Gio.DBusError: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.PolicyKit1 was not provided by any .service files
+
+(gnome-shell:188): GNOME Shell-WARNING **: 22:05:14.665: Missing required core component Settings, expect trouble…
+** Message: 22:05:14.673: Failed to start camera monitor
+GNOME Shell-Message: 22:05:14.729: Failed to get PolKit permission: Gio.DBusError: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.PolicyKit1 was not provided by any .service files
+GNOME Shell-Message: 22:05:15.066: GNOME Shell started at Tue Nov 03 2026 22:05:14 GMT+0000 (Coordinated Universal Time)
+GNOME Shell-Message: 22:05:15.070: Registering session with GDM
+GNOME Shell-Message: 22:05:15.111: Error registering session with GDM: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.DisplayManager was not provided by any .service files
+GNOME Shell-Message: 22:05:23.959: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.009: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.060: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.112: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.162: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.214: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.264: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.316: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.368: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.419: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.470: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.521: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.573: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.624: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.676: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.727: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.779: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.829: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:24.880: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.327: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.333: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.339: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.345: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.351: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.357: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.363: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.369: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.376: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.382: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.388: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.395: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.401: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.407: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.413: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.419: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.426: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.432: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.438: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.444: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.451: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.456: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.462: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.468: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.475: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.481: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.487: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.494: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.500: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.507: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.514: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.520: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.526: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.532: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.539: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.546: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.553: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.559: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.565: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.571: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.578: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.584: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.590: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+GNOME Shell-Message: 22:05:26.596: Error processing key on IM: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Object does not exist at path “/org/freedesktop/IBus/InputContext_999”
+** Message: 22:05:35.803: Shutting down GNOME Shell
+libmutter-Message: 22:05:35.937: Removed virtual monitor Meta-0

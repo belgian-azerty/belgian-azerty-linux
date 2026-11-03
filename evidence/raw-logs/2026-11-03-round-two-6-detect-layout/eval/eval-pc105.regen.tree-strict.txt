@@ -1,0 +1,41 @@
+be	0/5	{'fr:oss': 5}
+bg	3/3	{'bg': 3}
+br	10/15	{'br': 10, 'WAITS': 1, 'STUCK': 4}
+by	7/11	{'by': 7, 'STUCK': 3, 'WAITS': 1}
+ca	10/11	{'ca': 10, 'WAITS': 1}
+ch	9/9	{'ch': 9}
+cz	5/5	{'cz': 5}
+de:nodeadkeys	10/10	{'de:nodeadkeys': 10}
+dk	9/9	{'dk': 9}
+ee	9/9	{'ee': 9}
+es	9/9	{'es': 9}
+fi	0/9	{'se': 9}
+fr	0/5	{'fr:oss': 5}
+fr:latin9	5/5	{'fr:latin9': 5}
+fr:oss	5/5	{'fr:oss': 5}
+gb	14/15	{'gb': 14, 'WAITS': 1}
+gr	11/12	{'gr': 11, 'WAITS': 1}
+hr	9/9	{'hr': 9}
+hu	9/9	{'hu': 9}
+il	0/2	{'STUCK': 2}
+is	9/9	{'is': 9}
+it	9/9	{'it': 9}
+latam	19/24	{'latam': 19, 'WAITS': 5}
+lt	15/16	{'lt': 15, 'WAITS': 1}
+lv	0/15	{'us': 14, 'WAITS': 1}
+mk	4/6	{'mk': 4, 'WAITS': 1, 'STUCK': 1}
+no	9/9	{'no': 9}
+pl	0/15	{'us': 14, 'WAITS': 1}
+pt	9/9	{'pt': 9}
+ro	0/20	{'us': 19, 'WAITS': 1}
+ro:std	14/15	{'ro:std': 14, 'WAITS': 1}
+ru	7/11	{'ru': 7, 'STUCK': 3, 'WAITS': 1}
+se	9/9	{'se': 9}
+sk:qwerty	5/5	{'sk:qwerty': 5}
+th:tis	1/1	{'th:tis': 1}
+tr	9/9	{'tr': 9}
+tr:f	9/9	{'tr:f': 9}
+ua	5/9	{'STUCK': 3, 'ua': 5, 'WAITS': 1}
+us	14/15	{'us': 14, 'WAITS': 1}
+us:dvorak	14/15	{'us:dvorak': 14, 'WAITS': 1}
+us:intl	0/20	{'us': 19, 'WAITS': 1}

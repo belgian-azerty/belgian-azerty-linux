@@ -1,0 +1,12 @@
+--- js/ui/keyboardManager.js
++++ js/ui/keyboardManager.js
+@@ -159,7 +159,8 @@
+     }
+ 
+     _buildGroupStrings(_group) {
+-        let group = _group.concat(this._localeLayoutInfo);
++        let alreadyIncluded = _group.some(g => g.layout === this._localeLayoutInfo.layout);
++        let group = alreadyIncluded ? _group : _group.concat(this._localeLayoutInfo);
+         let layouts = group.map(g => g.layout).join(',');
+         let variants = group.map(g => g.variant).join(',');
+         return [layouts, variants];
