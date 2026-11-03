@@ -33,6 +33,7 @@ case "$1" in
         ;;
     triggered)
         /usr/lib/belgian-azerty-windows/update-xkb-rules
+        /usr/lib/belgian-azerty-windows/xkb-move finish
         ;;
 esac
 

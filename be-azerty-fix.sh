@@ -86,7 +86,7 @@
 # Ubuntu 24.04 based systems get from the keyd-team PPA (sudo add-apt-repository ppa:keyd-team/ppa). "system" installs
 # the packages found next to this script (or in dist/ next to it) if they are not installed yet.
 #
-# Version 0.9.11. What was tested where: HOW-WE-TESTED.md.
+# Version 0.9.12. What was tested where: HOW-WE-TESTED.md.
 set -u
 # Commands with their own words after them (ibus-skip, apple-iso-keys, accent-space) take no settings.
 case "${1:-}" in ibus-skip|apple-iso-keys|accent-space) ;; *)

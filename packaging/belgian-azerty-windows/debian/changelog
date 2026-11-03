@@ -1,3 +1,17 @@
+belgian-azerty-windows (0.9.12) noble; urgency=medium
+
+  * Let a system upgrade to xkb-data 2.46 or later (Ubuntu 26.04, Linux
+    Mint 23, Debian 14) go through. xkb-data then turns /usr/share/X11/xkb
+    into a link and refuses while another package keeps files there; with
+    this package installed the upgrade stopped half-way. An apt setting now
+    runs /usr/lib/belgian-azerty-windows/xkb-move around dpkg: before an
+    xkb-data 2.46+ install it gives xkb-data its rules file back and takes
+    the Caps Lock file out; afterwards it puts both back on the real name.
+    Only apt runs it (not a plain "dpkg -i" of xkb-data).
+  * The README inside the package now carries the upgrade note too.
+
+ -- @MAINTAINER@  Tue, 03 Nov 2026 06:00:00 +0000
+
 belgian-azerty-windows (0.9.11) noble; urgency=medium
 
   * Keep the Caps Lock, accents and Apple rules on xkb-data 2.46 and later

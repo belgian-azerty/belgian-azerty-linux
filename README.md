@@ -14,25 +14,28 @@ behaviour that Belgians are used to, and a live USB that starts with the Belgian
 | Shift+AltGr accents | Shift+AltGr on the `ù` `µ` `=` keys gives `´` `` ` `` `~`, as on Windows (Linux gives caron, breve, dot above) | package `belgian-azerty-windows` (XKB option `be_azerty:accents`, `ACCENTS=`) |
 | Live USB and installer start with the Belgian keyboard | Repacked ISO whose boot menu asks for the language, then the Belgian keyboard (period or comma) | `tools/make_belgian_iso.sh` |
 
-**Status.** Version 0.9.11. This is a long-standing problem that no project owns. The fix was tested in emulators and
+**Status.** Version 0.9.12. This is a long-standing problem that no project owns. The fix was tested in emulators and
 on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.9 in test containers, a headless GNOME
-desktop and emulators on the test laptop; the fixes of 0.9.10 and 0.9.11 in test containers only; see
+desktop and emulators on the test laptop; the fixes of 0.9.10, 0.9.11 and 0.9.12 in test containers only; see
 `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
 for Linux Mint, Zorin OS and the projects they build on to adopt these fixes themselves (`MAINTAINERS.md` says which
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
 version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
 
+**New in 0.9.12**: upgrading the system to Ubuntu 26.04, Linux Mint 23 or Debian 14 works with the package
+installed. Those upgrades turn the keyboard folder `/usr/share/X11/xkb` into a link, and the keyboard data refuses that
+while another package keeps files there; with 0.9.11 and earlier the upgrade stopped half-way. 0.9.12 steps its two
+files aside just before, and puts them back just after. **Install 0.9.12 before you upgrade.**
+If an upgrade already stopped there with 0.9.11 or earlier: remove the package with `sudo dpkg -r belgian-azerty-windows`
+(apt itself refuses to remove anything while the upgrade is stuck), finish the upgrade with `sudo apt -f install` and
+`sudo apt full-upgrade`, then install 0.9.12 and run `sudo be-azerty-fix system` again. Tested in test containers with a full package upgrade
+(Ubuntu 24.04 to 26.04, Debian 13 to Debian unstable), not with Ubuntu's or Mint's own upgrade tools and not on a real
+computer. The keyboard types the same as with 0.9.11.
+
 **New in 0.9.11**: preparation for the next Ubuntu base. On Ubuntu 26.04 (which Linux Mint 23 will use) the keyboard
 files moved to a new folder, and an update of them removed this project's Caps Lock, accents and Apple rules (the
 keyboard kept working, with the Linux behaviour). 0.9.11 keeps the rules there. On Mint 22.3 and Zorin 18.1 nothing
 changes: the keyboard types the same as with 0.9.10.
-
-**Before you upgrade to Ubuntu 26.04, Linux Mint 23 or Debian 14**, remove the package first:
-`sudo apt remove belgian-azerty-windows`. Then upgrade, install the package again and run `sudo be-azerty-fix system`
-again. With the package installed, the update of the keyboard data (xkb-data 2.46) stops with an error, because the
-package keeps files in the folder that the update turns into a link. This holds for 0.9.11 and the earlier versions
-(tested with 0.9.10). Found in test containers with Ubuntu's keyboard data (Debian's makes the same change), by
-updating only the keyboard data; a full upgrade of the whole system was not tried.
 
 **New in 0.9.10**: no more false "left out" messages from `be-azerty-fix system` and `be-azerty-fix live` when
 Belgian is your only layout, and the 0.9.9 README sentence about the text console is corrected (the console keeps the PC
@@ -195,16 +198,16 @@ be-azerty-fix ibus-skip off --all          # nothing skips ibus any more
 
 How it works, the measurements and its limits: `HOW-WE-TESTED.md`, section "Fast typing".
 
-## Coming from 0.9.9 or 0.9.10
+## Coming from 0.9.9, 0.9.10 or 0.9.11
 
 Install the two new packages, naming the new files exactly (if the folder still holds older files, `*.deb` would
 pick those and nothing would be updated):
 
 ```
-sudo apt install ./keyd-belgian-windows_0.9.11_all.deb ./belgian-azerty-windows_0.9.11_all.deb
+sudo apt install ./keyd-belgian-windows_0.9.12_all.deb ./belgian-azerty-windows_0.9.12_all.deb
 ```
 
-Nothing else is needed: 0.9.10 and 0.9.11 change no setting and type the same as 0.9.9.
+Nothing else is needed: 0.9.10, 0.9.11 and 0.9.12 change no setting and type the same as 0.9.9.
 
 ## Coming from 0.9.8
 
@@ -300,9 +303,10 @@ with Linux Mint or Zorin OS.
   the mouse, or run `sudo systemctl restart keyd` with the on-screen keyboard.
 - **Accent then space only works in apps that read `~/.XCompose`** (GTK apps, the Terminal and the ibus input method).
   Not checked in Qt apps or VS Code.
-- **Upgrading to Ubuntu 26.04, Linux Mint 23 or Debian 14 with the package installed fails** at the keyboard data:
-  remove the package first (see "New in 0.9.11").
-- Not tested: a real Apple keyboard, real hardware with 0.9.9, 0.9.10 or 0.9.11 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu, Debian or Mint 23 outside test containers, other distributions, a second USB keyboard, Wine, remote
+- **Upgrading to Ubuntu 26.04, Linux Mint 23 or Debian 14 needs 0.9.12 first**: with 0.9.11 or earlier installed it
+  stops at the keyboard data (see "New in 0.9.12"). The step-aside only works when apt does the upgrade, not with a
+  plain `dpkg -i` of the keyboard data.
+- Not tested: a real Apple keyboard, real hardware with 0.9.9 to 0.9.12 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu, Debian or Mint 23 outside test containers, other distributions, a second USB keyboard, Wine, remote
   desktop. Full list: `HOW-WE-TESTED.md`.
 
 ## Help test, or answer the survey

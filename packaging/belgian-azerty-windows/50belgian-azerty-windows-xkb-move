@@ -1,0 +1,4 @@
+// belgian-azerty-windows: let a system upgrade move the keyboard folder (xkb-data 2.46, Ubuntu 26.04, Mint 23,
+// Debian 14). See /usr/lib/belgian-azerty-windows/xkb-move. Does nothing once the package is removed.
+DPkg::Pre-Install-Pkgs { "if [ -x /usr/lib/belgian-azerty-windows/xkb-move ]; then /usr/lib/belgian-azerty-windows/xkb-move prepare; else cat >/dev/null; fi"; };
+DPkg::Post-Invoke { "if [ -x /usr/lib/belgian-azerty-windows/xkb-move ]; then /usr/lib/belgian-azerty-windows/xkb-move finish; fi"; };

@@ -4,6 +4,21 @@ A plain-language summary. The technical changelogs are in `packaging/*/debian/ch
 were made between 23 and 25 October 2026. 0.9.7 is the first public release; the earlier versions were test builds
 that were never published. They are listed because the test evidence refers to them.
 
+## 0.9.12
+
+The upgrade fix; the keyboard types exactly as with 0.9.11.
+
+- **A system upgrade to Ubuntu 26.04, Linux Mint 23 or Debian 14 goes through with the package installed.** Those
+  upgrades bring xkb-data 2.46 or later, which turns `/usr/share/X11/xkb` into a link to `/usr/share/xkeyboard-config-2`
+  and refuses to do so while the folder holds files of another package. The package keeps two there (its Caps Lock
+  file and xkb-data's diverted rules file), so with 0.9.11 and earlier the upgrade stopped half-way, with many packages
+  left unconfigured. 0.9.12 adds an apt setting that runs `/usr/lib/belgian-azerty-windows/xkb-move` around dpkg:
+  just before an xkb-data 2.46+ install it gives xkb-data its own rules file back and takes the Caps Lock file out; just
+  after, it puts both back under the real name. It never stops apt and does nothing once the package is removed. Not
+  covered: installing the new xkb-data with a plain `dpkg -i`.
+- The README inside the package now has the upgrade note (0.9.11's package carried the README from before the note).
+- New test `tests/release-upgrade.sh` (full package upgrade of the whole system, four situations).
+
 ## 0.9.11
 
 Preparation for the next Ubuntu base; on Mint 22.3 and Zorin 18.1 the keyboard types exactly as with 0.9.10.
@@ -15,7 +30,7 @@ Preparation for the next Ubuntu base; on Mint 22.3 and Zorin 18.1 the keyboard t
   accents came back until the package was installed again. The keyboard itself kept working. 0.9.11 protects the real
   name, follows updates in the new folder, and when updating from 0.9.10 cleans up the old protection. Found while
   trying the packages on Ubuntu 24.04, Ubuntu 26.04 and Debian 13 in test containers.
-- **Known problem, not fixed (all versions so far): upgrading the system.** On Ubuntu 24.04 with the package installed,
+- **Known problem (fixed in 0.9.12): upgrading the system.** On Ubuntu 24.04 with the package installed,
   the update to xkb-data 2.46 (part of an upgrade to Ubuntu 26.04, Linux Mint 23 or Debian 14) stops with an error:
   xkb-data can only turn `/usr/share/X11/xkb` into a link when that folder holds nothing but its own files, and the
   package keeps its Caps Lock file and the rules diversion there. Remove the package before such an upgrade

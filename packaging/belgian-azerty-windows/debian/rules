@@ -3,4 +3,5 @@
 	dh $@
 
 execute_after_dh_fixperms:
-	chmod 755 debian/belgian-azerty-windows/usr/lib/belgian-azerty-windows/update-xkb-rules
+	chmod 755 debian/belgian-azerty-windows/usr/lib/belgian-azerty-windows/update-xkb-rules debian/belgian-azerty-windows/usr/lib/belgian-azerty-windows/xkb-move
+	install -m 644 be_capslock debian/belgian-azerty-windows/usr/lib/belgian-azerty-windows/be_capslock

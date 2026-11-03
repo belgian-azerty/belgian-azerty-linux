@@ -64,7 +64,7 @@ case "$1" in
             done
         fi
         if [ "$1" = purge ]; then
-            rm -rf /var/lib/belgian-azerty-windows   # choices saved by "be-azerty-fix system"
+            rm -rf /var/lib/belgian-azerty-windows   # choices saved by "be-azerty-fix system" (and the xkb-move mark)
         fi
         ;;
 esac

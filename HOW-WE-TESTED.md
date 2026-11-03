@@ -4,6 +4,38 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## 0.9.12
+
+0.9.12 only adds the upgrade step-aside (`xkb-move` and its apt setting); the keyboard files and the rules are the same
+as in 0.9.11. Tested **only in test containers** on 3 November 2026, not in the laptop emulators and not on real
+hardware:
+
+- First the problem itself, on a full system upgrade (Ubuntu 24.04 to 26.04 with `apt-get dist-upgrade`, no init
+  system): without our package it goes through; with 0.9.11 installed it **stops** at xkb-data, `apt -f install` stops
+  the same way, and the system is left half-upgraded (many packages unpacked but not configured).
+- `tests/release-upgrade.sh`, a full package upgrade of the whole system, on Ubuntu 24.04 to 26.04 and on Debian 13 to
+  Debian unstable (the base of Debian 14), each in four situations: 0.9.12 installed (18 checks), 0.9.11 updated to
+  0.9.12 first (18), 0.9.12 installed then removed but not purged (7), and 0.9.11 installed with the way out the README
+  gives (20 checks). All pass on both. The way out: the upgrade stops; `apt remove` then refuses (apt removes nothing
+  while packages are half-installed), `dpkg -r belgian-azerty-windows` works, then `apt -f install`, the full upgrade
+  and installing 0.9.12 go through. The checks: the upgrade ends
+  without error, no package half-installed, the keyboard folder is a link, our rules are back once on the real name,
+  xkb-data's own rules file is unchanged, `dpkg -V` of xkb-data and of ours is clean, the options compile, and a purge
+  afterwards leaves nothing behind (not even the apt setting).
+- `tests/pkg-cycle.sh` (37 checks) on Ubuntu 24.04, Ubuntu 26.04, Debian 13 and Debian unstable; update 0.9.11 to
+  0.9.12 then removal (15 checks, `tests/xkb-link-upgrade.sh`) on the same four, and 0.9.10 to 0.9.12 with an xkb-data
+  update between them on Ubuntu 26.04: all pass.
+- `tests/lived-in.sh` (77 checks) and every Belgian key typed on a headless GNOME desktop against the Windows table on
+  Ubuntu 24.04 and Debian 13: all pass, and the typing result is line for line the one of 0.9.11 (302 of the 308
+  combinations where Windows types a character). `tests/run-offline.sh` (shellcheck now includes `xkb-move`, settings
+  logic, build + lintian, Caps table, accents/Mac, console): all pass.
+- After the last README change the packages were built again, and on those final packages `tests/pkg-cycle.sh`
+  (Ubuntu 24.04), the update 0.9.11 to 0.9.12 (Ubuntu 26.04) and the full upgrade with 0.9.12 installed and with the
+  way out (both systems) ran again: all pass.
+- Not run: Ubuntu's `do-release-upgrade` and Linux Mint's `mintupgrade` (both drive apt, which runs the setting, but
+  this was not checked), a real upgrade with a desktop and a reboot, and the typing check on Ubuntu 26.04 or Debian
+  unstable (their system manager does not start in the test machine used).
+
 ## 0.9.11
 
 0.9.11 only changes how the package keeps its rules in the keyboard files; the keyboard files and the rules themselves

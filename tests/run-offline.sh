@@ -13,7 +13,7 @@ res() { if [ "$1" = 0 ]; then echo "PASS  $2"; else echo "FAIL  $2"; FAIL=1; fi;
 
 step "shellcheck (warnings and errors)"
 shellcheck -S warning "$ROOT"/be-azerty-fix.sh "$ROOT"/tools/make_belgian_iso.sh "$ROOT"/packaging/*.sh \
-  "$ROOT"/packaging/belgian-azerty-windows/update-xkb-rules "$ROOT"/packaging/belgian-azerty-windows/be-azerty-settings \
+  "$ROOT"/packaging/belgian-azerty-windows/update-xkb-rules "$ROOT"/packaging/belgian-azerty-windows/xkb-move "$ROOT"/packaging/belgian-azerty-windows/be-azerty-settings \
   "$ROOT"/packaging/*/debian/postinst "$ROOT"/packaging/*/debian/postrm "$ROOT"/packaging/belgian-azerty-windows/debian/prerm "$ROOT"/tests/*.sh "$ROOT"/t14s-test/*.sh
 res $? "shellcheck"
 

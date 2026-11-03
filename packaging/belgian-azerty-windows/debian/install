@@ -1,5 +1,7 @@
 be_capslock usr/share/X11/xkb/symbols/
 update-xkb-rules usr/lib/belgian-azerty-windows/
+xkb-move usr/lib/belgian-azerty-windows/
+50belgian-azerty-windows-xkb-move etc/apt/apt.conf.d/
 be-azerty-fix usr/sbin/
 be-azerty-settings usr/bin/
 be-azerty-settings.desktop usr/share/applications/

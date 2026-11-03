@@ -1,0 +1,61 @@
+#!/bin/sh
+# Let a system upgrade move the keyboard folder (Ubuntu 26.04, Linux Mint 23, Debian 14).
+# From xkb-data 2.46, /usr/share/X11/xkb becomes a link to /usr/share/xkeyboard-config-2. xkb-data refuses that switch
+# while the folder holds files of another package, and this package keeps two there (symbols/be_capslock and the
+# diverted rules/evdev.distrib), so the upgrade stopped half-way. apt runs this script around dpkg
+# (/etc/apt/apt.conf.d/50belgian-azerty-windows-xkb-move):
+#   xkb-move prepare   before dpkg (DPkg::Pre-Install-Pkgs, .deb file names on stdin): if apt is about to install
+#                      xkb-data 2.46 or later and the folder is still a real folder, give xkb-data its rules file back
+#                      and take our symbols file out (a copy stays in /usr/lib/belgian-azerty-windows).
+#   xkb-move finish    after dpkg (DPkg::Post-Invoke): put both back, on the real name, wherever the folder is now.
+# It never stops apt: every error is ignored. Not covered: xkb-data installed with plain "dpkg -i".
+LIB=/usr/lib/belgian-azerty-windows
+MARK=/var/lib/belgian-azerty-windows/xkb-move-pending
+OLD_RULES=/usr/share/X11/xkb/rules/evdev
+
+prepare() {
+    xkb_new=
+    while read -r deb; do
+        case "${deb##*/}" in
+            xkb-data_*.deb)
+                v=$(dpkg-deb -f "$deb" Version 2>/dev/null) || continue
+                dpkg --compare-versions "$v" ge 2.46~ && xkb_new=$v ;;
+        esac
+    done
+    [ -n "$xkb_new" ] || return 0
+    [ -d /usr/share/X11/xkb ] && [ ! -L /usr/share/X11/xkb ] || return 0
+    mkdir -p "${MARK%/*}"; : > "$MARK"
+    if dpkg-divert --list "$OLD_RULES" | grep -q belgian-azerty-windows; then
+        # one rename, so the rules file is never missing: xkb-data's own file goes back under its own name
+        [ -f "$OLD_RULES.distrib" ] && mv -f "$OLD_RULES.distrib" "$OLD_RULES"
+        dpkg-divert --package belgian-azerty-windows --no-rename --remove "$OLD_RULES" >/dev/null
+    fi
+    rm -f /usr/share/X11/xkb/symbols/be_capslock
+    echo "belgian-azerty-windows: xkb-data $xkb_new moves the keyboard folder; our Caps Lock, accents and Apple rules" \
+         "step aside and come back after the update." >&2
+}
+
+finish() {
+    [ -f "$MARK" ] || return 0
+    [ -x "$LIB/update-xkb-rules" ] || { rm -f "$MARK"; return 0; }   # package removed meanwhile
+    # only once dpkg is done with xkb-data (configured, so the folder switch is finished)
+    case "$(dpkg-query -W -f='${db:Status-Abbrev}' xkb-data 2>/dev/null)" in ii*) ;; *) return 0 ;; esac
+    rules=$(readlink -f "$OLD_RULES")
+    symbols=$(readlink -f /usr/share/X11/xkb/symbols)
+    [ -f "$rules" ] && [ -d "$symbols" ] || return 0
+    [ -f "$symbols/be_capslock" ] || install -m 644 "$LIB/be_capslock" "$symbols/be_capslock"
+    if ! dpkg-divert --list "$rules" | grep -q belgian-azerty-windows; then
+        "$LIB/update-xkb-rules" strip "$rules" "$rules.distrib.tmp"
+        chmod 644 "$rules.distrib.tmp"; mv -f "$rules.distrib.tmp" "$rules.distrib"
+        dpkg-divert --package belgian-azerty-windows --no-rename --divert "$rules.distrib" --add "$rules" >/dev/null
+    fi
+    "$LIB/update-xkb-rules"
+    rm -f "$MARK"
+    echo "belgian-azerty-windows: Caps Lock, accents and Apple rules are back ($rules)." >&2
+}
+
+case "${1:-}" in
+    prepare) prepare || true ;;
+    finish)  finish || true ;;
+esac
+exit 0
