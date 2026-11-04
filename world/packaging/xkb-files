@@ -5,7 +5,8 @@
 # every copy starts with our marker line, so only our own files are ever replaced or removed.
 #   xkb-files put       copy our files (postinst), and our layout list to /etc/xkb/rules/evdev.xml
 #   xkb-files take      remove our layout files (before an xkb-data 2.46 folder switch)
-#   xkb-files remove    remove our layout files and our layout list (prerm on remove)
+#   xkb-files remove    remove our layout files and our layout lists (prerm on remove)
+#   xkb-files relist    rebuild the system layout list from xkb-data's file (dpkg trigger after an xkb-data change)
 # The layout list: desktops that use libxkbregistry (GNOME 44+, KDE) only show and only accept layouts listed in a
 # rules/evdev.xml of one of the keyboard folders; libxkbregistry reads /etc/xkb/rules/evdev.xml next to the system
 # one. A file there that is not ours is left alone (then our layouts are not listed).
@@ -46,6 +47,40 @@ take_reg() {
     reg_ours || return 0
     rm -f "$REG"; rmdir "${REG%/*}" 2>/dev/null; rmdir /etc/xkb 2>/dev/null; return 0
 }
+# The system layout list (xkb-data's rules/evdev.xml). Linux Mint's Cinnamon reads only this list (not /etc/xkb), so
+# our layouts are added to it: xkb-data's own file is diverted to evdev.xml.distrib (dpkg -V stays clean, xkb-data
+# updates land there) and evdev.xml is rebuilt as that file plus our <layout> entries, after every xkb-data change
+# (dpkg trigger). Removal puts xkb-data's file back in one rename. Same method as belgian-azerty-windows uses for
+# rules/evdev; the two packages divert different files.
+XML_OLD=/usr/share/X11/xkb/rules/evdev.xml
+PKG=world-keyboard-windows
+list_on() {      # returns 0 only when the system list now holds our entries
+    X=$(readlink -f "$XML_OLD"); [ -f "$X" ] || return 1
+    if ! dpkg-divert --list "$X" | grep -q "$PKG"; then
+        cp -p "$X" "$X.distrib.tmp" && mv -f "$X.distrib.tmp" "$X.distrib"
+        dpkg-divert --package "$PKG" --no-rename --divert "$X.distrib" --add "$X" >/dev/null
+    fi
+    [ -f "$X.distrib" ] || return 1
+    tmp=$(mktemp "$X.tmp.XXXXXX") || return 1
+    sed -n '/<layoutList>/,/<\/layoutList>/p' "$LIB/evdev.xml" | sed '1d;$d' > "$tmp.frag"
+    awk -v frag="$tmp.frag" '
+        !done && /<\/layoutList>/ { print "    <!-- world-keyboard-windows: our layouts, added by /usr/lib/world-keyboard-windows/xkb-files -->"
+                                    while ((getline l < frag) > 0) print l; done = 1 }
+        { print }' "$X.distrib" > "$tmp" && chmod 644 "$tmp" && mv -f "$tmp" "$X"
+    rm -f "$tmp" "$tmp.frag"
+    grep -q '<!-- world-keyboard-windows: our layouts' "$X"
+}
+# One list only: libxkbregistry (GNOME, KDE) reads both, and would show each layout twice. The /etc/xkb list is the
+# fallback for when the system list cannot hold our entries.
+lists() { if list_on; then take_reg; else put_reg; fi; }
+list_off() {
+    X=$(readlink -f "$XML_OLD")
+    if dpkg-divert --list "$X" | grep -q "$PKG"; then
+        [ -f "$X.distrib" ] && mv -f "$X.distrib" "$X"
+        dpkg-divert --package "$PKG" --no-rename --remove "$X" >/dev/null
+    fi
+    return 0
+}
 prepare() {
     new=
     while read -r deb; do
@@ -56,14 +91,14 @@ prepare() {
     done
     [ -n "$new" ] || return 0
     [ -d /usr/share/X11/xkb ] && [ ! -L /usr/share/X11/xkb ] || return 0
-    mkdir -p "${MARK%/*}"; : > "$MARK"; take
+    mkdir -p "${MARK%/*}"; : > "$MARK"; take; list_off
     echo "world-keyboard-windows: xkb-data $new moves the keyboard folder; the (Windows) layouts step aside and come back after the update." >&2
 }
 finish() {
     [ -f "$MARK" ] || return 0
     [ -d "$LIB/symbols" ] || { rm -f "$MARK"; return 0; }
     case "$(dpkg-query -W -f='${db:Status-Abbrev}' xkb-data 2>/dev/null)" in ii*) ;; *) return 0 ;; esac
-    put; rm -f "$MARK"
+    put; lists; rm -f "$MARK"
     echo "world-keyboard-windows: the (Windows) layouts are back ($(symdir))." >&2
 }
 fallback() {     # on removal: a system default naming one of our layouts gets the Linux layout it was made from
@@ -92,9 +127,10 @@ fallback() {     # on removal: a system default naming one of our layouts gets t
 }
 case "${1:-status}" in
     fallback) fallback || true ;;
-    put) put || true; put_reg || true ;;
+    put) put || true; lists || true ;;
     take) take || true ;;
-    remove) take || true; take_reg || true ;;
+    remove) take || true; take_reg || true; list_off || true ;;
+    relist) lists || true ;;
     prepare) prepare || true ;;
     finish) finish || true ;;
     status) d=$(symdir); for f in "$d"/*_windows; do ours "$f" && echo "$f"; done; reg_ours && echo "$REG"; true ;;

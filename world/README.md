@@ -30,9 +30,14 @@ the layout list as "German (Windows)", "German (Switzerland, Windows)", "French 
   Reason: xkb-data 2.46 (Ubuntu 26.04, Linux Mint 23, Debian 14) turns the folder into a link and refuses while
   another package owns files there (the problem belgian-azerty-windows 0.9.11/0.9.12 had to fix). An apt hook takes
   the copies out before that switch and puts them back after, the same way the Belgian package does for its own files.
-- No diversion, no change to the rules file, no change to xkb-data's layout list: the layout list for desktops is a
-  separate file, `/etc/xkb/rules/evdev.xml`, which libxkbcommon's registry reads next to the system list. A file
-  there that is not ours is left alone.
+- No change to the rules file. Desktops only offer, and only accept, layouts that are in a layout list
+  (`rules/evdev.xml`): GNOME 46 silently fell back to US for a layout that was not listed. GNOME and KDE
+  (libxkbregistry) also read a list in `/etc/xkb/rules/evdev.xml`, but Linux Mint's Cinnamon reads only xkb-data's own
+  list. So the package diverts xkb-data's list to `evdev.xml.distrib` (xkb-data updates land there, `dpkg -V xkb-data`
+  stays clean) and rebuilds `evdev.xml` as that file plus its own entries after every xkb-data change. Removal puts
+  xkb-data's file back in one rename. The `/etc/xkb` list is only written when the system list cannot hold the
+  entries, so no layout is listed twice. This is the same method the Belgian package uses for `rules/evdev`; the two
+  packages divert different files.
 - It sets nothing. On removal, a system default (`/etc/default/keyboard`) that names one of its layouts gets the
   Linux layout back (`ch_windows` -> `ch`), so the keyboard never falls back to US.
 
@@ -44,7 +49,8 @@ the layout list as "German (Windows)", "German (Switzerland, Windows)", "French 
 | Same on X11 (xkbcomp) as on Wayland (libxkbcommon) | yes, all four |
 | Linux characters lost (where Windows has none) | 0 |
 | Headless GNOME Shell 46 (Ubuntu 24.04), typed through Mutter | 1,241 / 1,241 cells typed as the machine check predicted |
-| Package next to belgian-azerty-windows 0.9.12 (`tests/coexist.sh`) | 33/33 PASS: every Belgian file, the rules file, its diversion and xkb-data's files byte-identical after install, removal and purge |
+| Package next to belgian-azerty-windows 0.9.12 (`tests/coexist.sh`) | 41/41 PASS: every Belgian file, the rules file, its diversion and xkb-data's other files byte-identical after install, removal and purge; xkb-data's list kept as `evdev.xml.distrib` and given back on removal; rebuilt after an xkb-data reinstall |
+| Cinnamon's layout lookup (CinnamonDesktop.XkbInfo, Ubuntu 24.04 build 6.0) | finds all four after install, none before and after removal |
 | System upgrade Ubuntu 24.04 -> 26.04 (xkb-data 2.46, `tests/upgrade-2604.sh`) | ALL PASS, with and without the Belgian package |
 
 What is **not** like Windows yet:
@@ -57,8 +63,8 @@ What is **not** like Windows yet:
 - German: Windows data (CLDR and Microsoft's own table) say Caps Lock gives the Shift character on the digit row
   (Caps Lock + 1 = !). Not yet confirmed on a real Windows PC.
 
-Not tested: a real desktop (only containers), Linux Mint's Cinnamon (its layout chooser reads only the system list,
-so the layouts probably do not show there yet), the login screen, the text console, the installer, Fedora, openSUSE,
+Not tested: a real desktop (only containers), Linux Mint's own Cinnamon build and a Cinnamon session typing test
+(only Cinnamon's layout lookup was checked), the login screen, the text console, the installer, Fedora, openSUSE,
 Arch.
 
 ## All 208 Windows layouts (dry run, not packaged)

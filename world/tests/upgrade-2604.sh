@@ -25,6 +25,9 @@ echo "      xkb-data now $(dpkg-query -W -f='${Version}' xkb-data); /usr/share/X
 SYM=$(readlink -f /usr/share/X11/xkb/symbols)
 t "no mark left" test ! -e /var/lib/world-keyboard-windows/xkb-move-pending
 for f in de_windows ch_windows pl_windows; do t "$f back in the new folder ($SYM)" sh -c "head -1 $SYM/$f | grep -q gen_windows_symbols"; done
+XML=$(readlink -f /usr/share/X11/xkb/rules/evdev.xml)
+t "system list on the real name diverted by us, our 3 layouts in it once" sh -c "dpkg-divert --list '$XML' | grep -q world-keyboard-windows && [ \$(dpkg-divert --list | grep -c world-keyboard-windows) = 1 ] && [ \$(grep -c '<name>de_windows</name>' '$XML') = 1 ] && grep -q '<name>pl_windows</name>' '$XML'"
+t "evdev.xml.distrib = the new xkb-data's own list" sh -c "(cd /tmp && apt-get download -qq xkb-data) && [ \"\$(dpkg-deb --fsys-tarfile /tmp/xkb-data_*_all.deb | tar -xOf - ./usr/share/xkeyboard-config-2/rules/evdev.xml | md5sum)\" = \"\$(md5sum < '$XML.distrib')\" ]"
 t "our layouts compile on the new system" sh -c 'xkbcli compile-keymap --layout de_windows >/dev/null && xkbcli compile-keymap --layout ch_windows --variant fr >/dev/null && xkbcli compile-keymap --layout pl_windows >/dev/null'
 if [ "$MODE" != world-only ]; then
   t "Belgian package still installed (ii)" sh -c 'dpkg-query -W -f="\${db:Status-Abbrev}" belgian-azerty-windows | grep -q "^ii"'
@@ -38,6 +41,7 @@ if command -v python3 >/dev/null; then
   grep -v '^    left' /tmp/check-2604.txt | sed 's/^/      /'
 fi
 apt-get purge -y world-keyboard-windows >/dev/null 2>&1
+t "purge: system list back to xkb-data's file, no diversion" sh -c "! dpkg-divert --list | grep -q world-keyboard-windows && [ ! -e '$XML.distrib' ] && ! grep -q _windows '$XML'"
 t "purge: nothing of ours left" sh -c "! ls $SYM/*_windows && [ ! -e /etc/apt/apt.conf.d/50world-keyboard-windows-xkb-move ] && [ ! -d /var/lib/world-keyboard-windows ]"
 [ "$MODE" = world-only ] || t "Belgian options still known after our purge" sh -c '! xkbcli compile-keymap --layout be --options caps:be_windows 2>&1 >/dev/null | grep -q .'
 apt-get install -y -qq less >/tmp/other2.log 2>&1; t "apt still works after purge" test $? = 0

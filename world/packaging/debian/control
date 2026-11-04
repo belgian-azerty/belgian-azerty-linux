@@ -21,5 +21,8 @@ Description: extra keyboard layouts that type like Windows (prototype)
  Layouts in this prototype: de_windows (German), ch_windows (Swiss German,
  variant fr: Swiss French), pl_windows (Polish Programmers).
  .
- It does not touch the belgian-azerty-windows package, xkb-data's files,
- the rules or any setting: installing it only makes the layouts available.
+ It does not touch the belgian-azerty-windows package, the rules or any
+ setting. To make the layouts selectable in Cinnamon (Linux Mint), which
+ reads only xkb-data's layout list, it diverts that list (rules/evdev.xml)
+ and rebuilds it as xkb-data's file plus its own entries; removal puts
+ xkb-data's file back. Installing it only makes the layouts available.

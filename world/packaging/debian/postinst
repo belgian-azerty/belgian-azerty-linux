@@ -2,5 +2,7 @@
 set -e
 case "$1" in
     configure) /usr/lib/world-keyboard-windows/xkb-files put ;;
+    triggered) /usr/lib/world-keyboard-windows/xkb-files relist
+               /usr/lib/world-keyboard-windows/xkb-files finish ;;
 esac
 #DEBHELPER#

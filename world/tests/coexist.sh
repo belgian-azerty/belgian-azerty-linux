@@ -14,8 +14,8 @@ SYM=$(readlink -f /usr/share/X11/xkb/symbols); RULES=$(readlink -f /usr/share/X1
 dv() { dpkg -V xkb-data | grep -v '^missing .*/usr/share/\(doc\|man\)/'; }
 snap() {   # everything of the Belgian package and of xkb-data's keyboard folder that must not change
   { dpkg -L belgian-azerty-windows 2>/dev/null | while read -r f; do [ -f "$f" ] && sha256sum "$f"; done
-    sha256sum "$RULES" "$RULES.distrib" 2>/dev/null; dpkg-divert --list | sort
-    find /usr/share/X11/xkb/ "$SYM/" -type f ! -name '*_windows' -exec sha256sum {} + 2>/dev/null | sort
+    sha256sum "$RULES" "$RULES.distrib" 2>/dev/null; dpkg-divert --list | grep -v world-keyboard-windows | sort
+    find /usr/share/X11/xkb/ "$SYM/" -type f ! -name '*_windows' ! -name 'evdev.xml' ! -name 'evdev.xml.distrib' -exec sha256sum {} + 2>/dev/null | sort
     cat /etc/default/keyboard; dpkg-query -W -f='${Package} ${Version} ${db:Status-Abbrev}\n' belgian-azerty-windows; } | sort
 }
 cmpx() { xkbcomp -w 0 -I/usr/share/X11/xkb -xkb - /dev/null <<K
@@ -25,13 +25,20 @@ K
 }
 apt-get install -y --no-install-recommends "$BE" >/dev/null 2>&1; t "Belgian package installed" dpkg-query -W belgian-azerty-windows
 t "Belgian options compile before" xkbcli compile-keymap --layout be --options caps:be_windows,be_azerty:accents
-snap > /tmp/before
+snap > /tmp/before; XML=$(readlink -f /usr/share/X11/xkb/rules/evdev.xml); XMLSUM=$(sha256sum < "$XML")
 apt-get install -y "$WO" >/tmp/world-install.log 2>&1; t "world package installed" dpkg-query -W world-keyboard-windows
 snap > /tmp/after-install
 t "Belgian package, rules, diversion, xkb-data files unchanged after install" cmp /tmp/before /tmp/after-install
 t "dpkg -V xkb-data clean" test -z "$(dv)"
 for f in de_windows ch_windows pl_windows; do t "$SYM/$f present, ours" sh -c "head -1 $SYM/$f | grep -q gen_windows_symbols"; done
-t "our layout list in /etc/xkb/rules/evdev.xml" sh -c "sed -n 3p /etc/xkb/rules/evdev.xml | grep -q gen_windows_symbols"
+t "system list diverted by us, xkb-data's file kept as evdev.xml.distrib" sh -c "dpkg-divert --list '$XML' | grep -q world-keyboard-windows && [ \"\$(sha256sum < '$XML.distrib')\" = '$XMLSUM' ]"
+t "system list = xkb-data's list plus our 3 layouts (what Cinnamon reads)" python3 -c "
+import xml.etree.ElementTree as E
+n=lambda p:[l.find('configItem/name').text for l in E.parse(p).getroot().find('layoutList')]
+a,b=n('$XML.distrib'),n('$XML'); assert b[:len(a)]==a and b[len(a):]==['de_windows','ch_windows','pl_windows'],b[len(a):]"
+t "Belgian rules diversion still there" sh -c "dpkg-divert --list | grep -q 'evdev.distrib.*belgian-azerty-windows'"
+t "libxkbregistry: each of our layouts listed once" sh -c "[ \$(xkbcli list | grep -c \"layout: 'de_windows'\") = 1 ] && [ \$(xkbcli list | grep -c \"layout: 'ch_windows'\") = 2 ]"
+t "no second list in /etc/xkb (the system list holds ours)" test ! -e /etc/xkb/rules/evdev.xml
 t "libxkbregistry lists de_windows, ch_windows(fr), pl_windows next to the system layouts" sh -c "xkbcli list > /tmp/list.yaml && grep -q 'layout: .de_windows' /tmp/list.yaml && grep -q 'layout: .pl_windows' /tmp/list.yaml && grep -A1 'layout: .ch_windows' /tmp/list.yaml | grep -q 'variant: .fr' && grep -q 'layout: .be.' /tmp/list.yaml"
 t "our files belong to no package (xkb-data can switch the folder later)" sh -c "! dpkg -S $SYM/de_windows"
 for l in "de_windows basic" "ch_windows basic" "ch_windows fr" "pl_windows basic"; do set -- $l
@@ -49,12 +56,14 @@ grep -q '^XKBVARIANT=' /etc/default/keyboard || echo 'XKBVARIANT=",fr"' >> /etc/
 apt-get remove -y world-keyboard-windows >/tmp/world-remove.log 2>&1; t "world package removed" sh -c "! dpkg-query -W -f='\${db:Status-Abbrev}' world-keyboard-windows | grep -q ii"
 t "our files gone after remove" sh -c "! ls $SYM/*_windows"
 t "our layout list gone after remove" test ! -e /etc/xkb/rules/evdev.xml
+t "system list back to xkb-data's own file, no diversion of ours" sh -c "[ \"\$(sha256sum < '$XML')\" = '$XMLSUM' ] && [ ! -e '$XML.distrib' ] && ! dpkg-divert --list | grep -q world-keyboard-windows"
 t "/etc/default/keyboard back to Linux layouts (be,ch / ,fr)" sh -c "grep -qx 'XKBLAYOUT=\"be,ch\"' /etc/default/keyboard && grep -qx 'XKBVARIANT=\",fr\"' /etc/default/keyboard"
 grep '^XKB' /etc/default/keyboard | sed 's/^/      /'
 sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="be"/; s/^XKBVARIANT=.*/XKBVARIANT=""/' /etc/default/keyboard
 snap > /tmp/after-remove; sed -n '/XKB/p' /tmp/before > /dev/null
 if diff <(grep -v "^XKB" /tmp/before) <(grep -v "^XKB" /tmp/after-remove) > /tmp/d-remove; then pass "Belgian package, rules, diversion, xkb-data files unchanged after remove"; else fail "Belgian package, rules, diversion, xkb-data files unchanged after remove"; head -20 /tmp/d-remove; fi
 apt-get install -y "$WO" >/dev/null 2>&1; apt-get purge -y world-keyboard-windows >/dev/null 2>&1
+t "after purge: no diversion of ours, system list original" sh -c "! dpkg-divert --list | grep -q world-keyboard-windows && [ \"\$(sha256sum < '$XML')\" = '$XMLSUM' ]"
 t "after purge: nothing of ours left" sh -c "! ls $SYM/*_windows && [ ! -e /etc/apt/apt.conf.d/50world-keyboard-windows-xkb-move ] && [ ! -d /usr/lib/world-keyboard-windows ] && [ ! -d /var/lib/world-keyboard-windows ] && [ ! -e /etc/xkb/rules/evdev.xml ]"
 t "dpkg -V xkb-data clean after purge" test -z "$(dv)"
 # the other way round: ours installed, the Belgian package goes
@@ -63,6 +72,9 @@ apt-get purge -y belgian-azerty-windows >/dev/null 2>&1
 t "Belgian package purged with ours installed" sh -c "! dpkg-query -W -f='\${db:Status-Abbrev}' belgian-azerty-windows 2>/dev/null | grep -q ii"
 t "our files unchanged after the Belgian purge" sha256sum -c /tmp/ours
 t "our layouts still compile without the Belgian package" xkbcli compile-keymap --layout de_windows
+apt-get install -y --reinstall xkb-data >/dev/null 2>&1
+t "after an xkb-data reinstall: our entries rebuilt into the system list, once" sh -c "[ \$(grep -c '<name>de_windows</name>' '$XML') = 1 ] && [ \"\$(sha256sum < '$XML.distrib')\" = '$XMLSUM' ]"
+t "after an xkb-data reinstall: dpkg -V xkb-data clean" test -z "$(dv)"
 apt-get install -y -qq less >/tmp/other.log 2>&1
 t "an unrelated apt install: our hook silent, no mark" sh -c '! grep -q "world-keyboard-windows:" /tmp/other.log && [ ! -e /var/lib/world-keyboard-windows/xkb-move-pending ]'
 echo; [ $FAIL = 0 ] && echo "ALL PASS" || echo "SOME FAILED"; exit $FAIL

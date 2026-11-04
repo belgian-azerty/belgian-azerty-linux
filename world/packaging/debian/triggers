@@ -1,0 +1,4 @@
+# Rebuild the system layout list (our entries added) whenever xkb-data installs files in the rules directory.
+interest-noawait /usr/share/X11/xkb/rules
+# xkb-data 2.46+ installs its files under this name (/usr/share/X11/xkb is then a link to it)
+interest-noawait /usr/share/xkeyboard-config-2/rules
