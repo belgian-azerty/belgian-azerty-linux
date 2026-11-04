@@ -7,12 +7,12 @@
 set -u; D=$(realpath "${1:?usage: rpm-cycle.sh RPM_DIR}"); ROOT=$(cd "$(dirname "$0")/.." && pwd); FAIL=0
 pass() { echo "PASS  $*"; }; fail() { echo "FAIL  $*"; FAIL=1; }
 t() { local d=$1; shift; if "$@" >/dev/null 2>&1; then pass "$d"; else fail "$d"; fi; }
-if command -v dnf >/dev/null; then
+if command -v dnf >/dev/null; then PMN=dnf
   inst() { dnf -y install "$@"; }; reinst() { dnf -y reinstall "$@"; }; rem() { dnf -y remove "$@"; }
   dnf -q -y install libxkbcommon-utils xkeyboard-config python3 python3-cffi libxkbcommon diffutils util-linux \
     shadow-utils rpm-build systemd-rpm-macros >/dev/null 2>&1 || { echo "FAIL  dnf install"; exit 1; }
   OURS=("$D"/keyd-2*.x86_64.rpm "$D"/keyd-belgian-windows-0*.noarch.rpm "$D"/belgian-azerty-windows-0*.noarch.rpm)
-else
+else PMN=zypper
   inst() { zypper -n --no-gpg-checks install -y --allow-unsigned-rpm "$@"; }   # no -q: it hides the packages' messages
   reinst() { zypper -n install -y -f "$@"; }; rem() { zypper -n remove -y "$@"; }
   zypper -q -n refresh >/dev/null 2>&1
@@ -25,7 +25,17 @@ known() { ! xkbcli compile-keymap --layout be --options "$OPTS" 2>&1 | grep -q U
 echo "== $(. /etc/os-release; echo "$PRETTY_NAME"), $(rpm -q xkeyboard-config | tr '\n' ' ')"
 t "before: our options unknown" sh -c 'xkbcli compile-keymap --layout be --options caps:be_windows 2>&1 | grep -q Unrecognized'
 t "xkeyboard-config clean before" test -z "$(rpm -V xkeyboard-config)"
+if [ "${SELINUX_POLICY:-0}" = 1 ]; then   # the SELinux policy present (as on a real Fedora/openSUSE), not enforcing here
+  if [ $PMN = dnf ]; then dnf -q -y install selinux-policy-targeted policycoreutils libselinux-utils setools-console >/dev/null 2>&1
+  else zypper -q -n install -y selinux-policy-targeted policycoreutils libselinux-utils setools-console >/dev/null 2>&1; fi
+  t "SELinux policy installed; /etc/xkb is etc_t before" sh -c 'matchpathcon /etc/xkb/rules/evdev | grep -q ":etc_t:"'
+fi
 inst "${OURS[@]}" >/tmp/i.log 2>&1
+if [ "${SELINUX_POLICY:-0}" = 1 ]; then
+  t "SELinux: our label module added, /etc/xkb files get usr_t" sh -c 'semodule -l | grep -qx belgian_azerty_xkb && matchpathcon /etc/xkb/rules/evdev /etc/xkb/symbols/be_capslock | grep -c ":usr_t:" | grep -qx 2'
+  t "SELinux: the module in the package is the one in packaging/selinux" cmp -s /usr/share/selinux/packages/belgian-azerty-windows/belgian_azerty_xkb.cil "$ROOT"/packaging/selinux/belgian_azerty_xkb.cil
+  t "SELinux: localed may map usr_t files (policy rule)" sh -c 'command -v sesearch >/dev/null || exit 0; sesearch -A -s systemd_localed_t -t usr_t -c file -p map | grep -q map'
+fi
 t "installed (keyd included)" rpm -q keyd keyd-belgian-windows belgian-azerty-windows
 rpm -q keyd keyd-belgian-windows belgian-azerty-windows | sed 's/^/      /'
 t "rpm -V of ours and of keyd clean, xkeyboard-config still clean" test -z "$(rpm -V keyd keyd-belgian-windows belgian-azerty-windows xkeyboard-config)"
@@ -49,6 +59,9 @@ t "upgrade to a rebuilt release: upgraded, options known, rpm -V clean" sh -c "[
 rem belgian-azerty-windows keyd-belgian-windows >/dev/null 2>&1
 t "removed: our files gone, keyd stays" sh -c '! rpm -q belgian-azerty-windows && ! rpm -q keyd-belgian-windows && [ ! -e /etc/xkb/rules/evdev ] && [ ! -e /etc/xkb/symbols/be_capslock ] && [ ! -e /etc/keyd/be-winaltgr.conf ] && rpm -q keyd'
 t "after removal: options unknown, keymap compiles, xkeyboard-config clean" sh -c 'xkbcli compile-keymap --layout be --options caps:be_windows 2>&1 | grep -q Unrecognized && xkbcli compile-keymap --layout be >/dev/null && [ -z "$(rpm -V xkeyboard-config)" ]'
+if [ "${SELINUX_POLICY:-0}" = 1 ]; then
+  t "SELinux: module removed with the package, /etc/xkb back to etc_t" sh -c '! semodule -l | grep -qx belgian_azerty_xkb && matchpathcon /etc/xkb/rules/evdev | grep -q ":etc_t:"'
+fi
 # a user with files of their own in /etc/xkb and /etc/keyd
 mkdir -p /etc/xkb/symbols /etc/xkb/rules /etc/keyd
 printf '// my own layout\nxkb_symbols "x" { include "be" };\n' > /etc/xkb/symbols/mine

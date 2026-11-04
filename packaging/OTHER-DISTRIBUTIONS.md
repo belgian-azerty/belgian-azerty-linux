@@ -1,6 +1,7 @@
 # Other distributions: Fedora, openSUSE, Arch Linux, and NixOS, Gentoo, Slackware, Void, Solus
 
-**Status (3 November 2026): tested in test containers only. Nothing is published for these systems**: no Fedora or
+**Status (4 November 2026): tested in test containers, and on Fedora 45 and openSUSE Leap 16.0 in a virtual machine
+on one laptop (with SELinux on, see below). Nothing is published for these systems**: no Fedora or
 openSUSE repository, no AUR entry, no ready-made packages on the release page. The project itself is made for Linux
 Mint 22.3 and Zorin OS 18.1 (see the README); these files are the first step towards other Linux families. Fedora, openSUSE and Arch have package files (below);
 for NixOS, Gentoo, Slackware, Void and Solus there is a small script instead (see "No package: the script").
@@ -15,8 +16,8 @@ plus the Ctrl+Alt = AltGr rules for keyd.
   our lines) and the Caps Lock file to `/etc/xkb/symbols/be_capslock`. libxkbcommon reads `/etc/xkb` before the system
   folder; that this path is built in was checked on Fedora 44 and 45, openSUSE Tumbleweed and Leap 16.0, and Arch.
   The system's own keyboard package stays unchanged (`rpm -V` or `pacman -Qkk` give the same answer before and after).
-- **Where it works**: programs that use libxkbcommon, which includes the Wayland desktops. Expected, not tested: GNOME
-  on Wayland. Unknown: KDE Plasma. **Not read** by a pure X11 session (the X server has its own folder) or by the text
+- **Where it works**: programs that use libxkbcommon, which includes the Wayland desktops. GNOME's login screen: tested
+  on Fedora 45 and Leap 16.0 in a virtual machine (below). Unknown: KDE Plasma. **Not read** by a pure X11 session (the X server has its own folder) or by the text
   console.
 - **keyd**: Fedora has no keyd package, so `fedora/keyd.spec` builds keyd 2.6.0 unchanged from the official release.
   openSUSE (Tumbleweed 2.6.0, Leap 16.0 2.5.0 from Backports) and Arch (2.6.0 in [extra]) have their own, which our
@@ -24,11 +25,18 @@ plus the Ctrl+Alt = AltGr rules for keyd.
 - **keyd is switched on when `keyd-belgian-windows` is installed** (if systemd runs), as on Debian and Ubuntu: Ctrl+Alt
   = AltGr is the reason to install it. On Arch this is unusual (Arch packages normally leave services off); this may
   still change.
+- **SELinux (Fedora, and openSUSE's new installs)**: from 0.9.12-2 the Fedora and openSUSE package adds a small SELinux
+  rule (`belgian_azerty_xkb`) that gives `/etc/xkb` the label `usr_t`, the label the system's own keyboard files in
+  `/usr/share/X11/xkb` already have; removing the package takes it out again. Without it (0.9.12-1), on Fedora 45 with
+  SELinux on, systemd-localed may not read our rules file, so `localectl set-x11-keymap` refuses every layout and the
+  login screen stays US. With 0.9.12-2 this works (tested on Fedora 45 and Leap 16.0 in a virtual machine, below).
+  Leap 16.0 did not have the problem even with 0.9.12-1; openSUSE Tumbleweed with SELinux was not tested.
 - **A rules file of your own in `/etc/xkb` is kept.** Ours is then put beside it (`evdev.rpmnew` or `evdev.pacnew`) and
   the package says so: copy its lines into your file, or the three options stay unknown.
 - **No `be-azerty-fix` in these packages**, and the options do not appear in the desktop's keyboard settings. To
   switch them on for the whole system (login screen and new users):
-  `sudo localectl set-x11-keymap be pc105 "" caps:be_windows,be_azerty:accents` (checked in the test containers).
+  `sudo localectl set-x11-keymap be pc105 "" caps:be_windows,be_azerty:accents` (checked in the test containers, and with
+  SELinux on in the virtual machines with 0.9.12-2).
   For one GNOME user: `gsettings set org.gnome.desktop.input-sources xkb-options "['caps:be_windows','be_azerty:accents']"`
   (not tested on these systems). On Fedora, `sudo bash be-azerty-fix.sh system` from this repository does the
   system part and the users' stored GNOME settings (tested in containers only, see below). On openSUSE and Arch the
@@ -83,6 +91,8 @@ sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove      # takes out only our 
 ```
 - A rules file of your own in `/etc/xkb` is kept: ours is written beside it as `evdev.belgian-azerty` with a message.
   A `be_capslock` file of your own is never overwritten.
+- With SELinux on, the script adds the same `usr_t` rule as the packages (and takes it out with `remove` once
+  `/etc/xkb` is empty).
 - The script does not switch the options on and does not set up keyd. Switch the options on in your system's
   keyboard setting (`localectl` where systemd runs, as above; otherwise your desktop's or X server's own file).
   keyd: Void and NixOS have keyd 2.6.0, Solus 2.5.0; on Gentoo it is in the GURU overlay, on Slackware on
@@ -109,6 +119,25 @@ Built from the public v0.9.12 archive on each system. The tests are in `tests/`:
   container exists for them). See `HOW-WE-TESTED.md`.
 - Results per system: `HOW-WE-TESTED.md`.
 
-**Not tested**: a desktop session (GNOME, KDE), the login screen, keyd running (Ctrl+Alt as AltGr in use), the text
-console, disk unlock, a real installation or a real PC. Older Fedora (42 and before) and Fedora's relatives (RHEL,
+### With SELinux on, in a virtual machine (4 November 2026, 0.9.12-2)
+
+On one laptop, in a virtual machine (QEMU), with SELinux enforcing:
+- **Fedora 45 Workstation** (live system, the three Fedora 45 packages installed fresh): the SELinux rule added and
+  both files labelled `usr_t`; `localectl set-x11-keymap be pc105 "" caps:be_windows,be_azerty:accents` works and is
+  stored; no SELinux denials; after logging out, the login screen (GDM) types Belgian, Caps Lock as on Windows, AltGr+E
+  and Ctrl+Alt+E give €; `be-azerty-fix.sh system` from this repository works; after removal the rule is gone,
+  `/etc/xkb` is empty and plain `localectl set-x11-keymap be pc105` works. A live system cannot reboot into the same
+  state, so the login screen was checked by logging out.
+- **openSUSE Leap 16.0 GNOME** (installed on a virtual disk, upgrade from 0.9.12-1 to 0.9.12-2): the same, and after a
+  real reboot the login screen types Belgian with Caps Lock as on Windows. `be-azerty-fix.sh` stops on openSUSE, as
+  intended.
+- At the GNOME login screen, accents typed with a dead key (^ then e) did not combine at all (Leap 16.0); this looks
+  like the login screen's own behaviour (not checked without our files), so the accents option cannot be judged there.
+- Before the fix (0.9.12-1) on Fedora 45: `localectl` refused every layout and the login screen stayed US.
+
+The cloud tests (`tests/rpm-cycle.sh` with `SELINUX_POLICY=1`, policy installed but not enforcing, as containers have
+no SELinux): Fedora 44 and 45 23/23, Tumbleweed 24/24, Leap 16.0 23/23; without the policy 18/18 and 19/19 as before.
+
+**Not tested**: KDE or openSUSE Tumbleweed with SELinux, keyd in daily use, the text console, disk unlock, a real
+installation or a real PC. Older Fedora (42 and before) and Fedora's relatives (RHEL,
 Alma, Rocky) were not run.

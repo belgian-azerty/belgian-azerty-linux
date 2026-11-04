@@ -20,6 +20,12 @@ Nothing changes on Linux Mint, Zorin OS, Ubuntu or Debian: the keyboard types ex
 - **A script for systems without a package** (NixOS, Gentoo, Slackware, Void, Solus):
   `packaging/etc-xkb/be-azerty-etc-xkb.sh install|remove|status` puts the two files in `/etc/xkb` and takes out only
   its own. Tested in test containers with each system's own keyboard library and data; only for Wayland desktops.
+- **SELinux: Fedora and openSUSE package 0.9.12-2.** On Fedora 45 with SELinux on, 0.9.12-1 made `localectl` refuse
+  every layout (systemd-localed may not read files labelled `etc_t`, the label `/etc/xkb` gets), so the login screen
+  stayed US. 0.9.12-2 adds a small SELinux rule (`packaging/selinux/belgian_azerty_xkb.cil`) that gives `/etc/xkb`
+  the label `usr_t`, as the system's own keyboard files have; it is added on install and removed with the package. The
+  `/etc/xkb` script does the same when SELinux is on. Tested with SELinux enforcing on Fedora 45 and openSUSE Leap 16.0
+  in a virtual machine on one laptop (login screen Belgian, Caps Lock as on Windows), and in test containers.
 
 ## 0.9.12
 

@@ -4,6 +4,37 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## After 0.9.12, not released: the SELinux rule for `/etc/xkb` (Fedora and openSUSE package 0.9.12-2)
+
+On 4 November 2026. The rule (`packaging/selinux/belgian_azerty_xkb.cil`) gives `/etc/xkb` the label `usr_t`.
+
+**In a virtual machine (QEMU) on one laptop, SELinux enforcing**, packages built in the cloud from the v0.9.12
+release archive with the 0.9.12-2 spec files:
+
+| System | How | Result |
+|---|---|---|
+| Fedora 45 Workstation (live) | the three Fedora 45 packages installed fresh | 8 of 8 steps |
+| openSUSE Leap 16.0 GNOME (installed on a virtual disk) | upgrade from 0.9.12-1 to 0.9.12-2, then a reboot | 7 of 7 (`be-azerty-fix` stops on openSUSE, as intended) |
+
+- The steps: SELinux enforcing; install; the rule loaded and both files labelled `usr_t`;
+  `localectl set-x11-keymap be pc105 "" caps:be_windows,be_azerty:accents` works and is stored; no SELinux denials;
+  the login screen (GDM) types Belgian, Caps Lock as on Windows, AltGr+E and Ctrl+Alt+E give € (Fedora: after logging
+  out, as a live system cannot reboot; Leap: after a reboot); `be-azerty-fix.sh system` works (Fedora); removal takes
+  the rule out, and plain `localectl set-x11-keymap be pc105` still works.
+- Before the fix, on Fedora 45 with 0.9.12-1: `localectl` refused every layout and the login screen stayed US. Leap
+  16.0 did not have this problem with 0.9.12-1 (its policy and systemd let it through).
+- At the GNOME login screen, dead keys (^ then e) did not combine at all (Leap 16.0), so the accents option could not
+  be judged there; not checked without our files.
+- The raw results of the laptop runs are not in `evidence/` yet.
+
+**In test containers** (SELinux policy installed but not running, as containers have no SELinux), `tests/rpm-cycle.sh`
+with `SELINUX_POLICY=1`: Fedora 44 23/23, Fedora 45 23/23, openSUSE Tumbleweed 24/24, Leap 16.0 23/23 (the label
+before and after, the rule added and removed, the rule in the package the same as in the repository, the policy lets
+systemd-localed read `usr_t`); without the policy Fedora 45 18/18 and Tumbleweed 19/19, as before. The `/etc/xkb`
+script with the Fedora 45 policy: 5/5.
+
+Not tested: openSUSE Tumbleweed or KDE with SELinux, a real installation or a real PC.
+
 ## After 0.9.12, not released: NixOS, Gentoo, Slackware, Void and Solus (the `/etc/xkb` script)
 
 `packaging/etc-xkb/be-azerty-etc-xkb.sh` (see `packaging/OTHER-DISTRIBUTIONS.md`), on 3 and 4 November 2026, **only
