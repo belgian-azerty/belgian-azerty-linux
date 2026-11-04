@@ -25,7 +25,8 @@ release archive with the 0.9.12-2 spec files:
   16.0 did not have this problem with 0.9.12-1 (its policy and systemd let it through).
 - At the GNOME login screen, dead keys (^ then e) did not combine at all (Leap 16.0), so the accents option could not
   be judged there; not checked without our files.
-- The raw results of the laptop runs are not in `evidence/` yet.
+- Raw results, scripts and screen pictures: `evidence/raw-logs/2026-11-03-laptop-emulator-p3/` (`fedora-45/` the
+  problem with 0.9.12-1, `selinux-fix-0.9.12-2/` the fix on Fedora 45 and Leap, `opensuse-leap-16.0/` the install).
 
 **In test containers** (SELinux policy installed but not running, as containers have no SELinux), `tests/rpm-cycle.sh`
 with `SELINUX_POLICY=1`: Fedora 44 23/23, Fedora 45 23/23, openSUSE Tumbleweed 24/24, Leap 16.0 23/23 (the label

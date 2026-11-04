@@ -1,0 +1,53 @@
+--- diag 00:26:06Z
+== localectl set-x11-keymap be pc105
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: (unset);
+== localectl set-x11-keymap be pc105  terminate:ctrl_alt_bksp
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: (unset);
+== localectl set-x11-keymap be pc105  caps:be_windows
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: (unset);
+== localectl set-x11-keymap be pc105  be_azerty:accents
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: (unset);
+== localectl set-x11-keymap be pc105  caps:be_windows,be_azerty:accents
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: (unset);
+== xkbcli as root, clean environment
+exit 0 
+== localed unit sandboxing
+PrivateDevices=yes
+PrivateNetwork=yes
+PrivateTmp=yes
+ProtectProc=invisible
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectSystem=strict
+== localed journal
+Nov 04 00:12:55 localhost-live systemd[1]: systemd-localed.service: Deactivated successfully.
+Nov 04 00:24:23 localhost-live systemd[1]: Starting systemd-localed.service - Locale Service...
+Nov 04 00:24:23 localhost-live systemd[1]: Started systemd-localed.service - Locale Service.
+Nov 04 00:25:06 localhost-live systemd[1]: systemd-localed.service: Deactivated successfully.
+Nov 04 00:25:07 localhost-live systemd[1]: Starting systemd-localed.service - Locale Service...
+Nov 04 00:25:07 localhost-live systemd[1]: Started systemd-localed.service - Locale Service.
+Nov 04 00:25:07 localhost-live systemd-localed[9906]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='be' / variant='' / options='caps:be_windows,be_azerty:accents'): Invalid argument
+Nov 04 00:25:45 localhost-live systemd[1]: systemd-localed.service: Deactivated successfully.
+Nov 04 00:26:07 localhost-live systemd[1]: Starting systemd-localed.service - Locale Service...
+Nov 04 00:26:08 localhost-live systemd[1]: Started systemd-localed.service - Locale Service.
+Nov 04 00:26:08 localhost-live systemd-localed[10143]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='be' / variant='' / options=''): Invalid argument
+Nov 04 00:26:08 localhost-live systemd-localed[10143]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='be' / variant='' / options='terminate:ctrl_alt_bksp'): Invalid argument
+Nov 04 00:26:08 localhost-live systemd-localed[10143]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='be' / variant='' / options='caps:be_windows'): Invalid argument
+Nov 04 00:26:08 localhost-live systemd-localed[10143]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='be' / variant='' / options='be_azerty:accents'): Invalid argument
+Nov 04 00:26:08 localhost-live systemd-localed[10143]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='be' / variant='' / options='caps:be_windows,be_azerty:accents'): Invalid argument
+== /etc/xkb perms and SELinux labels
+drwxr-xr-x. 4 root root system_u:object_r:etc_t:s0 80 Nov  4 00:24 /etc/xkb
+drwxr-xr-x. 2 root root system_u:object_r:etc_t:s0 60 Nov  4 00:24 /etc/xkb/rules
+drwxr-xr-x. 2 root root system_u:object_r:etc_t:s0 60 Nov  4 00:24 /etc/xkb/symbols
+-rw-r--r--. 1 root root system_u:object_r:etc_t:s0 1007 Nov  3 00:00 /etc/xkb/rules/evdev
+-rw-r--r--. 1 root root system_u:object_r:etc_t:s0 5820 Nov  3 00:00 /etc/xkb/symbols/be_capslock
+Enforcing

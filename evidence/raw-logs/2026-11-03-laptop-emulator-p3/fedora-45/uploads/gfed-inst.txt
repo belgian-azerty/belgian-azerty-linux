@@ -1,0 +1,35 @@
+Total size of inbound packages is 247 KiB. Need to download 0 B.
+After this operation, 1 MiB extra will be used (install 1 MiB, remove 0 B).
+Running transaction
+[1/5] Verify package files              100% | 125.0   B/s |   3.0   B |  00m00s
+[2/5] Prepare transaction               100% |   4.0   B/s |   3.0   B |  00m01s
+>>> Running sysusers scriptlet: keyd-0:2.6.0-1.belgianazerty.fc45.x86_64
+>>> Finished sysusers scriptlet: keyd-0:2.6.0-1.belgianazerty.fc45.x86_64
+>>> Scriptlet output:
+>>> Creating group 'keyd' with GID 963.
+>>> 
+[3/5] Installing keyd-0:2.6.0-1.belgian 100% |   8.2 MiB/s |   1.4 MiB |  00m00s
+[4/5] Installing keyd-belgian-windows-0 100% |   2.4 KiB/s |   4.0 KiB |  00m02s
+[5/5] Installing belgian-azerty-windows 100% |   3.5 KiB/s |   8.8 KiB |  00m02s
+Warning: skipped OpenPGP checks for 3 packages from repository: @commandline
+Complete!
+--- facts 00:24:35Z inst
+VERSION_ID=45
+PRETTY_NAME="Fedora Linux 45 (Workstation Edition)"
+xkeyboard-config-2.48-4.fc45.noarch
+libxkbcommon-1.13.1-4.fc45.x86_64
+keyd-2.6.0-1.belgianazerty.fc45.x86_64
+belgian-azerty-windows-0.9.12-1.fc45.noarch
+keyd-belgian-windows-0.9.12-1.fc45.noarch
+gnome-shell-51.0-1.fc45.x86_64
+/etc/xkb: /etc/xkb/symbols/be_capslock /etc/xkb/rules/evdev 
+our rule lines in /etc/xkb/rules/evdev: caps:be_windows 1 be_azerty:accents 5
+rpm -V xkeyboard-config: []
+  xkb_symbols { include "pc+be+inet(evdev)+be_capslock(windows)+be_capslock(windows_accents)" };
+keyd: active enabled; conf: be-winaltgr.conf 
+keyd check: Parsing /etc/keyd/be-winaltgr.conf  No errors found. 
+keyd virtual devices: 2
+session: wayland GNOME; sources: [('xkb', 'us')] opts: ['terminate:ctrl_alt_bksp']
+compositor keymap (exit 0): xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: us; X11 Model: pc105+inet; X11 Options: terminate:ctrl_alt_bksp;
+gdm dconf: fusermount3: failed to access mountpoint /run/user/42/gvfs: Permission denied

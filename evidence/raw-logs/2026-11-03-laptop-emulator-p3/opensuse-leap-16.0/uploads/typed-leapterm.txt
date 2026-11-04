@@ -1,0 +1,9 @@
+leapterm plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+leapterm LCtrl+LAlt: |@#{[^{}€[]'`~\
+leapterm AltGr: |@#{[^{}€[]'`~\
+leapterm Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+leapterm RCtrl+LAlt 2 e: @€
+leapterm Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+leapterm Caps+Shift same keys: ³&é"'(§è!çà)-^$ùµ,;:=>az
+leapterm Caps+AltGr: |@#{[^{}€[]'`~\
+leapterm order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€

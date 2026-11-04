@@ -1,0 +1,32 @@
+--- step7 03:24:55Z Enforcing
+  "sha": "02fcede4cb95dfcc8059aca56f2c4b414e777a58",
+curl: (23) Failure writing output to destination, passed 1370 returned 1107
+70256653e54cd4d13323871af16ad30a4960bb763e72c314fd744c01dfc006a2  be-azerty-fix.sh
+Choices: profile windows (default), numpad decimal period (default), Caps Lock linux (Windows profile on GNOME, where Windows Caps Lock is opt-in: CAPS=windows), Shift+AltGr accents windows (from the profile).
+  Change with PROFILE=windows|linux DECIMAL=period|comma CAPS=windows|linux ACCENTS=windows|linux APPLE=no|yes
+0. Packages
+  ✔ no files of an older be-azerty-fix.sh (none were ever written on Fedora)
+1. System default (systemd-localed: /etc/vconsole.conf)
+  ✔ system default written by systemd-localed (layouts: be; options: be_azerty:accents; console keymap: be)
+Boot image (so the disk-encryption prompt types the same)
+  · live session: the boot image cannot change here; skipped
+2. Defaults for new users and reset settings
+  · no Cinnamon on this system: new users and reset settings follow /etc/vconsole.conf
+3. Your desktop (gnome) for user liveuser
+  ✔ GNOME input sources: Belgian first, kept: us (remove them in the keyboard settings if you do not need them)
+  ✔ GNOME numpad decimal: period, Caps Lock: linux
+4. Login screen
+  ✔ GDM follows /etc/vconsole.conf (no override)
+  · fast typing: the ibus skip could not be brought up to date now; it is at the next login
+5. Windows-style Ctrl+Alt = AltGr (keyd)
+  ✔ keyd with the Belgian rules is installed and running
+
+Done. Log out and back in (or reboot), then run:  be-azerty-fix check
+exit 0
+System Locale: LANG=en_US.UTF-8
+    VC Keymap: be
+   X11 Layout: be
+    X11 Model: pc105
+  X11 Options: be_azerty:accents
+== AVC since step start
+== end

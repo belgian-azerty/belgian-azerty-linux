@@ -1,0 +1,9 @@
+fedterm plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+fedterm LCtrl+LAlt: |@#{[^{}€[]'`~\
+fedterm AltGr: |@#{[^{}€[]'`~\
+fedterm Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+fedterm RCtrl+LAlt 2 e: @€
+fedterm Caps top/punct keys: ²1234567890°_"*%£?./+<AZ
+fedterm Caps+Shift same keys: ³&é"'(§è!çà)-^$ùµ,;:=>az
+fedterm Caps+AltGr: |@#{[^{}€[]'`~\
+fedterm order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€

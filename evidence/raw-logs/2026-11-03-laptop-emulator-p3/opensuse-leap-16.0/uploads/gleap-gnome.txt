@@ -1,0 +1,24 @@
+--- facts 03:00:18Z gnome
+VERSION_ID="16.0"
+PRETTY_NAME="openSUSE Leap 16.0"
+xkeyboard-config-2.44-160000.2.2.noarch
+libxkbcommon0-1.8.0-160000.2.2.x86_64
+keyd-2.5.0-bp160.1.11.x86_64
+belgian-azerty-windows-0.9.12-1.noarch
+keyd-belgian-windows-0.9.12-1.noarch
+package kwin6 is not installed
+package plasma6-workspace is not installed
+package sddm is not installed
+systemd-257.13-160000.1.1.x86_64
+SELinux: getenforce=/tmp/gleap.sh: line 12: getenforce: command not found enforce-file=1 lsm=lockdown,capability,landlock,yama,selinux,bpf,ima,evm cmdline-security=security=selinux selinux=1 
+/etc/xkb: /etc/xkb/rules/evdev /etc/xkb/symbols/be_capslock 
+our rule lines: caps:be_windows 1 be_azerty:accents 5
+rpm -V xkeyboard-config: []
+keyd: active enabled; conf: be-winaltgr.conf 
+keyd version/check: keyd v2.5.0 ();     -v, --version      Print the current version and exit.     -h, --help         Print help and exit. 
+keyd virtual devices: 2
+session: wayland GNOME; gnome sources: [('xkb', 'be')] opts: ['caps:be_windows', 'be_azerty:accents']
+kxkbrc: 
+compositor keymap (exit 0): xkb_symbols "(unnamed)" { be_capslock=0
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: be; X11 Layout: be; X11 Model: pc105; X11 Options: caps:be_windows,be_azerty:accents;
+AVC localed/xkb: 

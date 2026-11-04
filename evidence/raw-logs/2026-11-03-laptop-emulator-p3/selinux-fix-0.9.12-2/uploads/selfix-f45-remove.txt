@@ -1,0 +1,21 @@
+--- selfix f45 remove 03:32:58Z
+1) getenforce: Enforcing
+8) remove
+
+After this operation, 8 KiB will be freed (install 0 B, remove 8 KiB).
+Running transaction
+[1/2] Prepare transaction               100% |   2.0   B/s |   1.0   B |  00m01s
+[2/2] Removing belgian-azerty-windows-0 100% |   0.0   B/s |  11.0   B |  00m18s
+Complete!
+rpm: package belgian-azerty-windows is not installed
+module: []
+/etc/xkb now: 
+== localectl set-x11-keymap be pc105
+exit 0
+   System Locale: LANG=en_US.UTF-8
+       VC Keymap: be
+      X11 Layout: be
+       X11 Model: pc105
+== AVC (ausearch, xkb)
+== AVC (journal since step start, xkb|localed)
+== end AVC

@@ -1,0 +1,56 @@
+Package "libxkbcommon-utils-1.13.1-4.fc45.x86_64" is already installed.
+
+Nothing to do.
+LiveOS_rootfs   1.4G  964M  420M  70% /
+tmpfs           3.4G   80K  3.4G   1% /tmp
+c2adc4d76611b63bdde9b371a04d58f302b4d88aff2acba1c652c5dd705e1313  belgian-azerty-windows.spec
+a0236bbba9b51c278aa8be0d552b20535468ecba0f000a16835780406692ecc6  keyd-belgian-windows.spec
+732e2ef584e5f3d26c98978f8d8c6a56010dc64396e178006eedd27c1dadd456  keyd.spec
+Downloaded: keyd-2.6.0.tar.gz
+keyd.spec exit 0
+Wrote: /tmp/rpmbuild/SRPMS/keyd-2.6.0-1.belgianazerty.fc45.src.rpm
+Wrote: /tmp/rpmbuild/RPMS/x86_64/keyd-debuginfo-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+Wrote: /tmp/rpmbuild/RPMS/x86_64/keyd-debugsource-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+Wrote: /tmp/rpmbuild/RPMS/x86_64/keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+Downloaded: belgian-azerty-linux-0.9.12.tar.gz
+belgian-azerty-windows.spec exit 0
+Wrote: /tmp/rpmbuild/SRPMS/belgian-azerty-windows-0.9.12-1.fc45.src.rpm
+Wrote: /tmp/rpmbuild/RPMS/noarch/belgian-azerty-windows-0.9.12-1.fc45.noarch.rpm
+File '/tmp/rpmbuild/SOURCES/belgian-azerty-linux-0.9.12.tar.gz' already present.
+keyd-belgian-windows.spec exit 0
+Wrote: /tmp/rpmbuild/SRPMS/keyd-belgian-windows-0.9.12-1.fc45.src.rpm
+Wrote: /tmp/rpmbuild/RPMS/noarch/keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm
+/tmp/rpmbuild/RPMS/noarch/:
+total 24
+-rw-r--r--. 1 liveuser liveuser 11560 Nov  4 00:23 belgian-azerty-windows-0.9.12-1.fc45.noarch.rpm
+-rw-r--r--. 1 liveuser liveuser 10708 Nov  4 00:24 keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm
+
+/tmp/rpmbuild/RPMS/x86_64/:
+total 424
+-rw-r--r--. 1 liveuser liveuser 230781 Nov  4 00:22 keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+-rw-r--r--. 1 liveuser liveuser 137095 Nov  4 00:22 keyd-debuginfo-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+-rw-r--r--. 1 liveuser liveuser  60825 Nov  4 00:22 keyd-debugsource-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+c89b98ae8c53ba5e794a3eafb380cbb0e8ae710ba5cc4c4bdf523258da6ee82b  /tmp/rpmbuild/RPMS/noarch/belgian-azerty-windows-0.9.12-1.fc45.noarch.rpm
+4a9b421490bb573d154bc1718911ddb3e1a3094a7c83c54b27d72c08e7d6aeac  /tmp/rpmbuild/RPMS/noarch/keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm
+a93747072044cfdd201adcc15c5bb24252b6f3160d68761a347d93a3586cd345  /tmp/rpmbuild/RPMS/x86_64/keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+e4550952362fe89f6d1803899794c76cd4a32dc830f82106ba4b2fbd01cb4c46  /tmp/rpmbuild/RPMS/x86_64/keyd-debuginfo-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+ef5218636af5a8a01ed74b4c5e5c6ea9a336e8945cccb7d14b034f2c46c17789  /tmp/rpmbuild/RPMS/x86_64/keyd-debugsource-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+--- facts 00:24:22Z build
+VERSION_ID=45
+PRETTY_NAME="Fedora Linux 45 (Workstation Edition)"
+xkeyboard-config-2.48-4.fc45.noarch
+libxkbcommon-1.13.1-4.fc45.x86_64
+package keyd is not installed
+package belgian-azerty-windows is not installed
+package keyd-belgian-windows is not installed
+gnome-shell-51.0-1.fc45.x86_64
+/etc/xkb: 
+our rule lines in /etc/xkb/rules/evdev: caps:be_windows  be_azerty:accents 
+rpm -V xkeyboard-config: []
+  xkb_symbols { include "pc+be+inet(evdev)" };
+keyd: inactive not-found; conf: ls: cannot access '/etc/keyd': No such file or directory 
+keyd virtual devices: 0
+session: wayland GNOME; sources: [('xkb', 'us')] opts: ['terminate:ctrl_alt_bksp']
+compositor keymap (exit 0): xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: us; X11 Model: pc105+inet; X11 Options: terminate:ctrl_alt_bksp;
+gdm dconf: fusermount3: failed to access mountpoint /run/user/42/gvfs: Permission denied

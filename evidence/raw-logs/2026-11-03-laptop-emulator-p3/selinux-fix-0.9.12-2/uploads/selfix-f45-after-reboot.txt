@@ -1,0 +1,12 @@
+--- selfix f45 after-reboot 03:32:54Z
+1) getenforce: Enforcing
+module: [belgian_azerty_xkb]
+system_u:object_r:usr_t:s0 /etc/xkb/rules/evdev
+system_u:object_r:usr_t:s0 /etc/xkb/symbols/be_capslock
+System Locale: LANG=en_US.UTF-8
+    VC Keymap: be
+   X11 Layout: be
+    X11 Model: pc105
+  X11 Options: caps:be_windows,be_azerty:accents
+5b) AVC this boot:
+== end

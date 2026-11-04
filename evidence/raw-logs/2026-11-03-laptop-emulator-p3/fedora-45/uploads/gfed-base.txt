@@ -1,0 +1,17 @@
+--- facts 00:10:24Z base
+VERSION_ID=45
+PRETTY_NAME="Fedora Linux 45 (Workstation Edition)"
+xkeyboard-config-2.48-4.fc45.noarch
+libxkbcommon-1.13.1-4.fc45.x86_64
+package keyd is not installed
+package belgian-azerty-windows is not installed
+package keyd-belgian-windows is not installed
+gnome-shell-51.0-1.fc45.x86_64
+/etc/xkb: 
+our rule lines in /etc/xkb/rules/evdev: caps:be_windows  be_azerty:accents 
+rpm -V xkeyboard-config: []
+keyd: inactive not-found; conf: ls: cannot access '/etc/keyd': No such file or directory 
+keyd virtual devices: 0
+session: wayland GNOME; sources: [('xkb', 'us')] opts: ['terminate:ctrl_alt_bksp']
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: us; X11 Model: pc105+inet; X11 Options: terminate:ctrl_alt_bksp;
+gdm dconf: fusermount3: failed to access mountpoint /run/user/42/gvfs: Permission denied

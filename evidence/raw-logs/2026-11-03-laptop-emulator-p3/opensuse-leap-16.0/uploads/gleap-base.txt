@@ -1,0 +1,22 @@
+--- facts 02:32:24Z base
+VERSION_ID="16.0"
+PRETTY_NAME="openSUSE Leap 16.0"
+xkeyboard-config-2.44-160000.2.2.noarch
+libxkbcommon0-1.8.0-160000.2.2.x86_64
+package keyd is not installed
+package belgian-azerty-windows is not installed
+package keyd-belgian-windows is not installed
+package kwin6 is not installed
+package plasma6-workspace is not installed
+package sddm is not installed
+systemd-257.13-160000.1.1.x86_64
+SELinux: getenforce=/tmp/gleap.sh: line 12: getenforce: command not found enforce-file=1 lsm=lockdown,capability,landlock,yama,selinux,bpf,ima,evm cmdline-security=security=selinux selinux=1 
+/etc/xkb: 
+our rule lines: caps:be_windows  be_azerty:accents 
+rpm -V xkeyboard-config: []
+keyd: inactive not-found; conf: ls: cannot access '/etc/keyd': No such file or directory 
+keyd virtual devices: 0
+session: wayland GNOME; gnome sources: @a(ss) [] opts: @as []
+kxkbrc: 
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: (unset);
+AVC localed/xkb: 

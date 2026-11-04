@@ -1,0 +1,41 @@
+--- diag2 00:26:47Z
+== with our /etc/xkb
+== localectl set-x11-keymap us pc105
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: (unset);
+== /etc/xkb moved aside
+== localectl set-x11-keymap be pc105
+exit 0:  X11 Layout: be;
+== localectl set-x11-keymap us pc105
+exit 0:  X11 Layout: us;
+== /etc/xkb back: /etc/xkb/rules: evdev  /etc/xkb/symbols: be_capslock 
+== localectl set-x11-keymap be pc105
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: us;
+== head of our rules file
+// belgian-azerty-windows (Fedora): the system rules, then our three options. Removed with the package.
+! include %S/evdev
+
+// belgian-azerty-windows: Caps Lock as on Windows Belgian (symbols/be_capslock)
+! option	=	symbols
+  caps:be_windows	=	+be_capslock(windows)
+
+// belgian-azerty-windows: Shift+AltGr accents as on Windows, Belgian Apple keyboards (symbols/be_capslock)
+! layout	option	=	symbols
+  be	be_azerty:accents	=	+be_capslock(windows_accents)
+  be	be_azerty:mac	=	+be_capslock(mac)
+
+== localed binary and xkbcommon
+-rwxr-xr-x. 1 root root 49368 Oct 17 00:00 /usr/lib/systemd/systemd-localed
+systemd-262.1-1.fc45.x86_64
+xkb_context_new
+xkb_context_set_log_fn
+sym_xkb_context_unref
+xkb_context_unrefp
+== localed journal (last 6)
+Nov 04 00:26:50 localhost-live systemd-localed[10293]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='us' / variant='' / options=''): Invalid argument
+Nov 04 00:26:51 localhost-live systemd-localed[10293]: The X11 keyboard layout 'be' is converted to virtual console keymap 'be'
+Nov 04 00:26:51 localhost-live systemd-localed[10293]: Changed X11 keyboard layout to 'be' model 'pc105' variant '' options ''
+Nov 04 00:26:52 localhost-live systemd-localed[10293]: The X11 keyboard layout 'us' is converted to virtual console keymap 'us'
+Nov 04 00:26:52 localhost-live systemd-localed[10293]: Changed X11 keyboard layout to 'us' model 'pc105' variant '' options ''
+Nov 04 00:26:52 localhost-live systemd-localed[10293]: Cannot compile XKB keymap for x11 keyboard layout (model='pc105' / layout='be' / variant='' / options=''): Invalid argument

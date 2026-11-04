@@ -134,6 +134,7 @@ On one laptop, in a virtual machine (QEMU), with SELinux enforcing:
 - At the GNOME login screen, accents typed with a dead key (^ then e) did not combine at all (Leap 16.0); this looks
   like the login screen's own behaviour (not checked without our files), so the accents option cannot be judged there.
 - Before the fix (0.9.12-1) on Fedora 45: `localectl` refused every layout and the login screen stayed US.
+- Raw results: `evidence/raw-logs/2026-11-03-laptop-emulator-p3/` (see `HOW-WE-TESTED.md`).
 
 The cloud tests (`tests/rpm-cycle.sh` with `SELINUX_POLICY=1`, policy installed but not enforcing, as containers have
 no SELinux): Fedora 44 and 45 23/23, Tumbleweed 24/24, Leap 16.0 23/23; without the policy 18/18 and 19/19 as before.

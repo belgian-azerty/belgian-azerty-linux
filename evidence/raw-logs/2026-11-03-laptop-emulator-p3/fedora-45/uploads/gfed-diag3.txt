@@ -1,0 +1,51 @@
+--- diag3 00:27:43Z selinux=Enforcing
+== selinux=Permissive
+== localectl set-x11-keymap be pc105  caps:be_windows,be_azerty:accents
+exit 0:  X11 Layout: be; X11 Options: caps:be_windows,be_azerty:accents;
+== selinux=Enforcing
+== localectl set-x11-keymap us pc105
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: be; X11 Options: caps:be_windows,be_azerty:accents;
+== AVC denials for localed (journal)
+Nov 04 00:26:08 localhost-live audit[10143]: AVC avc:  denied  { map } for  pid=10143 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:08 localhost-live audit[10143]: AVC avc:  denied  { map } for  pid=10143 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:08 localhost-live audit[10143]: AVC avc:  denied  { map } for  pid=10143 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:50 localhost-live audit[10293]: AVC avc:  denied  { map } for  pid=10293 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:50 localhost-live audit[10293]: AVC avc:  denied  { map } for  pid=10293 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:52 localhost-live audit[10293]: AVC avc:  denied  { map } for  pid=10293 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:27:45 localhost-live audit[10450]: AVC avc:  denied  { map } for  pid=10450 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=1
+Nov 04 00:27:46 localhost-live audit[10450]: AVC avc:  denied  { map } for  pid=10450 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:08 localhost-live audit[10143]: AVC avc:  denied  { map } for  pid=10143 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:08 localhost-live audit[10143]: AVC avc:  denied  { map } for  pid=10143 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:08 localhost-live audit[10143]: AVC avc:  denied  { map } for  pid=10143 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:50 localhost-live audit[10293]: AVC avc:  denied  { map } for  pid=10293 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:50 localhost-live audit[10293]: AVC avc:  denied  { map } for  pid=10293 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:26:52 localhost-live audit[10293]: AVC avc:  denied  { map } for  pid=10293 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+Nov 04 00:27:45 localhost-live audit[10450]: AVC avc:  denied  { map } for  pid=10450 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=1
+Nov 04 00:27:46 localhost-live audit[10450]: AVC avc:  denied  { map } for  pid=10450 comm="systemd-localed" path="/etc/xkb/rules/evdev" dev="overlay" ino=16552 scontext=system_u:system_r:systemd_localed_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0
+== file contexts expected for /etc/xkb
+/etc/xkb	system_u:object_r:etc_t:s0
+/etc/xkb/rules/evdev	system_u:object_r:etc_t:s0
+/usr/share/xkeyboard-config-2/rules/evdev	system_u:object_r:usr_t:s0
+system_u:object_r:usr_t:s0 /usr/share/X11/xkb/rules/evdev
+== localed by hand, debug, no sandbox, SELinux enforcing (process domain differs)
+== localectl set-x11-keymap be pc105  caps:be_windows,be_azerty:accents
+exit 0:  X11 Layout: be; X11 Options: caps:be_windows,be_azerty:accents;
+Got message type=method_return sender=org.freedesktop.DBus destination=:1.321 path=n/a interface=n/a member=n/a  cookie=4294967295 reply_cookie=1 signature=s error-name=n/a error-message=n/a
+Got message type=signal sender=org.freedesktop.DBus destination=:1.321 path=/org/freedesktop/DBus interface=org.freedesktop.DBus member=NameAcquired  cookie=4294967295 reply_cookie=0 signature=s error-name=n/a error-message=n/a
+Got message type=signal sender=org.freedesktop.DBus destination=:1.321 path=/org/freedesktop/DBus interface=org.freedesktop.DBus member=NameAcquired  cookie=4294967295 reply_cookie=0 signature=s error-name=n/a error-message=n/a
+Got message type=method_return sender=org.freedesktop.DBus destination=:1.321 path=n/a interface=n/a member=n/a  cookie=4294967295 reply_cookie=2 signature=u error-name=n/a error-message=n/a
+Got message type=method_call sender=:1.131 destination=:1.321 path=/org/freedesktop/locale1 interface=org.freedesktop.DBus.Properties member=GetAll  cookie=39 reply_cookie=0 signature=s error-name=n/a error-message=n/a
+Loaded shared library 'libxkbcommon.so.0' via dlopen().
+Sent message type=method_return sender=n/a destination=:1.131 path=n/a interface=n/a member=n/a cookie=3 reply_cookie=39 signature=a{sv} error-name=n/a error-message=n/a
+Got message type=method_call sender=:1.163 destination=:1.321 path=/org/freedesktop/locale1 interface=org.freedesktop.DBus.Properties member=GetAll  cookie=101 reply_cookie=0 signature=s error-name=n/a error-message=n/a
+Sent message type=method_return sender=n/a destination=:1.163 path=n/a interface=n/a member=n/a cookie=4 reply_cookie=101 signature=a{sv} error-name=n/a error-message=n/a
+Got message type=method_call sender=:1.322 destination=org.freedesktop.locale1 path=/org/freedesktop/locale1 interface=org.freedesktop.locale1 member=SetX11Keyboard  cookie=2 reply_cookie=0 signature=ssssbb error-name=n/a error-message=n/a
+Found converted keymap be at /usr/lib/kbd/keymaps//xkb/be.map.gz
+The X11 keyboard layout 'be' is converted to virtual console keymap 'be'
+Sent message type=method_return sender=n/a destination=:1.322 path=n/a interface=n/a member=n/a cookie=5 reply_cookie=2 signature=n/a error-name=n/a error-message=n/a
+Got message type=method_call sender=:1.323 destination=org.freedesktop.locale1 path=/org/freedesktop/locale1 interface=org.freedesktop.DBus.Properties member=GetAll  cookie=2 reply_cookie=0 signature=s error-name=n/a error-message=n/a
+Sent message type=method_return sender=n/a destination=:1.323 path=n/a interface=n/a member=n/a cookie=6 reply_cookie=2 signature=a{sv} error-name=n/a error-message=n/a
+== localectl set-x11-keymap us pc105
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+exit 1:  X11 Layout: (unset);

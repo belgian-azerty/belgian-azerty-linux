@@ -1,0 +1,40 @@
+--- selfix leap16 up 03:07:23Z
+1) getenforce: 1
+belgian-azerty-windows-0.9.12-2.noarch.rpm: OK
+keyd-belgian-windows-0.9.12-1.noarch.rpm: OK
+before: belgian-azerty-windows-0.9.12-1.noarch keyd-belgian-windows-0.9.12-1.noarch keyd-2.5.0-bp160.1.11.x86_64 
+system_u:object_r:etc_t:s0 /etc/xkb/rules/evdev
+system_u:object_r:etc_t:s0 /etc/xkb/symbols/be_capslock
+2) install
+    Package header is not signed!
+
+
+Checking for file conflicts: [........done]
+(1/2) Installing: belgian-azerty-windows-0.9.12-2.noarch [....done]
+(2/2) Installing: keyd-belgian-windows-0.9.12-1.noarch [...done]
+Running post-transaction scripts [......done]
+ 
+after: belgian-azerty-windows-0.9.12-2.noarch keyd-belgian-windows-0.9.12-1.noarch keyd-2.5.0-bp160.1.11.x86_64 
+3) module: [belgian_azerty_xkb]
+system_u:object_r:usr_t:s0 /etc/xkb/rules/evdev
+system_u:object_r:usr_t:s0 /etc/xkb/symbols/be_capslock
+4)
+== localectl set-x11-keymap be pc105  caps:be_windows,be_azerty:accents
+exit 0
+   System Locale: LANG=en_US.UTF-8
+       VC Keymap: be
+      X11 Layout: be
+       X11 Model: pc105
+     X11 Options: caps:be_windows,be_azerty:accents
+vconsole.conf:
+# Written by systemd-localed(8) or systemd-firstboot(1), read by systemd-localed
+# and systemd-vconsole-setup(8). Use localectl(1) to update this file.
+KEYMAP=be
+FONT=eurlatgr.psfu
+XKBLAYOUT=be
+XKBMODEL=pc105
+XKBOPTIONS=caps:be_windows,be_azerty:accents
+5)
+== AVC (ausearch, xkb)
+== AVC (journal since step start, xkb|localed)
+== end AVC

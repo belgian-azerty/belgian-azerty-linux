@@ -1,0 +1,1 @@
+leapterm acute+e: é grave+a: à tilde+n: ñ acute+spc: ' end

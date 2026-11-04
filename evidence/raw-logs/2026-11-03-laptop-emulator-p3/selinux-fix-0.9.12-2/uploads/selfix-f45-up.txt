@@ -1,0 +1,40 @@
+--- selfix f45 up 03:23:13Z
+1) getenforce: Enforcing
+belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm: OK
+keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm: OK
+keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm: OK
+before: package belgian-azerty-windows is not installed package keyd-belgian-windows is not installed package keyd is not installed 
+ls: cannot access '/etc/xkb/rules/evdev': No such file or directory
+ls: cannot access '/etc/xkb/symbols/be_capslock': No such file or directory
+2) install
+>>> Scriptlet output:
+>>> Creating group 'keyd' with GID 963.
+>>> 
+[3/5] Installing keyd-0:2.6.0-1.belgian 100% |   6.4 MiB/s |   1.4 MiB |  00m00s
+[4/5] Installing keyd-belgian-windows-0 100% |   2.1 KiB/s |   4.0 KiB |  00m02s
+[5/5] Installing belgian-azerty-windows 100% | 329.0   B/s |   9.7 KiB |  00m30s
+Warning: skipped OpenPGP checks for 3 packages from repository: @commandline
+Complete!
+after: belgian-azerty-windows-0.9.12-2.fc45.noarch keyd-belgian-windows-0.9.12-1.fc45.noarch keyd-2.6.0-1.belgianazerty.fc45.x86_64 
+3) module: [belgian_azerty_xkb]
+system_u:object_r:usr_t:s0 /etc/xkb/rules/evdev
+system_u:object_r:usr_t:s0 /etc/xkb/symbols/be_capslock
+4)
+== localectl set-x11-keymap be pc105  caps:be_windows,be_azerty:accents
+exit 0
+   System Locale: LANG=en_US.UTF-8
+       VC Keymap: be
+      X11 Layout: be
+       X11 Model: pc105
+     X11 Options: caps:be_windows,be_azerty:accents
+vconsole.conf:
+# Written by systemd-localed(8) or systemd-firstboot(1), read by systemd-localed
+# and systemd-vconsole-setup(8). Use localectl(1) to update this file.
+KEYMAP=be
+XKBLAYOUT=be
+XKBMODEL=pc105
+XKBOPTIONS=caps:be_windows,be_azerty:accents
+5)
+== AVC (ausearch, xkb)
+== AVC (journal since step start, xkb|localed)
+== end AVC

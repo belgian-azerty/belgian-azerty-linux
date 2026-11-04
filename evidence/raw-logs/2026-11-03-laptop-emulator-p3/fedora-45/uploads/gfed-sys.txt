@@ -1,0 +1,21 @@
+Failed to set keymap: Specified keymap cannot be compiled, refusing as invalid.
+--- facts 00:25:09Z sys
+VERSION_ID=45
+PRETTY_NAME="Fedora Linux 45 (Workstation Edition)"
+xkeyboard-config-2.48-4.fc45.noarch
+libxkbcommon-1.13.1-4.fc45.x86_64
+keyd-2.6.0-1.belgianazerty.fc45.x86_64
+belgian-azerty-windows-0.9.12-1.fc45.noarch
+keyd-belgian-windows-0.9.12-1.fc45.noarch
+gnome-shell-51.0-1.fc45.x86_64
+/etc/xkb: /etc/xkb/symbols/be_capslock /etc/xkb/rules/evdev 
+our rule lines in /etc/xkb/rules/evdev: caps:be_windows 1 be_azerty:accents 5
+rpm -V xkeyboard-config: []
+  xkb_symbols { include "pc+be+inet(evdev)+be_capslock(windows)+be_capslock(windows_accents)" };
+keyd: active enabled; conf: be-winaltgr.conf 
+keyd check: Parsing /etc/keyd/be-winaltgr.conf  No errors found. 
+keyd virtual devices: 2
+session: wayland GNOME; sources: [('xkb', 'us')] opts: ['terminate:ctrl_alt_bksp']
+compositor keymap (exit 0): xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: (unset);
+gdm dconf: fusermount3: failed to access mountpoint /run/user/42/gvfs: Permission denied

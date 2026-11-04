@@ -1,0 +1,16 @@
+--- sel1 02:59:36Z enforce=1
+belgian-azerty-windows-0.9.12-1.noarch
+selinux-policy-targeted-20250627+git378.e27ad25be-160000.1.1.noarch
+policycoreutils-3.8.1-160000.3.1.x86_64
+system_u:object_r:etc_t:s0 /etc/xkb/rules/evdev
+system_u:object_r:etc_t:s0 /etc/xkb/symbols/be_capslock
+system_u:object_r:usr_t:s0 /usr/share/X11/xkb/rules/evdev
+== localectl set-x11-keymap be pc105  caps:be_windows,be_azerty:accents
+exit 0:  X11 Layout: be; X11 Options: caps:be_windows,be_azerty:accents;
+== localectl set-x11-keymap be pc105
+exit 0:  X11 Layout: be;
+== AVC
+Nov 04 03:59:37 localhost.localdomain systemd-localed[5593]: The X11 keyboard layout 'be' is converted to virtual console keymap 'be'
+Nov 04 03:59:37 localhost.localdomain systemd-localed[5593]: Changed X11 keyboard layout to 'be' model 'pc105' variant '' options 'caps:be_windows,be_azerty:accents'
+Nov 04 03:59:38 localhost.localdomain systemd-localed[5593]: The X11 keyboard layout 'be' is converted to virtual console keymap 'be'
+Nov 04 03:59:38 localhost.localdomain systemd-localed[5593]: Changed X11 keyboard layout to 'be' model 'pc105' variant '' options ''
