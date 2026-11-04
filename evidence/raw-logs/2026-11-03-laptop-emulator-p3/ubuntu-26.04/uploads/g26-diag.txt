@@ -1,0 +1,133 @@
+--- diag 22:19:15Z
+Processing triggers for libc-bin (2.43-2ubuntu2.3) ...
+gnome-shell 50.1-0ubuntu1.2
+libmutter-18-0 50.1-0ubuntu2.2
+libxkbcommon-x11-0 1.13.1-1
+libxkbcommon0 1.13.1-1
+mutter-common 50.1-0ubuntu2.2
+ls: cannot access '/etc/xkb': No such file or directory
+lrwxrwxrwx 1 root root  21 Dec 18  2025 /usr/share/X11/xkb -> ../xkeyboard-config-2
+drwxr-xr-x 1 root root 160 Aug 26 05:27 /usr/share/xkeyboard-config-2
+-rw-r--r-- 1 root root 5820 Nov  3 06:00 /usr/share/X11/xkb/symbols/be_capslock
+-rw-r--r-- 1 root root 5820 Nov  3 06:00 /usr/share/xkeyboard-config-2/symbols/be_capslock
+== tail of real rules file
+
+// belgian-azerty-windows: Caps Lock as on Windows Belgian (symbols/be_capslock)
+! option	=	symbols
+  caps:be_windows	=	+be_capslock(windows)
+
+// belgian-azerty-windows: Shift+AltGr accents as on Windows, Belgian Apple keyboards (symbols/be_capslock)
+! layout	option	=	symbols
+  be	be_azerty:accents	=	+be_capslock(windows_accents)
+  be	be_azerty:mac	=	+be_capslock(mac)
+
+! layout[1]	option	=	symbols
+  be	be_azerty:accents	=	+be_capslock(windows_accents):1
+  be	be_azerty:mac	=	+be_capslock(mac):1
+
+! layout[2]	option	=	symbols
+  be	be_azerty:accents	=	+be_capslock(windows_accents):2
+  be	be_azerty:mac	=	+be_capslock(mac):2
+
+! layout[3]	option	=	symbols
+  be	be_azerty:accents	=	+be_capslock(windows_accents):3
+  be	be_azerty:mac	=	+be_capslock(mac):3
+
+! layout[4]	option	=	symbols
+  be	be_azerty:accents	=	+be_capslock(windows_accents):4
+  be	be_azerty:mac	=	+be_capslock(mac):4
+== xkbcli list paths
+Usage: xkbcli [--help|-h] [--version|-V] <command> [<args>]
+
+Global options:
+  -h, --help ...... show this help and exit
+  -V, --version ... show version information and exit
+== compile caps only, verbose
+xkbcommon: INFO: Include path failed: "/home/ubuntu/.config/xkb" (No such file or directory)
+xkbcommon: INFO: Include path failed: "/home/ubuntu/.xkb" (No such file or directory)
+xkbcommon: INFO: Include path failed: "/etc/xkb" (No such file or directory)
+xkbcommon: DEBUG: Include extensions path failed: /usr/share/xkeyboard-config-2.d (No such file or directory)
+xkbcommon: DEBUG: Include extensions path failed: /usr/share/xkeyboard-config.d (No such file or directory)
+xkbcommon: INFO: Include path added: /usr/share/X11/xkb
+xkbcommon: DEBUG: Compiling from RMLVO: rules 'evdev', model 'pc105', layout 'be', variant '(null)', options 'caps:be_windows'
+xkbcommon: DEBUG: Compiling from KcCGST: keycodes 'evdev+aliases(azerty)', types 'complete', compat 'complete', symbols 'pc+be+inet(evdev)+be_capslock(windows)'
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "SetMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "LatchMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "latchToLock" for default action "LatchMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "SetMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "LatchMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "latchToLock" for default action "LatchMods"; Using from, ignore into
+xkbcommon: WARNING: Multiple interpretations of "default"; Using last definition for duplicate fields
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "SetMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "SetMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "SetMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "SetMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "clearLocks" for default action "LatchMods"; Using from, ignore into
+xkbcommon: WARNING: Conflicting field "latchToLock" for default action "LatchMods"; Using from, ignore into
+xkbcommon: WARNING: [XKB-302] be:37:43: deprecated keysym name "guillemotleft"; please use "guillemetleft" instead.
+xkbcommon: WARNING: [XKB-302] be:38:61: deprecated keysym name "masculine"; please use "ordmasculine" instead.
+xkbcommon: WARNING: [XKB-302] latin:46:43: deprecated keysym name "guillemotleft"; please use "guillemetleft" instead.
+xkbcommon: WARNING: [XKB-302] latin:47:43: deprecated keysym name "guillemotright"; please use "guillemetright" instead.
+xkbcommon: WARNING: [XKB-302] latin:52:60: deprecated keysym name "masculine"; please use "ordmasculine" instead.
+xkbcommon: WARNING: [XKB-461] Multiple symbols for level 1/group 1 on key <TLDE>; Using from, ignoring to
+xkbcommon: WARNING: [XKB-461] Multiple symbols for level 2/group 1 on key <TLDE>; Using from, ignoring to
+xkbcommon: WARNING: [XKB-461] Multiple symbols for level 1/group 1 on key <AE01>; Using from, ignoring to
+xkbcommon: WARNING: [XKB-461] Multiple symbols for level 2/group 1 on key <AE01>; Using from, ignoring to
+== keymap with caps option: symbols line
+xkb_symbols "pc_be_inet(evdev)_be_capslock(windows)_be_capslock(windows_accents)" {
+xkb_keymap {
+  xkb_keycodes { include "evdev+aliases(azerty)" };
+  xkb_types { include "complete" };
+  xkb_compat { include "complete" };
+  xkb_symbols { include "pc+be+inet(evdev)+be_capslock(windows)+be_capslock(windows_accents)" };
+  xkb_geometry { include "pc(pc105)" };
+};
+== same with rules evdev explicit and base
+  xkb_symbols { include "pc+be+inet(evdev)+be_capslock(windows)" };
+  xkb_symbols { include "pc+be+inet(pc105)" };
+== key AE01 in compiled keymap (with option)
+	key <AE01>               {
+		type= "FOUR_LEVEL_SEMIALPHABETIC",
+		symbols[1]= [       ampersand,               1,             bar,      exclamdown ]
+	};
+	key <AE02>               {
+== gnome-shell / mutter xkb messages
+Nov 03 22:14:08 ubuntu gnome-shell[6217]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+Nov 03 22:14:08 ubuntu gnome-shell[6217]: Errors from xkbcomp are not fatal to the X server
+Nov 03 22:16:19 ubuntu sudo[7854]: ubuntu : TTY=/dev/pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/apt-get install --reinstall -y -q xkb-data
+Nov 03 22:16:24 ubuntu gnome-shell[8017]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+Nov 03 22:16:24 ubuntu gnome-shell[8017]: Errors from xkbcomp are not fatal to the X server
+Nov 03 22:19:15 ubuntu sudo[8096]: ubuntu : TTY=/dev/pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/apt-get install -y -q libxkbcommon-tools
+Nov 03 22:08:46 ubuntu systemd[1]: systemd 259.5-0ubuntu3.4 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +IPE +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +KMOD +LIBCRYPTSETUP +LIBCRYPTSETUP_PLUGINS +LIBFDISK +PCRE2 +PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD +BPF_FRAMEWORK +BTF -XKBCOMMON -UTMP +SYSVINIT +LIBARCHIVE)
+Nov 03 22:08:56 ubuntu systemd[1]: Starting console-setup.service - Set console font and keymap...
+Nov 03 22:08:57 ubuntu systemd[1]: Finished console-setup.service - Set console font and keymap.
+Nov 03 22:14:08 ubuntu gnome-shell[6217]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+Nov 03 22:16:24 ubuntu gnome-shell[8017]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+Nov 03 22:19:15 ubuntu sudo[8096]: ubuntu : TTY=/dev/pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/apt-get install -y -q libxkbcommon-tools
+== gsettings
+['caps:be_windows', 'be_azerty:accents']
+[('xkb', 'be')]
+== env
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+== keyd conf
+[ids]
+*
+[altgr]
+4 = G-9
+5 = G-leftbrace
+[control+alt]
+1 = G-1
+2 = G-2
+3 = G-3
+4 = G-9
+5 = G-leftbrace
+6 = G-6
+9 = G-9
+0 = G-0
+e = G-e
+leftbrace = G-leftbrace
+rightbrace = G-rightbrace
+apostrophe = G-apostrophe
+backslash = G-backslash
+slash = G-slash
+102nd = G-102nd

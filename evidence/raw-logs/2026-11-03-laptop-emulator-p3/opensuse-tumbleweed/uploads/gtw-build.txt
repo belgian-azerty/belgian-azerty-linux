@@ -1,0 +1,41 @@
+LiveOS_rootfs   3.4G  107M  3.3G   4% /
+tmpfs           3.4G   20K  3.4G   1% /tmp
+(49/50) Installing: qml-autoreqprov-1.4.1-1.7.noarch [..done]
+(50/50) Installing: qt6-declarative-tools-6.12.0-2.1.x86_64 [...done]
+Running post-transaction scripts [....done]
+Running post-transaction scripts [....done]
+0f8095c824c023018c3f9e18f4d30162c9189c3295688f6f43d118e4cdc70e5f  belgian-azerty-windows.spec
+d3315987f8ce096e0f6d050b66a48496836663fe6bba6346d063b9b57af0f6a0  keyd-belgian-windows.spec
+b9ea122633f0cacd6267c433d6bb74c9bcf4c1eb45c0f3ce01eb932a2c566afc  /tmp/rpmbuild/SOURCES/belgian-azerty-linux-0.9.12.tar.gz
+belgian-azerty-windows.spec exit 0
+Wrote: /tmp/rpmbuild/SRPMS/belgian-azerty-windows-0.9.12-1.src.rpm
+Wrote: /tmp/rpmbuild/RPMS/noarch/belgian-azerty-windows-0.9.12-1.noarch.rpm
+keyd-belgian-windows.spec exit 0
+Wrote: /tmp/rpmbuild/SRPMS/keyd-belgian-windows-0.9.12-1.src.rpm
+Wrote: /tmp/rpmbuild/RPMS/noarch/keyd-belgian-windows-0.9.12-1.noarch.rpm
+ace3095abacd7d51023a4c22c132becff988619455ffc51ace5e8f5d0d396c60  /tmp/rpmbuild/RPMS/noarch/belgian-azerty-windows-0.9.12-1.noarch.rpm
+471597d73c257111bba964649eb31add60d661e122ef0f68f2416da08b366a7a  /tmp/rpmbuild/RPMS/noarch/keyd-belgian-windows-0.9.12-1.noarch.rpm
+--- facts 01:24:06Z build
+VERSION_ID="20261102"
+PRETTY_NAME="openSUSE Tumbleweed"
+xkeyboard-config-2.48-2.1.noarch
+libxkbcommon0-1.13.2-1.3.x86_64
+package keyd is not installed
+package belgian-azerty-windows is not installed
+package keyd-belgian-windows is not installed
+kwin6-6.8.2-1.1.x86_64
+plasma6-workspace-6.8.2-1.1.x86_64
+package sddm is not installed
+systemd-261.4-1.1.x86_64
+SELinux: getenforce=/tmp/gtw.sh: line 12: getenforce: command not found enforce-file=cat: /sys/fs/selinux/enforce: No such file or directory lsm=lockdown,capability,landlock,yama,apparmor,tomoyo,bpf,ima,evm cmdline-security=
+/etc/xkb: 
+our rule lines: caps:be_windows  be_azerty:accents 
+rpm -V xkeyboard-config: [.......T.    /usr/lib/tmpfiles.d/xkeyboard-config.conf;.......T.    /usr/share/pkgconfig/xkeyboard-config-2.pc;.......T.    /usr/share/xkeyboard-config-2/rules/base;.......T.    /usr/share/xkeyboard-config-2/rules/evdev;.......T.    /usr/share/xkeyboard-config-2/rules/evdev.lst;.......T.    /usr/share/xkeyboard-config-2/rules/evdev.xml;.......T.    /usr/share/xkeyboard-config-2/symbols/ara;.......T.    /usr/share/xkeyboard-config-2/symbols/de;.......T.    /usr/share/xkeyboard-config-2/symbols/fi;.......T.    /usr/share/xkeyboard-config-2/symbols/gr;.......T.    /usr/share/xkeyboard-config-2/symbols/in;.......T.    /usr/share/xkeyboard-config-2/symbols/ir;.......T.    /usr/share/xkeyboard-config-2/symbols/pk;.......T.    /usr/share/xkeyboard-config-2/symbols/ro;.......T.    /usr/share/xkeyboard-config-2/symbols/ru;]
+  xkb_symbols { include "pc+be+inet(evdev)" };
+keyd: inactive not-found; conf: ls: cannot access '/etc/keyd': No such file or directory 
+keyd virtual devices: 0
+session: wayland KDE
+kxkbrc: 
+compositor keymap (exit 0): xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: us; X11 Model: pc105+inet; X11 Options: terminate:ctrl_alt_bksp;
+AVC localed/xkb: 

@@ -1,0 +1,25 @@
+--- facts 01:28:46Z relogin
+VERSION_ID="20261102"
+PRETTY_NAME="openSUSE Tumbleweed"
+xkeyboard-config-2.48-2.1.noarch
+libxkbcommon0-1.13.2-1.3.x86_64
+keyd-2.6.0-2.1.x86_64
+belgian-azerty-windows-0.9.12-1.noarch
+keyd-belgian-windows-0.9.12-1.noarch
+kwin6-6.8.2-1.1.x86_64
+plasma6-workspace-6.8.2-1.1.x86_64
+package sddm is not installed
+systemd-261.4-1.1.x86_64
+SELinux: getenforce=/tmp/gtw.sh: line 12: getenforce: command not found enforce-file=cat: /sys/fs/selinux/enforce: No such file or directory lsm=lockdown,capability,landlock,yama,apparmor,tomoyo,bpf,ima,evm cmdline-security=
+/etc/xkb: /etc/xkb/symbols/be_capslock /etc/xkb/rules/evdev 
+our rule lines: caps:be_windows 1 be_azerty:accents 5
+rpm -V xkeyboard-config: [.......T.    /usr/lib/tmpfiles.d/xkeyboard-config.conf;.......T.    /usr/share/pkgconfig/xkeyboard-config-2.pc;.......T.    /usr/share/xkeyboard-config-2/rules/base;.......T.    /usr/share/xkeyboard-config-2/rules/evdev;.......T.    /usr/share/xkeyboard-config-2/rules/evdev.lst;.......T.    /usr/share/xkeyboard-config-2/rules/evdev.xml;.......T.    /usr/share/xkeyboard-config-2/symbols/ara;.......T.    /usr/share/xkeyboard-config-2/symbols/de;.......T.    /usr/share/xkeyboard-config-2/symbols/fi;.......T.    /usr/share/xkeyboard-config-2/symbols/gr;.......T.    /usr/share/xkeyboard-config-2/symbols/in;.......T.    /usr/share/xkeyboard-config-2/symbols/ir;.......T.    /usr/share/xkeyboard-config-2/symbols/pk;.......T.    /usr/share/xkeyboard-config-2/symbols/ro;.......T.    /usr/share/xkeyboard-config-2/symbols/ru;]
+  xkb_symbols { include "pc+be+inet(evdev)+be_capslock(windows)+be_capslock(windows_accents)" };
+keyd: active enabled; conf: be-winaltgr.conf 
+keyd version/check: keyd v2.6.0 ();  No errors found. 
+keyd virtual devices: 2
+session: wayland KDE
+kxkbrc: LayoutList=be Options=caps:be_windows,be_azerty:accents ResetOldOptions=true Use=true 
+compositor keymap (exit 0): xkb_symbols "pc_be_inet(evdev)_be_capslock(windows)_be_capslock(windows_accents)" { be_capslock=1
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: be; X11 Layout: be; X11 Model: pc105; X11 Options: caps:be_windows,be_azerty:accents;
+AVC localed/xkb: 

@@ -1,0 +1,5 @@
+--- fresh 23:28:01Z session=wayland
+[('xkb', 'be'), ('ibus', 'mozc-jp')]
+['caps:be_windows', 'be_azerty:accents']
+dump exit 0: xkb_symbols "pc_be_us_2_inet(evdev)_be_capslock(windows)_be_capslock(windows_accents)_1" { be_capslock=1
+keyd: active virtual devices: 2

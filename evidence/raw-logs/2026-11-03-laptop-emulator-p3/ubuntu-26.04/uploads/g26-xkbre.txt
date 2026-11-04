@@ -1,0 +1,23 @@
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 209664 files and directories currently installed.)
+Preparing to unpack .../xkb-data_2.46-2_all.deb ...
+Unpacking xkb-data (2.46-2) over (2.46-2) ...
+Setting up xkb-data (2.46-2) ...
+Processing triggers for belgian-azerty-windows (0.9.12) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+--- facts 22:16:23Z xkbre
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+VERSION_ID="26.04"
+belgian-azerty-windows 0.9.12 install ok installed
+keyd 2.5.0-5 install ok installed
+keyd-belgian-windows 0.9.12 install ok installed
+xkb-data 2.46-2 install ok installed
+rules real name: /usr/share/xkeyboard-config-2/rules/evdev
+diversions: diversion of /usr/share/xkeyboard-config-2/rules/evdev to /usr/share/xkeyboard-config-2/rules/evdev.distrib by belgian-azerty-windows;
+rule lines caps:be_windows: 1  be_azerty:accents: 5  be_azerty:mac: 5
+our block markers: 2
+dpkg -V xkb-data: []
+xkbcli compile be+options: exit 127 0 lines, err: /tmp/g26.sh: line 14: xkbcli: command not found 
+keyd: active enabled; conf: be-winaltgr.conf 
+keyd input devices: 2
+session: wayland ubuntu:GNOME; gnome sources: [('xkb', 'us'), ('ibus', 'mozc-jp')] opts: @as []
+localectl: System Locale: LANG=C.UTF-8; VC Keymap: (unset); X11 Layout: us; X11 Model: pc105;

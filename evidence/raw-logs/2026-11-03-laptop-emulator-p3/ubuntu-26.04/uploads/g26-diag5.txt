@@ -1,0 +1,32 @@
+--- diag5 23:16:17Z WAYLAND_DISPLAY=wayland-0
+    Interactive debugger for XKB keymaps; automatically select from    the following backends, if available: Wayland, X11 and evdev.
+  interactive-wayland
+    Interactive debugger for XKB keymaps for Wayland
+  dump-keymap
+    Dump a XKB keymap from a Wayland or X11 compositor
+  dump-keymap-wayland
+    Dump a XKB keymap from a Wayland compositor
+  dump-keymap-x11
+    Dump a XKB keymap from an X server
+== now: ['caps:be_windows', 'be_azerty:accents']
+exit 0 err: 
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+		symbols[1]= [       ampersand,               1,             bar,      exclamdown ],
+		symbols[2]= [               1,          exclam ]
+be_capslock mentions: 0
+== only kpdl:comma
+exit 0 err: 
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+		symbols[1]= [       ampersand,               1,             bar,      exclamdown ],
+		symbols[2]= [               1,          exclam ]
+be_capslock mentions: 0
+	key <KPDL>               {	[       KP_Delete,      KP_Decimal ] };
+	key <LVL3>               {	[ ISO_Level3_Shift ] };
+	key <ZEHA>               {	[ XF86TouchpadToggle ] };
+== back to ours
+exit 0 err: 
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+		symbols[1]= [       ampersand,               1,             bar,      exclamdown ],
+		symbols[2]= [               1,          exclam ]
+be_capslock mentions: 0
+== done

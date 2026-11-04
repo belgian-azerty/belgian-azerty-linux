@@ -1,0 +1,17 @@
+--- facts 22:16:26Z opts
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+VERSION_ID="26.04"
+belgian-azerty-windows 0.9.12 install ok installed
+keyd 2.5.0-5 install ok installed
+keyd-belgian-windows 0.9.12 install ok installed
+xkb-data 2.46-2 install ok installed
+rules real name: /usr/share/xkeyboard-config-2/rules/evdev
+diversions: diversion of /usr/share/xkeyboard-config-2/rules/evdev to /usr/share/xkeyboard-config-2/rules/evdev.distrib by belgian-azerty-windows;
+rule lines caps:be_windows: 1  be_azerty:accents: 5  be_azerty:mac: 5
+our block markers: 2
+dpkg -V xkb-data: []
+xkbcli compile be+options: exit 127 0 lines, err: /tmp/g26.sh: line 14: xkbcli: command not found 
+keyd: active enabled; conf: be-winaltgr.conf 
+keyd input devices: 2
+session: wayland ubuntu:GNOME; gnome sources: [('xkb', 'be')] opts: ['caps:be_windows', 'be_azerty:accents']
+localectl: System Locale: LANG=C.UTF-8; VC Keymap: (unset); X11 Layout: us; X11 Model: pc105;

@@ -1,0 +1,60 @@
+--- dm 01:28:42Z
+/usr/lib/systemd/system/display-manager-legacy.service
+● display-manager-legacy.service - X Display Manager
+     Loaded: loaded (/usr/lib/systemd/system/display-manager-legacy.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2026-11-04 01:19:05 EST; 4h 50min left
+ Invocation: 9035c4c53024458198a65654f5fbebb6
+   Main PID: 1599 (sddm)
+      Tasks: 4 (limit: 8175)
+        CPU: 4.029s
+     CGroup: /system.slice/display-manager-legacy.service
+             ├─1599 /usr/bin/sddm
+             └─3778 /usr/bin/Xorg.bin -nolisten tcp -background none -seat seat0 vt3 -auth /run/sddm/xauth_XtBMgX -noreset -displayfd 17
+
+Warning: some journal files were not opened due to insufficient permissions.
+DISPLAYMANAGER_REMOTE_ACCESS="no"
+DISPLAYMANAGER_ROOT_LOGIN_REMOTE="no"
+DISPLAYMANAGER_STARTS_XSERVER="yes"
+DISPLAYMANAGER_XSERVER_TCP_PORT_6000_OPEN="no"
+DISPLAYMANAGER_AUTOLOGIN="linux"
+DISPLAYMANAGER_PASSWORD_LESS_LOGIN="no"
+DISPLAYMANAGER_AD_INTEGRATION="no"
+DISPLAYMANAGER_XSERVER="Xorg"
+plasma6-sddm-theme-openSUSE-84.87~git20240313T170730~9c664b7-50.1.noarch
+sddm-branding-openSUSE-0.21.0+git57-1.1.noarch
+sddm-greeter-qt6-0.21.0+git57-1.1.x86_64
+sddm-kcm6-6.8.2-1.1.x86_64
+sddm-qt6-0.21.0+git57-1.1.x86_64
+sddm-qt6-branding-openSUSE-6.8.2-1.1.x86_64
+   1171 root     /usr/lib/systemd/systemd-logind
+   1599 root     /usr/bin/sddm
+   3778 root     /usr/bin/Xorg.bin -nolisten tcp -background none -seat seat0 vt3 -auth /run/sddm/xauth_XtBMgX -noreset -displayfd 17
+   3860 root     /usr/libexec/sddm/sddm-helper --socket /tmp/sddm-auth-bbf3ab46-5f63-407f-ae91-7192ccc2e227 --id 2 --start /usr/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland --user linux
+   3927 linux    /usr/bin/kwin_wayland_wrapper --xwayland
+   3930 linux    /usr/bin/kwin_wayland --wayland-fd 7 --socket wayland-1 --xwayland-fd 8 --xwayland-fd 9 --xwayland-display :1 --xwayland-initfd 11 --xwayland-init-display :2 --xwayland-xauthority /run/user/1000/xauth_sVxIXY --xwayland
+   3996 linux    /usr/bin/Xwayland :1 -auth /run/user/1000/xauth_sVxIXY -listenfd 8 -listenfd 9 -displayfd 87 -wm 89 -initfd 11 -rootless
+== greeter journal lines about keyboard
+Nov 04 01:19:05 localhost.localdomain sddm[1599]: Reading from "/usr/share/wayland-sessions/plasmawayland.desktop"
+Nov 04 01:19:05 localhost.localdomain sddm[1599]: Session "/usr/share/wayland-sessions/plasmawayland.desktop" selected, command: "/usr/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland" for VT 2
+Nov 04 01:19:05 localhost.localdomain sddm-helper[1601]: Starting Wayland user session: "/usr/share/sddm/scripts/wayland-session" "/usr/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland"
+Nov 03 20:25:46 localhost.localdomain sddm[1599]: Running display setup script  "/usr/etc/X11/xdm/Xsetup"
+Nov 03 20:25:46 localhost.localdomain systemd-logind[1171]: New session '3' of user 'sddm' with class 'greeter' and type 'x11'.
+Nov 03 20:25:47 localhost.localdomain sddm-helper[3804]: Starting X11 session: "" "/usr/bin/sddm-greeter-qt6 --socket /tmp/sddm-:0-oAFKFW --theme /usr/share/sddm/themes/breeze-openSUSE"
+Nov 03 20:25:47 localhost.localdomain sddm-greeter-qt6[3823]: Reading from "/usr/local/share/wayland-sessions/plasmawayland.desktop"
+Nov 03 20:25:47 localhost.localdomain sddm-greeter-qt6[3823]: Reading from "/usr/share/wayland-sessions/plasmawayland.desktop"
+Nov 03 20:25:51 localhost.localdomain sddm-greeter-qt6[3823]: Hunspell dictionary is missing for "en_US". Search paths QList("/usr/share/qt6/qtvirtualkeyboard/hunspell", "/usr/share/hunspell", "/usr/share/myspell/dicts")
+Nov 03 20:27:44 localhost.localdomain sddm-greeter-qt6[3823]: Reading from "/usr/share/wayland-sessions/plasmawayland.desktop"
+Nov 03 20:27:44 localhost.localdomain sddm[1599]: Reading from "/usr/share/wayland-sessions/plasmawayland.desktop"
+Nov 03 20:27:44 localhost.localdomain sddm[1599]: Session "/usr/share/wayland-sessions/plasmawayland.desktop" selected, command: "/usr/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland" for VT 2
+Nov 03 20:27:45 localhost.localdomain sddm-helper[3860]: Starting Wayland user session: "/usr/share/sddm/scripts/wayland-session" "/usr/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland"
+== xorg keyboard conf
+# Written by systemd-localed(8), read by systemd-localed and Xorg. It's
+# probably wise not to edit this file manually. Use localectl(1) to
+# update this file.
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "be"
+        Option "XkbModel" "pc105"
+        Option "XkbOptions" "caps:be_windows,be_azerty:accents"
+EndSection

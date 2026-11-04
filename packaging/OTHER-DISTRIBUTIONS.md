@@ -17,7 +17,9 @@ plus the Ctrl+Alt = AltGr rules for keyd.
   folder; that this path is built in was checked on Fedora 44 and 45, openSUSE Tumbleweed and Leap 16.0, and Arch.
   The system's own keyboard package stays unchanged (`rpm -V` or `pacman -Qkk` give the same answer before and after).
 - **Where it works**: programs that use libxkbcommon, which includes the Wayland desktops. GNOME's login screen: tested
-  on Fedora 45 and Leap 16.0 in a virtual machine (below). Unknown: KDE Plasma. **Not read** by a pure X11 session (the X server has its own folder) or by the text
+  on Fedora 45 and Leap 16.0 in a virtual machine (below). KDE
+  Plasma on Wayland: works in the session after logging out and in (Tumbleweed live, virtual machine); its login screen
+  (SDDM on X11) types Belgian but without our Caps Lock option. **Not read** by a pure X11 session (the X server has its own folder) or by the text
   console.
 - **keyd**: Fedora has no keyd package, so `fedora/keyd.spec` builds keyd 2.6.0 unchanged from the official release.
   openSUSE (Tumbleweed 2.6.0, Leap 16.0 2.5.0 from Backports) and Arch (2.6.0 in [extra]) have their own, which our

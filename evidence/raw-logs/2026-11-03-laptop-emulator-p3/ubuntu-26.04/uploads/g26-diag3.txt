@@ -1,0 +1,26 @@
+--- diag3 22:20:44Z
+== our options in the registry (evdev.xml / base.xml)
+/usr/share/xkeyboard-config-2/rules/evdev.xml: 0
+/usr/share/xkeyboard-config-2/rules/base.xml: 0
+-rw-r--r-- 1 root root  39286 Dec 18  2025 base
+-rw-r--r-- 1 root root  62783 Sep 30  2025 base.extras.xml
+-rw-r--r-- 1 root root  47108 Dec 18  2025 base.lst
+-rw-r--r-- 1 root root 256184 Sep 30  2025 base.xml
+-rw-r--r-- 1 root root  35384 Nov  3 22:16 evdev
+-rw-r--r-- 1 root root  34500 Dec 18  2025 evdev.distrib
+-rw-r--r-- 1 root root  62783 Sep 30  2025 evdev.extras.xml
+-rw-r--r-- 1 root root  47108 Dec 18  2025 evdev.lst
+-rw-r--r-- 1 root root 256184 Sep 30  2025 evdev.xml
+lrwxrwxrwx 1 root root      4 Dec 18  2025 xorg -> base
+lrwxrwxrwx 1 root root      8 Dec 18  2025 xorg.lst -> base.lst
+lrwxrwxrwx 1 root root      8 Dec 18  2025 xorg.xml -> base.xml
+== now: ['caps:be_windows', 'be_azerty:accents']
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+== only kpdl:comma
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+== caps:be_windows + kpdl:comma
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+== back to ours
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+== gnome-shell journal since diag3
+Nov 03 22:19:59 ubuntu sudo[8243]: ubuntu : TTY=/dev/pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/apt-get install -y -q x11-xkb-utils

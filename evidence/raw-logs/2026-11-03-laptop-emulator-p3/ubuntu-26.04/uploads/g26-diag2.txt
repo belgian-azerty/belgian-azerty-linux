@@ -1,0 +1,42 @@
+--- diag2 22:19:59Z
+== xkbcli, both options: AE01 and AC01
+	key <AE01>               {
+		type= "FOUR_LEVEL_SEMIALPHABETIC",
+		symbols[1]= [       ampersand,               1,             bar,      exclamdown ]
+	key <AE02>               {
+		type= "FOUR_LEVEL_SEMIALPHABETIC",
+		symbols[1]= [          eacute,               2,              at,       oneeighth ]
+	key <AC01>               {	[               q,               Q,              ae,              AE ] };
+	key <AC02>               {	[               s,               S,          ssharp,           U1E9E ] };
+	key <AC03>               {	[               d,               D,             eth,             ETH ] };
+	key <AC04>               {	[               f,               F,         dstroke,     ordfeminine ] };
+0 upgraded, 0 newly installed, 0 to remove and 348 not upgraded.
+== Xwayland keymap (set by mutter), DISPLAY=:0
+xkb_symbols "pc_be_us_2_inet(evdev)" {
+    key <AE01> {
+        type[group1]= "FOUR_LEVEL",
+        symbols[Group1]= [       ampersand,               1,             bar,      exclamdown ],
+        symbols[Group2]= [               1,          exclam ]
+    key <AE02> {
+        type[group1]= "FOUR_LEVEL",
+        symbols[Group1]= [          eacute,               2,              at,       oneeighth ],
+        symbols[Group2]= [               2,              at ]
+    key <AC01> {
+        type[group1]= "FOUR_LEVEL_ALPHABETIC",
+        type[group2]= "ALPHABETIC",
+        symbols[Group1]= [               q,               Q,              ae,              AE ],
+WARNING: Running setxkbmap against an Xwayland server
+rules:      evdev
+model:      pc105
+layout:     us
+== mutter keymap via gdbus (layouts/options as mutter got them)
+(false, '')
+== localed
+System Locale: LANG=C.UTF-8
+    VC Keymap: (unset)
+   X11 Layout: us
+    X11 Model: pc105
+== ibus
+xkb:be::fra
+   3530 /usr/bin/ibus-daemon --panel disable
+   4639 /usr/libexec/ibus-engine-simple

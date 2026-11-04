@@ -1,0 +1,9 @@
+u26term plain: azerty AZERTY 1234567890 &é"'(§è!çà ù µ , ; : = ) -
+u26term LCtrl+LAlt: |@#{[^{}€[]'`~\
+u26term AltGr: |@#{[^{}€[]'`~\
+u26term Caps+LCtrl+LAlt: |@#{[^{}€[]'`~\
+u26term RCtrl+LAlt 2 e: @€
+u26term Caps top/punct keys: ²&É"'(§È!ÇÀ)-^$ÙΜ,;:=<AZ
+u26term Caps+Shift same keys: ³1234567890°_"*%£?./+>az
+u26term Caps+AltGr: |@#{[^{}€[]'`~\
+u26term order Ctrl+Alt 2 e x8: @€@€@€@€@€@€@€@€

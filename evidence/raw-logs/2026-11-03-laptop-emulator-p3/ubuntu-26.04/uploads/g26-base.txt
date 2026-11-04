@@ -1,0 +1,17 @@
+--- facts 22:15:03Z base
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+VERSION_ID="26.04"
+dpkg-query: no packages found matching keyd
+dpkg-query: no packages found matching belgian-azerty-windows
+dpkg-query: no packages found matching keyd-belgian-windows
+xkb-data 2.46-2 install ok installed
+rules real name: /usr/share/xkeyboard-config-2/rules/evdev
+diversions: 
+rule lines caps:be_windows: 0  be_azerty:accents: 0  be_azerty:mac: 0
+our block markers: 0
+dpkg -V xkb-data: []
+xkbcli compile be+options: exit 127 0 lines, err: /tmp/g26.sh: line 14: xkbcli: command not found 
+keyd: inactive not-found; conf: ls: cannot access '/etc/keyd': No such file or directory 
+keyd input devices: 0
+session: wayland ubuntu:GNOME; gnome sources: [('xkb', 'us'), ('ibus', 'mozc-jp')] opts: @as []
+localectl: System Locale: LANG=C.UTF-8; VC Keymap: (unset); X11 Layout: us; X11 Model: pc105;

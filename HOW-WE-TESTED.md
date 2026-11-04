@@ -4,6 +4,21 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## After 0.9.12: Ubuntu 26.04.1 and openSUSE Tumbleweed KDE, live, in a virtual machine (3 and 4 November 2026)
+
+On one laptop, in a virtual machine (QEMU), live sessions only (nothing installed on a disk):
+- **Ubuntu 26.04.1** (GNOME 50.1 on Wayland), the 0.9.11 and 0.9.12 packages from the release page with Ubuntu's
+  keyd 2.5.0: install, upgrade from 0.9.11 to 0.9.12, a reinstall of the keyboard data keeps our rules; typing in the
+  terminal identical, character for character, to the Mint reference; Shift+AltGr accents; after logging out and in
+  at the login screen the options are active at once. Finding: GNOME 50.1 applies a change of the options alone only
+  after a change of the input sources or a new login.
+- **openSUSE Tumbleweed KDE** (Plasma 6.8.2 on Wayland; the live image runs AppArmor, not SELinux), the openSUSE
+  packages built from commit 4c5244a: install with Tumbleweed's keyd 2.6.0, `localectl` works; after logging out and
+  in, typing in Konsole is identical to the Mint reference (Plasma applies its keyboard options only after a new
+  login). The login screen (SDDM, which runs on X11) types Belgian and gives € with AltGr+E and Ctrl+Alt+E, but Caps
+  Lock works the Linux way there, because X11 does not read `/etc/xkb`.
+- Raw results and scripts: `evidence/raw-logs/2026-11-03-laptop-emulator-p3/ubuntu-26.04/` and `opensuse-tumbleweed/`.
+
 ## After 0.9.12, not released: the SELinux rule for `/etc/xkb` (Fedora and openSUSE package 0.9.12-2)
 
 On 4 November 2026. The rule (`packaging/selinux/belgian_azerty_xkb.cil`) gives `/etc/xkb` the label `usr_t`.

@@ -1,0 +1,26 @@
+--- kde2 01:25:18Z
+[Layout]
+LayoutList=be
+Options=caps:be_windows,be_azerty:accents
+ResetOldOptions=true
+Use=true
+VariantList=
+== now
+  keymap: xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+== dbus-send reloadConfig: exit 0
+  keymap: xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+qdbus: /usr/bin/qdbus6
+== KWin reconfigure
+  keymap: xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+== keyboard layouts dbus
+signal void org.kde.KeyboardLayouts.layoutChanged(uint index)
+signal void org.kde.KeyboardLayouts.layoutListChanged()
+method uint org.kde.KeyboardLayouts.getLayout()
+method {D-Bus type"a(sss)"} org.kde.KeyboardLayouts.getLayoutsList()
+method bool org.kde.KeyboardLayouts.setLayout(uint index)
+method void org.kde.KeyboardLayouts.switchToNextLayout()
+method void org.kde.KeyboardLayouts.switchToPreviousLayout()
+signal void org.freedesktop.DBus.Properties.PropertiesChanged(QString interface_name, QVariantMap changed_properties, QStringList invalidated_properties)
+method QDBusVariant org.freedesktop.DBus.Properties.Get(QString interface_name, QString property_name)
+method QVariantMap org.freedesktop.DBus.Properties.GetAll(QString interface_name)
+qdbus: I don't know how to display an argument of type 'a(sss)', run with --literal.

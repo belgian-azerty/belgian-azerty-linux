@@ -1,0 +1,43 @@
+belgian-azerty-windows_0.9.11_all.deb: OK
+keyd-belgian-windows_0.9.11_all.deb: OK
+belgian-azerty-windows_0.9.12_all.deb: OK
+keyd-belgian-windows_0.9.12_all.deb: OK
+Components: main restricted
+Components: main universe restricted multiverse
+Components: main universe restricted multiverse
+Get:43 http://security.ubuntu.com/ubuntu resolute-security/multiverse Translation-en [3728 B]
+Fetched 5905 kB in 3s (2098 kB/s)
+Reading package lists...
+Unpacking keyd (2.5.0-5) ...
+Setting up keyd (2.5.0-5) ...
+Created symlink '/etc/systemd/system/multi-user.target.wants/keyd.service' → '/usr/lib/systemd/system/keyd.service'.
+Processing triggers for man-db (2.13.1-1build1) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 209638 files and directories currently installed.)
+Preparing to unpack .../belgian-azerty-windows_0.9.11_all.deb ...
+Unpacking belgian-azerty-windows (0.9.11) ...
+Selecting previously unselected package keyd-belgian-windows.
+Preparing to unpack .../keyd-belgian-windows_0.9.11_all.deb ...
+Unpacking keyd-belgian-windows (0.9.11) ...
+Setting up keyd-belgian-windows (0.9.11) ...
+Setting up belgian-azerty-windows (0.9.11) ...
+Adding 'diversion of /usr/share/xkeyboard-config-2/rules/evdev to /usr/share/xkeyboard-config-2/rules/evdev.distrib by belgian-azerty-windows'
+Processing triggers for gnome-menus (3.38.1-1ubuntu1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Processing triggers for desktop-file-utils (0.28-1build1) ...
+--- facts 22:15:41Z apt
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+VERSION_ID="26.04"
+belgian-azerty-windows 0.9.11 install ok installed
+keyd 2.5.0-5 install ok installed
+keyd-belgian-windows 0.9.11 install ok installed
+xkb-data 2.46-2 install ok installed
+rules real name: /usr/share/xkeyboard-config-2/rules/evdev
+diversions: diversion of /usr/share/xkeyboard-config-2/rules/evdev to /usr/share/xkeyboard-config-2/rules/evdev.distrib by belgian-azerty-windows;
+rule lines caps:be_windows: 1  be_azerty:accents: 5  be_azerty:mac: 5
+our block markers: 2
+dpkg -V xkb-data: []
+xkbcli compile be+options: exit 127 0 lines, err: /tmp/g26.sh: line 14: xkbcli: command not found 
+keyd: active enabled; conf: be-winaltgr.conf 
+keyd input devices: 2
+session: wayland ubuntu:GNOME; gnome sources: [('xkb', 'us'), ('ibus', 'mozc-jp')] opts: @as []
+localectl: System Locale: LANG=C.UTF-8; VC Keymap: (unset); X11 Layout: us; X11 Model: pc105;
