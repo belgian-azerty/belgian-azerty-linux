@@ -1,8 +1,9 @@
-# Fedora, openSUSE and Arch Linux: files to build it yourself
+# Other distributions: Fedora, openSUSE, Arch Linux, and NixOS, Gentoo, Slackware, Void, Solus
 
 **Status (3 November 2026): tested in test containers only. Nothing is published for these systems**: no Fedora or
 openSUSE repository, no AUR entry, no ready-made packages on the release page. The project itself is made for Linux
-Mint 22.3 and Zorin OS 18.1 (see the README); these files are the first step towards other Linux families.
+Mint 22.3 and Zorin OS 18.1 (see the README); these files are the first step towards other Linux families. Fedora, openSUSE and Arch have package files (below);
+for NixOS, Gentoo, Slackware, Void and Solus there is a small script instead (see "No package: the script").
 
 The packages give the same three keyboard options as the Debian/Ubuntu package of 0.9.12: `caps:be_windows` (Caps Lock
 as on Windows), `be_azerty:accents` (Shift+AltGr accents as on Windows) and `be_azerty:mac` (Belgian Apple keyboards),
@@ -69,6 +70,29 @@ makepkg checks the archive against the SHA256 in the PKGBUILD.
 To remove: `sudo dnf remove`, `sudo zypper remove` or `sudo pacman -R` with `belgian-azerty-windows keyd-belgian-windows`
 (keyd itself stays and can be removed on its own).
 
+## No package: the script (NixOS, Gentoo, Slackware, Void, Solus, and others)
+
+For systems without package files of this project, `packaging/etc-xkb/be-azerty-etc-xkb.sh` puts the same two files
+in `/etc/xkb` (the Caps Lock file, and the rules file: the system's own rules included, then our lines). It changes no
+file of the system and needs only `sh`:
+```
+git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
+sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh install
+sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
+sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove      # takes out only our two files
+```
+- A rules file of your own in `/etc/xkb` is kept: ours is written beside it as `evdev.belgian-azerty` with a message.
+  A `be_capslock` file of your own is never overwritten.
+- The script does not switch the options on and does not set up keyd. Switch the options on in your system's
+  keyboard setting (`localectl` where systemd runs, as above; otherwise your desktop's or X server's own file).
+  keyd: Void and NixOS have keyd 2.6.0, Solus 2.5.0; on Gentoo it is in the GURU overlay, on Slackware on
+  SlackBuilds.org (none of these were run here). The rules file to give keyd is `keyd/be-winaltgr.conf`.
+- On NixOS `/etc` is managed by the system configuration. Whether a rebuild keeps files it did not create in
+  `/etc/xkb` was not checked; the NixOS way is to put the two files into `environment.etc` in your configuration
+  (not tested).
+- **Only for desktops that use libxkbcommon** (the Wayland desktops). An X11 session does not read `/etc/xkb`; many
+  of these systems still run X11 (Slackware 15.0 by default).
+
 ## What was tested (3 November 2026, test containers, no desktop)
 
 Built from the public v0.9.12 archive on each system. The tests are in `tests/`:
@@ -80,6 +104,9 @@ Built from the public v0.9.12 archive on each system. The tests are in `tests/`:
   `/etc/keyd` kept. keyd's own check of our rules: no errors (keyd 2.6.0; Leap's 2.5.0 has no check command).
 - `tests/fedora-fix.sh` (Fedora 44 and 45): `be-azerty-fix.sh` with systemd-localed (27 checks).
 - The build steps above, followed as written by a normal user, on Fedora 44, Tumbleweed, Leap 16.0 and Arch.
+- The script (`packaging/etc-xkb/`): with the keyboard library and data of Void, NixOS 26.05 and unstable, Gentoo,
+  Slackware current and 15.0, and Solus (Slackware and Solus: their own packages on another base system, as no
+  container exists for them). See `HOW-WE-TESTED.md`.
 - Results per system: `HOW-WE-TESTED.md`.
 
 **Not tested**: a desktop session (GNOME, KDE), the login screen, keyd running (Ctrl+Alt as AltGr in use), the text

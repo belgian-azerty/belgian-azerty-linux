@@ -17,6 +17,9 @@ Nothing changes on Linux Mint, Zorin OS, Ubuntu or Debian: the keyboard types ex
   unchanged. On systems it does not know (openSUSE, Arch, Fedora's relatives) it now stops and changes nothing; before,
   it would have treated them as Debian. Not in the Fedora package yet: run `be-azerty-fix.sh` from the repository.
 - New tests: `tests/rpm-cycle.sh` (Fedora and openSUSE), `tests/arch-cycle.sh` (Arch), `tests/fedora-fix.sh`.
+- **A script for systems without a package** (NixOS, Gentoo, Slackware, Void, Solus):
+  `packaging/etc-xkb/be-azerty-etc-xkb.sh install|remove|status` puts the two files in `/etc/xkb` and takes out only
+  its own. Tested in test containers with each system's own keyboard library and data; only for Wayland desktops.
 
 ## 0.9.12
 

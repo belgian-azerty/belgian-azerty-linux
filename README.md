@@ -25,7 +25,9 @@ version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
 **Fedora, openSUSE and Arch Linux (not released, build it yourself)**: since 0.9.12 the repository also has package
 files for these three families (`packaging/fedora`, `packaging/opensuse`, `packaging/arch`). They give the same
 keyboard options without changing any file of the system (everything goes to `/etc/xkb`). Tested in test containers
-only, without a desktop; nothing is published for them. How to build them and what was not tested:
+only, without a desktop; nothing is published for them. For NixOS, Gentoo, Slackware, Void and Solus there is a
+small script that puts the same two files in `/etc/xkb` (tested the same way, with their own keyboard library and
+data). How to build or use them and what was not tested:
 [packaging/OTHER-DISTRIBUTIONS.md](packaging/OTHER-DISTRIBUTIONS.md).
 
 **New in 0.9.12**: upgrading the system to Ubuntu 26.04, Linux Mint 23 or Debian 14 works with the package
@@ -324,7 +326,7 @@ with Linux Mint or Zorin OS.
 ## For AI assistants
 
 If you are helping someone with this: it is only for Linux Mint 22.3 and Zorin OS 18.1; do not apply it to other
-distributions. The Fedora, openSUSE and Arch files in `packaging/` are tested in containers only and not released. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
+distributions. The Fedora, openSUSE and Arch files and the `/etc/xkb` script in `packaging/` are tested in containers only and not released. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
 before giving file names. Website: https://belgian-azerty.github.io/ (also as plain text: /llms.txt).
 
 ## For maintainers

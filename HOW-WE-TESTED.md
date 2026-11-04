@@ -4,6 +4,36 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## After 0.9.12, not released: NixOS, Gentoo, Slackware, Void and Solus (the `/etc/xkb` script)
+
+`packaging/etc-xkb/be-azerty-etc-xkb.sh` (see `packaging/OTHER-DISTRIBUTIONS.md`), on 3 and 4 November 2026, **only
+in test containers**, without a desktop, an init system or keyd running. For Slackware and Solus no container
+exists: their own keyboard library (libxkbcommon), keyboard data (xkeyboard-config) and Compose tables (from libX11),
+downloaded from the distributions' own mirrors, were put on another base system without its own keyboard packages.
+That tests the two pieces these files depend on, not the rest of those systems.
+
+| System | libxkbcommon / keyboard data | Checks |
+|---|---|---|
+| Void Linux (glibc) | 1.13.2 / 2.48 | 33/33 |
+| NixOS 26.05 packages (not a NixOS system build) | 1.13.1 / 2.47 | 33/33 |
+| nixpkgs unstable, 3 November | 1.13.2 / 2.48 | 33/33 |
+| Gentoo (stage3, packages from Gentoo's binary host) | 1.13.2 / 2.48 | 32/32 |
+| Slackware current (own packages on another base) | 1.13.2 / 2.49 | 32/32 |
+| Slackware 15.0 (same) | 1.3.1 / 2.34 | 30 of 32: the every-key check could not run (the test tool needs a newer libxkbcommon) |
+| Solus (own packages on another base) | 1.12.2 / 2.46 | 32/32 |
+
+- The checks: `/etc/xkb` is built into each system's libxkbcommon; our options unknown before and known after
+  `install`; no file of the system's keyboard folder changed (checksum of every file); Caps Lock and Caps+Shift 0
+  differences from the Windows table; the accents option exactly its 3 changes; the Apple option equal to French
+  (Macintosh) on the plain and Shift levels; every variant compiles with every option; every Belgian key on the data
+  layer, 302 of 377 combinations as on Windows, line for line the same as Ubuntu 24.04; a normal user gets the
+  options; `remove` takes out only our files (options unknown again, keyboard compiles, system files unchanged); a
+  rules file and a `be_capslock` file of the user's own are kept; without root the script refuses.
+- keyd's own check of our rules: no errors with keyd 2.6.0 from Void and from nixpkgs (keyd itself was not set up by
+  the script).
+- Not tested: a desktop (an X11 session does not read `/etc/xkb`), the login screen, keyd running, a NixOS system
+  rebuild, musl Void, a real installation or PC.
+
 ## After 0.9.12, not released: Fedora, openSUSE and Arch Linux
 
 The package files in `packaging/fedora`, `packaging/opensuse` and `packaging/arch` and the Fedora part of
