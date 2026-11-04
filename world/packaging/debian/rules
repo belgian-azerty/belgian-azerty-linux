@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+execute_after_dh_fixperms:
+	chmod 755 debian/world-keyboard-windows/usr/lib/world-keyboard-windows/xkb-files

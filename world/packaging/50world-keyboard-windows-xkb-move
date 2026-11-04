@@ -1,0 +1,4 @@
+// world-keyboard-windows: let a system upgrade move the keyboard folder (xkb-data 2.46, Ubuntu 26.04, Mint 23,
+// Debian 14). See /usr/lib/world-keyboard-windows/xkb-files. Does nothing once the package is removed.
+DPkg::Pre-Install-Pkgs { "if [ -x /usr/lib/world-keyboard-windows/xkb-files ]; then /usr/lib/world-keyboard-windows/xkb-files prepare; else cat >/dev/null; fi"; };
+DPkg::Post-Invoke { "if [ -x /usr/lib/world-keyboard-windows/xkb-files ]; then /usr/lib/world-keyboard-windows/xkb-files finish; fi"; };

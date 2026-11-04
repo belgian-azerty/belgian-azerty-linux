@@ -1,0 +1,6 @@
+world-keyboard-windows (0.0.1~proto1) noble; urgency=medium
+
+  * Prototype: German, Swiss German, Swiss French and Polish (Programmers)
+    layouts that type like Windows, next to the Linux layouts. Not released.
+
+ -- @MAINTAINER@  Wed, 04 Nov 2026 06:00:00 +0000

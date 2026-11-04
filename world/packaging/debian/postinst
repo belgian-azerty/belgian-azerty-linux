@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+case "$1" in
+    configure) /usr/lib/world-keyboard-windows/xkb-files put ;;
+esac
+#DEBHELPER#

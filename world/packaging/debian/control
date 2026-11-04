@@ -1,0 +1,25 @@
+Source: world-keyboard-windows
+Section: x11
+Priority: optional
+Maintainer: @MAINTAINER@
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: world-keyboard-windows
+Architecture: all
+Depends: xkb-data, ${misc:Depends}
+Description: extra keyboard layouts that type like Windows (prototype)
+ PROTOTYPE, not released. Adds new keyboard layouts that type, key for key,
+ what the same layout types on Windows, next to the Linux layouts, which
+ stay as they are. Each new layout is the Linux layout with only the keys
+ changed where Windows differs (Caps Lock behaviour, a few AltGr
+ characters), generated from Unicode CLDR 43 Windows keyboard data and
+ checked by machine. Not covered: an accent followed by Space (Windows
+ gives the accent, Linux an apostrophe or quote), and Ctrl+Alt as AltGr.
+ .
+ Layouts in this prototype: de_windows (German), ch_windows (Swiss German,
+ variant fr: Swiss French), pl_windows (Polish Programmers).
+ .
+ It does not touch the belgian-azerty-windows package, xkb-data's files,
+ the rules or any setting: installing it only makes the layouts available.
