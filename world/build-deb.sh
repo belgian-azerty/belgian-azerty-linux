@@ -11,11 +11,11 @@ T=$(mktemp -d); trap 'rm -rf "$T"' EXIT
 V=$(sed -n '1s/.*(\(.*\)).*/\1/p' "$HERE/packaging/debian/changelog")
 D=$T/world-keyboard-windows-$V; mkdir -p "$D/symbols"
 cp -r "$HERE/packaging/debian" "$D/"; cp "$HERE/packaging/xkb-files" "$HERE/packaging/50world-keyboard-windows-xkb-move" "$D/"
-cp "$HERE"/xkb/symbols/* "$D/symbols/"; cp "$HERE/xkb/rules/evdev.xml" "$D/"
+cp "$HERE"/xkb/symbols/* "$D/symbols/"; cp "$HERE/xkb/rules/evdev.xml" "$HERE/xkb/accent-space.tsv" "$HERE/packaging/world-keyboard-windows" "$D/"
 awk -F'\t' 'NR > 1 { print $4 "\t" $5 "\t" $2 "\t" $3 }' "$HERE/layouts.tsv" > "$D/fallback.tsv"
 grep -rl '@MAINTAINER@\|@COPYRIGHT_HOLDER@\|@SOURCE_URL@' "$D/debian" | while read -r f; do
   sed -i "s|@MAINTAINER@|$MAINTAINER|g; s|@COPYRIGHT_HOLDER@|$COPYRIGHT_HOLDER|g; s|@SOURCE_URL@|$SOURCE_URL|g" "$f"
 done
-chmod 755 "$D/xkb-files" "$D/debian/rules"
+chmod 755 "$D/xkb-files" "$D/world-keyboard-windows" "$D/debian/rules"
 (cd "$D" && SOURCE_DATE_EPOCH=$(date -d "$(dpkg-parsechangelog -S Date)" +%s) dpkg-buildpackage -b -us -uc >/dev/null)
 cp "$T"/*.deb "$OUT/"; ls "$OUT"/*.deb

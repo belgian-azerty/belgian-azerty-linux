@@ -11,3 +11,7 @@
 *.zip
 # Emulator screenshots: keep them in the evidence archive outside git, or shrink them (pngquant) before committing
 evidence/**/shots/
+
+# Python byte code
+__pycache__/
+*.pyc

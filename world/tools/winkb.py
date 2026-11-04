@@ -67,6 +67,7 @@ for f, r, a in [
         ("xkb_keysym_get_name", ctypes.c_int, [ctypes.c_uint32, ctypes.c_char_p, ctypes.c_size_t]),
         ("xkb_keysym_from_name", ctypes.c_uint32, [ctypes.c_char_p, ctypes.c_int]),
         ("xkb_compose_table_new_from_locale", _P, [_P, ctypes.c_char_p, ctypes.c_int]),
+        ("xkb_compose_table_new_from_buffer", _P, [_P, ctypes.c_char_p, ctypes.c_size_t, ctypes.c_char_p, ctypes.c_int, ctypes.c_int]),
         ("xkb_compose_state_new", _P, [_P, ctypes.c_int]), ("xkb_compose_state_unref", None, [_P]),
         ("xkb_compose_state_feed", ctypes.c_int, [_P, ctypes.c_uint32]),
         ("xkb_compose_state_get_status", ctypes.c_int, [_P]),
@@ -167,6 +168,13 @@ def compare(win, kb):
                 got = kb.compose(ks_lin, *where[fr[1]]) if (sym_char(ks_lin) or '').startswith('dead:') else None
                 if got != to: diffs.append({'kind': 'accent', 'key': k, 'state': st, 'then': fr[1], 'windows': to, 'linux': got})
     return cells, diffs
+
+def compose_table_from_text(text):
+    """A compose table from the text of a Compose file (like ~/.XCompose; include "%L" loads the system table)."""
+    b = text.encode()
+    t = L.xkb_compose_table_new_from_buffer(L.xkb_context_new(0), b, len(b), b"en_US.UTF-8", 1, 0)
+    if not t: raise ValueError('compose text does not load')
+    return t
 
 _comp_ctx = None
 def compose_syms(deadsym, sym2):

@@ -3,3 +3,5 @@ fallback.tsv usr/lib/world-keyboard-windows/
 evdev.xml usr/lib/world-keyboard-windows/
 xkb-files usr/lib/world-keyboard-windows/
 50world-keyboard-windows-xkb-move etc/apt/apt.conf.d/
+accent-space.tsv usr/lib/world-keyboard-windows/
+world-keyboard-windows usr/bin/

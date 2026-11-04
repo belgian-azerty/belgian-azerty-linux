@@ -1,16 +1,26 @@
 #!/usr/bin/env python3
 # Typing plan for the headless-desktop check: every Windows cell (key x 6 states) and accent sequence of one layout,
 # with what Windows types (CLDR 43) and what the data step predicts the desktop types with the given xkb layout.
-#   python3 -I world/tools/gen_typing_plan.py CLDR_FILE LAYOUT VARIANT OUT.json [XKB_DIR]
+#   python3 -I world/tools/gen_typing_plan.py CLDR_FILE LAYOUT VARIANT OUT.json [XKB_DIR [ACCENT_SPACE_TSV]]
+# With ACCENT_SPACE_TSV: predict with the ~/.XCompose that "world-keyboard-windows accent-space on" writes for a user
+# with only this layout.
 # Presses are [evdev keycode, [held modifiers], caps lock tapped before and after (0/1)], as world/tests/typeall.py
 # expects. GTK shows an accent followed by the letter when no Compose rule exists (as in the 28 Oct method).
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import winkb
-path, lay, var, out = sys.argv[1:5]; xkbdir = sys.argv[5] if len(sys.argv) > 5 else None
+path, lay, var, out = sys.argv[1:5]; xkbdir = sys.argv[5] if len(sys.argv) > 5 and sys.argv[5] else None
+accent = sys.argv[6] if len(sys.argv) > 6 else None
 win = winkb.read_cldr(path); name, keys, trans = win
 kb = winkb.Keymap(winkb.context(xkbdir), lay, var)
 assert kb.ok(), f'cannot load {lay}({var})'
+if accent:
+    import csv
+    from check_accent_space import lines_for
+    tab = list(csv.DictReader((l for l in open(accent, encoding='utf-8') if not l.startswith('#')), delimiter='\t', quoting=csv.QUOTE_NONE))
+    lines = lines_for({lay if var == 'basic' else f'{lay}+{var}'}, tab)
+    kb.comp = winkb.compose_table_from_text('include "%L"\n' + ''.join(l + '\n' for l in lines))
+    print('accent-space lines:', lines)
 MODS = {'base': ([], 0), 'shift': ([42], 0), 'caps': ([], 1), 'capsshift': ([42], 1), 'altgr': ([100], 0), 'shiftaltgr': ([100, 42], 0)}
 SPACING = {'ˇ': 'ˇ', '´': '´', '`': '`', '^': '^', '~': '~', '¨': '¨', '˘': '˘', '˙': '˙'}
 where = {}

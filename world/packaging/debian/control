@@ -15,11 +15,18 @@ Description: extra keyboard layouts that type like Windows (prototype)
  stay as they are. Each new layout is the Linux layout with only the keys
  changed where Windows differs (Caps Lock behaviour, a few AltGr
  characters), generated from Unicode CLDR 43 Windows keyboard data and
- checked by machine. Not covered: an accent followed by Space (Windows
- gives the accent, Linux an apostrophe or quote), and Ctrl+Alt as AltGr.
+ checked by machine. Not covered: Ctrl+Alt as AltGr.
  .
- Layouts in this prototype: de_windows (German), ch_windows (Swiss German,
- variant fr: Swiss French), pl_windows (Polish Programmers).
+ Layouts in this prototype (22): German, Swiss German, Swiss French,
+ Polish (Programmers), French, English (UK), Spanish, Portuguese,
+ Portuguese (Brazil), Italian, Hungarian, Estonian, Lithuanian, Icelandic,
+ Faroese, Albanian, Ukrainian, French (Canada, legacy), Norwegian, Danish,
+ Finnish and Dutch, each named "(as on Windows)".
+ .
+ Optional, per user: "world-keyboard-windows accent-space on" makes an
+ accent followed by Space give the accent itself, as on Windows (Linux
+ gives an apostrophe or a quote). It writes a small ~/.XCompose and never
+ changes one of the user's own.
  .
  It does not touch the belgian-azerty-windows package, the rules or any
  setting. To make the layouts selectable in Cinnamon (Linux Mint), which

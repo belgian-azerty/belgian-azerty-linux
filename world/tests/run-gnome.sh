@@ -8,6 +8,9 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 gsettings set org.gnome.desktop.input-sources sources "[('xkb','$1')]"
 gsettings set org.gnome.desktop.input-sources xkb-options "[]"
 echo "sources: $(gsettings get org.gnome.desktop.input-sources sources)"
+if [ "${ACCENT_SPACE:-0}" = 1 ]; then      # the real command, as this user, before the desktop and the apps start
+  world-keyboard-windows accent-space on; [ -e ~/.XCompose ] && cp ~/.XCompose "$3.XCompose"
+fi
 gnome-shell --headless --wayland --virtual-monitor 1024x768 --no-x11 --unsafe-mode > /tmp/shell-$1.log 2>&1 &
 for i in $(seq 1 120); do gdbus introspect --session --dest org.gnome.Mutter.RemoteDesktop --object-path /org/gnome/Mutter/RemoteDesktop >/dev/null 2>&1 && break; sleep 0.5; done
 rm -f /tmp/typed.txt
@@ -20,3 +23,4 @@ sleep 0.5
 python3 "$HERE/typeall.py" "$2" "${4:-0.02}"
 cp /tmp/typed.txt "$3"
 pkill -u "$(id -u)" -f textview.py; pkill -u "$(id -u)" gnome-shell; sleep 1
+[ "${ACCENT_SPACE:-0}" = 1 ] && world-keyboard-windows accent-space off >/dev/null

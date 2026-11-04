@@ -19,9 +19,10 @@ Icelandic, Faroese, Albanian, Ukrainian, French Canada legacy, Norwegian, Danish
 | `cldr-43/` | The 22 Windows layout files from Unicode CLDR release 43 (open data, Unicode License, `LICENSE.txt`) |
 | `tools/gen_windows_symbols.py` | Writes each new layout: it includes the Linux layout unchanged, then redefines only the keys where Windows differs. Also writes the layout list `xkb/rules/evdev.xml` |
 | `tools/check_windows_symbols.py` | Machine check: types every key in 6 states (plain, Shift, Caps Lock, Caps Lock+Shift, AltGr, Shift+AltGr) and every accent sequence, as libxkbcommon (Wayland) and as xkbcomp (X11) build the layout, and compares with Windows |
-| `xkb/` | The generated files (`symbols/<name>_windows`, one per country, and `rules/evdev.xml`) |
-| `packaging/`, `build-deb.sh` | The Debian/Ubuntu package `world-keyboard-windows` (0.0.1~proto2) |
-| `tests/` | Package test next to the Belgian package, system upgrade test to Ubuntu 26.04, typing test in a headless GNOME desktop, Cinnamon layout lookup |
+| `tools/gen_accent_space.py`, `tools/check_accent_space.py` | Accent then Space: the table of what Windows and Linux give per layout (`xkb/accent-space.tsv`), and the machine check of the file the command writes |
+| `xkb/` | The generated files (`symbols/<name>_windows`, one per country, `rules/evdev.xml`, `accent-space.tsv`) |
+| `packaging/`, `build-deb.sh` | The Debian/Ubuntu package `world-keyboard-windows` (0.0.1~proto3), with the command `world-keyboard-windows` |
+| `tests/` | Package test next to the Belgian package, system upgrade test to Ubuntu 26.04, typing test in a headless GNOME desktop, Cinnamon layout lookup, accent-space command test |
 
 New layout names: the Linux name plus `_windows` (`de_windows`, `fr_windows`, `gb_windows`, ...; Swiss French is
 `ch_windows` variant `fr`). In the layout list they appear as "German (as on Windows)", "French (as on Windows)" and
@@ -46,22 +47,42 @@ which are something else.
 - It sets nothing. On removal, a system default (`/etc/default/keyboard`) that names one of its layouts gets the
   Linux layout back (`ch_windows` -> `ch`), so the keyboard never falls back to US.
 
-## Results (4 Nov 2026, cloud containers only, version 0.0.1~proto2 with 22 layouts)
+## Accent then Space (optional, per user)
+
+On Windows, an accent key followed by Space gives the accent itself (´ then Space gives ´); Linux gives an apostrophe
+or a quote (' and "). For these 22 layouts only ´ and ¨ differ. To get the Windows behaviour for your user (no sudo):
+
+    world-keyboard-windows accent-space on      # then log out and in
+    world-keyboard-windows accent-space off
+
+It writes a small `~/.XCompose` that loads Linux's normal accent table and changes only the lines your layouts need
+(read from GNOME, Cinnamon, KDE and `/etc/default/keyboard`). Same method as `be-azerty-fix accent-space` of the
+Belgian package. A `~/.XCompose` of your own, or one you changed, is never touched (the command shows the lines to
+add); with the Belgian file in place it does nothing (that file already gives ´ and ¨). It refuses when you also use a
+"US international"-type layout, where ' and " are accent keys. When two of your layouts give different results on
+Windows (Swiss German gives ¨, Swiss French gives "), that accent stays as on Linux. Removing the package removes
+the unchanged files it wrote. GTK apps, the Terminal and the ibus input method read the file; Qt and Electron apps
+(VS Code) are not checked.
+
+## Results (4 Nov 2026, cloud containers only, 22 layouts)
 
 | Check | Result |
 |---|---|
-| Machine check, Windows cells and accent sequences, all 22 layouts | 5,583 of 5,636 like Windows (stock Linux: 5,327); per layout below |
+| Machine check, Windows cells and accent sequences, all 22 layouts | 5,583 of 5,636 like Windows (stock Linux: 5,327); with accent-space on: 5,615 (the 21 left are the Polish ~); per layout below |
+| Accent-space file, machine check (`tools/check_accent_space.py`) | every accent + Space like Windows on all 22 (except the Polish ~, a plain key on Linux); no other result changed |
+| Accent-space command (`tests/accent-space.sh`) | 26/26 PASS: the written file, layouts from KDE and `/etc/default/keyboard`, layouts that disagree, US international refused, own and changed files left alone, next to the Belgian package's file, removal takes only unchanged files of ours |
 | Keys that type something else than Windows | 0 on every layout |
 | Same on X11 (xkbcomp) as on Wayland (libxkbcommon) | yes, all 22 |
 | Linux characters lost (where Windows has none, and anything on level 5 and up) | 0 |
-| Headless GNOME Shell 46 (Ubuntu 24.04), typed through Mutter | @TYPING@ |
+| Headless GNOME Shell 46 (Ubuntu 24.04), typed through Mutter | all 22: 6,929 / 6,929 cells typed as the machine check predicted; like Windows 5,435 of 5,486 |
+| Same, with `world-keyboard-windows accent-space on` run by the user first | all 22: 6,929 / 6,929 cells typed as predicted; like Windows 5,467 of 5,486 (the 19 left are the Polish ~). The command found the layout in GNOME's settings and wrote the file; the desktop read it |
 | Package next to belgian-azerty-windows 0.9.12 (`tests/coexist.sh`) | 95/95 PASS: every Belgian file, the rules file, its diversion and xkb-data's other files byte-identical after install, removal and purge; xkb-data's list kept as `evdev.xml.distrib` and given back on removal; rebuilt after an xkb-data reinstall; a system default naming our layouts gets the Linux layouts back on removal |
 | Cinnamon's layout lookup (CinnamonDesktop.XkbInfo, Ubuntu 24.04 build 6.0, `tests/cinnamon-lookup.sh`) | finds all 22 after install, none before and after removal |
 | System upgrade Ubuntu 24.04 -> 26.04 (xkb-data 2.46, `tests/upgrade-2604.sh`) | ALL PASS, with (38 checks) and without (34) the Belgian package |
 
 Per layout (machine check, cells like Windows: stock Linux -> new layout, of all cells):
 
-| Layout | Stock Linux | New | Cells | Left (accent + Space, unless noted) |
+| Layout | Stock Linux | New | Cells | Left without accent-space (accent + Space, unless noted) |
 |---|---|---|---|---|
 | German (`de_windows(basic)`) | 208 | 239 | 240 | 1 |
 | Swiss German (`ch_windows(basic)`) | 256 | 260 | 262 | 2 |
@@ -87,9 +108,7 @@ Per layout (machine check, cells like Windows: stock Linux -> new layout, of all
 | Dutch (`nl_windows(basic)`) | 266 | 268 | 270 | 2 |
 
 What is **not** like Windows yet:
-- An accent followed by Space: Windows gives the accent (´ ¨ ^ ~ `), Linux often an apostrophe, a quote or the ASCII
-  character (33 cells over the 22 layouts). That is Linux's Compose table, shared by every layout; changing it is a
-  separate decision.
+- An accent followed by Space, unless the user switches on accent-space (above): 32 cells over the 22 layouts.
 - Polish (Programmers): on Windows, Shift+` is an accent key (~ then a gives ą). Linux's Compose table gives other
   letters for it (ã), so the prototype keeps Linux's plain ~ (21 cells).
 - Ctrl+Alt as AltGr: Windows does this on all these layouts; on Linux it needs keyd (the Belgian package has it for

@@ -1,3 +1,11 @@
+world-keyboard-windows (0.0.1~proto3) noble; urgency=medium
+
+  * New command world-keyboard-windows accent-space on|off (per user,
+    optional): an accent followed by Space gives the accent, as on Windows.
+    Removing the package removes the unchanged files it wrote.
+
+ -- @MAINTAINER@  Wed, 04 Nov 2026 23:00:00 +0000
+
 world-keyboard-windows (0.0.1~proto2) noble; urgency=medium
 
   * 18 more layouts, the ones that needed only a few keys: French, English

@@ -1,0 +1,120 @@
+#!/bin/bash
+# world-keyboard-windows: the per-user part of the world prototype (the layouts themselves need no command).
+#   world-keyboard-windows accent-space [on|off]   accent then Space as on Windows, for your user (no sudo):
+#                                                  ´ then Space gives ´, ¨ then Space gives ¨ (Linux: ' and ")
+#   world-keyboard-windows status                  which of our layouts you have, and whether accent-space is on
+# accent-space writes a small ~/.XCompose that loads Linux's normal accent table and changes only the lines where
+# Windows differs, for the layouts you have (GNOME, Cinnamon, KDE, /etc/default/keyboard). A ~/.XCompose of your own
+# is never changed. GTK apps, the Terminal and the ibus input method read it when they start (log out and in).
+# Not checked: Qt apps, VS Code and other Electron apps.
+set -u
+LIB=${WORLD_KEYBOARD_LIB:-/usr/lib/world-keyboard-windows}; TAB=$LIB/accent-space.tsv
+MARK="# Written by world-keyboard-windows accent-space: accent then Space as on Windows."
+BE_MARK="# Written by be-azerty-fix accent-space (Belgian AZERTY): accent then space as on Windows."
+ok() { echo "OK    $*"; }; info() { echo "      $*"; }; bad() { echo "NOTE  $*"; }
+
+has_schema() { gsettings list-schemas 2>/dev/null | grep -qx "$1"; }
+user_layouts() {   # the user's xkb layouts as desktops name them (layout or layout+variant), one per line
+  local sc l v i
+  if command -v gsettings >/dev/null; then
+    for sc in org.gnome.desktop.input-sources org.cinnamon.desktop.input-sources; do
+      has_schema "$sc" && gsettings get "$sc" sources 2>/dev/null | grep -oE "'xkb', '[^']+'" | sed "s/'xkb', //; s/'//g"
+    done
+  fi
+  if [ -f "$HOME/.config/kxkbrc" ]; then
+    l=$(sed -n 's/^LayoutList=//p' "$HOME/.config/kxkbrc"); v=$(sed -n 's/^VariantList=//p' "$HOME/.config/kxkbrc")
+    pair "$l" "$v"
+  fi
+  if [ -f /etc/default/keyboard ]; then
+    l=$(sed -n 's/^XKBLAYOUT=//p' /etc/default/keyboard | tr -d '"'); v=$(sed -n 's/^XKBVARIANT=//p' /etc/default/keyboard | tr -d '"')
+    pair "$l" "$v"
+  fi
+}
+pair() { awk -v l="$1" -v v="$2" 'BEGIN { n = split(l, a, ","); split(v, b, ","); for (i = 1; i <= n; i++) if (a[i] != "")
+  print (b[i] == "" || b[i] == "basic") ? a[i] : a[i] "+" b[i] }'; }
+
+# The lines for this user: every accent key of the user's layouts where Windows gives something else after Space.
+# When two of the user's layouts want different results for the same accent key, that key is left as on Linux.
+# Prints the lines on stdout and notes on stderr.
+wanted_lines() {
+  [ -r "$TAB" ] || { echo "accent table $TAB missing" >&2; return 1; }
+  user_layouts | sort -u > "$T/mine"
+  awk -F'\t' 'NR == FNR { mine[$1] = 1; next } /^#/ || $1 == "id" { next } ($1 in mine) { k = $2
+      if (!(k in want)) { want[k] = $3; line[k] = $5; lin[k] = $4; who[k] = $1 }
+      else { who[k] = who[k] ", " $1; if (want[k] != $3) clash[k] = 1 } }
+    END { for (k in want) {
+            if (k in clash) { print "NOTE  " k " then Space: your layouts " who[k] " give different results on Windows, left as on Linux" > "/dev/stderr"; continue }
+            if (want[k] != lin[k]) print line[k] } }' "$T/mine" "$TAB" | sort
+}
+file_text() { printf '%s\n' "$MARK" "# Everything else comes from the normal table. Remove with: world-keyboard-windows accent-space off" 'include "%L"'; cat "$1"; }
+ours() {   # $1 is a file this command wrote and nobody changed: our two header lines, the include, and table lines only
+  [ -f "$1" ] && [ ! -L "$1" ] || return 1
+  [ "$(head -1 "$1")" = "$MARK" ] || return 1
+  awk -F'\t' -v hdr="# Everything else comes from the normal table. Remove with: world-keyboard-windows accent-space off" '
+    NR == FNR { if ($1 != "id" && $1 !~ /^#/) ok[$5] = 1; next }
+    FNR == 1 { next } FNR == 2 && $0 == hdr { next } FNR == 3 && $0 == "include \"%L\"" { inc = 1; next }
+    !($0 in ok) { bad = 1 } END { exit (bad || !inc) }' "$TAB" "$1"
+}
+intl_layouts() { user_layouts | grep -E '^[a-z]+\+[a-z-]*intl' | sort -u | paste -sd ' ' -; }
+
+accent_space() {
+  local f="${HOME:-$(getent passwd "$(id -un)" | cut -d: -f6)}/.XCompose" intl n
+  case "${1:-}" in
+    "") if [ -L "$f" ]; then info "$f is a link of your own (not changed by world-keyboard-windows)"
+        elif [ ! -e "$f" ]; then info "off: accent then Space gives ' and \" (standard Linux); switch on: world-keyboard-windows accent-space on"
+        elif ours "$f"; then ok "on ($f):"; tail -n +4 "$f" | sed 's/^/      /'
+        elif [ "$(head -1 "$f")" = "$BE_MARK" ]; then ok "on through be-azerty-fix accent-space (´ and ¨), that file covers our layouts too"
+        else info "$f is your own file (not changed by world-keyboard-windows)"; fi ;;
+    on) if [ "$(head -1 "$f" 2>/dev/null)" = "$BE_MARK" ]; then
+          ok "already on through be-azerty-fix accent-space: ´ then Space gives ´, ¨ then Space gives ¨. Nothing changed"; return 0
+        fi
+        intl=$(intl_layouts)
+        if [ -n "$intl" ] && [ "${FORCE:-0}" != 1 ]; then
+          bad "you also have $intl: there ' and \" are accent keys, so with this on, ' then Space would give ´ instead of '. Not switched on (FORCE=1 world-keyboard-windows accent-space on to do it anyway)"; return 1
+        fi
+        wanted_lines > "$T/lines" || return 1
+        if ! [ -s "$T/lines" ]; then info "none of your layouts needs a change for accent then Space (your layouts: $(paste -sd ' ' "$T/mine"))"; return 0; fi
+        if [ -e "$f" ] || [ -L "$f" ]; then
+          if ! ours "$f"; then
+            bad "$f already exists and is not ours: left unchanged. To get the Windows behaviour, add these lines to it:"
+            sed 's/^/      /' "$T/lines"; return 1
+          fi
+        fi
+        file_text "$T/lines" > "$f.world-new" && mv -f "$f.world-new" "$f" || { bad "could not write $f"; rm -f "$f.world-new"; return 1; }
+        n=$(wc -l < "$T/lines"); ok "on for $(id -un) ($n line(s)): log out and back in (apps and the input method read it when they start)"
+        sed 's/^/      /' "$T/lines"
+        [ -n "${XCOMPOSEFILE:-}" ] && info "XCOMPOSEFILE is set ($XCOMPOSEFILE): apps that read it ignore ~/.XCompose"
+        [ -e "${f%/*}/.config/gtk-3.0/Compose" ] && info "you have ~/.config/gtk-3.0/Compose: GTK 3 apps read that one instead"
+        return 0 ;;
+    off) if [ -L "$f" ]; then info "$f is a link of your own: left unchanged"
+         elif [ ! -e "$f" ]; then ok "already off"
+         elif ours "$f"; then rm -f "$f" && ok "off: removed $f. Log out and back in"
+         elif [ "$(head -1 "$f")" = "$MARK" ]; then
+           bad "$f was changed after world-keyboard-windows wrote it: left alone. Remove the lines with <space> from it by hand"; return 1
+         elif [ "$(head -1 "$f")" = "$BE_MARK" ]; then info "$f belongs to be-azerty-fix: switch it off with be-azerty-fix accent-space off"
+         else info "$f is your own file: left unchanged"; fi ;;
+    *) echo "accent-space: on or off" >&2; return 1 ;;
+  esac
+}
+cleanup_all_users() {   # root, on package removal: every user's unchanged ~/.XCompose written by accent-space goes
+  local u uid home self; self=$(readlink -f "$0")
+  while IFS=: read -r u _ uid _ _ home _; do
+    { [ "$uid" -ge 1000 ] && [ "$uid" != 65534 ]; } || [ "$uid" = 0 ] || continue
+    timeout -k 2 5 test -f "$home/.XCompose" 2>/dev/null || continue
+    [ "$(timeout -k 2 5 head -1 "$home/.XCompose" 2>/dev/null)" = "$MARK" ] || continue
+    if [ "$uid" = 0 ]; then timeout -k 5 15 env HOME="$home" "$self" accent-space off >/dev/null 2>&1
+    else timeout -k 5 15 runuser -u "$u" -- env HOME="$home" "$self" accent-space off >/dev/null 2>&1; fi
+    if [ ! -e "$home/.XCompose" ]; then echo "world-keyboard-windows: accent then Space: removed ~/.XCompose of $u" >&2
+    else echo "world-keyboard-windows: $home/.XCompose of $u was changed after it was written: left alone" >&2; fi
+  done < <(getent passwd)
+}
+
+T=$(mktemp -d) || exit 1; trap 'rm -rf "$T"' EXIT
+case "${1:-}" in
+  accent-space) shift; accent_space "$@" ;;
+  status) user_layouts | sort -u > "$T/mine"
+          m=$(grep -xFf <(awk -F'\t' '!/^#/ && $1 != "id" { print $1 }' "$TAB" 2>/dev/null | sort -u) "$T/mine" | paste -sd ' ' -)
+          info "our layouts in your list: ${m:-none}"; accent_space ;;
+  cleanup-all-users) [ "$(id -u)" = 0 ] || { echo "needs root" >&2; exit 1; }; cleanup_all_users ;;
+  *) sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 2 ;;
+esac

@@ -2,6 +2,8 @@
 set -e
 case "$1" in
     remove|deconfigure)
+        # accent-space files of users go with the command that wrote them (only unchanged ones)
+        [ "$1" = remove ] && { /usr/bin/world-keyboard-windows cleanup-all-users || true; }
         /usr/lib/world-keyboard-windows/xkb-files remove
         # A system default that names one of our layouts would point at a missing layout after removal (the
         # keyboard could fall back to US): the Linux layout it was made from goes back (de_windows -> de).
