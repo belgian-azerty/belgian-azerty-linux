@@ -1,0 +1,1 @@
+rpm -qa | grep -iE '^sddm|greeter' | tr '\n' ' ' > /tmp/dm.txt; ls -l /etc/systemd/system/display-manager.service >> /tmp/dm.txt; cat /etc/sddm.conf.d/*.conf /usr/lib/sddm/sddm.conf.d/*.conf >> /tmp/dm.txt 2>&1; curl -s -m 5 -T /tmp/dm.txt http://10.0.2.2:8001/gtwi-dm.txt; sudo reboot

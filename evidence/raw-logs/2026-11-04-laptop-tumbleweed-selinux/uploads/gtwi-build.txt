@@ -1,0 +1,41 @@
+/dev/vda2        27G  6.7G   21G  25% /
+tmpfs           2.9G   28K  2.9G   1% /tmp
+(44/45) Installing: qml-autoreqprov-1.4.1-1.7.noarch [...done]
+(45/45) Installing: qt6-declarative-tools-6.12.0-2.1.x86_64 [..........done]
+Running post-transaction scripts [....done]
+Running post-transaction scripts [....done]
+0f8095c824c023018c3f9e18f4d30162c9189c3295688f6f43d118e4cdc70e5f  belgian-azerty-windows.spec
+d3315987f8ce096e0f6d050b66a48496836663fe6bba6346d063b9b57af0f6a0  keyd-belgian-windows.spec
+b9ea122633f0cacd6267c433d6bb74c9bcf4c1eb45c0f3ce01eb932a2c566afc  /tmp/rpmbuild/SOURCES/belgian-azerty-linux-0.9.12.tar.gz
+belgian-azerty-windows.spec exit 0
+Wrote: /tmp/rpmbuild/SRPMS/belgian-azerty-windows-0.9.12-1.src.rpm
+Wrote: /tmp/rpmbuild/RPMS/noarch/belgian-azerty-windows-0.9.12-1.noarch.rpm
+keyd-belgian-windows.spec exit 0
+Wrote: /tmp/rpmbuild/SRPMS/keyd-belgian-windows-0.9.12-1.src.rpm
+Wrote: /tmp/rpmbuild/RPMS/noarch/keyd-belgian-windows-0.9.12-1.noarch.rpm
+eee093f98a20fdcce7285fbfa8ab3e4a25788f15902432496b2e471a35f8eaae  /tmp/rpmbuild/RPMS/noarch/belgian-azerty-windows-0.9.12-1.noarch.rpm
+03c17b933dd92ea4f0120566aa673cc2988c1365256ef35e8ffe689c0756c598  /tmp/rpmbuild/RPMS/noarch/keyd-belgian-windows-0.9.12-1.noarch.rpm
+--- facts 16:47:38Z build
+VERSION_ID="20261102"
+PRETTY_NAME="openSUSE Tumbleweed"
+xkeyboard-config-2.48-2.1.noarch
+libxkbcommon0-1.13.2-1.3.x86_64
+package keyd is not installed
+package belgian-azerty-windows is not installed
+package keyd-belgian-windows is not installed
+kwin6-6.8.2-1.1.x86_64
+plasma6-workspace-6.8.2-1.1.x86_64
+package sddm is not installed
+systemd-261.4-1.1.x86_64
+SELinux: getenforce=/tmp/gtwi.sh: line 11: getenforce: command not found enforce-file=1 lsm=lockdown,capability,landlock,yama,selinux,bpf,ima,evm cmdline-security=security=selinux selinux=1 
+/etc/xkb: 
+our rule lines: caps:be_windows  be_azerty:accents 
+rpm -V xkeyboard-config: []
+  xkb_symbols { include "pc+be+inet(evdev)" };
+keyd: inactive not-found; conf: ls: cannot access '/etc/keyd': No such file or directory 
+keyd virtual devices: 0
+session: wayland KDE; gnome sources: @a(ss) [] opts: @as []
+kxkbrc: 
+compositor keymap (exit 0): xkb_symbols "pc_us_inet(evdev)_terminate(ctrl_alt_bksp)" { be_capslock=0
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: us; X11 Model: pc105+inet; X11 Options: terminate:ctrl_alt_bksp;
+AVC localed/xkb: 

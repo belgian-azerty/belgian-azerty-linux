@@ -1,0 +1,1 @@
+curl -s -o /tmp/gselfix.sh http://10.0.2.2:8000/gselfix.sh; curl -s -o /tmp/gtwi.sh http://10.0.2.2:8000/gtwi.sh; bash /tmp/gselfix.sh tw remove; bash /tmp/gtwi.sh facts; clear; echo DONE-C7

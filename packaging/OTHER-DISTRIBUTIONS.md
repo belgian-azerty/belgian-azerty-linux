@@ -1,7 +1,7 @@
 # Other distributions: Fedora, openSUSE, Arch Linux, and NixOS, Gentoo, Slackware, Void, Solus
 
-**Status (4 November 2026): tested in test containers, and on Fedora 45 and openSUSE Leap 16.0 in a virtual machine
-on one laptop (with SELinux on, see below). Nothing is published for these systems**: no Fedora or
+**Status (4 November 2026): tested in test containers, and on Fedora 45, openSUSE Leap 16.0 and Tumbleweed in a virtual
+machine on one laptop (with SELinux on, see below). Nothing is published for these systems**: no Fedora or
 openSUSE repository, no AUR entry, no ready-made packages on the release page. The project itself is made for Linux
 Mint 22.3 and Zorin OS 18.1 (see the README); these files are the first step towards other Linux families. Fedora, openSUSE and Arch have package files (below);
 for NixOS, Gentoo, Slackware, Void and Solus there is a small script instead (see "No package: the script").
@@ -31,8 +31,8 @@ plus the Ctrl+Alt = AltGr rules for keyd.
   rule (`belgian_azerty_xkb`) that gives `/etc/xkb` the label `usr_t`, the label the system's own keyboard files in
   `/usr/share/X11/xkb` already have; removing the package takes it out again. Without it (0.9.12-1), on Fedora 45 with
   SELinux on, systemd-localed may not read our rules file, so `localectl set-x11-keymap` refuses every layout and the
-  login screen stays US. With 0.9.12-2 this works (tested on Fedora 45 and Leap 16.0 in a virtual machine, below).
-  Leap 16.0 did not have the problem even with 0.9.12-1; openSUSE Tumbleweed with SELinux was not tested.
+  login screen stays US. With 0.9.12-2 this works (tested on Fedora 45, Leap 16.0 and Tumbleweed in a virtual
+  machine, below). Leap 16.0 and Tumbleweed did not have the problem even with 0.9.12-1.
 - **A rules file of your own in `/etc/xkb` is kept.** Ours is then put beside it (`evdev.rpmnew` or `evdev.pacnew`) and
   the package says so: copy its lines into your file, or the three options stay unknown.
 - **No `be-azerty-fix` in these packages**, and the options do not appear in the desktop's keyboard settings. To
@@ -133,14 +133,18 @@ On one laptop, in a virtual machine (QEMU), with SELinux enforcing:
 - **openSUSE Leap 16.0 GNOME** (installed on a virtual disk, upgrade from 0.9.12-1 to 0.9.12-2): the same, and after a
   real reboot the login screen types Belgian with Caps Lock as on Windows. `be-azerty-fix.sh` stops on openSUSE, as
   intended.
+- **openSUSE Tumbleweed KDE** (installed on a virtual disk, 0.9.12-1 first, then 0.9.12-2, then a reboot): the same
+  steps pass; the KDE session has the options. The login screen (SDDM) runs on X11: Belgian and € work there, Caps
+  Lock works the Linux way (X11 does not read `/etc/xkb`).
 - At the GNOME login screen, accents typed with a dead key (^ then e) did not combine at all (Leap 16.0); this looks
   like the login screen's own behaviour (not checked without our files), so the accents option cannot be judged there.
 - Before the fix (0.9.12-1) on Fedora 45: `localectl` refused every layout and the login screen stayed US.
-- Raw results: `evidence/raw-logs/2026-11-03-laptop-emulator-p3/` (see `HOW-WE-TESTED.md`).
+- Raw results: `evidence/raw-logs/2026-11-03-laptop-emulator-p3/` and `evidence/raw-logs/2026-11-04-laptop-tumbleweed-selinux/`
+  (see `HOW-WE-TESTED.md`).
 
 The cloud tests (`tests/rpm-cycle.sh` with `SELINUX_POLICY=1`, policy installed but not enforcing, as containers have
 no SELinux): Fedora 44 and 45 23/23, Tumbleweed 24/24, Leap 16.0 23/23; without the policy 18/18 and 19/19 as before.
 
-**Not tested**: KDE or openSUSE Tumbleweed with SELinux, keyd in daily use, the text console, disk unlock, a real
+**Not tested**: GNOME on Tumbleweed, keyd in daily use, the text console, disk unlock, a real
 installation or a real PC. Older Fedora (42 and before) and Fedora's relatives (RHEL,
 Alma, Rocky) were not run.

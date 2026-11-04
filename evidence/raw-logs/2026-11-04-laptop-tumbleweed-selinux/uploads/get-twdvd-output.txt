@@ -1,0 +1,7 @@
+9f502cc47c1eb44ad9af18d50d3ba85a87b598c956d11ee15e835b301d0e062d  openSUSE-Tumbleweed-DVD-x86_64-Snapshot20261102-Media.iso
+-rw-r--r-- 1 root root 4634705920 Nov  4 16:55 openSUSE-Tumbleweed-DVD-x86_64-Snapshot20261102-Media.iso
+want 9f502cc47c1eb44ad9af18d50d3ba85a87b598c956d11ee15e835b301d0e062d
+got  9f502cc47c1eb44ad9af18d50d3ba85a87b598c956d11ee15e835b301d0e062d
+SHA256 OK
+
+[exited with code 0]

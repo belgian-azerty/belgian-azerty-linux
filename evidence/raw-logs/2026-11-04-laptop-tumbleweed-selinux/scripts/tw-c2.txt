@@ -1,0 +1,1 @@
+clear; bash /tmp/gtwi.sh build; bash /tmp/gtwi.sh inst; bash /tmp/gtwisel.sh; echo DONE-C2

@@ -1,0 +1,21 @@
+--- selfix tw remove 17:02:46Z
+1) getenforce: 1
+8) remove
+
+Backend:  classic_rpmtrans
+Continue? [y/n/v/...? shows all options] (y): y
+(1/1) Removing: belgian-azerty-windows-0.9.12-2.noarch [...done]
+Running post-transaction scripts [...done]
+ 
+rpm: package belgian-azerty-windows is not installed
+module: []
+/etc/xkb now: 
+== localectl set-x11-keymap be pc105
+exit 0
+   System Locale: LANG=en_US.UTF-8
+       VC Keymap: be
+      X11 Layout: be
+       X11 Model: pc105
+== AVC (ausearch, xkb)
+== AVC (journal since step start, xkb|localed)
+== end AVC

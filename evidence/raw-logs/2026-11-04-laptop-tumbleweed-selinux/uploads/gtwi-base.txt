@@ -1,0 +1,22 @@
+--- facts 16:40:29Z base
+VERSION_ID="20261102"
+PRETTY_NAME="openSUSE Tumbleweed"
+xkeyboard-config-2.48-2.1.noarch
+libxkbcommon0-1.13.2-1.3.x86_64
+package keyd is not installed
+package belgian-azerty-windows is not installed
+package keyd-belgian-windows is not installed
+kwin6-6.8.2-1.1.x86_64
+plasma6-workspace-6.8.2-1.1.x86_64
+package sddm is not installed
+systemd-261.4-1.1.x86_64
+SELinux: getenforce=/tmp/gtwi.sh: line 11: getenforce: command not found enforce-file=1 lsm=lockdown,capability,landlock,yama,selinux,bpf,ima,evm cmdline-security=security=selinux selinux=1 
+/etc/xkb: 
+our rule lines: caps:be_windows  be_azerty:accents 
+rpm -V xkeyboard-config: []
+keyd: inactive not-found; conf: ls: cannot access '/etc/keyd': No such file or directory 
+keyd virtual devices: 0
+session: wayland KDE; gnome sources: @a(ss) [] opts: @as []
+kxkbrc: 
+localectl: System Locale: LANG=en_US.UTF-8; VC Keymap: us; X11 Layout: us; X11 Model: pc105+inet; X11 Options: terminate:ctrl_alt_bksp;
+AVC localed/xkb: 

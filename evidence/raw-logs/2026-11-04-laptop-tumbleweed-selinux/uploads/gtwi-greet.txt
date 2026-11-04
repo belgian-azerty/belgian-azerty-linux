@@ -1,0 +1,173 @@
+--- greet 16:56:30Z
+== 00-keyboard.conf
+# Written by systemd-localed(8), read by systemd-localed and Xorg. It's
+# probably wise not to edit this file manually. Use localectl(1) to
+# update this file.
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "be"
+        Option "XkbModel" "pc105"
+        Option "XkbOptions" "caps:be_windows,be_azerty:accents"
+EndSection
+== sddm DisplayServer settings
+== Xorg logs
+ls: cannot access '/var/lib/sddm/.local/share/xorg/*.log': Permission denied
+-rw-r--r--. 1 root root 33069 Nov  4 11:54 /var/log/Xorg.0.log
+-- /var/log/Xorg.0.log
+[    11.138] Current Operating System: Linux localhost.localdomain 7.3.1-1-default #1 SMP PREEMPT_DYNAMIC Sat Oct 31 11:17:21 UTC 2026 (8815021) x86_64
+[    11.138] Kernel command line: initrd=\opensuse-tumbleweed\7.3.1-1-default\initrd-b74471a67552312de14df95fac8a70762e32ee6b root=UUID=64acc736-fc71-4cc3-89fd-2375e240f97b splash=silent mitigations=auto quiet security=selinux selinux=1 rootflags=subvol=@/.snapshots/1/snapshot
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[    11.143] (==) No Layout section.  Using the first Screen section.
+[    11.143] (==) No screen section available. Using defaults.
+[    11.143] (**) |-->Screen "Default Screen Section" (0)
+[    11.144] (==) No monitor specified for screen "Default Screen Section".
+[    11.158] (WW) Ignoring unrecognized extension "XFree86-DGA"
+[    11.160] (II) systemd-logind: logind integration requires -keeptty and -keeptty was not provided, disabling logind integration
+[    11.164] (II) xfree86: Adding drm device (/dev/dri/card0)
+[    11.197] (WW) Warning, couldn't open module fbdev
+[    11.197] (EE) Failed to load module "fbdev" (module does not exist, 0)
+[    11.207] (II) modeset(0): Creating default Display subsection in Screen section
+	"Default Screen Section" for depth/fbbpp 24/32
+[    11.862] (II) modeset(0): Year: 2014  Week: 42
+[    11.862] (II) modeset(0): redX: 0.640 redY: 0.330   greenX: 0.300 greenY: 0.600
+[    11.863] (II) modeset(0): 	2a180104a520147806ee91a3544c9926
+[    11.875] (II) Initializing extension XKEYBOARD
+[    11.877] (II) Initializing extension MIT-SCREEN-SAVER
+[    11.879] (II) AIGLX: Screen 0 is not DRI2 capable
+[    11.892] (II) GLX: Initialized DRISWRAST GL provider for screen 0
+[    11.892] (II) Initializing extension XFree86-VidModeExtension
+[    11.892] (II) Initializing extension XFree86-DGA
+[    11.892] (II) Initializing extension XFree86-DRI
+[    11.900] (II) modeset(0): Setting screen physical size to 338 x 211
+[    12.367] (**) Option "Device" "/dev/input/event3"
+[    12.412] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1/1-1:1.0/0003:0627:0001.0001/input/input4/event3"
+[    12.413] (**) Option "AccelerationScheme" "none"
+[    12.421] (II) This device may have been added with another device file.
+[    12.422] (**) Power Button: Applying InputClass "evdev keyboard catchall"
+[    12.422] (**) Power Button: Applying InputClass "libinput keyboard catchall"
+[    12.422] (**) Power Button: Applying InputClass "system-keyboard"
+[    12.423] (**) Option "Device" "/dev/input/event4"
+[    12.424] (II) event4  - Power Button: is tagged by udev as: Keyboard
+[    12.424] (II) event4  - Power Button: device is a keyboard
+[    12.429] (**) Option "config_info" "udev:/sys/devices/platform/LNXPWRBN:00/input/input5/event4"
+[    12.429] (II) XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 7)
+[    12.429] (**) Option "xkb_model" "pc105"
+[    12.429] (**) Option "xkb_layout" "be"
+[    12.429] (**) Option "xkb_options" "caps:be_windows,be_azerty:accents"
+[    12.481] (II) event4  - Power Button: is tagged by udev as: Keyboard
+[    12.481] (II) event4  - Power Button: device is a keyboard
+[    12.482] (II) config/udev: Adding input device AT Translated Set 2 keyboard (/dev/input/event0)
+[    12.482] (**) AT Translated Set 2 keyboard: Applying InputClass "evdev keyboard catchall"
+[    12.482] (**) AT Translated Set 2 keyboard: Applying InputClass "libinput keyboard catchall"
+[    12.482] (**) AT Translated Set 2 keyboard: Applying InputClass "system-keyboard"
+[    12.482] (II) Using input driver 'libinput' for 'AT Translated Set 2 keyboard'
+[    12.482] (**) AT Translated Set 2 keyboard: always reports core events
+[    12.482] (**) Option "Device" "/dev/input/event0"
+[    12.483] (II) event0  - AT Translated Set 2 keyboard: is tagged by udev as: Keyboard
+[    12.484] (II) event0  - AT Translated Set 2 keyboard: device is a keyboard
+[    12.485] (II) event0  - AT Translated Set 2 keyboard: device removed
+[    12.491] (**) Option "config_info" "udev:/sys/devices/platform/i8042/serio0/input/input0/event0"
+[    12.491] (II) XINPUT: Adding extended input device "AT Translated Set 2 keyboard" (type: KEYBOARD, id 8)
+[    12.491] (**) Option "xkb_model" "pc105"
+[    12.491] (**) Option "xkb_layout" "be"
+[    12.491] (**) Option "xkb_options" "caps:be_windows,be_azerty:accents"
+[    12.494] (II) event0  - AT Translated Set 2 keyboard: is tagged by udev as: Keyboard
+[    12.494] (II) event0  - AT Translated Set 2 keyboard: device is a keyboard
+[    12.495] (**) Option "Device" "/dev/input/event2"
+== journal sddm/xkbcomp (this boot)
+Nov 04 11:50:38 localhost systemd[1]: systemd 261.4 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +IPE -SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 +KMOD +LIBCRYPTSETUP +LIBCRYPTSETUP_PLUGINS +LIBFDISK +PCRE2 +PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD +BPF_FRAMEWORK +BTF -XKBCOMMON -UTMP +LIBARCHIVE)
+Nov 04 11:50:41 localhost systemd[1]: systemd 261.4 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +IPE -SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 +KMOD +LIBCRYPTSETUP +LIBCRYPTSETUP_PLUGINS +LIBFDISK +PCRE2 +PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD +BPF_FRAMEWORK +BTF -XKBCOMMON -UTMP +LIBARCHIVE)
+Nov 04 11:50:48 localhost.localdomain display-manager[962]: XKBLAYOUT: be
+Nov 04 11:50:48 localhost.localdomain display-manager[962]: XKBLAYOUT is already set. Better don't touch X11 keyboard configuration.
+Nov 04 11:50:50 localhost.localdomain sddm-helper[1094]: pam_unix(sddm-greeter:session): session opened for user sddm(uid=464) by sddm(uid=0)
+Nov 04 11:50:50 localhost.localdomain sddm-helper[1094]: pam_kwallet5(sddm-greeter:session): pam_kwallet5: pam_sm_open_session
+Nov 04 11:50:50 localhost.localdomain sddm-helper[1094]: pam_kwallet5(sddm-greeter:session): pam_kwallet5: open_session called without kwallet5_key
+Nov 04 11:50:50 localhost.localdomain sddm-helper[1094]: Starting X11 session: "" "/usr/bin/sddm-greeter-qt6 --socket /tmp/sddm-:0-MsuhOD --theme /usr/share/sddm/themes/breeze-openSUSE"
+Nov 04 11:50:51 localhost.localdomain sddm-greeter-qt6[1126]: High-DPI autoscaling Enabled
+Nov 04 11:50:51 localhost.localdomain sddm-greeter-qt6[1126]: Reading from "/usr/local/share/wayland-sessions/plasmawayland.desktop"
+Nov 04 11:50:51 localhost.localdomain sddm-greeter-qt6[1126]: Reading from "/usr/share/wayland-sessions/plasmawayland.desktop"
+Nov 04 11:50:51 localhost.localdomain sddm-greeter-qt6[1126]: Loading theme configuration from "/usr/share/sddm/themes/breeze-openSUSE/theme.conf"
+Nov 04 11:50:51 localhost.localdomain sddm-greeter-qt6[1126]: Connected to the daemon.
+Nov 04 11:50:51 localhost.localdomain sddm-greeter-qt6[1126]: Loading file:///usr/share/sddm/themes/breeze-openSUSE/Main.qml...
+Nov 04 11:50:52 localhost.localdomain sddm-greeter-qt6[1126]: QObject::installEventFilter(): Cannot filter events for objects in a different thread.
+Nov 04 11:50:52 localhost.localdomain sddm-greeter-qt6[1126]: Failed to create wl_display (No such file or directory)
+Nov 04 11:50:54 localhost.localdomain sddm-greeter-qt6[1126]: Member contentWidth of the object PopupList_QMLTYPE_150 overrides a member of the base object. Consider renaming it or adding final or override specifier
+Nov 04 11:50:55 localhost.localdomain sddm-greeter-qt6[1126]: Adding view for "Virtual-1" QRect(0,0 1280x800)
+Nov 04 11:50:56 localhost.localdomain sddm-greeter-qt6[1126]: QDBusConnection: name 'org.freedesktop.UPower' had owner '' but we thought it was ':1.18'
+Nov 04 11:50:56 localhost.localdomain sddm-greeter-qt6[1126]: Message received from daemon: Capabilities
+Nov 04 11:50:56 localhost.localdomain sddm-greeter-qt6[1126]: Message received from daemon: HostName
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:57:15: QML Component: Cannot create delegate
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:61:9: Required property realName was not initialized
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:57:15: QML Component: Cannot create delegate
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:61:9: Required property realName was not initialized
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:57:15: QML Component: Cannot create delegate
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:61:9: Required property realName was not initialized
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: <Unknown File>: Can't assign to existing role 'icon' of different type [Url -> String]
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:57:15: QML Component: Cannot create delegate
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:61:9: Required property realName was not initialized
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:57:15: QML Component: Cannot create delegate
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:61:9: Required property realName was not initialized
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:57:15: QML Component: Cannot create delegate
+Nov 04 11:52:22 localhost.localdomain sddm-greeter-qt6[1126]: qrc:/qt/qml/org/kde/breeze/components/UserList.qml:61:9: Required property realName was not initialized
+Nov 04 11:54:00 localhost.localdomain sddm-greeter-qt6[1126]: file:///usr/share/sddm/themes/breeze-openSUSE/Main.qml:348:17 Parameter "username" is not declared. Injection of parameters into signal handlers is deprecated. Use JavaScript functions with formal parameters instead.
+Nov 04 11:54:00 localhost.localdomain sddm-greeter-qt6[1126]: Reading from "/usr/share/wayland-sessions/plasmawayland.desktop"
+Nov 04 11:54:00 localhost.localdomain sddm-greeter-qt6[1126]: Message received from daemon: LoginSucceeded
+Nov 04 11:54:00 localhost.localdomain sddm-helper[1094]: pam_unix(sddm-greeter:session): session closed for user sddm
+Nov 04 11:54:00 localhost.localdomain sddm-helper[1094]: pam_kwallet5(sddm-greeter:session): pam_kwallet5: pam_sm_close_session
+Nov 04 11:54:04 localhost.localdomain kwin_wayland_wrapper[1407]: The XKEYBOARD keymap compiler (xkbcomp) reports:
+== keyd devices
+N: Name="keyd virtual keyboard"
+H: Handlers=sysrq kbd leds event6 rfkill 
+N: Name="keyd virtual pointer"
+H: Handlers=mouse3 event7 js0 
+== keyd conf
+# be-azerty-fix: Windows-style AltGr for Belgian keyboards.
+#
+# On Windows, Ctrl+Alt is the same as AltGr, so Belgians type @ with
+# Ctrl+Alt+2, € with Ctrl+Alt+E, { } with Ctrl+Alt+9 / 0, and so on.
+# Linux only honours the right Alt key (AltGr), and the toolkits (GTK, Qt)
+# refuse to treat any key press that still carries Ctrl or Alt as text.
+#
+# keyd works below X11/Wayland (it rewrites the key events at the evdev
+# level), so this file makes Ctrl+Alt+<key> arrive at the desktop as
+# AltGr+<key> for exactly the 15 keys that carry an AltGr symbol on the
+# Windows "Belgian (Period)" layout. Every other Ctrl+Alt combination
+# (Ctrl+Alt+T, Ctrl+Alt+Del, Ctrl+Alt+F3, Ctrl+Alt+arrows ...) is passed
+# through unchanged. Works in X11, Wayland, the text console, and on the
+# login screen, with Caps Lock on or off, with any Ctrl and the left Alt.
+#
+# Keys are named after the US legend of the physical key (keyd convention):
+#   1..0 = top row (& é " ' ( § è ! ç à),  e = E,
+#   leftbrace = ^ ¨ (right of P),  rightbrace = $ *,  apostrophe = ù %,
+#   backslash = µ £,  slash = = +,  102nd = < >.
+#
+# Windows differs from the Linux Belgian layout on two keys: AltGr+4 is {
+# and AltGr+5 is [ on Windows (Linux gives ¼ ½). Both the AltGr and the
+# Ctrl+Alt paths below use the Windows meaning.
+
+[ids]
+*
+
+[altgr]
+4 = G-9
+5 = G-leftbrace
+
+[control+alt]
+1 = G-1
+2 = G-2
+3 = G-3
+4 = G-9
+5 = G-leftbrace
+6 = G-6
+9 = G-9
+0 = G-0
+e = G-e
+leftbrace = G-leftbrace
+rightbrace = G-rightbrace
+apostrophe = G-apostrophe
+backslash = G-backslash
+slash = G-slash
+102nd = G-102nd
+== X server xkb dir has our option?
+0

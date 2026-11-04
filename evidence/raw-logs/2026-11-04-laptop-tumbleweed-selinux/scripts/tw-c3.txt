@@ -1,0 +1,1 @@
+clear; bash /tmp/gselfix.sh tw up; bash /tmp/gtwi.sh facts; echo DONE-C3

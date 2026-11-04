@@ -25,7 +25,7 @@ version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
 **Fedora, openSUSE and Arch Linux (not released, build it yourself)**: since 0.9.12 the repository also has package
 files for these three families (`packaging/fedora`, `packaging/opensuse`, `packaging/arch`). They give the same
 keyboard options without changing any file of the system (everything goes to `/etc/xkb`). Tested in test containers,
-and Fedora 45 and openSUSE Leap 16.0 also in a virtual machine on one laptop with SELinux on (the Fedora and openSUSE
+and Fedora 45, openSUSE Leap 16.0 and Tumbleweed also in a virtual machine on one laptop with SELinux on (the Fedora and openSUSE
 packages add a small SELinux rule for `/etc/xkb`, without which the login screen stayed US on Fedora); nothing is
 published for them. For NixOS, Gentoo, Slackware, Void and Solus there is a
 small script that puts the same two files in `/etc/xkb` (tested the same way, with their own keyboard library and
@@ -316,7 +316,7 @@ with Linux Mint or Zorin OS.
 - **Upgrading to Ubuntu 26.04, Linux Mint 23 or Debian 14 needs 0.9.12 first**: with 0.9.11 or earlier installed it
   stops at the keyboard data (see "New in 0.9.12"). The step-aside only works when apt does the upgrade, not with a
   plain `dpkg -i` of the keyboard data.
-- Not tested: a real Apple keyboard, real hardware with 0.9.9 to 0.9.12 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu, Debian or Mint 23 outside test containers, Fedora, openSUSE or Arch on a real PC (Fedora 45 and Leap 16.0 only in a virtual machine), other distributions, a second USB keyboard, Wine, remote
+- Not tested: a real Apple keyboard, real hardware with 0.9.9 to 0.9.12 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu, Debian or Mint 23 outside test containers, Fedora, openSUSE or Arch on a real PC (Fedora 45, Leap 16.0 and Tumbleweed only in a virtual machine), other distributions, a second USB keyboard, Wine, remote
   desktop. Full list: `HOW-WE-TESTED.md`.
 
 ## Help test, or answer the survey

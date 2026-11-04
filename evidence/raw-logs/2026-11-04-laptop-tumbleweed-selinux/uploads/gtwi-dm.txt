@@ -1,0 +1,41 @@
+sddm-greeter-qt6-0.21.0+git57-1.1.x86_64 sddm-qt6-0.21.0+git57-1.1.x86_64 sddm-kcm6-6.8.2-1.1.x86_64 sddm-qt6-branding-openSUSE-6.8.2-1.1.x86_64 sddm-branding-openSUSE-0.21.0+git57-1.1.noarch lrwxrwxrwx. 1 root root 54 Nov  4 11:23 /etc/systemd/system/display-manager.service -> /usr/lib/systemd/system/display-manager-legacy.service
+cat: '/etc/sddm.conf.d/*.conf': No such file or directory
+[General]
+DefaultSession=/usr/share/xsessions/default.desktop
+
+[XDisplay]
+ServerPath=/usr/bin/X
+SessionCommand=/usr/etc/X11/xdm/Xsession
+DisplayCommand=/usr/etc/X11/xdm/Xsetup
+# No effect in 0.20.0, might change in the future again
+MinimumVT=7
+# boo#1089932
+EnableHiDPI=true
+
+[Users]
+# boo#979775
+ReuseSession=true
+
+[Autologin]
+Session=default.desktop
+[General]
+DefaultSession=/usr/share/wayland-sessions/plasmawayland.desktop
+GreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell
+
+[Theme]
+Current=breeze-openSUSE
+CursorTheme=breeze_cursors
+
+[Wayland]
+CompositorCommand=kwin_wayland --no-global-shortcuts --no-lockscreen --locale1
+[Theme]
+Current=breeze-openSUSE
+CursorTheme=breeze_cursors
+[General]
+GreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell
+
+[Wayland]
+# --locale1 was introduced in kwin 5.27
+CompositorCommand=kwin_wayland --no-global-shortcuts --no-lockscreen --locale1
+[Theme]
+Current=breeze-openSUSE
