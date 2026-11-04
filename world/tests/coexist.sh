@@ -8,6 +8,7 @@
 # gets the Linux layout back on removal; removing the Belgian package leaves ours alone.
 set -u; export DEBIAN_FRONTEND=noninteractive; FAIL=0
 BE=$(realpath "$1"); WO=$(realpath "$2"); REPO=$(realpath "$3")
+TAB=$REPO/world/layouts.tsv; LAYS=$(tail -n +2 "$TAB" | cut -f4 | awk '!s[$0]++'); NL=$(echo $LAYS | wc -w)
 pass() { echo "PASS  $*"; }; fail() { echo "FAIL  $*"; FAIL=1; }
 t() { local d=$1; shift; if "$@" >/dev/null 2>&1; then pass "$d"; else fail "$d"; fi; }
 SYM=$(readlink -f /usr/share/X11/xkb/symbols); RULES=$(readlink -f /usr/share/X11/xkb/rules/evdev)
@@ -30,34 +31,40 @@ apt-get install -y "$WO" >/tmp/world-install.log 2>&1; t "world package installe
 snap > /tmp/after-install
 t "Belgian package, rules, diversion, xkb-data files unchanged after install" cmp /tmp/before /tmp/after-install
 t "dpkg -V xkb-data clean" test -z "$(dv)"
-for f in de_windows ch_windows pl_windows; do t "$SYM/$f present, ours" sh -c "head -1 $SYM/$f | grep -q gen_windows_symbols"; done
+for f in $LAYS; do t "$SYM/$f present, ours" sh -c "head -1 $SYM/$f | grep -q gen_windows_symbols"; done
 t "system list diverted by us, xkb-data's file kept as evdev.xml.distrib" sh -c "dpkg-divert --list '$XML' | grep -q world-keyboard-windows && [ \"\$(sha256sum < '$XML.distrib')\" = '$XMLSUM' ]"
-t "system list = xkb-data's list plus our 3 layouts (what Cinnamon reads)" python3 -c "
+t "system list = xkb-data's list plus our $NL layouts (what Cinnamon reads)" python3 -c "
 import xml.etree.ElementTree as E
 n=lambda p:[l.find('configItem/name').text for l in E.parse(p).getroot().find('layoutList')]
-a,b=n('$XML.distrib'),n('$XML'); assert b[:len(a)]==a and b[len(a):]==['de_windows','ch_windows','pl_windows'],b[len(a):]"
+a,b=n('$XML.distrib'),n('$XML'); assert b[:len(a)]==a and b[len(a):]=='$(echo $LAYS)'.split(),b[len(a):]"
 t "Belgian rules diversion still there" sh -c "dpkg-divert --list | grep -q 'evdev.distrib.*belgian-azerty-windows'"
-t "libxkbregistry: each of our layouts listed once" sh -c "[ \$(xkbcli list | grep -c \"layout: 'de_windows'\") = 1 ] && [ \$(xkbcli list | grep -c \"layout: 'ch_windows'\") = 2 ]"
+xkbcli list > /tmp/list.yaml 2>/dev/null
+t "libxkbregistry: each of our layouts and variants listed once" python3 -c "
+import collections,re
+got=collections.Counter(re.findall(r\"layout: '([a-z]+_windows)'\",open('/tmp/list.yaml').read()))
+want=collections.Counter(l.split('\t')[3] for l in open('$TAB').read().splitlines()[1:])
+assert got==want,(got,want)"
 t "no second list in /etc/xkb (the system list holds ours)" test ! -e /etc/xkb/rules/evdev.xml
 t "libxkbregistry lists de_windows, ch_windows(fr), pl_windows next to the system layouts" sh -c "xkbcli list > /tmp/list.yaml && grep -q 'layout: .de_windows' /tmp/list.yaml && grep -q 'layout: .pl_windows' /tmp/list.yaml && grep -A1 'layout: .ch_windows' /tmp/list.yaml | grep -q 'variant: .fr' && grep -q 'layout: .be.' /tmp/list.yaml"
 t "our files belong to no package (xkb-data can switch the folder later)" sh -c "! dpkg -S $SYM/de_windows"
-for l in "de_windows basic" "ch_windows basic" "ch_windows fr" "pl_windows basic"; do set -- $l
+tail -n +2 "$TAB" | cut -f4,5 | tr '\t' ' ' > /tmp/rows
+while read -r l; do set -- $l
   t "libxkbcommon compiles $1($2)" xkbcli compile-keymap --layout "$1" --variant "$2"
   t "xkbcomp (X11) compiles $1($2)" cmpx "pc+$1($2)+inet(evdev)"
-done
+done < /tmp/rows
 t "Belgian layout with its options plus de_windows compiles" xkbcli compile-keymap --layout be,de_windows --options caps:be_windows,be_azerty:accents
 t "xkbcomp: be(Belgian options)+ch_windows(fr) as second layout" cmpx "pc+be+ch_windows(fr):2+inet(evdev)+be_capslock(windows)"
 echo "-- machine check against Windows, files as installed --"
-python3 -I "$REPO/world/tools/check_windows_symbols.py" "$REPO/world/pilot.tsv" "$REPO/world/cldr-43" /usr/share/X11/xkb /tmp/check.json
+python3 -I "$REPO/world/tools/check_windows_symbols.py" "$REPO/world/layouts.tsv" "$REPO/world/cldr-43" /usr/share/X11/xkb /tmp/check.json
 t "machine check on the installed files: no key differs from Windows, nothing lost" test $? = 0
 # a system default naming our layouts, then removal
-sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="be,ch_windows"/; s/^XKBVARIANT=.*/XKBVARIANT=",fr"/' /etc/default/keyboard
-grep -q '^XKBVARIANT=' /etc/default/keyboard || echo 'XKBVARIANT=",fr"' >> /etc/default/keyboard
+sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="be,ch_windows,ca_windows"/; s/^XKBVARIANT=.*/XKBVARIANT=",fr,"/' /etc/default/keyboard
+grep -q '^XKBVARIANT=' /etc/default/keyboard || echo 'XKBVARIANT=",fr,"' >> /etc/default/keyboard
 apt-get remove -y world-keyboard-windows >/tmp/world-remove.log 2>&1; t "world package removed" sh -c "! dpkg-query -W -f='\${db:Status-Abbrev}' world-keyboard-windows | grep -q ii"
 t "our files gone after remove" sh -c "! ls $SYM/*_windows"
 t "our layout list gone after remove" test ! -e /etc/xkb/rules/evdev.xml
 t "system list back to xkb-data's own file, no diversion of ours" sh -c "[ \"\$(sha256sum < '$XML')\" = '$XMLSUM' ] && [ ! -e '$XML.distrib' ] && ! dpkg-divert --list | grep -q world-keyboard-windows"
-t "/etc/default/keyboard back to Linux layouts (be,ch / ,fr)" sh -c "grep -qx 'XKBLAYOUT=\"be,ch\"' /etc/default/keyboard && grep -qx 'XKBVARIANT=\",fr\"' /etc/default/keyboard"
+t "/etc/default/keyboard back to Linux layouts (be,ch,ca / ,fr,fr-legacy)" sh -c "grep -qx 'XKBLAYOUT=\"be,ch,ca\"' /etc/default/keyboard && grep -qx 'XKBVARIANT=\",fr,fr-legacy\"' /etc/default/keyboard"
 grep '^XKB' /etc/default/keyboard | sed 's/^/      /'
 sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="be"/; s/^XKBVARIANT=.*/XKBVARIANT=""/' /etc/default/keyboard
 snap > /tmp/after-remove; sed -n '/XKB/p' /tmp/before > /dev/null

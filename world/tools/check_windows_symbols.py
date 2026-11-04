@@ -6,7 +6,7 @@
 #   (3) the new layout as xkbcomp builds it (the X11 server: Cinnamon, Xfce, MATE), read back into libxkbcommon,
 # and compare with Windows (Unicode CLDR 43). Also checks that every character Linux has where Windows has nothing
 # is still there (nothing taken away), and that the Linux layout itself is unchanged.
-#   python3 -I world/tools/check_windows_symbols.py world/pilot.tsv world/cldr-43 world/xkb [results.json]
+#   python3 -I world/tools/check_windows_symbols.py world/layouts.tsv world/cldr-43 world/xkb [results.json]
 # Exit code 1 when a new layout types something Windows does not on a key, or loses a Linux character.
 import csv, json, os, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -60,6 +60,13 @@ def main(table, cldrdir, xkbdir, out=None):
                 for tag, kb in (('wayland', new), ('x11', x11)):
                     a, b = base.press(st, key), kb.press(st, key)
                     if a != b: lost.append(f'{tag} {key} {st}: Linux {a} / new {b}')
+        # keys with more than four levels on Linux (Right Ctrl level 5 and up): those characters stay on the key
+        for key in sorted(set(keys) | {'TLDE', 'LSGT', 'BKSL'}):
+            if key == 'SPCE' or not base.code(key): continue
+            extra = {x for x in base.levels(key)[4:] if x != 'NoSymbol'}
+            for tag, kb in (('wayland', new), ('x11', x11)):
+                gone = extra - set(kb.levels(key))
+                if gone: lost.append(f'{tag} {key} level 5+: Linux {", ".join(sorted(gone))} gone')
         res['linux_characters_lost'] = lost
         # X11 and Wayland must agree on every cell
         res['x11_equals_wayland'] = res['new_wayland_left'] == res['new_x11_left']

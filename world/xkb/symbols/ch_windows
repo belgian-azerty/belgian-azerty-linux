@@ -7,7 +7,7 @@
 default partial alphanumeric_keys
 xkb_symbols "basic" {
     include "ch(basic)"
-    name[Group1] = "German (Switzerland, Windows)";
+    name[Group1] = "German (Switzerland, as on Windows)";
     // Windows layout: "Swiss German" (CLDR de-CH-t-k0-windows.xml); 3 keys differ from Linux
     // altgr: Windows ¦ / Linux |
     key <AE01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 1, plus, brokenbar, exclamdown ] };
@@ -20,7 +20,7 @@ xkb_symbols "basic" {
 partial alphanumeric_keys
 xkb_symbols "fr" {
     include "ch(fr)"
-    name[Group1] = "French (Switzerland, Windows)";
+    name[Group1] = "French (Switzerland, as on Windows)";
     // Windows layout: "Swiss French" (CLDR fr-CH-t-k0-windows.xml); 6 keys differ from Linux
     // caps: Windows é / Linux É; capsshift: Windows ö / Linux Ö
     key <AC10> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ eacute, odiaeresis, dead_acute, dead_doubleacute, eacute ] };

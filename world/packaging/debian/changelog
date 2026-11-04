@@ -1,3 +1,15 @@
+world-keyboard-windows (0.0.1~proto2) noble; urgency=medium
+
+  * 18 more layouts, the ones that needed only a few keys: French, English
+    (UK), Spanish, Portuguese, Portuguese (Brazil), Italian, Hungarian,
+    Estonian, Lithuanian, Icelandic, Faroese, Albanian, Ukrainian, French
+    (Canada, legacy), Norwegian, Danish, Finnish and Dutch. Not released.
+  * Names now say "(as on Windows)": xkb-data already has layouts called
+    "(Windows)" (for example Italian (Windows)), which are something else.
+  * A key with characters on level 5 and up on Linux is left as on Linux.
+
+ -- @MAINTAINER@  Wed, 04 Nov 2026 22:00:00 +0000
+
 world-keyboard-windows (0.0.1~proto1) noble; urgency=medium
 
   * Prototype: German, Swiss German, Swiss French and Polish (Programmers)

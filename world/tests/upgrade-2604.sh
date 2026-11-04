@@ -6,6 +6,7 @@
 # new folder, and that purge leaves nothing. world-only: without the Belgian package. No systemd needed.
 set -u; export DEBIAN_FRONTEND=noninteractive; FAIL=0
 BE=$(realpath "$1"); WO=$(realpath "$2"); REPO=$(realpath "$3"); MODE=${4:-both}
+TAB=$REPO/world/layouts.tsv; LAYS=$(tail -n +2 "$TAB" | cut -f4 | awk '!s[$0]++'); NL=$(echo $LAYS | wc -w)
 pass() { echo "PASS  $*"; }; fail() { echo "FAIL  $*"; FAIL=1; }
 t() { local d=$1; shift; if "$@" >/dev/null 2>&1; then pass "$d"; else fail "$d"; fi; }
 O="-o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"
@@ -24,11 +25,11 @@ t "xkb-data 2.46+ installed, folder is now a link" sh -c 'dpkg --compare-version
 echo "      xkb-data now $(dpkg-query -W -f='${Version}' xkb-data); /usr/share/X11/xkb -> $(readlink /usr/share/X11/xkb)"
 SYM=$(readlink -f /usr/share/X11/xkb/symbols)
 t "no mark left" test ! -e /var/lib/world-keyboard-windows/xkb-move-pending
-for f in de_windows ch_windows pl_windows; do t "$f back in the new folder ($SYM)" sh -c "head -1 $SYM/$f | grep -q gen_windows_symbols"; done
+for f in $LAYS; do t "$f back in the new folder ($SYM)" sh -c "head -1 $SYM/$f | grep -q gen_windows_symbols"; done
 XML=$(readlink -f /usr/share/X11/xkb/rules/evdev.xml)
-t "system list on the real name diverted by us, our 3 layouts in it once" sh -c "dpkg-divert --list '$XML' | grep -q world-keyboard-windows && [ \$(dpkg-divert --list | grep -c world-keyboard-windows) = 1 ] && [ \$(grep -c '<name>de_windows</name>' '$XML') = 1 ] && grep -q '<name>pl_windows</name>' '$XML'"
+t "system list on the real name diverted by us, our $NL layouts in it once" sh -c "dpkg-divert --list '$XML' | grep -q world-keyboard-windows && [ \$(dpkg-divert --list | grep -c world-keyboard-windows) = 1 ] && for l in $(echo $LAYS); do [ \$(grep -c \"<name>\$l</name>\" '$XML') = 1 ] || exit 1; done"
 t "evdev.xml.distrib = the new xkb-data's own list" sh -c "(cd /tmp && apt-get download -qq xkb-data) && [ \"\$(dpkg-deb --fsys-tarfile /tmp/xkb-data_*_all.deb | tar -xOf - ./usr/share/xkeyboard-config-2/rules/evdev.xml | md5sum)\" = \"\$(md5sum < '$XML.distrib')\" ]"
-t "our layouts compile on the new system" sh -c 'xkbcli compile-keymap --layout de_windows >/dev/null && xkbcli compile-keymap --layout ch_windows --variant fr >/dev/null && xkbcli compile-keymap --layout pl_windows >/dev/null'
+t "all our layouts and variants compile on the new system" sh -c "tail -n +2 '$TAB' | cut -f4,5 | while read -r l v; do xkbcli compile-keymap --layout \$l --variant \$v >/dev/null || exit 1; done"
 if [ "$MODE" != world-only ]; then
   t "Belgian package still installed (ii)" sh -c 'dpkg-query -W -f="\${db:Status-Abbrev}" belgian-azerty-windows | grep -q "^ii"'
   t "Belgian options still known" sh -c '! xkbcli compile-keymap --layout be --options caps:be_windows,be_azerty:accents 2>&1 >/dev/null | grep -q .'
@@ -36,7 +37,7 @@ if [ "$MODE" != world-only ]; then
 fi
 t "dpkg -V xkb-data clean" test -z "$(dpkg -V xkb-data | grep -v '/usr/share/\(doc\|man\)/')"
 if command -v python3 >/dev/null; then
-  python3 -I "$REPO/world/tools/check_windows_symbols.py" "$REPO/world/pilot.tsv" "$REPO/world/cldr-43" /usr/share/X11/xkb > /tmp/check-2604.txt 2>&1
+  python3 -I "$REPO/world/tools/check_windows_symbols.py" "$REPO/world/layouts.tsv" "$REPO/world/cldr-43" /usr/share/X11/xkb > /tmp/check-2604.txt 2>&1
   t "machine check on xkb-data 2.46+: no key differs from Windows, nothing lost" test $? = 0
   grep -v '^    left' /tmp/check-2604.txt | sed 's/^/      /'
 fi

@@ -1,0 +1,23 @@
+cldr_file	base_layout	base_variant	out_layout	out_variant	description	short	countries	languages
+de-t-k0-windows.xml	de	basic	de_windows	basic	German (as on Windows)	de	DE	ger
+de-CH-t-k0-windows.xml	ch	basic	ch_windows	basic	German (Switzerland, as on Windows)	ch	CH	ger
+fr-CH-t-k0-windows.xml	ch	fr	ch_windows	fr	French (Switzerland, as on Windows)	fr	CH	fre
+pl-t-k0-windows-extended.xml	pl	basic	pl_windows	basic	Polish (Programmers, as on Windows)	pl	PL	pol
+fr-t-k0-windows.xml	fr		fr_windows	basic	French (as on Windows)	fr	FR	fre
+en-GB-t-k0-windows.xml	gb		gb_windows	basic	English (UK, as on Windows)	en	GB	eng
+es-t-k0-windows.xml	es		es_windows	basic	Spanish (as on Windows)	es	ES	spa
+pt-PT-t-k0-windows.xml	pt		pt_windows	basic	Portuguese (as on Windows)	pt	PT	por
+pt-t-k0-windows-var.xml	br		br_windows	basic	Portuguese (Brazil, ABNT2, as on Windows)	pt	BR	por
+it-t-k0-windows.xml	it		it_windows	basic	Italian (as on Windows)	it	IT	ita
+hu-t-k0-windows.xml	hu		hu_windows	basic	Hungarian (as on Windows)	hu	HU	hun
+et-t-k0-windows.xml	ee		ee_windows	basic	Estonian (as on Windows)	et	EE	est
+lt-t-k0-windows.xml	lt		lt_windows	basic	Lithuanian (as on Windows)	lt	LT	lit
+is-t-k0-windows.xml	is		is_windows	basic	Icelandic (as on Windows)	is	IS	ice
+fo-t-k0-windows.xml	fo		fo_windows	basic	Faroese (as on Windows)	fo	FO	fao
+sq-t-k0-windows.xml	al		al_windows	basic	Albanian (as on Windows)	sq	AL	alb
+uk-t-k0-windows.xml	ua		ua_windows	basic	Ukrainian (as on Windows)	uk	UA	ukr
+fr-CA-t-k0-windows-legacy.xml	ca	fr-legacy	ca_windows	basic	French (Canada, legacy, as on Windows)	fr	CA	fre
+nb-t-k0-windows.xml	no		no_windows	basic	Norwegian (as on Windows)	no	NO	nor
+da-t-k0-windows.xml	dk		dk_windows	basic	Danish (as on Windows)	da	DK	dan
+fi-t-k0-windows.xml	fi		fi_windows	basic	Finnish (as on Windows)	fi	FI	fin
+nl-t-k0-windows.xml	nl		nl_windows	basic	Dutch (as on Windows)	nl	NL	dut

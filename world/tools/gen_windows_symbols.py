@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Write the "(Windows)" layouts of the world prototype: for each row of a layout table (pilot.tsv), a new xkb section
+# Write the "(Windows)" layouts of the world prototype: for each row of a layout table (layouts.tsv), a new xkb section
 # that includes the Linux layout unchanged and then redefines only the keys where Windows types something else
 # (Unicode CLDR 43 Windows data). The Linux layout itself is never changed; the new layout has its own name
 # (for example de_windows), so it sits next to the Linux one and next to the Belgian package.
-#   python3 -I world/tools/gen_windows_symbols.py world/pilot.tsv world/cldr-43 OUT_SYMBOLS_DIR
+#   python3 -I world/tools/gen_windows_symbols.py world/layouts.tsv world/cldr-43 OUT_SYMBOLS_DIR
 # Writes OUT_SYMBOLS_DIR/<out_layout> (one file per layout name) and prints what it changed. A key whose Caps Lock
 # behaviour cannot be expressed with the stock xkb key types is left as on Linux and reported.
 import csv, os, sys
@@ -76,6 +76,13 @@ def main(table, cldrdir, outdir):
                    for st in ('base', 'shift', 'altgr', 'shiftaltgr')]
             p = plan_key(w, now, typed, win[2])
             if p is None: continue
+            extra = [x for x in kb.levels(key)[4:] if x != 'NoSymbol']
+            if extra and p[0] != 'skip' and not set(extra) <= set(p[1]):
+                # Linux puts more on this key (levels 5 and up, e.g. Right Ctrl on Canadian Multilingual) than a
+                # four-level key can hold: rewriting it would take those characters away, so it stays as on Linux
+                print(f"  NOTE {r['out_layout']}({r['out_variant']}) {key}: Linux has {', '.join(extra)} on level 5 and up, "
+                      f"key left as on Linux")
+                continue
             if p[0] == 'skip':
                 for n in p[1]: print(f"  NOTE {r['out_layout']}({r['out_variant']}) {key}: {n}")
                 continue

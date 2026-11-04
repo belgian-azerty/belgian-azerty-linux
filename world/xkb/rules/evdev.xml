@@ -7,7 +7,7 @@
       <configItem>
         <name>de_windows</name>
         <shortDescription>de</shortDescription>
-        <description>German (Windows)</description>
+        <description>German (as on Windows)</description>
         <countryList><iso3166Id>DE</iso3166Id></countryList>
         <languageList><iso639Id>ger</iso639Id></languageList>
       </configItem>
@@ -16,7 +16,7 @@
       <configItem>
         <name>ch_windows</name>
         <shortDescription>ch</shortDescription>
-        <description>German (Switzerland, Windows)</description>
+        <description>German (Switzerland, as on Windows)</description>
         <countryList><iso3166Id>CH</iso3166Id></countryList>
         <languageList><iso639Id>ger</iso639Id></languageList>
       </configItem>
@@ -25,7 +25,7 @@
           <configItem>
             <name>fr</name>
             <shortDescription>fr</shortDescription>
-            <description>French (Switzerland, Windows)</description>
+            <description>French (Switzerland, as on Windows)</description>
             <countryList><iso3166Id>CH</iso3166Id></countryList>
             <languageList><iso639Id>fre</iso639Id></languageList>
           </configItem>
@@ -36,9 +36,171 @@
       <configItem>
         <name>pl_windows</name>
         <shortDescription>pl</shortDescription>
-        <description>Polish (Windows, Programmers)</description>
+        <description>Polish (Programmers, as on Windows)</description>
         <countryList><iso3166Id>PL</iso3166Id></countryList>
         <languageList><iso639Id>pol</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>fr_windows</name>
+        <shortDescription>fr</shortDescription>
+        <description>French (as on Windows)</description>
+        <countryList><iso3166Id>FR</iso3166Id></countryList>
+        <languageList><iso639Id>fre</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>gb_windows</name>
+        <shortDescription>en</shortDescription>
+        <description>English (UK, as on Windows)</description>
+        <countryList><iso3166Id>GB</iso3166Id></countryList>
+        <languageList><iso639Id>eng</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>es_windows</name>
+        <shortDescription>es</shortDescription>
+        <description>Spanish (as on Windows)</description>
+        <countryList><iso3166Id>ES</iso3166Id></countryList>
+        <languageList><iso639Id>spa</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>pt_windows</name>
+        <shortDescription>pt</shortDescription>
+        <description>Portuguese (as on Windows)</description>
+        <countryList><iso3166Id>PT</iso3166Id></countryList>
+        <languageList><iso639Id>por</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>br_windows</name>
+        <shortDescription>pt</shortDescription>
+        <description>Portuguese (Brazil, ABNT2, as on Windows)</description>
+        <countryList><iso3166Id>BR</iso3166Id></countryList>
+        <languageList><iso639Id>por</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>it_windows</name>
+        <shortDescription>it</shortDescription>
+        <description>Italian (as on Windows)</description>
+        <countryList><iso3166Id>IT</iso3166Id></countryList>
+        <languageList><iso639Id>ita</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>hu_windows</name>
+        <shortDescription>hu</shortDescription>
+        <description>Hungarian (as on Windows)</description>
+        <countryList><iso3166Id>HU</iso3166Id></countryList>
+        <languageList><iso639Id>hun</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>ee_windows</name>
+        <shortDescription>et</shortDescription>
+        <description>Estonian (as on Windows)</description>
+        <countryList><iso3166Id>EE</iso3166Id></countryList>
+        <languageList><iso639Id>est</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>lt_windows</name>
+        <shortDescription>lt</shortDescription>
+        <description>Lithuanian (as on Windows)</description>
+        <countryList><iso3166Id>LT</iso3166Id></countryList>
+        <languageList><iso639Id>lit</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>is_windows</name>
+        <shortDescription>is</shortDescription>
+        <description>Icelandic (as on Windows)</description>
+        <countryList><iso3166Id>IS</iso3166Id></countryList>
+        <languageList><iso639Id>ice</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>fo_windows</name>
+        <shortDescription>fo</shortDescription>
+        <description>Faroese (as on Windows)</description>
+        <countryList><iso3166Id>FO</iso3166Id></countryList>
+        <languageList><iso639Id>fao</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>al_windows</name>
+        <shortDescription>sq</shortDescription>
+        <description>Albanian (as on Windows)</description>
+        <countryList><iso3166Id>AL</iso3166Id></countryList>
+        <languageList><iso639Id>alb</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>ua_windows</name>
+        <shortDescription>uk</shortDescription>
+        <description>Ukrainian (as on Windows)</description>
+        <countryList><iso3166Id>UA</iso3166Id></countryList>
+        <languageList><iso639Id>ukr</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>ca_windows</name>
+        <shortDescription>fr</shortDescription>
+        <description>French (Canada, legacy, as on Windows)</description>
+        <countryList><iso3166Id>CA</iso3166Id></countryList>
+        <languageList><iso639Id>fre</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>no_windows</name>
+        <shortDescription>no</shortDescription>
+        <description>Norwegian (as on Windows)</description>
+        <countryList><iso3166Id>NO</iso3166Id></countryList>
+        <languageList><iso639Id>nor</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>dk_windows</name>
+        <shortDescription>da</shortDescription>
+        <description>Danish (as on Windows)</description>
+        <countryList><iso3166Id>DK</iso3166Id></countryList>
+        <languageList><iso639Id>dan</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>fi_windows</name>
+        <shortDescription>fi</shortDescription>
+        <description>Finnish (as on Windows)</description>
+        <countryList><iso3166Id>FI</iso3166Id></countryList>
+        <languageList><iso639Id>fin</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>nl_windows</name>
+        <shortDescription>nl</shortDescription>
+        <description>Dutch (as on Windows)</description>
+        <countryList><iso3166Id>NL</iso3166Id></countryList>
+        <languageList><iso639Id>dut</iso639Id></languageList>
       </configItem>
     </layout>
   </layoutList>

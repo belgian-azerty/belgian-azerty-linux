@@ -1,5 +1,0 @@
-cldr_file	base_layout	base_variant	out_layout	out_variant	description	short	countries	languages
-de-t-k0-windows.xml	de	basic	de_windows	basic	German (Windows)	de	DE	ger
-de-CH-t-k0-windows.xml	ch	basic	ch_windows	basic	German (Switzerland, Windows)	ch	CH	ger
-fr-CH-t-k0-windows.xml	ch	fr	ch_windows	fr	French (Switzerland, Windows)	fr	CH	fre
-pl-t-k0-windows-extended.xml	pl	basic	pl_windows	basic	Polish (Windows, Programmers)	pl	PL	pol

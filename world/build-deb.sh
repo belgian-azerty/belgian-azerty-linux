@@ -12,7 +12,7 @@ V=$(sed -n '1s/.*(\(.*\)).*/\1/p' "$HERE/packaging/debian/changelog")
 D=$T/world-keyboard-windows-$V; mkdir -p "$D/symbols"
 cp -r "$HERE/packaging/debian" "$D/"; cp "$HERE/packaging/xkb-files" "$HERE/packaging/50world-keyboard-windows-xkb-move" "$D/"
 cp "$HERE"/xkb/symbols/* "$D/symbols/"; cp "$HERE/xkb/rules/evdev.xml" "$D/"
-awk -F'\t' 'NR > 1 { print $4 "\t" $5 "\t" $2 "\t" $3 }' "$HERE/pilot.tsv" > "$D/fallback.tsv"
+awk -F'\t' 'NR > 1 { print $4 "\t" $5 "\t" $2 "\t" $3 }' "$HERE/layouts.tsv" > "$D/fallback.tsv"
 grep -rl '@MAINTAINER@\|@COPYRIGHT_HOLDER@\|@SOURCE_URL@' "$D/debian" | while read -r f; do
   sed -i "s|@MAINTAINER@|$MAINTAINER|g; s|@COPYRIGHT_HOLDER@|$COPYRIGHT_HOLDER|g; s|@SOURCE_URL@|$SOURCE_URL|g" "$f"
 done
