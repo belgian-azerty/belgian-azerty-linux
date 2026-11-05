@@ -1,3 +1,12 @@
+world-keyboard-windows (0.0.1~proto6) noble; urgency=medium
+
+  * 7 more layouts: Yakut (Sakha), Persian (Standard), Hawaiian, Khmer,
+    Sinhala, Santali (Ol Chiki) and Azerbaijani (Standard). 67 in total.
+    Not released.
+  * accent-space also for Greenlandic on Danish (Windows).
+
+ -- @MAINTAINER@  Thu, 05 Nov 2026 19:00:00 +0000
+
 world-keyboard-windows (0.0.1~proto5) noble; urgency=medium
 
   * 18 more layouts, other scripts: Arabic (101, 102, 102 AZERTY), Kurdish

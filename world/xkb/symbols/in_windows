@@ -329,3 +329,66 @@ xkb_symbols "tel" {
     // altgr: Windows ౄ / Linux ృ; shiftaltgr: Windows ౠ / Linux ఋ
     key <AE12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U0C43, U0C0B, U0C44, U0C60 ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "sat" {
+    include "in(sat)"
+    name[Group1] = "Santali (Ol Chiki, as on Windows)";
+    // Windows layout: "Ol Chiki" (CLDR sat-t-k0-windows.xml); 28 keys differ from Linux
+    // base: Windows ᱷ / Linux ᱲ; shift: Windows ᱽ / Linux ᱲ; caps: Windows ᱷ / Linux ᱲ; capsshift: Windows ᱽ / Linux ᱲ
+    key <AB01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C77, U1C7D, U1C72, U1C72 ] };
+    // base: Windows ᱸ / Linux ᱽ; caps: Windows ᱸ / Linux ᱽ
+    key <AB02> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C78, U1C7D, U1C7D, U1C7D ] };
+    // base: Windows ᱢ / Linux ᱪ; shift: Windows ᱬ / Linux ᱪ; caps: Windows ᱢ / Linux ᱪ; capsshift: Windows ᱬ / Linux ᱪ
+    key <AB03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C62, U1C6C, U1C6A, U1C6A ] };
+    // base: Windows ᱱ / Linux ᱶ; caps: Windows ᱱ / Linux ᱶ
+    key <AB04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C71, U1C76, U1C76, U1C76 ] };
+    // base: Windows ᱣ / Linux ᱵ; shift: Windows ᱶ / Linux ᱵ; caps: Windows ᱣ / Linux ᱵ; capsshift: Windows ᱶ / Linux ᱵ
+    key <AB05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C63, U1C76, U1C75, U1C75 ] };
+    // base: Windows ᱞ / Linux ᱱ; caps: Windows ᱞ / Linux ᱱ
+    key <AB06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C5E, U1C78, U1C71, U1C78 ] };
+    // base: Windows ᱥ / Linux ᱢ; caps: Windows ᱥ / Linux ᱢ
+    key <AB07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C65, U1C6C, U1C62, U1C6C ] };
+    // shift: Windows ᱿ / Linux <; capsshift: Windows ᱿ / Linux <
+    key <AB08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ comma, U1C7F, comma, less ] };
+    // base: Windows . / Linux ᱹ; shift: Windows ᱾ / Linux >; caps: Windows . / Linux ᱹ; capsshift: Windows ᱾ / Linux >
+    key <AB09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ period, U1C7E, U1C79, greater ] };
+    // base: Windows ᱭ / Linux /; caps: Windows ᱭ / Linux /
+    key <AB10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C6D, question, slash, question ] };
+    // base: Windows ᱳ / Linux ᱟ; caps: Windows ᱳ / Linux ᱟ
+    key <AC01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C73, U1C5F, U1C5F, U1C5F ] };
+    // base: Windows ᱮ / Linux ᱥ; caps: Windows ᱮ / Linux ᱥ
+    key <AC02> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C6E, U1C65, U1C65, U1C65 ] };
+    // base: Windows ᱚ / Linux ᱰ; caps: Windows ᱚ / Linux ᱰ
+    key <AC03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C5A, U1C6B, U1C70, U1C6B ] };
+    // base: Windows ᱤ / Linux ᱝ; caps: Windows ᱤ / Linux ᱝ
+    key <AC04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C64, U1C5D, U1C5D, U1C5D ] };
+    // base: Windows ᱩ / Linux ᱜ; caps: Windows ᱩ / Linux ᱜ
+    key <AC05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C69, U1C5C, U1C5C, U1C5C ] };
+    // base: Windows ᱯ / Linux ᱦ; caps: Windows ᱯ / Linux ᱦ
+    key <AC06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C6F, U1C77, U1C66, U1C77 ] };
+    // base: Windows ᱨ / Linux ᱡ; caps: Windows ᱨ / Linux ᱡ
+    key <AC07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C68, U1C61, U1C61, U1C61 ] };
+    // base: Windows ᱛ / Linux ᱞ; caps: Windows ᱛ / Linux ᱞ
+    key <AC09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C5B, U1C5E, U1C5E, U1C5E ] };
+    // base: Windows ᱪ / Linux ;; caps: Windows ᱪ / Linux ;
+    key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C6A, U1C7A, semicolon, U1C7A ] };
+    // base: Windows ᱴ / Linux '; caps: Windows ᱴ / Linux '
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C74, quotedbl, apostrophe, quotedbl ] };
+    // base: Windows ᱟ / Linux ᱮ; caps: Windows ᱟ / Linux ᱮ
+    key <AD03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C5F, U1C6E, U1C6E, U1C6E ] };
+    // base: Windows ᱵ / Linux ᱭ; caps: Windows ᱵ / Linux ᱭ
+    key <AD06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C75, U1C6D, U1C6D, U1C6D ] };
+    // base: Windows ᱦ / Linux ᱩ; shift: Windows ᱝ / Linux ᱩ; caps: Windows ᱦ / Linux ᱩ; capsshift: Windows ᱝ / Linux ᱩ
+    key <AD07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C66, U1C5D, U1C69, U1C69 ] };
+    // base: Windows ᱜ / Linux ᱤ; caps: Windows ᱜ / Linux ᱤ
+    key <AD08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C5C, U1C64, U1C64, U1C64 ] };
+    // base: Windows ᱫ / Linux ᱚ; caps: Windows ᱫ / Linux ᱚ
+    key <AD09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C6B, U1C73, U1C5A, U1C73 ] };
+    // base: Windows ᱡ / Linux ᱯ; caps: Windows ᱡ / Linux ᱯ
+    key <AD10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C61, U1C6F, U1C6F, U1C6F ] };
+    // base: Windows ᱰ / Linux [; shift: Windows ᱲ / Linux {; caps: Windows ᱰ / Linux [; capsshift: Windows ᱲ / Linux {
+    key <AD11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C70, U1C72, bracketleft, braceleft ] };
+    // base: Windows ᱹ / Linux ]; shift: Windows ᱧ / Linux }; caps: Windows ᱹ / Linux ]; capsshift: Windows ᱧ / Linux }
+    key <AD12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C79, U1C67, bracketright, braceright ] };
+};

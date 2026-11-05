@@ -29,3 +29,72 @@ xkb_symbols "cyrillic" {
     // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
     key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, bar, brokenbar ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "std" {
+    include "az"
+    name[Group1] = "Azerbaijani (Standard, as on Windows)";
+    // Windows layout: "Azerbaijani (Standard)" (CLDR az-t-k0-windows-extended.xml); 31 keys differ from Linux
+    // base: Windows # / Linux `; caps: Windows # / Linux `
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ numbersign, asciitilde, grave, asciitilde ] };
+    // base: Windows ç / Linux z; shift: Windows Ç / Linux Z; caps: Windows Ç / Linux Z; capsshift: Windows ç / Linux z
+    key <AB01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ ccedilla, Ccedilla, z, Z ] };
+    // base: Windows f / Linux x; shift: Windows F / Linux X; caps: Windows F / Linux X; capsshift: Windows f / Linux x
+    key <AB02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ f, F, x, X ] };
+    // base: Windows v / Linux c; shift: Windows V / Linux C; caps: Windows V / Linux C; capsshift: Windows v / Linux c
+    key <AB03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ v, V, c, C ] };
+    // base: Windows t / Linux v; shift: Windows T / Linux V; caps: Windows T / Linux V; capsshift: Windows t / Linux v
+    key <AB04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ t, T, v, V ] };
+    // base: Windows k / Linux b; shift: Windows K / Linux B; caps: Windows K / Linux B; capsshift: Windows k / Linux b
+    key <AB05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ k, K, b, B ] };
+    // base: Windows e / Linux n; shift: Windows E / Linux N; caps: Windows E / Linux N; capsshift: Windows e / Linux n
+    key <AB06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ e, E, n, N ] };
+    // base: Windows q / Linux m; shift: Windows Q / Linux M; caps: Windows Q / Linux M; capsshift: Windows q / Linux m
+    key <AB07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ q, Q, m, M ] };
+    // base: Windows z / Linux ç; shift: Windows Z / Linux Ç; caps: Windows Z / Linux Ç; capsshift: Windows z / Linux ç
+    key <AB08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ z, Z, ccedilla, Ccedilla ] };
+    // base: Windows ö / Linux ş; shift: Windows Ö / Linux Ş; caps: Windows Ö / Linux Ş; capsshift: Windows ö / Linux ş
+    key <AB09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ odiaeresis, Odiaeresis, scedilla, Scedilla ] };
+    // base: Windows g / Linux a; shift: Windows G / Linux A; caps: Windows G / Linux A; capsshift: Windows g / Linux a
+    key <AC01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ g, G, a, A ] };
+    // base: Windows ı / Linux s; shift: Windows I / Linux S; caps: Windows I / Linux S; capsshift: Windows ı / Linux s
+    key <AC02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ idotless, I, s, S ] };
+    // base: Windows s / Linux d; shift: Windows S / Linux D; caps: Windows S / Linux D; capsshift: Windows s / Linux d
+    key <AC03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ s, S, d, D ] };
+    // base: Windows a / Linux f; shift: Windows A / Linux F; caps: Windows A / Linux F; capsshift: Windows a / Linux f
+    key <AC04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ a, A, f, F ] };
+    // base: Windows r / Linux g; shift: Windows R / Linux G; caps: Windows R / Linux G; capsshift: Windows r / Linux g
+    key <AC05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ r, R, g, G ] };
+    // base: Windows n / Linux h; shift: Windows N / Linux H; caps: Windows N / Linux H; capsshift: Windows n / Linux h
+    key <AC06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ n, N, h, H ] };
+    // base: Windows ə / Linux j; shift: Windows Ə / Linux J; caps: Windows Ə / Linux J; capsshift: Windows ə / Linux j
+    key <AC07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ schwa, SCHWA, j, J ] };
+    // base: Windows l / Linux k; shift: Windows L / Linux K; caps: Windows L / Linux K; capsshift: Windows l / Linux k
+    key <AC08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ l, L, k, K ] };
+    // base: Windows i / Linux l; shift: Windows İ / Linux L; caps: Windows İ / Linux L; capsshift: Windows i / Linux l
+    key <AC09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ i, Iabovedot, l, L ] };
+    // base: Windows c / Linux ı; shift: Windows C / Linux I; caps: Windows C / Linux ı; capsshift: Windows c / Linux I
+    key <AC10> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ c, C, idotless, I ] };
+    // base: Windows ğ / Linux ə; shift: Windows Ğ / Linux Ə; caps: Windows Ğ / Linux Ə; capsshift: Windows ğ / Linux ə
+    key <AC11> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ gbreve, Gbreve, schwa, SCHWA ] };
+    // base: Windows p / Linux q; shift: Windows P / Linux Q; caps: Windows P / Linux Q; capsshift: Windows p / Linux q
+    key <AD01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ p, P, q, Q ] };
+    // base: Windows ş / Linux e; shift: Windows Ş / Linux E; caps: Windows Ş / Linux E; capsshift: Windows ş / Linux e
+    key <AD03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ scedilla, Scedilla, e, E ] };
+    // base: Windows u / Linux r; shift: Windows U / Linux R; caps: Windows U / Linux R; capsshift: Windows u / Linux r
+    key <AD04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ u, U, r, R ] };
+    // base: Windows d / Linux t; shift: Windows D / Linux T; caps: Windows D / Linux T; capsshift: Windows d / Linux t
+    key <AD05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ d, D, t, T ] };
+    // base: Windows b / Linux y; shift: Windows B / Linux Y; caps: Windows B / Linux Y; capsshift: Windows b / Linux y
+    key <AD06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ b, B, y, Y ] };
+    // base: Windows m / Linux u; shift: Windows M / Linux U; caps: Windows M / Linux U; capsshift: Windows m / Linux u
+    key <AD07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ m, M, u, U ] };
+    // base: Windows y / Linux i; shift: Windows Y / Linux İ; caps: Windows Y / Linux I; capsshift: Windows y / Linux İ
+    key <AD08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ y, Y, i, Iabovedot ] };
+    // base: Windows h / Linux p; shift: Windows H / Linux P; caps: Windows H / Linux P; capsshift: Windows h / Linux p
+    key <AD10> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ h, H, p, P ] };
+    // base: Windows x / Linux ö; shift: Windows X / Linux Ö; caps: Windows X / Linux Ö; capsshift: Windows x / Linux ö
+    key <AD11> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ x, X, odiaeresis, Odiaeresis ] };
+    // base: Windows j / Linux ğ; shift: Windows J / Linux Ğ; caps: Windows J / Linux Ğ; capsshift: Windows j / Linux ğ
+    key <AD12> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ j, J, gbreve, Gbreve ] };
+};

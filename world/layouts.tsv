@@ -59,3 +59,10 @@ km-t-k0-windows-extended.xml	kh		kh_windows	basic	Khmer (NIDA, as on Windows)	km
 lo-t-k0-windows.xml	la	stea	la_windows	basic	Lao (as on Windows)	lo	LA	lao
 vi-t-k0-windows.xml	vn		vn_windows	basic	Vietnamese (as on Windows)	vi	VN	vie
 tmh-t-k0-windows-extended.xml	ma	tifinagh-extended	ma_windows	basic	Berber (Tifinagh, extended, as on Windows)	ber	MA	ber
+sah-t-k0-windows.xml	ru	sah	sah_windows	basic	Yakut (as on Windows)	sah	RU	sah
+fa-t-k0-windows-extended.xml	ir	pes	ir_windows	std	Persian (Standard, as on Windows)	fa	IR	per
+haw-t-k0-windows.xml	us	haw	haw_windows	basic	Hawaiian (as on Windows)	haw	US	haw
+km-t-k0-windows.xml	kh		kh_windows	khmer	Khmer (as on Windows)	km	KH	khm
+si-t-k0-windows-legacy.xml	lk		lk_windows	basic	Sinhala (as on Windows)	si	LK	sin
+sat-t-k0-windows.xml	in	sat	in_windows	sat	Santali (Ol Chiki, as on Windows)	sat	IN	sat
+az-t-k0-windows-extended.xml	az		az_windows	std	Azerbaijani (Standard, as on Windows)	az	AZ	aze

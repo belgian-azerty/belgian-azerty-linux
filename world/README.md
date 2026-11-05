@@ -7,7 +7,7 @@ adds a new Linux layout that types, key for key, what Windows types: for example
 own "German". The Linux layouts stay as they are, and nothing of the Belgian package (`belgian-azerty-windows`,
 `keyd-belgian-windows`) is changed or replaced.
 
-60 layouts so far:
+67 layouts so far:
 - the pilot: German, Swiss German, Swiss French, Polish (Programmers);
 - group 1 (18): French, English UK, Spanish, Portuguese, Portuguese Brazil (ABNT2), Italian, Hungarian, Estonian,
   Lithuanian, Icelandic, Faroese, Albanian, Ukrainian, French Canada (legacy), Norwegian, Danish, Finnish, Dutch;
@@ -16,7 +16,9 @@ own "German". The Linux layouts stay as they are, and nothing of the Belgian pac
   Cyrillic), Ukrainian (Enhanced), Bashkir, Tatar (and legacy), Tajik;
 - group 3 (18), other scripts: Arabic (101, 102, 102 AZERTY), Kurdish (Central, Arabic script), Persian, Urdu,
   Hindi (INSCRIPT, Traditional), Gujarati, Kannada, Malayalam, Odia, Punjabi (Gurmukhi), Telugu, Khmer (NIDA), Lao,
-  Vietnamese, Berber (Tifinagh, extended).
+  Vietnamese, Berber (Tifinagh, extended);
+- group 4 (7): Yakut (Sakha), Persian (Standard), Hawaiian, Khmer, Sinhala, Santali (Ol Chiki), Azerbaijani
+  (Standard).
 
 ## What is in it
 
@@ -60,10 +62,10 @@ which are something else.
 ## Accent then Space (optional, per user)
 
 On Windows, an accent key followed by Space gives the accent itself (´ then Space gives ´); Linux gives an apostrophe
-or a quote (' and "). For these 60 layouts only ´ and ¨ differ (group 3 has no accent key where this matters). It also works for six of Linux's own layouts that
+or a quote (' and "). For these 67 layouts only ´ and ¨ differ (groups 3 and 4 have no accent key where this matters). It also works for seven of Linux's own layouts that
 already type like Windows otherwise (no new layout needed): Swedish, Spanish (Latin American), French (Canada),
 English (UK, extended, Windows), Romanian (standard: also ˙ then Space gives ·, as on Windows) and Northern Saami
-(Norway). To get the Windows behaviour for your user (no sudo):
+(Norway), and Greenlandic on Danish (Windows). To get the Windows behaviour for your user (no sudo):
 
     world-keyboard-windows accent-space on      # then log out and in
     world-keyboard-windows accent-space off
@@ -77,21 +79,21 @@ Windows (Swiss German gives ¨, Swiss French gives "), that accent stays as on L
 the unchanged files it wrote. GTK apps, the Terminal and the ibus input method read the file; Qt and Electron apps
 (VS Code) are not checked.
 
-## Results (4-5 Nov 2026, cloud containers only, 60 layouts, package 0.0.1~proto5)
+## Results (4-5 Nov 2026, cloud containers only, 67 layouts, package 0.0.1~proto6)
 
 | Check | Result |
 |---|---|
-| Machine check, Windows cells and accent sequences, all 60 layouts | 13,725 of 13,790 like Windows (stock Linux: 12,800); with accent-space on: 13,769 (the 21 left are the Polish ~); per layout below |
+| Machine check, Windows cells and accent sequences, all 67 layouts | 15,061 of 15,126 like Windows (stock Linux: 13,606); with accent-space on: 15,105 (the 21 left are the Polish ~); per layout below |
 | Keys that type something else than Windows | 0 on every layout |
-| Same on X11 (xkbcomp) as on Wayland (libxkbcommon) | yes, all 60 |
+| Same on X11 (xkbcomp) as on Wayland (libxkbcommon) | yes, all 67 |
 | Linux characters lost (where Windows has none, and anything on level 5 and up) | 0 |
-| Accent-space file, machine check (`tools/check_accent_space.py`) | every accent + Space like Windows on the 60 and on the 6 Linux layouts (except the Polish ~, a plain key on Linux); no other result changed |
+| Accent-space file, machine check (`tools/check_accent_space.py`) | every accent + Space like Windows on the 67 and on the 7 Linux layouts (except the Polish ~, a plain key on Linux); no other result changed |
 | Accent-space command (`tests/accent-space.sh`) | 28/28 PASS: the written file, layouts from KDE and `/etc/default/keyboard`, Linux's own layouts, layouts that disagree, US international refused, own and changed files left alone, next to the Belgian package's file, removal takes only unchanged files of ours |
-| Headless GNOME Shell 46 (Ubuntu 24.04), typed through Mutter | all 60: 17,551 / 17,551 cells typed as the machine check predicted (group 3: 4,595; in the first run the very first keystroke of the session, on Arabic (101), came out as a space, and Arabic (101) typed 232 / 232 when run again after another layout) |
-| Same, with `world-keyboard-windows accent-space on` run by the user first | the 22 of the pilot and group 1 and the 7 of group 2 that have accent lines: 9,291 / 9,291 cells typed as predicted, everything like Windows except the Polish ~. Also the 6 Linux layouts of `stock-accent.tsv`: 2,057 / 2,057, all like Windows. The command found the layout in GNOME's settings and wrote the file; the desktop read it |
-| Package next to belgian-azerty-windows 0.9.12 (`tests/coexist.sh`) | 191/191 PASS (more layouts, more compile checks): every Belgian file, the rules file, its diversion and xkb-data's other files byte-identical after install, removal and purge; xkb-data's list kept as `evdev.xml.distrib` and given back on removal; rebuilt after an xkb-data reinstall; a system default naming our layouts gets the Linux layouts back on removal |
-| Cinnamon's layout lookup (CinnamonDesktop.XkbInfo, Ubuntu 24.04 build 6.0, `tests/cinnamon-lookup.sh`) | finds all 60 after install, none before and after removal |
-| System upgrade Ubuntu 24.04 -> 26.04 (xkb-data 2.46, `tests/upgrade-2604.sh`) | ALL PASS, with (58 checks) and without (54) the Belgian package; this run found the Georgian Caps Lock change (see above) |
+| Headless GNOME Shell 46 (Ubuntu 24.04), typed through Mutter | all 67: 19,404 / 19,404 cells typed as the machine check predicted (group 4: 1,853; group 3: 4,595; in the first run the very first keystroke of the session, on Arabic (101), came out as a space, and Arabic (101) typed 232 / 232 when run again after another layout) |
+| Same, with `world-keyboard-windows accent-space on` run by the user first | the 22 of the pilot and group 1 and the 7 of group 2 that have accent lines: 9,291 / 9,291 cells typed as predicted, everything like Windows except the Polish ~. Also the 7 Linux layouts of `stock-accent.tsv`: 2,420 / 2,420, all like Windows (Greenlandic added in group 4). The command found the layout in GNOME's settings and wrote the file; the desktop read it |
+| Package next to belgian-azerty-windows 0.9.12 (`tests/coexist.sh`) | 208/208 PASS (more layouts, more compile checks): every Belgian file, the rules file, its diversion and xkb-data's other files byte-identical after install, removal and purge; xkb-data's list kept as `evdev.xml.distrib` and given back on removal; rebuilt after an xkb-data reinstall; a system default naming our layouts gets the Linux layouts back on removal |
+| Cinnamon's layout lookup (CinnamonDesktop.XkbInfo, Ubuntu 24.04 build 6.0, `tests/cinnamon-lookup.sh`) | finds all 67 after install, none before and after removal |
+| System upgrade Ubuntu 24.04 -> 26.04 (xkb-data 2.46, `tests/upgrade-2604.sh`) | ALL PASS, with (61 checks) and without (57) the Belgian package; the group 3 run found the Georgian Caps Lock change (see above) |
 
 Per layout (machine check, cells like Windows: stock Linux -> new layout, of all cells):
 
@@ -157,9 +159,16 @@ Per layout (machine check, cells like Windows: stock Linux -> new layout, of all
 | Lao (`la_windows(basic)`) | 181 | 182 | 182 | 0 |
 | Vietnamese (`vn_windows(basic)`) | 252 | 288 | 288 | 0 |
 | Berber (Tifinagh, extended) (`ma_windows(basic)`) | 195 | 200 | 200 | 0 |
+| Yakut (`sah_windows(basic)`) | 150 | 185 | 185 | 0 |
+| Persian (Standard) (`ir_windows(std)`) | 182 | 190 | 190 | 0 |
+| Hawaiian (`haw_windows(basic)`) | 197 | 204 | 204 | 0 |
+| Khmer (`kh_windows(khmer)`) | 131 | 263 | 263 | 0 |
+| Sinhala (`lk_windows(basic)`) | 52 | 208 | 208 | 0 |
+| Santali (Ol Chiki) (`in_windows(sat)`) | 30 | 100 | 100 | 0 |
+| Azerbaijani (Standard) (`az_windows(std)`) | 64 | 186 | 186 | 0 |
 
 What is **not** like Windows yet:
-- An accent followed by Space, unless the user switches on accent-space (above): 44 cells over the 60 layouts.
+- An accent followed by Space, unless the user switches on accent-space (above): 44 cells over the 67 layouts.
 - Polish (Programmers): on Windows, Shift+` is an accent key (~ then a gives ą). Linux's Compose table gives other
   letters for it (ã), so the prototype keeps Linux's plain ~ (21 cells).
 - Ctrl+Alt as AltGr: Windows does this on all these layouts; on Linux it needs keyd (the Belgian package has it for
@@ -190,7 +199,7 @@ came out of the 67 below):
   Belarusian, Kazakh (the extra key next to Left Shift), Bulgarian (Caps Lock), Canadian Multilingual (Right Ctrl
   level), Greek, US-International, Polish (214), Serbian (Latin), Slovenian, Latvian, Czech, Slovak.
 
-How groups 1 to 3 were chosen: on a Linux layout of the same language or country, the new layout has no key that
+How groups 1 to 4 were chosen: on a Linux layout of the same language or country, the new layout has no key that
 types something else than Windows, loses no Linux character, gains at least one cell, and leaves nothing but
 accent + Space. Group 2 also: Latin or Cyrillic script, and only a few keys rewritten (Azerbaijani Standard, with 122
 cells rewritten, was left out). Group 3: the "fast" layouts in other scripts whose Linux base is the same language,
@@ -200,6 +209,13 @@ Wolof, Persian Standard), and ones with more than 50 cells rewritten (Khmer, Sin
 Alphabets, Ol Chiki, Azerbaijani Standard). Georgian (QWERTY, Ergonomic, MES) passed every check on Ubuntu 24.04
 but is held back: newer libxkbcommon (1.13, Ubuntu 26.04) gives Georgian capital letters (Mtavruli) with Caps Lock,
 on Linux's own Georgian too, while Windows does not; the new layouts would then differ from Windows on 26.04.
+Group 4: the rest of the "fast" ones, each checked again on a Linux layout of its own language: Yakut on Russian
+(Sakha), Persian Standard on Persian, Hawaiian on English (US, Hawaiian); and Khmer, Sinhala, Santali (Ol Chiki) and
+Azerbaijani Standard, where Windows has another arrangement than Linux (70 to 156 cells rewritten) but every check
+passes. Still out: Russian and Kyrgyz (on Linux the right Alt key is a plain Alt there, on Windows it is AltGr, for
+example AltGr+8 gives ₽: a change of what a key does, not made without a decision), Nepali and Divehi (Linux's
+layout of the language is another arrangement: characters would be lost), N'Ko, Lisu and New Tai Lue (no Linux
+layout), Sinhala Wij 9 (64 keys left), and Turkish Q, Igbo, Central Atlas Tamazight and Wolof (accent results).
 
 ## Run it
 

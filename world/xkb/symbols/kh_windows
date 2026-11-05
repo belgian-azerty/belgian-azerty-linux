@@ -12,3 +12,104 @@ xkb_symbols "basic" {
     // altgr: Windows × / Linux x
     key <AE11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17A5, U17CC, multiply, VoidSymbol ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "khmer" {
+    include "kh"
+    name[Group1] = "Khmer (as on Windows)";
+    // Windows layout: "Khmer" (CLDR km-t-k0-windows.xml); 47 keys differ from Linux
+    // base: Windows ‌ / Linux «; shift: Windows ‍ / Linux »; caps: Windows ‌ / Linux «; capsshift: Windows ‍ / Linux »; altgr: Windows ៙ / Linux ‍; shiftaltgr: Windows ᧠ / Linux None
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U200C, U200D, U17D9, U19E0 ] };
+    // altgr: Windows # / Linux None; shiftaltgr: Windows ᧻ / Linux ᧷
+    key <AB01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U178B, U178D, numbersign, U19FB ] };
+    // altgr: Windows @ / Linux None; shiftaltgr: Windows ᧼ / Linux ᧸
+    key <AB02> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1781, U1783, at, U19FC ] };
+    // altgr: Windows & / Linux None; shiftaltgr: Windows ᧽ / Linux ᧹
+    key <AB03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1785, U1787, ampersand, U19FD ] };
+    // altgr: Windows $ / Linux None; shiftaltgr: Windows ᧾ / Linux ᧺
+    key <AB04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U179C, U17FD, dollar, U19FE ] };
+    // altgr: Windows % / Linux ឞ; shiftaltgr: Windows ᧿ / Linux ᧻
+    key <AB05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1794, U1796, percent, U19FF ] };
+    // altgr: Windows ( / Linux None
+    key <AB06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1793, U178E, parenleft, U19FC ] };
+    // altgr: Windows ) / Linux None
+    key <AB07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1798, U17C6, parenright, U19FD ] };
+    // base: Windows អ / Linux ៼; shift: Windows , / Linux ៻; caps: Windows អ / Linux ៼; capsshift: Windows , / Linux ៻; altgr: Windows ‹ / Linux ,
+    key <AB08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17A2, comma, U2039, U19FE ] };
+    // shift: Windows . / Linux ៕; capsshift: Windows . / Linux ៕; altgr: Windows › / Linux .; shiftaltgr: Windows ឝ / Linux ᧿
+    key <AB09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17D4, period, U203A, U179D ] };
+    // base: Windows ​ / Linux ៊; caps: Windows ​ / Linux ៊; altgr: Windows ៕ / Linux /; shiftaltgr: Windows ឞ / Linux None
+    key <AB10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U200B, question, U17D5, U179E ] };
+    // shift: Windows ៃ / Linux ៿; capsshift: Windows ៃ / Linux ៿; altgr: Windows ឩ / Linux None; shiftaltgr: Windows ᧰ / Linux ᧬
+    key <AC01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17B6, U17C3, U17A9, U19F0 ] };
+    // altgr: Windows ឪ / Linux None; shiftaltgr: Windows ᧱ / Linux ᧭
+    key <AC02> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U179F, U17C3, U17AA, U19F1 ] };
+    // shiftaltgr: Windows ᧲ / Linux ᧮
+    key <AC03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U178A, U178C, VoidSymbol, U19F2 ] };
+    // shiftaltgr: Windows ᧳ / Linux ᧯
+    key <AC04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1790, U1792, VoidSymbol, U19F3 ] };
+    // shiftaltgr: Windows ᧴ / Linux ᧰
+    key <AC05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1784, U17A2, VoidSymbol, U19F4 ] };
+    // shiftaltgr: Windows ᧵ / Linux ᧱
+    key <AC06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17A0, U17C7, VoidSymbol, U19F5 ] };
+    // base: Windows ញ / Linux ្; caps: Windows ញ / Linux ្; altgr: Windows ឮ / Linux None; shiftaltgr: Windows ᧶ / Linux ᧲
+    key <AC07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1789, U1789, U17AE, U19F6 ] };
+    // altgr: Windows ឭ / Linux ឝ; shiftaltgr: Windows ᧷ / Linux ᧳
+    key <AC08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1780, U1782, U17AD, U19F7 ] };
+    // altgr: Windows ឰ / Linux None; shiftaltgr: Windows ᧸ / Linux ᧴
+    key <AC09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U179B, U17A1, U17B0, U19F8 ] };
+    // base: Windows ៈ / Linux ើ; shift: Windows ៖ / Linux ៾; caps: Windows ៈ / Linux ើ; capsshift: Windows ៖ / Linux ៾; altgr: Windows ; / Linux ៖; shiftaltgr: Windows ᧹ / Linux ᧵
+    key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17C8, U17D6, semicolon, U19F9 ] };
+    // altgr: Windows ៝ / Linux ៈ; shiftaltgr: Windows ᧺ / Linux ᧶
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17CB, U17C9, U17DD, U19FA ] };
+    // altgr: Windows * / Linux ៜ; shiftaltgr: Windows ᧭ / Linux ᧠
+    key <AD01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1786, U1788, asterisk, U19ED ] };
+    // shiftaltgr: Windows ᧮ / Linux ᧡
+    key <AD02> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17B9, U17BA, U17DD, U19EE ] };
+    // shiftaltgr: Windows ᧯ / Linux ᧢
+    key <AD03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17C1, U17C2, U17AF, U19EF ] };
+    // shiftaltgr: Windows ៰ / Linux ᧣
+    key <AD04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U179A, U17AC, U17AB, U17F0 ] };
+    // altgr: Windows ឦ / Linux ឨ; shiftaltgr: Windows ៱ / Linux ᧤
+    key <AD05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U178F, U1791, U17A6, U17F1 ] };
+    // shiftaltgr: Windows ៲ / Linux ᧥
+    key <AD06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1799, U17BD, VoidSymbol, U17F2 ] };
+    // altgr: Windows ឧ / Linux None; shiftaltgr: Windows ៳ / Linux ᧦
+    key <AD07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17BB, U17BC, U17A7, U17F3 ] };
+    // altgr: Windows ឥ / Linux ឦ; shiftaltgr: Windows ៴ / Linux ᧧
+    key <AD08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17B7, U17B8, U17A5, U17F4 ] };
+    // shiftaltgr: Windows ៵ / Linux ᧨
+    key <AD09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17C4, U17C5, U17B1, U17F5 ] };
+    // altgr: Windows ឳ / Linux ឰ; shiftaltgr: Windows ៶ / Linux ᧩
+    key <AD10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1795, U1797, U17B3, U17F6 ] };
+    // base: Windows ើ / Linux ៀ; caps: Windows ើ / Linux ៀ; altgr: Windows [ / Linux ឩ; shiftaltgr: Windows ៷ / Linux ᧪
+    key <AD11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17BE, U17BF, bracketleft, U17F7 ] };
+    // base: Windows ឿ / Linux ឪ; shift: Windows ៀ / Linux ឧ; caps: Windows ឿ / Linux ឪ; capsshift: Windows ៀ / Linux ឧ; altgr: Windows ] / Linux ឳ; shiftaltgr: Windows ៸ / Linux ᧫
+    key <AD12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17BF, U17C0, bracketright, U17F8 ] };
+    // altgr: Windows 1 / Linux ‌; shiftaltgr: Windows ᧡ / Linux ៱
+    key <AE01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E1, exclam, 1, U19E1 ] };
+    // altgr: Windows 2 / Linux @; shiftaltgr: Windows ᧢ / Linux ៲
+    key <AE02> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E2, U17D7, 2, U19E2 ] };
+    // shift: Windows ៊ / Linux "; capsshift: Windows ៊ / Linux "; altgr: Windows 3 / Linux ៑; shiftaltgr: Windows ᧣ / Linux ៳
+    key <AE03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E3, U17CA, 3, U19E3 ] };
+    // altgr: Windows 4 / Linux $; shiftaltgr: Windows ᧤ / Linux ៴
+    key <AE04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E4, U17DB, 4, U19E4 ] };
+    // shift: Windows ័ / Linux %; capsshift: Windows ័ / Linux %; altgr: Windows 5 / Linux €; shiftaltgr: Windows ᧥ / Linux ៵
+    key <AE05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E5, U17D0, 5, U19E5 ] };
+    // shift: Windows ៌ / Linux ៍; capsshift: Windows ៌ / Linux ៍; altgr: Windows 6 / Linux ៙; shiftaltgr: Windows ᧦ / Linux ៶
+    key <AE06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E6, U17CC, 6, U19E6 ] };
+    // shift: Windows ៍ / Linux ័; capsshift: Windows ៍ / Linux ័; altgr: Windows 7 / Linux ៚; shiftaltgr: Windows ᧧ / Linux ៷
+    key <AE07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E7, U17CD, 7, U19E7 ] };
+    // altgr: Windows 8 / Linux *; shiftaltgr: Windows ᧨ / Linux ៸
+    key <AE08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E8, U17CF, 8, U19E8 ] };
+    // shift: Windows ៎ / Linux (; capsshift: Windows ៎ / Linux (; altgr: Windows 9 / Linux {; shiftaltgr: Windows ᧩ / Linux ៹
+    key <AE09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E9, U17CE, 9, U19E9 ] };
+    // shift: Windows ៑ / Linux ); capsshift: Windows ៑ / Linux ); altgr: Windows 0 / Linux }; shiftaltgr: Windows ᧪ / Linux ៰
+    key <AE10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U17E0, U17D1, 0, U19EA ] };
+    // base: Windows - / Linux ឥ; shift: Windows _ / Linux ៌; caps: Windows - / Linux ឥ; capsshift: Windows _ / Linux ៌; altgr: Windows { / Linux x; shiftaltgr: Windows ᧫ / Linux None
+    key <AE11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ minus, underscore, braceleft, U19EB ] };
+    // base: Windows = / Linux ឲ; shift: Windows + / Linux =; caps: Windows = / Linux ឲ; capsshift: Windows + / Linux =; altgr: Windows } / Linux ៎; shiftaltgr: Windows ᧬ / Linux None
+    key <AE12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ equal, plus, braceright, U19EC ] };
+    // base: Windows \ / Linux ឮ; shift: Windows / / Linux ឭ; caps: Windows \ / Linux ឮ; capsshift: Windows / / Linux ឭ; altgr: Windows ៚ / Linux \; shiftaltgr: Windows ៹ / Linux None
+    key <BKSL> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, slash, U17DA, U17F9 ] };
+};

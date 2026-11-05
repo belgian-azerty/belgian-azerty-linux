@@ -162,3 +162,8 @@ no+smi	dead_circumflex	^	^	<dead_circumflex> <space> : "^" asciicircum
 no+smi	dead_diaeresis	¨	"	<dead_diaeresis> <space> : "¨" diaeresis
 no+smi	dead_grave	`	`	<dead_grave> <space> : "`" grave
 no+smi	dead_tilde	~	~	<dead_tilde> <space> : "~" asciitilde
+dk+winkeys	dead_acute	´	'	<dead_acute> <space> : "´" acute
+dk+winkeys	dead_circumflex	^	^	<dead_circumflex> <space> : "^" asciicircum
+dk+winkeys	dead_diaeresis	¨	"	<dead_diaeresis> <space> : "¨" diaeresis
+dk+winkeys	dead_grave	`	`	<dead_grave> <space> : "`" grave
+dk+winkeys	dead_tilde	~	~	<dead_tilde> <space> : "~" asciitilde

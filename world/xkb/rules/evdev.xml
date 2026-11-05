@@ -361,6 +361,15 @@
             <languageList><iso639Id>aze</iso639Id></languageList>
           </configItem>
         </variant>
+        <variant>
+          <configItem>
+            <name>std</name>
+            <shortDescription>az</shortDescription>
+            <description>Azerbaijani (Standard, as on Windows)</description>
+            <countryList><iso3166Id>AZ</iso3166Id></countryList>
+            <languageList><iso639Id>aze</iso639Id></languageList>
+          </configItem>
+        </variant>
       </variantList>
     </layout>
     <layout>
@@ -444,6 +453,17 @@
         <countryList><iso3166Id>IR</iso3166Id></countryList>
         <languageList><iso639Id>per</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>std</name>
+            <shortDescription>fa</shortDescription>
+            <description>Persian (Standard, as on Windows)</description>
+            <countryList><iso3166Id>IR</iso3166Id></countryList>
+            <languageList><iso639Id>per</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -526,6 +546,15 @@
             <languageList><iso639Id>tel</iso639Id></languageList>
           </configItem>
         </variant>
+        <variant>
+          <configItem>
+            <name>sat</name>
+            <shortDescription>sat</shortDescription>
+            <description>Santali (Ol Chiki, as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>sat</iso639Id></languageList>
+          </configItem>
+        </variant>
       </variantList>
     </layout>
     <layout>
@@ -536,6 +565,17 @@
         <countryList><iso3166Id>KH</iso3166Id></countryList>
         <languageList><iso639Id>khm</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>khmer</name>
+            <shortDescription>km</shortDescription>
+            <description>Khmer (as on Windows)</description>
+            <countryList><iso3166Id>KH</iso3166Id></countryList>
+            <languageList><iso639Id>khm</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -562,6 +602,33 @@
         <description>Berber (Tifinagh, extended, as on Windows)</description>
         <countryList><iso3166Id>MA</iso3166Id></countryList>
         <languageList><iso639Id>ber</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>sah_windows</name>
+        <shortDescription>sah</shortDescription>
+        <description>Yakut (as on Windows)</description>
+        <countryList><iso3166Id>RU</iso3166Id></countryList>
+        <languageList><iso639Id>sah</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>haw_windows</name>
+        <shortDescription>haw</shortDescription>
+        <description>Hawaiian (as on Windows)</description>
+        <countryList><iso3166Id>US</iso3166Id></countryList>
+        <languageList><iso639Id>haw</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>lk_windows</name>
+        <shortDescription>si</shortDescription>
+        <description>Sinhala (as on Windows)</description>
+        <countryList><iso3166Id>LK</iso3166Id></countryList>
+        <languageList><iso639Id>sin</iso639Id></languageList>
       </configItem>
     </layout>
   </layoutList>

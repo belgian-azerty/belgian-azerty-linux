@@ -17,7 +17,7 @@ Description: extra keyboard layouts that type like Windows (prototype)
  characters), generated from Unicode CLDR 43 Windows keyboard data and
  checked by machine. Not covered: Ctrl+Alt as AltGr.
  .
- Layouts in this prototype (60), each named "(as on Windows)": German,
+ Layouts in this prototype (67), each named "(as on Windows)": German,
  Swiss German and French, Polish (Programmers), French, English (UK),
  Irish, Spanish, Portuguese, Portuguese (Brazil, ABNT2 and ABNT), Italian
  (and 142), Hungarian (and 101-key), Estonian, Lithuanian (and IBM),
@@ -28,7 +28,8 @@ Description: extra keyboard layouts that type like Windows (prototype)
  legacy), Tajik, Arabic (101, 102, 102 AZERTY), Kurdish (Central, Arabic
  script), Persian, Urdu, Hindi (INSCRIPT, Traditional), Gujarati,
  Kannada, Malayalam, Odia, Punjabi (Gurmukhi), Telugu, Khmer (NIDA), Lao,
- Vietnamese, Berber (Tifinagh, extended).
+ Vietnamese, Berber (Tifinagh, extended), Yakut, Persian (Standard),
+ Hawaiian, Khmer, Sinhala, Santali (Ol Chiki), Azerbaijani (Standard).
  .
  Optional, per user: "world-keyboard-windows accent-space on" makes an
  accent followed by Space give the accent itself, as on Windows (Linux

@@ -14,3 +14,16 @@ xkb_symbols "basic" {
     // shift: Windows أ / Linux إ; capsshift: Windows أ / Linux إ
     key <AB06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ Arabic_dal, Arabic_hamzaonalef, Arabic_dal, Arabic_hamzaunderalef ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "std" {
+    include "ir(pes)"
+    name[Group1] = "Persian (Standard, as on Windows)";
+    // Windows layout: "Persian (Standard)" (CLDR fa-t-k0-windows-extended.xml); 3 keys differ from Linux
+    // shift: Windows ‍ / Linux ÷; capsshift: Windows ‍ / Linux ÷
+    key <TLDE> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ U200D, U200D, asciitilde, NoSymbol ] };
+    // shift: Windows ط / Linux ٓ; capsshift: Windows ط / Linux ٓ
+    key <AB02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Arabic_tah, Arabic_tah, VoidSymbol, NoSymbol ] };
+    // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
+    key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, bar, brokenbar ] };
+};
