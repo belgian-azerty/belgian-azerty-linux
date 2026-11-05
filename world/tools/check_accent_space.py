@@ -4,6 +4,7 @@
 # the way GTK and libxkbcommon load it (include "%L" = Linux's normal table). Then every Windows cell and accent
 # sequence is typed again (as in check_windows_symbols.py) and compared with the result without the file.
 #   python3 -I world/tools/check_accent_space.py world/layouts.tsv world/cldr-43 world/xkb [FILE_FROM_COMMAND...]
+# The Linux layouts of world/stock-accent.tsv (next to layouts.tsv) are checked too.
 # With FILE_FROM_COMMAND (files the real command wrote, named <id>.XCompose), those files are checked instead.
 # Exit 1 when the file makes any result worse, or an accent + Space result is still not like Windows.
 import csv, os, sys
@@ -20,18 +21,17 @@ def lines_for(ids, tab):
     return sorted(line for k, (w, lin, line) in want.items() if k not in clash and w != lin)
 
 def main(table, cldrdir, xkbdir, *given):
-    rows = list(csv.DictReader(open(table, encoding='utf-8'), delimiter='\t'))
     tab = list(csv.DictReader((l for l in open(os.path.join(xkbdir, 'accent-space.tsv'), encoding='utf-8')
                                if not l.startswith('#')), delimiter='\t', quoting=csv.QUOTE_NONE))
     files = {os.path.basename(g)[:-len('.XCompose')]: open(g, encoding='utf-8').read() for g in given}
-    ctx = winkb.context(xkbdir); fail = False; total = [0, 0, 0]
-    for r in rows:
-        lid = r['out_layout'] if r['out_variant'] == 'basic' else f"{r['out_layout']}+{r['out_variant']}"
+    fail = False; total = [0, 0, 0]
+    from gen_accent_space import entries
+    stock = os.path.join(os.path.dirname(os.path.abspath(table)), 'stock-accent.tsv')
+    for cf, kb, lid, is_stock in entries(table, xkbdir, stock if os.path.exists(stock) else None):
         lines = lines_for({lid}, tab)
         text = files.get(lid) if files else 'include "%L"\n' + ''.join(l + '\n' for l in lines)
         if text is None: continue
-        win = winkb.read_cldr(os.path.join(cldrdir, r['cldr_file']))
-        kb = winkb.Keymap(ctx, r['out_layout'], r['out_variant'])
+        win = winkb.read_cldr(os.path.join(cldrdir, cf))
         cells, before = winkb.compare(win, kb)
         kb.comp = winkb.compose_table_from_text(text)
         _, after = winkb.compare(win, kb)

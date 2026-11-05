@@ -29,7 +29,7 @@ python3 -I "$REPO/world/tools/check_accent_space.py" "$REPO/world/layouts.tsv" "
 t "machine check of the written file: French accent + Space like Windows, nothing worse" test $? = 0
 sed -n 1p /tmp/check-fr.txt | sed 's/^/      /'
 as t1 $W status > /tmp/st1b.txt 2>&1
-t "status shows our layout and on" sh -c "grep -q 'our layouts in your list: fr_windows' /tmp/st1b.txt && grep -q 'OK    on' /tmp/st1b.txt"
+t "status shows our layout and on" sh -c "grep -q 'accent-space knows: fr_windows' /tmp/st1b.txt && grep -q 'OK    on' /tmp/st1b.txt"
 cp "$(X t1)" /tmp/fr1; as t1 $W accent-space on >/dev/null 2>&1
 t "on again: same file" cmp /tmp/fr1 "$(X t1)"
 
@@ -42,6 +42,14 @@ t "German + Spanish (KDE list): lines for ´ and ¨" sh -c "[ \"\$(tail -n +4 $(
 kb ch_windows,ch_windows basic,fr
 as t3 $W accent-space on > /tmp/on3.txt 2>&1
 t "Swiss German + Swiss French: ¨ left as on Linux (they differ on Windows), ´ line only" sh -c "[ \"\$(tail -n +4 $(X t3))\" = '<dead_acute> <space> : \"´\" acute' ] && grep -q 'dead_diaeresis then Space: your layouts' /tmp/on3.txt"
+# Linux's own layouts that already type like Windows (Swedish, Romanian standard): only the accent lines
+kb se,ro ,std
+useradd -m t6; as t6 $W accent-space on >/dev/null 2>&1
+t "Swedish + Romanian (Linux layouts): lines for ´, ¨ and ˙ (Windows gives · after ˙ + Space)" sh -c "[ \"\$(tail -n +4 $(X t6))\" = \"\$(printf '%s\n' '<dead_abovedot> <space> : \"·\" periodcentered' '<dead_acute> <space> : \"´\" acute' '<dead_diaeresis> <space> : \"¨\" diaeresis')\" ]"
+cp "$(X t6)" /tmp/files/ro+std.XCompose
+python3 -I "$REPO/world/tools/check_accent_space.py" "$REPO/world/layouts.tsv" "$REPO/world/cldr-43" "$REPO/world/xkb" /tmp/files/ro+std.XCompose > /tmp/check-ro.txt 2>&1
+t "machine check of that file on Romanian (standard): like Windows, nothing worse" test $? = 0
+sed -n 1p /tmp/check-ro.txt | sed 's/^/      /'
 # nothing to do
 kb gb_windows ""
 as t4 $W accent-space on >/dev/null 2>&1

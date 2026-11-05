@@ -1,3 +1,16 @@
+world-keyboard-windows (0.0.1~proto4) noble; urgency=medium
+
+  * 20 more layouts: Irish, Luxembourgish, Portuguese (Brazil, ABNT),
+    Italian (142), Hungarian (101-key), Lithuanian (IBM), Maltese (47-key),
+    Finnish, Swedish and Norwegian with Sami, Guarani, Hausa, Turkmen,
+    Azerbaijani (Latin and Cyrillic), Ukrainian (Enhanced), Bashkir, Tatar
+    (and legacy) and Tajik. 42 in total. Not released.
+  * accent-space also for Linux layouts that already type like Windows:
+    Swedish, Spanish (Latin American), French (Canada), English (UK,
+    extended), Romanian (standard), Northern Saami (Norway).
+
+ -- @MAINTAINER@  Thu, 05 Nov 2026 01:00:00 +0000
+
 world-keyboard-windows (0.0.1~proto3) noble; urgency=medium
 
   * New command world-keyboard-windows accent-space on|off (per user,

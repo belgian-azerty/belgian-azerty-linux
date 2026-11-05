@@ -17,11 +17,15 @@ Description: extra keyboard layouts that type like Windows (prototype)
  characters), generated from Unicode CLDR 43 Windows keyboard data and
  checked by machine. Not covered: Ctrl+Alt as AltGr.
  .
- Layouts in this prototype (22): German, Swiss German, Swiss French,
- Polish (Programmers), French, English (UK), Spanish, Portuguese,
- Portuguese (Brazil), Italian, Hungarian, Estonian, Lithuanian, Icelandic,
- Faroese, Albanian, Ukrainian, French (Canada, legacy), Norwegian, Danish,
- Finnish and Dutch, each named "(as on Windows)".
+ Layouts in this prototype (42), each named "(as on Windows)": German,
+ Swiss German and French, Polish (Programmers), French, English (UK),
+ Irish, Spanish, Portuguese, Portuguese (Brazil, ABNT2 and ABNT), Italian
+ (and 142), Hungarian (and 101-key), Estonian, Lithuanian (and IBM),
+ Icelandic, Faroese, Albanian, Ukrainian (and Enhanced), French (Canada,
+ legacy), Norwegian, Danish, Finnish, Swedish (Finnish, Swedish and
+ Norwegian with Sami), Dutch, Luxembourgish, Maltese (47-key), Guarani,
+ Hausa, Turkmen, Azerbaijani (Latin, Cyrillic), Bashkir, Tatar (and
+ legacy), Tajik.
  .
  Optional, per user: "world-keyboard-windows accent-space on" makes an
  accent followed by Space give the accent itself, as on Windows (Linux

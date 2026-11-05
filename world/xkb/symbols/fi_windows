@@ -12,3 +12,38 @@ xkb_symbols "basic" {
     // altgr: Windows € / Linux ‰
     key <AE05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 5, percent, EuroSign, leftdoublequotemark ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "sami" {
+    include "fi(classic)"
+    name[Group1] = "Finnish (with Sami, as on Windows)";
+    // Windows layout: "Finnish with Sami" (CLDR fi-t-k0-windows-extended.xml); 14 keys differ from Linux
+    // altgr: Windows č / Linux ©; shiftaltgr: Windows Č / Linux ¢
+    key <AB03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ c, C, ccaron, Ccaron ] };
+    // altgr: Windows ǯ / Linux v; shiftaltgr: Windows Ǯ / Linux V
+    key <AB04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ v, V, U01EF, U01EE ] };
+    // altgr: Windows ʒ / Linux ß; shiftaltgr: Windows Ʒ / Linux ẞ
+    key <AB05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ b, B, ezh, EZH ] };
+    // altgr: Windows ŋ / Linux ñ; shiftaltgr: Windows Ŋ / Linux Ñ
+    key <AB06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ n, N, eng, ENG ] };
+    // altgr: Windows á / Linux ə; shiftaltgr: Windows Á / Linux Ə
+    key <AC01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ a, A, aacute, Aacute ] };
+    // altgr: Windows đ / Linux ð; shiftaltgr: Windows Đ / Linux Ð
+    key <AC03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ d, D, dstroke, Dstroke ] };
+    // altgr: Windows ǥ / Linux f; shiftaltgr: Windows Ǥ / Linux F
+    key <AC04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ f, F, U01E5, U01E4 ] };
+    // altgr: Windows ǧ / Linux ŋ; shiftaltgr: Windows Ǧ / Linux Ŋ
+    key <AC05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ g, G, gcaron, Gcaron ] };
+    // altgr: Windows ȟ / Linux h; shiftaltgr: Windows Ȟ / Linux H
+    key <AC06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ h, H, U021F, U021E ] };
+    // altgr: Windows ǩ / Linux ĸ; shiftaltgr: Windows Ǩ / Linux dead:greek
+    key <AC08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ k, K, U01E9, U01E8 ] };
+    // altgr: Windows â / Linux q; shiftaltgr: Windows Â / Linux Q
+    key <AD01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ q, Q, acircumflex, Acircumflex ] };
+    // altgr: Windows ŧ / Linux þ; shiftaltgr: Windows Ŧ / Linux Þ
+    key <AD05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ t, T, tslash, Tslash ] };
+    // altgr: Windows ï / Linux ı; shiftaltgr: Windows Ï / Linux |
+    key <AD08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ i, I, idiaeresis, Idiaeresis ] };
+    // altgr: Windows õ / Linux o; shiftaltgr: Windows Õ / Linux O
+    key <AD09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ o, O, otilde, Otilde ] };
+};

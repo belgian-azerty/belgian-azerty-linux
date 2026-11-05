@@ -21,3 +21,23 @@ nb-t-k0-windows.xml	no		no_windows	basic	Norwegian (as on Windows)	no	NO	nor
 da-t-k0-windows.xml	dk		dk_windows	basic	Danish (as on Windows)	da	DK	dan
 fi-t-k0-windows.xml	fi		fi_windows	basic	Finnish (as on Windows)	fi	FI	fin
 nl-t-k0-windows.xml	nl		nl_windows	basic	Dutch (as on Windows)	nl	NL	dut
+ga-t-k0-windows.xml	gb	extd	ie_windows	basic	Irish (as on Windows)	ga	IE	gle
+lb-t-k0-windows.xml	ch	fr	lu_windows	basic	Luxembourgish (as on Windows)	lb	LU	ltz
+pt-t-k0-windows.xml	br		br_windows	abnt	Portuguese (Brazil, ABNT, as on Windows)	pt	BR	por
+it-t-k0-windows-var.xml	it	ibm	it_windows	142	Italian (142, as on Windows)	it	IT	ita
+hu-t-k0-windows-101key.xml	hu	101_qwerty_comma_nodead	hu_windows	101key	Hungarian (101-key, as on Windows)	hu	HU	hun
+lt-t-k0-windows-lt1205.xml	lt	ibm	lt_windows	ibm	Lithuanian (IBM, as on Windows)	lt	LT	lit
+mt-t-k0-windows-101key.xml	mt	us	mt_windows	basic	Maltese (47-key, as on Windows)	mt	MT	mlt
+fi-t-k0-windows-extended.xml	fi	classic	fi_windows	sami	Finnish (with Sami, as on Windows)	fi	FI	fin
+sv-t-k0-windows-extended.xml	fi	classic	se_windows	basic	Swedish (with Sami, as on Windows)	sv	SE	swe
+nb-t-k0-windows-extended.xml	no	winkeys	no_windows	sami	Norwegian (with Sami, as on Windows)	no	NO	nor
+gn-t-k0-windows.xml	latam	deadtilde	py_windows	basic	Guarani (as on Windows)	gn	PY	grn
+ha-t-k0-windows.xml	us	altgr-intl	ng_windows	basic	Hausa (as on Windows)	ha	NG	hau
+tk-t-k0-windows.xml	tm		tm_windows	basic	Turkmen (as on Windows)	tk	TM	tuk
+az-t-k0-windows.xml	az		az_windows	basic	Azerbaijani (Latin, as on Windows)	az	AZ	aze
+az-Cyrl-t-k0-windows.xml	az	cyrillic	az_windows	cyrillic	Azerbaijani (Cyrillic, as on Windows)	az	AZ	aze
+uk-t-k0-windows-extended.xml	ua		ua_windows	enhanced	Ukrainian (Enhanced, as on Windows)	uk	UA	ukr
+ba-t-k0-windows.xml	ru	bak	bak_windows	basic	Bashkir (as on Windows)	ba	RU	bak
+tt-t-k0-windows.xml	ru	tt	tat_windows	basic	Tatar (as on Windows)	tt	RU	tat
+tt-t-k0-windows-legacy.xml	ru	tt	tat_windows	legacy	Tatar (legacy, as on Windows)	tt	RU	tat
+tg-t-k0-windows.xml	tj		tj_windows	basic	Tajik (as on Windows)	tg	TJ	tgk

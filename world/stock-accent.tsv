@@ -1,0 +1,7 @@
+cldr_file	layout	variant	description
+sv-t-k0-windows.xml	se		Swedish
+es-419-t-k0-windows.xml	latam		Spanish (Latin American)
+fr-CA-t-k0-windows-var.xml	ca		French (Canada)
+en-GB-t-k0-windows-extended.xml	gb	extd	English (UK, extended, Windows)
+ro-t-k0-windows.xml	ro	std	Romanian (standard)
+se-t-k0-windows.xml	no	smi	Northern Saami (Norway)

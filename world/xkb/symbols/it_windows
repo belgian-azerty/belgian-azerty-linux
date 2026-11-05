@@ -22,3 +22,22 @@ xkb_symbols "basic" {
     // caps: Windows ù / Linux Ù
     key <BKSL> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ ugrave, section, dead_grave, dead_breve, ugrave ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "142" {
+    include "it(ibm)"
+    name[Group1] = "Italian (142, as on Windows)";
+    // Windows layout: "Italian (142)" (CLDR it-t-k0-windows-var.xml); 6 keys differ from Linux
+    // caps: Windows ò / Linux Ò; capsshift: Windows ç / Linux Ç
+    key <AC10> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ ograve, ccedilla, ograve, ccedilla, ograve ] };
+    // caps: Windows à / Linux À
+    key <AC11> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ agrave, degree, agrave, degree, agrave ] };
+    // caps: Windows è / Linux È; capsshift: Windows é / Linux É
+    key <AD11> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ egrave, eacute, egrave, eacute, egrave ] };
+    // altgr: Windows € / Linux 5
+    key <AE05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 5, percent, EuroSign, percent ] };
+    // caps: Windows ì / Linux Ì
+    key <AE12> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ igrave, asciicircum, igrave, asciicircum, igrave ] };
+    // caps: Windows ù / Linux Ù
+    key <BKSL> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ ugrave, section, grave, NoSymbol, ugrave ] };
+};

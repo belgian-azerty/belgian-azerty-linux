@@ -18,3 +18,18 @@ xkb_symbols "basic" {
     // base: Windows ґ / Linux /; shift: Windows Ґ / Linux |; caps: Windows Ґ / Linux /; capsshift: Windows ґ / Linux |
     key <LSGT> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Ukrainian_ghe_with_upturn, Ukrainian_GHE_WITH_UPTURN, bar, brokenbar ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "enhanced" {
+    include "ua"
+    name[Group1] = "Ukrainian (Enhanced, as on Windows)";
+    // Windows layout: "Ukrainian (Enhanced)" (CLDR uk-t-k0-windows-extended.xml); 4 keys differ from Linux
+    // shift: Windows ₴ / Linux ʼ; capsshift: Windows ₴ / Linux ʼ
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ apostrophe, U20B4, combining_acute, asciitilde ] };
+    // altgr: Windows ґ / Linux г; shiftaltgr: Windows Ґ / Linux Г
+    key <AD07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Cyrillic_ghe, Cyrillic_GHE, Ukrainian_ghe_with_upturn, Ukrainian_GHE_WITH_UPTURN ] };
+    // base: Windows \ / Linux ґ; shift: Windows / / Linux Ґ; caps: Windows \ / Linux Ґ; capsshift: Windows / / Linux ґ
+    key <BKSL> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, slash, backslash, bar ] };
+    // base: Windows ґ / Linux /; shift: Windows Ґ / Linux |; caps: Windows Ґ / Linux /; capsshift: Windows ґ / Linux |
+    key <LSGT> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Ukrainian_ghe_with_upturn, Ukrainian_GHE_WITH_UPTURN, bar, brokenbar ] };
+};

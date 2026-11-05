@@ -2,7 +2,7 @@
 # world-keyboard-windows: the per-user part of the world prototype (the layouts themselves need no command).
 #   world-keyboard-windows accent-space [on|off]   accent then Space as on Windows, for your user (no sudo):
 #                                                  ´ then Space gives ´, ¨ then Space gives ¨ (Linux: ' and ")
-#   world-keyboard-windows status                  which of our layouts you have, and whether accent-space is on
+#   world-keyboard-windows status                  which known layouts you have, and whether accent-space is on
 # accent-space writes a small ~/.XCompose that loads Linux's normal accent table and changes only the lines where
 # Windows differs, for the layouts you have (GNOME, Cinnamon, KDE, /etc/default/keyboard). A ~/.XCompose of your own
 # is never changed. GTK apps, the Terminal and the ibus input method read it when they start (log out and in).
@@ -114,7 +114,7 @@ case "${1:-}" in
   accent-space) shift; accent_space "$@" ;;
   status) user_layouts | sort -u > "$T/mine"
           m=$(grep -xFf <(awk -F'\t' '!/^#/ && $1 != "id" { print $1 }' "$TAB" 2>/dev/null | sort -u) "$T/mine" | paste -sd ' ' -)
-          info "our layouts in your list: ${m:-none}"; accent_space ;;
+          info "layouts in your list that accent-space knows: ${m:-none}"; accent_space ;;
   cleanup-all-users) [ "$(id -u)" = 0 ] || { echo "needs root" >&2; exit 1; }; cleanup_all_users ;;
   *) sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 2 ;;
 esac

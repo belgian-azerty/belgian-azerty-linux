@@ -2,6 +2,7 @@
 # Host side: start a systemd container with headless GNOME Shell 46 (image with gnome-shell, see RESULTS.md), install
 # the world package, and type every plan cell of every layout in world/layouts.tsv. Needs docker; run from the repository root:
 #   world/tests/gnome-typing.sh IMAGE WORLD_DEB OUTDIR [ONLY]     (ONLY: regex on "layout(variant)", default all)
+# STOCK=1: the Linux layouts of world/stock-accent.tsv instead (use with ACCENT_SPACE=1).
 # ACCENT_SPACE=1: each user turns on "world-keyboard-windows accent-space" first; the plan predicts with that file.
 set -u; ONLY=${4:-.}; AS=; [ "${ACCENT_SPACE:-0}" = 1 ] && AS=1; IMG=$1; DEB=$(realpath "$2"); OUT=$(mkdir -p "$3" && realpath "$3"); REPO=$(pwd); N=world-typing
 docker rm -f $N >/dev/null 2>&1
@@ -11,10 +12,12 @@ until s=$(docker exec $N systemctl is-system-running 2>/dev/null); [ "$s" = runn
 docker exec $N sh -c 'DEBIAN_FRONTEND=noninteractive apt-get install -y -qq /tmp-deb/world.deb >/dev/null 2>&1; dpkg-query -W world-keyboard-windows; useradd -m tester; chmod 777 /out'
 FAIL=0
 # tabs to \037 first: with IFS=tab, read would merge an empty column (no Linux variant) with the next one
-tail -n +2 world/layouts.tsv | tr '\t' '\037' | while IFS=$'\037' read -r cldr bl bv ol ov desc rest; do
+rows() { if [ "${STOCK:-0}" = 1 ]; then tail -n +2 world/stock-accent.tsv | awk -F'\t' -v OFS='\t' '{ print $1, "", "", $2, $3 }'
+         else tail -n +2 world/layouts.tsv; fi; }
+rows | tr '\t' '\037' | while IFS=$'\037' read -r cldr bl bv ol ov desc rest; do
   echo "$ol($ov)" | grep -Eq "$ONLY" || continue
-  id=$ol; [ "$ov" = basic ] || id="$ol+$ov"
-  docker exec -u tester $N python3 -I /src/world/tools/gen_typing_plan.py /src/world/cldr-43/$cldr $ol $ov /out/plan-$ol-$ov.json "" ${AS:+/usr/lib/world-keyboard-windows/accent-space.tsv} < /dev/null
+  id=$ol; [ "$ov" = basic ] || [ -z "$ov" ] || id="$ol+$ov"
+  docker exec -u tester $N python3 -I /src/world/tools/gen_typing_plan.py /src/world/cldr-43/$cldr $ol "$ov" /out/plan-$ol-$ov.json "" ${AS:+/usr/lib/world-keyboard-windows/accent-space.tsv} < /dev/null
   docker exec -u tester -e ACCENT_SPACE=${ACCENT_SPACE:-0} $N bash /src/world/tests/run-gnome.sh "$id" /out/plan-$ol-$ov.json /out/typed-$ol-$ov.txt 0.02 < /dev/null
   python3 -I world/tools/compare_typed.py "$OUT/plan-$ol-$ov.json" "$OUT/typed-$ol-$ov.txt" | tee "$OUT/compare-$ol-$ov.txt"
 done

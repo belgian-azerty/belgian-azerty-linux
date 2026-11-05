@@ -85,6 +85,17 @@
         <countryList><iso3166Id>BR</iso3166Id></countryList>
         <languageList><iso639Id>por</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>abnt</name>
+            <shortDescription>pt</shortDescription>
+            <description>Portuguese (Brazil, ABNT, as on Windows)</description>
+            <countryList><iso3166Id>BR</iso3166Id></countryList>
+            <languageList><iso639Id>por</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -94,6 +105,17 @@
         <countryList><iso3166Id>IT</iso3166Id></countryList>
         <languageList><iso639Id>ita</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>142</name>
+            <shortDescription>it</shortDescription>
+            <description>Italian (142, as on Windows)</description>
+            <countryList><iso3166Id>IT</iso3166Id></countryList>
+            <languageList><iso639Id>ita</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -103,6 +125,17 @@
         <countryList><iso3166Id>HU</iso3166Id></countryList>
         <languageList><iso639Id>hun</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>101key</name>
+            <shortDescription>hu</shortDescription>
+            <description>Hungarian (101-key, as on Windows)</description>
+            <countryList><iso3166Id>HU</iso3166Id></countryList>
+            <languageList><iso639Id>hun</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -121,6 +154,17 @@
         <countryList><iso3166Id>LT</iso3166Id></countryList>
         <languageList><iso639Id>lit</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>ibm</name>
+            <shortDescription>lt</shortDescription>
+            <description>Lithuanian (IBM, as on Windows)</description>
+            <countryList><iso3166Id>LT</iso3166Id></countryList>
+            <languageList><iso639Id>lit</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -157,6 +201,17 @@
         <countryList><iso3166Id>UA</iso3166Id></countryList>
         <languageList><iso639Id>ukr</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>enhanced</name>
+            <shortDescription>uk</shortDescription>
+            <description>Ukrainian (Enhanced, as on Windows)</description>
+            <countryList><iso3166Id>UA</iso3166Id></countryList>
+            <languageList><iso639Id>ukr</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -175,6 +230,17 @@
         <countryList><iso3166Id>NO</iso3166Id></countryList>
         <languageList><iso639Id>nor</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>sami</name>
+            <shortDescription>no</shortDescription>
+            <description>Norwegian (with Sami, as on Windows)</description>
+            <countryList><iso3166Id>NO</iso3166Id></countryList>
+            <languageList><iso639Id>nor</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -193,6 +259,17 @@
         <countryList><iso3166Id>FI</iso3166Id></countryList>
         <languageList><iso639Id>fin</iso639Id></languageList>
       </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>sami</name>
+            <shortDescription>fi</shortDescription>
+            <description>Finnish (with Sami, as on Windows)</description>
+            <countryList><iso3166Id>FI</iso3166Id></countryList>
+            <languageList><iso639Id>fin</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
     </layout>
     <layout>
       <configItem>
@@ -201,6 +278,127 @@
         <description>Dutch (as on Windows)</description>
         <countryList><iso3166Id>NL</iso3166Id></countryList>
         <languageList><iso639Id>dut</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>ie_windows</name>
+        <shortDescription>ga</shortDescription>
+        <description>Irish (as on Windows)</description>
+        <countryList><iso3166Id>IE</iso3166Id></countryList>
+        <languageList><iso639Id>gle</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>lu_windows</name>
+        <shortDescription>lb</shortDescription>
+        <description>Luxembourgish (as on Windows)</description>
+        <countryList><iso3166Id>LU</iso3166Id></countryList>
+        <languageList><iso639Id>ltz</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>mt_windows</name>
+        <shortDescription>mt</shortDescription>
+        <description>Maltese (47-key, as on Windows)</description>
+        <countryList><iso3166Id>MT</iso3166Id></countryList>
+        <languageList><iso639Id>mlt</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>se_windows</name>
+        <shortDescription>sv</shortDescription>
+        <description>Swedish (with Sami, as on Windows)</description>
+        <countryList><iso3166Id>SE</iso3166Id></countryList>
+        <languageList><iso639Id>swe</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>py_windows</name>
+        <shortDescription>gn</shortDescription>
+        <description>Guarani (as on Windows)</description>
+        <countryList><iso3166Id>PY</iso3166Id></countryList>
+        <languageList><iso639Id>grn</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>ng_windows</name>
+        <shortDescription>ha</shortDescription>
+        <description>Hausa (as on Windows)</description>
+        <countryList><iso3166Id>NG</iso3166Id></countryList>
+        <languageList><iso639Id>hau</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>tm_windows</name>
+        <shortDescription>tk</shortDescription>
+        <description>Turkmen (as on Windows)</description>
+        <countryList><iso3166Id>TM</iso3166Id></countryList>
+        <languageList><iso639Id>tuk</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>az_windows</name>
+        <shortDescription>az</shortDescription>
+        <description>Azerbaijani (Latin, as on Windows)</description>
+        <countryList><iso3166Id>AZ</iso3166Id></countryList>
+        <languageList><iso639Id>aze</iso639Id></languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>cyrillic</name>
+            <shortDescription>az</shortDescription>
+            <description>Azerbaijani (Cyrillic, as on Windows)</description>
+            <countryList><iso3166Id>AZ</iso3166Id></countryList>
+            <languageList><iso639Id>aze</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+    <layout>
+      <configItem>
+        <name>bak_windows</name>
+        <shortDescription>ba</shortDescription>
+        <description>Bashkir (as on Windows)</description>
+        <countryList><iso3166Id>RU</iso3166Id></countryList>
+        <languageList><iso639Id>bak</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>tat_windows</name>
+        <shortDescription>tt</shortDescription>
+        <description>Tatar (as on Windows)</description>
+        <countryList><iso3166Id>RU</iso3166Id></countryList>
+        <languageList><iso639Id>tat</iso639Id></languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>legacy</name>
+            <shortDescription>tt</shortDescription>
+            <description>Tatar (legacy, as on Windows)</description>
+            <countryList><iso3166Id>RU</iso3166Id></countryList>
+            <languageList><iso639Id>tat</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+    <layout>
+      <configItem>
+        <name>tj_windows</name>
+        <shortDescription>tg</shortDescription>
+        <description>Tajik (as on Windows)</description>
+        <countryList><iso3166Id>TJ</iso3166Id></countryList>
+        <languageList><iso639Id>tgk</iso639Id></languageList>
       </configItem>
     </layout>
   </layoutList>

@@ -16,3 +16,22 @@ xkb_symbols "basic" {
     // base: Windows \ / Linux –; shift: Windows | / Linux €; caps: Windows \ / Linux –; capsshift: Windows | / Linux €
     key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, bar, brokenbar ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "ibm" {
+    include "lt(ibm)"
+    name[Group1] = "Lithuanian (IBM, as on Windows)";
+    // Windows layout: "Lithuanian IBM" (CLDR lt-t-k0-windows-lt1205.xml); 6 keys differ from Linux
+    // base: Windows “ / Linux „; shift: Windows ” / Linux “; caps: Windows “ / Linux „; capsshift: Windows ” / Linux “
+    key <AD12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ leftdoublequotemark, rightdoublequotemark, bracketright, braceright ] };
+    // altgr: Windows { / Linux &
+    key <AE07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ period, 7, braceleft, seveneighths ] };
+    // altgr: Windows [ / Linux *
+    key <AE08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ question, 8, bracketleft, trademark ] };
+    // altgr: Windows ] / Linux {
+    key <AE09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ parenleft, 9, bracketright, plusminus ] };
+    // base: Windows | / Linux \; shift: Windows \ / Linux |; caps: Windows | / Linux \; capsshift: Windows \ / Linux |
+    key <BKSL> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ bar, backslash, dead_grave, dead_breve ] };
+    // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
+    key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, endash, brokenbar ] };
+};

@@ -18,7 +18,7 @@ if accent:
     import csv
     from check_accent_space import lines_for
     tab = list(csv.DictReader((l for l in open(accent, encoding='utf-8') if not l.startswith('#')), delimiter='\t', quoting=csv.QUOTE_NONE))
-    lines = lines_for({lay if var == 'basic' else f'{lay}+{var}'}, tab)
+    lines = lines_for({lay if var in ('basic', '') else f'{lay}+{var}'}, tab)
     kb.comp = winkb.compose_table_from_text('include "%L"\n' + ''.join(l + '\n' for l in lines))
     print('accent-space lines:', lines)
 MODS = {'base': ([], 0), 'shift': ([42], 0), 'caps': ([], 1), 'capsshift': ([42], 1), 'altgr': ([100], 0), 'shiftaltgr': ([100, 42], 0)}

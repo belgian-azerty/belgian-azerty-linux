@@ -12,3 +12,18 @@ xkb_symbols "basic" {
     // altgr: Windows dead:^ / Linux ^
     key <AE03> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 3, plus, dead_circumflex, dead_circumflex ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "101key" {
+    include "hu(101_qwerty_comma_nodead)"
+    name[Group1] = "Hungarian (101-key, as on Windows)";
+    // Windows layout: "Hungarian 101-key" (CLDR hu-t-k0-windows-101key.xml); 4 keys differ from Linux
+    // altgr: Windows § / Linux ¶
+    key <AD04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ r, R, section, registered ] };
+    // altgr: Windows ¤ / Linux ŧ
+    key <AD05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ t, T, currency, Tslash ] };
+    // altgr: Windows \ / Linux ¤
+    key <BKSL> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ udoubleacute, Udoubleacute, backslash, dead_breve ] };
+    // base: Windows í / Linux <; shift: Windows Í / Linux >; caps: Windows Í / Linux <; capsshift: Windows í / Linux >; altgr: Windows < / Linux |
+    key <LSGT> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ iacute, Iacute, less, brokenbar ] };
+};
