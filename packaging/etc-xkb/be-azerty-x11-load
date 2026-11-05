@@ -1,0 +1,33 @@
+#!/bin/sh
+# be-azerty-x11-load: our options (caps:be_windows, be_azerty:accents, be_azerty:mac) on an X11 session too.
+# On Fedora, openSUSE, Arch and the independent distributions our files are in /etc/xkb. Wayland desktops read that
+# folder (libxkbcommon), but the X server only reads its own folder and silently drops our options. This takes the
+# keyboard settings the session asked the X server for (setxkbmap -query), has libxkbcommon build that keymap (it
+# reads /etc/xkb) and loads the result into the X server with xkbcomp. It changes no file.
+# Runs by itself at login (autostart); by hand:
+#   be-azerty-x11-load            load it now (does nothing on Wayland, or when none of our options is set)
+#   be-azerty-x11-load --print    only print the keymap it would load
+# Needs xkbcli (libxkbcommon's tools), xkbcomp and setxkbmap. Tested in containers only, up to the file xkbcomp loads.
+set -u
+PRINT=0; [ "${1:-}" = --print ] && PRINT=1
+say() { echo "be-azerty-x11-load: $*" >&2; }
+[ -n "${DISPLAY:-}" ] || { [ $PRINT = 1 ] && say "no X display"; exit 0; }
+[ -z "${WAYLAND_DISPLAY:-}" ] && [ "${XDG_SESSION_TYPE:-x11}" != wayland ] || exit 0
+for c in setxkbmap xkbcli xkbcomp; do
+    command -v $c >/dev/null 2>&1 || { say "$c is missing: install it to use our options on X11"; exit 0; }
+done
+q=$(setxkbmap -query 2>/dev/null) || { say "cannot read the keyboard settings from the X server"; exit 0; }
+get() { echo "$q" | sed -n "s/^$1: *//p" | head -1; }
+R=$(get rules); M=$(get model); L=$(get layout); V=$(get variant); O=$(get options)
+case ",$O," in *,caps:be_windows,*|*,be_azerty:*) ;; *) exit 0 ;; esac   # none of ours: leave the session alone
+t=$(mktemp) || exit 1; trap 'rm -f "$t" "$t.err"' EXIT
+xkbcli compile-keymap --rules "${R:-evdev}" --model "${M:-pc105}" --layout "$L" --variant "$V" --options "$O" > "$t" 2> "$t.err" \
+    || { say "libxkbcommon could not build the keymap:"; cat "$t.err" >&2; exit 1; }
+if grep -q 'Unrecognized RMLVO option' "$t.err"; then
+    say "libxkbcommon does not know our options: are our files in /etc/xkb? Nothing loaded."; exit 1
+fi
+# libxkbcommon writes newer keysym names (SSHARP = capital sharp s) that an older X library does not know and would
+# drop: give it as a Unicode code point instead.
+sed -i 's/\bSSHARP\b/U1E9E/g' "$t"
+if [ $PRINT = 1 ]; then cat "$t"; exit 0; fi
+xkbcomp -w 0 "$t" "$DISPLAY" 2>/dev/null || { say "xkbcomp could not load the keymap into $DISPLAY"; exit 1; }

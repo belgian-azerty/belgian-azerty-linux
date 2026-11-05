@@ -1,0 +1,8 @@
+[Desktop Entry]
+# belgian-azerty-windows: our keyboard options on X11 sessions too (does nothing on Wayland). Starts a few seconds
+# after login, so that it comes after the desktop has set its own keyboard settings.
+Type=Application
+Name=Belgian AZERTY options on X11
+Exec=sh -c "sleep 4; exec be-azerty-x11-load"
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

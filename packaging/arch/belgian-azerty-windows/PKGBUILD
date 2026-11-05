@@ -1,6 +1,6 @@
 # Belgian AZERTY like on Windows, Arch build. As on Fedora, nothing of
 # Arch's own files is touched: the rules and symbols go to /etc/xkb, which libxkbcommon (and so GNOME's mutter on
-# Wayland) reads before the system folder. Not read by a pure X11 session or the text console.
+# Wayland) reads before the system folder. X11 sessions get them through be-azerty-x11-load at login. Not the text console.
 # Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
 pkgname=belgian-azerty-windows
 pkgver=0.9.12
@@ -10,7 +10,9 @@ arch=('any')
 url='https://github.com/belgian-azerty/belgian-azerty-linux'
 license=('MIT')
 depends=('libxkbcommon' 'xkeyboard-config')
-backup=('etc/xkb/rules/evdev' 'etc/xkb/symbols/be_capslock')
+optdepends=('xorg-xkbcomp: our options on X11 sessions (be-azerty-x11-load)'
+            'xorg-setxkbmap: our options on X11 sessions (be-azerty-x11-load)')
+backup=('etc/xkb/rules/evdev' 'etc/xkb/symbols/be_capslock' 'etc/xdg/autostart/be-azerty-x11-load.desktop')
 install=belgian-azerty-windows.install
 options=('!debug' '!strip')
 source=("belgian-azerty-linux-$pkgver.tar.gz::https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v$pkgver.tar.gz")
@@ -36,5 +38,8 @@ package() {
   cd belgian-azerty-linux-$pkgver
   install -Dm644 gen/evdev.etc "$pkgdir/etc/xkb/rules/evdev"
   install -Dm644 xkb/symbols/be_capslock "$pkgdir/etc/xkb/symbols/be_capslock"
+  # X11 sessions: the X server does not read /etc/xkb; this loads our options at login (does nothing on Wayland)
+  install -Dm755 packaging/etc-xkb/be-azerty-x11-load "$pkgdir/usr/bin/be-azerty-x11-load"
+  install -Dm644 packaging/etc-xkb/be-azerty-x11-load.desktop "$pkgdir/etc/xdg/autostart/be-azerty-x11-load.desktop"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

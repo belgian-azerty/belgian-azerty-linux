@@ -1,6 +1,6 @@
 # Belgian AZERTY like on Windows, Fedora build. Unlike the Debian
 # package, nothing of Fedora's is touched: the rules and symbols go to /etc/xkb, which libxkbcommon (and so GNOME's
-# mutter on Wayland) reads before the system folder. Not read by a pure X11 session or the text console.
+# mutter on Wayland) reads before the system folder. X11 sessions get them through be-azerty-x11-load at login. Not the text console.
 Name:           belgian-azerty-windows
 Version:        0.9.12
 Release:        2%{?dist}
@@ -11,6 +11,10 @@ Source0:        https://github.com/belgian-azerty/belgian-azerty-linux/archive/r
 BuildArch:      noarch
 Requires:       libxkbcommon >= 1.0
 Requires:       xkeyboard-config
+# X11 sessions: be-azerty-x11-load needs these three (Wayland sessions do not)
+Recommends:     /usr/bin/xkbcli
+Recommends:     /usr/bin/xkbcomp
+Recommends:     /usr/bin/setxkbmap
 # With SELinux (Fedora; openSUSE's new installs), /etc/xkb must get the label of the system's own keyboard files, or
 # confined programs such as systemd-localed cannot read it (localectl then refuses every layout): see %%post.
 Requires(post): (policycoreutils if selinux-policy-targeted)
@@ -36,6 +40,9 @@ sh gen/update-xkb-rules
 %install
 install -Dm644 gen/evdev.etc %{buildroot}%{_sysconfdir}/xkb/rules/evdev
 install -Dm644 xkb/symbols/be_capslock %{buildroot}%{_sysconfdir}/xkb/symbols/be_capslock
+# X11 sessions: the X server does not read /etc/xkb; this loads our options at login (does nothing on Wayland)
+install -Dm755 packaging/etc-xkb/be-azerty-x11-load %{buildroot}%{_bindir}/be-azerty-x11-load
+install -Dm644 packaging/etc-xkb/be-azerty-x11-load.desktop %{buildroot}%{_sysconfdir}/xdg/autostart/be-azerty-x11-load.desktop
 # the SELinux label for /etc/xkb (same text as packaging/selinux/belgian_azerty_xkb.cil in the repository; written
 # here because the release source archive this builds from does not have that file yet)
 install -d %{buildroot}%{_datadir}/selinux/packages/%{name}
@@ -75,6 +82,8 @@ fi
 %dir %{_sysconfdir}/xkb/symbols
 %config(noreplace) %{_sysconfdir}/xkb/rules/evdev
 %config(noreplace) %{_sysconfdir}/xkb/symbols/be_capslock
+%{_bindir}/be-azerty-x11-load
+%config(noreplace) %{_sysconfdir}/xdg/autostart/be-azerty-x11-load.desktop
 %dir %{_datadir}/selinux
 %dir %{_datadir}/selinux/packages
 %{_datadir}/selinux/packages/%{name}
