@@ -19,3 +19,6 @@
 | 13 | The fixed keymapper makes all 4 Belgian variants reach "be" and makes no layout worse except fr:oss → fr when only plain/Shift signs count | ✔ (model) | Fast walker equal to Ubiquity's code on the shipped tree; 41 layouts × 2 models |
 | 14 | Œ is not printed on Belgian key caps | ✱ | Common Belgian AZERTY keyboards; not a survey |
 | 15 | Windows defaults nl-BE to Belgian (Period) and de-BE to German QWERTZ | ✔ | Microsoft keyboard identifier table (kbdlayout.info), checked 24 Oct 2026 |
+| 16 | Mint 22.3's UEFI grub.cfg (stock and our stick before 5 Nov) has no `timeout`, so the menu waits | ✔ | grub.cfg read and menu seen waiting in the emulator (25 Oct, `evidence/raw-logs/2026-10-25-sticks-0.9.4/`); grub-emu 2.12: no countdown in 15 s |
+| 17 | With `set timeout=10` the stick menu counts down and starts "Nederlands, period" (`default="0>0"`) | ✔ (emulator) | Ubuntu 24.04 grub-emu 2.12-1ubuntu7.3, `evidence/raw-logs/2026-11-05-round-two-10-grub-timeout/`; no real stick |
+| 18 | A key press stops the countdown | ✔ (emulator) | Same grub-emu, arrow key after 3 s: stops at 8 s, nothing started |

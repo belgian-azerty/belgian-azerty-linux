@@ -1,0 +1,6 @@
+error: can't find command `grub_platform'.
+GNU GRUB  version 2.12
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛     Use the ↑ and ↓ keys to select which entry is highlighted.Press
+      enter to boot the selected OS, `e' to edit the commands before
+      booting or `c' for a command-line. *Start Linux Mint 22.3 Cinnamon 64-bit - Nederlands (België) Start Linux Mint 22.3 Cinnamon 64-bit - Français (Belgique) Start Linux Mint 22.3 Cinnamon 64-bit - Deutsch (Belgien) Start Linux Mint 22.3 Cinnamon 64-bit - English Start Linux Mint 22.3 Cinnamon 64-bit (compatibility mode) OEM install (for manufacturers)                                                                                                                                                                     
+Session terminated, killing shell... ...killed.

@@ -1,0 +1,40 @@
+diff --git a/tools/belgian_boot_menu.py b/tools/belgian_boot_menu.py
+index 6330a5d..f80287b 100755
+--- a/tools/belgian_boot_menu.py
++++ b/tools/belgian_boot_menu.py
+@@ -6,7 +6,8 @@
+ The first live entry of the menu (the "Try or Install" / "Start Linux Mint" one) becomes one submenu per language;
+ each submenu offers the keyboards. Every other entry (safe graphics, NVIDIA, compatibility mode, OEM, Power Off ...)
+ stays as the distribution wrote it, so the stick stays close to the stock one. Nederlands with the period is the
+-default and starts by itself after the usual timeout.
++default and starts by itself after the usual timeout. A GRUB menu without a timeout (Linux Mint's UEFI menu has none,
++so it waits for Enter twice: menu, then submenu) gets `set timeout=10`; a menu that sets its own keeps it.
+ 
+ WITH_PACKAGES=1: the stick carries our packages (extra layer), so the Comma entries are offered and English gets
+ Belgian formats. WITH_PACKAGES=0: only the Period and QWERTZ entries (the live system cannot set the numpad comma at
+@@ -64,8 +65,14 @@ def entries(packages):
+         yield loc, title, back, [(kb, label) for kb, label in kbs if packages or kb != "comma"]
+ 
+ 
++# Seconds the GRUB menu counts down when the distribution's menu sets no timeout of its own.
++GRUB_TIMEOUT = 10
++HAS_TIMEOUT = re.compile(r"\s*set\s+timeout\s*=")
++
++
+ def grub(lines, packages):
+     out, i, n, top = [], 0, len(lines), 0
++    own_timeout = any(HAS_TIMEOUT.match(l) for l in lines)
+     while i < n:
+         line = lines[i]
+         m = re.match(r'(\s*)menuentry\s+(["\'])(.*?)\2(.*)\{\s*$', line)
+@@ -77,6 +84,10 @@ def grub(lines, packages):
+             if any("casper" in b for b in body):
+                 ind, title, rest = m.group(1), m.group(3), m.group(4).rstrip()
+                 out.append('%sset default="%d>0"\n' % (ind, top))
++                if not own_timeout:
++                    # On timeout GRUB opens the default submenu with timeout 0, so it starts "N>0" straight away;
++                    # a key press stops the countdown and the menus then wait as before.
++                    out.append("%sset timeout=%d\n" % (ind, GRUB_TIMEOUT))
+                 for loc, ltitle, _back, kbs in entries(packages):
+                     out.append('%ssubmenu "%s - %s"%s {\n' % (ind, title, ltitle, (" " + rest.strip()) if rest.strip() else ""))
+                     for kb, label in kbs:
