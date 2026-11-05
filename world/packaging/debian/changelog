@@ -1,3 +1,19 @@
+world-keyboard-windows (0.0.1~proto7) noble; urgency=medium
+
+  * 44 more layouts, where Windows wins over the Linux layout of the same
+    language (which stays next to it, unchanged): Russian (and
+    Typewriter), Belarusian, Kazakh, Kyrgyz, Uzbek (Cyrillic), Bulgarian
+    (Typewriter, Phonetic Traditional), Macedonian (2), Mongolian (4),
+    Armenian (3), Georgian (5), Thai (4), Syriac (2), Pashto, Nepali,
+    Dhivehi (2), US Dvorak (3), Ogham, Old Italic, N'Ko (3), Osmanya,
+    Sora, Lisu and New Tai Lue. 111 in total. Not released.
+  * Right Alt is AltGr in those of them that have AltGr characters on
+    Windows (for example AltGr+8 gives the rouble sign in Russian).
+  * Georgian: Caps Lock gives small letters as on Windows, also with
+    newer libxkbcommon (which gives capitals on Linux's own Georgian).
+
+ -- @MAINTAINER@  Thu, 05 Nov 2026 21:00:00 +0000
+
 world-keyboard-windows (0.0.1~proto6) noble; urgency=medium
 
   * 7 more layouts: Yakut (Sakha), Persian (Standard), Hawaiian, Khmer,

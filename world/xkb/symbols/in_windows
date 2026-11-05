@@ -392,3 +392,82 @@ xkb_symbols "sat" {
     // base: Windows ᱹ / Linux ]; shift: Windows ᱧ / Linux }; caps: Windows ᱹ / Linux ]; capsshift: Windows ᱧ / Linux }
     key <AD12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1C79, U1C67, bracketright, braceright ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "sora" {
+    include "us"
+    name[Group1] = "Sora (as on Windows)";
+    // Windows layout: "Sora" (CLDR srb-t-k0-windows.xml); 36 keys differ from Linux
+    // base: Windows შ / Linux z; caps: Windows შ / Linux Z
+    key <AB01> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_shin, Z, z, Z, Georgian_shin ] };
+    // base: Windows ს / Linux x; caps: Windows ს / Linux X
+    key <AB02> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_san, X, x, X, Georgian_san ] };
+    // base: Windows დ / Linux c; caps: Windows დ / Linux C
+    key <AB03> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_don, C, c, C, Georgian_don ] };
+    // base: Windows ლ / Linux v; caps: Windows ლ / Linux V
+    key <AB04> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_las, V, v, V, Georgian_las ] };
+    // base: Windows გ / Linux b; caps: Windows გ / Linux B
+    key <AB05> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_gan, B, b, B, Georgian_gan ] };
+    // base: Windows კ / Linux n; caps: Windows კ / Linux N
+    key <AB06> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_kan, N, n, N, Georgian_kan ] };
+    // base: Windows ზ / Linux m; caps: Windows ზ / Linux M
+    key <AB07> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_zen, M, m, M, Georgian_zen ] };
+    // base: Windows ტ / Linux a; caps: Windows ტ / Linux A
+    key <AC01> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_tar, A, a, A, Georgian_tar ] };
+    // base: Windows ა / Linux s; caps: Windows ა / Linux S
+    key <AC02> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_an, S, s, S, Georgian_an ] };
+    // base: Windows ე / Linux d; caps: Windows ე / Linux D
+    key <AC03> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_en, D, d, D, Georgian_en ] };
+    // base: Windows თ / Linux f; caps: Windows თ / Linux F
+    key <AC04> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_tan, F, f, F, Georgian_tan ] };
+    // base: Windows ვ / Linux g; caps: Windows ვ / Linux G
+    key <AC05> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_vin, G, g, G, Georgian_vin ] };
+    // base: Windows პ / Linux h; caps: Windows პ / Linux H
+    key <AC06> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_par, H, h, H, Georgian_par ] };
+    // base: Windows რ / Linux j; caps: Windows რ / Linux J
+    key <AC07> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_rae, J, j, J, Georgian_rae ] };
+    // base: Windows ჟ / Linux k; caps: Windows ჟ / Linux K
+    key <AC08> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_zhar, K, k, K, Georgian_zhar ] };
+    // base: Windows ი / Linux l; caps: Windows ი / Linux L
+    key <AC09> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_in, L, l, L, Georgian_in ] };
+    // base: Windows ყ / Linux w; caps: Windows ყ / Linux W
+    key <AD02> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_qar, W, w, W, Georgian_qar ] };
+    // base: Windows უ / Linux e; caps: Windows უ / Linux E
+    key <AD03> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_un, E, e, E, Georgian_un ] };
+    // base: Windows ო / Linux r; caps: Windows ო / Linux R
+    key <AD04> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_on, R, r, R, Georgian_on ] };
+    // base: Windows ბ / Linux t; caps: Windows ბ / Linux T
+    key <AD05> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_ban, T, t, T, Georgian_ban ] };
+    // base: Windows ნ / Linux y; caps: Windows ნ / Linux Y
+    key <AD06> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_nar, Y, y, Y, Georgian_nar ] };
+    // base: Windows ქ / Linux u; caps: Windows ქ / Linux U
+    key <AD07> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_khar, U, u, U, Georgian_khar ] };
+    // base: Windows ფ / Linux i; caps: Windows ფ / Linux I
+    key <AD08> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_phar, I, i, I, Georgian_phar ] };
+    // base: Windows ღ / Linux o; caps: Windows ღ / Linux O
+    key <AD09> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_ghan, O, o, O, Georgian_ghan ] };
+    // base: Windows მ / Linux p; caps: Windows მ / Linux P
+    key <AD10> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_man, P, p, P, Georgian_man ] };
+    // base: Windows ჱ / Linux 1; caps: Windows ჱ / Linux 1
+    key <AE01> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_he, exclam, 1, exclam, Georgian_he ] };
+    // base: Windows ჲ / Linux 2; caps: Windows ჲ / Linux 2
+    key <AE02> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_hie, at, 2, at, Georgian_hie ] };
+    // base: Windows ჳ / Linux 3; caps: Windows ჳ / Linux 3
+    key <AE03> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_we, numbersign, 3, numbersign, Georgian_we ] };
+    // base: Windows ჴ / Linux 4; caps: Windows ჴ / Linux 4
+    key <AE04> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_har, dollar, 4, dollar, Georgian_har ] };
+    // base: Windows ჵ / Linux 5; caps: Windows ჵ / Linux 5
+    key <AE05> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_hoe, percent, 5, percent, Georgian_hoe ] };
+    // base: Windows ჶ / Linux 6; caps: Windows ჶ / Linux 6
+    key <AE06> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_fi, asciicircum, 6, asciicircum, Georgian_fi ] };
+    // base: Windows ჷ / Linux 7; caps: Windows ჷ / Linux 7
+    key <AE07> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U10F7, ampersand, 7, ampersand, U10F7 ] };
+    // base: Windows ჸ / Linux 8; caps: Windows ჸ / Linux 8
+    key <AE08> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U10F8, asterisk, 8, asterisk, U10F8 ] };
+    // base: Windows ჹ / Linux 9; caps: Windows ჹ / Linux 9
+    key <AE09> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U10F9, parenleft, 9, parenleft, U10F9 ] };
+    // base: Windows ჰ / Linux 0; caps: Windows ჰ / Linux 0
+    key <AE10> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Georgian_hae, parenright, 0, parenright, Georgian_hae ] };
+    // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
+    key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, less, greater ] };
+};

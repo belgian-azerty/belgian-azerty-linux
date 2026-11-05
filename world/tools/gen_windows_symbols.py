@@ -17,6 +17,14 @@ def has_case(symname):
     c = winkb.sym_char(winkb.L.xkb_keysym_from_name(symname.encode(), 0)) if symname != 'NoSymbol' else None
     return bool(c) and len(c) == 1 and c.lower() != c.upper()
 
+def case_unknown_here(symname):
+    """A letter (by Unicode) whose case this libxkbcommon does not know. Newer versions do (Georgian since libxkbcommon
+    1.8 or so: Caps Lock then gives Mtavruli capitals), so such a key gets an explicit Caps Lock level when Windows says
+    Caps Lock leaves it alone; otherwise the layout would change with the library."""
+    if symname == 'NoSymbol' or not has_case(symname): return False
+    ks = winkb.L.xkb_keysym_from_name(symname.encode(), 0)
+    return winkb.L.xkb_keysym_to_upper(ks) == ks and winkb.L.xkb_keysym_to_lower(ks) == ks
+
 def dead_ok(dsym, trans, dchar):
     """True when Linux's Compose table gives Windows's result for every 'accent then character' of this dead key."""
     ks = winkb.L.xkb_keysym_from_name(dsym.encode(), 0); bad = []
@@ -30,6 +38,8 @@ def plan_key(w, lin_levels, lin_typed, trans):
     """w: Windows cells of one key; lin_levels: Linux keysym names per level; lin_typed: Linux char per state.
     -> (type, [syms], notes) or None when Linux already types every Windows cell."""
     diff = [st for st in winkb.STATES if w.get(st) and not w[st].startswith('str:') and w[st] != lin_typed[st]]
+    if not diff and any(case_unknown_here(x) for x in lin_levels[:2]) and any(w.get(st) for st in ('caps', 'capsshift', 'base')):
+        diff = ['caps']                                          # same today, but not with a newer libxkbcommon (above)
     if not diff: return None
     lv = list(lin_levels)                      # what Linux types now with Base, Shift, AltGr, Shift+AltGr
     syms = list(lv); notes = []; kept = set()
@@ -68,6 +78,14 @@ def main(table, cldrdir, outdir):
         kb = winkb.Keymap(ctx, r['base_layout'], r['base_variant'])
         if not kb.ok(): sys.exit(f"cannot load Linux layout {r['base_layout']}({r['base_variant']})")
         lines = []; changed = 0
+        # rule "windows" (Younes 5 Nov): Windows wins where the two differ; the Linux layout stays next to it unchanged.
+        # Keys with more on level 5 and up are rewritten too, and Right Alt becomes AltGr when the Windows layout has
+        # AltGr characters and the Linux layout has no AltGr (Russian, Kazakh, Thai...), as on Windows.
+        win_rule = r.get('rule') == 'windows'
+        has_altgr = any(ks.get('altgr') or ks.get('shiftaltgr') for ks in win[1].values())
+        if win_rule and has_altgr and winkb.sym_name(kb.press_sym('base', 'RALT')) != 'ISO_Level3_Shift':
+            kb = winkb.Keymap(ctx, r['base_layout'], r['base_variant'], 'lv3:ralt_switch')
+            lines.append('    include "level3(ralt_switch)"   // Right Alt is AltGr, as on Windows')
         for key in sorted(win[1], key=lambda k: (k[:2] != 'TL', k)):
             if key not in ('TLDE', 'LSGT', 'BKSL') and not key[:2] in ('AE', 'AD', 'AC', 'AB'): continue
             w = win[1][key]
@@ -77,7 +95,7 @@ def main(table, cldrdir, outdir):
             p = plan_key(w, now, typed, win[2])
             if p is None: continue
             extra = [x for x in kb.levels(key)[4:] if x != 'NoSymbol']
-            if extra and p[0] != 'skip' and not set(extra) <= set(p[1]):
+            if extra and p[0] != 'skip' and not set(extra) <= set(p[1]) and not win_rule:
                 # Linux puts more on this key (levels 5 and up, e.g. Right Ctrl on Canadian Multilingual) than a
                 # four-level key can hold: rewriting it would take those characters away, so it stays as on Linux
                 print(f"  NOTE {r['out_layout']}({r['out_variant']}) {key}: Linux has {', '.join(extra)} on level 5 and up, "
@@ -87,7 +105,8 @@ def main(table, cldrdir, outdir):
                 for n in p[1]: print(f"  NOTE {r['out_layout']}({r['out_variant']}) {key}: {n}")
                 continue
             typ, syms, diff, notes = p; changed += 1
-            why = '; '.join(f"{st}: Windows {w[st]} / Linux {typed[st]}" for st in diff)
+            why = '; '.join(f"{st}: Windows {w[st]} / Linux {typed[st]}" for st in diff if w.get(st) != typed[st]) or \
+                  f"Caps Lock keeps {w.get('caps') or w.get('base')} as on Windows (made explicit: newer libxkbcommon would capitalise it)"
             lines.append(f'    // {why}' + (f'  [{"; ".join(notes)}]' if notes else ''))
             lines.append(f'    key <{key}> {{ type[Group1] = "{typ}", symbols[Group1] = [ {", ".join(syms)} ] }};')
             for n in notes: print(f"  NOTE {r['out_layout']}({r['out_variant']}) {key}: {n}")

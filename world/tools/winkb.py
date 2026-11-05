@@ -64,6 +64,7 @@ for f, r, a in [
         ("xkb_state_update_key", ctypes.c_int, [_P, ctypes.c_uint32, ctypes.c_int]),
         ("xkb_state_key_get_one_sym", ctypes.c_uint32, [_P, ctypes.c_uint32]),
         ("xkb_keysym_to_utf32", ctypes.c_uint32, [ctypes.c_uint32]), ("xkb_utf32_to_keysym", ctypes.c_uint32, [ctypes.c_uint32]),
+        ("xkb_keysym_to_upper", ctypes.c_uint32, [ctypes.c_uint32]), ("xkb_keysym_to_lower", ctypes.c_uint32, [ctypes.c_uint32]),
         ("xkb_keysym_get_name", ctypes.c_int, [ctypes.c_uint32, ctypes.c_char_p, ctypes.c_size_t]),
         ("xkb_keysym_from_name", ctypes.c_uint32, [ctypes.c_char_p, ctypes.c_int]),
         ("xkb_compose_table_new_from_locale", _P, [_P, ctypes.c_char_p, ctypes.c_int]),

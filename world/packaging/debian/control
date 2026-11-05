@@ -17,19 +17,11 @@ Description: extra keyboard layouts that type like Windows (prototype)
  characters), generated from Unicode CLDR 43 Windows keyboard data and
  checked by machine. Not covered: Ctrl+Alt as AltGr.
  .
- Layouts in this prototype (67), each named "(as on Windows)": German,
- Swiss German and French, Polish (Programmers), French, English (UK),
- Irish, Spanish, Portuguese, Portuguese (Brazil, ABNT2 and ABNT), Italian
- (and 142), Hungarian (and 101-key), Estonian, Lithuanian (and IBM),
- Icelandic, Faroese, Albanian, Ukrainian (and Enhanced), French (Canada,
- legacy), Norwegian, Danish, Finnish, Swedish (Finnish, Swedish and
- Norwegian with Sami), Dutch, Luxembourgish, Maltese (47-key), Guarani,
- Hausa, Turkmen, Azerbaijani (Latin, Cyrillic), Bashkir, Tatar (and
- legacy), Tajik, Arabic (101, 102, 102 AZERTY), Kurdish (Central, Arabic
- script), Persian, Urdu, Hindi (INSCRIPT, Traditional), Gujarati,
- Kannada, Malayalam, Odia, Punjabi (Gurmukhi), Telugu, Khmer (NIDA), Lao,
- Vietnamese, Berber (Tifinagh, extended), Yakut, Persian (Standard),
- Hawaiian, Khmer, Sinhala, Santali (Ol Chiki), Azerbaijani (Standard).
+ Layouts in this prototype (111), each named "(as on Windows)": European
+ layouts in Latin and Cyrillic script, and layouts in Arabic, Indic,
+ Southeast Asian, Caucasian, Mongolian, African and historic scripts. They
+ show up in the desktop's layout list. Where Windows and the Linux layout
+ differ, the new layout follows Windows; the Linux layout stays as it is.
  .
  Optional, per user: "world-keyboard-windows accent-space on" makes an
  accent followed by Space give the accent itself, as on Windows (Linux

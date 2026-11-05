@@ -41,3 +41,64 @@ xkb_symbols "142" {
     // caps: Windows ù / Linux Ù
     key <BKSL> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ ugrave, section, grave, NoSymbol, ugrave ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "oldital" {
+    include "us"
+    name[Group1] = "Old Italic (as on Windows)";
+    // Windows layout: "Old Italic" (CLDR la-Ital-t-k0-windows.xml); 27 keys differ from Linux
+    // base: Windows ̆ / Linux z; shift: Windows ̎ / Linux Z; caps: Windows ̆ / Linux Z; capsshift: Windows ̎ / Linux z
+    key <AB01> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0306, U030E, z, Z, U0306 ] };
+    // base: Windows ̗ / Linux x; caps: Windows ̗ / Linux X
+    key <AB02> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0317, X, x, X, U0317 ] };
+    // base: Windows ̂ / Linux c; shift: Windows ̜ / Linux C; caps: Windows ̂ / Linux C; capsshift: Windows ̜ / Linux c
+    key <AB03> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0302, U031C, c, C, U0302 ] };
+    // base: Windows ́ / Linux b; caps: Windows ́ / Linux B
+    key <AB05> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ combining_acute, B, b, B, combining_acute ] };
+    // base: Windows ̍ / Linux n; caps: Windows ̍ / Linux N
+    key <AB06> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U030D, N, n, N, U030D ] };
+    // base: Windows ̌ / Linux m; caps: Windows ̌ / Linux M
+    key <AB07> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U030C, M, m, M, U030C ] };
+    // base: Windows · / Linux .; caps: Windows · / Linux .
+    key <AB09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ periodcentered, greater, period, greater ] };
+    // base: Windows ̀ / Linux a; caps: Windows ̀ / Linux A
+    key <AC01> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ combining_grave, A, a, A, combining_grave ] };
+    // base: Windows ̔ / Linux s; shift: Windows ̑ / Linux S; caps: Windows ̔ / Linux S; capsshift: Windows ̑ / Linux s
+    key <AC02> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0314, U0311, s, S, U0314 ] };
+    // base: Windows ̃ / Linux d; caps: Windows ̃ / Linux D
+    key <AC03> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ combining_tilde, D, d, D, combining_tilde ] };
+    // base: Windows ̅ / Linux f; shift: Windows ̚ / Linux F; caps: Windows ̅ / Linux F; capsshift: Windows ̚ / Linux f
+    key <AC04> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0305, U031A, f, F, U0305 ] };
+    // base: Windows ̇ / Linux h; caps: Windows ̇ / Linux H
+    key <AC06> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0307, H, h, H, U0307 ] };
+    // base: Windows ̊ / Linux k; shift: Windows ̙ / Linux K; caps: Windows ̊ / Linux K; capsshift: Windows ̙ / Linux k
+    key <AC08> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U030A, U0319, k, K, U030A ] };
+    // base: Windows ̋ / Linux l; caps: Windows ̋ / Linux L
+    key <AC09> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U030B, L, l, L, U030B ] };
+    // base: Windows : / Linux ;; shift: Windows ⁝ / Linux :; caps: Windows : / Linux ;; capsshift: Windows ⁝ / Linux :
+    key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ colon, U205D, semicolon, colon ] };
+    // base: Windows ̒ / Linux q; caps: Windows ̒ / Linux Q
+    key <AD01> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0312, Q, q, Q, U0312 ] };
+    // base: Windows ̄ / Linux e; caps: Windows ̄ / Linux E
+    key <AD03> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0304, E, e, E, U0304 ] };
+    // base: Windows ̓ / Linux r; shift: Windows ̛ / Linux R; caps: Windows ̓ / Linux R; capsshift: Windows ̛ / Linux r
+    key <AD04> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0313, U031B, r, R, U0313 ] };
+    // base: Windows ̕ / Linux t; shift: Windows ̈ / Linux T; caps: Windows ̕ / Linux T; capsshift: Windows ̈ / Linux t
+    key <AD05> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0315, U0308, t, T, U0315 ] };
+    // base: Windows ̖ / Linux u; shift: Windows ̞ / Linux U; caps: Windows ̖ / Linux U; capsshift: Windows ̞ / Linux u
+    key <AD07> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0316, U031E, u, U, U0316 ] };
+    // base: Windows ̉ / Linux i; shift: Windows ̝ / Linux I; caps: Windows ̉ / Linux I; capsshift: Windows ̝ / Linux i
+    key <AD08> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ combining_hook, U031D, i, I, combining_hook ] };
+    // base: Windows ̏ / Linux o; caps: Windows ̏ / Linux O
+    key <AD09> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U030F, O, o, O, U030F ] };
+    // base: Windows ̐ / Linux p; shift: Windows ̘ / Linux P; caps: Windows ̐ / Linux P; capsshift: Windows ̘ / Linux p
+    key <AD10> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ U0310, U0318, p, P, U0310 ] };
+    // base: Windows ̠ / Linux 1; caps: Windows ̠ / Linux 1
+    key <AE01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U0320, exclam, 1, exclam ] };
+    // base: Windows ̡ / Linux 5; caps: Windows ̡ / Linux 5
+    key <AE05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U0321, percent, 5, percent ] };
+    // base: Windows ̢ / Linux 0; caps: Windows ̢ / Linux 0
+    key <AE10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U0322, parenright, 0, parenright ] };
+    // base: Windows ̣ / Linux -; caps: Windows ̣ / Linux -
+    key <AE11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ combining_belowdot, underscore, minus, underscore ] };
+};

@@ -1,4 +1,4 @@
-cldr_file	base_layout	base_variant	out_layout	out_variant	description	short	countries	languages
+cldr_file	base_layout	base_variant	out_layout	out_variant	description	short	countries	languages	rule
 de-t-k0-windows.xml	de	basic	de_windows	basic	German (as on Windows)	de	DE	ger
 de-CH-t-k0-windows.xml	ch	basic	ch_windows	basic	German (Switzerland, as on Windows)	ch	CH	ger
 fr-CH-t-k0-windows.xml	ch	fr	ch_windows	fr	French (Switzerland, as on Windows)	fr	CH	fre
@@ -66,3 +66,47 @@ km-t-k0-windows.xml	kh		kh_windows	khmer	Khmer (as on Windows)	km	KH	khm
 si-t-k0-windows-legacy.xml	lk		lk_windows	basic	Sinhala (as on Windows)	si	LK	sin
 sat-t-k0-windows.xml	in	sat	in_windows	sat	Santali (Ol Chiki, as on Windows)	sat	IN	sat
 az-t-k0-windows-extended.xml	az		az_windows	std	Azerbaijani (Standard, as on Windows)	az	AZ	aze
+be-t-k0-windows.xml	by		by_windows	basic	Belarusian (as on Windows)	by	BY	bel	windows
+bg-t-k0-windows-legacy.xml	bg		bg_windows	basic	Bulgarian (Typewriter, as on Windows)	bg	BG	bul	windows
+bg-t-k0-windows-qwerty-legacy.xml	bg	phonetic	bg_windows	phonetic_trad	Bulgarian (Phonetic Traditional, as on Windows)	bg	BG	bul	windows
+dv-t-k0-windows.xml	mv		mv_windows	basic	Dhivehi (Phonetic, as on Windows)	dv	MV	div	windows
+dv-t-k0-windows-legacy.xml	mv		mv_windows	typewriter	Dhivehi (Typewriter, as on Windows)	dv	MV	div	windows
+en-t-k0-windows-dvorak.xml	us	dvorak	us_windows	basic	English (US, Dvorak, as on Windows)	en	US	eng	windows
+en-t-k0-windows-dvorakl.xml	us	dvorak-l	us_windows	dvorak_l	English (US, Dvorak for left hand, as on Windows)	en	US	eng	windows
+en-t-k0-windows-dvorakr.xml	us	dvorak-r	us_windows	dvorak_r	English (US, Dvorak for right hand, as on Windows)	en	US	eng	windows
+ga-Ogam-t-k0-windows.xml	ie	ogam	ie_windows	ogam	Ogham (as on Windows)	ie	IE	sga	windows
+hy-t-k0-windows-legacy.xml	am	eastern	am_windows	basic	Armenian (Eastern, legacy, as on Windows)	hy	AM	hye	windows
+hy-AREVMDA-t-k0-windows.xml	am	western	am_windows	western	Armenian (Western, legacy, as on Windows)	hy	AM	hye	windows
+hy-t-k0-windows-phonetic.xml	am	phonetic-alt	am_windows	phonetic	Armenian (Phonetic, as on Windows)	hy	AM	hye	windows
+ka-t-k0-windows-qwerty.xml	ge		ge_windows	basic	Georgian (QWERTY, as on Windows)	ka	GE	kat	windows
+ka-t-k0-windows-var.xml	ge	ergonomic	ge_windows	ergonomic	Georgian (ergonomic, as on Windows)	ka	GE	kat	windows
+ka-t-k0-windows.xml	ge	mess	ge_windows	mes	Georgian (MES, as on Windows)	ka	GE	kat	windows
+ka-t-k0-windows-legacy.xml	ge		ge_windows	legacy	Georgian (legacy, as on Windows)	ka	GE	kat	windows
+ka-t-k0-windows-legacy-var.xml	ge		ge_windows	old	Georgian (Old Alphabets, as on Windows)	ka	GE	kat	windows
+kk-t-k0-windows.xml	kz		kz_windows	basic	Kazakh (as on Windows)	kk	KZ	kaz	windows
+ky-t-k0-windows.xml	kg		kg_windows	basic	Kyrgyz (as on Windows)	ki	KG	kir	windows
+la-Ital-t-k0-windows.xml	us		it_windows	oldital	Old Italic (as on Windows)	it		ett	windows
+bm-t-k0-windows.xml	us		nqo_windows	basic	N'Ko (Bambara, as on Windows)	nqo	ML,GN	nqo	windows
+dyu-t-k0-windows.xml	us		nqo_windows	dyu	N'Ko (Dyula, as on Windows)	nqo	CI,BF	nqo	windows
+man-t-k0-windows.xml	us		nqo_windows	man	N'Ko (Mandinka, as on Windows)	nqo	GN,GM	nqo	windows
+mk-t-k0-windows.xml	mk		mk_windows	basic	Macedonian (Standard, as on Windows)	mk	MK	mkd	windows
+mk-t-k0-windows-legacy.xml	mk	nodeadkeys	mk_windows	legacy	Macedonian (legacy, as on Windows)	mk	MK	mkd	windows
+mn-t-k0-windows.xml	mn		mn_windows	basic	Mongolian (Cyrillic, as on Windows)	mn	MN	mon	windows
+mn-Mong-t-k0-windows.xml	cn	mon_trad	mn_windows	mong	Mongolian (Mongolian script, as on Windows)	mn	MN,CN	mon	windows
+mn-Mong-t-k0-windows-extended.xml	cn	mon_trad	mn_windows	mong_std	Mongolian (Traditional, standard, as on Windows)	mn	MN,CN	mon	windows
+mn-Phag-t-k0-windows.xml	us		mn_windows	phags	Phags-pa (as on Windows)	mn	MN,CN	mon	windows
+ps-t-k0-windows.xml	af	ps	af_windows	basic	Pashto (as on Windows)	ps	AF	pus	windows
+ru-t-k0-windows.xml	ru		ru_windows	basic	Russian (as on Windows)	ru	RU	rus	windows
+ru-t-k0-windows-legacy.xml	ru	typewriter	ru_windows	typewriter	Russian (Typewriter, as on Windows)	ru	RU	rus	windows
+so-Osma-t-k0-windows.xml	us		so_windows	basic	Osmanya (as on Windows)	so	SO	som	windows
+srb-t-k0-windows.xml	us		in_windows	sora	Sora (as on Windows)	srb	IN	srb	windows
+syr-t-k0-windows.xml	sy	syc	sy_windows	basic	Syriac (as on Windows)	syc	SY	syr	windows
+syr-t-k0-windows-qwerty.xml	sy	syc_phonetic	sy_windows	phonetic	Syriac (Phonetic, as on Windows)	syc	SY	syr	windows
+th-t-k0-windows.xml	th		th_windows	basic	Thai (Kedmanee, as on Windows)	th	TH	tha	windows
+th-t-k0-windows-var.xml	th		th_windows	kedmanee_nsl	Thai (Kedmanee, non-ShiftLock, as on Windows)	th	TH	tha	windows
+th-t-k0-windows-patta.xml	th	pat	th_windows	pattachote	Thai (Pattachote, as on Windows)	th	TH	tha	windows
+th-t-k0-windows-patta-var.xml	th	pat	th_windows	pattachote_nsl	Thai (Pattachote, non-ShiftLock, as on Windows)	th	TH	tha	windows
+uz-t-k0-windows.xml	uz		uz_windows	basic	Uzbek (Cyrillic, as on Windows)	uz	UZ	uzb	windows
+ne-t-k0-windows.xml	np		np_windows	basic	Nepali (as on Windows)	ne	NP	nep	windows
+lis-t-k0-windows-extended.xml	us		lis_windows	basic	Lisu (as on Windows)	lis	CN,MM	lis	windows
+khb-t-k0-windows.xml	us		khb_windows	basic	New Tai Lue (as on Windows)	khb	CN	khb	windows

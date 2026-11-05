@@ -12,3 +12,14 @@ xkb_symbols "basic" {
     // shiftaltgr: Windows ¦ / Linux ¬
     key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_grave, notsign, brokenbar, brokenbar ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "ogam" {
+    include "ie(ogam)"
+    name[Group1] = "Ogham (as on Windows)";
+    // Windows layout: "Ogham" (CLDR ga-Ogam-t-k0-windows.xml); 2 keys differ from Linux
+    // base: Windows   / Linux None; caps: Windows   / Linux None
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U1680, NoSymbol, NoSymbol, NoSymbol ] };
+    // base: Windows ᚛ / Linux  ; shift: Windows ᚜ / Linux  ; caps: Windows ᚛ / Linux  ; capsshift: Windows ᚜ / Linux  
+    key <BKSL> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U169B, U169C, U1680, U1680 ] };
+};
