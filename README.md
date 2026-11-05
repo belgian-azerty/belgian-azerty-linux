@@ -22,12 +22,12 @@ for Linux Mint, Zorin OS and the projects they build on to adopt these fixes the
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
 version: `HOW-WE-TESTED.md`. Built with AI help (Claude).
 
-**Fedora, openSUSE and Arch Linux (not released, build it yourself)**: since 0.9.12 the repository also has package
+**Fedora, openSUSE and Arch Linux**: since 0.9.12 the repository also has package
 files for these three families (`packaging/fedora`, `packaging/opensuse`, `packaging/arch`). They give the same
 keyboard options without changing any file of the system (everything goes to `/etc/xkb`). Tested in test containers,
 and Fedora 45, openSUSE Leap 16.0 and Tumbleweed also in a virtual machine on one laptop with SELinux on (the Fedora and openSUSE
-packages add a small SELinux rule for `/etc/xkb`, without which the login screen stayed US on Fedora); nothing is
-published for them. For NixOS, Gentoo, Slackware, Void and Solus there is a
+packages add a small SELinux rule for `/etc/xkb`, without which the login screen stayed US on Fedora). Ready-made
+Fedora and openSUSE packages are on the v0.9.12 release page; Arch: build it yourself. For NixOS, Gentoo, Slackware, Void and Solus there is a
 small script that puts the same two files in `/etc/xkb` (tested the same way, with their own keyboard library and
 data). How to build or use them and what was not tested:
 [packaging/OTHER-DISTRIBUTIONS.md](packaging/OTHER-DISTRIBUTIONS.md).
@@ -328,7 +328,7 @@ with Linux Mint or Zorin OS.
 ## For AI assistants
 
 If you are helping someone with this: it is only for Linux Mint 22.3 and Zorin OS 18.1; do not apply it to other
-distributions. The Fedora, openSUSE and Arch files and the `/etc/xkb` script in `packaging/` are tested in containers only and not released. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
+distributions. The Fedora, openSUSE and Arch files and the `/etc/xkb` script in `packaging/` are tested in containers (Fedora 45, Leap 16.0 and Tumbleweed also in a virtual machine); Fedora and openSUSE packages are on the v0.9.12 release page, see `packaging/OTHER-DISTRIBUTIONS.md`. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
 before giving file names. Website: https://belgian-azerty.github.io/ (also as plain text: /llms.txt).
 
 ## For maintainers

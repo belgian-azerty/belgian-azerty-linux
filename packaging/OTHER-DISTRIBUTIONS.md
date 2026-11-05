@@ -1,8 +1,10 @@
 # Other distributions: Fedora, openSUSE, Arch Linux, and NixOS, Gentoo, Slackware, Void, Solus
 
 **Status (4 November 2026): tested in test containers, and on Fedora 45, openSUSE Leap 16.0 and Tumbleweed in a virtual
-machine on one laptop (with SELinux on, see below). Nothing is published for these systems**: no Fedora or
-openSUSE repository, no AUR entry, no ready-made packages on the release page. The project itself is made for Linux
+machine on one laptop (with SELinux on, see below). Ready-made Fedora and openSUSE packages are on the
+[v0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12)**
+(not signed; check them with `SHA256SUMS-rpm`). No Fedora or openSUSE repository, no AUR entry yet; Arch: build it
+yourself (below). The project itself is made for Linux
 Mint 22.3 and Zorin OS 18.1 (see the README); these files are the first step towards other Linux families. Fedora, openSUSE and Arch have package files (below);
 for NixOS, Gentoo, Slackware, Void and Solus there is a small script instead (see "No package: the script").
 
@@ -44,7 +46,21 @@ plus the Ctrl+Alt = AltGr rules for keyd.
   system part and the users' stored GNOME settings (tested in containers only, see below). On openSUSE and Arch the
   script stops without changing anything.
 
-## Build and install
+## Install the ready-made packages (Fedora and openSUSE)
+
+Download the files for your system from the
+[v0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) into one folder,
+check them with `sha256sum -c --ignore-missing SHA256SUMS-rpm`, then:
+
+- Fedora 45 (for 44: `fc44` instead of `fc45`):
+  `sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm`
+- openSUSE Tumbleweed (for Leap 16.0: `leap16.0` instead of `tumbleweed`):
+  `sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm`
+
+Then switch the options on (see above). These are the same files the build steps below make, built in test
+containers from the public v0.9.12 archive with the package files on `main`.
+
+## Build and install yourself
 
 Everything below builds from the release archive of the matching tag (here v0.9.12); the version is in the spec file
 or PKGBUILD. Run it as a normal user, with `sudo` only for the install.

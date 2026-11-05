@@ -6,6 +6,9 @@ that were never published. They are listed because the test evidence refers to t
 
 ## Not released yet (after 0.9.12)
 
+The Fedora and openSUSE packages below (`belgian-azerty-windows` 0.9.12-2, `keyd-belgian-windows` 0.9.12-1, keyd
+2.6.0 for Fedora) were added to the v0.9.12 release page on 5 November 2026, built from the v0.9.12 archive.
+
 Nothing changes on Linux Mint, Zorin OS, Ubuntu or Debian: the keyboard types exactly as with 0.9.12.
 
 - **Package files for Fedora, openSUSE and Arch Linux**, to build yourself (`packaging/OTHER-DISTRIBUTIONS.md`):
