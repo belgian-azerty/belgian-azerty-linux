@@ -3,7 +3,7 @@
 # Wayland) reads before the system folder. X11 sessions get them through be-azerty-x11-load at login. Not the text console.
 # Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
 pkgname=belgian-azerty-windows
-pkgver=0.9.12
+pkgver=0.9.13
 pkgrel=1
 pkgdesc='Belgian AZERTY like on Windows: Caps Lock, Shift+AltGr accents, Apple option (XKB options in /etc/xkb)'
 arch=('any')
@@ -16,7 +16,8 @@ backup=('etc/xkb/rules/evdev' 'etc/xkb/symbols/be_capslock' 'etc/xdg/autostart/b
 install=belgian-azerty-windows.install
 options=('!debug' '!strip')
 source=("belgian-azerty-linux-$pkgver.tar.gz::https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('b9ea122633f0cacd6267c433d6bb74c9bcf4c1eb45c0f3ce01eb932a2c566afc')
+# the checksum of the v0.9.13 archive is filled in once that tag exists (until then makepkg skips the check)
+sha256sums=('SKIP')
 
 build() {
   cd belgian-azerty-linux-$pkgver

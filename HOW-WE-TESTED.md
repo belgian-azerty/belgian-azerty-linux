@@ -4,6 +4,26 @@ Short version: **tested in emulators and on one laptop, for Linux Mint 22.3 and 
 been accepted by the Linux projects themselves yet. Technical notes are in `NOTES.md`; raw results are in
 `evidence/`.
 
+## 0.9.13: X11 sessions (`be-azerty-x11-load`, Fedora, openSUSE, Arch and the `/etc/xkb` script)
+
+0.9.13 changes nothing on Debian, Ubuntu, Linux Mint or Zorin OS: their packages stay 0.9.12. The X server does not read
+`/etc/xkb`, so on X11 the packages for other families lost our options without a message; the loader puts them in.
+- **Test containers, 5 November 2026**: on Void, Gentoo, NixOS 26.05 and unstable, Slackware 15.0 and current, and
+  Solus (each with its own X and keyboard packages) the keymap the loader would load has 0 differences with the
+  Wayland keymap (1896 key states for each of be, be(oss), be,us with a group switch, and the Caps Lock option alone);
+  nothing happens on Wayland, without a display or without our options; a user's own file with our name is kept; 14/14
+  checks each (Void 16/16). Fedora 45, Tumbleweed and Arch: the packages build, install, load with 0 differences and
+  remove cleanly. Gentoo's and nixpkgs-unstable's X library do not know the key name `SSHARP` (ẞ); the loader writes
+  `U1E9E` instead. The cloud's virtual X server ignores every keymap change, so typing could not be checked there.
+- **A real X11 session, 5 November 2026**: Fedora 45 Xfce live (Xorg, LightDM, SELinux enforcing) in a virtual machine
+  on one laptop, keys pressed through the virtual machine. With 0.9.12-2 the session types the Linux way; with a
+  package built from the 0.9.13 package files it types as on Windows after a new login; `setxkbmap be` undoes it and
+  running the loader again restores it; Xfce's keyboard dialog keeps it; the LightDM login screen keeps the Linux way;
+  removal is clean. Details: `packaging/OTHER-DISTRIBUTIONS.md`, "X11, in a virtual machine".
+- Not tested: other X11 desktops (MATE, Cinnamon or KDE on X11, window managers, startx), the released 0.9.13 files
+  themselves on X11, a real PC, a keyboard plugged in after login or after waking from sleep (the X server probably
+  gives it its own settings, without our options, until the next login or a new run of `be-azerty-x11-load`).
+
 ## After 0.9.12: Ubuntu 26.04.1 and openSUSE Tumbleweed KDE, live, in a virtual machine (3 and 4 November 2026)
 
 On one laptop, in a virtual machine (QEMU), live sessions only (nothing installed on a disk):

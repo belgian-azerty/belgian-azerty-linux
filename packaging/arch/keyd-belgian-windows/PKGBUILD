@@ -2,7 +2,7 @@
 # package (2.6.0), not rebuilt.
 # Maintainer: Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com>
 pkgname=keyd-belgian-windows
-pkgver=0.9.12
+pkgver=0.9.13
 pkgrel=1
 pkgdesc='Ctrl+Alt works as AltGr, as on Windows (keyd rules for Belgian keyboards)'
 arch=('any')
@@ -13,7 +13,8 @@ backup=('etc/keyd/be-winaltgr.conf')
 install=keyd-belgian-windows.install
 options=('!debug' '!strip')
 source=("belgian-azerty-linux-$pkgver.tar.gz::https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('b9ea122633f0cacd6267c433d6bb74c9bcf4c1eb45c0f3ce01eb932a2c566afc')
+# the checksum of the v0.9.13 archive is filled in once that tag exists (until then makepkg skips the check)
+sha256sums=('SKIP')
 
 package() {
   cd belgian-azerty-linux-$pkgver

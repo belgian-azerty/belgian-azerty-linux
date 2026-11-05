@@ -1,14 +1,14 @@
 # Other distributions: Fedora, openSUSE, Arch Linux, and NixOS, Gentoo, Slackware, Void, Solus
 
-**Status (4 November 2026): tested in test containers, and on Fedora 45, openSUSE Leap 16.0 and Tumbleweed in a virtual
-machine on one laptop (with SELinux on, see below). Ready-made Fedora and openSUSE packages are on the
-[v0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12)**
+**Status (5 November 2026, 0.9.13): tested in test containers, and on Fedora 45, openSUSE Leap 16.0 and Tumbleweed in a virtual
+machine on one laptop (with SELinux on, see below; X11 on Fedora 45 Xfce). Ready-made Fedora and openSUSE packages are on the
+[v0.9.13 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13)**
 (not signed; check them with `SHA256SUMS-rpm`). No Fedora or openSUSE repository, no AUR entry yet; Arch: build it
 yourself (below). The project itself is made for Linux
 Mint 22.3 and Zorin OS 18.1 (see the README); these files are the first step towards other Linux families. Fedora, openSUSE and Arch have package files (below);
 for NixOS, Gentoo, Slackware, Void and Solus there is a small script instead (see "No package: the script").
 
-The packages give the same three keyboard options as the Debian/Ubuntu package of 0.9.12: `caps:be_windows` (Caps Lock
+The packages give the same three keyboard options as the Debian/Ubuntu package of 0.9.13: `caps:be_windows` (Caps Lock
 as on Windows), `be_azerty:accents` (Shift+AltGr accents as on Windows) and `be_azerty:mac` (Belgian Apple keyboards),
 plus the Ctrl+Alt = AltGr rules for keyd.
 
@@ -22,14 +22,17 @@ plus the Ctrl+Alt = AltGr rules for keyd.
   on Fedora 45 and Leap 16.0 in a virtual machine (below). KDE
   Plasma on Wayland: works in the session after logging out and in (Tumbleweed live, virtual machine); its login screen
   (SDDM on X11) types Belgian but without our Caps Lock option. The X server does not read `/etc/xkb` and silently drops our options; for
-  X11 sessions the package (not yet released, see below) adds `be-azerty-x11-load`. Not for the text console.
-- **X11 sessions (not released yet)**: `be-azerty-x11-load` starts at login (`/etc/xdg/autostart`), asks the X server
+  X11 sessions the package (from 0.9.13, see below) adds `be-azerty-x11-load`. Not for the text console.
+- **X11 sessions (from 0.9.13)**: `be-azerty-x11-load` starts at login (`/etc/xdg/autostart`), asks the X server
   which keyboard settings the session wants, lets libxkbcommon build that keymap from `/etc/xkb` and loads it with
   `xkbcomp`. It does nothing on Wayland or when none of our options is set, and changes no file. It needs `xkbcli`,
   `xkbcomp` and `setxkbmap` (Fedora and openSUSE: recommended by the package, on openSUSE use `zypper install
-  --recommends`; Arch: install `xorg-xkbcomp` and `xorg-setxkbmap`). Tested in test containers only, up to the
-  keymap the X server would load (0 differences with the Wayland keymap); not yet in a real X11 session, at an X11
-  login screen, or with desktops that set the keyboard again after login.
+  --recommends`; Arch: install `xorg-xkbcomp` and `xorg-setxkbmap`). Tested in test containers up to the keymap
+  the X server would load (0 differences with the Wayland keymap), and in one real X11 session: Fedora 45 Xfce live
+  (Xorg, LightDM) in a virtual machine on one laptop (below). The login screen itself keeps the Linux behaviour (the
+  loader starts only after login). Not tested: other X11 desktops (MATE, Cinnamon, KDE on X11, window managers), and
+  a keyboard plugged in after login or after waking from sleep: the X server probably gives such a keyboard its own
+  settings without our options; then log out and in, or run `be-azerty-x11-load` again.
 - **keyd**: Fedora has no keyd package, so `fedora/keyd.spec` builds keyd 2.6.0 unchanged from the official release.
   openSUSE (Tumbleweed 2.6.0, Leap 16.0 2.5.0 from Backports) and Arch (2.6.0 in [extra]) have their own, which our
   `keyd-belgian-windows` package uses.
@@ -56,20 +59,20 @@ plus the Ctrl+Alt = AltGr rules for keyd.
 ## Install the ready-made packages (Fedora and openSUSE)
 
 Download the files for your system from the
-[v0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) into one folder,
+[v0.9.13 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13) into one folder,
 check them with `sha256sum -c --ignore-missing SHA256SUMS-rpm`, then:
 
 - Fedora 45 (for 44: `fc44` instead of `fc45`):
-  `sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm`
+  `sudo dnf install ./belgian-azerty-windows-0.9.13-1.fc45.noarch.rpm ./keyd-belgian-windows-0.9.13-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm`
 - openSUSE Tumbleweed (for Leap 16.0: `leap16.0` instead of `tumbleweed`):
-  `sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm`
+  `sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.13-1.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.13-1.tumbleweed.noarch.rpm`
 
 Then switch the options on (see above). These are the same files the build steps below make, built in test
-containers from the public v0.9.12 archive with the package files on `main`.
+containers from the 0.9.13 source with the package files on `main`.
 
 ## Build and install yourself
 
-Everything below builds from the release archive of the matching tag (here v0.9.12); the version is in the spec file
+Everything below builds from the release archive of the matching tag (here v0.9.13); the version is in the spec file
 or PKGBUILD. Run it as a normal user, with `sudo` only for the install.
 
 **Fedora 44 or 45**
@@ -78,7 +81,7 @@ sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macro
 git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
 rpmdev-setuptree
 for s in packaging/fedora/*.spec; do spectool -g -R "$s" && rpmbuild -ba "$s"; done
-R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.13-*.rpm
 ```
 
 **openSUSE Tumbleweed or Leap 16.0**
@@ -86,9 +89,9 @@ R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/
 sudo zypper install rpm-build systemd-rpm-macros git curl
 git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
 SRC=$(rpm --eval %_sourcedir); mkdir -p "$SRC"
-curl -L -o "$SRC"/belgian-azerty-linux-0.9.12.tar.gz https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v0.9.12.tar.gz
+curl -L -o "$SRC"/belgian-azerty-linux-0.9.13.tar.gz https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v0.9.13.tar.gz
 for s in packaging/opensuse/*.spec; do rpmbuild -ba "$s"; done
-sudo zypper install --allow-unsigned-rpm $(rpm --eval %_rpmdir)/noarch/*-0.9.12-*.rpm
+sudo zypper install --allow-unsigned-rpm $(rpm --eval %_rpmdir)/noarch/*-0.9.13-*.rpm
 ```
 
 **Arch Linux**
@@ -98,7 +101,8 @@ git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-a
 (cd belgian-azerty-windows && makepkg -si)
 (cd keyd-belgian-windows && makepkg -si)
 ```
-makepkg checks the archive against the SHA256 in the PKGBUILD.
+makepkg checks the archive against the SHA256 in the PKGBUILD (for v0.9.13 this is filled in just after the release;
+until then the PKGBUILD says `SKIP`).
 
 To remove: `sudo dnf remove`, `sudo zypper remove` or `sudo pacman -R` with `belgian-azerty-windows keyd-belgian-windows`
 (keyd itself stays and can be removed on its own).
@@ -129,7 +133,8 @@ sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove      # takes out only our 
   default). `be-azerty-etc-xkb.sh install` therefore also puts `be-azerty-x11-load` in `/usr/local/bin`, with a start entry
   in `/etc/xdg/autostart` and, where the folder exists, `/etc/X11/xinit/xinitrc.d` (startx). It needs `xkbcli`,
   `xkbcomp` and `setxkbmap`. Tested on 5 November 2026 in test containers on all the systems below, up to the keymap
-  the X server would load (0 differences with the Wayland keymap); not in a real X11 session yet.
+  the X server would load (0 differences with the Wayland keymap); a real X11 session only on Fedora 45 (with the
+  package, above), not on these systems.
 
 ## What was tested (3 November 2026, test containers, no desktop)
 
@@ -167,6 +172,20 @@ On one laptop, in a virtual machine (QEMU), with SELinux enforcing:
 - Before the fix (0.9.12-1) on Fedora 45: `localectl` refused every layout and the login screen stayed US.
 - Raw results: `evidence/raw-logs/2026-11-03-laptop-emulator-p3/` and `evidence/raw-logs/2026-11-04-laptop-tumbleweed-selinux/`
   (see `HOW-WE-TESTED.md`).
+
+### X11, in a virtual machine (5 November 2026, be-azerty-x11-load)
+
+On the same laptop, in a virtual machine: Fedora 45 Xfce live (Xorg, LightDM, no Wayland session), SELinux enforcing.
+Tested before the 0.9.13 release, with a package built from the same package files.
+- **0.9.12-2 (without the loader)**: the session types the Linux way (Caps Lock on, then the four keys right of `²`
+  give `&É"'`; Shift+AltGr on `ù`, then `e`, gives `ě`). `setxkbmap -query` still lists our options, but the X
+  server has silently dropped them, with nothing in the Xorg log.
+- **With the loader**: after a restart of LightDM (a new login), the same keys give `1234` and `é`, as on Windows.
+  The package pulled in only `xkbcli` (`libxkbcommon-utils`); `xkbcomp` and `setxkbmap` were already there.
+- `setxkbmap be` brings back the Linux way; running `be-azerty-x11-load` again restores ours.
+- Xfce's keyboard settings ("Use system defaults" on): opening and closing the dialog kept our keymap.
+- The LightDM login screen types the Linux way (the loader starts only after login).
+- `dnf remove`: the loader, its start entry, `/etc/xkb` and the SELinux rule are gone.
 
 The cloud tests (`tests/rpm-cycle.sh` with `SELINUX_POLICY=1`, policy installed but not enforcing, as containers have
 no SELinux): Fedora 44 and 45 23/23, Tumbleweed 24/24, Leap 16.0 23/23; without the policy 18/18 and 19/19 as before.

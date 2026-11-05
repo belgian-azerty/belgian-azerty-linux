@@ -7,7 +7,8 @@
 # Runs by itself at login (autostart); by hand:
 #   be-azerty-x11-load            load it now (does nothing on Wayland, or when none of our options is set)
 #   be-azerty-x11-load --print    only print the keymap it would load
-# Needs xkbcli (libxkbcommon's tools), xkbcomp and setxkbmap. Tested in containers only, up to the file xkbcomp loads.
+# Needs xkbcli (libxkbcommon's tools), xkbcomp and setxkbmap. Tested in test containers and in one X11 session
+# (Fedora 45 Xfce in a virtual machine); see HOW-WE-TESTED.md. Not for the X11 login screen.
 set -u
 PRINT=0; [ "${1:-}" = --print ] && PRINT=1
 say() { echo "be-azerty-x11-load: $*" >&2; }

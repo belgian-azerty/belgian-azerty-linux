@@ -2,8 +2,8 @@
 # package, nothing of openSUSE's is touched: the rules and symbols go to /etc/xkb, which libxkbcommon (and so GNOME's
 # mutter on Wayland) reads before the system folder. X11 sessions get them through be-azerty-x11-load at login. Not the text console.
 Name:           belgian-azerty-windows
-Version:        0.9.12
-Release:        2%{?dist}
+Version:        0.9.13
+Release:        1%{?dist}
 Summary:        Belgian AZERTY like on Windows: Caps Lock, Shift+AltGr accents, Apple option
 License:        MIT
 URL:            https://github.com/belgian-azerty/belgian-azerty-linux
@@ -89,6 +89,10 @@ fi
 %{_datadir}/selinux/packages/%{name}
 
 %changelog
+* Thu Nov 05 2026 Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com> - 0.9.13-1
+- X11 sessions: be-azerty-x11-load (in /usr/bin, started at login from /etc/xdg/autostart) loads our options into
+  the X server, which does not read /etc/xkb. Does nothing on Wayland or when none of our options is set.
+
 * Wed Nov 04 2026 Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com> - 0.9.12-2
 - SELinux: /etc/xkb gets the label usr_t (small file-context module, added on install, removed with the package).
   Without it systemd-localed may not read our rules file and localectl refuses every layout (openSUSE, enforcing).

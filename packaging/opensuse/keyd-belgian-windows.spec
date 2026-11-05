@@ -1,7 +1,7 @@
 # Ctrl+Alt = AltGr as on Windows, for Belgian keyboards (keyd rules), openSUSE build. keyd itself comes from openSUSE
 # (Tumbleweed Oss 2.6.0, Leap 16.0 Backports 2.5.0).
 Name:           keyd-belgian-windows
-Version:        0.9.12
+Version:        0.9.13
 Release:        1%{?dist}
 Summary:        Ctrl+Alt works as AltGr, as on Windows (keyd rules for Belgian keyboards)
 License:        MIT
@@ -49,5 +49,8 @@ fi
 %{_unitdir}/keyd.service.d/belgian-windows-restart.conf
 
 %changelog
+* Thu Nov 05 2026 Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com> - 0.9.13-1
+- Same files as 0.9.12; version kept in step with belgian-azerty-windows; source from the v0.9.13 tag.
+
 * Tue Nov 03 2026 Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com> - 0.9.12-1
 - First openSUSE build (from the Fedora spec): files in /etc/xkb or /etc/keyd only; no be-azerty-fix command yet.

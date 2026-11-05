@@ -1,7 +1,7 @@
 # Ctrl+Alt = AltGr as on Windows, for Belgian keyboards (keyd rules), Fedora build. keyd itself comes from our own
 # build of the official release (Fedora has no keyd), see keyd.spec next to this file.
 Name:           keyd-belgian-windows
-Version:        0.9.12
+Version:        0.9.13
 Release:        1%{?dist}
 Summary:        Ctrl+Alt works as AltGr, as on Windows (keyd rules for Belgian keyboards)
 License:        MIT
@@ -49,6 +49,9 @@ fi
 %{_unitdir}/keyd.service.d/belgian-windows-restart.conf
 
 %changelog
+* Thu Nov 05 2026 Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com> - 0.9.13-1
+- Same files as 0.9.12; version kept in step with belgian-azerty-windows; source from the v0.9.13 tag.
+
 * Tue Nov 03 2026 Younes <linuxbelgiumkeyboard.rc0g4@aleeas.com> - 0.9.12-1
 - Same files as 0.9.11 (the 0.9.12 change is for Debian and Ubuntu only); source from the v0.9.12 tag.
 

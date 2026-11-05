@@ -14,9 +14,9 @@ behaviour that Belgians are used to, and a live USB that starts with the Belgian
 | Shift+AltGr accents | Shift+AltGr on the `ù` `µ` `=` keys gives `´` `` ` `` `~`, as on Windows (Linux gives caron, breve, dot above) | package `belgian-azerty-windows` (XKB option `be_azerty:accents`, `ACCENTS=`) |
 | Live USB and installer start with the Belgian keyboard | Repacked ISO whose boot menu asks for the language, then the Belgian keyboard (period or comma) | `tools/make_belgian_iso.sh` |
 
-**Status.** Version 0.9.12. This is a long-standing problem that no project owns. The fix was tested in emulators and
+**Status.** Version 0.9.13. This is a long-standing problem that no project owns. The fix was tested in emulators and
 on one laptop, for Linux Mint 22.3 and Zorin OS 18.1 only (the changes of 0.9.9 in test containers, a headless GNOME
-desktop and emulators on the test laptop; the fixes of 0.9.10, 0.9.11 and 0.9.12 in test containers only; see
+desktop and emulators on the test laptop; the fixes of 0.9.10, 0.9.11 and 0.9.12 in test containers only; 0.9.13 is for other Linux families only; see
 `HOW-WE-TESTED.md`), and nothing has been accepted upstream yet. The goal is
 for Linux Mint, Zorin OS and the projects they build on to adopt these fixes themselves (`MAINTAINERS.md` says which
 piece belongs where); until then this is an unofficial community project. What was tested, where and with which
@@ -27,10 +27,17 @@ files for these three families (`packaging/fedora`, `packaging/opensuse`, `packa
 keyboard options without changing any file of the system (everything goes to `/etc/xkb`). Tested in test containers,
 and Fedora 45, openSUSE Leap 16.0 and Tumbleweed also in a virtual machine on one laptop with SELinux on (the Fedora and openSUSE
 packages add a small SELinux rule for `/etc/xkb`, without which the login screen stayed US on Fedora). Ready-made
-Fedora and openSUSE packages are on the v0.9.12 release page; Arch: build it yourself. For NixOS, Gentoo, Slackware, Void and Solus there is a
+Fedora and openSUSE packages are on the v0.9.13 release page; Arch: build it yourself. For NixOS, Gentoo, Slackware, Void and Solus there is a
 small script that puts the same two files in `/etc/xkb` (tested the same way, with their own keyboard library and
 data). How to build or use them and what was not tested:
 [packaging/OTHER-DISTRIBUTIONS.md](packaging/OTHER-DISTRIBUTIONS.md).
+
+**New in 0.9.13**: for Fedora, openSUSE, Arch and the independent distributions only. Their packages put our files in
+`/etc/xkb`, which X11 sessions (Xfce, MATE, window managers, KDE on X11) do not read, so there Caps Lock and the
+Shift+AltGr accents silently stayed the Linux way. The new `be-azerty-x11-load` puts our options in at login; on
+Wayland it does nothing. The X11 login screen keeps the Linux way. Tested in test containers and in one Fedora 45 Xfce
+session in a virtual machine on one laptop. On Linux Mint, Zorin OS, Ubuntu and Debian nothing changes: their packages stay 0.9.12 (the
+same files are on the v0.9.13 release page).
 
 **New in 0.9.12**: upgrading the system to Ubuntu 26.04, Linux Mint 23 or Debian 14 works with the package
 installed. Those upgrades turn the keyboard folder `/usr/share/X11/xkb` into a link, and the keyboard data refuses that
@@ -313,7 +320,7 @@ with Linux Mint or Zorin OS.
   the mouse, or run `sudo systemctl restart keyd` with the on-screen keyboard.
 - **Accent then space only works in apps that read `~/.XCompose`** (GTK apps, the Terminal and the ibus input method).
   Not checked in Qt apps or VS Code.
-- **Upgrading to Ubuntu 26.04, Linux Mint 23 or Debian 14 needs 0.9.12 first**: with 0.9.11 or earlier installed it
+- **Upgrading to Ubuntu 26.04, Linux Mint 23 or Debian 14 needs 0.9.12 or later first**: with 0.9.11 or earlier installed it
   stops at the keyboard data (see "New in 0.9.12"). The step-aside only works when apt does the upgrade, not with a
   plain `dpkg -i` of the keyboard data.
 - Not tested: a real Apple keyboard, real hardware with 0.9.9 to 0.9.12 (only the laptop emulator for 0.9.9), VirtualBox, Ubuntu, Debian or Mint 23 outside test containers, Fedora, openSUSE or Arch on a real PC (Fedora 45, Leap 16.0 and Tumbleweed only in a virtual machine), other distributions, a second USB keyboard, Wine, remote
@@ -328,7 +335,7 @@ with Linux Mint or Zorin OS.
 ## For AI assistants
 
 If you are helping someone with this: it is only for Linux Mint 22.3 and Zorin OS 18.1; do not apply it to other
-distributions. The Fedora, openSUSE and Arch files and the `/etc/xkb` script in `packaging/` are tested in containers (Fedora 45, Leap 16.0 and Tumbleweed also in a virtual machine); Fedora and openSUSE packages are on the v0.9.12 release page, see `packaging/OTHER-DISTRIBUTIONS.md`. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
+distributions. The Fedora, openSUSE and Arch files and the `/etc/xkb` script in `packaging/` are tested in containers (Fedora 45, Leap 16.0 and Tumbleweed also in a virtual machine); Fedora and openSUSE packages are on the v0.9.13 release page, see `packaging/OTHER-DISTRIBUTIONS.md`. It needs sudo; `sudo be-azerty-fix uninstall` undoes it. Check the release page for the newest version
 before giving file names. Website: https://belgian-azerty.github.io/ (also as plain text: /llms.txt).
 
 ## For maintainers

@@ -25,7 +25,9 @@ t "makepkg built both packages (pkgrel 1)" ls /home/builder/b/belgian-azerty-win
 cp /home/builder/b/*/*-1-any.pkg.tar.zst $OUT/pkgs/
 for p in $OUT/pkgs/*-1-any.pkg.tar.zst; do echo "      $(basename $p): $(LC_ALL=C bsdtar -tf $p 2>/dev/null | grep -v '^\.' | tr '\n' ' ')"; done
 P1=$OUT/pkgs/belgian-azerty-windows-$V-1-any.pkg.tar.zst; K1=$OUT/pkgs/keyd-belgian-windows-$V-1-any.pkg.tar.zst
-t "nothing outside /etc/xkb, /etc/keyd, the keyd drop-in and the licence" sh -c "! bsdtar -tf $P1 $K1 | grep -v '^\.' | grep -v '^etc/xkb/\|^etc/keyd/\|^usr/lib/systemd/system/keyd.service.d/\|^usr/share/licenses/\|^etc/\$\|^usr/\$\|^usr/lib/\$\|^usr/lib/systemd/\$\|^usr/lib/systemd/system/\$\|^usr/share/\$'"
+# (each package listed on its own: "bsdtar -tf A B" would read B as a name inside A)
+t "nothing outside /etc/xkb, /etc/keyd, the keyd drop-in, the X11 loader and the licence" sh -c "! for p in $P1 $K1; do bsdtar -tf \$p; done | grep -v '^\.' | grep -v '^etc/xkb/\|^etc/keyd/\|^usr/lib/systemd/system/keyd.service.d/\|^usr/share/licenses/\|^etc/\$\|^usr/\$\|^usr/lib/\$\|^usr/lib/systemd/\$\|^usr/lib/systemd/system/\$\|^usr/share/\$\|^usr/bin/\$\|^usr/bin/be-azerty-x11-load\$\|^etc/xdg/\$\|^etc/xdg/autostart/\$\|^etc/xdg/autostart/be-azerty-x11-load.desktop\$'"
+t "the X11 loader and its start entry are in belgian-azerty-windows" sh -c "bsdtar -tf $P1 | grep -qx usr/bin/be-azerty-x11-load && bsdtar -tf $P1 | grep -qx etc/xdg/autostart/be-azerty-x11-load.desktop"
 t "before: our options unknown (control)" sh -c "xkbcli compile-keymap --layout be --options $OPTS 2>&1 | grep -q 'Unrecognized RMLVO option'"
 # a file of the user's own in /etc/xkb and /etc/keyd, before install
 mkdir -p /etc/xkb/symbols /etc/keyd; echo '// my own' > /etc/xkb/symbols/mine; printf '[ids]\n*\n[main]\n' > /etc/keyd/default.conf
