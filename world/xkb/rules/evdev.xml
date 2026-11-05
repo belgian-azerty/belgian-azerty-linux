@@ -401,5 +401,168 @@
         <languageList><iso639Id>tgk</iso639Id></languageList>
       </configItem>
     </layout>
+    <layout>
+      <configItem>
+        <name>ara_windows</name>
+        <shortDescription>ar</shortDescription>
+        <description>Arabic (101, as on Windows)</description>
+        <languageList><iso639Id>ara</iso639Id></languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>102</name>
+            <shortDescription>ar</shortDescription>
+            <description>Arabic (102, as on Windows)</description>
+            <languageList><iso639Id>ara</iso639Id></languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>azerty</name>
+            <shortDescription>ar</shortDescription>
+            <description>Arabic (102, AZERTY, as on Windows)</description>
+            <languageList><iso639Id>ara</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+    <layout>
+      <configItem>
+        <name>iq_windows</name>
+        <shortDescription>ku</shortDescription>
+        <description>Kurdish (Central, Arabic script, as on Windows)</description>
+        <countryList><iso3166Id>IQ</iso3166Id></countryList>
+        <languageList><iso639Id>kur</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>ir_windows</name>
+        <shortDescription>fa</shortDescription>
+        <description>Persian (as on Windows)</description>
+        <countryList><iso3166Id>IR</iso3166Id></countryList>
+        <languageList><iso639Id>per</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>pk_windows</name>
+        <shortDescription>ur</shortDescription>
+        <description>Urdu (as on Windows)</description>
+        <countryList><iso3166Id>PK</iso3166Id><iso3166Id>IN</iso3166Id></countryList>
+        <languageList><iso639Id>urd</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>in_windows</name>
+        <shortDescription>hi</shortDescription>
+        <description>Hindi (Devanagari INSCRIPT, as on Windows)</description>
+        <countryList><iso3166Id>IN</iso3166Id></countryList>
+        <languageList><iso639Id>hin</iso639Id></languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>hindi_trad</name>
+            <shortDescription>hi</shortDescription>
+            <description>Hindi (Traditional, as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>hin</iso639Id></languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>guj</name>
+            <shortDescription>gu</shortDescription>
+            <description>Gujarati (as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>guj</iso639Id></languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>kan</name>
+            <shortDescription>kn</shortDescription>
+            <description>Kannada (as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>kan</iso639Id></languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>mal</name>
+            <shortDescription>ml</shortDescription>
+            <description>Malayalam (as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>mal</iso639Id></languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>ori</name>
+            <shortDescription>or</shortDescription>
+            <description>Odia (as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>ori</iso639Id></languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>guru</name>
+            <shortDescription>pa</shortDescription>
+            <description>Punjabi (Gurmukhi, as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>pan</iso639Id></languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>tel</name>
+            <shortDescription>te</shortDescription>
+            <description>Telugu (as on Windows)</description>
+            <countryList><iso3166Id>IN</iso3166Id></countryList>
+            <languageList><iso639Id>tel</iso639Id></languageList>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+    <layout>
+      <configItem>
+        <name>kh_windows</name>
+        <shortDescription>km</shortDescription>
+        <description>Khmer (NIDA, as on Windows)</description>
+        <countryList><iso3166Id>KH</iso3166Id></countryList>
+        <languageList><iso639Id>khm</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>la_windows</name>
+        <shortDescription>lo</shortDescription>
+        <description>Lao (as on Windows)</description>
+        <countryList><iso3166Id>LA</iso3166Id></countryList>
+        <languageList><iso639Id>lao</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>vn_windows</name>
+        <shortDescription>vi</shortDescription>
+        <description>Vietnamese (as on Windows)</description>
+        <countryList><iso3166Id>VN</iso3166Id></countryList>
+        <languageList><iso639Id>vie</iso639Id></languageList>
+      </configItem>
+    </layout>
+    <layout>
+      <configItem>
+        <name>ma_windows</name>
+        <shortDescription>ber</shortDescription>
+        <description>Berber (Tifinagh, extended, as on Windows)</description>
+        <countryList><iso3166Id>MA</iso3166Id></countryList>
+        <languageList><iso639Id>ber</iso639Id></languageList>
+      </configItem>
+    </layout>
   </layoutList>
 </xkbConfigRegistry>

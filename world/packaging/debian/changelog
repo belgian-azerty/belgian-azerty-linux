@@ -1,3 +1,15 @@
+world-keyboard-windows (0.0.1~proto5) noble; urgency=medium
+
+  * 18 more layouts, other scripts: Arabic (101, 102, 102 AZERTY), Kurdish
+    (Central, Arabic script), Persian, Urdu, Hindi (INSCRIPT and
+    Traditional), Gujarati, Kannada, Malayalam, Odia, Punjabi (Gurmukhi),
+    Telugu, Khmer (NIDA), Lao, Vietnamese and Berber (Tifinagh, extended).
+    60 in total. Not released.
+  * The layout list no longer has an empty country list (Arabic has no
+    single country): libxkbregistry rejected the whole list because of it.
+
+ -- @MAINTAINER@  Thu, 05 Nov 2026 14:00:00 +0000
+
 world-keyboard-windows (0.0.1~proto4) noble; urgency=medium
 
   * 20 more layouts: Irish, Luxembourgish, Portuguese (Brazil, ABNT),

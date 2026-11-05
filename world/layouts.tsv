@@ -41,3 +41,21 @@ ba-t-k0-windows.xml	ru	bak	bak_windows	basic	Bashkir (as on Windows)	ba	RU	bak
 tt-t-k0-windows.xml	ru	tt	tat_windows	basic	Tatar (as on Windows)	tt	RU	tat
 tt-t-k0-windows-legacy.xml	ru	tt	tat_windows	legacy	Tatar (legacy, as on Windows)	tt	RU	tat
 tg-t-k0-windows.xml	tj		tj_windows	basic	Tajik (as on Windows)	tg	TJ	tgk
+ar-t-k0-windows.xml	ara		ara_windows	basic	Arabic (101, as on Windows)	ar		ara
+ar-t-k0-windows-102key.xml	ara		ara_windows	102	Arabic (102, as on Windows)	ar		ara
+ar-t-k0-windows-azerty.xml	ara	azerty	ara_windows	azerty	Arabic (102, AZERTY, as on Windows)	ar		ara
+ckb-t-k0-windows.xml	iq	ku_ara	iq_windows	basic	Kurdish (Central, Arabic script, as on Windows)	ku	IQ	kur
+fa-t-k0-windows.xml	ir	winkeys	ir_windows	basic	Persian (as on Windows)	fa	IR	per
+ur-t-k0-windows.xml	in	urd-winkeys	pk_windows	basic	Urdu (as on Windows)	ur	PK,IN	urd
+hi-t-k0-windows.xml	in		in_windows	basic	Hindi (Devanagari INSCRIPT, as on Windows)	hi	IN	hin
+hi-t-k0-windows-legacy.xml	in		in_windows	hindi_trad	Hindi (Traditional, as on Windows)	hi	IN	hin
+gu-t-k0-windows.xml	in	guj	in_windows	guj	Gujarati (as on Windows)	gu	IN	guj
+kn-t-k0-windows.xml	in	kan	in_windows	kan	Kannada (as on Windows)	kn	IN	kan
+ml-t-k0-windows.xml	in	mal_poorna	in_windows	mal	Malayalam (as on Windows)	ml	IN	mal
+or-t-k0-windows.xml	in	ori	in_windows	ori	Odia (as on Windows)	or	IN	ori
+pa-t-k0-windows.xml	in	guru	in_windows	guru	Punjabi (Gurmukhi, as on Windows)	pa	IN	pan
+te-t-k0-windows.xml	in	tel	in_windows	tel	Telugu (as on Windows)	te	IN	tel
+km-t-k0-windows-extended.xml	kh		kh_windows	basic	Khmer (NIDA, as on Windows)	km	KH	khm
+lo-t-k0-windows.xml	la	stea	la_windows	basic	Lao (as on Windows)	lo	LA	lao
+vi-t-k0-windows.xml	vn		vn_windows	basic	Vietnamese (as on Windows)	vi	VN	vie
+tmh-t-k0-windows-extended.xml	ma	tifinagh-extended	ma_windows	basic	Berber (Tifinagh, extended, as on Windows)	ber	MA	ber

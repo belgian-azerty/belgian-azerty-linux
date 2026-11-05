@@ -123,7 +123,9 @@ def write_registry(files, path):
             ll = ''.join(f'<iso639Id>{c}</iso639Id>' for c in r['languages'].split(',') if c)
             return [f'{ind}<configItem>', f'{ind}  <name>{e(name)}</name>', f'{ind}  <shortDescription>{e(r["short"])}</shortDescription>',
                     f'{ind}  <description>{e(r["description"])}</description>',
-                    f'{ind}  <countryList>{cc}</countryList>', f'{ind}  <languageList>{ll}</languageList>', f'{ind}</configItem>']
+                    # an empty list breaks the whole file for libxkbregistry (the DTD wants one id or more): leave it out
+                    *([f'{ind}  <countryList>{cc}</countryList>'] if cc else []),
+                    *([f'{ind}  <languageList>{ll}</languageList>'] if ll else []), f'{ind}</configItem>']
         first = secs[0][0]
         x += ['    <layout>'] + item(first, lay, '      ')
         if secs[1:]:
