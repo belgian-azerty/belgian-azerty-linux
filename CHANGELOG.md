@@ -11,6 +11,12 @@ The Fedora and openSUSE packages below (`belgian-azerty-windows` 0.9.12-2, `keyd
 
 Nothing changes on Linux Mint, Zorin OS, Ubuntu or Debian: the keyboard types exactly as with 0.9.12.
 
+- **Our options on X11 sessions too (Fedora, openSUSE, Arch, independent distributions)**: these packages put our
+  files in `/etc/xkb`, which the X server does not read, so an X11 session (Xfce, MATE, window managers, KDE on X11)
+  silently lost Caps Lock as on Windows and the Shift+AltGr accents. The new `be-azerty-x11-load` loads them at
+  login. It does nothing on Wayland or when none of our options is set. Tested in test containers only (Void, Gentoo,
+  NixOS, Slackware, Solus, Fedora 45, Tumbleweed, Arch), not yet in a real X11 session.
+
 - **Package files for Fedora, openSUSE and Arch Linux**, to build yourself (`packaging/OTHER-DISTRIBUTIONS.md`):
   `belgian-azerty-windows` and `keyd-belgian-windows` for each, plus keyd 2.6.0 for Fedora (Fedora has no keyd
   package). They put the rules in `/etc/xkb` only and change no file of the system. Built from the v0.9.12 release

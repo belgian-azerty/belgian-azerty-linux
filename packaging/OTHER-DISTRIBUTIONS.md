@@ -21,8 +21,15 @@ plus the Ctrl+Alt = AltGr rules for keyd.
 - **Where it works**: programs that use libxkbcommon, which includes the Wayland desktops. GNOME's login screen: tested
   on Fedora 45 and Leap 16.0 in a virtual machine (below). KDE
   Plasma on Wayland: works in the session after logging out and in (Tumbleweed live, virtual machine); its login screen
-  (SDDM on X11) types Belgian but without our Caps Lock option. **Not read** by a pure X11 session (the X server has its own folder) or by the text
-  console.
+  (SDDM on X11) types Belgian but without our Caps Lock option. The X server does not read `/etc/xkb` and silently drops our options; for
+  X11 sessions the package (not yet released, see below) adds `be-azerty-x11-load`. Not for the text console.
+- **X11 sessions (not released yet)**: `be-azerty-x11-load` starts at login (`/etc/xdg/autostart`), asks the X server
+  which keyboard settings the session wants, lets libxkbcommon build that keymap from `/etc/xkb` and loads it with
+  `xkbcomp`. It does nothing on Wayland or when none of our options is set, and changes no file. It needs `xkbcli`,
+  `xkbcomp` and `setxkbmap` (Fedora and openSUSE: recommended by the package, on openSUSE use `zypper install
+  --recommends`; Arch: install `xorg-xkbcomp` and `xorg-setxkbmap`). Tested in test containers only, up to the
+  keymap the X server would load (0 differences with the Wayland keymap); not yet in a real X11 session, at an X11
+  login screen, or with desktops that set the keyboard again after login.
 - **keyd**: Fedora has no keyd package, so `fedora/keyd.spec` builds keyd 2.6.0 unchanged from the official release.
   openSUSE (Tumbleweed 2.6.0, Leap 16.0 2.5.0 from Backports) and Arch (2.6.0 in [extra]) have their own, which our
   `keyd-belgian-windows` package uses.
@@ -118,8 +125,11 @@ sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove      # takes out only our 
 - On NixOS `/etc` is managed by the system configuration. Whether a rebuild keeps files it did not create in
   `/etc/xkb` was not checked; the NixOS way is to put the two files into `environment.etc` in your configuration
   (not tested).
-- **Only for desktops that use libxkbcommon** (the Wayland desktops). An X11 session does not read `/etc/xkb`; many
-  of these systems still run X11 (Slackware 15.0 by default).
+- **X11 sessions**: an X11 session does not read `/etc/xkb`; many of these systems still run X11 (Slackware 15.0 by
+  default). `be-azerty-etc-xkb.sh install` therefore also puts `be-azerty-x11-load` in `/usr/local/bin`, with a start entry
+  in `/etc/xdg/autostart` and, where the folder exists, `/etc/X11/xinit/xinitrc.d` (startx). It needs `xkbcli`,
+  `xkbcomp` and `setxkbmap`. Tested on 5 November 2026 in test containers on all the systems below, up to the keymap
+  the X server would load (0 differences with the Wayland keymap); not in a real X11 session yet.
 
 ## What was tested (3 November 2026, test containers, no desktop)
 
