@@ -31,6 +31,10 @@ def read_cldr(path):
     root = ET.parse(path).getroot()
     name = root.find('names/name').get('value')
     trans = {_unesc(t.get('from')): _unesc(t.get('to')) for t in root.iter('transform')}
+    # a control character is not text (Romanian legacy AltGr+< gives U+001C, Greek Latin ¨ then Y gives U+009F, the
+    # Windows-1252 code of Ÿ): such cells and results are left out
+    _ctrl = lambda t: any(ord(ch) < 0x20 or 0x7f <= ord(ch) <= 0x9f for ch in t)
+    trans = {f: t for f, t in trans.items() if not _ctrl(t)}
     deadc = {k[0] for k in trans if len(k) >= 2}
     keys = {}
     for st in STATES:
@@ -44,6 +48,7 @@ def read_cldr(path):
                 if k is None: continue
                 to = _unesc(m.get('to'))
                 if len(to) != 1: keys.setdefault(k, {})[st] = 'str:' + to; continue
+                if _ctrl(to): continue
                 keys.setdefault(k, {})[st] = ('dead:' + to) if (to in deadc and m.get('transform') != 'no') else to
     return name, keys, trans
 

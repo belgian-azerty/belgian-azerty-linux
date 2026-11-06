@@ -22,7 +22,7 @@ if accent:
     kb.comp = winkb.compose_table_from_text('include "%L"\n' + ''.join(l + '\n' for l in lines))
     print('accent-space lines:', lines)
 MODS = {'base': ([], 0), 'shift': ([42], 0), 'caps': ([], 1), 'capsshift': ([42], 1), 'altgr': ([100], 0), 'shiftaltgr': ([100, 42], 0)}
-SPACING = {'ˇ': 'ˇ', '´': '´', '`': '`', '^': '^', '~': '~', '¨': '¨', '˘': '˘', '˙': '˙'}
+SPACING = {'ˇ': 'ˇ', '´': '´', '`': '`', '^': '^', '~': '~', '¨': '¨', '˘': '˘', '˙': '˙', '°': '˚'}   # GTK shows ˚ (U+02DA) for dead_abovering
 where = {}
 for k, ks in keys.items():
     for st in ('base', 'shift'):

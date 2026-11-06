@@ -110,3 +110,43 @@ uz-t-k0-windows.xml	uz		uz_windows	basic	Uzbek (Cyrillic, as on Windows)	uz	UZ	u
 ne-t-k0-windows.xml	np		np_windows	basic	Nepali (as on Windows)	ne	NP	nep	windows
 lis-t-k0-windows-extended.xml	us		lis_windows	basic	Lisu (as on Windows)	lis	CN,MM	lis	windows
 khb-t-k0-windows.xml	us		khb_windows	basic	New Tai Lue (as on Windows)	khb	CN	khb	windows
+el-t-k0-windows.xml	gr		gr_windows	basic	Greek (as on Windows)	gr	GR	gre	windows
+el-t-k0-windows-el220.xml	gr		gr_windows	el220	Greek (220, as on Windows)	gr	GR	gre	windows
+el-t-k0-windows-el319.xml	gr		gr_windows	el319	Greek (319, as on Windows)	gr	GR	gre	windows
+el-POLYTON-t-k0-windows.xml	gr	polytonic	gr_windows	polytonic	Greek (polytonic, as on Windows)	gr	GR	gre,grc	windows
+el-Latn-t-k0-windows.xml	us		gr_windows	latin	Greek (Latin, as on Windows)	gr	GR	gre	windows
+el-Latn-t-k0-windows-el220.xml	us		gr_windows	latin220	Greek (220 Latin, as on Windows)	gr	GR	gre	windows
+el-Latn-t-k0-windows-el319.xml	us		gr_windows	latin319	Greek (319 Latin, as on Windows)	gr	GR	gre	windows
+tr-t-k0-windows.xml	tr		tr_windows	basic	Turkish (Q, as on Windows)	tr	TR	tur	windows
+tr-t-k0-windows-legacy.xml	tr	f	tr_windows	f	Turkish (F, as on Windows)	tr	TR	tur	windows
+sk-t-k0-windows.xml	sk		sk_windows	basic	Slovak (as on Windows)	sk	SK	slo	windows
+sk-t-k0-windows-qwerty.xml	sk	qwerty	sk_windows	qwerty	Slovak (QWERTY, as on Windows)	sk	SK	slo	windows
+cs-t-k0-windows-qwerty.xml	cz	qwerty	cz_windows	basic	Czech (QWERTY, as on Windows)	cs	CZ	cze	windows
+cs-t-k0-windows-extended.xml	cz	prog	cz_windows	prog	Czech (Programmers, as on Windows)	cs	CZ	cze	windows
+lv-t-k0-windows-extended.xml	lv		lv_windows	basic	Latvian (Standard, as on Windows)	lv	LV	lav	windows
+lv-t-k0-windows.xml	lv	ergonomic	lv_windows	ergonomic	Latvian (as on Windows)	lv	LV	lav	windows
+lv-t-k0-windows-qwerty.xml	lv		lv_windows	qwerty	Latvian (QWERTY, as on Windows)	lv	LV	lav	windows
+pl-t-k0-windows.xml	pl	qwertz	pl_windows	qwertz	Polish (214, as on Windows)	pl	PL	pol	windows
+sl-t-k0-windows.xml	si		si_windows	basic	Slovenian (as on Windows)	sl	SI	slv	windows
+sr-t-k0-windows.xml	rs		rs_windows	basic	Serbian (Cyrillic, as on Windows)	sr	RS	srp	windows
+sr-Latn-t-k0-windows.xml	rs	latin	rs_windows	latin	Serbian (Latin, as on Windows)	sr	RS	srp	windows
+bs-Cyrl-t-k0-windows.xml	rs		ba_windows	basic	Bosnian (Cyrillic, as on Windows)	bs	BA	bos	windows
+en-t-k0-windows-extended.xml	us	intl	us_windows	intl	English (US, international, as on Windows)	en	US	eng	windows
+es-t-k0-windows-extended.xml	es		es_windows	variation	Spanish (Variation, as on Windows)	es	ES	spa	windows
+fr-CA-t-k0-windows.xml	ca	multix	ca_windows	multix	Canadian (Multilingual Standard, as on Windows)	ca	CA	fre,eng	windows
+gd-t-k0-windows.xml	gb	gla	gb_windows	gla	Scottish Gaelic (as on Windows)	gd	GB	gla	windows
+ig-t-k0-windows.xml	ng	igbo	ng_windows	igbo	Igbo (as on Windows)	ig	NG	ibo	windows
+yo-t-k0-windows.xml	ng	yoruba	ng_windows	yoruba	Yoruba (as on Windows)	yo	NG	yor	windows
+mi-t-k0-windows.xml	nz	mao	nz_windows	basic	Maori (as on Windows)	mi	NZ	mao	windows
+se-FI-t-k0-windows.xml	fi	smi	fi_windows	smi	Northern Sami (Finland, extended, as on Windows)	se	FI	sme	windows
+se-SE-t-k0-windows.xml	se	smi	se_windows	smi	Northern Sami (Sweden, extended, as on Windows)	se	SE	sme	windows
+dsb-t-k0-windows.xml	de	dsb_qwertz	de_windows	dsb	Sorbian (Standard, as on Windows)	dsb	DE	dsb,hsb	windows
+dsb-t-k0-windows-extended.xml	de	dsb_qwertz	de_windows	dsb_ext	Sorbian (Extended, as on Windows)	dsb	DE	dsb,hsb	windows
+dsb-t-k0-windows-legacy.xml	de	dsb_qwertz	de_windows	dsb_legacy	Sorbian (Standard, legacy, as on Windows)	dsb	DE	dsb,hsb	windows
+ro-t-k0-windows-legacy.xml	ro	winkeys	ro_windows	basic	Romanian (legacy, as on Windows)	ro	RO	rum	windows
+nso-t-k0-windows.xml	za		za_windows	basic	Sesotho sa Leboa (as on Windows)	nso	ZA	nso	windows
+tn-t-k0-windows.xml	bw	tswana	bw_windows	basic	Setswana (as on Windows)	tn	BW,ZA	tsn	windows
+tzm-t-k0-windows.xml	ma	french	ma_windows	tzm	Central Atlas Tamazight (Latin, as on Windows)	tzm	MA,DZ	tzm	windows
+wo-t-k0-windows.xml	sn		sn_windows	basic	Wolof (as on Windows)	wo	SN	wol	windows
+en-IN-t-k0-windows.xml	in	eng	in_windows	eng	English (India, as on Windows)	en	IN	eng	windows
+non-t-k0-windows.xml	us		us_windows	futhark	Old Norse (Futhark, as on Windows)	non	SE,NO,DK,IS	non	windows

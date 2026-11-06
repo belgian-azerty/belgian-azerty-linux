@@ -47,3 +47,16 @@ xkb_symbols "sami" {
     // altgr: Windows õ / Linux o; shiftaltgr: Windows Õ / Linux O
     key <AD09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ o, O, otilde, Otilde ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "smi" {
+    include "fi(smi)"
+    name[Group1] = "Northern Sami (Finland, extended, as on Windows)";
+    // Windows layout: "Sami Extended Finland-Sweden" (CLDR se-FI-t-k0-windows.xml); 3 keys differ from Linux
+    // base: Windows § / Linux |; shift: Windows ½ / Linux §; caps: Windows § / Linux |; capsshift: Windows ½ / Linux §; altgr: Windows | / Linux `
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ section, onehalf, bar, asciitilde ] };
+    // altgr: Windows \ / Linux ±
+    key <AE11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ plus, question, backslash, questiondown ] };
+    // base: Windows dead:´ / Linux \; caps: Windows dead:´ / Linux \  [base: accent key ´ as on Windows; Linux accent table differs on 1 sequences (e.g.  ->´ (Linux ')): accent-space gives the Windows results]
+    key <AE12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, dead_grave, dead_acute, notsign ] };
+};

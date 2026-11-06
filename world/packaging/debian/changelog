@@ -1,3 +1,23 @@
+world-keyboard-windows (0.0.1~proto8) noble; urgency=medium
+
+  * 40 more layouts whose accents differ from Linux, Windows wins: Greek
+    (4) and Greek Latin (3), Turkish Q and F, Slovak (2), Czech (QWERTY,
+    Programmers), Latvian (3), Polish (214), Slovenian, Serbian (Cyrillic,
+    Latin), Bosnian (Cyrillic), US-International, Spanish Variation,
+    Canadian Multilingual Standard, Scottish Gaelic, Igbo, Yoruba, Maori,
+    Northern Sami (Finland, Sweden), Sorbian (3), Romanian (legacy),
+    Sesotho sa Leboa, Setswana, Central Atlas Tamazight, Wolof, English
+    (India) and Futhark. 151 in total. Not released.
+  * Accent keys as on Windows in those layouts, also where Linux's own
+    accent table gives other results; accent-space (per user, off until
+    switched on) now covers every accent sequence where Windows differs,
+    not only accent then Space.
+  * accent-space can make a plain key an accent key (Polish ~, Greek ΅,
+    as on Windows), only when every layout of the user is known to it and
+    none of them types that key as a plain character.
+
+ -- @MAINTAINER@  Thu, 05 Nov 2026 22:00:00 +0000
+
 world-keyboard-windows (0.0.1~proto7) noble; urgency=medium
 
   * 44 more layouts, where Windows wins over the Linux layout of the same

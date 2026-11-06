@@ -471,3 +471,46 @@ xkb_symbols "sora" {
     // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
     key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, less, greater ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "eng" {
+    include "in(eng)"
+    name[Group1] = "English (India, as on Windows)";
+    // Windows layout: "English (India)" (CLDR en-IN-t-k0-windows.xml); 18 keys differ from Linux
+    // shiftaltgr: Windows dead:~ / Linux ~
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ grave, asciitilde, grave, dead_tilde ] };
+    // altgr: Windows ṣ / Linux x; shiftaltgr: Windows Ṣ / Linux X
+    key <AB02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ x, X, U1E63, U1E62 ] };
+    // altgr: Windows ṇ / Linux n; shiftaltgr: Windows Ṇ / Linux N
+    key <AB06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ n, N, U1E47, U1E46 ] };
+    // altgr: Windows ṁ / Linux m; shiftaltgr: Windows Ṁ / Linux M
+    key <AB07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ m, M, mabovedot, Mabovedot ] };
+    // altgr: Windows ā / Linux a; shiftaltgr: Windows Ā / Linux A
+    key <AC01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ a, A, amacron, Amacron ] };
+    // altgr: Windows ś / Linux s; shiftaltgr: Windows Ś / Linux S
+    key <AC02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ s, S, sacute, Sacute ] };
+    // altgr: Windows ḍ / Linux d; shiftaltgr: Windows Ḍ / Linux D
+    key <AC03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ d, D, U1E0D, U1E0C ] };
+    // altgr: Windows ṅ / Linux g; shiftaltgr: Windows Ṅ / Linux G
+    key <AC05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ g, G, U1E45, U1E44 ] };
+    // altgr: Windows ḥ / Linux h; shiftaltgr: Windows Ḥ / Linux H
+    key <AC06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ h, H, U1E25, U1E24 ] };
+    // altgr: Windows æ / Linux q; shiftaltgr: Windows Æ / Linux Q
+    key <AD01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ q, Q, ae, AE ] };
+    // altgr: Windows ē / Linux e; shiftaltgr: Windows Ē / Linux E
+    key <AD03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ e, E, emacron, Emacron ] };
+    // altgr: Windows ṭ / Linux t; shiftaltgr: Windows Ṭ / Linux T
+    key <AD05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ t, T, U1E6D, U1E6C ] };
+    // altgr: Windows ñ / Linux y; shiftaltgr: Windows Ñ / Linux Y
+    key <AD06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ y, Y, ntilde, Ntilde ] };
+    // altgr: Windows ū / Linux u; shiftaltgr: Windows Ū / Linux U
+    key <AD07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ u, U, umacron, Umacron ] };
+    // altgr: Windows ī / Linux i; shiftaltgr: Windows Ī / Linux I
+    key <AD08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ i, I, imacron, Imacron ] };
+    // altgr: Windows ō / Linux o; shiftaltgr: Windows Ō / Linux O
+    key <AD09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ o, O, omacron, Omacron ] };
+    // shiftaltgr: Windows dead:˘ / Linux (  [shiftaltgr: accent key ˘ as on Windows; Linux accent table differs on 3 sequences (e.g.  ->( (Linux ˘), h->ḫ (Linux None), H->Ḫ (Linux None)): accent-space gives the Windows results]
+    key <AE09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 9, parenleft, 9, dead_breve ] };
+    // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
+    key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, bar, brokenbar ] };
+};

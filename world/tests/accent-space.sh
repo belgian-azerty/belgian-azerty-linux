@@ -50,6 +50,15 @@ cp "$(X t6)" /tmp/files/ro+std.XCompose
 python3 -I "$REPO/world/tools/check_accent_space.py" "$REPO/world/layouts.tsv" "$REPO/world/cldr-43" "$REPO/world/xkb" /tmp/files/ro+std.XCompose > /tmp/check-ro.txt 2>&1
 t "machine check of that file on Romanian (standard): like Windows, nothing worse" test $? = 0
 sed -n 1p /tmp/check-ro.txt | sed 's/^/      /'
+# step B: every accent sequence where Windows differs, not only accent then Space (Turkish Q: ´ then ı gives í)
+kb tr_windows ""
+useradd -m t7; as t7 $W accent-space on >/dev/null 2>&1
+t "Turkish Q (as on Windows): lines also for other accent sequences (´ then ı gives í, as on Windows)" sh -c "grep -qxF '<dead_acute> <idotless> : \"í\" iacute' $(X t7)"
+cp "$(X t7)" /tmp/files/tr_windows.XCompose
+python3 -I "$REPO/world/tools/check_accent_space.py" "$REPO/world/layouts.tsv" "$REPO/world/cldr-43" "$REPO/world/xkb" /tmp/files/tr_windows.XCompose > /tmp/check-tr.txt 2>&1
+t "machine check of that file on Turkish Q: like Windows, nothing worse" test $? = 0
+sed -n 1p /tmp/check-tr.txt | sed 's/^/      /'
+as t7 $W accent-space off >/dev/null 2>&1
 # nothing to do
 kb gb_windows ""
 as t4 $W accent-space on >/dev/null 2>&1

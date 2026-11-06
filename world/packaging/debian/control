@@ -17,16 +17,16 @@ Description: extra keyboard layouts that type like Windows (prototype)
  characters), generated from Unicode CLDR 43 Windows keyboard data and
  checked by machine. Not covered: Ctrl+Alt as AltGr.
  .
- Layouts in this prototype (111), each named "(as on Windows)": European
+ Layouts in this prototype (151), each named "(as on Windows)": European
  layouts in Latin and Cyrillic script, and layouts in Arabic, Indic,
  Southeast Asian, Caucasian, Mongolian, African and historic scripts. They
  show up in the desktop's layout list. Where Windows and the Linux layout
  differ, the new layout follows Windows; the Linux layout stays as it is.
  .
- Optional, per user: "world-keyboard-windows accent-space on" makes an
- accent followed by Space give the accent itself, as on Windows (Linux
- gives an apostrophe or a quote). It writes a small ~/.XCompose and never
- changes one of the user's own.
+ Optional, per user: "world-keyboard-windows accent-space on" makes the
+ accent keys give what Windows gives (for example an accent followed by
+ Space gives the accent itself; Linux gives an apostrophe or a quote). It
+ writes a small ~/.XCompose and never changes one of the user's own.
  .
  It does not touch the belgian-azerty-windows package, the rules or any
  setting. To make the layouts selectable in Cinnamon (Linux Mint), which

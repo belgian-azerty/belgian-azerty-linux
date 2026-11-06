@@ -40,3 +40,124 @@ xkb_symbols "basic" {
     // caps: Windows ' / Linux #; capsshift: Windows # / Linux '
     key <BKSL> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ numbersign, apostrophe, rightsinglequotemark, dead_breve ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "dsb" {
+    include "de(dsb_qwertz)"
+    name[Group1] = "Sorbian (Standard, as on Windows)";
+    // Windows layout: "Sorbian Standard" (CLDR dsb-t-k0-windows.xml); 16 keys differ from Linux
+    // caps: Windows ; / Linux ,; capsshift: Windows , / Linux ;
+    key <AB08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ comma, semicolon, periodcentered, multiply ] };
+    // caps: Windows : / Linux .; capsshift: Windows . / Linux :
+    key <AB09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ period, colon, U2026, division ] };
+    // altgr: Windows € / Linux ě
+    key <AD03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ e, E, EuroSign, Ecaron ] };
+    // caps: Windows * / Linux +; capsshift: Windows + / Linux *
+    key <AD12> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ plus, asterisk, asciitilde, macron ] };
+    // caps: Windows ! / Linux 1; capsshift: Windows 1 / Linux !
+    key <AE01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 1, exclam, onesuperior, exclamdown ] };
+    // caps: Windows " / Linux 2; capsshift: Windows 2 / Linux "
+    key <AE02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 2, quotedbl, twosuperior, oneeighth ] };
+    // caps: Windows § / Linux 3; capsshift: Windows 3 / Linux §
+    key <AE03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 3, section, threesuperior, sterling ] };
+    // caps: Windows $ / Linux 4; capsshift: Windows 4 / Linux $
+    key <AE04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 4, dollar, onequarter, currency ] };
+    // caps: Windows % / Linux 5; capsshift: Windows 5 / Linux %
+    key <AE05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 5, percent, onehalf, threeeighths ] };
+    // caps: Windows & / Linux 6; capsshift: Windows 6 / Linux &
+    key <AE06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 6, ampersand, notsign, fiveeighths ] };
+    // caps: Windows / / Linux 7; capsshift: Windows 7 / Linux /
+    key <AE07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 7, slash, braceleft, seveneighths ] };
+    // caps: Windows ( / Linux 8; capsshift: Windows 8 / Linux (
+    key <AE08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 8, parenleft, bracketleft, trademark ] };
+    // caps: Windows ) / Linux 9; capsshift: Windows 9 / Linux )
+    key <AE09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 9, parenright, bracketright, plusminus ] };
+    // caps: Windows = / Linux 0; capsshift: Windows 0 / Linux =
+    key <AE10> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 0, equal, braceright, degree ] };
+    // caps: Windows ? / Linux ẞ; capsshift: Windows ß / Linux ?
+    key <AE11> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ ssharp, question, backslash, questiondown ] };
+    // caps: Windows ' / Linux #; capsshift: Windows # / Linux '
+    key <BKSL> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ numbersign, apostrophe, rightsinglequotemark, dead_breve ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "dsb_ext" {
+    include "de(dsb_qwertz)"
+    name[Group1] = "Sorbian (Extended, as on Windows)";
+    // Windows layout: "Sorbian Extended" (CLDR dsb-t-k0-windows-extended.xml); 17 keys differ from Linux
+    // shift: Windows dead:° / Linux °; capsshift: Windows dead:° / Linux °  [shift: accent key ° as on Windows; Linux accent table differs on 6 sequences (e.g.  ->˙ (Linux °), e->ė (Linux None), E->Ė (Linux None)): accent-space gives the Windows results]
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_circumflex, dead_abovering, U2032, U2033 ] };
+    // caps: Windows ; / Linux ,; capsshift: Windows , / Linux ;
+    key <AB08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ comma, semicolon, periodcentered, multiply ] };
+    // caps: Windows : / Linux .; capsshift: Windows . / Linux :
+    key <AB09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ period, colon, U2026, division ] };
+    // altgr: Windows € / Linux ě
+    key <AD03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ e, E, EuroSign, Ecaron ] };
+    // caps: Windows * / Linux +; capsshift: Windows + / Linux *
+    key <AD12> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ plus, asterisk, asciitilde, macron ] };
+    // caps: Windows ! / Linux 1; capsshift: Windows 1 / Linux !; altgr: Windows » / Linux ¹
+    key <AE01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 1, exclam, guillemetright, exclamdown ] };
+    // caps: Windows " / Linux 2; capsshift: Windows 2 / Linux "; altgr: Windows « / Linux ²
+    key <AE02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 2, quotedbl, guillemetleft, oneeighth ] };
+    // caps: Windows § / Linux 3; capsshift: Windows 3 / Linux §; altgr: Windows „ / Linux ³
+    key <AE03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 3, section, doublelowquotemark, sterling ] };
+    // caps: Windows $ / Linux 4; capsshift: Windows 4 / Linux $; altgr: Windows ‚ / Linux ¼
+    key <AE04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 4, dollar, singlelowquotemark, currency ] };
+    // caps: Windows % / Linux 5; capsshift: Windows 5 / Linux %; altgr: Windows ‘ / Linux ½
+    key <AE05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 5, percent, leftsinglequotemark, threeeighths ] };
+    // caps: Windows & / Linux 6; capsshift: Windows 6 / Linux &; altgr: Windows “ / Linux ¬
+    key <AE06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 6, ampersand, leftdoublequotemark, fiveeighths ] };
+    // caps: Windows / / Linux 7; capsshift: Windows 7 / Linux /
+    key <AE07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 7, slash, braceleft, seveneighths ] };
+    // caps: Windows ( / Linux 8; capsshift: Windows 8 / Linux (
+    key <AE08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 8, parenleft, bracketleft, trademark ] };
+    // caps: Windows ) / Linux 9; capsshift: Windows 9 / Linux )
+    key <AE09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 9, parenright, bracketright, plusminus ] };
+    // caps: Windows = / Linux 0; capsshift: Windows 0 / Linux =
+    key <AE10> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 0, equal, braceright, degree ] };
+    // caps: Windows ? / Linux ẞ; capsshift: Windows ß / Linux ?
+    key <AE11> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ ssharp, question, backslash, questiondown ] };
+    // base: Windows ł / Linux #; shift: Windows Ł / Linux '; caps: Windows Ł / Linux #; capsshift: Windows ł / Linux '; altgr: Windows # / Linux ’
+    key <BKSL> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ lstroke, Lstroke, numbersign, dead_breve ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "dsb_legacy" {
+    include "de(dsb_qwertz)"
+    name[Group1] = "Sorbian (Standard, legacy, as on Windows)";
+    // Windows layout: "Sorbian Standard (Legacy)" (CLDR dsb-t-k0-windows-legacy.xml); 17 keys differ from Linux
+    // shift: Windows dead:° / Linux °; capsshift: Windows dead:° / Linux °  [shift: accent key ° as on Windows; Linux accent table differs on 6 sequences (e.g.  ->̇ (Linux °), e->ė (Linux None), E->Ė (Linux None)): accent-space gives the Windows results]
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_circumflex, dead_abovering, U2032, U2033 ] };
+    // caps: Windows ; / Linux ,; capsshift: Windows , / Linux ;
+    key <AB08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ comma, semicolon, periodcentered, multiply ] };
+    // caps: Windows : / Linux .; capsshift: Windows . / Linux :
+    key <AB09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ period, colon, U2026, division ] };
+    // altgr: Windows € / Linux ě
+    key <AD03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ e, E, EuroSign, Ecaron ] };
+    // caps: Windows * / Linux +; capsshift: Windows + / Linux *
+    key <AD12> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ plus, asterisk, asciitilde, macron ] };
+    // caps: Windows ! / Linux 1; capsshift: Windows 1 / Linux !; altgr: Windows » / Linux ¹
+    key <AE01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 1, exclam, guillemetright, exclamdown ] };
+    // caps: Windows " / Linux 2; capsshift: Windows 2 / Linux "; altgr: Windows « / Linux ²
+    key <AE02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 2, quotedbl, guillemetleft, oneeighth ] };
+    // caps: Windows § / Linux 3; capsshift: Windows 3 / Linux §; altgr: Windows „ / Linux ³
+    key <AE03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 3, section, doublelowquotemark, sterling ] };
+    // caps: Windows $ / Linux 4; capsshift: Windows 4 / Linux $; altgr: Windows ‚ / Linux ¼
+    key <AE04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 4, dollar, singlelowquotemark, currency ] };
+    // caps: Windows % / Linux 5; capsshift: Windows 5 / Linux %; altgr: Windows ‘ / Linux ½
+    key <AE05> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 5, percent, leftsinglequotemark, threeeighths ] };
+    // caps: Windows & / Linux 6; capsshift: Windows 6 / Linux &; altgr: Windows “ / Linux ¬
+    key <AE06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 6, ampersand, leftdoublequotemark, fiveeighths ] };
+    // caps: Windows / / Linux 7; capsshift: Windows 7 / Linux /
+    key <AE07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 7, slash, braceleft, seveneighths ] };
+    // caps: Windows ( / Linux 8; capsshift: Windows 8 / Linux (
+    key <AE08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 8, parenleft, bracketleft, trademark ] };
+    // caps: Windows ) / Linux 9; capsshift: Windows 9 / Linux )
+    key <AE09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 9, parenright, bracketright, plusminus ] };
+    // caps: Windows = / Linux 0; capsshift: Windows 0 / Linux =
+    key <AE10> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ 0, equal, braceright, degree ] };
+    // caps: Windows ? / Linux ẞ; capsshift: Windows ß / Linux ?
+    key <AE11> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ ssharp, question, backslash, questiondown ] };
+    // base: Windows ł / Linux #; shift: Windows Ł / Linux '; caps: Windows Ł / Linux #; capsshift: Windows ł / Linux '; altgr: Windows # / Linux ’
+    key <BKSL> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ lstroke, Lstroke, numbersign, dead_breve ] };
+};

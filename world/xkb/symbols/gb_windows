@@ -24,3 +24,26 @@ xkb_symbols "basic" {
     // altgr: Windows \ / Linux dead:`; shiftaltgr: Windows | / Linux dead:˘
     key <BKSL> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ numbersign, asciitilde, backslash, bar ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "gla" {
+    include "gb(gla)"
+    name[Group1] = "Scottish Gaelic (as on Windows)";
+    // Windows layout: "Scottish Gaelic" (CLDR gd-t-k0-windows.xml); 8 keys differ from Linux
+    // base: Windows dead:` / Linux `; shift: Windows ` / Linux ¬; caps: Windows dead:` / Linux `; capsshift: Windows ` / Linux ¬; altgr: Windows ¦ / Linux |; shiftaltgr: Windows ¬ / Linux |
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_grave, grave, brokenbar, notsign ] };
+    // altgr: Windows á / Linux à; shiftaltgr: Windows Á / Linux À
+    key <AC01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ a, A, aacute, Aacute ] };
+    // base: Windows dead:' / Linux '; caps: Windows dead:' / Linux '; altgr: Windows ' / Linux dead:^  [base: no keysym for "dead:'", kept Linux]
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ apostrophe, at, apostrophe, dead_caron ] };
+    // altgr: Windows é / Linux è; shiftaltgr: Windows É / Linux È
+    key <AD03> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ e, E, eacute, Eacute ] };
+    // altgr: Windows ý / Linux ←; shiftaltgr: Windows Ý / Linux ¥
+    key <AD06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ y, Y, yacute, Yacute ] };
+    // altgr: Windows ú / Linux ù; shiftaltgr: Windows Ú / Linux Ù
+    key <AD07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ u, U, uacute, Uacute ] };
+    // altgr: Windows í / Linux ì; shiftaltgr: Windows Í / Linux Ì
+    key <AD08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ i, I, iacute, Iacute ] };
+    // altgr: Windows ó / Linux ò; shiftaltgr: Windows Ó / Linux Ò
+    key <AD09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ o, O, oacute, Oacute ] };
+};

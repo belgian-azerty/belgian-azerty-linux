@@ -1,6 +1,6 @@
 #!/bin/bash
 # world-keyboard-windows: the per-user part of the world prototype (the layouts themselves need no command).
-#   world-keyboard-windows accent-space [on|off]   accent then Space as on Windows, for your user (no sudo):
+#   world-keyboard-windows accent-space [on|off]   accents as on Windows, for your user (no sudo), e.g.
 #                                                  ´ then Space gives ´, ¨ then Space gives ¨ (Linux: ' and ")
 #   world-keyboard-windows status                  which known layouts you have, and whether accent-space is on
 # accent-space writes a small ~/.XCompose that loads Linux's normal accent table and changes only the lines where
@@ -33,25 +33,29 @@ user_layouts() {   # the user's xkb layouts as desktops name them (layout or lay
 pair() { awk -v l="$1" -v v="$2" 'BEGIN { n = split(l, a, ","); split(v, b, ","); for (i = 1; i <= n; i++) if (a[i] != "")
   print (b[i] == "" || b[i] == "basic") ? a[i] : a[i] "+" b[i] }'; }
 
-# The lines for this user: every accent key of the user's layouts where Windows gives something else after Space.
-# When two of the user's layouts want different results for the same accent key, that key is left as on Linux.
+# The lines for this user (same rule as world/tools/check_accent_space.py): per accent sequence of the user's layouts,
+# Windows's result where it differs from Linux. A sequence two of the user's layouts disagree on stays as on Linux.
 # Prints the lines on stdout and notes on stderr.
 wanted_lines() {
   [ -r "$TAB" ] || { echo "accent table $TAB missing" >&2; return 1; }
   user_layouts | sort -u > "$T/mine"
-  awk -F'\t' 'NR == FNR { mine[$1] = 1; next } /^#/ || $1 == "id" { next } ($1 in mine) { k = $2
-      if (!(k in want)) { want[k] = $3; line[k] = $5; lin[k] = $4; who[k] = $1 }
-      else { who[k] = who[k] ", " $1; if (want[k] != $3) clash[k] = 1 } }
-    END { for (k in want) {
-            if (k in clash) { print "NOTE  " k " then Space: your layouts " who[k] " give different results on Windows, left as on Linux" > "/dev/stderr"; continue }
-            if (want[k] != lin[k]) print line[k] } }' "$T/mine" "$TAB" | sort
+  awk -F'\t' 'NR == FNR { mine[$1] = 1; next } /^#/ || $1 == "id" || !($1 in mine) || $6 != "dead" { next }
+    { q = $2; split(q, p, " ")
+      if (!(q in want)) { want[q] = $3; line[q] = $5; lin[q] = $4; who[q] = $1; start[q] = p[1] }
+      else { who[q] = who[q] ", " $1; if (want[q] != $3) clash[q] = 1 } }
+    END {
+      for (q in clash)
+        if (q ~ / space$/) print "NOTE  " start[q] " then Space: your layouts " who[q] " give different results on Windows, left as on Linux" > "/dev/stderr"
+        else other[start[q]] = who[q]
+      for (k in other) print "NOTE  " k " then some keys: your layouts " other[k] " give different results on Windows, left as on Linux" > "/dev/stderr"
+      for (q in want) if (!(q in clash) && want[q] != lin[q]) print line[q] }' "$T/mine" "$TAB" | sort
 }
 file_text() { printf '%s\n' "$MARK" "# Everything else comes from the normal table. Remove with: world-keyboard-windows accent-space off" 'include "%L"'; cat "$1"; }
 ours() {   # $1 is a file this command wrote and nobody changed: our two header lines, the include, and table lines only
   [ -f "$1" ] && [ ! -L "$1" ] || return 1
   [ "$(head -1 "$1")" = "$MARK" ] || return 1
   awk -F'\t' -v hdr="# Everything else comes from the normal table. Remove with: world-keyboard-windows accent-space off" '
-    NR == FNR { if ($1 != "id" && $1 !~ /^#/) ok[$5] = 1; next }
+    NR == FNR { if ($1 != "id" && $1 !~ /^#/ && $5 != "") ok[$5] = 1; next }
     FNR == 1 { next } FNR == 2 && $0 == hdr { next } FNR == 3 && $0 == "include \"%L\"" { inc = 1; next }
     !($0 in ok) { bad = 1 } END { exit (bad || !inc) }' "$TAB" "$1"
 }
@@ -73,7 +77,7 @@ accent_space() {
           bad "you also have $intl: there ' and \" are accent keys, so with this on, ' then Space would give ´ instead of '. Not switched on (FORCE=1 world-keyboard-windows accent-space on to do it anyway)"; return 1
         fi
         wanted_lines > "$T/lines" || return 1
-        if ! [ -s "$T/lines" ]; then info "none of your layouts needs a change for accent then Space (your layouts: $(paste -sd ' ' "$T/mine"))"; return 0; fi
+        if ! [ -s "$T/lines" ]; then info "none of your layouts needs a change for its accents (your layouts: $(paste -sd ' ' "$T/mine"))"; return 0; fi
         if [ -e "$f" ] || [ -L "$f" ]; then
           if ! ours "$f"; then
             bad "$f already exists and is not ours: left unchanged. To get the Windows behaviour, add these lines to it:"

@@ -20,3 +20,77 @@ xkb_symbols "basic" {
     // altgr: Windows ƴ / Linux ü; shiftaltgr: Windows Ƴ / Linux Ü
     key <AD06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ y, Y, U01B4, U01B3 ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "igbo" {
+    include "ng(igbo)"
+    name[Group1] = "Igbo (as on Windows)";
+    // Windows layout: "Igbo" (CLDR ig-t-k0-windows.xml); 18 keys differ from Linux
+    // base: Windows dead:` / Linux `; shift: Windows dead:~ / Linux ~; caps: Windows dead:` / Linux `; capsshift: Windows dead:~ / Linux ~  [shift: accent key ~ as on Windows; Linux accent table differs on 14 sequences (e.g. a->á (Linux ã), A->Á (Linux Ã), e->é (Linux ẽ)): accent-space gives the Windows results]
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_grave, dead_tilde, grave, asciitilde ] };
+    // base: Windows x / Linux ṅ; shift: Windows X / Linux Ṅ; caps: Windows X / Linux Ṅ; capsshift: Windows x / Linux ṅ
+    key <AB02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ x, X, x, X ] };
+    // altgr: Windows ṅ / Linux n; shiftaltgr: Windows Ṅ / Linux N
+    key <AB06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ n, N, U1E45, U1E44 ] };
+    // caps: Windows < / Linux ,; capsshift: Windows , / Linux <
+    key <AB08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ comma, less, comma, less ] };
+    // base: Windows ; / Linux ụ; shift: Windows : / Linux Ụ; caps: Windows ; / Linux Ụ; capsshift: Windows : / Linux ụ; altgr: Windows ¶ / Linux ;
+    key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ semicolon, colon, paragraph, colon ] };
+    // altgr: Windows ´ / Linux '
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ apostrophe, quotedbl, acute, quotedbl ] };
+    // base: Windows q / Linux ị; shift: Windows Q / Linux Ị; caps: Windows Q / Linux Ị; capsshift: Windows q / Linux ị
+    key <AD01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ q, Q, q, Q ] };
+    // altgr: Windows ụ / Linux u; shiftaltgr: Windows Ụ / Linux U
+    key <AD07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ u, U, ubelowdot, Ubelowdot ] };
+    // altgr: Windows ị / Linux i; shiftaltgr: Windows Ị / Linux I
+    key <AD08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ i, I, ibelowdot, Ibelowdot ] };
+    // altgr: Windows ọ / Linux o; shiftaltgr: Windows Ọ / Linux O
+    key <AD09> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ o, O, obelowdot, Obelowdot ] };
+    // base: Windows [ / Linux ọ; shift: Windows { / Linux Ọ; caps: Windows [ / Linux Ọ; capsshift: Windows { / Linux ọ
+    key <AD11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ bracketleft, braceleft, bracketleft, braceleft ] };
+    // shift: Windows $ / Linux ₦; capsshift: Windows $ / Linux ₦
+    key <AE04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 4, dollar, dollar, cent ] };
+    // altgr: Windows € / Linux 5
+    key <AE05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 5, percent, EuroSign, percent ] };
+    // shift: Windows dead:^ / Linux ^; capsshift: Windows dead:^ / Linux ^  [shift: accent key ^ as on Windows; Linux accent table differs on 10 sequences (e.g. a->ā (Linux â), A->Ā (Linux Â), e->ē (Linux ê)): accent-space gives the Windows results]
+    key <AE06> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 6, dead_circumflex, 6, asciicircum ] };
+    // altgr: Windows ‘ / Linux 9
+    key <AE09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 9, parenleft, leftsinglequotemark, parenleft ] };
+    // altgr: Windows ’ / Linux 0
+    key <AE10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 0, parenright, rightsinglequotemark, parenright ] };
+    // shiftaltgr: Windows ¦ / Linux |
+    key <BKSL> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, backslash, brokenbar ] };
+    // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
+    key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, bar, brokenbar ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "yoruba" {
+    include "ng(yoruba)"
+    name[Group1] = "Yoruba (as on Windows)";
+    // Windows layout: "Yoruba" (CLDR yo-t-k0-windows.xml); 12 keys differ from Linux
+    // base: Windows x / Linux ọ; shift: Windows X / Linux Ọ; caps: Windows X / Linux Ọ; capsshift: Windows x / Linux ọ
+    key <AB02> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ x, X, x, X ] };
+    // base: Windows v / Linux ṣ; shift: Windows V / Linux Ṣ; caps: Windows V / Linux Ṣ; capsshift: Windows v / Linux ṣ
+    key <AB04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ v, V, v, V ] };
+    // altgr: Windows ¶ / Linux ;
+    key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ semicolon, colon, paragraph, colon ] };
+    // base: Windows dead:' / Linux '; caps: Windows dead:' / Linux '; shiftaltgr: Windows ¨ / Linux "  [base: no keysym for "dead:'", kept Linux]
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ apostrophe, quotedbl, apostrophe, diaeresis ] };
+    // base: Windows q / Linux ẹ; shift: Windows Q / Linux Ẹ; caps: Windows Q / Linux Ẹ; capsshift: Windows q / Linux ẹ
+    key <AD01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ q, Q, q, Q ] };
+    // base: Windows dead:[ / Linux [; caps: Windows dead:[ / Linux [  [base: no keysym for 'dead:[', kept Linux]
+    key <AD11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ bracketleft, braceleft, bracketleft, braceleft ] };
+    // shift: Windows $ / Linux ₦; capsshift: Windows $ / Linux ₦
+    key <AE04> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 4, dollar, dollar, cent ] };
+    // altgr: Windows € / Linux 5
+    key <AE05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 5, percent, EuroSign, percent ] };
+    // altgr: Windows ‘ / Linux 9
+    key <AE09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 9, parenleft, leftsinglequotemark, parenleft ] };
+    // altgr: Windows ’ / Linux 0
+    key <AE10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 0, parenright, rightsinglequotemark, parenright ] };
+    // base: Windows dead:\ / Linux \; caps: Windows dead:\ / Linux \; shiftaltgr: Windows ¦ / Linux |  [base: no keysym for 'dead:\\', kept Linux]
+    key <BKSL> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, backslash, brokenbar ] };
+    // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
+    key <LSGT> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ backslash, bar, bar, brokenbar ] };
+};
