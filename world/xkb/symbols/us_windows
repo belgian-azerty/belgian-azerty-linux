@@ -38,7 +38,7 @@ xkb_symbols "intl" {
     // Windows layout: "United States-International" (CLDR en-t-k0-windows-extended.xml); 2 keys differ from Linux
     // caps: Windows < / Linux ,; capsshift: Windows , / Linux <
     key <AB08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ comma, less, ccedilla, Ccedilla ] };
-    // base: Windows dead:' / Linux dead:´; shift: Windows dead:" / Linux dead:¨; caps: Windows dead:' / Linux dead:´; capsshift: Windows dead:" / Linux dead:¨; altgr: Windows ´ / Linux '; shiftaltgr: Windows ¨ / Linux "  [base: no keysym for "dead:'", kept Linux; shift: no keysym for 'dead:"', kept Linux]
+    // base: Windows dead:' / Linux dead:´; shift: Windows dead:" / Linux dead:¨; caps: Windows dead:' / Linux dead:´; capsshift: Windows dead:" / Linux dead:¨; altgr: Windows ´ / Linux '; shiftaltgr: Windows ¨ / Linux "
     key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, dead_diaeresis, acute, diaeresis ] };
 };
 

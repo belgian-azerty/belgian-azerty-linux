@@ -2,7 +2,7 @@ cldr_file	base_layout	base_variant	out_layout	out_variant	description	short	coun
 de-t-k0-windows.xml	de	basic	de_windows	basic	German (as on Windows)	de	DE	ger
 de-CH-t-k0-windows.xml	ch	basic	ch_windows	basic	German (Switzerland, as on Windows)	ch	CH	ger
 fr-CH-t-k0-windows.xml	ch	fr	ch_windows	fr	French (Switzerland, as on Windows)	fr	CH	fre
-pl-t-k0-windows-extended.xml	pl	basic	pl_windows	basic	Polish (Programmers, as on Windows)	pl	PL	pol
+pl-t-k0-windows-extended.xml	pl	basic	pl_windows	basic	Polish (Programmers, as on Windows)	pl	PL	pol	accents
 fr-t-k0-windows.xml	fr		fr_windows	basic	French (as on Windows)	fr	FR	fre
 en-GB-t-k0-windows.xml	gb		gb_windows	basic	English (UK, as on Windows)	en	GB	eng
 es-t-k0-windows.xml	es		es_windows	basic	Spanish (as on Windows)	es	ES	spa

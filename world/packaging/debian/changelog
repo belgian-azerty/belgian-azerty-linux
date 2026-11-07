@@ -1,3 +1,13 @@
+world-keyboard-windows (0.0.1~proto9) noble; urgency=medium
+
+  * Polish (Programmers): ~ is an accent key as on Windows (route 1).
+  * A Windows accent xkb has no accent key of its own for gets a free accent
+    keysym only when that key then gives no odd sign and no wrong letter
+    without accent-space (Younes: "veilige versie"); otherwise it stays as
+    on Linux. Not released.
+
+ -- @MAINTAINER@  Sat, 07 Nov 2026 01:30:00 +0000
+
 world-keyboard-windows (0.0.1~proto8) noble; urgency=medium
 
   * 40 more layouts whose accents differ from Linux, Windows wins: Greek

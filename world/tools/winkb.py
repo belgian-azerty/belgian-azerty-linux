@@ -161,6 +161,9 @@ def compare(win, kb):
             w = ks.get(st)
             if w is None or w.startswith('str:'): continue
             cells += 1; x = kb.press(st, k)
+            # an accent xkb has no keysym of its own for (Latvian ', Greek ΅): any accent key there is that accent key
+            # (route 1 gives it a free one); its results are checked with the accent sequences below
+            if w.startswith('dead:') and not char_to_sym(w) and (x or '').startswith('dead:'): continue
             if x != w: diffs.append({'kind': 'deadkey' if w.startswith('dead:') else 'key', 'key': k, 'state': st, 'windows': w, 'linux': x})
     for k, ks in sorted(keys.items()):
         for st in STATES:

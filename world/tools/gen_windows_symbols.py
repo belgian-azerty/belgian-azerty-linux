@@ -34,7 +34,7 @@ def dead_ok(dsym, trans, dchar):
         if got != to: bad.append(f'{fr[1]}->{to} (Linux {got})')
     return bad
 
-def plan_key(w, lin_levels, lin_typed, trans, win_rule=False):
+def plan_key(w, lin_levels, lin_typed, trans, win_rule=False, accent_sym=None):
     """w: Windows cells of one key; lin_levels: Linux keysym names per level; lin_typed: Linux char per state.
     -> (type, [syms], notes) or None when Linux already types every Windows cell."""
     diff = [st for st in winkb.STATES if w.get(st) and not w[st].startswith('str:') and w[st] != lin_typed[st]]
@@ -46,9 +46,9 @@ def plan_key(w, lin_levels, lin_typed, trans, win_rule=False):
     for st, i in CELL.items():
         c = w.get(st)
         if c is None or c.startswith('str:'): continue          # Windows has nothing here: keep Linux's character
-        s = winkb.char_to_sym(c)
+        s = accent_sym[c[5:]] if accent_sym and c.startswith('dead:') and c[5:] in accent_sym else winkb.char_to_sym(c)
         if s is None: notes.append(f'{st}: no keysym for {c!r}, kept Linux'); kept.add(st); continue
-        if c.startswith('dead:') and s.startswith('dead_') and not (lin_typed[st] or '').startswith('dead:'):
+        if c.startswith('dead:') and s.startswith('dead_') and winkb.sym_char(winkb.L.xkb_keysym_from_name(s.encode(), 0)) != lin_typed[st]:
             bad = dead_ok(s, trans, c[5:])
             if bad and win_rule:   # rule windows, step B: the accent key as on Windows; accent-space gives Windows's results
                 notes.append(f'{st}: accent key {c[5:]} as on Windows; Linux accent table differs on {len(bad)} '
@@ -73,6 +73,54 @@ def plan_key(w, lin_levels, lin_typed, trans, win_rule=False):
         typ = SEMI; notes.append(f'Caps Lock {wc!r}/{wcs!r} not expressible, Lock acts like Shift')
     return typ, syms, diff, notes
 
+# accent keys that can stand for an accent xkb has no keysym of its own for (route 1): first the ones less used
+POOL = ['dead_belowring', 'dead_belowmacron', 'dead_belowcircumflex', 'dead_belowtilde', 'dead_belowbreve',
+        'dead_belowdiaeresis', 'dead_invertedbreve', 'dead_doublegrave', 'dead_belowcomma', 'dead_belowdot', 'dead_hook',
+        'dead_horn', 'dead_stroke', 'dead_abovecomma', 'dead_abovereversedcomma', 'dead_iota', 'dead_grave', 'dead_acute',
+        'dead_circumflex', 'dead_tilde', 'dead_macron', 'dead_breve', 'dead_abovedot', 'dead_diaeresis', 'dead_abovering',
+        'dead_doubleacute', 'dead_caron', 'dead_cedilla', 'dead_ogonek']
+KEYS = ['TLDE', 'BKSL', 'LSGT'] + [f'{r}{i:02d}' for r, n in (('AE', 13), ('AD', 13), ('AC', 12), ('AB', 11)) for i in range(1, n)]
+
+def accent_keysyms(win, kb):
+    """Route 1 (Younes 7 Nov): every Windows accent of the layout gets its own xkb accent key (dead keysym), so that
+    GNOME starts an accent sequence on it and accent-space can give Windows's results. An accent with an xkb keysym of
+    its own keeps it. One without (Latvian ', Greek ΅, Polish 214 ·) gets, of the keysyms still free on this layout,
+    the one whose Linux results come closest to Windows's (Linux's accent key on that cell counts as free when no other
+    accent wants it). -> {accent char: keysym name}"""
+    trans = win[2]
+    cells = {}
+    for k, ks in win[1].items():
+        for st, c in ks.items():
+            if c.startswith('dead:'): cells.setdefault(c[5:], []).append((st, k))
+    out = {d: winkb.char_to_sym('dead:' + d) for d in cells if winkb.char_to_sym('dead:' + d)}
+    taken = set(out.values())
+    on_layout = {x for k in KEYS if kb.code(k) for x in kb.levels(k) if x.startswith('dead_')}
+    # Linux's own accent keys on the cells of an accent without keysym: best match first
+    pairs = sorted((len(dead_ok(n, trans, d)), d, n) for d in sorted(cells) if d not in out
+                   for n in {winkb.sym_name(kb.press_sym(st, k)) for st, k in cells[d] if kb.press_sym(st, k)}
+                   if n.startswith('dead_'))
+    for bad, d, n in pairs:
+        if d not in out and n not in taken: out[d] = n; taken.add(n)
+    for d in sorted(cells):
+        if d in out: continue
+        free = [n for n in POOL if n not in taken and n not in on_layout]
+        if not free: continue
+        n = min(free, key=lambda n: (len(dead_ok(n, trans, d)), free.index(n)))
+        if safe_without_accent_space(n, trans, d): out[d] = n; taken.add(n)
+    return out
+
+def safe_without_accent_space(n, trans, d):
+    """Younes 7 Nov ("veilige versie"): a free keysym is used only when, without accent-space, the key gives no odd
+    sign and no wrong letter: accent then Space gives the accent itself, and every sequence gives what Windows gives
+    (GNOME typing test 7 Nov: dead_stroke for the Polytonic / showed " ̵" then the letter). Otherwise the key stays as on Linux (with accent-space it then keeps Linux's results too)."""
+    ks = winkb.L.xkb_keysym_from_name(n.encode(), 0)
+    if winkb.compose_syms(ks, winkb.L.xkb_keysym_from_name(b'space', 0)) != d: return False
+    for fr, to in trans.items():
+        if len(fr) == 2 and fr[0] == d:
+            got = winkb.compose_syms(ks, winkb.L.xkb_utf32_to_keysym(ord(fr[1])))
+            if got != to: return False   # also no result at all: GNOME then shows the keysym's own sign (˳, ̵) and the letter
+    return True
+
 def main(table, cldrdir, outdir):
     ctx = winkb.context()
     rows = list(csv.DictReader(open(table, encoding='utf-8'), delimiter='\t'))
@@ -86,17 +134,20 @@ def main(table, cldrdir, outdir):
         # Keys with more on level 5 and up are rewritten too, and Right Alt becomes AltGr when the Windows layout has
         # AltGr characters and the Linux layout has no AltGr (Russian, Kazakh, Thai...), as on Windows.
         win_rule = r.get('rule') == 'windows'
+        acc_rule = r.get('rule') == 'accents'      # only the accent keys follow Windows (Polish Programmers ~, route 1)
         has_altgr = any(ks.get('altgr') or ks.get('shiftaltgr') for ks in win[1].values())
         if win_rule and has_altgr and winkb.sym_name(kb.press_sym('base', 'RALT')) != 'ISO_Level3_Shift':
             kb = winkb.Keymap(ctx, r['base_layout'], r['base_variant'], 'lv3:ralt_switch')
             lines.append('    include "level3(ralt_switch)"   // Right Alt is AltGr, as on Windows')
+        accents = accent_keysyms(win, kb) if (win_rule or acc_rule) else None
+        if accents: print(f"  accent keys {r['out_layout']}({r['out_variant']}): " + ', '.join(f'{d}={n}' for d, n in sorted(accents.items()) if winkb.char_to_sym('dead:' + d) != n))
         for key in sorted(win[1], key=lambda k: (k[:2] != 'TL', k)):
             if key not in ('TLDE', 'LSGT', 'BKSL') and not key[:2] in ('AE', 'AD', 'AC', 'AB'): continue
             w = win[1][key]
             typed = {st: kb.press(st, key) for st in winkb.STATES}
             now = [winkb.sym_name(kb.press_sym(st, key)) if kb.press_sym(st, key) else 'NoSymbol'
                    for st in ('base', 'shift', 'altgr', 'shiftaltgr')]
-            p = plan_key(w, now, typed, win[2], win_rule)
+            p = plan_key(w, now, typed, win[2], win_rule or acc_rule, accents)
             if p is None: continue
             extra = [x for x in kb.levels(key)[4:] if x != 'NoSymbol']
             if extra and p[0] != 'skip' and not set(extra) <= set(p[1]) and not win_rule:

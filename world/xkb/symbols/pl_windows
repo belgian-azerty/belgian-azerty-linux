@@ -8,7 +8,9 @@ default partial alphanumeric_keys
 xkb_symbols "basic" {
     include "pl(basic)"
     name[Group1] = "Polish (Programmers, as on Windows)";
-    // Windows layout: "Polish (Programmers)" (CLDR pl-t-k0-windows-extended.xml); 2 keys differ from Linux
+    // Windows layout: "Polish (Programmers)" (CLDR pl-t-k0-windows-extended.xml); 3 keys differ from Linux
+    // shift: Windows dead:~ / Linux ~; capsshift: Windows dead:~ / Linux ~  [shift: accent key ~ as on Windows; Linux accent table differs on 18 sequences (e.g. a->ą (Linux ã), A->Ą (Linux Ã), c->ć (Linux None)): accent-space gives the Windows results]
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ grave, dead_tilde, notsign, logicalor ] };
     // altgr: Windows € / Linux ↓
     key <AD07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ u, U, EuroSign, uparrow ] };
     // base: Windows \ / Linux <; shift: Windows | / Linux >; caps: Windows \ / Linux <; capsshift: Windows | / Linux >
@@ -19,9 +21,9 @@ partial alphanumeric_keys
 xkb_symbols "qwertz" {
     include "pl(qwertz)"
     name[Group1] = "Polish (214, as on Windows)";
-    // Windows layout: "Polish (214)" (CLDR pl-t-k0-windows.xml); 10 keys differ from Linux
-    // base: Windows dead:˛ / Linux ˙; shift: Windows dead:· / Linux dead:˛; caps: Windows dead:˛ / Linux ˙; capsshift: Windows dead:· / Linux dead:˛  [shift: no keysym for 'dead:·', kept Linux]
-    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_ogonek, dead_ogonek, notsign, notsign ] };
+    // Windows layout: "Polish (214)" (CLDR pl-t-k0-windows.xml); 11 keys differ from Linux
+    // base: Windows dead:˛ / Linux ˙; shift: Windows dead:· / Linux dead:˛; caps: Windows dead:˛ / Linux ˙; capsshift: Windows dead:· / Linux dead:˛  [shift: accent key · as on Windows; Linux accent table differs on 1 sequences (e.g.  ->· (Linux ˙)): accent-space gives the Windows results]
+    key <TLDE> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_ogonek, dead_abovedot, notsign, notsign ] };
     // caps: Windows ą / Linux Ą; capsshift: Windows ę / Linux Ę
     key <AC11> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ aogonek, eogonek, ssharp, dead_caron, aogonek ] };
     // altgr: Windows ¦ / Linux |
@@ -38,6 +40,8 @@ xkb_symbols "qwertz" {
     key <AE05> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 5, percent, dead_abovering, threeeighths ] };
     // altgr: Windows ` / Linux dead:`
     key <AE07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 7, slash, grave, seveneighths ] };
+    // altgr: Windows dead:· / Linux dead:˙
+    key <AE08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 8, parenleft, dead_abovedot, trademark ] };
     // caps: Windows ó / Linux Ó; capsshift: Windows ź / Linux Ź
     key <BKSL> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ oacute, zacute, dead_grave, dead_breve, oacute ] };
 };

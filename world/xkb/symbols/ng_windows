@@ -75,8 +75,8 @@ xkb_symbols "yoruba" {
     key <AB04> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ v, V, v, V ] };
     // altgr: Windows ¶ / Linux ;
     key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ semicolon, colon, paragraph, colon ] };
-    // base: Windows dead:' / Linux '; caps: Windows dead:' / Linux '; shiftaltgr: Windows ¨ / Linux "  [base: no keysym for "dead:'", kept Linux]
-    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ apostrophe, quotedbl, apostrophe, diaeresis ] };
+    // base: Windows dead:' / Linux '; caps: Windows dead:' / Linux '; shiftaltgr: Windows ¨ / Linux "
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, quotedbl, apostrophe, diaeresis ] };
     // base: Windows q / Linux ẹ; shift: Windows Q / Linux Ẹ; caps: Windows Q / Linux Ẹ; capsshift: Windows q / Linux ẹ
     key <AD01> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ q, Q, q, Q ] };
     // base: Windows dead:[ / Linux [; caps: Windows dead:[ / Linux [  [base: no keysym for 'dead:[', kept Linux]

@@ -59,6 +59,15 @@ python3 -I "$REPO/world/tools/check_accent_space.py" "$REPO/world/layouts.tsv" "
 t "machine check of that file on Turkish Q: like Windows, nothing worse" test $? = 0
 sed -n 1p /tmp/check-tr.txt | sed 's/^/      /'
 as t7 $W accent-space off >/dev/null 2>&1
+# route 1: the Polish ~ is a real accent key now; with accent-space it gives Windows's letters (~ then a gives ą)
+kb pl_windows ""
+useradd -m t8; as t8 $W accent-space on >/dev/null 2>&1
+t "Polish (Programmers, as on Windows): ~ then a gives ą with accent-space (as on Windows)" sh -c "grep -qxF '<dead_tilde> <a> : \"ą\" aogonek' $(X t8)"
+cp "$(X t8)" /tmp/files/pl_windows.XCompose
+python3 -I "$REPO/world/tools/check_accent_space.py" "$REPO/world/layouts.tsv" "$REPO/world/cldr-43" "$REPO/world/xkb" /tmp/files/pl_windows.XCompose > /tmp/check-pl.txt 2>&1
+t "machine check of that file on Polish: like Windows, nothing worse" test $? = 0
+sed -n 1p /tmp/check-pl.txt | sed 's/^/      /'
+as t8 $W accent-space off >/dev/null 2>&1
 # nothing to do
 kb gb_windows ""
 as t4 $W accent-space on >/dev/null 2>&1

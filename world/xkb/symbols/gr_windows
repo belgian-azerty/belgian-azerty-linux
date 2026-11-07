@@ -9,7 +9,7 @@ xkb_symbols "basic" {
     include "gr"
     name[Group1] = "Greek (as on Windows)";
     // Windows layout: "Greek" (CLDR el-t-k0-windows.xml); 15 keys differ from Linux
-    // base: Windows dead:΄ / Linux dead:´; caps: Windows dead:΄ / Linux dead:´; altgr: Windows dead:΅ / Linux dead:´  [base: no keysym for 'dead:΄', kept Linux; altgr: no keysym for 'dead:΅', kept Linux]
+    // base: Windows dead:΄ / Linux dead:´; caps: Windows dead:΄ / Linux dead:´; altgr: Windows dead:΅ / Linux dead:´  [altgr: no keysym for 'dead:΅', kept Linux]
     key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, dead_diaeresis, dead_acute, dead_abovecomma ] };
     // shift: Windows dead:΅ / Linux Σ; capsshift: Windows dead:΅ / Linux Σ  [shift: no keysym for 'dead:΅', kept Linux]
     key <AD02> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ Greek_finalsmallsigma, Greek_SIGMA, U03DB, U03DA, Greek_finalsmallsigma ] };
@@ -54,10 +54,10 @@ xkb_symbols "el220" {
     key <AB09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ period, colon, guillemetright, periodcentered ] };
     // base: Windows - / Linux /; shift: Windows _ / Linux ?; caps: Windows - / Linux /; capsshift: Windows _ / Linux ?
     key <AB10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ minus, underscore, slash, question ] };
-    // base: Windows dead:΄ / Linux dead:´; caps: Windows dead:΄ / Linux dead:´; altgr: Windows dead:΅ / Linux dead:´  [base: no keysym for 'dead:΄', kept Linux; altgr: no keysym for 'dead:΅', kept Linux]
-    key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, dead_diaeresis, dead_acute, dead_abovecomma ] };
-    // base: Windows dead:¨ / Linux '; shift: Windows dead:΅ / Linux "; caps: Windows dead:¨ / Linux '; capsshift: Windows dead:΅ / Linux "; altgr: Windows dead:΅ / Linux dead:`  [base: accent key ¨ as on Windows; Linux accent table differs on 1 sequences (e.g.  ->¨ (Linux ")): accent-space gives the Windows results; shift: no keysym for 'dead:΅', kept Linux; altgr: no keysym for 'dead:΅', kept Linux]
-    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_diaeresis, quotedbl, dead_grave, dead_abovereversedcomma ] };
+    // base: Windows dead:΄ / Linux dead:´; caps: Windows dead:΄ / Linux dead:´; altgr: Windows dead:΅ / Linux dead:´  [altgr: accent key ΅ as on Windows; Linux accent table differs on 3 sequences (e.g.  ->΅ (Linux `), ι->ΐ (Linux ὶ), υ->ΰ (Linux ὺ)): accent-space gives the Windows results]
+    key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, dead_diaeresis, dead_grave, dead_abovecomma ] };
+    // base: Windows dead:¨ / Linux '; shift: Windows dead:΅ / Linux "; caps: Windows dead:¨ / Linux '; capsshift: Windows dead:΅ / Linux "; altgr: Windows dead:΅ / Linux dead:`  [base: accent key ¨ as on Windows; Linux accent table differs on 1 sequences (e.g.  ->¨ (Linux ")): accent-space gives the Windows results; shift: accent key ΅ as on Windows; Linux accent table differs on 3 sequences (e.g.  ->΅ (Linux `), ι->ΐ (Linux ὶ), υ->ΰ (Linux ὺ)): accent-space gives the Windows results]
+    key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_diaeresis, dead_grave, dead_grave, dead_abovereversedcomma ] };
     // base: Windows ; / Linux ;; caps: Windows ; / Linux ;
     key <AD01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ U037E, colon, periodcentered, NoSymbol ] };
     // shift: Windows ~ / Linux Σ; capsshift: Windows ~ / Linux Σ
@@ -109,7 +109,7 @@ xkb_symbols "el319" {
     key <AB09> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ period, colon, guillemetright, periodcentered ] };
     // base: Windows - / Linux /; shift: Windows _ / Linux ?; caps: Windows - / Linux /; capsshift: Windows _ / Linux ?
     key <AB10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ minus, underscore, slash, question ] };
-    // base: Windows dead:΄ / Linux dead:´; caps: Windows dead:΄ / Linux dead:´; altgr: Windows dead:΅ / Linux dead:´  [base: no keysym for 'dead:΄', kept Linux; altgr: no keysym for 'dead:΅', kept Linux]
+    // base: Windows dead:΄ / Linux dead:´; caps: Windows dead:΄ / Linux dead:´; altgr: Windows dead:΅ / Linux dead:´  [altgr: no keysym for 'dead:΅', kept Linux]
     key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, dead_diaeresis, dead_acute, dead_abovecomma ] };
     // base: Windows ’ / Linux '; shift: Windows ‘ / Linux "; caps: Windows ’ / Linux '; capsshift: Windows ‘ / Linux "
     key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ rightsinglequotemark, leftsinglequotemark, dead_grave, dead_abovereversedcomma ] };
@@ -164,9 +164,9 @@ xkb_symbols "polytonic" {
     key <AC07> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Greek_xi, Greek_XI, U03F3, U037F ] };
     // capsshift: Windows κ / Linux Κ
     key <AC08> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Greek_kappa, Greek_KAPPA, U03D7, U03CF ] };
-    // base: Windows dead:΄ / Linux dead:´; shift: Windows dead:¨ / Linux dead:abovecomma; caps: Windows dead:΄ / Linux dead:´; capsshift: Windows dead:¨ / Linux dead:abovecomma; altgr: Windows dead:΅ / Linux dead:´  [base: no keysym for 'dead:΄', kept Linux; altgr: no keysym for 'dead:΅', kept Linux]
+    // base: Windows dead:΄ / Linux dead:´; shift: Windows dead:¨ / Linux dead:abovecomma; caps: Windows dead:΄ / Linux dead:´; capsshift: Windows dead:¨ / Linux dead:abovecomma; altgr: Windows dead:΅ / Linux dead:´  [shift: accent key ¨ as on Windows; Linux accent table differs on 2 sequences (e.g.  ->¨ (Linux "), .->¨ (Linux None)): accent-space gives the Windows results; altgr: no keysym for 'dead:΅', kept Linux]
     key <AC10> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_acute, dead_diaeresis, dead_acute, dead_acute ] };
-    // base: Windows dead:' / Linux dead:`; shift: Windows dead:" / Linux dead:abovereversedcomma; caps: Windows dead:' / Linux dead:`; capsshift: Windows dead:" / Linux dead:abovereversedcomma; altgr: Windows dead:᾿ / Linux '; shiftaltgr: Windows dead:῾ / Linux "  [base: no keysym for "dead:'", kept Linux; shift: no keysym for 'dead:"', kept Linux; altgr: no keysym for 'dead:᾿', kept Linux; shiftaltgr: no keysym for 'dead:῾', kept Linux]
+    // base: Windows dead:' / Linux dead:`; shift: Windows dead:" / Linux dead:abovereversedcomma; caps: Windows dead:' / Linux dead:`; capsshift: Windows dead:" / Linux dead:abovereversedcomma; altgr: Windows dead:᾿ / Linux '; shiftaltgr: Windows dead:῾ / Linux "  [base: no keysym for "dead:'", kept Linux; altgr: no keysym for 'dead:᾿', kept Linux; shiftaltgr: no keysym for 'dead:῾', kept Linux]
     key <AC11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_grave, dead_abovereversedcomma, apostrophe, quotedbl ] };
     // base: Windows dead:; / Linux ;; shift: Windows dead:: / Linux :; caps: Windows dead:; / Linux ;; capsshift: Windows dead:: / Linux :; altgr: Windows ´ / Linux ·  [base: no keysym for 'dead:;', kept Linux; shift: no keysym for 'dead::', kept Linux]
     key <AD01> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ semicolon, colon, U1FFD, NoSymbol ] };
@@ -176,9 +176,9 @@ xkb_symbols "polytonic" {
     key <AD06> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Greek_upsilon, Greek_UPSILON, yen, U03D2 ] };
     // capsshift: Windows π / Linux Π
     key <AD10> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ Greek_pi, Greek_PI, U03D6, U03D5 ] };
-    // base: Windows dead:[ / Linux dead:~; shift: Windows dead:{ / Linux dead:¨; caps: Windows dead:[ / Linux dead:~; capsshift: Windows dead:{ / Linux dead:¨; altgr: Windows dead:« / Linux dead:¯  [base: no keysym for 'dead:[', kept Linux; shift: no keysym for 'dead:{', kept Linux; altgr: no keysym for 'dead:«', kept Linux]
+    // base: Windows dead:[ / Linux dead:~; shift: Windows dead:{ / Linux dead:¨; caps: Windows dead:[ / Linux dead:~; capsshift: Windows dead:{ / Linux dead:¨; altgr: Windows dead:« / Linux dead:¯  [base: no keysym for 'dead:[', kept Linux; shift: no keysym for 'dead:{', kept Linux]
     key <AD11> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_tilde, dead_diaeresis, dead_macron, dead_macron ] };
-    // base: Windows dead:] / Linux dead:iota; shift: Windows dead:} / Linux None; caps: Windows dead:] / Linux dead:iota; capsshift: Windows dead:} / Linux None; altgr: Windows dead:» / Linux dead:˘; shiftaltgr: Windows · / Linux dead:˘  [base: no keysym for 'dead:]', kept Linux; shift: no keysym for 'dead:}', kept Linux; altgr: no keysym for 'dead:»', kept Linux]
+    // base: Windows dead:] / Linux dead:iota; shift: Windows dead:} / Linux None; caps: Windows dead:] / Linux dead:iota; capsshift: Windows dead:} / Linux None; altgr: Windows dead:» / Linux dead:˘; shiftaltgr: Windows · / Linux dead:˘  [shift: no keysym for 'dead:}', kept Linux]
     key <AD12> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ dead_iota, VoidSymbol, dead_breve, U0387 ] };
     // altgr: Windows Ϛ / Linux •
     key <AE01> { type[Group1] = "FOUR_LEVEL_PLUS_LOCK", symbols[Group1] = [ 1, exclam, U03DA, onesuperior, 1 ] };

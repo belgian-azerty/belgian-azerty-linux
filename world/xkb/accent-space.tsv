@@ -133,6 +133,24 @@ ch_windows+fr	dead_tilde O	Õ	Õ	<dead_tilde> <O> : "Õ" Otilde	dead
 ch_windows+fr	dead_tilde a	ã	ã	<dead_tilde> <a> : "ã" atilde	dead
 ch_windows+fr	dead_tilde n	ñ	ñ	<dead_tilde> <n> : "ñ" ntilde	dead
 ch_windows+fr	dead_tilde o	õ	õ	<dead_tilde> <o> : "õ" otilde	dead
+pl_windows	dead_tilde A	Ą	Ã	<dead_tilde> <A> : "Ą" Aogonek	dead
+pl_windows	dead_tilde C	Ć		<dead_tilde> <C> : "Ć" Cacute	dead
+pl_windows	dead_tilde E	Ę	Ẽ	<dead_tilde> <E> : "Ę" Eogonek	dead
+pl_windows	dead_tilde L	Ł		<dead_tilde> <L> : "Ł" Lstroke	dead
+pl_windows	dead_tilde N	Ń	Ñ	<dead_tilde> <N> : "Ń" Nacute	dead
+pl_windows	dead_tilde O	Ó	Õ	<dead_tilde> <O> : "Ó" Oacute	dead
+pl_windows	dead_tilde S	Ś		<dead_tilde> <S> : "Ś" Sacute	dead
+pl_windows	dead_tilde X	Ź		<dead_tilde> <X> : "Ź" Zacute	dead
+pl_windows	dead_tilde Z	Ż		<dead_tilde> <Z> : "Ż" Zabovedot	dead
+pl_windows	dead_tilde a	ą	ã	<dead_tilde> <a> : "ą" aogonek	dead
+pl_windows	dead_tilde c	ć		<dead_tilde> <c> : "ć" cacute	dead
+pl_windows	dead_tilde e	ę	ẽ	<dead_tilde> <e> : "ę" eogonek	dead
+pl_windows	dead_tilde l	ł		<dead_tilde> <l> : "ł" lstroke	dead
+pl_windows	dead_tilde n	ń	ñ	<dead_tilde> <n> : "ń" nacute	dead
+pl_windows	dead_tilde o	ó	õ	<dead_tilde> <o> : "ó" oacute	dead
+pl_windows	dead_tilde s	ś		<dead_tilde> <s> : "ś" sacute	dead
+pl_windows	dead_tilde x	ź		<dead_tilde> <x> : "ź" zacute	dead
+pl_windows	dead_tilde z	ż		<dead_tilde> <z> : "ż" zabovedot	dead
 fr_windows	dead_circumflex space	^	^	<dead_circumflex> <space> : "^" asciicircum	dead
 fr_windows	dead_circumflex A	Â	Â	<dead_circumflex> <A> : "Â" Acircumflex	dead
 fr_windows	dead_circumflex E	Ê	Ê	<dead_circumflex> <E> : "Ê" Ecircumflex	dead
@@ -1200,7 +1218,6 @@ py_windows	dead_tilde u	ũ	ũ	<dead_tilde> <u> : "ũ" utilde	dead
 gr_windows	dead_acute *	΅			shared
 gr_windows	dead_acute space	΄	'	<dead_acute> <space> : "΄" U0384	dead
 gr_windows	dead_diaeresis space	¨	"	<dead_diaeresis> <space> : "¨" diaeresis	dead
-gr_windows+el220	dead_acute *	΅			shared
 gr_windows+el220	dead_acute space	΄	'	<dead_acute> <space> : "΄" U0384	dead
 gr_windows+el220	dead_diaeresis space	¨	"	<dead_diaeresis> <space> : "¨" diaeresis	dead
 gr_windows+el220	dead_grave space	΅	`	<dead_grave> <space> : "΅" Greek_accentdieresis	dead
@@ -1822,7 +1839,6 @@ pl_windows+qwertz	dead_diaeresis a	ä	ä	<dead_diaeresis> <a> : "ä" adiaeresis	
 pl_windows+qwertz	dead_diaeresis e	ë	ë	<dead_diaeresis> <e> : "ë" ediaeresis	dead
 pl_windows+qwertz	dead_diaeresis o	ö	ö	<dead_diaeresis> <o> : "ö" odiaeresis	dead
 pl_windows+qwertz	dead_diaeresis u	ü	ü	<dead_diaeresis> <u> : "ü" udiaeresis	dead
-pl_windows+qwertz	dead_ogonek *	·			shared
 si_windows	dead_abovedot space	˙	˙	<dead_abovedot> <space> : "˙" abovedot	dead
 si_windows	dead_abovering space	°	°	<dead_abovering> <space> : "°" degree	dead
 si_windows	dead_acute space	´	'	<dead_acute> <space> : "´" acute	dead
@@ -2114,6 +2130,19 @@ ng_windows+igbo	dead_tilde m	ḿ		<dead_tilde> <m> : "ḿ" U1E3F	dead
 ng_windows+igbo	dead_tilde n	ń	ñ	<dead_tilde> <n> : "ń" nacute	dead
 ng_windows+igbo	dead_tilde o	ó	õ	<dead_tilde> <o> : "ó" oacute	dead
 ng_windows+igbo	dead_tilde u	ú	ũ	<dead_tilde> <u> : "ú" uacute	dead
+ng_windows+yoruba	dead_acute space	'	'	<dead_acute> <space> : "'" apostrophe	dead
+ng_windows+yoruba	dead_acute A	Á	Á	<dead_acute> <A> : "Á" Aacute	dead
+ng_windows+yoruba	dead_acute E	É	É	<dead_acute> <E> : "É" Eacute	dead
+ng_windows+yoruba	dead_acute I	Í	Í	<dead_acute> <I> : "Í" Iacute	dead
+ng_windows+yoruba	dead_acute N	Ń	Ń	<dead_acute> <N> : "Ń" Nacute	dead
+ng_windows+yoruba	dead_acute O	Ó	Ó	<dead_acute> <O> : "Ó" Oacute	dead
+ng_windows+yoruba	dead_acute U	Ú	Ú	<dead_acute> <U> : "Ú" Uacute	dead
+ng_windows+yoruba	dead_acute a	á	á	<dead_acute> <a> : "á" aacute	dead
+ng_windows+yoruba	dead_acute e	é	é	<dead_acute> <e> : "é" eacute	dead
+ng_windows+yoruba	dead_acute i	í	í	<dead_acute> <i> : "í" iacute	dead
+ng_windows+yoruba	dead_acute n	ń	ń	<dead_acute> <n> : "ń" nacute	dead
+ng_windows+yoruba	dead_acute o	ó	ó	<dead_acute> <o> : "ó" oacute	dead
+ng_windows+yoruba	dead_acute u	ú	ú	<dead_acute> <u> : "ú" uacute	dead
 nz_windows	dead_grave space	~	`	<dead_grave> <space> : "~" asciitilde	dead
 nz_windows	dead_grave A	Ā	À	<dead_grave> <A> : "Ā" Amacron	dead
 nz_windows	dead_grave E	Ē	È	<dead_grave> <E> : "Ē" Emacron	dead
@@ -2529,6 +2558,17 @@ bw_windows	dead_circumflex e	ê	ê	<dead_circumflex> <e> : "ê" ecircumflex	dead
 bw_windows	dead_circumflex i	î	î	<dead_circumflex> <i> : "î" icircumflex	dead
 bw_windows	dead_circumflex o	ô	ô	<dead_circumflex> <o> : "ô" ocircumflex	dead
 bw_windows	dead_circumflex u	û	û	<dead_circumflex> <u> : "û" ucircumflex	dead
+bw_windows	dead_diaeresis space	"	"	<dead_diaeresis> <space> : "\"" quotedbl	dead
+bw_windows	dead_diaeresis A	Ä	Ä	<dead_diaeresis> <A> : "Ä" Adiaeresis	dead
+bw_windows	dead_diaeresis E	Ë	Ë	<dead_diaeresis> <E> : "Ë" Ediaeresis	dead
+bw_windows	dead_diaeresis I	Ï	Ï	<dead_diaeresis> <I> : "Ï" Idiaeresis	dead
+bw_windows	dead_diaeresis O	Ö	Ö	<dead_diaeresis> <O> : "Ö" Odiaeresis	dead
+bw_windows	dead_diaeresis U	Ü	Ü	<dead_diaeresis> <U> : "Ü" Udiaeresis	dead
+bw_windows	dead_diaeresis a	ä	ä	<dead_diaeresis> <a> : "ä" adiaeresis	dead
+bw_windows	dead_diaeresis e	ë	ë	<dead_diaeresis> <e> : "ë" ediaeresis	dead
+bw_windows	dead_diaeresis i	ï	ï	<dead_diaeresis> <i> : "ï" idiaeresis	dead
+bw_windows	dead_diaeresis o	ö	ö	<dead_diaeresis> <o> : "ö" odiaeresis	dead
+bw_windows	dead_diaeresis u	ü	ü	<dead_diaeresis> <u> : "ü" udiaeresis	dead
 bw_windows	dead_grave space	`	`	<dead_grave> <space> : "`" grave	dead
 bw_windows	dead_grave A	À	À	<dead_grave> <A> : "À" Agrave	dead
 bw_windows	dead_grave E	È	È	<dead_grave> <E> : "È" Egrave	dead

@@ -8,11 +8,13 @@ default partial alphanumeric_keys
 xkb_symbols "basic" {
     include "ro(winkeys)"
     name[Group1] = "Romanian (legacy, as on Windows)";
-    // Windows layout: "Romanian (Legacy)" (CLDR ro-t-k0-windows-legacy.xml); 3 keys differ from Linux
+    // Windows layout: "Romanian (Legacy)" (CLDR ro-t-k0-windows-legacy.xml); 4 keys differ from Linux
     // base: Windows ş / Linux ș; shift: Windows Ş / Linux Ș; caps: Windows Ş / Linux Ș; capsshift: Windows ş / Linux ș
     key <AC10> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ scedilla, Scedilla, dollar, NoSymbol ] };
     // base: Windows ţ / Linux ț; shift: Windows Ţ / Linux Ț; caps: Windows Ţ / Linux Ț; capsshift: Windows ţ / Linux ț
     key <AC11> { type[Group1] = "FOUR_LEVEL_SEMIALPHABETIC", symbols[Group1] = [ tcedilla, Tcedilla, ssharp, NoSymbol ] };
     // altgr: Windows ` / Linux dead:`
     key <AE07> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 7, slash, grave, NoSymbol ] };
+    // altgr: Windows dead:· / Linux dead:˙
+    key <AE08> { type[Group1] = "FOUR_LEVEL", symbols[Group1] = [ 8, parenleft, dead_abovedot, NoSymbol ] };
 };
