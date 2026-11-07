@@ -101,8 +101,7 @@ git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-a
 (cd belgian-azerty-windows && makepkg -si)
 (cd keyd-belgian-windows && makepkg -si)
 ```
-makepkg checks the archive against the SHA256 in the PKGBUILD (for v0.9.13 this is filled in just after the release;
-until then the PKGBUILD says `SKIP`).
+makepkg checks the archive against the SHA256 in the PKGBUILD.
 
 To remove: `sudo dnf remove`, `sudo zypper remove` or `sudo pacman -R` with `belgian-azerty-windows keyd-belgian-windows`
 (keyd itself stays and can be removed on its own).

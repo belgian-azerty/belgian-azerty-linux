@@ -16,8 +16,7 @@ backup=('etc/xkb/rules/evdev' 'etc/xkb/symbols/be_capslock' 'etc/xdg/autostart/b
 install=belgian-azerty-windows.install
 options=('!debug' '!strip')
 source=("belgian-azerty-linux-$pkgver.tar.gz::https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v$pkgver.tar.gz")
-# the checksum of the v0.9.13 archive is filled in once that tag exists (until then makepkg skips the check)
-sha256sums=('SKIP')
+sha256sums=('c5f72348eab1de26850d11ebf091e3cc028bc492abfd93207a4a010e21ceba22')
 
 build() {
   cd belgian-azerty-linux-$pkgver
